@@ -1,0 +1,27 @@
+Name
+Username
+Profile
+Photo
+Banner-Photo
+Join-Date
+Lists
+Followed By
+Mutual
+Followers
+Following
+Twitter-Account
+Bio
+Location
+Website
+Birthdate
+Verified-Check
+Likes
+Retweets-Tweets
+Pinned
+Tweet
+Replies
+Retweets-With-Comment
+Text
+Media
+Timestamp
+Source-Label

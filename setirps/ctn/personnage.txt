@@ -1,0 +1,37 @@
+@startuml
+!define osaPuml stdliblocal
+!include osaPuml/Common.puml
+!include osaPuml/User/all.puml
+!include osaPuml/Hardware/all.puml
+!include osaPuml/Misc/all.puml
+!include osaPuml/Server/all.puml
+!include osaPuml/Site/all.puml
+
+osa_site_head_office(office, "Enterprise", "10", "20")
+
+osa_user_green_developer(Mary, "Mary", "Product team", "Developer")
+
+osa_desktop(pc, "192.168.1.10", "Windows 10", "PC")
+osa_iPhone(android, "Dynamic IP", "Android 10", "Phone")
+
+osa_device_wireless_router(wifiAP, "192.168.1.1", "Network")
+osa_hub(hub, "Office hub", "Hub")
+osa_firewall(firewall, "51.37.24.103", "Network")
+osa_cloud(cloud, "Internet", "Network")
+
+office --> Mary
+
+Mary --> pc: source code
+Mary --> android: social media
+
+android --> wifiAP
+wifiAP --> hub
+
+pc --> hub
+
+hub --> firewall
+
+firewall --> cloud
+
+footer %filename() rendered with PlantUML version %version()\nThe Hitchhiker’s Guide to PlantUML
+@enduml

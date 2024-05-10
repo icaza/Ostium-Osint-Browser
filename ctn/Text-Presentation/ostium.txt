@@ -1,0 +1,45 @@
+Ostium Osint Browser est un navigateur web qui utilise le runtime Microsoft Edge WebView2. Ce navigateur est rendu possible par le projet open source Chromium https://www.chromium.org/ et d’autres logiciels open source edge://credits/.
+
+Par défaut, WebView2 est permanent et reçoit des mises à jour Microsoft automatiques pour rester sur la plate-forme la plus récente et la plus sécurisée.
+
+OOB intègre les même outils par défaut que ceux présent dans le navigateur Edge Chrome et Google Chrome à l'exception de quelques variantes. En plus de cela OOB vous donne accées à des outils propre à son fonctionnement en vue de facilité vos investigations comme la création de diagrammes Json et Mind Map avec plantUML etc.
+
+OOB préserve totalement votre confidentialité, aucun suivi ni aucune statistique de votre utilisation du logiciel n'est réalisé. A chaque fermeture vous pouvez choisir d'écraser les données complètes de navigation tout en préservant les données collectées lors de vos investigations. Les données que vous colectées sont local, rien n'est conservé sur le cloud.  
+
+----------------- gpt4
+
+Discover Ostium Osint Browser, your new web browsing companion designed to meet your investigative needs with powerful built-in tools. Powered by the robust Microsoft Edge WebView2 runtime and supported by the open-source Chromium project, our browser delivers a secure and cutting-edge experience.
+
+Thanks to our collaboration with Chromium and other open-source software, Ostium Osint Browser ensures smooth and secure integration. By default, the Microsoft Edge WebView2 runtime is persistent and receives automatic Microsoft updates to stay on the latest and most secure platform.
+
+Embark on limitless exploration with familiar tools akin to those found in Edge Chrome and Google Chrome browsers, such as development tools, all enhanced by features unique to Ostium Osint Browser. Easily create Json diagrams and other with plantUML integration, explore the web in text mode, create lists of all links or words contained within a web page with a simple command, inject scripts, cookies, and much more.
+
+Your privacy is our utmost priority. Ostium Osint Browser neither collects nor tracks your usage data. Upon closure, you have complete control: choose to completely erase your browsing history while preserving the essential data of your investigations. Your data remains entirely local, with no information stored in the cloud, ensuring total confidentiality at all times. Experience the power of investigation with peace of mind using Ostium Osint Browser.
+
+Ostium Osint Browser requires no expertise to use and caters to both individuals and professionals alike.
+
+-----------------
+
+Découvrez Ostium Osint Browser, votre nouveau compagnon de navigation web conçu pour répondre à vos besoins d'investigation avec des outils intégrés performants. Alimenté par le robuste runtime Microsoft Edge WebView2 et soutenu par le projet open source Chromium, notre navigateur offre une expérience sécurisée et à la pointe de la technologie.
+
+Grâce à notre collaboration avec Chromium et d'autres logiciels open source, Ostium Osint Browser garantit une intégration fluide et sécurisé. Par défaut, le runtime Microsoft Edge WebView2 est permanent et reçoit des mises à jour Microsoft automatiques pour rester sur la plate-forme la plus récente et la plus sécurisée.
+
+Embarquez pour une exploration sans limites avec des outils familiers à ceux des navigateurs Edge Chrome et Google Chrome comme les outils de développement, l'ensemble enrichis par des fonctionnalités uniques à Ostium Osint Browser. Créez des diagrammes Json et autre avec facilité grâce à l'intégration de plantUML, explorer le Web en mode texte, créer des listes de l'ensemble des liens ou mots contenus dans une page Web à partir d'une simple commande, injectez des scripts, des cookie et bien plus encore.
+
+Votre vie privée est notre priorité absolue. Ostium Osint Browser ne collecte ni ne suit vos données d'utilisation. À chaque fermeture, vous avez le contrôle total : choisissez d'effacer complètement votre historique de navigation tout en préservant les données essentielles de vos investigations. Vos données restent entièrement locales, aucune information n'est stockée dans le cloud, garantissant une confidentialité totale à chaque instant. Découvrez la puissance de l'investigation en toute tranquillité avec Ostium Osint Browser.
+
+Ostium Osint Browser ne nécessite aucune compétence pour être utilisé et s'adresse autant aux particulier qu'aux professionel.
+
+----------------- deepl
+
+Discover Ostium Osint Browser, your new web browsing companion designed to meet your investigative needs with high-performance integrated tools. Powered by the robust Microsoft Edge WebView2 runtime and supported by the Chromium open source project, our browser offers a secure, state-of-the-art experience.
+
+Thanks to our collaboration with Chromium and other open source software, Ostium Osint Browser guarantees seamless and secure integration. By default, the Microsoft Edge WebView2 runtime is permanent and receives automatic Microsoft updates to stay on the latest, most secure platform.
+
+Embark on limitless exploration with tools familiar from Edge Chrome and Google Chrome browsers such as development tools, all enhanced by features unique to Ostium Osint Browser. Create Json diagrams and Mind Maps with ease thanks to plantUML integration, explore the Web in text mode, create lists of all the links or words contained in a Web page from a single command, inject scripts, cookies and much more.
+
+Your privacy is our top priority. Ostium Osint Browser does not collect or track your usage data. Each time you close your browser, you are in complete control: choose to completely erase your browsing history while preserving the essential data from your investigations. Your data remains entirely local, with no information stored in the cloud, guaranteeing total confidentiality at all times. Discover the power of investigations with complete peace of mind with Ostium Osint Browser.
+
+Ostium Osint Browser requires no skills to use and is designed for both private individuals and professionals.
+
+fec6509a-81d9-4dbf-9c50-681633417347

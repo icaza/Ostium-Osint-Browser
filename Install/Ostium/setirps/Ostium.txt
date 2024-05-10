@@ -1,0 +1,44 @@
+@startuml
+!define osaPuml stdliblocal
+!include osaPuml/Common.puml
+!include osaPuml/User/all.puml
+!include osaPuml/Hardware/all.puml
+!include osaPuml/Misc/all.puml
+!include osaPuml/Server/all.puml
+!include osaPuml/Site/all.puml
+
+osa_site_head_office(office, "OSTIUM", "Paris 10 place Quantum", "France")
+
+osa_user_green_developer(Mary, "Mary", "Product team", "Developer")
+osa_user_green_operations(Ivan, "Ivan", "IT Team", "Server Admin")
+osa_user_green_business_manager(Bob, "Bob", "Accounts team", "Manager")
+
+osa_desktop(desktop, "192.168.1.10", "Windows 10", "PC")
+osa_laptop(mac, "192.168.1.10", "Mac", "Mac")
+osa_iPhone(iPhone, "Dynamic IP", "iPhone 11", "Phone")
+osa_iPhone(android, "Dynamic IP", "Android 10", "Phone")
+osa_device_wireless_router(wifiAP, "192.168.1.1", "none", "Network")
+osa_hub(hub, "Office hub", "none", "Hub")
+
+osa_firewall(firewall, "51.37.24.103", "Network")
+osa_cloud(cloud, "Internet", "Network")
+
+osa_server(server, "192.168.1.100", "Ubuntu Server 20.04 LTS", "Server")
+
+office --> Mary
+office --> Ivan
+office --> Bob
+Mary --> desktop
+Mary --> android
+Bob --> mac
+Bob --> iPhone
+Ivan --> server
+iPhone --> wifiAP
+android --> wifiAP
+wifiAP --> hub
+server --> hub
+hub --> firewall
+firewall --> cloud
+
+footer %filename() rendered with PlantUML version %version()\nWith Ostium Osint Browser
+@enduml

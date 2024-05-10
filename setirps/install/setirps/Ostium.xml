@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Table>
+  <Site>
+    <data>osa_site_head_office(office, "OSTIUM", "Paris 10 place Quantum", "France")</data>
+  </Site>
+  <User>
+    <data>osa_user_green_developer(Mary, "Mary", "Product team", "Developer")</data>
+    <data>osa_user_green_operations(Ivan, "Ivan", "IT Team", "Server Admin")</data>
+    <data>osa_user_green_business_manager(Bob, "Bob", "Accounts team", "Manager")</data>
+  </User>
+  <Hardware>
+    <data>osa_desktop(desktop, "192.168.1.10", "Windows 10", "PC")</data>
+    <data>osa_laptop(mac, "192.168.1.10", "Mac", "Mac")</data>
+    <data>osa_iPhone(iPhone, "Dynamic IP", "iPhone 11", "Phone")</data>
+    <data>osa_iPhone(android, "Dynamic IP", "Android 10", "Phone")</data>
+    <data>osa_device_wireless_router(wifiAP, "192.168.1.1", "none", "Network")</data>
+    <data>osa_hub(hub, "Office hub", "none", "Hub")</data>
+  </Hardware>
+  <Network>
+    <data>osa_firewall(firewall, "51.37.24.103", "Network")</data>
+    <data>osa_cloud(cloud, "Internet", "Network")</data>
+  </Network>
+  <Server>
+    <data>osa_server(server, "192.168.1.100", "Ubuntu Server 20.04 LTS", "Server")</data>
+  </Server>
+  <SiteMiror>
+    <data>office</data>
+  </SiteMiror>
+  <UserMiror>
+    <data>Mary</data>
+    <data>Ivan</data>
+    <data>Bob</data>
+  </UserMiror>
+  <HardwareMiror>
+    <data>desktop</data>
+    <data>mac</data>
+    <data>iPhone</data>
+    <data>android</data>
+    <data>wifiAP</data>
+    <data>hub</data>
+  </HardwareMiror>
+  <NetworkMiror>
+    <data>firewall</data>
+    <data>cloud</data>
+  </NetworkMiror>
+  <ServerMiror>
+    <data>server</data>
+  </ServerMiror>
+</Table>

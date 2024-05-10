@@ -1,0 +1,29 @@
+Décrire le problème clairement :
+
+Expliquer le contexte du problème.
+Détailler les objectifs à atteindre.
+Préciser les contraintes et les exigences.
+Utiliser un langage précis :
+
+Éviter les ambiguïtés en utilisant un langage technique approprié.
+Préciser les langages de programmation, les frameworks ou les outils pertinents.
+Poser des questions spécifiques :
+
+Formuler des questions précises et ciblées.
+Donner des exemples concrets pour illustrer le problème ou la demande.
+Utiliser des termes techniques :
+
+Utiliser le vocabulaire spécifique à l'intelligence artificielle, comme "apprentissage automatique", "réseaux de neurones", "traitement du langage naturel", etc.
+Mentionner des algorithmes courants tels que la régression linéaire, les SVM (machines à vecteurs de support), les réseaux de neurones convolutifs, etc.
+Être clair sur les données :
+
+Préciser la nature et le format des données disponibles.
+Indiquer si des prétraitements sont nécessaires.
+Fournir des informations sur l'environnement de développement :
+
+Préciser le système d'exploitation, les langages de programmation, les frameworks et les bibliothèques utilisés.
+Mentionner les contraintes matérielles, comme la puissance de calcul disponible.
+Inclure des critères d'évaluation :
+
+Définir des métriques pour évaluer les performances du modèle ou de l'algorithme.
+Préciser les critères de réussite ou les seuils de performance attendus.

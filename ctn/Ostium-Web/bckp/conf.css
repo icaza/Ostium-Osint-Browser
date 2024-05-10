@@ -1,0 +1,46 @@
+/*-----------------------------------------------------*/
+/*                    Section Body                     */
+/*-----------------------------------------------------*/
+body {background-color: #1F1E1D;}
+a:link {text-decoration:none; color: #01B0F0;}
+a:visited {text-decoration:none; color: #01B0F0;}
+a:hover {text-decoration:none; color: #FF5B2B;}
+a:active {text-decoration:none; color: #01B0F0;}
+p {line-height: 20px;}
+h4 {color: #FF5B2B;}
+h2 {color: #393737;}
+img {max-width: 100%;}
+/*-----------------------------------------------------*/
+/*                    Section Menu                     */
+/*-----------------------------------------------------*/
+#Afficher_Menu {
+	text-align: center;	
+	font: 12px Verdana, Geneva, sans-serif;
+	margin: 100px 0px 0px 0px;	
+}
+/*-----------------------------------------------------*/
+/*                    Section Bloc                     */
+/*-----------------------------------------------------*/
+.Bloc_Menu {
+	text-align: center;
+	font: 17px Calibri, Geneva, sans-serif;
+}
+.Bloc_Creation, .Bloc_Prestation, .Bloc_Hebergement  {
+	font: 12px Verdana, Geneva, sans-serif;
+	margin: 30px 150px 100px 150px;	
+	color: white;
+}
+tr, .Bloc_Contact {
+	text-align: center;
+	background-color: white;
+	font: 12px Verdana, Geneva, sans-serif;
+	margin: 30px 150px 100px 150px;
+	color: black;	
+}	
+qr {
+	color: black;
+	margin: 0px 10px 0px 10px;
+}
+mn {
+	color: #01B0F0;
+}

@@ -1,0 +1,108 @@
+- image
+#<img.* src="(.*)".*>#iU
+
+--------------------------------
+
+- texte entre parenthése
+(\((.*?)\))
+
+--------------------------------
+
+var chn="((5x+6)*(7x-3)+(11x-5+25))*(120x)";
+var trc=chn.replace(/\(([^\(\)]+)\)/g,function(a,b){alert(b)})
+
+--------------------------------
+
+- Mails
+#^[a-zA-Z-]+@[a-zA-Z-]+\.[a-zA-Z]{2,6}$#
+
+--------------------------------
+
+- Images    
+<img([^>]*[^/])>
+good <img[^>]* src=\"([^\"]*)\"[^>]*>
+<[iI][mM][gG][a-zA-Z0-9\s=".]*((src)=\s*(?:"([^"]*)"|'[^']*'))[a-zA-Z0-9\s=".]*/*>(?:</[iI][mM][gG]>)*
+"<[ \t]*[iI][mM][gG][ \t]*[sS][rR][cC][ \t]*=[ \t]*['\"]([^'\"]+)"
+png good [\w\-_\+\(\)]{0,}[\.png|\.PNG]{4}
+good src=(?:\"|\')?(?<imgSrc>[^>]*[^/].(?:jpg|bmp|gif|png))(?:\"|\')?
+
+--------------------------------
+
+Youtube Comment
+//yt-formatted-string[@id='content-text']
+Maps Comment
+//div[@class='OA1nbd']
+
+--------------------------------
+
+document.body.style.backgroundImage = "url('https://www.onespan.com//sites/default/files/2019-03/hacking.jpg')";
+document.body.style.backgroundImage = "url('https://veydunet.com/2x24/ost/nh3_1.jpg')";
+document.body.style.backgroundColor = "#AA0000";
+
+document.body.style.backgroundImage = "url('https://veydunet.com/opt3.png')";
+
+--------------------------------
+
+document.body.parentElement.outerHTML;
+
+document.querySelector('main');
+
+- Copy img link to clipboard (console)
+
+copy($$('img').map(img => img.src).join("\n"));
+
+--------------------------------
+
+- Load (console)
+
+await ( await fetch(
+'https://api.github.com/repos/microsoft/vscode-edge-devtools/issues?state=all&per_page=50&page=1'
+)).json();
+
+- Clipboard (console)
+
+copy(await (await fetch(
+'https://api.github.com/repos/microsoft/vscode-edge-devtools/issues?state=all&per_page=50&page=1'
+)).json())
+
+console.table($_, ['state','title','number'])
+
+--------------------------------
+
+document.body.style.backgroundImage    = "url('https://veydunet.com/2x24/ost/nh3_1.jpg')";
+document.body.style.backgroundRepeat   = "no-repeat";
+document.body.style.backgroundPosition = "center";
+document.body.style.backgroundSize     = "cover";
+
+document.body.style.backgroundImage = "url('https://veydunet.com/2x24/ost/nh3_1.jpg')"; document.body.style.backgroundRepeat   = "no-repeat"; document.body.style.backgroundPosition = "center"; document.body.style.backgroundSize  = "cover";
+
+document.body.style.backgroundColor = "lime"; const p = document.createElement("p"); p.textContent = "Ostium"; p.style.color = "white"; p.style.fontSize = "2rem"; document.body.appendChild(p); console.log("Ostium");
+
+---
+
+// Change the background color to "dimgrey".
+document.body.style.backgroundColor = "lime";
+
+// Add a paragraph at the bottom of the document.
+const p = document.createElement("p");
+p.textContent    = "Ostium";
+p.style.color    = "white";
+p.style.fontSize = "2rem";
+document.body.appendChild(p);
+
+--------------------------------
+
+var regex = /html/body/div/c-wiz/div/div/c-wiz/div/div/div; 
+down.innerHTML = str2.replace(regex, ""); 
+
+const element = document.getElementById("//*[@id="yDmH0d"]/c-wiz/div/div/c-wiz/div/div/div");
+element.remove();
+
+element.removeAttribute(nomAttribut);
+
+document.getElementById("div1").removeAttribute("align");
+
+element.scroll({ top: 100, left: 100, behavior: "smooth",});
+
+--------------------------------
+

@@ -1,0 +1,17 @@
+
+*INFOS*
+
+> version  : software version
+> config   : open config.xml file
+> id       : process ID
+
+*SCRAPING*
+
+> links    : retrieve all page links
+> word     : retrieve all word
+> wordwd   : retrieve all word without duplicates
+> textlink : retrieve text links
+
+*CMD*
+
+> exit     : close console

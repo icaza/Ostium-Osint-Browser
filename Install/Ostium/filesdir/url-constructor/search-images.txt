@@ -1,0 +1,6 @@
+https://www.bing.com/images/search?q=replace_query
+https://yandex.com/images/search?text=replace_query
+https://image.baidu.com/search/index?tn=baiduimage&utf-8&word=replace_query
+https://pic.sogou.com/pics?query=replace_query
+https://www.pinterest.fr/search/pins/?q=replace_query
+https://fr.images.search.yahoo.com/search/images;_ylt=?p=replace_query

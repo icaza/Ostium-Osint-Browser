@@ -1,0 +1,18 @@
+        private void LoadAllXML()
+        {
+            string element = WorkflowItem_Lst.SelectedItem.ToString();
+            element += "_" + element;
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(Workflow + NameProjectwf_Txt.Text + ".xml");
+            XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/" + WorkflowItem_Lst.SelectedItem.ToString()  + "/" + element);
+
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                string strvalue = string.Format("{0}", nodeList[i].ChildNodes.Item(0).InnerText);
+                //string strdate = string.Format("{0}", nodeList[i].Attributes.Item(0).InnerText);
+                //string strtime = string.Format("{0}", nodeList[i].Attributes.Item(1).InnerText);
+
+                //listBox1.Items.Add(strvalue);
+            }
+        }

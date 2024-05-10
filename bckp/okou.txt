@@ -1,0 +1,45 @@
+       //public void AddURL_Btn_Click(object sender, EventArgs e)
+       //{
+       //    Tables_Lst_Opt = "add";
+       //    DataAddSelectUri = WBrowse.Source.AbsoluteUri;
+       //    DatabasePnl();
+       //    label8.Visible = true;
+       //    TableName_Txt.Visible = true;
+       //    AddTable_Btn.Visible = true;
+       //    label7.Visible = true;
+       //    UrlName_Txt.Visible = true;
+       //    URLadd_Lbl.Visible = true;
+       //}
+
+       public void AddURLink_Btn_Click(object sender, EventArgs e)
+       {
+           //var rawUrl = URLtxt_txt.Text; //URLbrowse_Cbx.Text;
+           //Uri uri;
+
+           //if (Uri.IsWellFormedUriString(rawUrl, UriKind.Absolute))
+           //{
+           //    uri = new Uri(rawUrl);
+           //}
+           //else if (!rawUrl.Contains(" ") && rawUrl.Contains("."))
+           //{
+           //    uri = new Uri("https://" + rawUrl);
+           //}
+           //else
+           //{
+           //    URLbrowse_Cbx.BackColor = Color.Red;
+           //    MessageBox.Show("URL is not valid!");
+           //    URLbrowse_Cbx.BackColor = Color.FromArgb(28, 28, 28);
+           //    return;
+           //}
+
+           Tables_Lst_Opt = "add";
+           DataAddSelectUri = WBrowse.Source.AbsoluteUri;
+           DatabasePnl();
+           URLadd_Lbl.Visible = true;
+           //URLadd_Lbl.Text = DataAddSelectUri;
+           label8.Visible = true;
+           TableName_Txt.Visible = true;
+           AddTable_Btn.Visible = true;
+           label7.Visible = true;
+           UrlName_Txt.Visible = true;
+       }

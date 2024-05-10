@@ -1,0 +1,25 @@
+- voir infos IP and WHOIS quand désiré pour URL
+- Ajouter button export URL dans Form HtmlText
+- Timeline
+- FTP 
+- Accés au fichier Error
+- Add double click pour vider les Items de la section config.xml
+- Ce serait intéressant d'accéder aux note déja écrite pour les sélectionner directement de 
+  même se serait bien de pouvoir faire une recherche sur un Item pour voir si il existe déjà
+- Replace Note <=> Name et Add Description
+- Voir a configurer le rep de plantUML dans le fichier de config
+- Voir possibilité d'ajouter des directions vers le systeme
+- Voir plantUML editor and testing a intégrer peut être dans l'EditorUML
+- Add possibilité de compresser un fichier ou dossier 7zip
+- Voir a ajouter systéme de vérification d'envoie de script JS et RegEX et avertir des dangers!
+- Voir import des favory Chrome/Edge
+- Add prérequis et link Openjdk microsoft-jdk-21.0.2-windows-x64.msi https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/consumer/?form=MA13LH
+  Prise en charge de l'installeur du runtime Webview2 link: https://go.microsoft.com/fwlink/p/?LinkId=2124703 name exe:     MicrosoftEdgeWebview2Setup.exe More infos: https://go.microsoft.com/fwlink/p/?LinkId=2124703
+- edge://wallet/passwords/
+- voir add surveillance de site web capture pic content change
+- Voir ajouter des cache pour le streaming en direct.
+- Voir ajout outil capture image
+- Voir à corriger les chiffres dans les Items du Workflow
+- Voir a personnaliser les îcônes dans Map lors de la création de points
+- Voir à vérifier Name Add not Exist dans Map quand Add
+- Voir a sauvegarder la position et la size de toutes les Forms

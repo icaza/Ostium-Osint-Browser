@@ -1,0 +1,20 @@
+- Microsoft.Web.WebView2
+https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/?form=MA13LH
+
+- PlantUML
+https://plantuml.com/
+
+-System.Data.SQLite
+https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki
+
+-HtmlAgilityPack
+https://html-agility-pack.net/
+
+- FastColoredTextBox
+https://github.com/PavelTorgashov/FastColoredTextBox
+
+- Icône discord
+https://icons8.com/icon/2mIgusGquJFz/discord
+
+- Sprites
+https://github.com/plantuml/plantuml-stdlib/tree/master/osa2

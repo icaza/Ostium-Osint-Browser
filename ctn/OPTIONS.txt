@@ -1,0 +1,12 @@
+URL_URL_Cbx => Gestion du fichier de favoris URL
+
+Construct_URL_Cbx => Gestion des fichier construct URL
+
+AddOn_Cbx => Configurer ajout Add-On
+
+OpnGroupFrm_Btn => Gestion du fichier d'URL dans Multiple Windows
+
+=> Gestion Utilisateur par defaut (avec possibilité d'utiliser un utilisateur à la volé)
+
+GoogleDork_Btn => Gestion du fichier de commande Google Dork
+

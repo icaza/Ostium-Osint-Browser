@@ -1,0 +1,24 @@
+﻿Name: Dirsize.dll
+using Dirsize;
+
+--------------------------------------------------------------------------------------------------------
+
+Dirsize.dll
+
+description: Return size directory.
+
+var   => (string)
+value => Directory Name
+
+usage:
+
+        readonly ReturnSize sizedireturn = new ReturnSize();
+
+        private async void button_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(@"C:\Users\icaza\Documents\DEV2020");
+            long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
+            MessageBox.Show(sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize))));
+        }
+
+--------------------------------------------------------------------------------------------------------
