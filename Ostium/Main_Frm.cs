@@ -194,20 +194,18 @@ namespace Ostium
                 BeginInvoke((MethodInvoker)delegate {
                     CreateDirectory();
                     ///
-                    /// Chargement des URL par défaut dans une List
-                    /// 
+                    /// Loading default URLs into a List
+                    ///
                     if (File.Exists(AppStart + "url_dflt_cnf.ost"))
                     {
                         lstUrlDfltCnf.Clear();
                         lstUrlDfltCnf.AddRange(File.ReadAllLines(AppStart + "url_dflt_cnf.ost"));
                     }
                     ///
-                    /// Chargement de la configuration
+                    /// Loading configuration
                     /// <param name="CreateConfigFile"></param>
-                    /// <param value="0"></param>
-                    /// Réinitialisation de la config, chargement des URL par défaut du fichier url_dflt_cnf.ost
-                    /// <param value="1"></param>
-                    /// Sauvegarde de la configuration choisi et Reload
+                    /// <param value="0">Resetting the config, loading the default URLs from the url_dflt_cnf.ost file</param>
+                    /// <param value="1">Save the chosen configuration and Reload</param>
                     /// 
                     if (File.Exists(AppStart + "config.xml"))
                     {
@@ -218,9 +216,9 @@ namespace Ostium
                         CreateConfigFile(0);
                     }
                     ///
-                    /// URL Web Page d'accueil wBrowser Tab => index et wBrowser Tab => feed
-                    /// Si vide chargement à partir du fichier d'URL par défaut
-                    /// 
+                    /// Web URL Home page wBrowser Tab => index and wBrowser Tab => feed
+                    /// If empty loading from default URL file
+                    ///
                     if (@Class_Var.URL_HOME == "")
                     {
                         @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
@@ -231,12 +229,12 @@ namespace Ostium
 
                     Tools_TAB_0.Visible = true;
                     ///
-                    /// Vérification des mises à jour auto
+                    /// Checking auto updates
                     /// <param value="0"></param>
-                    /// Message uniquement si update available
+                    /// Message only if update available
                     /// <param value="1"></param>
-                    /// Message False ou True update
-                    /// 
+                    /// Message False or True update
+                    ///
                     VerifyUPDT("Ostium", 0);
                 });
             }
