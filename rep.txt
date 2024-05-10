@@ -1,8 +1,0 @@
-C:\Users\icaza\Documents\DEV2024\Ostium
-C:\Users\icaza\Documents\DEV2024\Ostium\Ostium\bin\Debug
-C:\Users\icaza\Documents\DEV2024\Ostium\OstiumE\OstiumE\bin\Debug
-C:\Users\icaza\Documents\DEV2024\Ostium\ctn
-C:\Users\icaza\Documents\Ostium
-C:\Users\icaza\Documents\DEV2024\Ostium\setirps
-C:\Users\icaza\Documents\DEV2024\Ostium\setirps\setirps\bin\Debug
-C:\Users\icaza\Documents\DEV2024\Ostium\Install
