@@ -1,8 +1,0 @@
-- voir une possibilité de retour en arrière quand annulation d'une modification
-- voir historique des fichiers ouverts et suppression de celui-ci
-- voir possibilité de changer la couleur de fond
-- voir sauvegarde de la dernière Directory open
-- Add possibilité d'aller direct en fin et en haut de page Button
-- voir vérification si fichier modifié avant fermeture pour enregistrement
-- Corriger Editor quand annule open ne pas supprimer les données existantes
-
