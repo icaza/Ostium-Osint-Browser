@@ -1,7 +1,0 @@
-– Sélection d’informations sur la personne (surnom, nom/prénom, adresse, numéro de téléphone, etc,)
-– Détection à 360° – Collecte d’informations sur les trois couches du Web
-– Évaluation du risque – Contextualisation des résultats basés sur l’analyse sémantique
-– Restitution interactive des résultats et exportation multi-format disponible (docx, csv, json, etc.).
-Le « besoin d’en connaître » est intégré dans la plateforme pour faciliter l’exploitation par plusieurs unités.
-
-Toutes les données sensibles sont anonymisées dans notre solution et les résultats sont stockés dans un datacenter français.
