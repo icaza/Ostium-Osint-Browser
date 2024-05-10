@@ -3,7 +3,7 @@
 
 # Introduction
 
-Ostium Osint Browser is an OSINT oriented Webbrowser. More info https://veydunet.com/product/ostium-osint-browser/
+Ostium Osint Browser is an OSINT oriented Web Browser. More info https://veydunet.com/product/ostium-osint-browser/
 
 # OOB use
 
