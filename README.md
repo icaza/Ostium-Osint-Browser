@@ -11,6 +11,10 @@ Openjdk https://learn.microsoft.com/fr-fr/java/openjdk/download
 
 Edge WebView2 https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/consumer/?form=MA13LH
 
+# Download 
+
+https://github.com/icaza/Ostium-Osint-Browser/releases/ no install required. Download unzip and start Ostium.exe.
+
 # OOB use
 
 Ostium Osint Browser is powered by the Open Source Chromium project and other free software.
