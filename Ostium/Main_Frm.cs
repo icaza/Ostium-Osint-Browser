@@ -180,7 +180,7 @@ namespace Ostium
             WBrowse_EventHandlers(WBrowse);
             WBrowsefeed_EventHandlers(WBrowsefeed);
             Form_EventHandler();
-            
+
             Assembly thisAssem = typeof(Program).Assembly;
             AssemblyName thisAssemName = thisAssem.GetName();
             Version ver = thisAssemName.Version;
@@ -305,7 +305,7 @@ namespace Ostium
             string GoogBo = GoogBot_Opt_Txt.Text;
 
             if (val == 0)
-            {                
+            {
                 dbDflt = lstUrlDfltCnf[0].ToString();
                 urlHom = lstUrlDfltCnf[1].ToString();
                 urlTra = lstUrlDfltCnf[2].ToString();
@@ -368,6 +368,7 @@ namespace Ostium
                 DirectoryCreate(Workflow + "model");
                 DirectoryCreate(DiagramDir);
                 DirectoryCreate(BkmkltDir);
+                DirectoryCreate(Setirps);
                 DirectoryCreate(MapDir);
             }
             catch (Exception ex)
@@ -503,7 +504,7 @@ namespace Ostium
                         }
 
                         DB_Default_Txt.Text = ValueOutput;
-                        D4ta = DBdirectory + DB_Default_Txt.Text;                        
+                        D4ta = DBdirectory + DB_Default_Txt.Text;
 
                         ChangeDBdefault(DB_Default_Txt.Text);
                     }
@@ -520,15 +521,15 @@ namespace Ostium
 
                         ChangeDBdefault(DB_Default_Txt.Text);
                     }
-                    DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;                    
+                    DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
                 }
-                
+
                 if (File.Exists(FileDir + "url.txt"))
                 {
                     URL_URL_Cbx.Items.Clear();
                     URL_URL_Cbx.Items.AddRange(File.ReadAllLines(FileDir + "url.txt"));
                 }
-                
+
                 if (File.Exists(FileDir + @"url-constructor\construct_url.txt"))
                 {
                     ConstructURL_Lst.Items.Clear();
@@ -888,7 +889,7 @@ namespace Ostium
             if (x == -1)
             {
                 URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
-            }       
+            }
             GoBrowser(URLbrowse_Cbx.Text, 0);
         }
 
@@ -1305,7 +1306,7 @@ namespace Ostium
                     proc.StartInfo.WorkingDirectory = Plugins;
                     proc.StartInfo.RedirectStandardOutput = false;
                     proc.Start();
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -1652,7 +1653,7 @@ namespace Ostium
             if (result == DialogResult.Yes)
             {
                 CreateConfigFile(0);
-            }            
+            }
         }
 
         void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
@@ -1854,7 +1855,7 @@ namespace Ostium
 
                 CtrlTabBrowsx();
                 Control_Tab.SelectedIndex = 0;
-            }                
+            }
         }
         ///
         /// <summary>
@@ -1871,7 +1872,7 @@ namespace Ostium
             if (File.Exists(Workflow + NameProjectwf_Txt.Text + ".xml"))
             {
                 OpenFile_Editor(Workflow + NameProjectwf_Txt.Text + ".xml");
-            }            
+            }
         }
         ///
         /// <summary>
@@ -1974,7 +1975,7 @@ namespace Ostium
             {
                 MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
                 return;
-            }                
+            }
 
             if (File.Exists(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                 File.Delete(DiagramDir + NameProjectwf_Txt.Text + ".txt");
@@ -2026,7 +2027,7 @@ namespace Ostium
                     {
                         file_create.WriteLine("@startjson");
                         file_create.WriteLine("!theme " + ThemeDiag);
-                        
+
                     }
 
                     file_create.WriteLine(json);
@@ -2066,7 +2067,7 @@ namespace Ostium
                 else if (value == 1)
                 {
                     argumentsIs = "java -jar plantuml.jar " + fileselect + " -tsvg -charset UTF-8";
-                }              
+                }
 
                 using (Process proc = new Process())
                 {
@@ -2450,7 +2451,7 @@ namespace Ostium
                 {
                     File.Copy(FileDiag, dirselect + @"\" + nameSVGb + ".svg");
                     MessageBox.Show("File [" + nameSVGb + ".svg] export.");
-                }                                
+                }
             }
             catch (Exception ex)
             {
@@ -2473,7 +2474,7 @@ namespace Ostium
 
             Process.Start(AppStart + "setirps.exe");
         }
-        
+
         #endregion
 
         void Control_Tab_Click(object sender, EventArgs e)
@@ -2514,7 +2515,7 @@ namespace Ostium
                         NewCategory_Txt.ForeColor = Color.DimGray;
                         NewCategory_Txt.Text = "new category";
                         NewFeed_Txt.ForeColor = Color.DimGray;
-                        NewFeed_Txt.Text = "new feed";                        
+                        NewFeed_Txt.Text = "new feed";
                         break;
                     }
                 case 2:
@@ -2564,7 +2565,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
-                        break;                        
+                        break;
                     }
                 case 4:
                     Tools_TAB_0.Visible = false;
@@ -2795,13 +2796,13 @@ namespace Ostium
                         MessageBox.Show("Command not recognized! Type help for more information.", "Error!");
                         return;
                     }
-            }          
+            }
 
             if (yn == 1)
             {
                 Thread Thr_CMDConsoleExec = new Thread(() => CMD_Console_Exec(cmdSwitch, regxCmd));
                 Thr_CMDConsoleExec.Start();
-            }                
+            }
         }
         ///
         /// <summary>
@@ -3127,7 +3128,7 @@ namespace Ostium
             {
                 if (DB_Pnl.Visible == false)
                 {
-                    DB_Pnl.BringToFront();                    
+                    DB_Pnl.BringToFront();
                     int PtX = Width - 370;
                     int PtY = 3;
                     DB_Pnl.Location = new Point(PtX, PtY);
@@ -3817,7 +3818,7 @@ namespace Ostium
             {
                 Db_OrderLst_Btn.ForeColor = Color.Lime;
                 DataValue_Lst.Sorted = true;
-            }            
+            }
         }
 
         #endregion
@@ -3827,7 +3828,7 @@ namespace Ostium
         void Title_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Title_Lst.SelectedIndex != -1)
-            {               
+            {
                 WBrowsefeed.Source = new Uri(Link_Lst.Items[Title_Lst.SelectedIndex].ToString());
             }
         }
@@ -4088,7 +4089,7 @@ namespace Ostium
 
         void DeleteCatfeed_Btn_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 if (CategorieFeed_Cbx.Text != "")
                 {
@@ -4200,7 +4201,7 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! GoFeed_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
-            }          
+            }
         }
 
         void GoFeed_Txt_Click(object sender, EventArgs e)
@@ -4227,7 +4228,7 @@ namespace Ostium
             if (!Speak_Pnl.Visible)
             {
                 Speak_Pnl.Visible = true;
-                
+
                 if (VerifLangOpn == 0)
                 {
                     LoadLang();
@@ -4250,17 +4251,17 @@ namespace Ostium
                 {
                     synth.SetOutputToDefaultAudioDevice();
                     synth.Volume = Class_Var.VOLUME_TRACK;
-                    synth.Rate = Class_Var.RATE_TRACK;                    
+                    synth.Rate = Class_Var.RATE_TRACK;
                     synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
 
                     for (int i = 0; i < Link_Lst.Items.Count; i++)
                     {
-                        synth.SpeakAsync("Title " + Convert.ToString(i+1) + ": " + Title_Lst.Items[i].ToString());
+                        synth.SpeakAsync("Title " + Convert.ToString(i + 1) + ": " + Title_Lst.Items[i].ToString());
                     }
                 }
             }
             catch
-            {}
+            { }
         }
 
         void ReadClipB_Btn_Click(object sender, EventArgs e)
@@ -4365,7 +4366,7 @@ namespace Ostium
                 }
 
                 xmlReader.Close();
-                doc.Save(AppStart + "config.xml");                
+                doc.Save(AppStart + "config.xml");
             }
             catch (Exception ex)
             {
@@ -4455,7 +4456,7 @@ namespace Ostium
                 CreateData(AppStart + "cookie.txt", "\r\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\r\n");
             }
             catch
-            {}
+            { }
         }
         ///
         /// <summary>
@@ -4702,7 +4703,7 @@ namespace Ostium
                 {
                     Timeline_Lst.Items.Clear();
                     string tml = ProjectOpn_Lst.SelectedItem.ToString().Replace(".xml", ".ost");
-                    
+
                     if (File.Exists(Workflow + tml))
                     {
                         Timeline_Lst.Items.AddRange(File.ReadAllLines(Workflow + tml));
@@ -5038,7 +5039,7 @@ namespace Ostium
                     }
                     else
                     {
-                        Invoke(new Action<string>(SRCpageAdd), strvalue);                        
+                        Invoke(new Action<string>(SRCpageAdd), strvalue);
                     }
                 }
 
@@ -5302,7 +5303,7 @@ namespace Ostium
 
         void GoogleDork_Opt_Btn_Click(object sender, EventArgs e)
         {
-            OpnFileOpt(FileDir + "gdork.txt"); 
+            OpnFileOpt(FileDir + "gdork.txt");
         }
 
         void OstiumDir_Opn_Click(object sender, EventArgs e)
@@ -5533,7 +5534,7 @@ namespace Ostium
         {
             Workflow_Cbx.Items.Add(value);
             Workflow_Lst.Items.Add(value);
-            AddItemswf_Txt.AppendText(value + "\r\n");            
+            AddItemswf_Txt.AppendText(value + "\r\n");
         }
         ///
         /// <summary>
@@ -5618,7 +5619,7 @@ namespace Ostium
             {
                 GoBrowser("file:///" + DiagramDir + value, 1);
             }
-            else if(Commut == 1)
+            else if (Commut == 1)
             {
                 GoBrowser("file:///" + value, 1);
             }
@@ -5679,7 +5680,7 @@ namespace Ostium
             if (Bookmarklet_Lst.SelectedIndex != -1)
             {
                 InjectBkmklt(MinifyScr);
-            }                
+            }
         }
 
         async void InjectBkmklt(string Bkmklt)
@@ -6218,7 +6219,7 @@ namespace Ostium
         }
 
         void GMap_Ctrl_OnPositionChanged(PointLatLng point)
-        {            
+        {
             LatTCurrent_Lbl.Text = point.Lat.ToString(CultureInfo.InvariantCulture);
             LonGtCurrent_Lbl.Text = point.Lng.ToString(CultureInfo.InvariantCulture);
         }
