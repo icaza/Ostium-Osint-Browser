@@ -12,8 +12,8 @@ namespace Ostium
     {
         #region Var_
 
-        public Webview_Frm webviewForm;
-        public int VerifPosChild = 1;
+        Webview_Frm webviewForm;
+        int VerifPosChild = 1;
 
         readonly string AppStart = Application.StartupPath + @"\";
         readonly string FileDirAll = Application.StartupPath + @"\filesdir\grp-frm\";
@@ -35,8 +35,8 @@ namespace Ostium
         {
             loadfiledir.LoadFileDirectory(FileDirAll, "txt", "cbxts", URLlist_Cbx);
             ///
-            /// Chargement des URL par défaut dans une List
-            /// 
+            /// Loading default URLs into a List
+            ///
             if (File.Exists(AppStart + "url_dflt_cnf.ost"))
             {
                 lstUrlDfltCnf.Clear();

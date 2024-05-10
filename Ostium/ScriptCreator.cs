@@ -14,7 +14,7 @@ namespace Ostium
         #region Var_
 
         [DllImport("kernel32.dll")]
-        public static extern bool Beep(int freq, int duration);
+        static extern bool Beep(int freq, int duration);
         readonly string Scripts = Application.StartupPath + @"\scripts\";
 
         readonly IcazaClass senderror = new IcazaClass();

@@ -45,7 +45,7 @@ namespace Ostium
         /// <returns></returns>
         /// 
         [DllImport("kernel32.dll")]
-        public static extern bool Beep(int freq, int duration);
+        static extern bool Beep(int freq, int duration);
         ///
         /// <summary>
         /// Initialization of the voice for Reading Feed Titles
@@ -84,46 +84,46 @@ namespace Ostium
         /// List of Objects
         /// </summary>
         /// 
-        public Webview_Frm webviewForm;
-        public HtmlText_Frm HtmlTextFrm;
-        public Mdi_Frm mdiFrm;
-        public Doc_Frm docForm;
-        public OpenSource_Frm openSourceForm;
-        public ScriptCreator scriptCreatorFrm;
-        public Bookmarklets_Frm bookmarkletsFrm;
-        public ListBox List_Object;
-        public ToolStripComboBox Cbx_Object;
-        public ListBox List_Wf;
-        public ComboBox Workflow_Cbx;
-        public ListBox Workflow_Lst;
-        public Label SizeAll_Lbl;
+        Webview_Frm webviewForm;
+        HtmlText_Frm HtmlTextFrm;
+        Mdi_Frm mdiFrm;
+        Doc_Frm docForm;
+        OpenSource_Frm openSourceForm;
+        ScriptCreator scriptCreatorFrm;
+        Bookmarklets_Frm bookmarkletsFrm;
+        ListBox List_Object;
+        ToolStripComboBox Cbx_Object;
+        ListBox List_Wf;
+        ComboBox Workflow_Cbx;
+        ListBox Workflow_Lst;
+        Label SizeAll_Lbl;
         ///
         /// <summary>
         /// Variables
         /// </summary>
         /// 
-        public string SoftVersion = "";
-        public string ClearOnOff = "on";
-        public string NameUriDB = "";
-        public string UnshortURLval = "";
+        readonly string SoftVersion = "";
+        string ClearOnOff = "on";
+        string NameUriDB = "";
+        string UnshortURLval = "";
         string UsenameAleatoire = "";
-        public int CMDconsSwitch;
-        public string TableOpen = "";
-        public string Tables_Lst_Opt = "add";
-        public string DataAddSelectUri = "";
-        public string tlsi = ""; // Table List selected Item
-        public string DBadmin = "off";
-        public string ManageFeed = "off";
-        public string TmpTitleWBrowse = "";
-        public string TmpTitleWBrowsefeed = "";
-        public int VerifLangOpn = 0;
-        public string TitleFeed;
-        public string AddTitleItem;
-        public string AddLinkItem;
-        public string UserAgentOnOff = "off";
-        public string UserAgentSelect = "";
-        public string ThemeDiag;
-        public string FileDiag = "";
+        //readonly int CMDconsSwitch;
+        string TableOpen = "";
+        string Tables_Lst_Opt = "add";
+        string DataAddSelectUri = "";
+        string tlsi = ""; // Table List selected Item
+        string DBadmin = "off";
+        string ManageFeed = "off";
+        string TmpTitleWBrowse = "";
+        string TmpTitleWBrowsefeed = "";
+        int VerifLangOpn = 0;
+        string TitleFeed;
+        string AddTitleItem;
+        string AddLinkItem;
+        string UserAgentOnOff = "off";
+        string UserAgentSelect = "";
+        string ThemeDiag;
+        string FileDiag = "";
         string MinifyScr = "";
         string MapXmlOpn = "";
         string CrossCenter = "on";
@@ -133,10 +133,10 @@ namespace Ostium
         /// Map variables
         /// </summary>
         /// 
-        public string VerifMapOpn = "off";
-        public readonly GMapOverlay overlayOne = new GMapOverlay("OverlayOne");
-        public double LatT = 48.8589507;
-        public double LonGt = 2.2775175;
+        string VerifMapOpn = "off";
+        readonly GMapOverlay overlayOne = new GMapOverlay("OverlayOne");
+        double LatT = 48.8589507;
+        double LonGt = 2.2775175;
         ///
         int Commut = 0;
         ///
@@ -187,7 +187,7 @@ namespace Ostium
             SoftVersion = string.Format("{0} {1}", thisAssemName.Name, ver);
         }
 
-        private void Main_Frm_Load(object sender, EventArgs e)
+        void Main_Frm_Load(object sender, EventArgs e)
         {
             try
             {
@@ -251,7 +251,7 @@ namespace Ostium
         /// <param name="on">Cleaning True</param>
         /// <param name="off">No cleanup requested when auto restart of the application to modify the default user-agent</param>
         ///
-        public void Main_Frm_FormClosed(object sender, EventArgs e)
+        void Main_Frm_FormClosed(object sender, EventArgs e)
         {
             try
             {
