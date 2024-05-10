@@ -1,0 +1,18 @@
+﻿Name: Errordll.dll
+using Errordll;
+
+--------------------------------------------------------------------------------------------------------
+
+Errordll.dll
+
+description: Send error message in text file.
+
+var   => (string, string, string, string)
+value => Section Error, Error Message, Form Name, Directory Error File
+
+usage:
+
+Errorsend senderror = new Errorsend();
+senderror.ErrorLog("Error! FunctionName: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+
+--------------------------------------------------------------------------------------------------------

@@ -14,9 +14,9 @@ usage:
 
         readonly ReturnSize sizedireturn = new ReturnSize();
 
-        private async void button_Click(object sender, EventArgs e)
+        async void button_Click(object sender, EventArgs e)
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(@"C:\Users\icaza\Documents\DEV2020");
+            DirectoryInfo dirInfo = new DirectoryInfo(@"C:\");
             long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
             MessageBox.Show(sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize))));
         }
