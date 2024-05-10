@@ -5,6 +5,12 @@
 
 Ostium Osint Browser is an OSINT oriented Web Browser. More info https://veydunet.com/product/ostium-osint-browser/
 
+# Required
+
+Openjdk https://learn.microsoft.com/fr-fr/java/openjdk/download
+
+Edge WebView2 https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/consumer/?form=MA13LH
+
 # OOB use
 
 Ostium Osint Browser is powered by the Open Source Chromium project and other free software.
