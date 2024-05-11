@@ -145,6 +145,9 @@
   <data name="Filesbtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Filesbtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Menutls" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menutls.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Mute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

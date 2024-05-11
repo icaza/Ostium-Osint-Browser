@@ -81,6 +81,7 @@
             this.Download_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.History_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.SiteEngament_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClrHistory_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.UserAgentChange_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Googlebot_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -280,6 +281,8 @@
             this.WorkFlowModelDir_Opn = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.MultipleWinDir_Opt_Btn = new System.Windows.Forms.Button();
             this.URLconstructDir_Opt_Btn = new System.Windows.Forms.Button();
@@ -328,6 +331,8 @@
             this.LatTCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
             this.LonGtCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
             this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -459,6 +464,7 @@
             this.groupBox5.SuspendLayout();
             this.PanelOptDir_Pnl.SuspendLayout();
             this.Panel_ConfigFiles.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.Panel_ConfigXml.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -879,6 +885,7 @@
             this.Download_Param,
             this.History_Param,
             this.SiteEngament_Param,
+            this.ClrHistory_Param,
             this.toolStripSeparator12,
             this.UserAgentChange_Btn,
             this.Googlebot_Btn,
@@ -931,6 +938,13 @@
             this.SiteEngament_Param.Size = new System.Drawing.Size(226, 22);
             this.SiteEngament_Param.Text = "Site Engagement";
             this.SiteEngament_Param.Click += new System.EventHandler(this.SiteEngament_Param_Click);
+            // 
+            // ClrHistory_Param
+            // 
+            this.ClrHistory_Param.Name = "ClrHistory_Param";
+            this.ClrHistory_Param.Size = new System.Drawing.Size(226, 22);
+            this.ClrHistory_Param.Text = "Clear History";
+            this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
             // 
             // toolStripSeparator12
             // 
@@ -1091,7 +1105,6 @@
             // CloseSetCookie_Btn
             // 
             this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
             this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1194,7 +1207,6 @@
             // InjectBkmklt_Btn
             // 
             this.InjectBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.InjectBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InjectBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InjectBkmklt_Btn.FlatAppearance.BorderSize = 0;
             this.InjectBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
@@ -1212,7 +1224,6 @@
             // ClosePnlBkmklt_Btn
             // 
             this.ClosePnlBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ClosePnlBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ClosePnlBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ClosePnlBkmklt_Btn.FlatAppearance.BorderSize = 0;
             this.ClosePnlBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -1338,7 +1349,6 @@
             // CleanSearch_Btn
             // 
             this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
             this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1359,7 +1369,6 @@
             // AddURLink_Btn
             // 
             this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
             this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1379,7 +1388,6 @@
             // Go_Btn
             // 
             this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.Go_Btn.FlatAppearance.BorderSize = 0;
             this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1399,7 +1407,6 @@
             // GoWebwiev_Btn
             // 
             this.GoWebwiev_Btn.BackColor = System.Drawing.Color.Gray;
-            this.GoWebwiev_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoWebwiev_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.GoWebwiev_Btn.FlatAppearance.BorderSize = 0;
             this.GoWebwiev_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1419,7 +1426,6 @@
             // Home_Btn
             // 
             this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Home_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Home_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Home_Btn.FlatAppearance.BorderSize = 0;
             this.Home_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1440,7 +1446,6 @@
             // Refresh_Btn
             // 
             this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Refresh_Btn.FlatAppearance.BorderSize = 0;
             this.Refresh_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1461,7 +1466,6 @@
             // Forward_Btn
             // 
             this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Forward_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Forward_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Forward_Btn.FlatAppearance.BorderSize = 0;
             this.Forward_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1482,7 +1486,6 @@
             // Back_Btn
             // 
             this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Back_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Back_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Back_Btn.FlatAppearance.BorderSize = 0;
             this.Back_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1561,7 +1564,6 @@
             // AddTable_Btn
             // 
             this.AddTable_Btn.BackColor = System.Drawing.Color.Black;
-            this.AddTable_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddTable_Btn.FlatAppearance.BorderSize = 0;
             this.AddTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1764,7 +1766,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 25);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 581);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -1785,7 +1787,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 531);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 560);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -1836,7 +1838,7 @@
             this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
-            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 531);
+            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 560);
             this.WBrowsefeed.TabIndex = 4;
             this.WBrowsefeed.ZoomFactor = 1D;
             // 
@@ -1886,7 +1888,6 @@
             // SaveVolRat_Btn
             // 
             this.SaveVolRat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveVolRat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveVolRat_Btn.FlatAppearance.BorderSize = 0;
             this.SaveVolRat_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.SaveVolRat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1947,7 +1948,6 @@
             // ReadClipB_Btn
             // 
             this.ReadClipB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReadClipB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadClipB_Btn.FlatAppearance.BorderSize = 0;
             this.ReadClipB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadClipB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1964,7 +1964,6 @@
             // StopSpeak_Btn
             // 
             this.StopSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.StopSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.StopSpeak_Btn.FlatAppearance.BorderSize = 0;
             this.StopSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.StopSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1981,7 +1980,6 @@
             // PauseSpeak_Btn
             // 
             this.PauseSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.PauseSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PauseSpeak_Btn.FlatAppearance.BorderSize = 0;
             this.PauseSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.PauseSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1998,7 +1996,6 @@
             // ReadTitle_Btn
             // 
             this.ReadTitle_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReadTitle_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadTitle_Btn.FlatAppearance.BorderSize = 0;
             this.ReadTitle_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadTitle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2032,7 +2029,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 25);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 581);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2044,7 +2041,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 480);
+            this.panel1.Size = new System.Drawing.Size(1320, 509);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2057,7 +2054,7 @@
             this.DataValue_Lst.ItemHeight = 16;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 480);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 509);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2071,7 +2068,7 @@
             this.DataTable_Lst.ItemHeight = 16;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 480);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 509);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2086,7 +2083,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 480);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 509);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -2160,7 +2157,6 @@
             // ExecuteCMDsql_Btn
             // 
             this.ExecuteCMDsql_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ExecuteCMDsql_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ExecuteCMDsql_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.ExecuteCMDsql_Btn.FlatAppearance.BorderSize = 0;
             this.ExecuteCMDsql_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2194,7 +2190,6 @@
             // ChangeDefDB_Btn
             // 
             this.ChangeDefDB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ChangeDefDB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ChangeDefDB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ChangeDefDB_Btn.FlatAppearance.BorderSize = 0;
             this.ChangeDefDB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2254,7 +2249,6 @@
             // Db_OrderLst_Btn
             // 
             this.Db_OrderLst_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_OrderLst_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OrderLst_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OrderLst_Btn.FlatAppearance.BorderSize = 0;
             this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2272,7 +2266,6 @@
             // Db_OpnLink_Btn
             // 
             this.Db_OpnLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_OpnLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OpnLink_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OpnLink_Btn.FlatAppearance.BorderSize = 0;
             this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2359,7 +2352,6 @@
             // Db_Update_Value_Btn
             // 
             this.Db_Update_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Update_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Value_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Update_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Update_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -2377,7 +2369,6 @@
             // Db_Update_Name_Btn
             // 
             this.Db_Update_Name_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Update_Name_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Name_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Update_Name_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Update_Name_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -2405,7 +2396,6 @@
             // Db_Delete_Table_AllValue_Btn
             // 
             this.Db_Delete_Table_AllValue_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_AllValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_AllValue_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2423,7 +2413,6 @@
             // Db_Delete_Table_Value_Btn
             // 
             this.Db_Delete_Table_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2441,7 +2430,6 @@
             // Db_Delete_Table_Btn
             // 
             this.Db_Delete_Table_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2471,7 +2459,7 @@
             this.Workflow_Tab.ForeColor = System.Drawing.Color.White;
             this.Workflow_Tab.Location = new System.Drawing.Point(4, 25);
             this.Workflow_Tab.Name = "Workflow_Tab";
-            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 581);
+            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Workflow_Tab.TabIndex = 7;
             this.Workflow_Tab.Text = "WORKFLOW";
             // 
@@ -2488,7 +2476,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 581);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 610);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // groupBox2
@@ -2498,9 +2486,9 @@
             this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 293);
+            this.groupBox2.Location = new System.Drawing.Point(3, 308);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(355, 285);
+            this.groupBox2.Size = new System.Drawing.Size(355, 299);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select model";
@@ -2516,7 +2504,7 @@
             this.ModelList_Lst.ItemHeight = 16;
             this.ModelList_Lst.Location = new System.Drawing.Point(3, 19);
             this.ModelList_Lst.Name = "ModelList_Lst";
-            this.ModelList_Lst.Size = new System.Drawing.Size(349, 233);
+            this.ModelList_Lst.Size = new System.Drawing.Size(349, 247);
             this.ModelList_Lst.TabIndex = 0;
             this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
             // 
@@ -2525,7 +2513,7 @@
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
             this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 252);
+            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 266);
             this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
             this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(349, 30);
             this.PanelWrkButtonModel_Pnl.TabIndex = 20;
@@ -2533,7 +2521,6 @@
             // ModelDelete_Btn
             // 
             this.ModelDelete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelDelete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelDelete_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModelDelete_Btn.Enabled = false;
             this.ModelDelete_Btn.FlatAppearance.BorderSize = 0;
@@ -2553,7 +2540,6 @@
             // ModelEdit_Btn
             // 
             this.ModelEdit_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelEdit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelEdit_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ModelEdit_Btn.Enabled = false;
             this.ModelEdit_Btn.FlatAppearance.BorderSize = 0;
@@ -2581,7 +2567,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 284);
+            this.groupBox1.Size = new System.Drawing.Size(355, 299);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create a model";
@@ -2606,9 +2592,9 @@
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
-            this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2616,7 +2602,7 @@
             this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
-            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 171);
+            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 186);
             this.ModelItem_Txt.TabIndex = 15;
             this.ModelItem_Txt.Zoom = 100;
             // 
@@ -2674,7 +2660,6 @@
             // ModelCreate_Btn
             // 
             this.ModelCreate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelCreate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelCreate_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ModelCreate_Btn.FlatAppearance.BorderSize = 0;
             this.ModelCreate_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2682,7 +2667,7 @@
             this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModelCreate_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModelCreate_Btn.ForeColor = System.Drawing.Color.White;
-            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 251);
+            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 266);
             this.ModelCreate_Btn.Name = "ModelCreate_Btn";
             this.ModelCreate_Btn.Size = new System.Drawing.Size(349, 30);
             this.ModelCreate_Btn.TabIndex = 18;
@@ -2696,7 +2681,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel13.Location = new System.Drawing.Point(1144, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(10, 581);
+            this.panel13.Size = new System.Drawing.Size(10, 610);
             this.panel13.TabIndex = 26;
             // 
             // panel12
@@ -2705,7 +2690,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(773, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 581);
+            this.panel12.Size = new System.Drawing.Size(10, 610);
             this.panel12.TabIndex = 24;
             // 
             // Itemwf_Cbx
@@ -2725,7 +2710,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel17.Location = new System.Drawing.Point(523, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(250, 581);
+            this.panel17.Size = new System.Drawing.Size(250, 610);
             this.panel17.TabIndex = 28;
             // 
             // StatWorkflow_Lst
@@ -2738,7 +2723,7 @@
             this.StatWorkflow_Lst.ItemHeight = 16;
             this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
             this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
-            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 571);
+            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 600);
             this.StatWorkflow_Lst.TabIndex = 19;
             this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
             // 
@@ -2756,7 +2741,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(513, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 581);
+            this.panel16.Size = new System.Drawing.Size(10, 610);
             this.panel16.TabIndex = 27;
             // 
             // panel2
@@ -2771,7 +2756,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(10, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(503, 581);
+            this.panel2.Size = new System.Drawing.Size(503, 610);
             this.panel2.TabIndex = 15;
             // 
             // ProjectOpn_Lst
@@ -2784,7 +2769,7 @@
             this.ProjectOpn_Lst.ItemHeight = 16;
             this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 42);
             this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
-            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 148);
+            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 177);
             this.ProjectOpn_Lst.TabIndex = 2;
             this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
             // 
@@ -2856,7 +2841,7 @@
             // 
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 190);
+            this.panel4.Location = new System.Drawing.Point(0, 219);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(503, 33);
             this.panel4.TabIndex = 13;
@@ -2891,12 +2876,12 @@
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
-            this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
-            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 223);
+            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
             this.AddItemswf_Txt.Name = "AddItemswf_Txt";
             this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2908,7 +2893,6 @@
             // CreateXMLwf_btn
             // 
             this.CreateXMLwf_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CreateXMLwf_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CreateXMLwf_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CreateXMLwf_btn.FlatAppearance.BorderSize = 0;
             this.CreateXMLwf_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2916,7 +2900,7 @@
             this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateXMLwf_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.White;
-            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 513);
+            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 542);
             this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
             this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
             this.CreateXMLwf_btn.TabIndex = 4;
@@ -2929,7 +2913,7 @@
             this.panel7.Controls.Add(this.AddItemwf_Btn);
             this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 544);
+            this.panel7.Location = new System.Drawing.Point(0, 573);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(503, 37);
             this.panel7.TabIndex = 16;
@@ -2937,7 +2921,6 @@
             // AddItemwf_Btn
             // 
             this.AddItemwf_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddItemwf_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddItemwf_Btn.Enabled = false;
             this.AddItemwf_Btn.FlatAppearance.BorderSize = 0;
             this.AddItemwf_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2969,7 +2952,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 581);
+            this.panel11.Size = new System.Drawing.Size(10, 610);
             this.panel11.TabIndex = 23;
             // 
             // panel19
@@ -2982,7 +2965,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel19.Location = new System.Drawing.Point(1154, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(172, 581);
+            this.panel19.Size = new System.Drawing.Size(172, 610);
             this.panel19.TabIndex = 29;
             // 
             // TmpFile_Txt
@@ -3003,14 +2986,13 @@
             this.Timeline_Lst.ItemHeight = 16;
             this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
             this.Timeline_Lst.Name = "Timeline_Lst";
-            this.Timeline_Lst.Size = new System.Drawing.Size(172, 548);
+            this.Timeline_Lst.Size = new System.Drawing.Size(172, 577);
             this.Timeline_Lst.TabIndex = 22;
             this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
             // 
             // ResetTimeline_Btn
             // 
             this.ResetTimeline_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ResetTimeline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetTimeline_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ResetTimeline_Btn.FlatAppearance.BorderSize = 0;
             this.ResetTimeline_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -3018,7 +3000,7 @@
             this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetTimeline_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 558);
+            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 587);
             this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
             this.ResetTimeline_Btn.Size = new System.Drawing.Size(172, 23);
             this.ResetTimeline_Btn.TabIndex = 24;
@@ -3043,7 +3025,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 25);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 581);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3070,7 +3052,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 581);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3088,7 +3070,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 581);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3103,7 +3085,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 166);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 385);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 414);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3127,14 +3109,13 @@
             // AddNewLoc_Btn
             // 
             this.AddNewLoc_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddNewLoc_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddNewLoc_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddNewLoc_Btn.FlatAppearance.BorderSize = 0;
             this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 551);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 580);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3219,7 +3200,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 25);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 581);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -3230,7 +3211,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 561);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 590);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -3241,7 +3222,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 561);
+            this.groupBox5.Size = new System.Drawing.Size(328, 590);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -3278,7 +3259,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 19);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 539);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 568);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // MapDir_Lbl
@@ -3295,7 +3276,6 @@
             // MapDir_Opn
             // 
             this.MapDir_Opn.AutoSize = true;
-            this.MapDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MapDir_Opn.ForeColor = System.Drawing.Color.White;
             this.MapDir_Opn.Location = new System.Drawing.Point(8, 563);
             this.MapDir_Opn.Name = "MapDir_Opn";
@@ -3307,7 +3287,6 @@
             // OstiumDir_Opn
             // 
             this.OstiumDir_Opn.AutoSize = true;
-            this.OstiumDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.OstiumDir_Opn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OstiumDir_Opn.ForeColor = System.Drawing.Color.White;
             this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
@@ -3331,7 +3310,6 @@
             // AddOnDir_Opn
             // 
             this.AddOnDir_Opn.AutoSize = true;
-            this.AddOnDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOnDir_Opn.ForeColor = System.Drawing.Color.White;
             this.AddOnDir_Opn.Location = new System.Drawing.Point(8, 56);
             this.AddOnDir_Opn.Name = "AddOnDir_Opn";
@@ -3343,7 +3321,6 @@
             // BkmkltDir_Opn
             // 
             this.BkmkltDir_Opn.AutoSize = true;
-            this.BkmkltDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BkmkltDir_Opn.ForeColor = System.Drawing.Color.White;
             this.BkmkltDir_Opn.Location = new System.Drawing.Point(8, 518);
             this.BkmkltDir_Opn.Name = "BkmkltDir_Opn";
@@ -3355,7 +3332,6 @@
             // DatabaseDir_Opn
             // 
             this.DatabaseDir_Opn.AutoSize = true;
-            this.DatabaseDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DatabaseDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DatabaseDir_Opn.Location = new System.Drawing.Point(8, 103);
             this.DatabaseDir_Opn.Name = "DatabaseDir_Opn";
@@ -3378,7 +3354,6 @@
             // FeedDir_Opn
             // 
             this.FeedDir_Opn.AutoSize = true;
-            this.FeedDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FeedDir_Opn.ForeColor = System.Drawing.Color.White;
             this.FeedDir_Opn.Location = new System.Drawing.Point(8, 150);
             this.FeedDir_Opn.Name = "FeedDir_Opn";
@@ -3390,7 +3365,6 @@
             // SpritesDir_Opn
             // 
             this.SpritesDir_Opn.AutoSize = true;
-            this.SpritesDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SpritesDir_Opn.ForeColor = System.Drawing.Color.White;
             this.SpritesDir_Opn.Location = new System.Drawing.Point(8, 473);
             this.SpritesDir_Opn.Name = "SpritesDir_Opn";
@@ -3402,7 +3376,6 @@
             // ScriptDir_Opn
             // 
             this.ScriptDir_Opn.AutoSize = true;
-            this.ScriptDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ScriptDir_Opn.ForeColor = System.Drawing.Color.White;
             this.ScriptDir_Opn.Location = new System.Drawing.Point(8, 197);
             this.ScriptDir_Opn.Name = "ScriptDir_Opn";
@@ -3425,7 +3398,6 @@
             // WorkFlowDir_Opn
             // 
             this.WorkFlowDir_Opn.AutoSize = true;
-            this.WorkFlowDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkFlowDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowDir_Opn.Location = new System.Drawing.Point(8, 244);
             this.WorkFlowDir_Opn.Name = "WorkFlowDir_Opn";
@@ -3437,7 +3409,6 @@
             // DiagramDir_Opn
             // 
             this.DiagramDir_Opn.AutoSize = true;
-            this.DiagramDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DiagramDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DiagramDir_Opn.Location = new System.Drawing.Point(8, 428);
             this.DiagramDir_Opn.Name = "DiagramDir_Opn";
@@ -3482,7 +3453,6 @@
             // WebView2Dir_Opn
             // 
             this.WebView2Dir_Opn.AutoSize = true;
-            this.WebView2Dir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WebView2Dir_Opn.ForeColor = System.Drawing.Color.White;
             this.WebView2Dir_Opn.Location = new System.Drawing.Point(8, 383);
             this.WebView2Dir_Opn.Name = "WebView2Dir_Opn";
@@ -3527,7 +3497,6 @@
             // PictureDir_Opn
             // 
             this.PictureDir_Opn.AutoSize = true;
-            this.PictureDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureDir_Opn.ForeColor = System.Drawing.Color.White;
             this.PictureDir_Opn.Location = new System.Drawing.Point(8, 338);
             this.PictureDir_Opn.Name = "PictureDir_Opn";
@@ -3572,7 +3541,6 @@
             // WorkFlowModelDir_Opn
             // 
             this.WorkFlowModelDir_Opn.AutoSize = true;
-            this.WorkFlowModelDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkFlowModelDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowModelDir_Opn.Location = new System.Drawing.Point(8, 291);
             this.WorkFlowModelDir_Opn.Name = "WorkFlowModelDir_Opn";
@@ -3587,17 +3555,43 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 561);
+            this.panel26.Size = new System.Drawing.Size(10, 590);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
             // 
+            this.Panel_ConfigFiles.Controls.Add(this.groupBox6);
             this.Panel_ConfigFiles.Controls.Add(this.groupBox4);
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 561);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 590);
             this.Panel_ConfigFiles.TabIndex = 28;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.SaveCookies_Chk);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.groupBox6.Location = new System.Drawing.Point(0, 393);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(244, 197);
+            this.groupBox6.TabIndex = 19;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "other";
+            // 
+            // SaveCookies_Chk
+            // 
+            this.SaveCookies_Chk.AutoSize = true;
+            this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(25, 30);
+            this.SaveCookies_Chk.Name = "SaveCookies_Chk";
+            this.SaveCookies_Chk.Size = new System.Drawing.Size(194, 36);
+            this.SaveCookies_Chk.TabIndex = 0;
+            this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
+            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SaveCookies_Chk.UseVisualStyleBackColor = true;
+            this.SaveCookies_Chk.CheckedChanged += new System.EventHandler(this.SaveCookies_Chk_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -3608,11 +3602,11 @@
             this.groupBox4.Controls.Add(this.AddOntools_Opt_Btn);
             this.groupBox4.Controls.Add(this.URLconstruct_Opt_Btn);
             this.groupBox4.Controls.Add(this.URLdirect_Opt_Btn);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(244, 561);
+            this.groupBox4.Size = new System.Drawing.Size(244, 393);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "config files";
@@ -3620,7 +3614,6 @@
             // MultipleWinDir_Opt_Btn
             // 
             this.MultipleWinDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleWinDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWinDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3637,7 +3630,6 @@
             // URLconstructDir_Opt_Btn
             // 
             this.URLconstructDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLconstructDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstructDir_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLconstructDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstructDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3654,7 +3646,6 @@
             // GoogleDork_Opt_Btn
             // 
             this.GoogleDork_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GoogleDork_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoogleDork_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.GoogleDork_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.GoogleDork_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3671,7 +3662,6 @@
             // MultipleWin_Opt_Btn
             // 
             this.MultipleWin_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleWin_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWin_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.MultipleWin_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWin_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3688,7 +3678,6 @@
             // AddOntools_Opt_Btn
             // 
             this.AddOntools_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddOntools_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOntools_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.AddOntools_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.AddOntools_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3705,7 +3694,6 @@
             // URLconstruct_Opt_Btn
             // 
             this.URLconstruct_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLconstruct_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstruct_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLconstruct_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstruct_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3722,7 +3710,6 @@
             // URLdirect_Opt_Btn
             // 
             this.URLdirect_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLdirect_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLdirect_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLdirect_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLdirect_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3742,7 +3729,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 561);
+            this.panel25.Size = new System.Drawing.Size(10, 590);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -3752,7 +3739,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 561);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 590);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -3777,7 +3764,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 528);
+            this.groupBox3.Size = new System.Drawing.Size(714, 557);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -3948,7 +3935,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 528);
+            this.panel27.Location = new System.Drawing.Point(0, 557);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -3956,7 +3943,6 @@
             // SaveConfig_Opt_Btn
             // 
             this.SaveConfig_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveConfig_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveConfig_Opt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaveConfig_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.SaveConfig_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -3974,7 +3960,6 @@
             // ResetConfig_Btn
             // 
             this.ResetConfig_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ResetConfig_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
             this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -3993,7 +3978,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 571);
+            this.panel24.Location = new System.Drawing.Point(10, 600);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -4013,7 +3998,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 581);
+            this.panel22.Size = new System.Drawing.Size(10, 610);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -4022,7 +4007,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 581);
+            this.panel21.Size = new System.Drawing.Size(10, 610);
             this.panel21.TabIndex = 20;
             // 
             // Status_Strip
@@ -4042,7 +4027,8 @@
             this.ProjectMapOpn_Lbl,
             this.LatTCurrent_Lbl,
             this.Separator,
-            this.LonGtCurrent_Lbl});
+            this.LonGtCurrent_Lbl,
+            this.TtsButton_Sts});
             this.Status_Strip.Location = new System.Drawing.Point(0, 639);
             this.Status_Strip.Name = "Status_Strip";
             this.Status_Strip.Size = new System.Drawing.Size(1334, 22);
@@ -4165,6 +4151,24 @@
             this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(15, 17);
             this.LonGtCurrent_Lbl.Text = "_";
             this.LonGtCurrent_Lbl.Visible = false;
+            // 
+            // TtsButton_Sts
+            // 
+            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TtsButton_Sts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnURL_TlsTools});
+            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
+            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TtsButton_Sts.Name = "TtsButton_Sts";
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
+            this.TtsButton_Sts.Text = "Tools";
+            // 
+            // OpnURL_TlsTools
+            // 
+            this.OpnURL_TlsTools.Name = "OpnURL_TlsTools";
+            this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
+            this.OpnURL_TlsTools.Text = "Open URL in New Tab";
+            this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
             // 
             // Tools_TAB_1
             // 
@@ -5084,6 +5088,8 @@
             this.PanelOptDir_Pnl.ResumeLayout(false);
             this.PanelOptDir_Pnl.PerformLayout();
             this.Panel_ConfigFiles.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.Panel_ConfigXml.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -5485,6 +5491,11 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripTextBox ZoomValMap_Lbl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
+        private System.Windows.Forms.ToolStripMenuItem ClrHistory_Param;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.CheckBox SaveCookies_Chk;
+        private System.Windows.Forms.ToolStripSplitButton TtsButton_Sts;
+        private System.Windows.Forms.ToolStripMenuItem OpnURL_TlsTools;
     }
 }
 

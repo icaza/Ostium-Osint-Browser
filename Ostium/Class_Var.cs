@@ -17,6 +17,7 @@
         public static int VOLUME_TRACK_var;
         public static int RATE_TRACK_var;
         public static string BKMKLT_var;
+        public static int COOKIES_SAVE_var;
 
         public static string File_Open
         {
@@ -195,6 +196,18 @@
             set
             {
                 BKMKLT_var = value;
+            }
+        }
+
+        public static int COOKIES_SAVE
+        {
+            get
+            {
+                return COOKIES_SAVE_var;
+            }
+            set
+            {
+                COOKIES_SAVE_var = value;
             }
         }
     }

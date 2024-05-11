@@ -81,7 +81,7 @@ namespace Ostium
         public string D4ta = "default_database_name";
         ///
         /// <summary>
-        /// List of Objects
+        /// Objects
         /// </summary>
         /// 
         Webview_Frm webviewForm;
@@ -257,13 +257,11 @@ namespace Ostium
             {
                 if (ClearOnOff == "on")
                 {
-                    var result = MessageBox.Show("Delete history? (Start purge.bat after Ostium close, for complete cleaning)", "Delete history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, for complete deletion of the WebView2 usage directory)", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
-                        Process.Start(AppStart);
-                        if (Directory.Exists(AppStart + "Ostium.exe.WebView2"))
-                            Directory.Delete(AppStart + "Ostium.exe.WebView2", true);
+                        ClearData(1);
                     }
                 }
             }
@@ -547,6 +545,8 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
                 loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
                 loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
+
+                Class_Var.COOKIES_SAVE = 0;
             }
             catch (Exception ex)
             {
@@ -686,13 +686,15 @@ namespace Ostium
         /// Script injection and cookie registration and Title update
         /// </summary>
         /// <param name="ScriptInject()">checking if a script is registered and executed for the current URL</param>
-        /// <param name="GetCookie">Saving cookies in the cookie.txt file</param>
+        /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         /// 
         void WBrowse_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             @Class_Var.URL_URI = WBrowse.Source.AbsoluteUri;
 
-            GetCookie(WBrowse.Source.AbsoluteUri);
+            if (SaveCookies_Chk.Checked)
+                GetCookie(WBrowse.Source.AbsoluteUri);
+
             WBrowse_UpdtTitleEvent("Navigation Completed");
 
             ScriptInject();
@@ -780,11 +782,13 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
         }
         ///
-        /// <param name="GetCookie">Saving cookies in the cookie.txt file</param>
+        /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         ///
         void WBrowsefeed_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            GetCookie(WBrowsefeed.Source.AbsoluteUri);
+            if (SaveCookies_Chk.Checked)
+                GetCookie(WBrowse.Source.AbsoluteUri);
+
             WBrowsefeed_UpdtTitleEvent("Navigation Completed");
         }
         ///
@@ -869,6 +873,36 @@ namespace Ostium
             {
                 senderror.ErrorLog("Error! ScriptInject: ", ex.Message, "Main_Frm", AppStart);
             }
+        }
+        ///
+        /// <summary>
+        /// Clear all Data history
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param value="0">No opening application directory to start full purge.bat cleanup</param>
+        /// <param value="1">Opening application directory to start full purge.bat cleanup</param>
+        /// 
+        private void ClearData(int val)
+        {
+            CoreWebView2Profile profile;
+            if (WBrowse.CoreWebView2 != null)
+            {
+                profile = WBrowse.CoreWebView2.Profile;
+                CoreWebView2BrowsingDataKinds dataKinds =
+                                         CoreWebView2BrowsingDataKinds.GeneralAutofill |
+                                      CoreWebView2BrowsingDataKinds.PasswordAutosave |
+                                      CoreWebView2BrowsingDataKinds.AllDomStorage |
+                                      CoreWebView2BrowsingDataKinds.DownloadHistory |
+                                      CoreWebView2BrowsingDataKinds.Cookies |
+                                      CoreWebView2BrowsingDataKinds.CacheStorage |
+                                      CoreWebView2BrowsingDataKinds.IndexedDb |
+                                      CoreWebView2BrowsingDataKinds.LocalStorage |
+                                      CoreWebView2BrowsingDataKinds.AllSite |
+                                      CoreWebView2BrowsingDataKinds.BrowsingHistory;
+                profile.ClearBrowsingDataAsync(dataKinds);
+            }
+            if (val == 1)
+                Process.Start(AppStart);
         }
 
         #region Control_Browser
@@ -2502,6 +2536,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
+                        TtsButton_Sts.Visible = false;
 
                         if (JavaEnableDisableFeed_Btn.Text == "Javascript Disable")
                         {
@@ -2536,6 +2571,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
+                        TtsButton_Sts.Visible = false;
 
                         ValueChange_Txt.ForeColor = Color.DimGray;
                         ValueChange_Txt.Text = "update URL and Name here";
@@ -2563,6 +2599,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
+                        TtsButton_Sts.Visible = false;
                         break;                        
                     }
                 case 4:
@@ -2584,6 +2621,8 @@ namespace Ostium
                     Separator.Visible = true;
                     LonGtCurrent_Lbl.Visible = true;
                     ProjectMapOpn_Lbl.Visible = true;
+                    TtsButton_Sts.Visible = false;
+
                     if (VerifMapOpn == "off")
                     {
                         Mkmarker = GMarkerGoogleType.red_dot;
@@ -2611,6 +2650,7 @@ namespace Ostium
                     Separator.Visible = false;
                     LonGtCurrent_Lbl.Visible = false;
                     ProjectMapOpn_Lbl.Visible = false;
+                    TtsButton_Sts.Visible = false;
 
                     DireSizeCalc(AppStart, OstiumDir_Lbl);
                     DireSizeCalc(Plugins, AddOnDir_Lbl);
@@ -2647,6 +2687,7 @@ namespace Ostium
             Separator.Visible = false;
             LonGtCurrent_Lbl.Visible = false;
             ProjectMapOpn_Lbl.Visible = false;
+            TtsButton_Sts.Visible = true;
 
             if (JavaEnableDisable_Btn.Text == "Javascript Disable")
             {
@@ -4430,6 +4471,11 @@ namespace Ostium
             GoBrowser("edge://site-engagement", 0);
         }
 
+        private void ClrHistory_Param_Click(object sender, EventArgs e)
+        {
+            ClearData(0);
+        }
+
         void System_Param_Click(object sender, EventArgs e)
         {
             GoBrowser("edge://system", 0);
@@ -4472,6 +4518,14 @@ namespace Ostium
                     MessageBox.Show("Enter all values!");
                 }
             }
+        }
+
+        private void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (SaveCookies_Chk.Checked)
+                Class_Var.COOKIES_SAVE = 1;
+            else
+                Class_Var.COOKIES_SAVE = 0;
         }
 
         #region Workflow
@@ -5759,6 +5813,22 @@ namespace Ostium
 
                 if (ValName != "")
                 {
+                    if (File.Exists(MapDir + ValName + ".xml"))
+                    {
+                        string avert = "The file already exists, delete?";
+                        string caption = "Ostium";
+                        var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            File.Delete(MapDir + ValName + ".xml");
+                        }
+                        else
+                        {
+                            return;
+                        }                        
+                    }
+
                     XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
                     writer.WriteStartDocument(true);
                     writer.Formatting = System.Xml.Formatting.Indented;
@@ -5775,6 +5845,8 @@ namespace Ostium
                     MessageBox.Show("XML File created.");
 
                     PointLoc_Lst.Items.Clear();
+                    GMap_Ctrl.Overlays.Clear();
+                    overlayOne.Markers.Clear();
                     loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
                     ProjectMapOpn_Lbl.Text = "";
@@ -6342,6 +6414,11 @@ namespace Ostium
         }
 
         #endregion
+
+        private void OpnURL_TlsTools_Click(object sender, EventArgs e)
+        {
+            GoBrowser(URLtxt_txt.Text, 1);
+        }
 
         #region Update_
         ///

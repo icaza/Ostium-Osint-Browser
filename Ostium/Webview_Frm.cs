@@ -118,10 +118,17 @@ namespace Ostium
         {
             WBrowse_UpdtTitleEvent("Navigation Starting");
         }
-
+        ///
+        /// <summary>
+        /// Save cookies
+        /// </summary>
+        /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
+        /// 
         void WBrowse_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            GetCookie(WBrowse.Source.AbsoluteUri);
+            if (Class_Var.COOKIES_SAVE == 1)
+                GetCookie(WBrowse.Source.AbsoluteUri);
+
             WBrowse_UpdtTitleEvent("Navigation Completed");
         }
 
