@@ -245,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ostiumico.ico" />
+    <None Include="Resources\Menutls.png" />
     <None Include="Resources\Sprites.png" />
     <None Include="Resources\Exportsvg.png" />
     <None Include="Resources\CPU.png" />

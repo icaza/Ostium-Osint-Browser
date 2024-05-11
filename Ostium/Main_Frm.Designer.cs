@@ -81,6 +81,7 @@
             this.Download_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.History_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.SiteEngament_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClrHistory_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.UserAgentChange_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Googlebot_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -280,6 +281,8 @@
             this.WorkFlowModelDir_Opn = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.MultipleWinDir_Opt_Btn = new System.Windows.Forms.Button();
             this.URLconstructDir_Opt_Btn = new System.Windows.Forms.Button();
@@ -328,6 +331,8 @@
             this.LatTCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
             this.LonGtCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
             this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -411,9 +416,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.ClrHistory_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -462,6 +464,7 @@
             this.groupBox5.SuspendLayout();
             this.PanelOptDir_Pnl.SuspendLayout();
             this.Panel_ConfigFiles.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.Panel_ConfigXml.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -470,7 +473,6 @@
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
             this.Tools_TAB_4.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tools_TAB_0
@@ -937,6 +939,13 @@
             this.SiteEngament_Param.Text = "Site Engagement";
             this.SiteEngament_Param.Click += new System.EventHandler(this.SiteEngament_Param_Click);
             // 
+            // ClrHistory_Param
+            // 
+            this.ClrHistory_Param.Name = "ClrHistory_Param";
+            this.ClrHistory_Param.Size = new System.Drawing.Size(226, 22);
+            this.ClrHistory_Param.Text = "Clear History";
+            this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
+            // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
@@ -1096,7 +1105,6 @@
             // CloseSetCookie_Btn
             // 
             this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
             this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1199,7 +1207,6 @@
             // InjectBkmklt_Btn
             // 
             this.InjectBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.InjectBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InjectBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InjectBkmklt_Btn.FlatAppearance.BorderSize = 0;
             this.InjectBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
@@ -1217,7 +1224,6 @@
             // ClosePnlBkmklt_Btn
             // 
             this.ClosePnlBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ClosePnlBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ClosePnlBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ClosePnlBkmklt_Btn.FlatAppearance.BorderSize = 0;
             this.ClosePnlBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -1343,7 +1349,6 @@
             // CleanSearch_Btn
             // 
             this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
             this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1364,7 +1369,6 @@
             // AddURLink_Btn
             // 
             this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
             this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1384,7 +1388,6 @@
             // Go_Btn
             // 
             this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.Go_Btn.FlatAppearance.BorderSize = 0;
             this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1404,7 +1407,6 @@
             // GoWebwiev_Btn
             // 
             this.GoWebwiev_Btn.BackColor = System.Drawing.Color.Gray;
-            this.GoWebwiev_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoWebwiev_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.GoWebwiev_Btn.FlatAppearance.BorderSize = 0;
             this.GoWebwiev_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1424,7 +1426,6 @@
             // Home_Btn
             // 
             this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Home_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Home_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Home_Btn.FlatAppearance.BorderSize = 0;
             this.Home_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1445,7 +1446,6 @@
             // Refresh_Btn
             // 
             this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Refresh_Btn.FlatAppearance.BorderSize = 0;
             this.Refresh_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1466,7 +1466,6 @@
             // Forward_Btn
             // 
             this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Forward_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Forward_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Forward_Btn.FlatAppearance.BorderSize = 0;
             this.Forward_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1487,7 +1486,6 @@
             // Back_Btn
             // 
             this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Back_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Back_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Back_Btn.FlatAppearance.BorderSize = 0;
             this.Back_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1566,7 +1564,6 @@
             // AddTable_Btn
             // 
             this.AddTable_Btn.BackColor = System.Drawing.Color.Black;
-            this.AddTable_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddTable_Btn.FlatAppearance.BorderSize = 0;
             this.AddTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1891,7 +1888,6 @@
             // SaveVolRat_Btn
             // 
             this.SaveVolRat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveVolRat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveVolRat_Btn.FlatAppearance.BorderSize = 0;
             this.SaveVolRat_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.SaveVolRat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1952,7 +1948,6 @@
             // ReadClipB_Btn
             // 
             this.ReadClipB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReadClipB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadClipB_Btn.FlatAppearance.BorderSize = 0;
             this.ReadClipB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadClipB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1969,7 +1964,6 @@
             // StopSpeak_Btn
             // 
             this.StopSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.StopSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.StopSpeak_Btn.FlatAppearance.BorderSize = 0;
             this.StopSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.StopSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1986,7 +1980,6 @@
             // PauseSpeak_Btn
             // 
             this.PauseSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.PauseSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PauseSpeak_Btn.FlatAppearance.BorderSize = 0;
             this.PauseSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.PauseSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2003,7 +1996,6 @@
             // ReadTitle_Btn
             // 
             this.ReadTitle_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReadTitle_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadTitle_Btn.FlatAppearance.BorderSize = 0;
             this.ReadTitle_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadTitle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2165,7 +2157,6 @@
             // ExecuteCMDsql_Btn
             // 
             this.ExecuteCMDsql_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ExecuteCMDsql_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ExecuteCMDsql_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.ExecuteCMDsql_Btn.FlatAppearance.BorderSize = 0;
             this.ExecuteCMDsql_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2199,7 +2190,6 @@
             // ChangeDefDB_Btn
             // 
             this.ChangeDefDB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ChangeDefDB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ChangeDefDB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ChangeDefDB_Btn.FlatAppearance.BorderSize = 0;
             this.ChangeDefDB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2259,7 +2249,6 @@
             // Db_OrderLst_Btn
             // 
             this.Db_OrderLst_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_OrderLst_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OrderLst_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OrderLst_Btn.FlatAppearance.BorderSize = 0;
             this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2277,7 +2266,6 @@
             // Db_OpnLink_Btn
             // 
             this.Db_OpnLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_OpnLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OpnLink_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OpnLink_Btn.FlatAppearance.BorderSize = 0;
             this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2364,7 +2352,6 @@
             // Db_Update_Value_Btn
             // 
             this.Db_Update_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Update_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Value_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Update_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Update_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -2382,7 +2369,6 @@
             // Db_Update_Name_Btn
             // 
             this.Db_Update_Name_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Update_Name_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Name_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Update_Name_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Update_Name_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -2410,7 +2396,6 @@
             // Db_Delete_Table_AllValue_Btn
             // 
             this.Db_Delete_Table_AllValue_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_AllValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_AllValue_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2428,7 +2413,6 @@
             // Db_Delete_Table_Value_Btn
             // 
             this.Db_Delete_Table_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2446,7 +2430,6 @@
             // Db_Delete_Table_Btn
             // 
             this.Db_Delete_Table_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2538,7 +2521,6 @@
             // ModelDelete_Btn
             // 
             this.ModelDelete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelDelete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelDelete_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModelDelete_Btn.Enabled = false;
             this.ModelDelete_Btn.FlatAppearance.BorderSize = 0;
@@ -2558,7 +2540,6 @@
             // ModelEdit_Btn
             // 
             this.ModelEdit_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelEdit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelEdit_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ModelEdit_Btn.Enabled = false;
             this.ModelEdit_Btn.FlatAppearance.BorderSize = 0;
@@ -2611,7 +2592,6 @@
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
-            this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
@@ -2680,7 +2660,6 @@
             // ModelCreate_Btn
             // 
             this.ModelCreate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelCreate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelCreate_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ModelCreate_Btn.FlatAppearance.BorderSize = 0;
             this.ModelCreate_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2897,7 +2876,6 @@
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
-            this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
@@ -2915,7 +2893,6 @@
             // CreateXMLwf_btn
             // 
             this.CreateXMLwf_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CreateXMLwf_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CreateXMLwf_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CreateXMLwf_btn.FlatAppearance.BorderSize = 0;
             this.CreateXMLwf_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2944,7 +2921,6 @@
             // AddItemwf_Btn
             // 
             this.AddItemwf_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddItemwf_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddItemwf_Btn.Enabled = false;
             this.AddItemwf_Btn.FlatAppearance.BorderSize = 0;
             this.AddItemwf_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -3017,7 +2993,6 @@
             // ResetTimeline_Btn
             // 
             this.ResetTimeline_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ResetTimeline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetTimeline_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ResetTimeline_Btn.FlatAppearance.BorderSize = 0;
             this.ResetTimeline_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -3134,7 +3109,6 @@
             // AddNewLoc_Btn
             // 
             this.AddNewLoc_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddNewLoc_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddNewLoc_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddNewLoc_Btn.FlatAppearance.BorderSize = 0;
             this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -3302,7 +3276,6 @@
             // MapDir_Opn
             // 
             this.MapDir_Opn.AutoSize = true;
-            this.MapDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MapDir_Opn.ForeColor = System.Drawing.Color.White;
             this.MapDir_Opn.Location = new System.Drawing.Point(8, 563);
             this.MapDir_Opn.Name = "MapDir_Opn";
@@ -3314,7 +3287,6 @@
             // OstiumDir_Opn
             // 
             this.OstiumDir_Opn.AutoSize = true;
-            this.OstiumDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.OstiumDir_Opn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OstiumDir_Opn.ForeColor = System.Drawing.Color.White;
             this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
@@ -3338,7 +3310,6 @@
             // AddOnDir_Opn
             // 
             this.AddOnDir_Opn.AutoSize = true;
-            this.AddOnDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOnDir_Opn.ForeColor = System.Drawing.Color.White;
             this.AddOnDir_Opn.Location = new System.Drawing.Point(8, 56);
             this.AddOnDir_Opn.Name = "AddOnDir_Opn";
@@ -3350,7 +3321,6 @@
             // BkmkltDir_Opn
             // 
             this.BkmkltDir_Opn.AutoSize = true;
-            this.BkmkltDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BkmkltDir_Opn.ForeColor = System.Drawing.Color.White;
             this.BkmkltDir_Opn.Location = new System.Drawing.Point(8, 518);
             this.BkmkltDir_Opn.Name = "BkmkltDir_Opn";
@@ -3362,7 +3332,6 @@
             // DatabaseDir_Opn
             // 
             this.DatabaseDir_Opn.AutoSize = true;
-            this.DatabaseDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DatabaseDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DatabaseDir_Opn.Location = new System.Drawing.Point(8, 103);
             this.DatabaseDir_Opn.Name = "DatabaseDir_Opn";
@@ -3385,7 +3354,6 @@
             // FeedDir_Opn
             // 
             this.FeedDir_Opn.AutoSize = true;
-            this.FeedDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FeedDir_Opn.ForeColor = System.Drawing.Color.White;
             this.FeedDir_Opn.Location = new System.Drawing.Point(8, 150);
             this.FeedDir_Opn.Name = "FeedDir_Opn";
@@ -3397,7 +3365,6 @@
             // SpritesDir_Opn
             // 
             this.SpritesDir_Opn.AutoSize = true;
-            this.SpritesDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SpritesDir_Opn.ForeColor = System.Drawing.Color.White;
             this.SpritesDir_Opn.Location = new System.Drawing.Point(8, 473);
             this.SpritesDir_Opn.Name = "SpritesDir_Opn";
@@ -3409,7 +3376,6 @@
             // ScriptDir_Opn
             // 
             this.ScriptDir_Opn.AutoSize = true;
-            this.ScriptDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ScriptDir_Opn.ForeColor = System.Drawing.Color.White;
             this.ScriptDir_Opn.Location = new System.Drawing.Point(8, 197);
             this.ScriptDir_Opn.Name = "ScriptDir_Opn";
@@ -3432,7 +3398,6 @@
             // WorkFlowDir_Opn
             // 
             this.WorkFlowDir_Opn.AutoSize = true;
-            this.WorkFlowDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkFlowDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowDir_Opn.Location = new System.Drawing.Point(8, 244);
             this.WorkFlowDir_Opn.Name = "WorkFlowDir_Opn";
@@ -3444,7 +3409,6 @@
             // DiagramDir_Opn
             // 
             this.DiagramDir_Opn.AutoSize = true;
-            this.DiagramDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DiagramDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DiagramDir_Opn.Location = new System.Drawing.Point(8, 428);
             this.DiagramDir_Opn.Name = "DiagramDir_Opn";
@@ -3489,7 +3453,6 @@
             // WebView2Dir_Opn
             // 
             this.WebView2Dir_Opn.AutoSize = true;
-            this.WebView2Dir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WebView2Dir_Opn.ForeColor = System.Drawing.Color.White;
             this.WebView2Dir_Opn.Location = new System.Drawing.Point(8, 383);
             this.WebView2Dir_Opn.Name = "WebView2Dir_Opn";
@@ -3534,7 +3497,6 @@
             // PictureDir_Opn
             // 
             this.PictureDir_Opn.AutoSize = true;
-            this.PictureDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureDir_Opn.ForeColor = System.Drawing.Color.White;
             this.PictureDir_Opn.Location = new System.Drawing.Point(8, 338);
             this.PictureDir_Opn.Name = "PictureDir_Opn";
@@ -3579,7 +3541,6 @@
             // WorkFlowModelDir_Opn
             // 
             this.WorkFlowModelDir_Opn.AutoSize = true;
-            this.WorkFlowModelDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkFlowModelDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowModelDir_Opn.Location = new System.Drawing.Point(8, 291);
             this.WorkFlowModelDir_Opn.Name = "WorkFlowModelDir_Opn";
@@ -3607,6 +3568,31 @@
             this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 590);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.SaveCookies_Chk);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.groupBox6.Location = new System.Drawing.Point(0, 393);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(244, 197);
+            this.groupBox6.TabIndex = 19;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "other";
+            // 
+            // SaveCookies_Chk
+            // 
+            this.SaveCookies_Chk.AutoSize = true;
+            this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(25, 30);
+            this.SaveCookies_Chk.Name = "SaveCookies_Chk";
+            this.SaveCookies_Chk.Size = new System.Drawing.Size(194, 36);
+            this.SaveCookies_Chk.TabIndex = 0;
+            this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
+            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SaveCookies_Chk.UseVisualStyleBackColor = true;
+            this.SaveCookies_Chk.CheckedChanged += new System.EventHandler(this.SaveCookies_Chk_CheckedChanged);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.MultipleWinDir_Opt_Btn);
@@ -3628,7 +3614,6 @@
             // MultipleWinDir_Opt_Btn
             // 
             this.MultipleWinDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleWinDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWinDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3645,7 +3630,6 @@
             // URLconstructDir_Opt_Btn
             // 
             this.URLconstructDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLconstructDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstructDir_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLconstructDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstructDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3662,7 +3646,6 @@
             // GoogleDork_Opt_Btn
             // 
             this.GoogleDork_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GoogleDork_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoogleDork_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.GoogleDork_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.GoogleDork_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3679,7 +3662,6 @@
             // MultipleWin_Opt_Btn
             // 
             this.MultipleWin_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleWin_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWin_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.MultipleWin_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWin_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3696,7 +3678,6 @@
             // AddOntools_Opt_Btn
             // 
             this.AddOntools_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddOntools_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOntools_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.AddOntools_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.AddOntools_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3713,7 +3694,6 @@
             // URLconstruct_Opt_Btn
             // 
             this.URLconstruct_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLconstruct_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstruct_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLconstruct_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstruct_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3730,7 +3710,6 @@
             // URLdirect_Opt_Btn
             // 
             this.URLdirect_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLdirect_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLdirect_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLdirect_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLdirect_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3964,7 +3943,6 @@
             // SaveConfig_Opt_Btn
             // 
             this.SaveConfig_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveConfig_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveConfig_Opt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaveConfig_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.SaveConfig_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -3982,7 +3960,6 @@
             // ResetConfig_Btn
             // 
             this.ResetConfig_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ResetConfig_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
             this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -4050,7 +4027,8 @@
             this.ProjectMapOpn_Lbl,
             this.LatTCurrent_Lbl,
             this.Separator,
-            this.LonGtCurrent_Lbl});
+            this.LonGtCurrent_Lbl,
+            this.TtsButton_Sts});
             this.Status_Strip.Location = new System.Drawing.Point(0, 639);
             this.Status_Strip.Name = "Status_Strip";
             this.Status_Strip.Size = new System.Drawing.Size(1334, 22);
@@ -4173,6 +4151,24 @@
             this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(15, 17);
             this.LonGtCurrent_Lbl.Text = "_";
             this.LonGtCurrent_Lbl.Visible = false;
+            // 
+            // TtsButton_Sts
+            // 
+            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TtsButton_Sts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnURL_TlsTools});
+            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
+            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TtsButton_Sts.Name = "TtsButton_Sts";
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
+            this.TtsButton_Sts.Text = "Tools";
+            // 
+            // OpnURL_TlsTools
+            // 
+            this.OpnURL_TlsTools.Name = "OpnURL_TlsTools";
+            this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
+            this.OpnURL_TlsTools.Text = "Open URL in New Tab";
+            this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
             // 
             // Tools_TAB_1
             // 
@@ -4780,33 +4776,33 @@
             // EditXMLMap_Tls
             // 
             this.EditXMLMap_Tls.Name = "EditXMLMap_Tls";
-            this.EditXMLMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.EditXMLMap_Tls.Size = new System.Drawing.Size(168, 22);
             this.EditXMLMap_Tls.Text = "Edit XML File";
             this.EditXMLMap_Tls.Click += new System.EventHandler(this.EditXMLMap_Tls_Click);
             // 
             // ShowXMLMap_Tls
             // 
             this.ShowXMLMap_Tls.Name = "ShowXMLMap_Tls";
-            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(168, 22);
             this.ShowXMLMap_Tls.Text = "Show XML";
             this.ShowXMLMap_Tls.Click += new System.EventHandler(this.ShowXMLMap_Tls_Click);
             // 
             // OpnDirMap_Tls
             // 
             this.OpnDirMap_Tls.Name = "OpnDirMap_Tls";
-            this.OpnDirMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.OpnDirMap_Tls.Size = new System.Drawing.Size(168, 22);
             this.OpnDirMap_Tls.Text = "Open Directory";
             this.OpnDirMap_Tls.Click += new System.EventHandler(this.OpnDirMap_Tls_Click);
             // 
             // toolStripSeparator25
             // 
             this.toolStripSeparator25.Name = "toolStripSeparator25";
-            this.toolStripSeparator25.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator25.Size = new System.Drawing.Size(165, 6);
             // 
             // DelProjectMap_Tls
             // 
             this.DelProjectMap_Tls.Name = "DelProjectMap_Tls";
-            this.DelProjectMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.DelProjectMap_Tls.Size = new System.Drawing.Size(168, 22);
             this.DelProjectMap_Tls.Text = "Delete Project";
             this.DelProjectMap_Tls.Click += new System.EventHandler(this.DelProjectMap_Tls_Click);
             // 
@@ -5012,38 +5008,6 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ClrHistory_Param
-            // 
-            this.ClrHistory_Param.Name = "ClrHistory_Param";
-            this.ClrHistory_Param.Size = new System.Drawing.Size(226, 22);
-            this.ClrHistory_Param.Text = "Clear History";
-            this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.SaveCookies_Chk);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox6.Location = new System.Drawing.Point(0, 393);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 197);
-            this.groupBox6.TabIndex = 19;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "other";
-            // 
-            // SaveCookies_Chk
-            // 
-            this.SaveCookies_Chk.AutoSize = true;
-            this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.SaveCookies_Chk.Location = new System.Drawing.Point(25, 30);
-            this.SaveCookies_Chk.Name = "SaveCookies_Chk";
-            this.SaveCookies_Chk.Size = new System.Drawing.Size(194, 36);
-            this.SaveCookies_Chk.TabIndex = 0;
-            this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
-            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SaveCookies_Chk.UseVisualStyleBackColor = true;
-            this.SaveCookies_Chk.CheckedChanged += new System.EventHandler(this.SaveCookies_Chk_CheckedChanged);
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -5124,6 +5088,8 @@
             this.PanelOptDir_Pnl.ResumeLayout(false);
             this.PanelOptDir_Pnl.PerformLayout();
             this.Panel_ConfigFiles.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.Panel_ConfigXml.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -5137,8 +5103,6 @@
             this.Tools_TAB_3.PerformLayout();
             this.Tools_TAB_4.ResumeLayout(false);
             this.Tools_TAB_4.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5530,6 +5494,8 @@
         private System.Windows.Forms.ToolStripMenuItem ClrHistory_Param;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.CheckBox SaveCookies_Chk;
+        private System.Windows.Forms.ToolStripSplitButton TtsButton_Sts;
+        private System.Windows.Forms.ToolStripMenuItem OpnURL_TlsTools;
     }
 }
 

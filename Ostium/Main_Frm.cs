@@ -81,7 +81,7 @@ namespace Ostium
         public string D4ta = "default_database_name";
         ///
         /// <summary>
-        /// List of Objects
+        /// Objects
         /// </summary>
         /// 
         Webview_Frm webviewForm;
@@ -167,6 +167,7 @@ namespace Ostium
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
 
         GMarkerGoogleType Mkmarker = GMarkerGoogleType.red_dot; // par défaut
+
         #endregion
 
         #region Frm_
@@ -2535,6 +2536,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
+                        TtsButton_Sts.Visible = false;
 
                         if (JavaEnableDisableFeed_Btn.Text == "Javascript Disable")
                         {
@@ -2569,6 +2571,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
+                        TtsButton_Sts.Visible = false;
 
                         ValueChange_Txt.ForeColor = Color.DimGray;
                         ValueChange_Txt.Text = "update URL and Name here";
@@ -2596,6 +2599,7 @@ namespace Ostium
                         Separator.Visible = false;
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
+                        TtsButton_Sts.Visible = false;
                         break;                        
                     }
                 case 4:
@@ -2617,6 +2621,8 @@ namespace Ostium
                     Separator.Visible = true;
                     LonGtCurrent_Lbl.Visible = true;
                     ProjectMapOpn_Lbl.Visible = true;
+                    TtsButton_Sts.Visible = false;
+
                     if (VerifMapOpn == "off")
                     {
                         Mkmarker = GMarkerGoogleType.red_dot;
@@ -2644,6 +2650,7 @@ namespace Ostium
                     Separator.Visible = false;
                     LonGtCurrent_Lbl.Visible = false;
                     ProjectMapOpn_Lbl.Visible = false;
+                    TtsButton_Sts.Visible = false;
 
                     DireSizeCalc(AppStart, OstiumDir_Lbl);
                     DireSizeCalc(Plugins, AddOnDir_Lbl);
@@ -2680,6 +2687,7 @@ namespace Ostium
             Separator.Visible = false;
             LonGtCurrent_Lbl.Visible = false;
             ProjectMapOpn_Lbl.Visible = false;
+            TtsButton_Sts.Visible = true;
 
             if (JavaEnableDisable_Btn.Text == "Javascript Disable")
             {
@@ -5805,6 +5813,22 @@ namespace Ostium
 
                 if (ValName != "")
                 {
+                    if (File.Exists(MapDir + ValName + ".xml"))
+                    {
+                        string avert = "The file already exists, delete?";
+                        string caption = "Ostium";
+                        var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            File.Delete(MapDir + ValName + ".xml");
+                        }
+                        else
+                        {
+                            return;
+                        }                        
+                    }
+
                     XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
                     writer.WriteStartDocument(true);
                     writer.Formatting = System.Xml.Formatting.Indented;
@@ -5821,6 +5845,8 @@ namespace Ostium
                     MessageBox.Show("XML File created.");
 
                     PointLoc_Lst.Items.Clear();
+                    GMap_Ctrl.Overlays.Clear();
+                    overlayOne.Markers.Clear();
                     loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
                     ProjectMapOpn_Lbl.Text = "";
@@ -6388,6 +6414,11 @@ namespace Ostium
         }
 
         #endregion
+
+        private void OpnURL_TlsTools_Click(object sender, EventArgs e)
+        {
+            GoBrowser(URLtxt_txt.Text, 1);
+        }
 
         #region Update_
         ///
