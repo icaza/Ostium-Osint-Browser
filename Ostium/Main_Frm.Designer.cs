@@ -1349,6 +1349,7 @@
             // CleanSearch_Btn
             // 
             this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
             this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1369,6 +1370,7 @@
             // AddURLink_Btn
             // 
             this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
             this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1388,6 +1390,7 @@
             // Go_Btn
             // 
             this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.Go_Btn.FlatAppearance.BorderSize = 0;
             this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1407,6 +1410,7 @@
             // GoWebwiev_Btn
             // 
             this.GoWebwiev_Btn.BackColor = System.Drawing.Color.Gray;
+            this.GoWebwiev_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoWebwiev_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.GoWebwiev_Btn.FlatAppearance.BorderSize = 0;
             this.GoWebwiev_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -1426,6 +1430,7 @@
             // Home_Btn
             // 
             this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Home_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Home_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Home_Btn.FlatAppearance.BorderSize = 0;
             this.Home_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1446,6 +1451,7 @@
             // Refresh_Btn
             // 
             this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Refresh_Btn.FlatAppearance.BorderSize = 0;
             this.Refresh_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1466,6 +1472,7 @@
             // Forward_Btn
             // 
             this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Forward_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Forward_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Forward_Btn.FlatAppearance.BorderSize = 0;
             this.Forward_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1486,6 +1493,7 @@
             // Back_Btn
             // 
             this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Back_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Back_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Back_Btn.FlatAppearance.BorderSize = 0;
             this.Back_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
@@ -1888,6 +1896,7 @@
             // SaveVolRat_Btn
             // 
             this.SaveVolRat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SaveVolRat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveVolRat_Btn.FlatAppearance.BorderSize = 0;
             this.SaveVolRat_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.SaveVolRat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1948,6 +1957,7 @@
             // ReadClipB_Btn
             // 
             this.ReadClipB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ReadClipB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadClipB_Btn.FlatAppearance.BorderSize = 0;
             this.ReadClipB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadClipB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1964,6 +1974,7 @@
             // StopSpeak_Btn
             // 
             this.StopSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.StopSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.StopSpeak_Btn.FlatAppearance.BorderSize = 0;
             this.StopSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.StopSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1980,6 +1991,7 @@
             // PauseSpeak_Btn
             // 
             this.PauseSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.PauseSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PauseSpeak_Btn.FlatAppearance.BorderSize = 0;
             this.PauseSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.PauseSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1996,6 +2008,7 @@
             // ReadTitle_Btn
             // 
             this.ReadTitle_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ReadTitle_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadTitle_Btn.FlatAppearance.BorderSize = 0;
             this.ReadTitle_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadTitle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -2157,6 +2170,7 @@
             // ExecuteCMDsql_Btn
             // 
             this.ExecuteCMDsql_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ExecuteCMDsql_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ExecuteCMDsql_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.ExecuteCMDsql_Btn.FlatAppearance.BorderSize = 0;
             this.ExecuteCMDsql_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2249,6 +2263,7 @@
             // Db_OrderLst_Btn
             // 
             this.Db_OrderLst_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_OrderLst_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OrderLst_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OrderLst_Btn.FlatAppearance.BorderSize = 0;
             this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2266,6 +2281,7 @@
             // Db_OpnLink_Btn
             // 
             this.Db_OpnLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_OpnLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OpnLink_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OpnLink_Btn.FlatAppearance.BorderSize = 0;
             this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2352,6 +2368,7 @@
             // Db_Update_Value_Btn
             // 
             this.Db_Update_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_Update_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Value_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Update_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Update_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -2369,6 +2386,7 @@
             // Db_Update_Name_Btn
             // 
             this.Db_Update_Name_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_Update_Name_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Name_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Update_Name_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Update_Name_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -2396,6 +2414,7 @@
             // Db_Delete_Table_AllValue_Btn
             // 
             this.Db_Delete_Table_AllValue_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_Delete_Table_AllValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_AllValue_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2413,6 +2432,7 @@
             // Db_Delete_Table_Value_Btn
             // 
             this.Db_Delete_Table_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_Delete_Table_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2430,6 +2450,7 @@
             // Db_Delete_Table_Btn
             // 
             this.Db_Delete_Table_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Db_Delete_Table_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -2521,6 +2542,7 @@
             // ModelDelete_Btn
             // 
             this.ModelDelete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ModelDelete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelDelete_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModelDelete_Btn.Enabled = false;
             this.ModelDelete_Btn.FlatAppearance.BorderSize = 0;
@@ -2540,6 +2562,7 @@
             // ModelEdit_Btn
             // 
             this.ModelEdit_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ModelEdit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelEdit_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ModelEdit_Btn.Enabled = false;
             this.ModelEdit_Btn.FlatAppearance.BorderSize = 0;
@@ -2588,13 +2611,13 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
+            this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2660,6 +2683,7 @@
             // ModelCreate_Btn
             // 
             this.ModelCreate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ModelCreate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ModelCreate_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ModelCreate_Btn.FlatAppearance.BorderSize = 0;
             this.ModelCreate_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2872,13 +2896,13 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
+            this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -2893,6 +2917,7 @@
             // CreateXMLwf_btn
             // 
             this.CreateXMLwf_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CreateXMLwf_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CreateXMLwf_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CreateXMLwf_btn.FlatAppearance.BorderSize = 0;
             this.CreateXMLwf_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -2921,6 +2946,7 @@
             // AddItemwf_Btn
             // 
             this.AddItemwf_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.AddItemwf_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddItemwf_Btn.Enabled = false;
             this.AddItemwf_Btn.FlatAppearance.BorderSize = 0;
             this.AddItemwf_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -3109,6 +3135,7 @@
             // AddNewLoc_Btn
             // 
             this.AddNewLoc_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.AddNewLoc_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddNewLoc_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddNewLoc_Btn.FlatAppearance.BorderSize = 0;
             this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -3276,6 +3303,7 @@
             // MapDir_Opn
             // 
             this.MapDir_Opn.AutoSize = true;
+            this.MapDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MapDir_Opn.ForeColor = System.Drawing.Color.White;
             this.MapDir_Opn.Location = new System.Drawing.Point(8, 563);
             this.MapDir_Opn.Name = "MapDir_Opn";
@@ -3287,6 +3315,7 @@
             // OstiumDir_Opn
             // 
             this.OstiumDir_Opn.AutoSize = true;
+            this.OstiumDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.OstiumDir_Opn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OstiumDir_Opn.ForeColor = System.Drawing.Color.White;
             this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
@@ -3310,6 +3339,7 @@
             // AddOnDir_Opn
             // 
             this.AddOnDir_Opn.AutoSize = true;
+            this.AddOnDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOnDir_Opn.ForeColor = System.Drawing.Color.White;
             this.AddOnDir_Opn.Location = new System.Drawing.Point(8, 56);
             this.AddOnDir_Opn.Name = "AddOnDir_Opn";
@@ -3321,6 +3351,7 @@
             // BkmkltDir_Opn
             // 
             this.BkmkltDir_Opn.AutoSize = true;
+            this.BkmkltDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BkmkltDir_Opn.ForeColor = System.Drawing.Color.White;
             this.BkmkltDir_Opn.Location = new System.Drawing.Point(8, 518);
             this.BkmkltDir_Opn.Name = "BkmkltDir_Opn";
@@ -3332,6 +3363,7 @@
             // DatabaseDir_Opn
             // 
             this.DatabaseDir_Opn.AutoSize = true;
+            this.DatabaseDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DatabaseDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DatabaseDir_Opn.Location = new System.Drawing.Point(8, 103);
             this.DatabaseDir_Opn.Name = "DatabaseDir_Opn";
@@ -3354,6 +3386,7 @@
             // FeedDir_Opn
             // 
             this.FeedDir_Opn.AutoSize = true;
+            this.FeedDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FeedDir_Opn.ForeColor = System.Drawing.Color.White;
             this.FeedDir_Opn.Location = new System.Drawing.Point(8, 150);
             this.FeedDir_Opn.Name = "FeedDir_Opn";
@@ -3365,6 +3398,7 @@
             // SpritesDir_Opn
             // 
             this.SpritesDir_Opn.AutoSize = true;
+            this.SpritesDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SpritesDir_Opn.ForeColor = System.Drawing.Color.White;
             this.SpritesDir_Opn.Location = new System.Drawing.Point(8, 473);
             this.SpritesDir_Opn.Name = "SpritesDir_Opn";
@@ -3376,6 +3410,7 @@
             // ScriptDir_Opn
             // 
             this.ScriptDir_Opn.AutoSize = true;
+            this.ScriptDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ScriptDir_Opn.ForeColor = System.Drawing.Color.White;
             this.ScriptDir_Opn.Location = new System.Drawing.Point(8, 197);
             this.ScriptDir_Opn.Name = "ScriptDir_Opn";
@@ -3398,6 +3433,7 @@
             // WorkFlowDir_Opn
             // 
             this.WorkFlowDir_Opn.AutoSize = true;
+            this.WorkFlowDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkFlowDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowDir_Opn.Location = new System.Drawing.Point(8, 244);
             this.WorkFlowDir_Opn.Name = "WorkFlowDir_Opn";
@@ -3409,6 +3445,7 @@
             // DiagramDir_Opn
             // 
             this.DiagramDir_Opn.AutoSize = true;
+            this.DiagramDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DiagramDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DiagramDir_Opn.Location = new System.Drawing.Point(8, 428);
             this.DiagramDir_Opn.Name = "DiagramDir_Opn";
@@ -3453,6 +3490,7 @@
             // WebView2Dir_Opn
             // 
             this.WebView2Dir_Opn.AutoSize = true;
+            this.WebView2Dir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WebView2Dir_Opn.ForeColor = System.Drawing.Color.White;
             this.WebView2Dir_Opn.Location = new System.Drawing.Point(8, 383);
             this.WebView2Dir_Opn.Name = "WebView2Dir_Opn";
@@ -3497,6 +3535,7 @@
             // PictureDir_Opn
             // 
             this.PictureDir_Opn.AutoSize = true;
+            this.PictureDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureDir_Opn.ForeColor = System.Drawing.Color.White;
             this.PictureDir_Opn.Location = new System.Drawing.Point(8, 338);
             this.PictureDir_Opn.Name = "PictureDir_Opn";
@@ -3541,6 +3580,7 @@
             // WorkFlowModelDir_Opn
             // 
             this.WorkFlowModelDir_Opn.AutoSize = true;
+            this.WorkFlowModelDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkFlowModelDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowModelDir_Opn.Location = new System.Drawing.Point(8, 291);
             this.WorkFlowModelDir_Opn.Name = "WorkFlowModelDir_Opn";
@@ -3943,6 +3983,7 @@
             // SaveConfig_Opt_Btn
             // 
             this.SaveConfig_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SaveConfig_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveConfig_Opt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaveConfig_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.SaveConfig_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -3960,6 +4001,7 @@
             // ResetConfig_Btn
             // 
             this.ResetConfig_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ResetConfig_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
             this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
@@ -5015,8 +5057,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
+            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
