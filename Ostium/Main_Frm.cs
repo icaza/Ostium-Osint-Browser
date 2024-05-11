@@ -312,7 +312,7 @@ namespace Ostium
                 DefaultEditor_Opt_Txt.Text = AppStart + "OstiumE.exe";
             }
             ///
-            /// Creation du fichier XML "config.xml"
+            /// Create XML file "config.xml"
             ///
             XmlWriterSettings settings = new XmlWriterSettings
             {
@@ -339,7 +339,7 @@ namespace Ostium
                 writer.Flush();
             }
             ///
-            /// Chargement de la configuration du fichier "config.xml"
+            /// Loading the configuration from the "config.xml" file
             /// 
             Config_Ini(AppStart + "config.xml");
         }
@@ -472,8 +472,8 @@ namespace Ostium
                     }
                 }
                 ///
-                /// Si DataBase exist True loading
-                /// Si DataBase exist False create
+                /// If DataBase exist True loading
+                /// If DataBase exist False create
                 /// 
                 if (DB_Default_Txt.Text != "0x0")
                 {
@@ -532,7 +532,7 @@ namespace Ostium
                     ConstructURL_Lst.Items.AddRange(File.ReadAllLines(FileDir + @"url-constructor\construct_url.txt"));
                 }
                 ///
-                /// Chargement des scipts JS à partir du fichier "scripturl.ost" pour l'injection
+                /// Loading JS scripts from "script url.ost" file for injection.
                 /// 
                 if (File.Exists(Scripts + "scripturl.ost"))
                 {
@@ -4582,7 +4582,7 @@ namespace Ostium
 
                 List_Wf = new ListBox();
                 ///
-                /// Ajout d'items et Reformattage => suppression des epaces et des sauts de lignes
+                /// Adding items and Formatting => removing spaces and line breaks
                 /// 
                 AddItemswf_Txt.Text = Regex.Replace(AddItemswf_Txt.Text, @" ", "");
                 string[] str = AddItemswf_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -4850,7 +4850,7 @@ namespace Ostium
                 string element = WorkflowItem_Lst.SelectedItem.ToString();
                 element += "_" + element;
                 ///
-                /// Reformattage => suppression des epaces et des sauts de lignes
+                /// Formatting => removing spaces and line breaks
                 /// 
                 string[] str = AddTextWorkflow_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 AddTextWorkflow_Txt.Text = "";
@@ -4929,7 +4929,7 @@ namespace Ostium
                         if (AddTNoteWorkflow_Txt.Text != "")
                         {
                             ///
-                            /// Reformattage => suppression des epaces et des sauts de lignes
+                            /// Formatting => removing spaces and line breaks
                             ///
                             string[] str = AddTNoteWorkflow_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                             AddTNoteWorkflow_Txt.Text = "";
@@ -4948,7 +4948,7 @@ namespace Ostium
                         if (AddUrlWorkflow_Txt.Text != "")
                         {
                             ///
-                            /// Reformattage => suppression des epaces et des sauts de lignes
+                            /// Formatting => removing spaces and line breaks
                             ///
                             string[] str = AddUrlWorkflow_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                             AddUrlWorkflow_Txt.Text = "";
@@ -5160,7 +5160,7 @@ namespace Ostium
                 if (ModelName_Txt.Text != "" && ModelItem_Txt.Text != "")
                 {
                     ///
-                    /// Reformattage => suppression des epaces et des sauts de lignes
+                    /// Formatting => removing spaces and line breaks
                     ///
                     ModelItem_Txt.Text = Regex.Replace(ModelItem_Txt.Text, @" ", "");
                     string[] str = ModelItem_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -5468,9 +5468,9 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Vérifie si process True
+        /// Checks if process True
         /// </summary>
-        /// <param name="ProcessVerif">Nom du process à vérifier</param>
+        /// <param name="ProcessVerif">Name of process to check</param>
         /// 
         void VerifyProcess(string ProcessVerif)
         {
@@ -5493,9 +5493,9 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Vérifie si process True et Kill process
+        /// Checks if process True and Kill process
         /// </summary>
-        /// <param name="ProcessKill">Nom du process à Kill</param>
+        /// <param name="ProcessKill">Process Name to Kill</param>
         /// 
         void KillProcessJAVAW(string ProcessKill)
         {
