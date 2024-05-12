@@ -230,10 +230,8 @@ namespace Ostium
                     Tools_TAB_0.Visible = true;
                     ///
                     /// Checking auto updates
-                    /// <param value="0"></param>
-                    /// Message only if update available
-                    /// <param value="1"></param>
-                    /// Message False or True update
+                    /// <param value="0">Message only if update available</param>
+                    /// <param value="1">Message False or True update</param>
                     ///
                     VerifyUPDT("Ostium", 0);
                 });
