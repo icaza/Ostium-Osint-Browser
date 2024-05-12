@@ -297,7 +297,7 @@ namespace Ostium
         /// <summary>
         /// Cookies save
         /// </summary>
-        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True</param>
+        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True,  by default is False</param>
         async void GetCookie(string URLs)
         {
             try
