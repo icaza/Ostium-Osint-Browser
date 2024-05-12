@@ -35,7 +35,7 @@ namespace Ostium
         {
             WBrowse.Source = new Uri(@Class_Var.URL_WEBVIEW);
             ///
-            /// Chargement des URL par défaut dans une List
+            /// Loading default configuration URLs into a List
             /// 
             if (File.Exists(AppStart + "url_dflt_cnf.ost"))
             {
@@ -294,7 +294,10 @@ namespace Ostium
                 GoBrowser(URLbrowse_Cbx.Text);
             }
         }
-
+        /// <summary>
+        /// Cookies save
+        /// </summary>
+        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True</param>
         async void GetCookie(string URLs)
         {
             try

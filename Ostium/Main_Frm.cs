@@ -4498,7 +4498,10 @@ namespace Ostium
         }
 
         #endregion
-
+        /// <summary>
+        /// Cookies save
+        /// </summary>
+        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True</param>
         async void GetCookie(string URLs)
         {
             try

@@ -60,7 +60,7 @@ namespace Ostium
             {
                 if (Bookmarklet_Lst.SelectedIndex != -1)
                 {
-                    string strName = Regex.Replace(Bookmarklet_Lst.Text, @".xml", "");
+                    string strName = Regex.Replace(Bookmarklet_Lst.Text, ".xml", "");
                     string strFile = Scripts + Bookmarklet_Lst.Text;
 
                     XmlDocument xmlDoc = new XmlDocument();
