@@ -166,8 +166,6 @@ namespace Ostium
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
 
-        GMarkerGoogleType Mkmarker = GMarkerGoogleType.red_dot; // par défaut
-
         #endregion
 
         #region Frm_
@@ -564,7 +562,6 @@ namespace Ostium
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(directoryname);
                 long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
-
                 var calcsize = sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize)));
 
                 SizeAll_Lbl = (Label)objectsend;
