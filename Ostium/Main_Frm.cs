@@ -2698,21 +2698,39 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// URL construction from List loaded with URL construction file selected
+        /// URL construction from a list loaded with the URL construction file selected and
+        /// created a temporary file <param name="A"></param> to open all URLs in the multi-window form Temp-Url-Construct.txt
         /// </summary>
         /// <param name="replace_query">Replacement value with the searched nickname/word</param>
         /// 
         void Construct_URL(string URLc)
         {
-            URLbrowse_Cbx.Items.Clear();
-
-            for (int i = 0; i < ConstructURL_Lst.Items.Count; i++)
+            try 
             {
-                string formatURI = Regex.Replace(ConstructURL_Lst.Items[i].ToString(), "replace_query", URLc);
-                URLbrowse_Cbx.Items.Add(formatURI);
-            }
+                URLbrowse_Cbx.Items.Clear();
+                string A = AppStart + @"\filesdir\grp-frm\Temp-Url-Construct.txt";
 
-            URLbrowse_Cbx.SelectedIndex = 0;
+                for (int i = 0; i < ConstructURL_Lst.Items.Count; i++)
+                {
+                    string formatURI = Regex.Replace(ConstructURL_Lst.Items[i].ToString(), "replace_query", URLc);
+                    URLbrowse_Cbx.Items.Add(formatURI);
+                }
+
+                if (File.Exists(A))
+                    File.Delete(A);
+
+                using (StreamWriter SW = new StreamWriter(A, true))
+                {
+                    foreach (string itm in URLbrowse_Cbx.Items)
+                        SW.WriteLine(itm);
+                }
+
+                URLbrowse_Cbx.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! Construct_URL: ", ex.Message, "Main_Frm", AppStart);
+            }
         }
         ///
         /// <summary>
