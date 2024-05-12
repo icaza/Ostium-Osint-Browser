@@ -39,7 +39,6 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                IcazaClass senderror = new IcazaClass();
                 senderror.ErrorLog("Error! OpenSource_Frm_Load: ", ex.Message, "OpenSource_Frm", AppStart);
             }
         }
