@@ -3019,6 +3019,7 @@
             // ResetTimeline_Btn
             // 
             this.ResetTimeline_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ResetTimeline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetTimeline_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ResetTimeline_Btn.FlatAppearance.BorderSize = 0;
             this.ResetTimeline_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
@@ -3654,6 +3655,7 @@
             // MultipleWinDir_Opt_Btn
             // 
             this.MultipleWinDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.MultipleWinDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWinDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3670,6 +3672,7 @@
             // URLconstructDir_Opt_Btn
             // 
             this.URLconstructDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.URLconstructDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstructDir_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLconstructDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstructDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3686,6 +3689,7 @@
             // GoogleDork_Opt_Btn
             // 
             this.GoogleDork_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.GoogleDork_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoogleDork_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.GoogleDork_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.GoogleDork_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3702,6 +3706,7 @@
             // MultipleWin_Opt_Btn
             // 
             this.MultipleWin_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.MultipleWin_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWin_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.MultipleWin_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWin_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3718,6 +3723,7 @@
             // AddOntools_Opt_Btn
             // 
             this.AddOntools_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.AddOntools_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOntools_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.AddOntools_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.AddOntools_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3734,6 +3740,7 @@
             // URLconstruct_Opt_Btn
             // 
             this.URLconstruct_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.URLconstruct_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstruct_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLconstruct_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstruct_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -3750,6 +3757,7 @@
             // URLdirect_Opt_Btn
             // 
             this.URLdirect_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.URLdirect_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLdirect_Opt_Btn.FlatAppearance.BorderSize = 0;
             this.URLdirect_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLdirect_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

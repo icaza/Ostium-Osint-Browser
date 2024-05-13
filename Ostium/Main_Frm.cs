@@ -137,6 +137,7 @@ namespace Ostium
         readonly GMapOverlay overlayOne = new GMapOverlay("OverlayOne");
         double LatT = 48.8589507;
         double LonGt = 2.2775175;
+        GMarkerGoogleType Mkmarker = GMarkerGoogleType.red_dot; // by default
         ///
         int Commut = 0;
         ///
@@ -165,8 +166,6 @@ namespace Ostium
         readonly string versionNow = "2";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
-
-        GMarkerGoogleType Mkmarker = GMarkerGoogleType.red_dot; // par défaut
 
         #endregion
 
@@ -230,10 +229,8 @@ namespace Ostium
                     Tools_TAB_0.Visible = true;
                     ///
                     /// Checking auto updates
-                    /// <param value="0"></param>
-                    /// Message only if update available
-                    /// <param value="1"></param>
-                    /// Message False or True update
+                    /// <param value="0">Message only if update available</param>
+                    /// <param value="1">Message False or True update</param>
                     ///
                     VerifyUPDT("Ostium", 0);
                 });
@@ -284,7 +281,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Creation of the “config.xml” configuration file
+        /// Creation of the "config.xml" configuration file
         /// </summary>
         /// <param name="val"></param>
         /// <param value="0">Loading default URLs from the "url_dflt_cnf.ost" file</param>
@@ -327,7 +324,7 @@ namespace Ostium
                 writer.WriteElementString("DB_USE_DEFAULT", dbDflt);
                 writer.WriteElementString("URL_HOME_VAR", urlHom);
                 writer.WriteElementString("URL_TRAD_WEBPAGE_VAR", urlTra);
-                writer.WriteElementString("URL_TRAD_WEBTXT_VAR", "https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=replace_query&op=translate"); // Non implémenté
+                writer.WriteElementString("URL_TRAD_WEBTXT_VAR", "https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=replace_query&op=translate"); // Not implemented
                 writer.WriteElementString("URL_DEFAUT_WSEARCH_VAR", Search);
                 writer.WriteElementString("URL_USER_AGENT_VAR", UsrAgt);
                 writer.WriteElementString("URL_USER_AGENT_SRC_PAGE_VAR", UsrHtt);
@@ -352,20 +349,28 @@ namespace Ostium
         {
             try
             {
-                DirectoryCreate(Plugins);
-                DirectoryCreate(DBdirectory);
-                DirectoryCreate(FeedDir);
-                DirectoryCreate(FileDir);
-                DirectoryCreate(FileDir + "url-constructor");
-                DirectoryCreate(FileDir + "grp-frm");
-                DirectoryCreate(Pictures);
-                DirectoryCreate(Scripts);
-                DirectoryCreate(Workflow);
-                DirectoryCreate(Workflow + "model");
-                DirectoryCreate(DiagramDir);
-                DirectoryCreate(BkmkltDir);
-                DirectoryCreate(Setirps);
-                DirectoryCreate(MapDir);
+                var CreateDir = new List<string>()
+                    {
+                        Plugins,
+                        DBdirectory,
+                        FeedDir,
+                        FileDir,
+                        FileDir + "url-constructor",
+                        FileDir + "grp-frm",
+                        Pictures,
+                        Scripts,
+                        Workflow,
+                        Workflow + "model",
+                        DiagramDir,
+                        BkmkltDir,
+                        Setirps,
+                        MapDir
+                    };
+
+                for (int i = 0; i < CreateDir.Count; i++)
+                {
+                    DirectoryCreate(CreateDir[i].ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -546,7 +551,7 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
                 loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
 
-                Class_Var.COOKIES_SAVE = 0;
+                Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
             }
             catch (Exception ex)
             {
@@ -566,7 +571,6 @@ namespace Ostium
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(directoryname);
                 long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
-
                 var calcsize = sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize)));
 
                 SizeAll_Lbl = (Label)objectsend;
@@ -2698,26 +2702,43 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// URL construction from List loaded with URL construction file selected
+        /// URL construction from a list loaded with the URL construction file selected and
+        /// created a temporary file <param name="A"></param> to open all URLs in the multi-window form Temp-Url-Construct.txt
         /// </summary>
         /// <param name="replace_query">Replacement value with the searched nickname/word</param>
         /// 
         void Construct_URL(string URLc)
         {
-            URLbrowse_Cbx.Items.Clear();
-
-            for (int i = 0; i < ConstructURL_Lst.Items.Count; i++)
+            try 
             {
-                string formatURI = Regex.Replace(ConstructURL_Lst.Items[i].ToString(), "replace_query", URLc);
-                URLbrowse_Cbx.Items.Add(formatURI);
-            }
+                URLbrowse_Cbx.Items.Clear();
+                string A = AppStart + @"\filesdir\grp-frm\Temp-Url-Construct.txt";
 
-            URLbrowse_Cbx.SelectedIndex = 0;
+                for (int i = 0; i < ConstructURL_Lst.Items.Count; i++)
+                {
+                    string formatURI = Regex.Replace(ConstructURL_Lst.Items[i].ToString(), "replace_query", URLc);
+                    URLbrowse_Cbx.Items.Add(formatURI);
+                }
+
+                if (File.Exists(A))
+                    File.Delete(A);
+
+                using (StreamWriter SW = new StreamWriter(A, true))
+                {
+                    foreach (string itm in URLbrowse_Cbx.Items)
+                        SW.WriteLine(itm);
+                }
+
+                URLbrowse_Cbx.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! Construct_URL: ", ex.Message, "Main_Frm", AppStart);
+            }
         }
         ///
         /// <summary>
-        /// Downloading and saving the source of the current WEB page, does not take into account local file loading
-        /// only remote files.
+        /// Downloading and saving the source of the current WEB page, only remote files.
         /// </summary>
         /// 
         async void Download_Source_Page()
@@ -2925,15 +2946,15 @@ namespace Ostium
             sr.Close();
         }
 
-        #endregion 
+        #endregion
 
         #region File_List_Create
         ///
         /// <summary>
-        /// Création de fichier avec écrasement si file exist
+        /// File creation with overwriting if the file exists
         /// </summary>
-        /// <param name="fileName">Nom du fichier à créer</param>
-        /// <param name="content">Données du fichier à inscrire</param>
+        /// <param name="fileName">Name of the file to create</param>
+        /// <param name="content">Data of the file to register</param>
         /// 
         void File_Write(string fileName, string content)
         {
@@ -2951,13 +2972,13 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Création de fichier de List
+        /// Creation of List file
         /// </summary>
-        /// <param name="nameFile">Nom du fichier de List</param>
+        /// <param name="nameFile">List file name</param>
         /// <param name="opnOrNo"></param>
-        /// <param value="yes">Sauvegarde le fichier et ouvre la liste dans la fenêtre "Open_Source_Frm"</param>
-        /// <param value="no">Sauvegarde le fichier sans l'afficher</param>
-        /// 
+        /// <param value="yes">Saves the file and opens the list in the "Open_Source_Frm" window</param>
+        /// <param value="no">Save the file without displaying it</param>
+        ///
         void List_Create(string nameFile, string opnOrNo)
         {
             try
@@ -2992,10 +3013,10 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Création de fichier en mode ajout
+        /// File creation in add mode
         /// </summary>
-        /// <param name="fileName">Nom du fichier à créer</param>
-        /// <param name="fileValue">Données du fichier à inscrire</param>
+        /// <param name="fileName">Name of the file to create</param>
+        /// <param name="fileValue">File data to register</param>
         /// 
         void CreateData(string fileName, string fileValue)
         {
@@ -3013,9 +3034,9 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Ouverture de fichier vers "OpenFile_Editor"
+        /// Opening file to "OpenFile_Editor"
         /// </summary>
-        /// <param name="dir_dir">Vérification de l'existance du fichier si False il est créé puis ouvert avec l'éditeur</param>
+        /// <param name="dir_dir">Checking the existence of the file if False it is created then opened with the editor</param>
         /// 
         void OpnFileOpt(string dir_dir)
         {
@@ -3070,7 +3091,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Opening file in the “Doc_Frm” window
+        /// Opening file in the "Doc_Frm" window
         /// </summary>
         /// <param name="fileNameSelect">File to open</param>
         /// 
@@ -3082,7 +3103,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Opening file in the “OpenSource_Frm” window
+        /// Opening file in the "OpenSource_Frm" window
         /// </summary>
         /// <param name="fileNameSelect">File to open</param>
         /// 
@@ -4482,7 +4503,10 @@ namespace Ostium
         }
 
         #endregion
-
+        /// <summary>
+        /// Cookies save
+        /// </summary>
+        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
         async void GetCookie(string URLs)
         {
             try
@@ -4523,9 +4547,9 @@ namespace Ostium
         private void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (SaveCookies_Chk.Checked)
-                Class_Var.COOKIES_SAVE = 1;
+                Class_Var.COOKIES_SAVE = 1; // Save
             else
-                Class_Var.COOKIES_SAVE = 0;
+                Class_Var.COOKIES_SAVE = 0; // No save
         }
 
         #region Workflow
