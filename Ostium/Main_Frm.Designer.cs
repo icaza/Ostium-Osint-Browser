@@ -416,6 +416,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2611,13 +2613,14 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2896,13 +2899,14 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -4864,6 +4868,8 @@
             this.CrossCenter_Tls,
             this.ScreenShotGmap_Tls,
             this.toolStripSeparator24,
+            this.OpnGoogleMaps_Tls,
+            this.OpnGoogleStreet_Tls,
             this.OpnBingMap_Tls,
             this.OpenGoogleEarth_Tls,
             this.toolStripSeparator26,
@@ -4878,52 +4884,52 @@
             // OpnListLocation_Tls
             // 
             this.OpnListLocation_Tls.Name = "OpnListLocation_Tls";
-            this.OpnListLocation_Tls.Size = new System.Drawing.Size(194, 22);
+            this.OpnListLocation_Tls.Size = new System.Drawing.Size(233, 22);
             this.OpnListLocation_Tls.Text = "Open Locations";
             this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
             // 
             // CrossCenter_Tls
             // 
             this.CrossCenter_Tls.Name = "CrossCenter_Tls";
-            this.CrossCenter_Tls.Size = new System.Drawing.Size(194, 22);
+            this.CrossCenter_Tls.Size = new System.Drawing.Size(233, 22);
             this.CrossCenter_Tls.Text = "Cross Center";
             this.CrossCenter_Tls.Click += new System.EventHandler(this.CrossCenter_Tls_Click);
             // 
             // ScreenShotGmap_Tls
             // 
             this.ScreenShotGmap_Tls.Name = "ScreenShotGmap_Tls";
-            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(194, 22);
+            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(233, 22);
             this.ScreenShotGmap_Tls.Text = "ScreenShot";
             this.ScreenShotGmap_Tls.Click += new System.EventHandler(this.ScreenShotGmap_Tls_Click);
             // 
             // toolStripSeparator24
             // 
             this.toolStripSeparator24.Name = "toolStripSeparator24";
-            this.toolStripSeparator24.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator24.Size = new System.Drawing.Size(230, 6);
             // 
             // OpnBingMap_Tls
             // 
             this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
-            this.OpnBingMap_Tls.Size = new System.Drawing.Size(194, 22);
+            this.OpnBingMap_Tls.Size = new System.Drawing.Size(233, 22);
             this.OpnBingMap_Tls.Text = "Open BingMap";
             this.OpnBingMap_Tls.Click += new System.EventHandler(this.OpnBingMap_Tls_Click);
             // 
             // OpenGoogleEarth_Tls
             // 
             this.OpenGoogleEarth_Tls.Name = "OpenGoogleEarth_Tls";
-            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(194, 22);
+            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(233, 22);
             this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
             this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
             // 
             // toolStripSeparator26
             // 
             this.toolStripSeparator26.Name = "toolStripSeparator26";
-            this.toolStripSeparator26.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator26.Size = new System.Drawing.Size(230, 6);
             // 
             // CopyGeoMap_Tls
             // 
             this.CopyGeoMap_Tls.Name = "CopyGeoMap_Tls";
-            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(194, 22);
+            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(233, 22);
             this.CopyGeoMap_Tls.Text = "Copy Geolocation";
             this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
             // 
@@ -5057,6 +5063,20 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // OpnGoogleMaps_Tls
+            // 
+            this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
+            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
+            this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
+            // 
+            // OpnGoogleStreet_Tls
+            // 
+            this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
+            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
+            this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
             // 
             // Main_Frm
             // 
@@ -5546,6 +5566,8 @@
         private System.Windows.Forms.CheckBox SaveCookies_Chk;
         private System.Windows.Forms.ToolStripSplitButton TtsButton_Sts;
         private System.Windows.Forms.ToolStripMenuItem OpnURL_TlsTools;
+        private System.Windows.Forms.ToolStripMenuItem OpnGoogleMaps_Tls;
+        private System.Windows.Forms.ToolStripMenuItem OpnGoogleStreet_Tls;
     }
 }
 
