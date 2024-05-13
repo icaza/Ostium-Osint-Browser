@@ -6036,6 +6036,20 @@ namespace Ostium
             }
         }
 
+        private void OpnGoogleMaps_Tls_Click(object sender, EventArgs e)
+        {           
+            GoBrowser(lstUrlDfltCnf[7].ToString() + LatTCurrent_Lbl.Text  + "%2C" + LonGtCurrent_Lbl.Text, 0);
+            CtrlTabBrowsx();
+            Control_Tab.SelectedIndex = 0;
+        }
+
+        private void OpnGoogleStreet_Tls_Click(object sender, EventArgs e)
+        {
+            GoBrowser(lstUrlDfltCnf[8].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
+            CtrlTabBrowsx();
+            Control_Tab.SelectedIndex = 0;
+        }
+
         void OpenGoogleEarth_Tls_Click(object sender, EventArgs e)
         {
             try
