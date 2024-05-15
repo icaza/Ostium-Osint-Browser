@@ -399,6 +399,8 @@
             this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnBingMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
@@ -416,8 +418,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1209,6 +1209,7 @@
             // InjectBkmklt_Btn
             // 
             this.InjectBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.InjectBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InjectBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InjectBkmklt_Btn.FlatAppearance.BorderSize = 0;
             this.InjectBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
@@ -1226,6 +1227,7 @@
             // ClosePnlBkmklt_Btn
             // 
             this.ClosePnlBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ClosePnlBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ClosePnlBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ClosePnlBkmklt_Btn.FlatAppearance.BorderSize = 0;
             this.ClosePnlBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -2620,7 +2622,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2906,7 +2907,6 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -4907,6 +4907,20 @@
             this.toolStripSeparator24.Name = "toolStripSeparator24";
             this.toolStripSeparator24.Size = new System.Drawing.Size(230, 6);
             // 
+            // OpnGoogleMaps_Tls
+            // 
+            this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
+            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
+            this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
+            // 
+            // OpnGoogleStreet_Tls
+            // 
+            this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
+            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
+            this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
+            // 
             // OpnBingMap_Tls
             // 
             this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
@@ -5063,20 +5077,6 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // OpnGoogleMaps_Tls
-            // 
-            this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
-            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(233, 22);
-            this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
-            this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
-            // 
-            // OpnGoogleStreet_Tls
-            // 
-            this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
-            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(233, 22);
-            this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
-            this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
             // 
             // Main_Frm
             // 
