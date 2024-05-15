@@ -163,7 +163,7 @@ namespace Ostium
         /// 
         readonly string upftOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "3";
+        readonly string versionNow = "4";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
 
