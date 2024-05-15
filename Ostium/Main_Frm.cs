@@ -6054,13 +6054,15 @@ namespace Ostium
         {
             try
             {
+                CreateNameAleat();
+
                 using (StreamWriter addtxt = new StreamWriter(MapDir + "temp.kml"))
                 {
                     addtxt.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
                     addtxt.WriteLine("<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">");
                     addtxt.WriteLine("<Document>");
                     addtxt.WriteLine("	<Placemark>");
-                    addtxt.WriteLine("		<name>Ostium location</name>");
+                    addtxt.WriteLine("		<name>Ostium location " + UsenameAleatoire + "</name>");
                     addtxt.WriteLine("		<LookAt>");
                     addtxt.WriteLine("			<longitude>" + LonGtCurrent_Lbl.Text + "</longitude>");
                     addtxt.WriteLine("			<latitude>" + LatTCurrent_Lbl.Text + "</latitude>");
