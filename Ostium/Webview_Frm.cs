@@ -45,7 +45,7 @@ namespace Ostium
 
         #region Browser_Event Handler
 
-        void WebView2Control_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
+        void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
         {
             string UriYoutube = "";
             string C = WBrowse.Source.AbsoluteUri;
@@ -163,7 +163,7 @@ namespace Ostium
             WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
             WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
             WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
-            WBrowse.CoreWebView2.ContextMenuRequested += WebView2Control_ContextMenuRequested; // ContextMenu
+            WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested; // ContextMenu
 
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
