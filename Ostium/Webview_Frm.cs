@@ -39,7 +39,6 @@ namespace Ostium
             /// 
             if (File.Exists(AppStart + "url_dflt_cnf.ost"))
             {
-                lstUrlDfltCnf.Clear();
                 lstUrlDfltCnf.AddRange(File.ReadAllLines(AppStart + "url_dflt_cnf.ost"));
             }
         }
