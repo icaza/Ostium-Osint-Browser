@@ -6578,7 +6578,7 @@ namespace Ostium
                 {
                     foreach (string word in words)
                     {
-                        xO += val[word.TrimEnd(charsToTrim)] + " ";
+                        xO += val[word.TrimEnd(charsToTrim)] + CharSpace_Txt.Text;
                     }
 
                     JValue x = (JValue)xO;
@@ -6620,7 +6620,7 @@ namespace Ostium
                     {
                         foreach (string word in words)
                         {
-                            xO += val[word.TrimEnd(charsToTrim)] + " ";
+                            xO += val[word.TrimEnd(charsToTrim)] + CharSpace_Txt.Text;
                         }
 
                         JValue x = (JValue)xO;

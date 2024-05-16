@@ -441,6 +441,8 @@
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.JsonOpnListUri_Btn = new System.Windows.Forms.Button();
             this.JsonSaveData_Btn = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.CharSpace_Txt = new System.Windows.Forms.TextBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -3364,6 +3366,8 @@
             // 
             // JsonPanel3_Pnl
             // 
+            this.JsonPanel3_Pnl.Controls.Add(this.CharSpace_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.label28);
             this.JsonPanel3_Pnl.Controls.Add(this.JsonCnt_txt);
             this.JsonPanel3_Pnl.Controls.Add(this.label27);
             this.JsonPanel3_Pnl.Controls.Add(this.JsonNode_Txt);
@@ -5492,6 +5496,30 @@
             this.JsonSaveData_Btn.UseVisualStyleBackColor = false;
             this.JsonSaveData_Btn.Click += new System.EventHandler(this.JsonSaveData_Btn_Click);
             // 
+            // label28
+            // 
+            this.label28.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label28.Location = new System.Drawing.Point(764, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(130, 22);
+            this.label28.TabIndex = 24;
+            this.label28.Text = "Separator char";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CharSpace_Txt
+            // 
+            this.CharSpace_Txt.BackColor = System.Drawing.Color.Black;
+            this.CharSpace_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CharSpace_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CharSpace_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharSpace_Txt.ForeColor = System.Drawing.Color.Lime;
+            this.CharSpace_Txt.Location = new System.Drawing.Point(894, 0);
+            this.CharSpace_Txt.Name = "CharSpace_Txt";
+            this.CharSpace_Txt.Size = new System.Drawing.Size(27, 22);
+            this.CharSpace_Txt.TabIndex = 25;
+            this.CharSpace_Txt.Text = " ";
+            this.CharSpace_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6014,6 +6042,8 @@
         private System.Windows.Forms.Button JsonSaveUri_Btn;
         private System.Windows.Forms.Button JsonOpnListUri_Btn;
         private System.Windows.Forms.Button JsonSaveData_Btn;
+        private System.Windows.Forms.TextBox CharSpace_Txt;
+        private System.Windows.Forms.Label label28;
     }
 }
 
