@@ -6515,8 +6515,6 @@ namespace Ostium
 
                     Beep(1200, 200);
                 }
-            }
-        }
 
         private void JsonSaveUri_Btn_Click(object sender, EventArgs e)
         {
