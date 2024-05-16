@@ -30,6 +30,7 @@ using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms;
 using GMap.NET;
 using System.Globalization;
+using System.Text.Json.Nodes;
 
 namespace Ostium
 {
@@ -446,6 +447,7 @@ namespace Ostium
                                     {
                                         Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
                                         UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+                                        JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
                                         break;
                                     }
                                 case "URL_GOOGLEBOT_VAR":
@@ -1509,8 +1511,7 @@ namespace Ostium
 
                 if (fileopen != "")
                 {
-                    string filePath = fileopen;
-                    OpenFile_Editor(filePath);
+                    OpenFile_Editor(fileopen);
                 }
             }
             catch (Exception ex)
@@ -2338,7 +2339,7 @@ namespace Ostium
                     if (File.Exists(DiagramDir + "temp_file.svg"))
                         File.Delete(DiagramDir + "temp_file.svg");
 
-                    using (StreamReader sr = new StreamReader(filePath))
+                    using (StreamReader sr = new StreamReader(fileopen))
                     {
                         TmpFile_Txt.Text = sr.ReadToEnd();
                     }
@@ -2634,6 +2635,27 @@ namespace Ostium
                     loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
                     break;
                 case 5:
+                    Tools_TAB_0.Visible = false;
+                    Tools_TAB_1.Visible = false;
+                    Tools_TAB_3.Visible = false;
+                    Tools_TAB_4.Visible = false;
+                    URLtxt_txt.Text = "";
+                    Text = "Json";
+                    TableOpn_Lbl.Visible = false;
+                    CountFeed_Lbl.Visible = false;
+                    JavaDisable_Lbl.Visible = false;
+                    JavaDisableFeed_Lbl.Visible = false;
+                    DBSelectOpen_Lbl.Visible = false;
+                    TableCount_Lbl.Visible = false;
+                    TableOpen_Lbl.Visible = false;
+                    RecordsCount_Lbl.Visible = false;
+                    LatTCurrent_Lbl.Visible = false;
+                    Separator.Visible = false;
+                    LonGtCurrent_Lbl.Visible = false;
+                    ProjectMapOpn_Lbl.Visible = false;
+                    TtsButton_Sts.Visible = false;
+                    break;
+                case 6:
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -6511,6 +6533,145 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! AnnonceUpdate: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        #endregion
+
+        #region
+
+        private void JsonOpnFile_Btn_Click(object sender, EventArgs e)
+        {
+            string fileopen = openfile.Fileselect(AppStart, "json files (*.json)|*.json|All files (*.*)|*.*", 2);
+
+            if (fileopen != "")
+            {
+                using (StreamReader sr = new StreamReader(fileopen))
+                {
+                    JsonOut_txt.Text = sr.ReadToEnd();
+                }
+            }
+        }
+
+        private void GetJson_Btn_Click(object sender, EventArgs e)
+        {
+            if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
+            {
+                Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
+            }
+
+            JsonOut_txt.Text = "";
+            GetAsync();
+        }
+
+        private void ParseJson_Btn_Click(object sender, EventArgs e)
+        {
+            JsonParse_txt.Text = "";
+
+            Thread ParseVal = new Thread(() => ParseVal_Thrd());
+            ParseVal.Start();
+        }
+
+        private void ParseNodeJson_Btn_Click(object sender, EventArgs e)
+        {
+            JsonParse_txt.Text = "";
+
+            Thread ParseNode = new Thread(() => ParseNode_Thrd());
+            ParseNode.Start();
+        }
+
+        private async void GetAsync()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(JsonUsrAgt_Txt.Text);
+                var response = await client.GetAsync(JsonUri_Txt.Text);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                JsonOut_txt.Text = $"{jsonResponse}\n";
+
+                using (StreamWriter file_create = new StreamWriter(Application.StartupPath + @"\test-json.json"))
+                {
+                    file_create.Write(JsonOut_txt.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void ParseVal_Thrd()
+        {
+            try
+            {
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                JArray jsonVal = JArray.Parse(JsonOut_txt.Text);
+                dynamic valjson = jsonVal;
+
+                foreach (dynamic val in valjson)
+                {
+                    foreach (string word in words)
+                    {
+                        xO += val[word.TrimEnd(charsToTrim)] + " ";
+                    }
+
+                    JValue x = (JValue)xO;
+                    xO = "";
+                    Invoke(new Action<JValue>(ValAdd), x);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void ValAdd(JValue val)
+        {
+            JsonParse_txt.Text += val + "\r\n";
+        }
+
+        void ParseNode_Thrd()
+        {
+            try
+            {
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
+                JsonNode CastNode = JsonNode.Parse(JsonOut_txt.Text);
+                JsonNode SelNode = CastNode[JsonNode_Txt.Text];
+
+                for (int i = 0; i < CntEnd; i++)
+                {
+                    JsonNode SrcName = SelNode[i];
+
+                    JArray jsonVal = JArray.Parse("[" + SrcName.ToJsonString() + "]");
+                    dynamic valjson = jsonVal;
+                    foreach (dynamic val in valjson)
+                    {
+                        foreach (string word in words)
+                        {
+                            xO += val[word.TrimEnd(charsToTrim)] + " ";
+                        }
+
+                        JValue x = (JValue)xO;
+                        xO = "";
+                        Invoke(new Action<JValue>(ValAdd), x);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
 

@@ -249,6 +249,23 @@
             this.label25 = new System.Windows.Forms.Label();
             this.LocationName_Txt = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.Json_Tab = new System.Windows.Forms.TabPage();
+            this.panel33 = new System.Windows.Forms.Panel();
+            this.JsonPanel3_Pnl = new System.Windows.Forms.Panel();
+            this.JsonCnt_txt = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.JsonNode_Txt = new System.Windows.Forms.TextBox();
+            this.ParseNodeJson_Btn = new System.Windows.Forms.Button();
+            this.JsonVal_Txt = new System.Windows.Forms.TextBox();
+            this.ParseJson_Btn = new System.Windows.Forms.Button();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.JsonPanel2_Pnl = new System.Windows.Forms.Panel();
+            this.JsonUri_Txt = new System.Windows.Forms.TextBox();
+            this.GetJson_Btn = new System.Windows.Forms.Button();
+            this.JsonUsrAgt_Txt = new System.Windows.Forms.TextBox();
+            this.panel32 = new System.Windows.Forms.Panel();
+            this.JsonBtn_Pnl = new System.Windows.Forms.Panel();
+            this.JsonOpnFile_Btn = new System.Windows.Forms.Button();
             this.Options_Tab = new System.Windows.Forms.TabPage();
             this.Panel_WorkspaceSize = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -418,6 +435,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.JsonOut_txt = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.JsonParse_txt = new FastColoredTextBoxNS.FastColoredTextBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -461,6 +480,10 @@
             this.panel19.SuspendLayout();
             this.Map_Tab.SuspendLayout();
             this.Map_Cmd_Pnl.SuspendLayout();
+            this.Json_Tab.SuspendLayout();
+            this.JsonPanel3_Pnl.SuspendLayout();
+            this.JsonPanel2_Pnl.SuspendLayout();
+            this.JsonBtn_Pnl.SuspendLayout();
             this.Options_Tab.SuspendLayout();
             this.Panel_WorkspaceSize.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -475,6 +498,8 @@
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
             this.Tools_TAB_4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.JsonOut_txt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JsonParse_txt)).BeginInit();
             this.SuspendLayout();
             // 
             // Tools_TAB_0
@@ -1038,6 +1063,7 @@
             this.Control_Tab.Controls.Add(this.Data_Tab);
             this.Control_Tab.Controls.Add(this.Workflow_Tab);
             this.Control_Tab.Controls.Add(this.Map_Tab);
+            this.Control_Tab.Controls.Add(this.Json_Tab);
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2615,7 +2641,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
@@ -2900,7 +2926,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
@@ -3216,6 +3242,226 @@
             this.label24.TabIndex = 20;
             this.label24.Text = "Location Name";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Json_Tab
+            // 
+            this.Json_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Json_Tab.Controls.Add(this.JsonParse_txt);
+            this.Json_Tab.Controls.Add(this.JsonOut_txt);
+            this.Json_Tab.Controls.Add(this.panel33);
+            this.Json_Tab.Controls.Add(this.JsonPanel3_Pnl);
+            this.Json_Tab.Controls.Add(this.panel31);
+            this.Json_Tab.Controls.Add(this.JsonPanel2_Pnl);
+            this.Json_Tab.Controls.Add(this.JsonUsrAgt_Txt);
+            this.Json_Tab.Controls.Add(this.panel32);
+            this.Json_Tab.Controls.Add(this.JsonBtn_Pnl);
+            this.Json_Tab.ForeColor = System.Drawing.Color.White;
+            this.Json_Tab.Location = new System.Drawing.Point(4, 25);
+            this.Json_Tab.Name = "Json_Tab";
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Json_Tab.TabIndex = 10;
+            this.Json_Tab.Text = "JSON";
+            // 
+            // panel33
+            // 
+            this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel33.Location = new System.Drawing.Point(0, 96);
+            this.panel33.Name = "panel33";
+            this.panel33.Size = new System.Drawing.Size(1326, 10);
+            this.panel33.TabIndex = 5;
+            // 
+            // JsonPanel3_Pnl
+            // 
+            this.JsonPanel3_Pnl.Controls.Add(this.JsonCnt_txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.label27);
+            this.JsonPanel3_Pnl.Controls.Add(this.JsonNode_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.ParseNodeJson_Btn);
+            this.JsonPanel3_Pnl.Controls.Add(this.JsonVal_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.ParseJson_Btn);
+            this.JsonPanel3_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonPanel3_Pnl.Location = new System.Drawing.Point(0, 74);
+            this.JsonPanel3_Pnl.Name = "JsonPanel3_Pnl";
+            this.JsonPanel3_Pnl.Size = new System.Drawing.Size(1326, 22);
+            this.JsonPanel3_Pnl.TabIndex = 4;
+            // 
+            // JsonCnt_txt
+            // 
+            this.JsonCnt_txt.BackColor = System.Drawing.Color.Black;
+            this.JsonCnt_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonCnt_txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonCnt_txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonCnt_txt.ForeColor = System.Drawing.Color.Lime;
+            this.JsonCnt_txt.Location = new System.Drawing.Point(710, 0);
+            this.JsonCnt_txt.Name = "JsonCnt_txt";
+            this.JsonCnt_txt.Size = new System.Drawing.Size(54, 22);
+            this.JsonCnt_txt.TabIndex = 23;
+            this.JsonCnt_txt.Text = "1";
+            this.JsonCnt_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label27
+            // 
+            this.label27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label27.Location = new System.Drawing.Point(648, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(62, 22);
+            this.label27.TabIndex = 22;
+            this.label27.Text = "Count";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // JsonNode_Txt
+            // 
+            this.JsonNode_Txt.BackColor = System.Drawing.Color.Black;
+            this.JsonNode_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonNode_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonNode_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonNode_Txt.ForeColor = System.Drawing.Color.Lime;
+            this.JsonNode_Txt.Location = new System.Drawing.Point(412, 0);
+            this.JsonNode_Txt.Name = "JsonNode_Txt";
+            this.JsonNode_Txt.Size = new System.Drawing.Size(236, 22);
+            this.JsonNode_Txt.TabIndex = 21;
+            // 
+            // ParseNodeJson_Btn
+            // 
+            this.ParseNodeJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ParseNodeJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ParseNodeJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ParseNodeJson_Btn.FlatAppearance.BorderSize = 0;
+            this.ParseNodeJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.ParseNodeJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ParseNodeJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ParseNodeJson_Btn.ForeColor = System.Drawing.Color.White;
+            this.ParseNodeJson_Btn.Location = new System.Drawing.Point(324, 0);
+            this.ParseNodeJson_Btn.Name = "ParseNodeJson_Btn";
+            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(88, 22);
+            this.ParseNodeJson_Btn.TabIndex = 20;
+            this.ParseNodeJson_Btn.Text = "Parse Node";
+            this.ParseNodeJson_Btn.UseVisualStyleBackColor = false;
+            this.ParseNodeJson_Btn.Click += new System.EventHandler(this.ParseNodeJson_Btn_Click);
+            // 
+            // JsonVal_Txt
+            // 
+            this.JsonVal_Txt.BackColor = System.Drawing.Color.Black;
+            this.JsonVal_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonVal_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonVal_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonVal_Txt.ForeColor = System.Drawing.Color.Lime;
+            this.JsonVal_Txt.Location = new System.Drawing.Point(88, 0);
+            this.JsonVal_Txt.Name = "JsonVal_Txt";
+            this.JsonVal_Txt.Size = new System.Drawing.Size(236, 22);
+            this.JsonVal_Txt.TabIndex = 19;
+            // 
+            // ParseJson_Btn
+            // 
+            this.ParseJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ParseJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ParseJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ParseJson_Btn.FlatAppearance.BorderSize = 0;
+            this.ParseJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.ParseJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ParseJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ParseJson_Btn.ForeColor = System.Drawing.Color.White;
+            this.ParseJson_Btn.Location = new System.Drawing.Point(0, 0);
+            this.ParseJson_Btn.Name = "ParseJson_Btn";
+            this.ParseJson_Btn.Size = new System.Drawing.Size(88, 22);
+            this.ParseJson_Btn.TabIndex = 18;
+            this.ParseJson_Btn.Text = "Parse";
+            this.ParseJson_Btn.UseVisualStyleBackColor = false;
+            this.ParseJson_Btn.Click += new System.EventHandler(this.ParseJson_Btn_Click);
+            // 
+            // panel31
+            // 
+            this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel31.Location = new System.Drawing.Point(0, 64);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(1326, 10);
+            this.panel31.TabIndex = 2;
+            // 
+            // JsonPanel2_Pnl
+            // 
+            this.JsonPanel2_Pnl.Controls.Add(this.JsonUri_Txt);
+            this.JsonPanel2_Pnl.Controls.Add(this.GetJson_Btn);
+            this.JsonPanel2_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonPanel2_Pnl.Location = new System.Drawing.Point(0, 42);
+            this.JsonPanel2_Pnl.Name = "JsonPanel2_Pnl";
+            this.JsonPanel2_Pnl.Size = new System.Drawing.Size(1326, 22);
+            this.JsonPanel2_Pnl.TabIndex = 1;
+            // 
+            // JsonUri_Txt
+            // 
+            this.JsonUri_Txt.BackColor = System.Drawing.Color.Black;
+            this.JsonUri_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonUri_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonUri_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonUri_Txt.ForeColor = System.Drawing.Color.Lime;
+            this.JsonUri_Txt.Location = new System.Drawing.Point(88, 0);
+            this.JsonUri_Txt.Name = "JsonUri_Txt";
+            this.JsonUri_Txt.Size = new System.Drawing.Size(1238, 22);
+            this.JsonUri_Txt.TabIndex = 18;
+            // 
+            // GetJson_Btn
+            // 
+            this.GetJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.GetJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GetJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GetJson_Btn.FlatAppearance.BorderSize = 0;
+            this.GetJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.GetJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GetJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GetJson_Btn.ForeColor = System.Drawing.Color.White;
+            this.GetJson_Btn.Location = new System.Drawing.Point(0, 0);
+            this.GetJson_Btn.Name = "GetJson_Btn";
+            this.GetJson_Btn.Size = new System.Drawing.Size(88, 22);
+            this.GetJson_Btn.TabIndex = 17;
+            this.GetJson_Btn.Text = "GET";
+            this.GetJson_Btn.UseVisualStyleBackColor = false;
+            this.GetJson_Btn.Click += new System.EventHandler(this.GetJson_Btn_Click);
+            // 
+            // JsonUsrAgt_Txt
+            // 
+            this.JsonUsrAgt_Txt.BackColor = System.Drawing.Color.Black;
+            this.JsonUsrAgt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 588);
+            this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
+            this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
+            this.JsonUsrAgt_Txt.TabIndex = 0;
+            // 
+            // panel32
+            // 
+            this.panel32.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel32.Location = new System.Drawing.Point(0, 32);
+            this.panel32.Name = "panel32";
+            this.panel32.Size = new System.Drawing.Size(1326, 10);
+            this.panel32.TabIndex = 3;
+            // 
+            // JsonBtn_Pnl
+            // 
+            this.JsonBtn_Pnl.Controls.Add(this.JsonOpnFile_Btn);
+            this.JsonBtn_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonBtn_Pnl.Location = new System.Drawing.Point(0, 0);
+            this.JsonBtn_Pnl.Name = "JsonBtn_Pnl";
+            this.JsonBtn_Pnl.Size = new System.Drawing.Size(1326, 32);
+            this.JsonBtn_Pnl.TabIndex = 0;
+            // 
+            // JsonOpnFile_Btn
+            // 
+            this.JsonOpnFile_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.JsonOpnFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonOpnFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonOpnFile_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonOpnFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonOpnFile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.White;
+            this.JsonOpnFile_Btn.Location = new System.Drawing.Point(0, 0);
+            this.JsonOpnFile_Btn.Name = "JsonOpnFile_Btn";
+            this.JsonOpnFile_Btn.Size = new System.Drawing.Size(88, 32);
+            this.JsonOpnFile_Btn.TabIndex = 16;
+            this.JsonOpnFile_Btn.Text = "Open Json";
+            this.JsonOpnFile_Btn.UseVisualStyleBackColor = false;
+            this.JsonOpnFile_Btn.Click += new System.EventHandler(this.JsonOpnFile_Btn_Click);
             // 
             // Options_Tab
             // 
@@ -5078,6 +5324,77 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // JsonOut_txt
+            // 
+            this.JsonOut_txt.AcceptsTab = false;
+            this.JsonOut_txt.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.JsonOut_txt.AutoIndent = false;
+            this.JsonOut_txt.AutoIndentChars = false;
+            this.JsonOut_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.JsonOut_txt.BackBrush = null;
+            this.JsonOut_txt.CharHeight = 14;
+            this.JsonOut_txt.CharWidth = 8;
+            this.JsonOut_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.JsonOut_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.JsonOut_txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonOut_txt.ForeColor = System.Drawing.Color.Black;
+            this.JsonOut_txt.IsReplaceMode = false;
+            this.JsonOut_txt.Language = FastColoredTextBoxNS.Language.JS;
+            this.JsonOut_txt.Location = new System.Drawing.Point(0, 106);
+            this.JsonOut_txt.Name = "JsonOut_txt";
+            this.JsonOut_txt.Paddings = new System.Windows.Forms.Padding(0);
+            this.JsonOut_txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.JsonOut_txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("JsonOut_txt.ServiceColors")));
+            this.JsonOut_txt.Size = new System.Drawing.Size(1326, 222);
+            this.JsonOut_txt.TabIndex = 6;
+            this.JsonOut_txt.Zoom = 100;
+            // 
+            // JsonParse_txt
+            // 
+            this.JsonParse_txt.AcceptsTab = false;
+            this.JsonParse_txt.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.JsonParse_txt.AutoIndent = false;
+            this.JsonParse_txt.AutoIndentChars = false;
+            this.JsonParse_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.JsonParse_txt.BackBrush = null;
+            this.JsonParse_txt.BackColor = System.Drawing.Color.Black;
+            this.JsonParse_txt.CharHeight = 14;
+            this.JsonParse_txt.CharWidth = 8;
+            this.JsonParse_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.JsonParse_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.JsonParse_txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.JsonParse_txt.ForeColor = System.Drawing.Color.Lime;
+            this.JsonParse_txt.IsReplaceMode = false;
+            this.JsonParse_txt.Language = FastColoredTextBoxNS.Language.Lua;
+            this.JsonParse_txt.Location = new System.Drawing.Point(0, 328);
+            this.JsonParse_txt.Name = "JsonParse_txt";
+            this.JsonParse_txt.Paddings = new System.Windows.Forms.Padding(0);
+            this.JsonParse_txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.JsonParse_txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("JsonParse_txt.ServiceColors")));
+            this.JsonParse_txt.Size = new System.Drawing.Size(1326, 260);
+            this.JsonParse_txt.TabIndex = 7;
+            this.JsonParse_txt.Zoom = 100;
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -5152,6 +5469,13 @@
             this.Map_Tab.ResumeLayout(false);
             this.Map_Cmd_Pnl.ResumeLayout(false);
             this.Map_Cmd_Pnl.PerformLayout();
+            this.Json_Tab.ResumeLayout(false);
+            this.Json_Tab.PerformLayout();
+            this.JsonPanel3_Pnl.ResumeLayout(false);
+            this.JsonPanel3_Pnl.PerformLayout();
+            this.JsonPanel2_Pnl.ResumeLayout(false);
+            this.JsonPanel2_Pnl.PerformLayout();
+            this.JsonBtn_Pnl.ResumeLayout(false);
             this.Options_Tab.ResumeLayout(false);
             this.Panel_WorkspaceSize.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -5173,6 +5497,8 @@
             this.Tools_TAB_3.PerformLayout();
             this.Tools_TAB_4.ResumeLayout(false);
             this.Tools_TAB_4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.JsonOut_txt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JsonParse_txt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5568,6 +5894,25 @@
         private System.Windows.Forms.ToolStripMenuItem OpnURL_TlsTools;
         private System.Windows.Forms.ToolStripMenuItem OpnGoogleMaps_Tls;
         private System.Windows.Forms.ToolStripMenuItem OpnGoogleStreet_Tls;
+        private System.Windows.Forms.TabPage Json_Tab;
+        private System.Windows.Forms.Panel JsonBtn_Pnl;
+        private System.Windows.Forms.Button JsonOpnFile_Btn;
+        private System.Windows.Forms.Panel JsonPanel2_Pnl;
+        private System.Windows.Forms.TextBox JsonUsrAgt_Txt;
+        private System.Windows.Forms.TextBox JsonUri_Txt;
+        private System.Windows.Forms.Button GetJson_Btn;
+        private System.Windows.Forms.Panel panel31;
+        private System.Windows.Forms.Panel JsonPanel3_Pnl;
+        private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.TextBox JsonNode_Txt;
+        private System.Windows.Forms.Button ParseNodeJson_Btn;
+        private System.Windows.Forms.TextBox JsonVal_Txt;
+        private System.Windows.Forms.Button ParseJson_Btn;
+        private System.Windows.Forms.TextBox JsonCnt_txt;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Panel panel33;
+        private FastColoredTextBoxNS.FastColoredTextBox JsonOut_txt;
+        private FastColoredTextBoxNS.FastColoredTextBox JsonParse_txt;
     }
 }
 
