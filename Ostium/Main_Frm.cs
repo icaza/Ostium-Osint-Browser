@@ -2332,8 +2332,6 @@ namespace Ostium
                     MessageBox.Show(MessageStartDiagram);
                     Timo.Enabled = true;
 
-                    string filePath = fileopen;
-
                     if (File.Exists(DiagramDir + "temp_file.txt"))
                         File.Delete(DiagramDir + "temp_file.txt");
 
