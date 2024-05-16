@@ -2485,7 +2485,7 @@
             this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.Db_Delete_Table_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Delete_Table_Value_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Db_Delete_Table_Value_Btn.ForeColor = System.Drawing.Color.White;
