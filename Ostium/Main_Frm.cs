@@ -6480,65 +6480,7 @@ namespace Ostium
             GoBrowser(URLtxt_txt.Text, 1);
         }
 
-        #region Update_
-        ///
-        /// <summary>
-        /// Checking updates via Http request and comparison with the variable => "versionNow"
-        /// </summary>
-        /// <param name="softName">Application name</param>
-        /// <param name="announcement"></param>
-        /// <param value="0">Auto check no announcement if update False announcement if True</param>
-        /// <param value="1">Manual check announces whether False or True</param>
-        /// <param name="AnnonceUpdate">Update message available</param>
-        ///
-        async void VerifyUPDT(string softName, int annoncE)
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-                var response = await client.GetAsync(upftOnlineFile);
-                string updtValue = await response.Content.ReadAsStringAsync();
-
-                if (versionNow != updtValue)
-                {
-                    AnnonceUpdate(softName);
-                }
-                else
-                {
-                    if (annoncE == 1)
-                        MessageBox.Show("No update available.", softName);
-                }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! VerifyUPDT: ", ex.Message, "Main_Frm", AppStart);
-            }
-        }
-        ///
-        /// <summary>
-        /// Announcement if Updated True
-        /// </summary>
-        /// <param name="softName">Application name</param>
-        ///
-        void AnnonceUpdate(string softName)
-        {
-            var result = MessageBox.Show("An update is available for the " + softName + " software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try
-            {
-                if (result == DialogResult.Yes)
-                {
-                    GoBrowser(WebPageUpdate, 0);
-                }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! AnnonceUpdate: ", ex.Message, "Main_Frm", AppStart);
-            }
-        }
-
-        #endregion
-
-        #region
+        #region Json_
 
         private void JsonOpnFile_Btn_Click(object sender, EventArgs e)
         {
@@ -6621,11 +6563,8 @@ namespace Ostium
 
                 JsonOut_txt.Text = $"{jsonResponse}\n";
 
-                using (StreamWriter file_create = new StreamWriter(Application.StartupPath + @"\test-json.json"))
-                {
-                    file_create.Write(JsonOut_txt.Text);
+                File_Write(JsonDir + "test-json.json", JsonOut_txt.Text);
                 }
-            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error!");
