@@ -437,6 +437,7 @@
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.JsonOut_txt = new FastColoredTextBoxNS.FastColoredTextBox();
             this.JsonParse_txt = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.JsonSaveFile_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -3438,6 +3439,7 @@
             // 
             // JsonBtn_Pnl
             // 
+            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveFile_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonOpnFile_Btn);
             this.JsonBtn_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.JsonBtn_Pnl.Location = new System.Drawing.Point(0, 0);
@@ -5395,6 +5397,24 @@
             this.JsonParse_txt.TabIndex = 7;
             this.JsonParse_txt.Zoom = 100;
             // 
+            // JsonSaveFile_Btn
+            // 
+            this.JsonSaveFile_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.JsonSaveFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonSaveFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonSaveFile_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonSaveFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonSaveFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonSaveFile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.White;
+            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(88, 0);
+            this.JsonSaveFile_Btn.Name = "JsonSaveFile_Btn";
+            this.JsonSaveFile_Btn.Size = new System.Drawing.Size(88, 32);
+            this.JsonSaveFile_Btn.TabIndex = 17;
+            this.JsonSaveFile_Btn.Text = "Save Json";
+            this.JsonSaveFile_Btn.UseVisualStyleBackColor = false;
+            this.JsonSaveFile_Btn.Click += new System.EventHandler(this.JsonSaveFile_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -5402,8 +5422,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_3);
+            this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -5913,6 +5933,7 @@
         private System.Windows.Forms.Panel panel33;
         private FastColoredTextBoxNS.FastColoredTextBox JsonOut_txt;
         private FastColoredTextBoxNS.FastColoredTextBox JsonParse_txt;
+        private System.Windows.Forms.Button JsonSaveFile_Btn;
     }
 }
 

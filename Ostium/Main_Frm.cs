@@ -6553,6 +6553,36 @@ namespace Ostium
             }
         }
 
+        private void JsonSaveFile_Btn_Click(object sender, EventArgs e)
+        {
+            if (JsonOut_txt.Text == "")
+                return;
+
+            Stream isData;
+            SaveFileDialog saveFD = new SaveFileDialog
+            {
+                InitialDirectory = AppStart,
+                Filter = "json files (*.json)|*.json",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            if (saveFD.ShowDialog() == DialogResult.OK)
+            {
+                if ((isData = saveFD.OpenFile()) != null)
+                {
+                    using (StreamWriter file_create = new StreamWriter(isData))
+                    {
+                        file_create.Write(JsonOut_txt.Text);
+                    }
+
+                    isData.Close();
+
+                    Beep(1200, 200);
+                }
+            }
+        }
+
         private void GetJson_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")

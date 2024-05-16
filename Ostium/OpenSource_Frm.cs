@@ -79,8 +79,7 @@ namespace Ostium
                     {
                         if ((isData = saveFD.OpenFile()) != null)
                         {
-                            var ListElements = isData;
-                            using (StreamWriter SW = new StreamWriter(ListElements))
+                            using (StreamWriter SW = new StreamWriter(isData))
                             {
                                 foreach (string itm in Sortie_Lst.Items)
                                 {
