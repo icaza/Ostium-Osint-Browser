@@ -79,6 +79,7 @@ namespace Ostium
         readonly string Setirps = Application.StartupPath + @"\setirps\";
         readonly string BkmkltDir = Application.StartupPath + @"\scripts\bookmarklet\";
         readonly string MapDir = Application.StartupPath + @"\map\";
+        readonly string JsonDir = Application.StartupPath + @"\json-files\";
         public string D4ta = "default_database_name";
         ///
         /// <summary>
@@ -365,7 +366,8 @@ namespace Ostium
                         DiagramDir,
                         BkmkltDir,
                         Setirps,
-                        MapDir
+                        MapDir,
+                        JsonDir
                     };
 
                 for (int i = 0; i < CreateDir.Count; i++)
@@ -639,10 +641,7 @@ namespace Ostium
                     {
                         string pageUri = WBrowse.Source.AbsoluteUri;
                         pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        using (StreamWriter file_create = new StreamWriter(AppStart + "tmpytb.html"))
-                        {
-                            file_create.Write("<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        }
+                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
                         GoBrowser("file:///" + AppStart + "tmpytb.html", 1);
                     }
                     else
@@ -4093,10 +4092,7 @@ namespace Ostium
             {
                 if (CategorieFeed_Cbx.Text != "")
                 {
-                    using (StreamWriter file_create = File.AppendText(FeedDir + CategorieFeed_Cbx.Text))
-                    {
-                        file_create.WriteLine(NewFeed_Txt.Text);
-                    }
+                    CreateData(FeedDir + CategorieFeed_Cbx.Text, NewFeed_Txt.Text);
 
                     CategorieFeed_Cbx.Items.Clear();
                     loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
@@ -4602,10 +4598,7 @@ namespace Ostium
 
                 var fileTmp = @"tmp.txt";
 
-                using (StreamWriter file_create = new StreamWriter(fileTmp))
-                {
-                    file_create.Write(AddItemswf_Txt.Text);
-                }
+                File_Write(fileTmp, "AddItemswf_Txt.Text");
 
                 WordVerify.Items.AddRange(File.ReadAllLines(@"tmp.txt"));
 
@@ -6525,6 +6518,12 @@ namespace Ostium
             }
         }
 
+        private void JsonSaveUri_Btn_Click(object sender, EventArgs e)
+        {
+            CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
+            Beep(1200, 200);
+        }
+
         private void GetJson_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
@@ -6564,7 +6563,7 @@ namespace Ostium
                 JsonOut_txt.Text = $"{jsonResponse}\n";
 
                 File_Write(JsonDir + "test-json.json", JsonOut_txt.Text);
-                }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error!");
@@ -6641,6 +6640,64 @@ namespace Ostium
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        #endregion
+
+        #region Update_
+        ///
+        /// <summary>
+        /// Checking updates via Http request and comparison with the variable => "versionNow"
+        /// </summary>
+        /// <param name="softName">Application name</param>
+        /// <param name="announcement"></param>
+        /// <param value="0">Auto check no announcement if update False announcement if True</param>
+        /// <param value="1">Manual check announces whether False or True</param>
+        /// <param name="AnnonceUpdate">Update message available</param>
+        ///
+        async void VerifyUPDT(string softName, int annoncE)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                var response = await client.GetAsync(upftOnlineFile);
+                string updtValue = await response.Content.ReadAsStringAsync();
+
+                if (versionNow != updtValue)
+                {
+                    AnnonceUpdate(softName);
+                }
+                else
+                {
+                    if (annoncE == 1)
+                        MessageBox.Show("No update available.", softName);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! VerifyUPDT: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+        ///
+        /// <summary>
+        /// Announcement if Updated True
+        /// </summary>
+        /// <param name="softName">Application name</param>
+        ///
+        void AnnonceUpdate(string softName)
+        {
+            var result = MessageBox.Show("An update is available for the " + softName + " software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            try
+            {
+                if (result == DialogResult.Yes)
+                {
+                    GoBrowser(WebPageUpdate, 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! AnnonceUpdate: ", ex.Message, "Main_Frm", AppStart);
             }
         }
 
