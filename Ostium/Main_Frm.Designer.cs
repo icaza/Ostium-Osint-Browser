@@ -444,6 +444,13 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.LastJson_Btn = new System.Windows.Forms.Button();
+            this.Menu_Mnu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Cut_Tools = new System.Windows.Forms.ToolStripMenuItem();
+            this.Copy_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Paste_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Delete_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.SelectAll_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -507,6 +514,7 @@
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
             this.Tools_TAB_4.SuspendLayout();
+            this.Menu_Mnu.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tools_TAB_0
@@ -3349,6 +3357,7 @@
             this.JsonOut_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
             this.JsonOut_txt.CharHeight = 14;
             this.JsonOut_txt.CharWidth = 8;
+            this.JsonOut_txt.ContextMenuStrip = this.Menu_Mnu;
             this.JsonOut_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.JsonOut_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.JsonOut_txt.Dock = System.Windows.Forms.DockStyle.Top;
@@ -4488,7 +4497,7 @@
             this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
             this.ResetConfig_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.ResetConfig_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetConfig_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetConfig_Btn.ForeColor = System.Drawing.Color.White;
@@ -5569,6 +5578,59 @@
             this.LastJson_Btn.UseVisualStyleBackColor = false;
             this.LastJson_Btn.Click += new System.EventHandler(this.LastJson_Btn_Click);
             // 
+            // Menu_Mnu
+            // 
+            this.Menu_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Cut_Tools,
+            this.Copy_Mnu,
+            this.Paste_Mnu,
+            this.Delete_Mnu,
+            this.toolStripSeparator28,
+            this.SelectAll_Mnu});
+            this.Menu_Mnu.Name = "Menu_Mnu";
+            this.Menu_Mnu.Size = new System.Drawing.Size(181, 142);
+            // 
+            // Cut_Tools
+            // 
+            this.Cut_Tools.Name = "Cut_Tools";
+            this.Cut_Tools.Size = new System.Drawing.Size(180, 22);
+            this.Cut_Tools.Text = "Cut";
+            this.Cut_Tools.Click += new System.EventHandler(this.Cut_Tools_Click);
+            // 
+            // Copy_Mnu
+            // 
+            this.Copy_Mnu.Name = "Copy_Mnu";
+            this.Copy_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.Copy_Mnu.Text = "Copy";
+            this.Copy_Mnu.Click += new System.EventHandler(this.Copy_Mnu_Click);
+            // 
+            // Paste_Mnu
+            // 
+            this.Paste_Mnu.Name = "Paste_Mnu";
+            this.Paste_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.Paste_Mnu.Text = "Paste";
+            this.Paste_Mnu.Click += new System.EventHandler(this.Paste_Mnu_Click);
+            // 
+            // Delete_Mnu
+            // 
+            this.Delete_Mnu.Name = "Delete_Mnu";
+            this.Delete_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.Delete_Mnu.Text = "Delete";
+            this.Delete_Mnu.Click += new System.EventHandler(this.Delete_Mnu_Click);
+            // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(132, 6);
+            // 
+            // SelectAll_Mnu
+            // 
+            this.SelectAll_Mnu.Name = "SelectAll_Mnu";
+            this.SelectAll_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.SelectAll_Mnu.Text = "Select all";
+            this.SelectAll_Mnu.Click += new System.EventHandler(this.SelectAll_Mnu_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -5673,6 +5735,7 @@
             this.Tools_TAB_3.PerformLayout();
             this.Tools_TAB_4.ResumeLayout(false);
             this.Tools_TAB_4.PerformLayout();
+            this.Menu_Mnu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6094,6 +6157,13 @@
         private System.Windows.Forms.TextBox CharSpace_Txt;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button LastJson_Btn;
+        private System.Windows.Forms.ContextMenuStrip Menu_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem Cut_Tools;
+        private System.Windows.Forms.ToolStripMenuItem Copy_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem Paste_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem Delete_Mnu;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
+        private System.Windows.Forms.ToolStripMenuItem SelectAll_Mnu;
     }
 }
 

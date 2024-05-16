@@ -6678,6 +6678,38 @@ namespace Ostium
 
         #endregion
 
+        #region ContextMenu_
+
+        void Cut_Tools_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("^" + "x");
+        }
+
+        void Copy_Mnu_Click(object sender, EventArgs e)
+        {
+            if (JsonOut_txt.SelectedText != "")
+            {
+                Clipboard.SetDataObject(JsonOut_txt.SelectedText);
+            }
+        }
+
+        void Paste_Mnu_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("^" + "v");
+        }
+
+        void Delete_Mnu_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("{DEL}");
+        }
+
+        void SelectAll_Mnu_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("^" + "a");
+        }
+
+        #endregion
+
         #region Update_
         ///
         /// <summary>
