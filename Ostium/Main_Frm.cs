@@ -6467,7 +6467,11 @@ namespace Ostium
         }
 
         #endregion
-
+        /// <summary>
+        /// Statusbar Button, open URL in BROWSx Tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpnURL_TlsTools_Click(object sender, EventArgs e)
         {
             GoBrowser(URLtxt_txt.Text, 1);
@@ -6501,16 +6505,17 @@ namespace Ostium
 
         private void JsonSaveFile_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonOut_txt.Text == "")
-                return;
-
-            SavefileShowDiag(JsonOut_txt.Text, "json files (*.json)|*.json");
+            if (JsonOut_txt.Text != "")
+                SavefileShowDiag(JsonOut_txt.Text, "json files (*.json)|*.json");
         }
 
         private void JsonSaveUri_Btn_Click(object sender, EventArgs e)
         {
-            CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
-            Beep(1200, 200);
+            if (JsonUri_Txt.Text != "")
+            {
+                CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
+                Beep(1200, 200);
+            }
         }
 
         private void JsonOpnListUri_Btn_Click(object sender, EventArgs e)
@@ -6521,10 +6526,8 @@ namespace Ostium
 
         private void JsonSaveData_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonParse_txt.Text == "")
-                return;
-
-            SavefileShowDiag(JsonParse_txt.Text, "files (*.*)|*.*");
+            if (JsonParse_txt.Text != "")
+                SavefileShowDiag(JsonParse_txt.Text, "files (*.*)|*.*");
         }
 
         private void GetJson_Btn_Click(object sender, EventArgs e)

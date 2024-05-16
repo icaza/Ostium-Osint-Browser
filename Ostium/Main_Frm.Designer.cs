@@ -1245,6 +1245,7 @@
             this.InjectBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InjectBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InjectBkmklt_Btn.FlatAppearance.BorderSize = 0;
+            this.InjectBkmklt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.InjectBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.InjectBkmklt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InjectBkmklt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1263,6 +1264,7 @@
             this.ClosePnlBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ClosePnlBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ClosePnlBkmklt_Btn.FlatAppearance.BorderSize = 0;
+            this.ClosePnlBkmklt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.ClosePnlBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClosePnlBkmklt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClosePnlBkmklt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1935,6 +1937,7 @@
             this.SaveVolRat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.SaveVolRat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveVolRat_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveVolRat_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.SaveVolRat_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.SaveVolRat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveVolRat_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1996,6 +1999,7 @@
             this.ReadClipB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ReadClipB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadClipB_Btn.FlatAppearance.BorderSize = 0;
+            this.ReadClipB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.ReadClipB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadClipB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReadClipB_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2013,6 +2017,7 @@
             this.StopSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.StopSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.StopSpeak_Btn.FlatAppearance.BorderSize = 0;
+            this.StopSpeak_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.StopSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.StopSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StopSpeak_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2030,6 +2035,7 @@
             this.PauseSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.PauseSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PauseSpeak_Btn.FlatAppearance.BorderSize = 0;
+            this.PauseSpeak_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.PauseSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.PauseSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PauseSpeak_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2047,6 +2053,7 @@
             this.ReadTitle_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ReadTitle_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ReadTitle_Btn.FlatAppearance.BorderSize = 0;
+            this.ReadTitle_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.ReadTitle_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ReadTitle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReadTitle_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2303,7 +2310,8 @@
             this.Db_OrderLst_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OrderLst_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OrderLst_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.Db_OrderLst_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.Db_OrderLst_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_OrderLst_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Db_OrderLst_Btn.ForeColor = System.Drawing.Color.White;
@@ -2321,7 +2329,8 @@
             this.Db_OpnLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_OpnLink_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_OpnLink_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.Db_OpnLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.Db_OpnLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_OpnLink_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Db_OpnLink_Btn.ForeColor = System.Drawing.Color.White;
@@ -2408,6 +2417,7 @@
             this.Db_Update_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Value_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Update_Value_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Update_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Db_Update_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.Db_Update_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Update_Value_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2426,6 +2436,7 @@
             this.Db_Update_Name_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Update_Name_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Update_Name_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Update_Name_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Db_Update_Name_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.Db_Update_Name_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Update_Name_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2454,6 +2465,7 @@
             this.Db_Delete_Table_AllValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_AllValue_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.Db_Delete_Table_AllValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Delete_Table_AllValue_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2472,6 +2484,7 @@
             this.Db_Delete_Table_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.Db_Delete_Table_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Delete_Table_Value_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2490,6 +2503,7 @@
             this.Db_Delete_Table_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Db_Delete_Table_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Db_Delete_Table_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Delete_Table_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Db_Delete_Table_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.Db_Delete_Table_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Delete_Table_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2648,7 +2662,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
@@ -2933,7 +2947,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
@@ -3176,7 +3190,8 @@
             this.AddNewLoc_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddNewLoc_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddNewLoc_Btn.FlatAppearance.BorderSize = 0;
-            this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.AddNewLoc_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
@@ -3443,7 +3458,8 @@
             this.ParseNodeJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ParseNodeJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ParseNodeJson_Btn.FlatAppearance.BorderSize = 0;
-            this.ParseNodeJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.ParseNodeJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ParseNodeJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ParseNodeJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ParseNodeJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParseNodeJson_Btn.ForeColor = System.Drawing.Color.White;
@@ -3473,7 +3489,8 @@
             this.ParseJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ParseJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ParseJson_Btn.FlatAppearance.BorderSize = 0;
-            this.ParseJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.ParseJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ParseJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ParseJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ParseJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParseJson_Btn.ForeColor = System.Drawing.Color.White;
@@ -3521,7 +3538,8 @@
             this.GetJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GetJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.GetJson_Btn.FlatAppearance.BorderSize = 0;
-            this.GetJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.GetJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.GetJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.GetJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GetJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GetJson_Btn.ForeColor = System.Drawing.Color.White;
@@ -3573,7 +3591,8 @@
             this.JsonSaveData_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.JsonSaveData_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonSaveData_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonSaveData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonSaveData_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.JsonSaveData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonSaveData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveData_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.White;
@@ -3591,7 +3610,8 @@
             this.JsonOpnListUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.JsonOpnListUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonOpnListUri_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonOpnListUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonOpnListUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonOpnListUri_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.White;
@@ -3609,7 +3629,8 @@
             this.JsonSaveUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.JsonSaveUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonSaveUri_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonSaveUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonSaveUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.JsonSaveUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonSaveUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveUri_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonSaveUri_Btn.ForeColor = System.Drawing.Color.White;
@@ -3627,7 +3648,8 @@
             this.JsonSaveFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.JsonSaveFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonSaveFile_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonSaveFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonSaveFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.JsonSaveFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonSaveFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveFile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.White;
@@ -3645,7 +3667,8 @@
             this.JsonOpnFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.JsonOpnFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonOpnFile_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonOpnFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonOpnFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonOpnFile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.White;
@@ -4101,6 +4124,7 @@
             this.MultipleWinDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.MultipleWinDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWinDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MultipleWinDir_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4118,6 +4142,7 @@
             this.URLconstructDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.URLconstructDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstructDir_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.URLconstructDir_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.URLconstructDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstructDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.URLconstructDir_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4135,6 +4160,7 @@
             this.GoogleDork_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.GoogleDork_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GoogleDork_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.GoogleDork_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.GoogleDork_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.GoogleDork_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GoogleDork_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4152,6 +4178,7 @@
             this.MultipleWin_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.MultipleWin_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MultipleWin_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.MultipleWin_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.MultipleWin_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.MultipleWin_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MultipleWin_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4169,6 +4196,7 @@
             this.AddOntools_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.AddOntools_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddOntools_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.AddOntools_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.AddOntools_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.AddOntools_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddOntools_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4186,6 +4214,7 @@
             this.URLconstruct_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.URLconstruct_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLconstruct_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.URLconstruct_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.URLconstruct_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLconstruct_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.URLconstruct_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4203,6 +4232,7 @@
             this.URLdirect_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.URLdirect_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.URLdirect_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.URLdirect_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.URLdirect_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.URLdirect_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.URLdirect_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4438,6 +4468,7 @@
             this.SaveConfig_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveConfig_Opt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaveConfig_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveConfig_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.SaveConfig_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.SaveConfig_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveConfig_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4456,6 +4487,7 @@
             this.ResetConfig_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
+            this.ResetConfig_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ResetConfig_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetConfig_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5524,7 +5556,8 @@
             this.LastJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LastJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.LastJson_Btn.FlatAppearance.BorderSize = 0;
-            this.LastJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.LastJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.LastJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.LastJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LastJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastJson_Btn.ForeColor = System.Drawing.Color.White;
