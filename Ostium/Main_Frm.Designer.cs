@@ -439,6 +439,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.JsonOpnListUri_Btn = new System.Windows.Forms.Button();
+            this.JsonSaveData_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -3528,6 +3530,8 @@
             // 
             // JsonBtn_Pnl
             // 
+            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveData_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.JsonOpnListUri_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonSaveUri_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonSaveFile_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonOpnFile_Btn);
@@ -4957,14 +4961,14 @@
             // 
             this.ExportXml_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExportXml_Tls.Name = "ExportXml_Tls";
-            this.ExportXml_Tls.Size = new System.Drawing.Size(147, 22);
+            this.ExportXml_Tls.Size = new System.Drawing.Size(180, 22);
             this.ExportXml_Tls.Text = "Export XML";
             this.ExportXml_Tls.Click += new System.EventHandler(this.ExportXml_Tls_Click);
             // 
             // ExportJson_Tls
             // 
             this.ExportJson_Tls.Name = "ExportJson_Tls";
-            this.ExportJson_Tls.Size = new System.Drawing.Size(147, 22);
+            this.ExportJson_Tls.Size = new System.Drawing.Size(180, 22);
             this.ExportJson_Tls.Text = "Export Json";
             this.ExportJson_Tls.Click += new System.EventHandler(this.ExportJson_Tls_Click);
             // 
@@ -5451,6 +5455,42 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // JsonOpnListUri_Btn
+            // 
+            this.JsonOpnListUri_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.JsonOpnListUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonOpnListUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonOpnListUri_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonOpnListUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonOpnListUri_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.White;
+            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(284, 0);
+            this.JsonOpnListUri_Btn.Name = "JsonOpnListUri_Btn";
+            this.JsonOpnListUri_Btn.Size = new System.Drawing.Size(108, 32);
+            this.JsonOpnListUri_Btn.TabIndex = 19;
+            this.JsonOpnListUri_Btn.Text = "Open List Uri";
+            this.JsonOpnListUri_Btn.UseVisualStyleBackColor = false;
+            this.JsonOpnListUri_Btn.Click += new System.EventHandler(this.JsonOpnListUri_Btn_Click);
+            // 
+            // JsonSaveData_Btn
+            // 
+            this.JsonSaveData_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.JsonSaveData_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonSaveData_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonSaveData_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonSaveData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.JsonSaveData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonSaveData_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.White;
+            this.JsonSaveData_Btn.Location = new System.Drawing.Point(392, 0);
+            this.JsonSaveData_Btn.Name = "JsonSaveData_Btn";
+            this.JsonSaveData_Btn.Size = new System.Drawing.Size(108, 32);
+            this.JsonSaveData_Btn.TabIndex = 20;
+            this.JsonSaveData_Btn.Text = "Save DATA";
+            this.JsonSaveData_Btn.UseVisualStyleBackColor = false;
+            this.JsonSaveData_Btn.Click += new System.EventHandler(this.JsonSaveData_Btn_Click);
             // 
             // Main_Frm
             // 
@@ -5972,6 +6012,8 @@
         private FastColoredTextBoxNS.FastColoredTextBox JsonParse_txt;
         private System.Windows.Forms.Button JsonSaveFile_Btn;
         private System.Windows.Forms.Button JsonSaveUri_Btn;
+        private System.Windows.Forms.Button JsonOpnListUri_Btn;
+        private System.Windows.Forms.Button JsonSaveData_Btn;
     }
 }
 

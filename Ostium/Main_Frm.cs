@@ -6493,33 +6493,27 @@ namespace Ostium
             if (JsonOut_txt.Text == "")
                 return;
 
-            Stream isData;
-            SaveFileDialog saveFD = new SaveFileDialog
-            {
-                InitialDirectory = AppStart,
-                Filter = "json files (*.json)|*.json",
-                FilterIndex = 2,
-                RestoreDirectory = true
-            };
-
-            if (saveFD.ShowDialog() == DialogResult.OK)
-            {
-                if ((isData = saveFD.OpenFile()) != null)
-                {
-                    using (StreamWriter file_create = new StreamWriter(isData))
-                    {
-                        file_create.Write(JsonOut_txt.Text);
-                    }
-
-                    isData.Close();
-
-                    Beep(1200, 200);
-                }
+            SavefileShowDiag(JsonOut_txt.Text, "json files (*.json)|*.json");
+        }
 
         private void JsonSaveUri_Btn_Click(object sender, EventArgs e)
         {
             CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
             Beep(1200, 200);
+        }
+
+        private void JsonOpnListUri_Btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(JsonDir + "list-url-json.txt"))
+                Open_Source_Frm(JsonDir + "list-url-json.txt");
+        }
+
+        private void JsonSaveData_Btn_Click(object sender, EventArgs e)
+        {
+            if (JsonParse_txt.Text == "")
+                return;
+
+            SavefileShowDiag(JsonParse_txt.Text, "files (*.*)|*.*");
         }
 
         private void GetJson_Btn_Click(object sender, EventArgs e)
@@ -6638,6 +6632,33 @@ namespace Ostium
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void SavefileShowDiag(string Data, string Filter)
+        {
+            Stream isData;
+            SaveFileDialog saveFD = new SaveFileDialog
+            {
+                InitialDirectory = AppStart,
+                Filter = Filter,
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            if (saveFD.ShowDialog() == DialogResult.OK)
+            {
+                if ((isData = saveFD.OpenFile()) != null)
+                {
+                    using (StreamWriter file_create = new StreamWriter(isData))
+                    {
+                        file_create.Write(Data);
+                    }
+
+                    isData.Close();
+
+                    Beep(1200, 200);
+                }
             }
         }
 
