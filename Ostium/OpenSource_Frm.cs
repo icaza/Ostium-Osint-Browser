@@ -86,7 +86,6 @@ namespace Ostium
                                 {
                                     SW.WriteLine(itm);
                                 }
-                                SW.Close();
                             }
 
                             isData.Close();
