@@ -6488,6 +6488,17 @@ namespace Ostium
             }
         }
 
+        private void LastJson_Btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(JsonDir + "test-json.json"))
+            {
+                using (StreamReader sr = new StreamReader(JsonDir + "test-json.json"))
+                {
+                    JsonOut_txt.Text = sr.ReadToEnd();
+                }
+            }
+        }
+
         private void JsonSaveFile_Btn_Click(object sender, EventArgs e)
         {
             if (JsonOut_txt.Text == "")
