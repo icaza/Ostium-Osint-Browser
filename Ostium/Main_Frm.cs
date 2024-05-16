@@ -6538,14 +6538,14 @@ namespace Ostium
             }
 
             JsonOut_txt.Text = "";
-            GetAsync();
+            GetAsync(JsonUri_Txt.Text);
         }
 
         private void ParseJson_Btn_Click(object sender, EventArgs e)
         {
             JsonParse_txt.Text = "";
 
-            Thread ParseVal = new Thread(() => ParseVal_Thrd());
+            Thread ParseVal = new Thread(() => ParseVal_Thrd(JsonVal_Txt.Text, JsonOut_txt.Text, CharSpace_Txt.Text));
             ParseVal.Start();
         }
 
@@ -6553,17 +6553,17 @@ namespace Ostium
         {
             JsonParse_txt.Text = "";
 
-            Thread ParseNode = new Thread(() => ParseNode_Thrd());
+            Thread ParseNode = new Thread(() => ParseNode_Thrd(JsonVal_Txt.Text, JsonCnt_txt.Text, JsonOut_txt.Text, JsonNode_Txt.Text, CharSpace_Txt.Text));
             ParseNode.Start();
         }
 
-        private async void GetAsync()
+        private async void GetAsync(string Urijson)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.UserAgent.ParseAdd(JsonUsrAgt_Txt.Text);
-                var response = await client.GetAsync(JsonUri_Txt.Text);
+                var response = await client.GetAsync(Urijson);
                 var jsonResponse = await response.Content.ReadAsStringAsync();
 
                 JsonOut_txt.Text = $"{jsonResponse}\n";
@@ -6576,23 +6576,23 @@ namespace Ostium
             }
         }
 
-        void ParseVal_Thrd()
+        void ParseVal_Thrd(string value, string jsonout, string charspace)
         {
             try
             {
-                string xT = JsonVal_Txt.Text;
+                string xT = value;
                 string xO = "";
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
 
-                JArray jsonVal = JArray.Parse(JsonOut_txt.Text);
+                JArray jsonVal = JArray.Parse(jsonout);
                 dynamic valjson = jsonVal;
 
                 foreach (dynamic val in valjson)
                 {
                     foreach (string word in words)
                     {
-                        xO += val[word.TrimEnd(charsToTrim)] + CharSpace_Txt.Text;
+                        xO += val[word.TrimEnd(charsToTrim)] + charspace;
                     }
 
                     JValue x = (JValue)xO;
@@ -6611,18 +6611,18 @@ namespace Ostium
             JsonParse_txt.Text += val + "\r\n";
         }
 
-        void ParseNode_Thrd()
+        void ParseNode_Thrd(string value, string count, string jsonout, string jsonnode, string charspace)
         {
             try
             {
-                string xT = JsonVal_Txt.Text;
+                string xT = value;
                 string xO = "";
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
 
-                int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
-                JsonNode CastNode = JsonNode.Parse(JsonOut_txt.Text);
-                JsonNode SelNode = CastNode[JsonNode_Txt.Text];
+                int CntEnd = Convert.ToInt32(count);
+                JsonNode CastNode = JsonNode.Parse(jsonout);
+                JsonNode SelNode = CastNode[jsonnode];
 
                 for (int i = 0; i < CntEnd; i++)
                 {
@@ -6634,7 +6634,7 @@ namespace Ostium
                     {
                         foreach (string word in words)
                         {
-                            xO += val[word.TrimEnd(charsToTrim)] + CharSpace_Txt.Text;
+                            xO += val[word.TrimEnd(charsToTrim)] + charspace;
                         }
 
                         JValue x = (JValue)xO;
