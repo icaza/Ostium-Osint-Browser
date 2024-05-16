@@ -30,6 +30,7 @@ using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms;
 using GMap.NET;
 using System.Globalization;
+using System.Text.Json.Nodes;
 
 namespace Ostium
 {
@@ -78,6 +79,7 @@ namespace Ostium
         readonly string Setirps = Application.StartupPath + @"\setirps\";
         readonly string BkmkltDir = Application.StartupPath + @"\scripts\bookmarklet\";
         readonly string MapDir = Application.StartupPath + @"\map\";
+        readonly string JsonDir = Application.StartupPath + @"\json-files\";
         public string D4ta = "default_database_name";
         ///
         /// <summary>
@@ -364,7 +366,8 @@ namespace Ostium
                         DiagramDir,
                         BkmkltDir,
                         Setirps,
-                        MapDir
+                        MapDir,
+                        JsonDir
                     };
 
                 for (int i = 0; i < CreateDir.Count; i++)
@@ -446,6 +449,7 @@ namespace Ostium
                                     {
                                         Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
                                         UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+                                        JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
                                         break;
                                     }
                                 case "URL_GOOGLEBOT_VAR":
@@ -637,10 +641,7 @@ namespace Ostium
                     {
                         string pageUri = WBrowse.Source.AbsoluteUri;
                         pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        using (StreamWriter file_create = new StreamWriter(AppStart + "tmpytb.html"))
-                        {
-                            file_create.Write("<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        }
+                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
                         GoBrowser("file:///" + AppStart + "tmpytb.html", 1);
                     }
                     else
@@ -1509,8 +1510,7 @@ namespace Ostium
 
                 if (fileopen != "")
                 {
-                    string filePath = fileopen;
-                    OpenFile_Editor(filePath);
+                    OpenFile_Editor(fileopen);
                 }
             }
             catch (Exception ex)
@@ -2332,15 +2332,13 @@ namespace Ostium
                     MessageBox.Show(MessageStartDiagram);
                     Timo.Enabled = true;
 
-                    string filePath = fileopen;
-
                     if (File.Exists(DiagramDir + "temp_file.txt"))
                         File.Delete(DiagramDir + "temp_file.txt");
 
                     if (File.Exists(DiagramDir + "temp_file.svg"))
                         File.Delete(DiagramDir + "temp_file.svg");
 
-                    using (StreamReader sr = new StreamReader(filePath))
+                    using (StreamReader sr = new StreamReader(fileopen))
                     {
                         TmpFile_Txt.Text = sr.ReadToEnd();
                     }
@@ -2636,6 +2634,27 @@ namespace Ostium
                     loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
                     break;
                 case 5:
+                    Tools_TAB_0.Visible = false;
+                    Tools_TAB_1.Visible = false;
+                    Tools_TAB_3.Visible = false;
+                    Tools_TAB_4.Visible = false;
+                    URLtxt_txt.Text = "";
+                    Text = "Json";
+                    TableOpn_Lbl.Visible = false;
+                    CountFeed_Lbl.Visible = false;
+                    JavaDisable_Lbl.Visible = false;
+                    JavaDisableFeed_Lbl.Visible = false;
+                    DBSelectOpen_Lbl.Visible = false;
+                    TableCount_Lbl.Visible = false;
+                    TableOpen_Lbl.Visible = false;
+                    RecordsCount_Lbl.Visible = false;
+                    LatTCurrent_Lbl.Visible = false;
+                    Separator.Visible = false;
+                    LonGtCurrent_Lbl.Visible = false;
+                    ProjectMapOpn_Lbl.Visible = false;
+                    TtsButton_Sts.Visible = false;
+                    break;
+                case 6:
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -4073,10 +4092,7 @@ namespace Ostium
             {
                 if (CategorieFeed_Cbx.Text != "")
                 {
-                    using (StreamWriter file_create = File.AppendText(FeedDir + CategorieFeed_Cbx.Text))
-                    {
-                        file_create.WriteLine(NewFeed_Txt.Text);
-                    }
+                    CreateData(FeedDir + CategorieFeed_Cbx.Text, NewFeed_Txt.Text);
 
                     CategorieFeed_Cbx.Items.Clear();
                     loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
@@ -4582,10 +4598,7 @@ namespace Ostium
 
                 var fileTmp = @"tmp.txt";
 
-                using (StreamWriter file_create = new StreamWriter(fileTmp))
-                {
-                    file_create.Write(AddItemswf_Txt.Text);
-                }
+                File_Write(fileTmp, "AddItemswf_Txt.Text");
 
                 WordVerify.Items.AddRange(File.ReadAllLines(@"tmp.txt"));
 
@@ -6054,13 +6067,15 @@ namespace Ostium
         {
             try
             {
+                CreateNameAleat();
+
                 using (StreamWriter addtxt = new StreamWriter(MapDir + "temp.kml"))
                 {
                     addtxt.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
                     addtxt.WriteLine("<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">");
                     addtxt.WriteLine("<Document>");
                     addtxt.WriteLine("	<Placemark>");
-                    addtxt.WriteLine("		<name>Ostium location</name>");
+                    addtxt.WriteLine("		<name>Ostium location " + UsenameAleatoire + "</name>");
                     addtxt.WriteLine("		<LookAt>");
                     addtxt.WriteLine("			<longitude>" + LonGtCurrent_Lbl.Text + "</longitude>");
                     addtxt.WriteLine("			<latitude>" + LatTCurrent_Lbl.Text + "</latitude>");
@@ -6452,11 +6467,248 @@ namespace Ostium
         }
 
         #endregion
-
+        /// <summary>
+        /// Statusbar Button, open URL in BROWSx Tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpnURL_TlsTools_Click(object sender, EventArgs e)
         {
             GoBrowser(URLtxt_txt.Text, 1);
         }
+
+        #region Json_
+
+        private void JsonOpnFile_Btn_Click(object sender, EventArgs e)
+        {
+            string fileopen = openfile.Fileselect(AppStart, "json files (*.json)|*.json|All files (*.*)|*.*", 2);
+
+            if (fileopen != "")
+            {
+                using (StreamReader sr = new StreamReader(fileopen))
+                {
+                    JsonOut_txt.Text = sr.ReadToEnd();
+                }
+            }
+        }
+
+        private void LastJson_Btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(JsonDir + "test-json.json"))
+            {
+                using (StreamReader sr = new StreamReader(JsonDir + "test-json.json"))
+                {
+                    JsonOut_txt.Text = sr.ReadToEnd();
+                }
+            }
+        }
+
+        private void JsonSaveFile_Btn_Click(object sender, EventArgs e)
+        {
+            if (JsonOut_txt.Text != "")
+                SavefileShowDiag(JsonOut_txt.Text, "json files (*.json)|*.json");
+        }
+
+        private void JsonSaveUri_Btn_Click(object sender, EventArgs e)
+        {
+            if (JsonUri_Txt.Text != "")
+            {
+                CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
+                Beep(1200, 200);
+            }
+        }
+
+        private void JsonOpnListUri_Btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(JsonDir + "list-url-json.txt"))
+                Open_Source_Frm(JsonDir + "list-url-json.txt");
+        }
+
+        private void JsonSaveData_Btn_Click(object sender, EventArgs e)
+        {
+            if (JsonParse_txt.Text != "")
+                SavefileShowDiag(JsonParse_txt.Text, "files (*.*)|*.*");
+        }
+
+        private void GetJson_Btn_Click(object sender, EventArgs e)
+        {
+            if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
+            {
+                Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
+            }
+
+            JsonOut_txt.Text = "";
+            GetAsync();
+        }
+
+        private void ParseJson_Btn_Click(object sender, EventArgs e)
+        {
+            JsonParse_txt.Text = "";
+
+            Thread ParseVal = new Thread(() => ParseVal_Thrd());
+            ParseVal.Start();
+        }
+
+        private void ParseNodeJson_Btn_Click(object sender, EventArgs e)
+        {
+            JsonParse_txt.Text = "";
+
+            Thread ParseNode = new Thread(() => ParseNode_Thrd());
+            ParseNode.Start();
+        }
+
+        private async void GetAsync()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(JsonUsrAgt_Txt.Text);
+                var response = await client.GetAsync(JsonUri_Txt.Text);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                JsonOut_txt.Text = $"{jsonResponse}\n";
+
+                File_Write(JsonDir + "test-json.json", JsonOut_txt.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void ParseVal_Thrd()
+        {
+            try
+            {
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                JArray jsonVal = JArray.Parse(JsonOut_txt.Text);
+                dynamic valjson = jsonVal;
+
+                foreach (dynamic val in valjson)
+                {
+                    foreach (string word in words)
+                    {
+                        xO += val[word.TrimEnd(charsToTrim)] + CharSpace_Txt.Text;
+                    }
+
+                    JValue x = (JValue)xO;
+                    xO = "";
+                    Invoke(new Action<JValue>(ValAdd), x);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void ValAdd(JValue val)
+        {
+            JsonParse_txt.Text += val + "\r\n";
+        }
+
+        void ParseNode_Thrd()
+        {
+            try
+            {
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
+                JsonNode CastNode = JsonNode.Parse(JsonOut_txt.Text);
+                JsonNode SelNode = CastNode[JsonNode_Txt.Text];
+
+                for (int i = 0; i < CntEnd; i++)
+                {
+                    JsonNode SrcName = SelNode[i];
+
+                    JArray jsonVal = JArray.Parse("[" + SrcName.ToJsonString() + "]");
+                    dynamic valjson = jsonVal;
+                    foreach (dynamic val in valjson)
+                    {
+                        foreach (string word in words)
+                        {
+                            xO += val[word.TrimEnd(charsToTrim)] + CharSpace_Txt.Text;
+                        }
+
+                        JValue x = (JValue)xO;
+                        xO = "";
+                        Invoke(new Action<JValue>(ValAdd), x);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void SavefileShowDiag(string Data, string Filter)
+        {
+            Stream isData;
+            SaveFileDialog saveFD = new SaveFileDialog
+            {
+                InitialDirectory = AppStart,
+                Filter = Filter,
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            if (saveFD.ShowDialog() == DialogResult.OK)
+            {
+                if ((isData = saveFD.OpenFile()) != null)
+                {
+                    using (StreamWriter file_create = new StreamWriter(isData))
+                    {
+                        file_create.Write(Data);
+                    }
+
+                    isData.Close();
+
+                    Beep(1200, 200);
+                }
+            }
+        }
+
+        #endregion
+
+        #region ContextMenu_
+
+        void Cut_Tools_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("^" + "x");
+        }
+
+        void Copy_Mnu_Click(object sender, EventArgs e)
+        {
+            if (JsonOut_txt.SelectedText != "")
+            {
+                Clipboard.SetDataObject(JsonOut_txt.SelectedText);
+            }
+        }
+
+        void Paste_Mnu_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("^" + "v");
+        }
+
+        void Delete_Mnu_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("{DEL}");
+        }
+
+        void SelectAll_Mnu_Click(object sender, EventArgs e)
+        {
+            SendKeys.Send("^" + "a");
+        }
+
+        #endregion
 
         #region Update_
         ///
