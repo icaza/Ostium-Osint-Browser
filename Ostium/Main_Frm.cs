@@ -1735,6 +1735,7 @@ namespace Ostium
                     instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Scripts + " -mx9 -mtc=on");
                     instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Setirps + " -mx9 -mtc=on");
                     instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + MapDir + " -mx9 -mtc=on");
+                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + JsonDir + " -mx9 -mtc=on");
                     instxt.WriteLine("pause");
                 }
                 Process.Start(AppStart + "Archive-DB-FILES-FEED.bat");
