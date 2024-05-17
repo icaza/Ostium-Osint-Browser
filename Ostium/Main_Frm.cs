@@ -1509,10 +1509,8 @@ namespace Ostium
                 string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
                 if (fileopen != "")
-                {
                     OpenFile_Editor(fileopen);
                 }
-            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpnFilOnEditor_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
@@ -1542,8 +1540,6 @@ namespace Ostium
                         string filePath = openFileDialog.FileName;
                         Open_Source_Frm(filePath);
                     }
-                }
-            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpenListLink_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
@@ -6164,12 +6160,6 @@ namespace Ostium
 
                 xmlReader.Close();
                 doc.Save(MapXmlOpn);
-                OpnLocationPoints();
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! AddNewLoc_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
-            }
         }
 
         void GmapProvider_Cbx_SelectedIndexChanged(object sender, EventArgs e)
