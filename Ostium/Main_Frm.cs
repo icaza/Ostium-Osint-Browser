@@ -1510,7 +1510,7 @@ namespace Ostium
 
                 if (fileopen != "")
                     OpenFile_Editor(fileopen);
-                }
+            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpnFilOnEditor_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
@@ -1528,18 +1528,11 @@ namespace Ostium
         {
             try
             {
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
-                {
-                    openFileDialog.InitialDirectory = AppStart;
-                    openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                    openFileDialog.FilterIndex = 2;
-                    openFileDialog.RestoreDirectory = true;
+                string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        string filePath = openFileDialog.FileName;
-                        Open_Source_Frm(filePath);
-                    }
+                if (fileopen != "")
+                    Open_Source_Frm(fileopen);
+            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpenListLink_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
@@ -5836,49 +5829,92 @@ namespace Ostium
         {
             try
             {
-                string message, title;
-                object NameInsert;
+                CreateProjectMap(0);                
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
 
-                message = "Select Name Project.";
-                title = "Project Name";
+        void NewProjectMapList_Tls_Click(object sender, EventArgs e)
+        {
+            CreateProjectMap(1);
 
-                NameInsert = Interaction.InputBox(message, title);
-                string ValName = Convert.ToString(NameInsert);
+            string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
-                if (ValName != "")
+            if (fileopen == "")
+                return;
+
+            Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen));
+            AutoCreatePoints.Start();
+        }
+
+        void AutoCreatePoints_Thrd(string fileopn)
+        {
+            using (var reader = new StreamReader(fileopn))
+            {
+                while (!reader.EndOfStream)
                 {
-                    if (File.Exists(MapDir + ValName + ".xml"))
-                    {
-                        string avert = "The file already exists, delete?";
-                        string caption = "Ostium";
-                        var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    AddNewLocPoints(values[1], values[2], "Meteore Landing", values[0]);
+                }
+            }
+            MessageBox.Show("Ok");
+        }
 
-                        if (result == DialogResult.Yes)
-                            File.Delete(MapDir + ValName + ".xml");
-                        else
-                            return;
-                    }
+        void CreateProjectMap(int val)
+        {
+            string message, title;
+            object NameInsert;
 
-                    XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
-                    writer.WriteStartDocument(true);
-                    writer.Formatting = System.Xml.Formatting.Indented;
-                    writer.Indentation = 2;
+            message = "Select Name Project.";
+            title = "Project Name";
 
-                    writer.WriteStartElement("Table");
+            NameInsert = Interaction.InputBox(message, title);
+            string ValName = Convert.ToString(NameInsert);
 
-                    writer.WriteStartElement("Location");
-                    writer.WriteEndElement();
+            if (ValName != "")
+            {
+                if (File.Exists(MapDir + ValName + ".xml"))
+                {
+                    string avert = "The file already exists, delete?";
+                    string caption = "Ostium";
+                    var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    writer.WriteEndDocument();
-                    writer.Close();
+                    if (result == DialogResult.Yes)
+                        File.Delete(MapDir + ValName + ".xml");
+                    else
+                        return;
+                }
 
+                XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
+                writer.WriteStartDocument(true);
+                writer.Formatting = System.Xml.Formatting.Indented;
+                writer.Indentation = 2;
+
+                writer.WriteStartElement("Table");
+
+                writer.WriteStartElement("Location");
+                writer.WriteEndElement();
+
+                writer.WriteEndDocument();
+                writer.Close();
+
+                if (val == 0)
                     MessageBox.Show("XML File created.");
 
-                    PointLoc_Lst.Items.Clear();
-                    GMap_Ctrl.Overlays.Clear();
-                    overlayOne.Markers.Clear();
-                    loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
-                }
+                PointLoc_Lst.Items.Clear();
+                GMap_Ctrl.Overlays.Clear();
+                overlayOne.Markers.Clear();
+                loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+
+                ProjectMapOpn_Lbl.Text = "";
+
+                if (val == 1)
+                    MapXmlOpn = MapDir + ValName + ".xml";
+            }
         }
 
         void OpnDirMap_Tls_Click(object sender, EventArgs e)
@@ -6035,14 +6071,14 @@ namespace Ostium
             }
         }
 
-        private void OpnGoogleMaps_Tls_Click(object sender, EventArgs e)
+        void OpnGoogleMaps_Tls_Click(object sender, EventArgs e)
         {           
             GoBrowser(lstUrlDfltCnf[7].ToString() + LatTCurrent_Lbl.Text  + "%2C" + LonGtCurrent_Lbl.Text, 0);
             CtrlTabBrowsx();
             Control_Tab.SelectedIndex = 0;
         }
 
-        private void OpnGoogleStreet_Tls_Click(object sender, EventArgs e)
+        void OpnGoogleStreet_Tls_Click(object sender, EventArgs e)
         {
             GoBrowser(lstUrlDfltCnf[8].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
             CtrlTabBrowsx();
@@ -6144,22 +6180,33 @@ namespace Ostium
                     return;
                 }
 
-                XmlDocument doc = new XmlDocument();
-                XmlTextReader xmlReader = new XmlTextReader(MapXmlOpn);
-                doc.Load(xmlReader);
+                AddNewLocPoints(LatTCurrent_Lbl.Text, LonGtCurrent_Lbl.Text, TextMarker_Txt.Text, LocationName_Txt.Text);
+                OpnLocationPoints();
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! AddNewLoc_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
 
-                if (doc.SelectSingleNode("/Table/Location") is XmlElement node1)
-                {
-                    XmlElement elem = doc.CreateElement("Point_Point");
-                    elem.SetAttribute("latitude", LatTCurrent_Lbl.Text);
-                    elem.SetAttribute("longitude", LonGtCurrent_Lbl.Text);
-                    elem.SetAttribute("textmarker", TextMarker_Txt.Text);
-                    elem.InnerText = LocationName_Txt.Text;
-                    node1.AppendChild(elem);
-                }
+        void AddNewLocPoints(string lat, string lon, string txtmarker, string eleminner)
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlTextReader xmlReader = new XmlTextReader(MapXmlOpn);
+            doc.Load(xmlReader);
 
-                xmlReader.Close();
-                doc.Save(MapXmlOpn);
+            if (doc.SelectSingleNode("/Table/Location") is XmlElement node1)
+            {
+                XmlElement elem = doc.CreateElement("Point_Point");
+                elem.SetAttribute("latitude", lat);
+                elem.SetAttribute("longitude", lon);
+                elem.SetAttribute("textmarker", txtmarker);
+                elem.InnerText = eleminner;
+                node1.AppendChild(elem);
+            }
+
+            xmlReader.Close();
+            doc.Save(MapXmlOpn);
         }
 
         void GmapProvider_Cbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -6413,7 +6460,7 @@ namespace Ostium
             GMap_Ctrl.Zoom = MapZoom;
         }
 
-        private void Main_Frm_KeyUp(object sender, KeyEventArgs e)
+        void Main_Frm_KeyUp(object sender, KeyEventArgs e)
         {
             int offset = -22;
 
@@ -6452,14 +6499,14 @@ namespace Ostium
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpnURL_TlsTools_Click(object sender, EventArgs e)
+        void OpnURL_TlsTools_Click(object sender, EventArgs e)
         {
             GoBrowser(URLtxt_txt.Text, 1);
         }
 
         #region Json_
 
-        private void JsonOpnFile_Btn_Click(object sender, EventArgs e)
+        void JsonOpnFile_Btn_Click(object sender, EventArgs e)
         {
             string fileopen = openfile.Fileselect(AppStart, "json files (*.json)|*.json|All files (*.*)|*.*", 2);
 
@@ -6472,7 +6519,7 @@ namespace Ostium
             }
         }
 
-        private void LastJson_Btn_Click(object sender, EventArgs e)
+        void LastJson_Btn_Click(object sender, EventArgs e)
         {
             if (File.Exists(JsonDir + "test-json.json"))
             {
@@ -6483,13 +6530,13 @@ namespace Ostium
             }
         }
 
-        private void JsonSaveFile_Btn_Click(object sender, EventArgs e)
+        void JsonSaveFile_Btn_Click(object sender, EventArgs e)
         {
             if (JsonOut_txt.Text != "")
                 SavefileShowDiag(JsonOut_txt.Text, "json files (*.json)|*.json");
         }
 
-        private void JsonSaveUri_Btn_Click(object sender, EventArgs e)
+        void JsonSaveUri_Btn_Click(object sender, EventArgs e)
         {
             if (JsonUri_Txt.Text != "")
             {
@@ -6498,19 +6545,19 @@ namespace Ostium
             }
         }
 
-        private void JsonOpnListUri_Btn_Click(object sender, EventArgs e)
+        void JsonOpnListUri_Btn_Click(object sender, EventArgs e)
         {
             if (File.Exists(JsonDir + "list-url-json.txt"))
                 Open_Source_Frm(JsonDir + "list-url-json.txt");
         }
 
-        private void JsonSaveData_Btn_Click(object sender, EventArgs e)
+        void JsonSaveData_Btn_Click(object sender, EventArgs e)
         {
             if (JsonParse_txt.Text != "")
                 SavefileShowDiag(JsonParse_txt.Text, "files (*.*)|*.*");
         }
 
-        private void GetJson_Btn_Click(object sender, EventArgs e)
+        void GetJson_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
             {
@@ -6521,7 +6568,7 @@ namespace Ostium
             GetAsync(JsonUri_Txt.Text);
         }
 
-        private void ParseJson_Btn_Click(object sender, EventArgs e)
+        void ParseJson_Btn_Click(object sender, EventArgs e)
         {
             JsonParse_txt.Text = "";
 
@@ -6529,7 +6576,7 @@ namespace Ostium
             ParseVal.Start();
         }
 
-        private void ParseNodeJson_Btn_Click(object sender, EventArgs e)
+        void ParseNodeJson_Btn_Click(object sender, EventArgs e)
         {
             JsonParse_txt.Text = "";
 
@@ -6537,7 +6584,7 @@ namespace Ostium
             ParseNode.Start();
         }
 
-        private async void GetAsync(string Urijson)
+        async void GetAsync(string Urijson)
         {
             try
             {
