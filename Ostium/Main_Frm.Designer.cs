@@ -2680,6 +2680,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2965,6 +2966,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3323,7 +3325,7 @@
             this.JsonParse_txt.AutoIndent = false;
             this.JsonParse_txt.AutoIndentChars = false;
             this.JsonParse_txt.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>.+)\r\n";
-            this.JsonParse_txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.JsonParse_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.JsonParse_txt.BackBrush = null;
             this.JsonParse_txt.BackColor = System.Drawing.Color.Black;
             this.JsonParse_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
@@ -3333,6 +3335,7 @@
             this.JsonParse_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.JsonParse_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.JsonParse_txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.JsonParse_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.JsonParse_txt.ForeColor = System.Drawing.Color.Lime;
             this.JsonParse_txt.IsReplaceMode = false;
             this.JsonParse_txt.Language = FastColoredTextBoxNS.Language.Lua;
@@ -3366,7 +3369,7 @@
             this.JsonOut_txt.AutoIndent = false;
             this.JsonOut_txt.AutoIndentChars = false;
             this.JsonOut_txt.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n";
-            this.JsonOut_txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.JsonOut_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.JsonOut_txt.BackBrush = null;
             this.JsonOut_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
             this.JsonOut_txt.CharHeight = 14;
@@ -3375,6 +3378,7 @@
             this.JsonOut_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.JsonOut_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.JsonOut_txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonOut_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.JsonOut_txt.ForeColor = System.Drawing.Color.Black;
             this.JsonOut_txt.IsReplaceMode = false;
             this.JsonOut_txt.Language = FastColoredTextBoxNS.Language.JS;
