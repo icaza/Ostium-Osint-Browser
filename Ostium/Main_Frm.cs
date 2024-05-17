@@ -157,6 +157,8 @@ namespace Ostium
         /// </summary>
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
+        readonly string MessageStartGeoloc = "When this window closes, the creation process begins. Please be patient, as the time depends on the number " +
+            "of points to be added to the file. ";
         ///
         /// <summary>
         /// Variable for checking updates
@@ -1101,9 +1103,7 @@ namespace Ostium
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT == "")
-            {
                 Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
-            }
 
             if (UserAgentChange_Btn.Text == "Change User Agent Off")
             {
@@ -1132,9 +1132,7 @@ namespace Ostium
         void Googlebot_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_GOOGLEBOT == "")
-            {
                 Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
-            }
 
             if (Googlebot_Btn.Text == "Googlebot Off")
             {
@@ -1186,14 +1184,7 @@ namespace Ostium
         ///
         void Console_Btn_Click(object sender, EventArgs e)
         {
-            if (Console_Cmd_Txt.Visible != true)
-            {
-                Console_Cmd_Txt.Visible = true;
-            }
-            else
-            {
-                Console_Cmd_Txt.Visible = false;
-            }
+            Console_Cmd_Txt.Visible = !Console_Cmd_Txt.Visible;
         }
 
         void Mute_Btn_Click(object sender, EventArgs e)
@@ -1208,13 +1199,9 @@ namespace Ostium
                 if (isDocumentPlayingAudio)
                 {
                     if (isMuted)
-                    {
                         Mute_Btn.Image = (Bitmap)Resources.ResourceManager.GetObject("Mute");
-                    }
                     else
-                    {
                         Mute_Btn.Image = (Bitmap)Resources.ResourceManager.GetObject("Unmute");
-                    }
                 }
             }
             catch (Exception ex)
@@ -1253,9 +1240,7 @@ namespace Ostium
             try
             {
                 if (Class_Var.URL_TRAD_WEBPAGE == "")
-                {
                     Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
-                }
 
                 string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
                 WBrowse.Source = new Uri(@formatURI);
@@ -1480,14 +1465,7 @@ namespace Ostium
         ///
         void SetCookie_Btn_Click(object sender, EventArgs e)
         {
-            if (Cookie_Pnl.Visible)
-            {
-                Cookie_Pnl.Visible = false;
-            }
-            else
-            {
-                Cookie_Pnl.Visible = true;
-            }
+            Cookie_Pnl.Visible = !Cookie_Pnl.Visible;
         }
         ///
         /// <summary>
@@ -1567,13 +1545,9 @@ namespace Ostium
         void Editor_Btn_Click(object sender, EventArgs e)
         {
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
-            {
                 Process.Start(Class_Var.DEFAULT_EDITOR);
-            }
             else
-            {
                 MessageBox.Show("File Editor are not exist in directory, verify your config file!", "Error!");
-            }
         }
 
         void OpnDirectory_Btn_Click(object sender, EventArgs e)
@@ -1675,10 +1649,9 @@ namespace Ostium
             string caption = "Config";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                CreateConfigFile(0);
-            }            
+            if (result != DialogResult.Yes)
+                return;
+            CreateConfigFile(0);
         }
 
         void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
@@ -1805,9 +1778,7 @@ namespace Ostium
         void TraductPageFeed_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_TRAD_WEBPAGE == "")
-            {
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
-            }
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsefeed.Source.AbsoluteUri);
             WBrowsefeed.Source = new Uri(@formatURI);
@@ -1922,12 +1893,10 @@ namespace Ostium
                         string caption = "File exist";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (result == DialogResult.Yes)
-                        {
-                            goto Export;
-                        }
-                        else
+                        if (result != DialogResult.Yes)
                             return;
+                        else
+                            goto Export;
                     }
                 Export:
                     File.Copy(Workflow + NameProjectwf_Txt.Text + ".xml", dirselect + @"\" + NameProjectwf_Txt.Text + ".xml", true);
@@ -1961,12 +1930,10 @@ namespace Ostium
                         string caption = "File exist";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (result == DialogResult.Yes)
-                        {
-                            goto Export;
-                        }
-                        else
+                        if (result != DialogResult.Yes)
                             return;
+                        else
+                            goto Export;
                     }
                 Export:
                     ConvertJson(Workflow + NameProjectwf_Txt.Text + ".xml", dirselect + @"\" + NameProjectwf_Txt.Text + ".json", 0);
@@ -2059,9 +2026,7 @@ namespace Ostium
                     file_create.WriteLine(json);
 
                     if (value == 1)
-                    {
                         file_create.Write("@endjson");
-                    }
 
                     file_create.Close();
                 }
@@ -2703,9 +2668,7 @@ namespace Ostium
             TtsButton_Sts.Visible = true;
 
             if (JavaEnableDisable_Btn.Text == "Javascript Disable")
-            {
                 JavaDisable_Lbl.Visible = true;
-            }
 
             JavaDisableFeed_Lbl.Visible = false;
         }
@@ -2755,9 +2718,7 @@ namespace Ostium
             try
             {
                 if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
-                {
                     Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
-                }
 
                 HttpClient client = new HttpClient();
 
@@ -2777,7 +2738,7 @@ namespace Ostium
             UsenameAleatoire = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
         }
 
-        #region Console_
+        #region Prompt_
 
         void OnKeyConsole_Cmd_Txt(object sender, KeyPressEventArgs e)
         {
@@ -2993,9 +2954,7 @@ namespace Ostium
             try
             {
                 if (File.Exists(nameFile))
-                {
                     File.Delete(nameFile);
-                }
 
                 var ListElements = nameFile;
                 using (StreamWriter SW = new StreamWriter(ListElements, true))
@@ -3007,13 +2966,9 @@ namespace Ostium
                 }
 
                 if (opnOrNo == "yes")
-                {
                     Open_Source_Frm(nameFile);
-                }
                 else
-                {
                     Beep(1200, 200);
-                }
             }
             catch (Exception ex)
             {
@@ -3056,9 +3011,8 @@ namespace Ostium
             }
 
             if (!File.Exists(dir_dir))
-            {
                 File_Write(dir_dir, "");
-            }
+
             OpenFile_Editor(dir_dir);
         }
 
@@ -3897,9 +3851,7 @@ namespace Ostium
         void Title_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Title_Lst.SelectedIndex != -1)
-            {               
                 WBrowsefeed.Source = new Uri(Link_Lst.Items[Title_Lst.SelectedIndex].ToString());
-            }
         }
         ///
         /// <summary>
@@ -3950,7 +3902,7 @@ namespace Ostium
                 Thr_RssFeed.Start();
 
                 splitContain_Rss.Panel1Collapsed = false;
-                CollapseTitleFeed_Btn.Text = "Collapse On";
+                CollapseTitleFeed_Btn.Text = "Collapse Off";
             }
         }
         ///
@@ -3987,9 +3939,7 @@ namespace Ostium
             int i = value;
 
             if (i == 0)
-            {
                 Invoke(new Action<string>(CountBlockSite_Invk), "Clear");
-            }
 
             try
             {
@@ -4227,16 +4177,12 @@ namespace Ostium
 
         void CollapseTitleFeed_Btn_Click(object sender, EventArgs e)
         {
+            splitContain_Rss.Panel1Collapsed = !splitContain_Rss.Panel1Collapsed;
+
             if (splitContain_Rss.Panel1Collapsed == false)
-            {
                 CollapseTitleFeed_Btn.Text = "Collapse Off";
-                splitContain_Rss.Panel1Collapsed = true;
-            }
             else
-            {
                 CollapseTitleFeed_Btn.Text = "Collapse On";
-                splitContain_Rss.Panel1Collapsed = false;
-            }
         }
         ///
         /// <summary>
@@ -4296,9 +4242,7 @@ namespace Ostium
                 Speak_Pnl.Visible = true;
                 
                 if (VerifLangOpn == 0)
-                {
                     LoadLang();
-                }
 
                 VolumeValue_Lbl.Text = "Volume: " + Convert.ToString(VolumeVal_Track.Value);
                 RateValue_Lbl.Text = "Rate: " + Convert.ToString(RateVal_Track.Value);
@@ -4734,6 +4678,7 @@ namespace Ostium
 
                 Workflow_Cbx = Itemwf_Cbx;
                 Workflow_Lst = WorkflowItem_Lst;
+
                 Thread LoadAllXML = new Thread(() => LoadItemKeyword_Thr("KeywordItemCollect", "Item", "y"));
                 LoadAllXML.Start();
 
@@ -4784,9 +4729,7 @@ namespace Ostium
                     string tml = ProjectOpn_Lst.SelectedItem.ToString().Replace(".xml", ".ost");
                     
                     if (File.Exists(Workflow + tml))
-                    {
                         Timeline_Lst.Items.AddRange(File.ReadAllLines(Workflow + tml));
-                    }
 
                     if (File.Exists(Workflow + ProjectOpn_Lst.SelectedItem.ToString()))
                     {
@@ -5034,25 +4977,14 @@ namespace Ostium
         {
             if (NameProjectwf_Txt.Text != "")
             {
-                if (Panel_Workflow.Visible)
-                {
-                    Panel_Workflow.Visible = false;
-                }
-                else
-                {
-                    Panel_Workflow.Visible = true;
-                }
+                Panel_Workflow.Visible = !Panel_Workflow.Visible;
             }
             else
             {
                 if (Panel_Workflow.Visible)
-                {
                     Panel_Workflow.Visible = false;
-                }
                 else
-                {
                     MessageBox.Show("Open Workflow project first!");
-                }
             }
         }
         ///
@@ -5207,9 +5139,7 @@ namespace Ostium
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.No)
-                        {
                             return;
-                        }
                     }
 
                     File_Write(WorkflowModel + ModelName_Txt.Text + ".txt", ModelItem_Txt.Text);
@@ -5505,13 +5435,9 @@ namespace Ostium
             {
                 Process[] localByName = Process.GetProcessesByName(ProcessVerif);
                 if (localByName.Length > 0)
-                {
                     MessageBox.Show("Process is True.", "Process");
-                }
                 else
-                {
                     MessageBox.Show("Process is False.", "Process");
-                }
             }
             catch (Exception ex)
             {
@@ -5712,15 +5638,10 @@ namespace Ostium
         {
             try
             {
-                if (PanelBkmklt_Pnl.Visible)
-                {
-                    PanelBkmklt_Pnl.Visible = false;
-                }
-                else
-                {
+                if (!PanelBkmklt_Pnl.Visible)
                     loadfiledir.LoadFileDirectory(BkmkltDir, "xml", "lst", Bookmarklet_Lst);
-                    PanelBkmklt_Pnl.Visible = true;
-                }
+
+                PanelBkmklt_Pnl.Visible = !PanelBkmklt_Pnl.Visible;
             }
             catch (Exception ex)
             {
@@ -5757,9 +5678,7 @@ namespace Ostium
         void InjectBkmklt_Btn_Click(object sender, EventArgs e)
         {
             if (Bookmarklet_Lst.SelectedIndex != -1)
-            {
                 InjectBkmklt(MinifyScr);
-            }                
         }
 
         async void InjectBkmklt(string Bkmklt)
@@ -5846,6 +5765,8 @@ namespace Ostium
             if (fileopen == "")
                 return;
 
+            MessageBox.Show(MessageStartGeoloc);
+
             Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen));
             AutoCreatePoints.Start();
         }
@@ -5917,10 +5838,9 @@ namespace Ostium
                 overlayOne.Markers.Clear();
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
-                ProjectMapOpn_Lbl.Text = "";
+                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".xml";
 
-                if (val == 1)
-                    MapXmlOpn = MapDir + ValName + ".xml";
+                MapXmlOpn = MapDir + ValName + ".xml";
             }
         }
 
@@ -6003,14 +5923,7 @@ namespace Ostium
 
         void OpnListLocation_Tls_Click(object sender, EventArgs e)
         {
-            if (Map_Cmd_Pnl.Visible)
-            {
-                Map_Cmd_Pnl.Visible = false;
-            }
-            else
-            {
-                Map_Cmd_Pnl.Visible = true;
-            }
+            Map_Cmd_Pnl.Visible = !Map_Cmd_Pnl.Visible;
         }
 
         void CrossCenter_Tls_Click(object sender, EventArgs e)
@@ -6567,9 +6480,7 @@ namespace Ostium
         void GetJson_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
-            {
                 Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
-            }
 
             JsonOut_txt.Text = "";
             GetAsync(JsonUri_Txt.Text);
