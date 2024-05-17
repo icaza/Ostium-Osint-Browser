@@ -5849,7 +5849,14 @@ namespace Ostium
             Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen));
             AutoCreatePoints.Start();
         }
-
+        ///
+        /// <summary>Create XML location from a list</summary>
+        /// <param name="fileopn">Project create</param>
+        /// <param name="values[0]">Point Name</param>
+        /// <param name="values[1]">Latitude</param>
+        /// <param name="values[2]">Longitude</param>
+        /// <param name="values[3]">Description/Infos</param>
+        /// 
         void AutoCreatePoints_Thrd(string fileopn)
         {
             using (var reader = new StreamReader(fileopn))
@@ -5858,7 +5865,7 @@ namespace Ostium
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    AddNewLocPoints(values[1], values[2], "Meteore Landing", values[0]);
+                    AddNewLocPoints(values[0], values[1], values[2], values[3]);
                 }
             }
             MessageBox.Show("Ok");
@@ -6180,7 +6187,7 @@ namespace Ostium
                     return;
                 }
 
-                AddNewLocPoints(LatTCurrent_Lbl.Text, LonGtCurrent_Lbl.Text, TextMarker_Txt.Text, LocationName_Txt.Text);
+                AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Lbl.Text, LonGtCurrent_Lbl.Text, TextMarker_Txt.Text);
                 OpnLocationPoints();
             }
             catch (Exception ex)
@@ -6189,7 +6196,7 @@ namespace Ostium
             }
         }
 
-        void AddNewLocPoints(string lat, string lon, string txtmarker, string eleminner)
+        void AddNewLocPoints(string locationname, string lat, string lon, string txtmarker)
         {
             XmlDocument doc = new XmlDocument();
             XmlTextReader xmlReader = new XmlTextReader(MapXmlOpn);
@@ -6201,7 +6208,7 @@ namespace Ostium
                 elem.SetAttribute("latitude", lat);
                 elem.SetAttribute("longitude", lon);
                 elem.SetAttribute("textmarker", txtmarker);
-                elem.InnerText = eleminner;
+                elem.InnerText = locationname;
                 node1.AppendChild(elem);
             }
 
