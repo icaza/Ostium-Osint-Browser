@@ -5882,19 +5882,7 @@ namespace Ostium
                     GMap_Ctrl.Overlays.Clear();
                     overlayOne.Markers.Clear();
                     loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
-
-                    ProjectMapOpn_Lbl.Text = "";
                 }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
-            }
-        }
-
-        private void NewProjectMapList_Tls_Click(object sender, EventArgs e)
-        {
-
         }
 
         void OpnDirMap_Tls_Click(object sender, EventArgs e)
