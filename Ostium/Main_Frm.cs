@@ -1710,7 +1710,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Archiving/Compression of selected directories with 7zip creation of a ".bat" file, creation of the "Archives.zip" archive
+        /// Backup/Compression of selected directories with 7zip creation of a ".bat" file, creation of the "Archives.zip" archive
         /// </summary>
         /// <param name="7zip"></param>
         /// <param name="Archive-DB-FILES-FEED.bat"></param>
@@ -5861,7 +5861,7 @@ namespace Ostium
                             File.Delete(MapDir + ValName + ".xml");
                         else
                             return;
-                        }                        
+                    }
 
                     XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
                     writer.WriteStartDocument(true);
@@ -5890,6 +5890,11 @@ namespace Ostium
             {
                 senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
+        }
+
+        private void NewProjectMapList_Tls_Click(object sender, EventArgs e)
+        {
+
         }
 
         void OpnDirMap_Tls_Click(object sender, EventArgs e)
