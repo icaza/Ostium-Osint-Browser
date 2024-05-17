@@ -5858,14 +5858,10 @@ namespace Ostium
                         var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.Yes)
-                        {
                             File.Delete(MapDir + ValName + ".xml");
-                        }
                         else
-                        {
                             return;
                         }                        
-                    }
 
                     XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
                     writer.WriteStartDocument(true);
