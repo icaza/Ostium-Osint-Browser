@@ -1182,11 +1182,8 @@ namespace Ostium
         ///
         void Console_Btn_Click(object sender, EventArgs e)
         {
-            if (Console_Cmd_Txt.Visible != true)
-                Console_Cmd_Txt.Visible = true;
-            else
-                Console_Cmd_Txt.Visible = false;
-            }
+            Console_Cmd_Txt.Visible = !Console_Cmd_Txt.Visible;
+        }
 
         void Mute_Btn_Click(object sender, EventArgs e)
         {
@@ -1203,8 +1200,8 @@ namespace Ostium
                         Mute_Btn.Image = (Bitmap)Resources.ResourceManager.GetObject("Mute");
                     else
                         Mute_Btn.Image = (Bitmap)Resources.ResourceManager.GetObject("Unmute");
-                    }
                 }
+            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! Mute_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
@@ -1466,10 +1463,8 @@ namespace Ostium
         ///
         void SetCookie_Btn_Click(object sender, EventArgs e)
         {
-            if (Cookie_Pnl.Visible)
-            {
-                Cookie_Pnl.Visible = false;
-            }
+            Cookie_Pnl.Visible = !Cookie_Pnl.Visible;
+        }
         ///
         /// <summary>
         /// <param name="fileopen">Selection and Opening of file in the editor</param>
@@ -1551,7 +1546,7 @@ namespace Ostium
                 Process.Start(Class_Var.DEFAULT_EDITOR);
             else
                 MessageBox.Show("File Editor are not exist in directory, verify your config file!", "Error!");
-            }
+        }
 
         void OpnDirectory_Btn_Click(object sender, EventArgs e)
         {
@@ -1652,10 +1647,10 @@ namespace Ostium
             string caption = "Config";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                CreateConfigFile(0);
-            }            
+            if (result != DialogResult.Yes)
+                return;
+            CreateConfigFile(0);
+        }
 
         void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
         {
@@ -1896,10 +1891,11 @@ namespace Ostium
                         string caption = "File exist";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (result == DialogResult.Yes)
-                        {
+                        if (result != DialogResult.Yes)
+                            return;
+                        else
                             goto Export;
-                        }
+                    }
                 Export:
                     File.Copy(Workflow + NameProjectwf_Txt.Text + ".xml", dirselect + @"\" + NameProjectwf_Txt.Text + ".xml", true);
                     Beep(1000, 400);
@@ -1932,10 +1928,11 @@ namespace Ostium
                         string caption = "File exist";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (result == DialogResult.Yes)
-                        {
+                        if (result != DialogResult.Yes)
+                            return;
+                        else
                             goto Export;
-                        }
+                    }
                 Export:
                     ConvertJson(Workflow + NameProjectwf_Txt.Text + ".xml", dirselect + @"\" + NameProjectwf_Txt.Text + ".json", 0);
                     Beep(1000, 400);
@@ -2739,7 +2736,7 @@ namespace Ostium
             UsenameAleatoire = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
         }
 
-        #region Console_
+        #region Prompt_
 
         void OnKeyConsole_Cmd_Txt(object sender, KeyPressEventArgs e)
         {
@@ -2970,7 +2967,7 @@ namespace Ostium
                     Open_Source_Frm(nameFile);
                 else
                     Beep(1200, 200);
-                }
+            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! List_Create: ", ex.Message, "Main_Frm", AppStart);
@@ -3853,7 +3850,7 @@ namespace Ostium
         {
             if (Title_Lst.SelectedIndex != -1)
                 WBrowsefeed.Source = new Uri(Link_Lst.Items[Title_Lst.SelectedIndex].ToString());
-            }
+        }
         ///
         /// <summary>
         /// Loading the RSS feed category into List or administering the RSS feed category file
@@ -4978,14 +4975,7 @@ namespace Ostium
         {
             if (NameProjectwf_Txt.Text != "")
             {
-                if (Panel_Workflow.Visible)
-                {
-                    Panel_Workflow.Visible = false;
-                }
-                else
-                {
-                    Panel_Workflow.Visible = true;
-                }
+                Panel_Workflow.Visible = !Panel_Workflow.Visible;
             }
             else
             {
@@ -4993,8 +4983,8 @@ namespace Ostium
                     Panel_Workflow.Visible = false;
                 else
                     MessageBox.Show("Open Workflow project first!");
-                }
             }
+        }
         ///
         /// <summary>
         /// Displaying WorkFlow project item data
@@ -5148,7 +5138,7 @@ namespace Ostium
 
                         if (result == DialogResult.No)
                             return;
-                        }
+                    }
 
                     File_Write(WorkflowModel + ModelName_Txt.Text + ".txt", ModelItem_Txt.Text);
 
@@ -5446,7 +5436,7 @@ namespace Ostium
                     MessageBox.Show("Process is True.", "Process");
                 else
                     MessageBox.Show("Process is False.", "Process");
-                }
+            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! VerifyProcess: ", ex.Message, "Main_Frm", AppStart);
@@ -5646,15 +5636,10 @@ namespace Ostium
         {
             try
             {
-                if (PanelBkmklt_Pnl.Visible)
-                {
-                    PanelBkmklt_Pnl.Visible = false;
-                }
-                else
-                {
+                if (!PanelBkmklt_Pnl.Visible)
                     loadfiledir.LoadFileDirectory(BkmkltDir, "xml", "lst", Bookmarklet_Lst);
-                    PanelBkmklt_Pnl.Visible = true;
-                }
+
+                PanelBkmklt_Pnl.Visible = !PanelBkmklt_Pnl.Visible;
             }
             catch (Exception ex)
             {
@@ -5692,7 +5677,7 @@ namespace Ostium
         {
             if (Bookmarklet_Lst.SelectedIndex != -1)
                 InjectBkmklt(MinifyScr);
-            }                
+        }
 
         async void InjectBkmklt(string Bkmklt)
         {
@@ -5935,14 +5920,7 @@ namespace Ostium
 
         void OpnListLocation_Tls_Click(object sender, EventArgs e)
         {
-            if (Map_Cmd_Pnl.Visible)
-            {
-                Map_Cmd_Pnl.Visible = false;
-            }
-            else
-            {
-                Map_Cmd_Pnl.Visible = true;
-            }
+            Map_Cmd_Pnl.Visible = !Map_Cmd_Pnl.Visible;
         }
 
         void CrossCenter_Tls_Click(object sender, EventArgs e)
