@@ -157,6 +157,8 @@ namespace Ostium
         /// </summary>
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
+        readonly string MessageStartGeoloc = "When this window closes, the creation process begins, be patient the time depends on the number of " +
+            "points to add to the file.";
         ///
         /// <summary>
         /// Variable for checking updates
@@ -5763,6 +5765,8 @@ namespace Ostium
             if (fileopen == "")
                 return;
 
+            MessageBox.Show(MessageStartGeoloc);
+
             Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen));
             AutoCreatePoints.Start();
         }
@@ -5836,7 +5840,6 @@ namespace Ostium
 
                 ProjectMapOpn_Lbl.Text = "";
 
-                if (val == 1)
                     MapXmlOpn = MapDir + ValName + ".xml";
             }
         }
