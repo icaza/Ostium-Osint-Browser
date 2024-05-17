@@ -157,8 +157,8 @@ namespace Ostium
         /// </summary>
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
-        readonly string MessageStartGeoloc = "When this window closes, the creation process begins, be patient the time depends on the number of " +
-            "points to add to the file.";
+        readonly string MessageStartGeoloc = "When this window closes, the creation process begins. Please be patient, as the time depends on the number " +
+            "of points to be added to the file. ";
         ///
         /// <summary>
         /// Variable for checking updates
@@ -3902,7 +3902,7 @@ namespace Ostium
                 Thr_RssFeed.Start();
 
                 splitContain_Rss.Panel1Collapsed = false;
-                CollapseTitleFeed_Btn.Text = "Collapse On";
+                CollapseTitleFeed_Btn.Text = "Collapse Off";
             }
         }
         ///
@@ -5838,9 +5838,9 @@ namespace Ostium
                 overlayOne.Markers.Clear();
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
-                ProjectMapOpn_Lbl.Text = "";
+                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".xml";
 
-                    MapXmlOpn = MapDir + ValName + ".xml";
+                MapXmlOpn = MapDir + ValName + ".xml";
             }
         }
 
