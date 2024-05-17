@@ -1101,9 +1101,7 @@ namespace Ostium
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT == "")
-            {
                 Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
-            }
 
             if (UserAgentChange_Btn.Text == "Change User Agent Off")
             {
@@ -1132,9 +1130,7 @@ namespace Ostium
         void Googlebot_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_GOOGLEBOT == "")
-            {
                 Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
-            }
 
             if (Googlebot_Btn.Text == "Googlebot Off")
             {
@@ -1187,14 +1183,10 @@ namespace Ostium
         void Console_Btn_Click(object sender, EventArgs e)
         {
             if (Console_Cmd_Txt.Visible != true)
-            {
                 Console_Cmd_Txt.Visible = true;
-            }
             else
-            {
                 Console_Cmd_Txt.Visible = false;
             }
-        }
 
         void Mute_Btn_Click(object sender, EventArgs e)
         {
@@ -1208,15 +1200,11 @@ namespace Ostium
                 if (isDocumentPlayingAudio)
                 {
                     if (isMuted)
-                    {
                         Mute_Btn.Image = (Bitmap)Resources.ResourceManager.GetObject("Mute");
-                    }
                     else
-                    {
                         Mute_Btn.Image = (Bitmap)Resources.ResourceManager.GetObject("Unmute");
                     }
                 }
-            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! Mute_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
@@ -1253,9 +1241,7 @@ namespace Ostium
             try
             {
                 if (Class_Var.URL_TRAD_WEBPAGE == "")
-                {
                     Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
-                }
 
                 string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
                 WBrowse.Source = new Uri(@formatURI);
@@ -1484,11 +1470,6 @@ namespace Ostium
             {
                 Cookie_Pnl.Visible = false;
             }
-            else
-            {
-                Cookie_Pnl.Visible = true;
-            }
-        }
         ///
         /// <summary>
         /// <param name="fileopen">Selection and Opening of file in the editor</param>
@@ -1567,14 +1548,10 @@ namespace Ostium
         void Editor_Btn_Click(object sender, EventArgs e)
         {
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
-            {
                 Process.Start(Class_Var.DEFAULT_EDITOR);
-            }
             else
-            {
                 MessageBox.Show("File Editor are not exist in directory, verify your config file!", "Error!");
             }
-        }
 
         void OpnDirectory_Btn_Click(object sender, EventArgs e)
         {
@@ -1679,7 +1656,6 @@ namespace Ostium
             {
                 CreateConfigFile(0);
             }            
-        }
 
         void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
         {
@@ -1805,9 +1781,7 @@ namespace Ostium
         void TraductPageFeed_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_TRAD_WEBPAGE == "")
-            {
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
-            }
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsefeed.Source.AbsoluteUri);
             WBrowsefeed.Source = new Uri(@formatURI);
@@ -1926,9 +1900,6 @@ namespace Ostium
                         {
                             goto Export;
                         }
-                        else
-                            return;
-                    }
                 Export:
                     File.Copy(Workflow + NameProjectwf_Txt.Text + ".xml", dirselect + @"\" + NameProjectwf_Txt.Text + ".xml", true);
                     Beep(1000, 400);
@@ -1965,9 +1936,6 @@ namespace Ostium
                         {
                             goto Export;
                         }
-                        else
-                            return;
-                    }
                 Export:
                     ConvertJson(Workflow + NameProjectwf_Txt.Text + ".xml", dirselect + @"\" + NameProjectwf_Txt.Text + ".json", 0);
                     Beep(1000, 400);
@@ -2059,9 +2027,7 @@ namespace Ostium
                     file_create.WriteLine(json);
 
                     if (value == 1)
-                    {
                         file_create.Write("@endjson");
-                    }
 
                     file_create.Close();
                 }
@@ -2703,9 +2669,7 @@ namespace Ostium
             TtsButton_Sts.Visible = true;
 
             if (JavaEnableDisable_Btn.Text == "Javascript Disable")
-            {
                 JavaDisable_Lbl.Visible = true;
-            }
 
             JavaDisableFeed_Lbl.Visible = false;
         }
@@ -2755,9 +2719,7 @@ namespace Ostium
             try
             {
                 if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
-                {
                     Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
-                }
 
                 HttpClient client = new HttpClient();
 
@@ -2993,9 +2955,7 @@ namespace Ostium
             try
             {
                 if (File.Exists(nameFile))
-                {
                     File.Delete(nameFile);
-                }
 
                 var ListElements = nameFile;
                 using (StreamWriter SW = new StreamWriter(ListElements, true))
@@ -3007,14 +2967,10 @@ namespace Ostium
                 }
 
                 if (opnOrNo == "yes")
-                {
                     Open_Source_Frm(nameFile);
-                }
                 else
-                {
                     Beep(1200, 200);
                 }
-            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! List_Create: ", ex.Message, "Main_Frm", AppStart);
@@ -3056,9 +3012,8 @@ namespace Ostium
             }
 
             if (!File.Exists(dir_dir))
-            {
                 File_Write(dir_dir, "");
-            }
+
             OpenFile_Editor(dir_dir);
         }
 
@@ -3897,10 +3852,8 @@ namespace Ostium
         void Title_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Title_Lst.SelectedIndex != -1)
-            {               
                 WBrowsefeed.Source = new Uri(Link_Lst.Items[Title_Lst.SelectedIndex].ToString());
             }
-        }
         ///
         /// <summary>
         /// Loading the RSS feed category into List or administering the RSS feed category file
@@ -3987,9 +3940,7 @@ namespace Ostium
             int i = value;
 
             if (i == 0)
-            {
                 Invoke(new Action<string>(CountBlockSite_Invk), "Clear");
-            }
 
             try
             {
@@ -4227,16 +4178,12 @@ namespace Ostium
 
         void CollapseTitleFeed_Btn_Click(object sender, EventArgs e)
         {
+            splitContain_Rss.Panel1Collapsed = !splitContain_Rss.Panel1Collapsed;
+
             if (splitContain_Rss.Panel1Collapsed == false)
-            {
                 CollapseTitleFeed_Btn.Text = "Collapse Off";
-                splitContain_Rss.Panel1Collapsed = true;
-            }
             else
-            {
                 CollapseTitleFeed_Btn.Text = "Collapse On";
-                splitContain_Rss.Panel1Collapsed = false;
-            }
         }
         ///
         /// <summary>
@@ -4296,9 +4243,7 @@ namespace Ostium
                 Speak_Pnl.Visible = true;
                 
                 if (VerifLangOpn == 0)
-                {
                     LoadLang();
-                }
 
                 VolumeValue_Lbl.Text = "Volume: " + Convert.ToString(VolumeVal_Track.Value);
                 RateValue_Lbl.Text = "Rate: " + Convert.ToString(RateVal_Track.Value);
@@ -4734,6 +4679,7 @@ namespace Ostium
 
                 Workflow_Cbx = Itemwf_Cbx;
                 Workflow_Lst = WorkflowItem_Lst;
+
                 Thread LoadAllXML = new Thread(() => LoadItemKeyword_Thr("KeywordItemCollect", "Item", "y"));
                 LoadAllXML.Start();
 
@@ -4784,9 +4730,7 @@ namespace Ostium
                     string tml = ProjectOpn_Lst.SelectedItem.ToString().Replace(".xml", ".ost");
                     
                     if (File.Exists(Workflow + tml))
-                    {
                         Timeline_Lst.Items.AddRange(File.ReadAllLines(Workflow + tml));
-                    }
 
                     if (File.Exists(Workflow + ProjectOpn_Lst.SelectedItem.ToString()))
                     {
@@ -5046,15 +4990,11 @@ namespace Ostium
             else
             {
                 if (Panel_Workflow.Visible)
-                {
                     Panel_Workflow.Visible = false;
-                }
                 else
-                {
                     MessageBox.Show("Open Workflow project first!");
                 }
             }
-        }
         ///
         /// <summary>
         /// Displaying WorkFlow project item data
@@ -5207,10 +5147,8 @@ namespace Ostium
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.No)
-                        {
                             return;
                         }
-                    }
 
                     File_Write(WorkflowModel + ModelName_Txt.Text + ".txt", ModelItem_Txt.Text);
 
@@ -5505,14 +5443,10 @@ namespace Ostium
             {
                 Process[] localByName = Process.GetProcessesByName(ProcessVerif);
                 if (localByName.Length > 0)
-                {
                     MessageBox.Show("Process is True.", "Process");
-                }
                 else
-                {
                     MessageBox.Show("Process is False.", "Process");
                 }
-            }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! VerifyProcess: ", ex.Message, "Main_Frm", AppStart);
@@ -5757,10 +5691,8 @@ namespace Ostium
         void InjectBkmklt_Btn_Click(object sender, EventArgs e)
         {
             if (Bookmarklet_Lst.SelectedIndex != -1)
-            {
                 InjectBkmklt(MinifyScr);
             }                
-        }
 
         async void InjectBkmklt(string Bkmklt)
         {
@@ -6567,9 +6499,7 @@ namespace Ostium
         void GetJson_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
-            {
                 Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
-            }
 
             JsonOut_txt.Text = "";
             GetAsync(JsonUri_Txt.Text);
