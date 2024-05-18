@@ -6502,6 +6502,18 @@ namespace Ostium
             ParseNode.Start();
         }
 
+        private void ReplaceBrckt_btn_Click(object sender, EventArgs e)
+        {
+            JsonOut_txt.Text = Regex.Replace(JsonOut_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
+            JsonOut_txt.Text = JsonOut_txt.Text;
+        }
+
+        private void PermuteOut_Btn_Click(object sender, EventArgs e)
+        {
+            JsonOut_txt.Text = JsonParse_txt.Text;
+            JsonParse_txt.Text = "";
+        }
+
         async void GetAsync(string Urijson)
         {
             try
