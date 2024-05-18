@@ -15,6 +15,10 @@ Edge WebView2 https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/cons
 
 https://github.com/icaza/Ostium-Osint-Browser/releases/ no install required. Download unzip and start Ostium.exe.
 
+# Demo
+
+https://youtu.be/o3iXP-IADS4?si=9OulghA2imj5OvQn
+
 # OOB use
 
 Ostium Osint Browser is powered by the Open Source Chromium project and other free software.
