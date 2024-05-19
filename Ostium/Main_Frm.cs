@@ -108,7 +108,7 @@ namespace Ostium
         string ClearOnOff = "on";
         string NameUriDB = "";
         string UnshortURLval = "";
-        string UsenameAleatoire = "";
+        string Una = "";
         //readonly int CMDconsSwitch;
         string TableOpen = "";
         string Tables_Lst_Opt = "add";
@@ -624,9 +624,7 @@ namespace Ostium
                 string pageUri = "";
 
                 if (Clipboard.ContainsText(TextDataFormat.Text))
-                {
                     pageUri = Clipboard.GetText(TextDataFormat.Text);
-                }
 
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -1371,10 +1369,10 @@ namespace Ostium
             {
                 var img = await TakeWebScreenshot();
                 CreateNameAleat();
-                img.Save(Pictures + UsenameAleatoire + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                img.Save(Pictures + Una + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 Beep(800, 200);
 
-                Process.Start(Pictures + UsenameAleatoire + ".png");
+                Process.Start(Pictures + Una + ".png");
             }
             catch (Exception ex)
             {
@@ -2425,8 +2423,8 @@ namespace Ostium
                 }
 
                 CreateNameAleat();
-                string nameSVG = UsenameAleatoire + "_" + FileDiag;
-                string nameSVGb = UsenameAleatoire;
+                string nameSVG = Una + "_" + FileDiag;
+                string nameSVGb = Una;
 
                 IcazaClass selectdir = new IcazaClass();
                 string dirselect = selectdir.Dirselect();
@@ -2735,7 +2733,7 @@ namespace Ostium
 
         void CreateNameAleat()
         {
-            UsenameAleatoire = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
+            Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
         }
 
         #region Prompt_
@@ -5908,6 +5906,9 @@ namespace Ostium
                         loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
                         ProjectMapOpn_Lbl.Text = "";
+
+                        GMap_Ctrl.Overlays.Clear();
+                        overlayOne.Markers.Clear();
                     }
                 }
                 else
@@ -5949,7 +5950,7 @@ namespace Ostium
                 using (SaveFileDialog dialog = new SaveFileDialog())
                 {
                     dialog.Filter = "PNG (*.png)|*.png";
-                    dialog.FileName = UsenameAleatoire + "_Ostium_image";
+                    dialog.FileName = Una + "_Ostium_image";
                     Image image = GMap_Ctrl.ToImage();
 
                     if (image != null)
@@ -6017,7 +6018,7 @@ namespace Ostium
                     addtxt.WriteLine("<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">");
                     addtxt.WriteLine("<Document>");
                     addtxt.WriteLine("	<Placemark>");
-                    addtxt.WriteLine("		<name>Ostium location " + UsenameAleatoire + "</name>");
+                    addtxt.WriteLine("		<name>Ostium location " + Una + "</name>");
                     addtxt.WriteLine("		<LookAt>");
                     addtxt.WriteLine("			<longitude>" + LonGtCurrent_Lbl.Text + "</longitude>");
                     addtxt.WriteLine("			<latitude>" + LatTCurrent_Lbl.Text + "</latitude>");
@@ -6502,6 +6503,18 @@ namespace Ostium
             ParseNode.Start();
         }
 
+        private void TableParse_Btn_Click(object sender, EventArgs e)
+        {
+            Thread TableParseVal = new Thread(() => TableParseVal_Thrd());
+            TableParseVal.Start();
+        }
+
+        private void TableNode_Btn_Click(object sender, EventArgs e)
+        {
+            Thread TableParseNode = new Thread(() => TableParseNode_Thrd());
+            TableParseNode.Start();
+        }
+
         private void ReplaceBrckt_btn_Click(object sender, EventArgs e)
         {
             JsonOut_txt.Text = Regex.Replace(JsonOut_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
@@ -6541,6 +6554,7 @@ namespace Ostium
                 string xO = "";
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
+                string sendval = "";
 
                 JArray jsonVal = JArray.Parse(jsonout);
                 dynamic valjson = jsonVal;
@@ -6552,10 +6566,10 @@ namespace Ostium
                         xO += val[word.TrimEnd(charsToTrim)] + charspace;
                     }
 
-                    JValue x = (JValue)xO;
+                    sendval += xO + "\r\n";
                     xO = "";
-                    Invoke(new Action<JValue>(ValAdd), x);
                 }
+                Invoke(new Action<string>(ValAdd), sendval);
             }
             catch (Exception ex)
             {
@@ -6563,9 +6577,62 @@ namespace Ostium
             }
         }
 
-        void ValAdd(JValue val)
+        void TableParseVal_Thrd()
         {
-            JsonParse_txt.Text += val + "\r\n";
+            try
+            {
+                CreateNameAleat();
+                StreamWriter file = new StreamWriter(JsonDir + Una + "_table.html");
+
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                JArray jsonVal = JArray.Parse(JsonOut_txt.Text);
+                dynamic valjson = jsonVal;
+
+                string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
+                    "href=\"style.css\"></head><body><div class=\"relative overflow-hidden shadow-md rounded-lg\"><table class=\"table-fixed w-full " +
+                    "text-left\"><thead class=\"uppercase bg-[#6b7280] text-[#e5e7eb]\" style=\"background-color: #6b7280; color: #e5e7eb;\"><tr>";
+
+                file.WriteLine(t);
+
+                foreach (string word in words)
+                {
+                    xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
+                }
+
+                file.WriteLine(xO);
+
+                t = "</tr></thead><tbody class=\"bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]\" style=\"background-color: #FFFFFF; " +
+                    "color: #6b7280;\"><tr class=\"py-5\">";
+
+                file.WriteLine(t);
+
+                xO = "";
+
+                foreach (dynamic val in valjson)
+                {
+                    foreach (string word in words)
+                    {
+                        xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
+                    }
+
+                    file.WriteLine(xO);
+                    xO = "";
+                    file.WriteLine("</tr><tr class=\"py-5\">");
+                }
+
+                file.WriteLine("</tr></tbody></table></div></body></html>");
+                file.Close();
+
+                Invoke(new Action<string>(OpnTableJson), JsonDir + Una + "_table.html");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
         }
 
         void ParseNode_Thrd(string value, string count, string jsonout, string jsonnode, string charspace)
@@ -6576,6 +6643,7 @@ namespace Ostium
                 string xO = "";
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
+                string sendval = "";
 
                 int CntEnd = Convert.ToInt32(count);
                 JsonNode CastNode = JsonNode.Parse(jsonout);
@@ -6594,11 +6662,77 @@ namespace Ostium
                             xO += val[word.TrimEnd(charsToTrim)] + charspace;
                         }
 
-                        JValue x = (JValue)xO;
+                        sendval += xO + "\r\n";
                         xO = "";
-                        Invoke(new Action<JValue>(ValAdd), x);
                     }
                 }
+                Invoke(new Action<string>(ValAdd), sendval);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void TableParseNode_Thrd()
+        {
+            try
+            {
+                CreateNameAleat();
+                StreamWriter file = new StreamWriter(JsonDir + Una + "_table.html");
+
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
+                JsonNode CastNode = JsonNode.Parse(JsonOut_txt.Text);
+                JsonNode SelNode = CastNode[JsonNode_Txt.Text];
+
+                string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
+    "href=\"style.css\"></head><body><div class=\"relative overflow-hidden shadow-md rounded-lg\"><table class=\"table-fixed w-full " +
+    "text-left\"><thead class=\"uppercase bg-[#6b7280] text-[#e5e7eb]\" style=\"background-color: #6b7280; color: #e5e7eb;\"><tr>";
+
+                file.WriteLine(t);
+
+                foreach (string word in words)
+                {
+                    xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
+                }
+
+                file.WriteLine(xO);
+
+                t = "</tr></thead><tbody class=\"bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]\" style=\"background-color: #FFFFFF; " +
+                    "color: #6b7280;\"><tr class=\"py-5\">";
+
+                file.WriteLine(t);
+
+                xO = "";
+
+                for (int i = 0; i < CntEnd; i++)
+                {
+                    JsonNode SrcName = SelNode[i];
+
+                    JArray jsonVal = JArray.Parse("[" + SrcName.ToJsonString() + "]");
+                    dynamic valjson = jsonVal;
+                    foreach (dynamic val in valjson)
+                    {
+                        foreach (string word in words)
+                        {
+                            xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
+                        }
+
+                        file.WriteLine(xO);
+                        xO = "";
+                        file.WriteLine("</tr><tr class=\"py-5\">");
+                    }
+                }
+
+                file.WriteLine("</tr></tbody></table></div></body></html>");
+                file.Close();
+
+                Invoke(new Action<string>(OpnTableJson), JsonDir + Una + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6631,6 +6765,21 @@ namespace Ostium
                     Beep(1200, 200);
                 }
             }
+        }
+
+        #endregion
+
+        #region Invoke_Json
+
+        void ValAdd(string val)
+        {
+            JsonParse_txt.Text = val;
+            JsonParse_txt.GoEnd();
+        }
+
+        void OpnTableJson(string val)
+        {
+            GoBrowser("file:///" + val, 1);
         }
 
         #endregion
