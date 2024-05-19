@@ -283,6 +283,7 @@
             this.JsonUsrAgt_Txt = new System.Windows.Forms.TextBox();
             this.panel32 = new System.Windows.Forms.Panel();
             this.JsonBtn_Pnl = new System.Windows.Forms.Panel();
+            this.TableNode_Btn = new System.Windows.Forms.Button();
             this.TableParse_Btn = new System.Windows.Forms.Button();
             this.JsonSaveData_Btn = new System.Windows.Forms.Button();
             this.JsonOpnListUri_Btn = new System.Windows.Forms.Button();
@@ -461,7 +462,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.TableNode_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2688,7 +2688,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2974,7 +2973,6 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3333,7 +3331,7 @@
             this.JsonParse_txt.AutoIndent = false;
             this.JsonParse_txt.AutoIndentChars = false;
             this.JsonParse_txt.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>.+)\r\n";
-            this.JsonParse_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.JsonParse_txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.JsonParse_txt.BackBrush = null;
             this.JsonParse_txt.BackColor = System.Drawing.Color.Black;
             this.JsonParse_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
@@ -3343,7 +3341,6 @@
             this.JsonParse_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.JsonParse_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.JsonParse_txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.JsonParse_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.JsonParse_txt.ForeColor = System.Drawing.Color.Lime;
             this.JsonParse_txt.IsReplaceMode = false;
             this.JsonParse_txt.Language = FastColoredTextBoxNS.Language.Lua;
@@ -3377,7 +3374,7 @@
             this.JsonOut_txt.AutoIndent = false;
             this.JsonOut_txt.AutoIndentChars = false;
             this.JsonOut_txt.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n";
-            this.JsonOut_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.JsonOut_txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.JsonOut_txt.BackBrush = null;
             this.JsonOut_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
             this.JsonOut_txt.CharHeight = 14;
@@ -3386,7 +3383,6 @@
             this.JsonOut_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.JsonOut_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.JsonOut_txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.JsonOut_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.JsonOut_txt.ForeColor = System.Drawing.Color.Black;
             this.JsonOut_txt.IsReplaceMode = false;
             this.JsonOut_txt.Language = FastColoredTextBoxNS.Language.JS;
@@ -3768,6 +3764,25 @@
             this.JsonBtn_Pnl.Name = "JsonBtn_Pnl";
             this.JsonBtn_Pnl.Size = new System.Drawing.Size(1326, 32);
             this.JsonBtn_Pnl.TabIndex = 0;
+            // 
+            // TableNode_Btn
+            // 
+            this.TableNode_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.TableNode_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TableNode_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TableNode_Btn.FlatAppearance.BorderSize = 0;
+            this.TableNode_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.TableNode_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.TableNode_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TableNode_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableNode_Btn.ForeColor = System.Drawing.Color.White;
+            this.TableNode_Btn.Location = new System.Drawing.Point(625, 0);
+            this.TableNode_Btn.Name = "TableNode_Btn";
+            this.TableNode_Btn.Size = new System.Drawing.Size(85, 32);
+            this.TableNode_Btn.TabIndex = 23;
+            this.TableNode_Btn.Text = "Node Table";
+            this.TableNode_Btn.UseVisualStyleBackColor = false;
+            this.TableNode_Btn.Click += new System.EventHandler(this.TableNode_Btn_Click);
             // 
             // TableParse_Btn
             // 
@@ -5788,25 +5803,6 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // TableNode_Btn
-            // 
-            this.TableNode_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TableNode_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TableNode_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TableNode_Btn.FlatAppearance.BorderSize = 0;
-            this.TableNode_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.TableNode_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.TableNode_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TableNode_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableNode_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableNode_Btn.Location = new System.Drawing.Point(625, 0);
-            this.TableNode_Btn.Name = "TableNode_Btn";
-            this.TableNode_Btn.Size = new System.Drawing.Size(85, 32);
-            this.TableNode_Btn.TabIndex = 23;
-            this.TableNode_Btn.Text = "Node Table";
-            this.TableNode_Btn.UseVisualStyleBackColor = false;
-            this.TableNode_Btn.Click += new System.EventHandler(this.TableNode_Btn_Click);
             // 
             // Main_Frm
             // 
