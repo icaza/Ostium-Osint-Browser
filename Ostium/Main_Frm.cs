@@ -6573,7 +6573,8 @@ namespace Ostium
         {
             try
             {
-                StreamWriter file = new StreamWriter(JsonDir + "table-temp.html");
+                CreateNameAleat();
+                StreamWriter file = new StreamWriter(JsonDir + UsenameAleatoire + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
@@ -6618,7 +6619,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<int>(OpnTableJson), 1);
+                Invoke(new Action<string>(OpnTableJson), JsonDir + UsenameAleatoire + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6700,9 +6701,9 @@ namespace Ostium
             JsonParse_txt.Text += val + "\r\n";
         }
 
-        void OpnTableJson(int val)
+        void OpnTableJson(string val)
         {
-            GoBrowser("file:///" + JsonDir + "table-temp.html", val);
+            GoBrowser("file:///" + val, 1);
         }
 
         #endregion
