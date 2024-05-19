@@ -6506,6 +6506,12 @@ namespace Ostium
             TableParseVal.Start();
         }
 
+        private void TableNode_Btn_Click(object sender, EventArgs e)
+        {
+            Thread TableParseNode = new Thread(() => TableParseNode_Thrd());
+            TableParseNode.Start();
+        }
+
         private void ReplaceBrckt_btn_Click(object sender, EventArgs e)
         {
             JsonOut_txt.Text = Regex.Replace(JsonOut_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
@@ -6656,6 +6662,72 @@ namespace Ostium
                         Invoke(new Action<JValue>(ValAdd), x);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        void TableParseNode_Thrd()
+        {
+            try
+            {
+                CreateNameAleat();
+                StreamWriter file = new StreamWriter(JsonDir + UsenameAleatoire + "_table.html");
+
+                string xT = JsonVal_Txt.Text;
+                string xO = "";
+                char[] charsToTrim = { ',' };
+                string[] words = xT.Split();
+
+                int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
+                JsonNode CastNode = JsonNode.Parse(JsonOut_txt.Text);
+                JsonNode SelNode = CastNode[JsonNode_Txt.Text];
+
+                string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
+    "href=\"style.css\"></head><body><div class=\"relative overflow-hidden shadow-md rounded-lg\"><table class=\"table-fixed w-full " +
+    "text-left\"><thead class=\"uppercase bg-[#6b7280] text-[#e5e7eb]\" style=\"background-color: #6b7280; color: #e5e7eb;\"><tr>";
+
+                file.WriteLine(t);
+
+                foreach (string word in words)
+                {
+                    xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
+                }
+
+                file.WriteLine(xO);
+
+                t = "</tr></thead><tbody class=\"bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]\" style=\"background-color: #FFFFFF; " +
+                    "color: #6b7280;\"><tr class=\"py-5\">";
+
+                file.WriteLine(t);
+
+                xO = "";
+
+                for (int i = 0; i < CntEnd; i++)
+                {
+                    JsonNode SrcName = SelNode[i];
+
+                    JArray jsonVal = JArray.Parse("[" + SrcName.ToJsonString() + "]");
+                    dynamic valjson = jsonVal;
+                    foreach (dynamic val in valjson)
+                    {
+                        foreach (string word in words)
+                        {
+                            xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
+                        }
+
+                        file.WriteLine(xO);
+                        xO = "";
+                        file.WriteLine("</tr><tr class=\"py-5\">");
+                    }
+                }
+
+                file.WriteLine("</tr></tbody></table></div></body></html>");
+                file.Close();
+
+                Invoke(new Action<string>(OpnTableJson), JsonDir + UsenameAleatoire + "_table.html");
             }
             catch (Exception ex)
             {
