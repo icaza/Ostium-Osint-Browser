@@ -38,9 +38,7 @@ namespace Ostium
             /// Loading default configuration URLs into a List
             /// 
             if (File.Exists(AppStart + "url_dflt_cnf.ost"))
-            {
                 lstUrlDfltCnf.AddRange(File.ReadAllLines(AppStart + "url_dflt_cnf.ost"));
-            }
         }
 
         #region Browser_Event Handler
@@ -70,9 +68,7 @@ namespace Ostium
                 string pageUri = "";
 
                 if (Clipboard.ContainsText(TextDataFormat.Text))
-                {
                     pageUri = Clipboard.GetText(TextDataFormat.Text);
-                }
 
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -242,9 +238,7 @@ namespace Ostium
         void Home_Btn_Click(object sender, EventArgs e)
         {
             if (@Class_Var.URL_HOME == "")
-            {
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
-            }
 
             WBrowse.Source = new Uri(@Class_Var.URL_HOME);
         }
@@ -252,9 +246,7 @@ namespace Ostium
         void Trad_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_TRAD_WEBPAGE == "")
-            {
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
-            }
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
             WBrowse.Source = new Uri(@formatURI);
@@ -289,9 +281,7 @@ namespace Ostium
         void OnKey_URLbrowse(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
-            {
                 GoBrowser(URLbrowse_Cbx.Text);
-            }
         }
         /// <summary>
         /// Cookies save

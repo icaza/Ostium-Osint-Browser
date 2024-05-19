@@ -195,9 +195,7 @@ namespace Ostium
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                    {
                         File.Delete(Scripts + NameBkmklt_Txt.Text + ".xml");
-                    }
 
                     Bookmarklet_Lst.Items.Clear();
                     loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);
@@ -230,9 +228,7 @@ namespace Ostium
         void Copy_Mnu_Click(object sender, EventArgs e)
         {
             if (ScriptTxt_Txt.SelectedText != "")
-            {
                 Clipboard.SetDataObject(ScriptTxt_Txt.SelectedText);
-            }
         }
 
         void Paste_Mnu_Click(object sender, EventArgs e)

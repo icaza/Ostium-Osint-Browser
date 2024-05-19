@@ -134,9 +134,8 @@ namespace Ostium
                 }
 
                 if (!File.Exists(dir_dir))
-                {
                     File_Write(dir_dir, "");
-                }
+
                 OpenFile_Editor(dir_dir);
             }
             catch (Exception ex)

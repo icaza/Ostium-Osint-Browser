@@ -54,13 +54,9 @@ namespace Ostium
         void Sortie_Txt_DoubleClick(object sender, EventArgs e)
         {
             if (Sortie_Txt.ScrollBars == ScrollBars.None)
-            {
                 Sortie_Txt.ScrollBars = ScrollBars.Vertical;
-            }
             else
-            {
                 Sortie_Txt.ScrollBars = ScrollBars.None;
-            }
         }
     }
 }

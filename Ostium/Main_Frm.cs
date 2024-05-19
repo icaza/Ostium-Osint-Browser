@@ -624,9 +624,7 @@ namespace Ostium
                 string pageUri = "";
 
                 if (Clipboard.ContainsText(TextDataFormat.Text))
-                {
                     pageUri = Clipboard.GetText(TextDataFormat.Text);
-                }
 
                 SynchronizationContext.Current.Post((_) =>
                 {
