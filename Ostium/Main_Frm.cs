@@ -108,7 +108,7 @@ namespace Ostium
         string ClearOnOff = "on";
         string NameUriDB = "";
         string UnshortURLval = "";
-        string UsenameAleatoire = "";
+        string Una = "";
         //readonly int CMDconsSwitch;
         string TableOpen = "";
         string Tables_Lst_Opt = "add";
@@ -1369,10 +1369,10 @@ namespace Ostium
             {
                 var img = await TakeWebScreenshot();
                 CreateNameAleat();
-                img.Save(Pictures + UsenameAleatoire + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                img.Save(Pictures + Una + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 Beep(800, 200);
 
-                Process.Start(Pictures + UsenameAleatoire + ".png");
+                Process.Start(Pictures + Una + ".png");
             }
             catch (Exception ex)
             {
@@ -2423,8 +2423,8 @@ namespace Ostium
                 }
 
                 CreateNameAleat();
-                string nameSVG = UsenameAleatoire + "_" + FileDiag;
-                string nameSVGb = UsenameAleatoire;
+                string nameSVG = Una + "_" + FileDiag;
+                string nameSVGb = Una;
 
                 IcazaClass selectdir = new IcazaClass();
                 string dirselect = selectdir.Dirselect();
@@ -2733,7 +2733,7 @@ namespace Ostium
 
         void CreateNameAleat()
         {
-            UsenameAleatoire = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
+            Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
         }
 
         #region Prompt_
@@ -5906,6 +5906,9 @@ namespace Ostium
                         loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
                         ProjectMapOpn_Lbl.Text = "";
+
+                        GMap_Ctrl.Overlays.Clear();
+                        overlayOne.Markers.Clear();
                     }
                 }
                 else
@@ -5947,7 +5950,7 @@ namespace Ostium
                 using (SaveFileDialog dialog = new SaveFileDialog())
                 {
                     dialog.Filter = "PNG (*.png)|*.png";
-                    dialog.FileName = UsenameAleatoire + "_Ostium_image";
+                    dialog.FileName = Una + "_Ostium_image";
                     Image image = GMap_Ctrl.ToImage();
 
                     if (image != null)
@@ -6015,7 +6018,7 @@ namespace Ostium
                     addtxt.WriteLine("<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">");
                     addtxt.WriteLine("<Document>");
                     addtxt.WriteLine("	<Placemark>");
-                    addtxt.WriteLine("		<name>Ostium location " + UsenameAleatoire + "</name>");
+                    addtxt.WriteLine("		<name>Ostium location " + Una + "</name>");
                     addtxt.WriteLine("		<LookAt>");
                     addtxt.WriteLine("			<longitude>" + LonGtCurrent_Lbl.Text + "</longitude>");
                     addtxt.WriteLine("			<latitude>" + LatTCurrent_Lbl.Text + "</latitude>");
@@ -6551,6 +6554,7 @@ namespace Ostium
                 string xO = "";
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
+                string sendval = "";
 
                 JArray jsonVal = JArray.Parse(jsonout);
                 dynamic valjson = jsonVal;
@@ -6562,10 +6566,10 @@ namespace Ostium
                         xO += val[word.TrimEnd(charsToTrim)] + charspace;
                     }
 
-                    JValue x = (JValue)xO;
+                    sendval += xO + "\r\n";
                     xO = "";
-                    Invoke(new Action<JValue>(ValAdd), x);
                 }
+                Invoke(new Action<string>(ValAdd), sendval);
             }
             catch (Exception ex)
             {
@@ -6578,7 +6582,7 @@ namespace Ostium
             try
             {
                 CreateNameAleat();
-                StreamWriter file = new StreamWriter(JsonDir + UsenameAleatoire + "_table.html");
+                StreamWriter file = new StreamWriter(JsonDir + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
@@ -6623,7 +6627,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<string>(OpnTableJson), JsonDir + UsenameAleatoire + "_table.html");
+                Invoke(new Action<string>(OpnTableJson), JsonDir + Una + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6639,6 +6643,7 @@ namespace Ostium
                 string xO = "";
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
+                string sendval = "";
 
                 int CntEnd = Convert.ToInt32(count);
                 JsonNode CastNode = JsonNode.Parse(jsonout);
@@ -6657,11 +6662,11 @@ namespace Ostium
                             xO += val[word.TrimEnd(charsToTrim)] + charspace;
                         }
 
-                        JValue x = (JValue)xO;
+                        sendval += xO + "\r\n";
                         xO = "";
-                        Invoke(new Action<JValue>(ValAdd), x);
                     }
                 }
+                Invoke(new Action<string>(ValAdd), sendval);
             }
             catch (Exception ex)
             {
@@ -6674,7 +6679,7 @@ namespace Ostium
             try
             {
                 CreateNameAleat();
-                StreamWriter file = new StreamWriter(JsonDir + UsenameAleatoire + "_table.html");
+                StreamWriter file = new StreamWriter(JsonDir + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
@@ -6727,7 +6732,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<string>(OpnTableJson), JsonDir + UsenameAleatoire + "_table.html");
+                Invoke(new Action<string>(OpnTableJson), JsonDir + Una + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6766,9 +6771,10 @@ namespace Ostium
 
         #region Invoke_Json
 
-        void ValAdd(JValue val)
+        void ValAdd(string val)
         {
-            JsonParse_txt.Text += val + "\r\n";
+            JsonParse_txt.Text = val;
+            JsonParse_txt.GoEnd();
         }
 
         void OpnTableJson(string val)
