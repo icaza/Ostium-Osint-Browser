@@ -96,22 +96,18 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-               senderror.ErrorLog("Error! Sortie_Lst_SelectedIndexChanged: ", ex.Message, "OpenSource_Frm", AppStart);
+               senderror.ErrorLog("Error! SaveData_Btn_Click: ", ex.Message, "OpenSource_Frm", AppStart);
             }
         }
 
         void TopNo_Btn_Click(object sender, EventArgs e)
         {
             if (TopNo_Btn.Text == "Top")
-            {
-                TopMost = true;
                 TopNo_Btn.Text = "Not";
-            }
             else
-            {
-                TopMost = false;
                 TopNo_Btn.Text = "Top";
-            }
+
+            TopMost = !TopMost;
         }
 
         void Sorted_Btn_Click(object sender, EventArgs e)
