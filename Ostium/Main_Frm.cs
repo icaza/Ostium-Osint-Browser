@@ -80,6 +80,7 @@ namespace Ostium
         readonly string BkmkltDir = Application.StartupPath + @"\scripts\bookmarklet\";
         readonly string MapDir = Application.StartupPath + @"\map\";
         readonly string JsonDir = Application.StartupPath + @"\json-files\";
+        readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
         public string D4ta = "default_database_name";
         ///
         /// <summary>
@@ -369,7 +370,8 @@ namespace Ostium
                         BkmkltDir,
                         Setirps,
                         MapDir,
-                        JsonDir
+                        JsonDir,
+                        JsonDir + "table"
                     };
 
                 for (int i = 0; i < CreateDir.Count; i++)
@@ -6515,6 +6517,12 @@ namespace Ostium
             TableParseNode.Start();
         }
 
+        private void OpnTableList_Btn_Click(object sender, EventArgs e)
+        {
+            loadfiledir.LoadFileDirectory(JsonDirTable, "html", "lst", TableJson_Lst);
+            JsonList_Pnl.Visible = !JsonList_Pnl.Visible;
+        }
+
         private void ReplaceBrckt_btn_Click(object sender, EventArgs e)
         {
             JsonOut_txt.Text = Regex.Replace(JsonOut_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
@@ -6525,6 +6533,17 @@ namespace Ostium
         {
             JsonOut_txt.Text = JsonParse_txt.Text;
             JsonParse_txt.Text = "";
+        }
+
+        private void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
+        {
+            Process.Start(JsonDirTable);
+        }
+
+        private void TableJson_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TableJson_Lst.SelectedIndex != -1)
+                GoBrowser("file:///" + JsonDirTable + TableJson_Lst.SelectedItem.ToString(), 1);
         }
 
         async void GetAsync(string Urijson)
