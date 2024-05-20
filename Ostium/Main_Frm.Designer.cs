@@ -466,6 +466,7 @@
             this.OpnJsonDirTable_Btn = new System.Windows.Forms.Button();
             this.TableJson_Lst = new System.Windows.Forms.ListBox();
             this.OpnTableList_Btn = new System.Windows.Forms.Button();
+            this.AddBrackets_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -3472,6 +3473,7 @@
             // 
             // JsonPanel3_Pnl
             // 
+            this.JsonPanel3_Pnl.Controls.Add(this.AddBrackets_Btn);
             this.JsonPanel3_Pnl.Controls.Add(this.PermuteOut_Btn);
             this.JsonPanel3_Pnl.Controls.Add(this.BrcktB_Txt);
             this.JsonPanel3_Pnl.Controls.Add(this.label30);
@@ -3504,9 +3506,9 @@
             this.PermuteOut_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PermuteOut_Btn.ForeColor = System.Drawing.Color.White;
             this.PermuteOut_Btn.Image = global::Ostium.Properties.Resources.Top;
-            this.PermuteOut_Btn.Location = new System.Drawing.Point(1304, 0);
+            this.PermuteOut_Btn.Location = new System.Drawing.Point(1294, 0);
             this.PermuteOut_Btn.Name = "PermuteOut_Btn";
-            this.PermuteOut_Btn.Size = new System.Drawing.Size(22, 22);
+            this.PermuteOut_Btn.Size = new System.Drawing.Size(32, 22);
             this.PermuteOut_Btn.TabIndex = 31;
             this.PermuteOut_Btn.UseVisualStyleBackColor = false;
             this.PermuteOut_Btn.Click += new System.EventHandler(this.PermuteOut_Btn_Click);
@@ -3518,7 +3520,7 @@
             this.BrcktB_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktB_Txt.Location = new System.Drawing.Point(1210, 0);
+            this.BrcktB_Txt.Location = new System.Drawing.Point(1154, 0);
             this.BrcktB_Txt.Name = "BrcktB_Txt";
             this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktB_Txt.TabIndex = 29;
@@ -3528,7 +3530,7 @@
             // 
             this.label30.Dock = System.Windows.Forms.DockStyle.Left;
             this.label30.ForeColor = System.Drawing.Color.Gray;
-            this.label30.Location = new System.Drawing.Point(1176, 0);
+            this.label30.Location = new System.Drawing.Point(1120, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(34, 22);
             this.label30.TabIndex = 28;
@@ -3542,7 +3544,7 @@
             this.BrcktA_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktA_Txt.Location = new System.Drawing.Point(1139, 0);
+            this.BrcktA_Txt.Location = new System.Drawing.Point(1083, 0);
             this.BrcktA_Txt.Name = "BrcktA_Txt";
             this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktA_Txt.TabIndex = 27;
@@ -3559,7 +3561,7 @@
             this.ReplaceBrckt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReplaceBrckt_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReplaceBrckt_btn.ForeColor = System.Drawing.Color.White;
-            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(1051, 0);
+            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(995, 0);
             this.ReplaceBrckt_btn.Name = "ReplaceBrckt_btn";
             this.ReplaceBrckt_btn.Size = new System.Drawing.Size(88, 22);
             this.ReplaceBrckt_btn.TabIndex = 30;
@@ -3573,9 +3575,9 @@
             this.label29.ForeColor = System.Drawing.Color.Gray;
             this.label29.Location = new System.Drawing.Point(921, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(130, 22);
+            this.label29.Size = new System.Drawing.Size(74, 22);
             this.label29.TabIndex = 26;
-            this.label29.Text = "Replace brackets";
+            this.label29.Text = "Replace";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CharSpace_Txt
@@ -5879,6 +5881,25 @@
             this.OpnTableList_Btn.UseVisualStyleBackColor = false;
             this.OpnTableList_Btn.Click += new System.EventHandler(this.OpnTableList_Btn_Click);
             // 
+            // AddBrackets_Btn
+            // 
+            this.AddBrackets_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.AddBrackets_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddBrackets_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AddBrackets_Btn.FlatAppearance.BorderSize = 0;
+            this.AddBrackets_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.AddBrackets_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.AddBrackets_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddBrackets_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddBrackets_Btn.ForeColor = System.Drawing.Color.White;
+            this.AddBrackets_Btn.Location = new System.Drawing.Point(1261, 0);
+            this.AddBrackets_Btn.Name = "AddBrackets_Btn";
+            this.AddBrackets_Btn.Size = new System.Drawing.Size(33, 22);
+            this.AddBrackets_Btn.TabIndex = 32;
+            this.AddBrackets_Btn.Text = "[ ]";
+            this.AddBrackets_Btn.UseVisualStyleBackColor = false;
+            this.AddBrackets_Btn.Click += new System.EventHandler(this.AddBrackets_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6428,6 +6449,7 @@
         private System.Windows.Forms.Button OpnJsonDirTable_Btn;
         private System.Windows.Forms.ListBox TableJson_Lst;
         private System.Windows.Forms.Button OpnTableList_Btn;
+        private System.Windows.Forms.Button AddBrackets_Btn;
     }
 }
 

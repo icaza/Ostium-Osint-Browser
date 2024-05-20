@@ -6530,6 +6530,15 @@ namespace Ostium
             JsonOut_txt.Text = JsonOut_txt.Text;
         }
 
+        private void AddBrackets_Btn_Click(object sender, EventArgs e)
+        {
+            JsonOut_txt.GoHome();
+            JsonOut_txt.Text = JsonOut_txt.Text.Insert(JsonOut_txt.SelectionStart, "[");
+            JsonOut_txt.GoEnd();
+            JsonOut_txt.Text = JsonOut_txt.Text.Insert(JsonOut_txt.SelectionStart, "]");
+            JsonOut_txt.GoHome();
+        }
+
         private void PermuteOut_Btn_Click(object sender, EventArgs e)
         {
             JsonOut_txt.Text = JsonParse_txt.Text;
