@@ -6601,7 +6601,7 @@ namespace Ostium
             try
             {
                 CreateNameAleat();
-                StreamWriter file = new StreamWriter(JsonDir + Una + "_table.html");
+                StreamWriter file = new StreamWriter(JsonDirTable + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
@@ -6698,7 +6698,7 @@ namespace Ostium
             try
             {
                 CreateNameAleat();
-                StreamWriter file = new StreamWriter(JsonDir + Una + "_table.html");
+                StreamWriter file = new StreamWriter(JsonDirTable + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
