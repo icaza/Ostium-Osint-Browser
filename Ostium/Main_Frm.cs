@@ -2710,7 +2710,8 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Downloading and saving the source of the current WEB page, only remote files.
+        /// Downloading and saving the source of the current WEB page overwriting the previous, only remote files. This operation is 
+        /// carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
         /// </summary>
         /// 
         async void Download_Source_Page()
