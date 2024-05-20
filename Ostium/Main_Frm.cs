@@ -6646,7 +6646,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<string>(OpnTableJson), JsonDir + Una + "_table.html");
+                Invoke(new Action<string>(OpnTableJson), JsonDirTable + Una + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6751,7 +6751,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<string>(OpnTableJson), JsonDir + Una + "_table.html");
+                Invoke(new Action<string>(OpnTableJson), JsonDirTable + Una + "_table.html");
             }
             catch (Exception ex)
             {
