@@ -101,6 +101,8 @@ namespace Ostium
         ComboBox Workflow_Cbx;
         ListBox Workflow_Lst;
         Label SizeAll_Lbl;
+        FastColoredTextBox FastTxt;
+        FastColoredTextBox FastOut;
         ///
         /// <summary>
         /// Variables
@@ -6541,23 +6543,6 @@ namespace Ostium
         {
             JsonOut_txt.Text = Regex.Replace(JsonOut_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
             JsonOut_txt.Text = JsonOut_txt.Text;
-        }
-
-        void PermuteOut_Btn_Click(object sender, EventArgs e)
-        {
-            if (JsonParse_txt.Text != "")
-            {
-                Thread PermuteOut = new Thread(() => PermuteOut_Thrd());
-                PermuteOut.Start();
-            }
-        }
-
-        void PermuteOut_Thrd()
-        {
-            if (Brkts_Chk.Checked)
-                JsonOut_txt.Text = "[" + JsonParse_txt.Text + "]";
-            else
-                JsonOut_txt.Text = JsonParse_txt.Text;
         }
 
         void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
