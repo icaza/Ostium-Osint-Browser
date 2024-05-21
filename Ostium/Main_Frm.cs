@@ -31,6 +31,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET;
 using System.Globalization;
 using System.Text.Json.Nodes;
+using FastColoredTextBoxNS;
 
 namespace Ostium
 {
@@ -3804,9 +3805,9 @@ namespace Ostium
                 XmlTextReader xmlReader = new XmlTextReader(AppStart + "config.xml");
                 doc.Load(xmlReader);
 
-                if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/DB_USE_DEFAULT") is XmlElement node1)
+                if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/DB_USE_DEFAULT") is XmlElement nod)
                 {
-                    node1.InnerText = NameDB;
+                    nod.InnerText = NameDB;
                 }
 
                 xmlReader.Close();
@@ -4371,9 +4372,9 @@ namespace Ostium
                 XmlTextReader xmlReader = new XmlTextReader(AppStart + "config.xml");
                 doc.Load(xmlReader);
 
-                if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/" + nodeselect) is XmlElement node1)
+                if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/" + nodeselect) is XmlElement nod)
                 {
-                    node1.InnerText = Convert.ToString(value);
+                    nod.InnerText = Convert.ToString(value);
                 }
 
                 xmlReader.Close();
@@ -4651,7 +4652,7 @@ namespace Ostium
 
                 string Markup = "<!--" + AddSingleItemswf_Txt.Text + "-->";
 
-                if (doc.SelectSingleNode("/Table") is XmlElement node1)
+                if (doc.SelectSingleNode("/Table") is XmlElement nod)
                 {
                     int x;
                     x = Itemwf_Cbx.FindStringExact(AddSingleItemswf_Txt.Text);
@@ -4659,7 +4660,7 @@ namespace Ostium
                     {
                         XmlElement elem = doc.CreateElement(AddSingleItemswf_Txt.Text);
                         elem.InnerXml = Markup; // Markup
-                        node1.AppendChild(elem);
+                        nod.AppendChild(elem);
                     }
                 }
 
@@ -4891,7 +4892,7 @@ namespace Ostium
                 XmlTextReader xmlReader = new XmlTextReader(Workflow + NameProjectwf_Txt.Text + ".xml");
                 doc.Load(xmlReader);
 
-                if (doc.SelectSingleNode("/Table/" + nodeselect) is XmlElement node1)
+                if (doc.SelectSingleNode("/Table/" + nodeselect) is XmlElement nod)
                 {
                     XmlElement elem = doc.CreateElement(elementselect);
 
@@ -4951,7 +4952,7 @@ namespace Ostium
                     }
 
                     elem.InnerText = value;
-                    node1.AppendChild(elem);
+                    nod.AppendChild(elem);
                 }
 
                 xmlReader.Close();
@@ -5790,6 +5791,7 @@ namespace Ostium
                     AddNewLocPoints(values[0], values[1], values[2], values[3]);
                 }
             }
+
             MessageBox.Show("Ok");
         }
 
@@ -6119,14 +6121,14 @@ namespace Ostium
             XmlTextReader xmlReader = new XmlTextReader(MapXmlOpn);
             doc.Load(xmlReader);
 
-            if (doc.SelectSingleNode("/Table/Location") is XmlElement node1)
+            if (doc.SelectSingleNode("/Table/Location") is XmlElement nod)
             {
                 XmlElement elem = doc.CreateElement("Point_Point");
                 elem.SetAttribute("latitude", lat);
                 elem.SetAttribute("longitude", lon);
                 elem.SetAttribute("textmarker", txtmarker);
                 elem.InnerText = locationname;
-                node1.AppendChild(elem);
+                nod.AppendChild(elem);
             }
 
             xmlReader.Close();
@@ -6436,10 +6438,21 @@ namespace Ostium
 
             if (fileopen != "")
             {
-                using (StreamReader sr = new StreamReader(fileopen))
-                {
-                    JsonOut_txt.Text = sr.ReadToEnd();
-                }
+                JsonOut_txt.Text = "";
+                FileAsync(fileopen);
+            }
+        }
+
+        async void FileAsync(string val)
+        {
+            using (StreamReader sr = new StreamReader(val))
+            {
+                string line = await sr.ReadToEndAsync();
+
+                if (Brkts_Chk.Checked)
+                    JsonOut_txt.Text = "[" + line + "]";
+                else
+                    JsonOut_txt.Text = line;
             }
         }
 
@@ -6506,51 +6519,53 @@ namespace Ostium
             ParseNode.Start();
         }
 
-        private void TableParse_Btn_Click(object sender, EventArgs e)
+        void TableParse_Btn_Click(object sender, EventArgs e)
         {
             Thread TableParseVal = new Thread(() => TableParseVal_Thrd());
             TableParseVal.Start();
         }
 
-        private void TableNode_Btn_Click(object sender, EventArgs e)
+        void TableNode_Btn_Click(object sender, EventArgs e)
         {
             Thread TableParseNode = new Thread(() => TableParseNode_Thrd());
             TableParseNode.Start();
         }
 
-        private void OpnTableList_Btn_Click(object sender, EventArgs e)
+        void OpnTableList_Btn_Click(object sender, EventArgs e)
         {
             loadfiledir.LoadFileDirectory(JsonDirTable, "html", "lst", TableJson_Lst);
             JsonList_Pnl.Visible = !JsonList_Pnl.Visible;
         }
 
-        private void ReplaceBrckt_btn_Click(object sender, EventArgs e)
+        void ReplaceBrckt_btn_Click(object sender, EventArgs e)
         {
             JsonOut_txt.Text = Regex.Replace(JsonOut_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
             JsonOut_txt.Text = JsonOut_txt.Text;
         }
 
-        private void AddBrackets_Btn_Click(object sender, EventArgs e)
+        void PermuteOut_Btn_Click(object sender, EventArgs e)
         {
-            JsonOut_txt.GoHome();
-            JsonOut_txt.Text = JsonOut_txt.Text.Insert(JsonOut_txt.SelectionStart, "[");
-            JsonOut_txt.GoEnd();
-            JsonOut_txt.Text = JsonOut_txt.Text.Insert(JsonOut_txt.SelectionStart, "]");
-            JsonOut_txt.GoHome();
+            if (JsonParse_txt.Text != "")
+            {
+                Thread PermuteOut = new Thread(() => PermuteOut_Thrd());
+                PermuteOut.Start();
+            }
         }
 
-        private void PermuteOut_Btn_Click(object sender, EventArgs e)
+        void PermuteOut_Thrd()
         {
-            JsonOut_txt.Text = JsonParse_txt.Text;
-            JsonParse_txt.Text = "";
+            if (Brkts_Chk.Checked)
+                JsonOut_txt.Text = "[" + JsonParse_txt.Text + "]";
+            else
+                JsonOut_txt.Text = JsonParse_txt.Text;
         }
 
-        private void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
+        void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
         {
             Process.Start(JsonDirTable);
         }
 
-        private void TableJson_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        void TableJson_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TableJson_Lst.SelectedIndex != -1)
                 GoBrowser("file:///" + JsonDirTable + TableJson_Lst.SelectedItem.ToString(), 1);
@@ -6565,7 +6580,7 @@ namespace Ostium
                 var response = await client.GetAsync(Urijson);
                 var jsonResponse = await response.Content.ReadAsStringAsync();
 
-                JsonOut_txt.Text = $"{jsonResponse}\n";
+                JsonOut_txt.Text = $"{jsonResponse}";
 
                 File_Write(JsonDir + "test-json.json", JsonOut_txt.Text);
             }
@@ -6598,7 +6613,8 @@ namespace Ostium
                     sendval += xO + "\r\n";
                     xO = "";
                 }
-                Invoke(new Action<string>(ValAdd), sendval);
+
+                Invoke(new Action<string>(ValAdd_Invk), sendval);
             }
             catch (Exception ex)
             {
@@ -6656,7 +6672,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<string>(OpnTableJson), JsonDirTable + Una + "_table.html");
+                Invoke(new Action<string>(OpnTableJson_Invk), JsonDirTable + Una + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6695,7 +6711,7 @@ namespace Ostium
                         xO = "";
                     }
                 }
-                Invoke(new Action<string>(ValAdd), sendval);
+                Invoke(new Action<string>(ValAdd_Invk), sendval);
             }
             catch (Exception ex)
             {
@@ -6761,7 +6777,7 @@ namespace Ostium
                 file.WriteLine("</tr></tbody></table></div></body></html>");
                 file.Close();
 
-                Invoke(new Action<string>(OpnTableJson), JsonDirTable + Una + "_table.html");
+                Invoke(new Action<string>(OpnTableJson_Invk), JsonDirTable + Una + "_table.html");
             }
             catch (Exception ex)
             {
@@ -6800,13 +6816,13 @@ namespace Ostium
 
         #region Invoke_Json
 
-        void ValAdd(string val)
+        void ValAdd_Invk(string val)
         {
             JsonParse_txt.Text = val;
             JsonParse_txt.GoEnd();
         }
 
-        void OpnTableJson(string val)
+        void OpnTableJson_Invk(string val)
         {
             GoBrowser("file:///" + val, 1);
         }
