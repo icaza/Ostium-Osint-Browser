@@ -3344,9 +3344,9 @@
             this.OutJsonB_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutJsonB_Chk.Location = new System.Drawing.Point(0, 0);
             this.OutJsonB_Chk.Name = "OutJsonB_Chk";
-            this.OutJsonB_Chk.Size = new System.Drawing.Size(87, 25);
+            this.OutJsonB_Chk.Size = new System.Drawing.Size(80, 25);
             this.OutJsonB_Chk.TabIndex = 9;
-            this.OutJsonB_Chk.Text = "checkBox2";
+            this.OutJsonB_Chk.Text = "parse in";
             this.OutJsonB_Chk.UseVisualStyleBackColor = true;
             // 
             // JsonOutA_txt
@@ -3463,9 +3463,9 @@
             this.OutJsonA_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutJsonA_Chk.Location = new System.Drawing.Point(0, 0);
             this.OutJsonA_Chk.Name = "OutJsonA_Chk";
-            this.OutJsonA_Chk.Size = new System.Drawing.Size(87, 25);
+            this.OutJsonA_Chk.Size = new System.Drawing.Size(80, 25);
             this.OutJsonA_Chk.TabIndex = 9;
-            this.OutJsonA_Chk.Text = "checkBox1";
+            this.OutJsonA_Chk.Text = "parse in";
             this.OutJsonA_Chk.UseVisualStyleBackColor = true;
             // 
             // JsonOutB_txt
