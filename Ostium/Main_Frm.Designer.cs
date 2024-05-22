@@ -469,6 +469,7 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.BrktsL_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -3452,6 +3453,7 @@
             // 
             // JsonPanel3_Pnl
             // 
+            this.JsonPanel3_Pnl.Controls.Add(this.BrktsL_Btn);
             this.JsonPanel3_Pnl.Controls.Add(this.BrcktB_Txt);
             this.JsonPanel3_Pnl.Controls.Add(this.label30);
             this.JsonPanel3_Pnl.Controls.Add(this.BrcktA_Txt);
@@ -5849,6 +5851,25 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // BrktsL_Btn
+            // 
+            this.BrktsL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BrktsL_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BrktsL_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BrktsL_Btn.FlatAppearance.BorderSize = 0;
+            this.BrktsL_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.BrktsL_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.BrktsL_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BrktsL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BrktsL_Btn.ForeColor = System.Drawing.Color.White;
+            this.BrktsL_Btn.Location = new System.Drawing.Point(1295, 0);
+            this.BrktsL_Btn.Name = "BrktsL_Btn";
+            this.BrktsL_Btn.Size = new System.Drawing.Size(31, 22);
+            this.BrktsL_Btn.TabIndex = 31;
+            this.BrktsL_Btn.Text = "[ ]";
+            this.BrktsL_Btn.UseVisualStyleBackColor = false;
+            this.BrktsL_Btn.Click += new System.EventHandler(this.BrktsL_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6403,6 +6424,7 @@
         private System.Windows.Forms.CheckBox OutJsonB_Chk;
         private System.Windows.Forms.RichTextBox JsonOutB_txt;
         private System.Windows.Forms.RichTextBox JsonOutA_txt;
+        private System.Windows.Forms.Button BrktsL_Btn;
     }
 }
 

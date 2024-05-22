@@ -6836,6 +6836,20 @@ namespace Ostium
             }
         }
 
+        void BrktsL_Btn_Click(object sender, EventArgs e)
+        {
+            Thread Brkts = new Thread(() => Brkts_Thrd());
+            Brkts.Start();
+        }
+
+        void Brkts_Thrd()
+        {
+            OutParse.Select(0, 0);
+            OutParse.Text = OutParse.Text.Insert(OutParse.SelectionStart, "[");
+            OutParse.Select(OutParse.Text.Length, 0);
+            OutParse.Text = OutParse.Text.Insert(OutParse.SelectionStart, "]");
+        }
+
         #endregion
 
         #region Invoke_Json
