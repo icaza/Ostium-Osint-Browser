@@ -252,6 +252,13 @@
             this.label24 = new System.Windows.Forms.Label();
             this.Json_Tab = new System.Windows.Forms.TabPage();
             this.JsonOutB_txt = new System.Windows.Forms.RichTextBox();
+            this.Menu_Mnu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Cut_Tools = new System.Windows.Forms.ToolStripMenuItem();
+            this.Copy_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Paste_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Delete_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.SelectAll_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.panel35 = new System.Windows.Forms.Panel();
             this.OutJsonB_Chk = new System.Windows.Forms.CheckBox();
             this.JsonOutA_txt = new System.Windows.Forms.RichTextBox();
@@ -262,6 +269,7 @@
             this.OpnJsonDirTable_Btn = new System.Windows.Forms.Button();
             this.panel33 = new System.Windows.Forms.Panel();
             this.JsonPanel3_Pnl = new System.Windows.Forms.Panel();
+            this.BrktsL_Btn = new System.Windows.Forms.Button();
             this.BrcktB_Txt = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.BrcktA_Txt = new System.Windows.Forms.TextBox();
@@ -359,13 +367,6 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.Menu_Mnu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Cut_Tools = new System.Windows.Forms.ToolStripMenuItem();
-            this.Copy_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.Paste_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.Delete_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
-            this.SelectAll_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -469,7 +470,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.BrktsL_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -514,6 +514,7 @@
             this.Map_Tab.SuspendLayout();
             this.Map_Cmd_Pnl.SuspendLayout();
             this.Json_Tab.SuspendLayout();
+            this.Menu_Mnu.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel34.SuspendLayout();
             this.JsonList_Pnl.SuspendLayout();
@@ -530,7 +531,6 @@
             this.Panel_ConfigXml.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel27.SuspendLayout();
-            this.Menu_Mnu.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
@@ -2697,6 +2697,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2982,6 +2983,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3340,6 +3342,59 @@
             this.JsonOutB_txt.TabIndex = 13;
             this.JsonOutB_txt.Text = "";
             // 
+            // Menu_Mnu
+            // 
+            this.Menu_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Cut_Tools,
+            this.Copy_Mnu,
+            this.Paste_Mnu,
+            this.Delete_Mnu,
+            this.toolStripSeparator28,
+            this.SelectAll_Mnu});
+            this.Menu_Mnu.Name = "Menu_Mnu";
+            this.Menu_Mnu.Size = new System.Drawing.Size(136, 120);
+            // 
+            // Cut_Tools
+            // 
+            this.Cut_Tools.Name = "Cut_Tools";
+            this.Cut_Tools.Size = new System.Drawing.Size(135, 22);
+            this.Cut_Tools.Text = "Cut";
+            this.Cut_Tools.Click += new System.EventHandler(this.Cut_Tools_Click);
+            // 
+            // Copy_Mnu
+            // 
+            this.Copy_Mnu.Name = "Copy_Mnu";
+            this.Copy_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.Copy_Mnu.Text = "Copy";
+            this.Copy_Mnu.Click += new System.EventHandler(this.Copy_Mnu_Click);
+            // 
+            // Paste_Mnu
+            // 
+            this.Paste_Mnu.Name = "Paste_Mnu";
+            this.Paste_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.Paste_Mnu.Text = "Paste";
+            this.Paste_Mnu.Click += new System.EventHandler(this.Paste_Mnu_Click);
+            // 
+            // Delete_Mnu
+            // 
+            this.Delete_Mnu.Name = "Delete_Mnu";
+            this.Delete_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.Delete_Mnu.Text = "Delete";
+            this.Delete_Mnu.Click += new System.EventHandler(this.Delete_Mnu_Click);
+            // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(132, 6);
+            // 
+            // SelectAll_Mnu
+            // 
+            this.SelectAll_Mnu.Name = "SelectAll_Mnu";
+            this.SelectAll_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.SelectAll_Mnu.Text = "Select all";
+            this.SelectAll_Mnu.Click += new System.EventHandler(this.SelectAll_Mnu_Click);
+            // 
             // panel35
             // 
             this.panel35.Controls.Add(this.OutJsonB_Chk);
@@ -3472,6 +3527,25 @@
             this.JsonPanel3_Pnl.Name = "JsonPanel3_Pnl";
             this.JsonPanel3_Pnl.Size = new System.Drawing.Size(1326, 22);
             this.JsonPanel3_Pnl.TabIndex = 4;
+            // 
+            // BrktsL_Btn
+            // 
+            this.BrktsL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BrktsL_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BrktsL_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BrktsL_Btn.FlatAppearance.BorderSize = 0;
+            this.BrktsL_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.BrktsL_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.BrktsL_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BrktsL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BrktsL_Btn.ForeColor = System.Drawing.Color.White;
+            this.BrktsL_Btn.Location = new System.Drawing.Point(1295, 0);
+            this.BrktsL_Btn.Name = "BrktsL_Btn";
+            this.BrktsL_Btn.Size = new System.Drawing.Size(31, 22);
+            this.BrktsL_Btn.TabIndex = 31;
+            this.BrktsL_Btn.Text = "[ ]";
+            this.BrktsL_Btn.UseVisualStyleBackColor = false;
+            this.BrktsL_Btn.Click += new System.EventHandler(this.BrktsL_Btn_Click);
             // 
             // BrcktB_Txt
             // 
@@ -4767,59 +4841,6 @@
             this.panel21.Size = new System.Drawing.Size(10, 610);
             this.panel21.TabIndex = 20;
             // 
-            // Menu_Mnu
-            // 
-            this.Menu_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Cut_Tools,
-            this.Copy_Mnu,
-            this.Paste_Mnu,
-            this.Delete_Mnu,
-            this.toolStripSeparator28,
-            this.SelectAll_Mnu});
-            this.Menu_Mnu.Name = "Menu_Mnu";
-            this.Menu_Mnu.Size = new System.Drawing.Size(136, 120);
-            // 
-            // Cut_Tools
-            // 
-            this.Cut_Tools.Name = "Cut_Tools";
-            this.Cut_Tools.Size = new System.Drawing.Size(135, 22);
-            this.Cut_Tools.Text = "Cut";
-            this.Cut_Tools.Click += new System.EventHandler(this.Cut_Tools_Click);
-            // 
-            // Copy_Mnu
-            // 
-            this.Copy_Mnu.Name = "Copy_Mnu";
-            this.Copy_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Copy_Mnu.Text = "Copy";
-            this.Copy_Mnu.Click += new System.EventHandler(this.Copy_Mnu_Click);
-            // 
-            // Paste_Mnu
-            // 
-            this.Paste_Mnu.Name = "Paste_Mnu";
-            this.Paste_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Paste_Mnu.Text = "Paste";
-            this.Paste_Mnu.Click += new System.EventHandler(this.Paste_Mnu_Click);
-            // 
-            // Delete_Mnu
-            // 
-            this.Delete_Mnu.Name = "Delete_Mnu";
-            this.Delete_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Delete_Mnu.Text = "Delete";
-            this.Delete_Mnu.Click += new System.EventHandler(this.Delete_Mnu_Click);
-            // 
-            // toolStripSeparator28
-            // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(132, 6);
-            // 
-            // SelectAll_Mnu
-            // 
-            this.SelectAll_Mnu.Name = "SelectAll_Mnu";
-            this.SelectAll_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.SelectAll_Mnu.Text = "Select all";
-            this.SelectAll_Mnu.Click += new System.EventHandler(this.SelectAll_Mnu_Click);
-            // 
             // Status_Strip
             // 
             this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -5851,25 +5872,6 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // BrktsL_Btn
-            // 
-            this.BrktsL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.BrktsL_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BrktsL_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BrktsL_Btn.FlatAppearance.BorderSize = 0;
-            this.BrktsL_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.BrktsL_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.BrktsL_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrktsL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BrktsL_Btn.ForeColor = System.Drawing.Color.White;
-            this.BrktsL_Btn.Location = new System.Drawing.Point(1295, 0);
-            this.BrktsL_Btn.Name = "BrktsL_Btn";
-            this.BrktsL_Btn.Size = new System.Drawing.Size(31, 22);
-            this.BrktsL_Btn.TabIndex = 31;
-            this.BrktsL_Btn.Text = "[ ]";
-            this.BrktsL_Btn.UseVisualStyleBackColor = false;
-            this.BrktsL_Btn.Click += new System.EventHandler(this.BrktsL_Btn_Click);
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -5946,6 +5948,7 @@
             this.Map_Cmd_Pnl.PerformLayout();
             this.Json_Tab.ResumeLayout(false);
             this.Json_Tab.PerformLayout();
+            this.Menu_Mnu.ResumeLayout(false);
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
             this.panel34.ResumeLayout(false);
@@ -5969,7 +5972,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel27.ResumeLayout(false);
-            this.Menu_Mnu.ResumeLayout(false);
             this.Status_Strip.ResumeLayout(false);
             this.Status_Strip.PerformLayout();
             this.Tools_TAB_1.ResumeLayout(false);

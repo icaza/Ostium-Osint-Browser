@@ -6461,11 +6461,11 @@ namespace Ostium
 
         void LastJson_Btn_Click(object sender, EventArgs e)
         {
-            if (File.Exists(JsonDir + "test-json.json"))
+            if (File.Exists(JsonDir + "tmp-json.json"))
             {
-                using (StreamReader sr = new StreamReader(JsonDir + "test-json.json"))
+                using (StreamReader sr = new StreamReader(JsonDir + "tmp-json.json"))
                 {
-                    JsonOutA_txt.Text = sr.ReadToEnd();
+                    OutParse.Text = sr.ReadToEnd();
                 }
             }
         }
