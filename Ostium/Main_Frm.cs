@@ -101,8 +101,8 @@ namespace Ostium
         ComboBox Workflow_Cbx;
         ListBox Workflow_Lst;
         Label SizeAll_Lbl;
-        FastColoredTextBox OutJson;
-        FastColoredTextBox OutParse;
+        RichTextBox OutJson;
+        RichTextBox OutParse;
         ///
         /// <summary>
         /// Variables
@@ -6842,8 +6842,7 @@ namespace Ostium
 
         void ValAdd_Invk(string val)
         {            
-            OutJson.Text = val;            
-            OutJson.GoEnd();
+            OutJson.Text = val;
         }
 
         void OpnTableJson_Invk(string val)
@@ -6862,10 +6861,7 @@ namespace Ostium
 
         void Copy_Mnu_Click(object sender, EventArgs e)
         {
-            if (JsonOutA_txt.SelectedText != "")
-            {
-                Clipboard.SetDataObject(JsonOutA_txt.SelectedText);
-            }
+            SendKeys.Send("^" + "c");
         }
 
         void Paste_Mnu_Click(object sender, EventArgs e)
