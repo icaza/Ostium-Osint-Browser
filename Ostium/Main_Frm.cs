@@ -6445,7 +6445,7 @@ namespace Ostium
 
             if (fileopen != "")
             {
-                JsonOutA_txt.Text = "";
+                OutParse.Text = "";
                 FileAsync(fileopen);
             }
         }
@@ -6455,7 +6455,7 @@ namespace Ostium
             using (StreamReader sr = new StreamReader(val))
             {
                 string line = await sr.ReadToEndAsync();
-                JsonOutA_txt.Text = line;
+                OutParse.Text = line;
             }
         }
 
@@ -6472,8 +6472,8 @@ namespace Ostium
 
         void JsonSaveFile_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonOutA_txt.Text != "")
-                SavefileShowDiag(JsonOutA_txt.Text, "json files (*.json)|*.json");
+            if (OutParse.Text != "")
+                SavefileShowDiag(OutParse.Text, "json files (*.json)|*.json");
         }
 
         void JsonSaveUri_Btn_Click(object sender, EventArgs e)
@@ -6493,7 +6493,7 @@ namespace Ostium
 
         void JsonSaveData_Btn_Click(object sender, EventArgs e)
         {
-            if (OutParse.Text != "")
+            if (OutJson.Text != "")
                 SavefileShowDiag(OutJson.Text, "files (*.*)|*.*");
         }
 
@@ -6502,7 +6502,7 @@ namespace Ostium
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
                 Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
 
-            JsonOutA_txt.Text = "";
+            OutParse.Text = "";
             GetAsync(JsonUri_Txt.Text);
         }
 
@@ -6542,8 +6542,14 @@ namespace Ostium
 
         void ReplaceBrckt_btn_Click(object sender, EventArgs e)
         {
-            JsonOutA_txt.Text = Regex.Replace(JsonOutA_txt.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
-            JsonOutA_txt.Text = JsonOutA_txt.Text;
+            Thread ReplaceBrckt = new Thread(() => ReplaceBrckt_Thrd());
+            ReplaceBrckt.Start();
+        }
+
+        void ReplaceBrckt_Thrd()
+        {
+            OutParse.Text = Regex.Replace(OutParse.Text, BrcktA_Txt.Text, BrcktB_Txt.Text);
+            OutParse.Text = OutParse.Text;
         }
 
         void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
@@ -6566,9 +6572,9 @@ namespace Ostium
                 var response = await client.GetAsync(Urijson);
                 var jsonResponse = await response.Content.ReadAsStringAsync();
 
-                JsonOutA_txt.Text = $"{jsonResponse}";
+                OutParse.Text = $"{jsonResponse}";
 
-                File_Write(JsonDir + "test-json.json", JsonOutA_txt.Text);
+                File_Write(JsonDir + "tmp-json.json", OutParse.Text);
             }
             catch (Exception ex)
             {
@@ -6585,7 +6591,7 @@ namespace Ostium
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
                 string sendval = "";
-
+                
                 JArray jsonVal = JArray.Parse(jsonout);
                 dynamic valjson = jsonVal;
 
@@ -6835,8 +6841,8 @@ namespace Ostium
         #region Invoke_Json
 
         void ValAdd_Invk(string val)
-        {
-            OutJson.Text = val;
+        {            
+            OutJson.Text = val;            
             OutJson.GoEnd();
         }
 
