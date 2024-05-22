@@ -174,6 +174,7 @@ namespace Ostium
         readonly string versionNow = "7";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
+        int Vrfy = 0;
 
         #endregion
 
@@ -5767,7 +5768,12 @@ namespace Ostium
 
         void NewProjectMapList_Tls_Click(object sender, EventArgs e)
         {
+            Vrfy = 0;
+            
             CreateProjectMap(1);
+
+            if (Vrfy == 1)
+                return;
 
             string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
@@ -5824,7 +5830,11 @@ namespace Ostium
                     if (result == DialogResult.Yes)
                         File.Delete(MapDir + ValName + ".xml");
                     else
+                    {
+                        Vrfy = 1;
                         return;
+                    }
+                        
                 }
 
                 XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
@@ -5851,6 +5861,10 @@ namespace Ostium
                 ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".xml";
 
                 MapXmlOpn = MapDir + ValName + ".xml";
+            }
+            else
+            {
+                Vrfy = 1;
             }
         }
 
@@ -6499,6 +6513,14 @@ namespace Ostium
 
         void GetJson_Btn_Click(object sender, EventArgs e)
         {
+            if (JsonUri_Txt.Text == "")
+            {
+                JsonUri_Txt.BackColor = Color.Red;
+                MessageBox.Show("Insert valid URL!");
+                JsonUri_Txt.BackColor = Color.Black;
+                return;
+            }
+
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
                 Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
 
@@ -6508,6 +6530,14 @@ namespace Ostium
 
         void ParseJson_Btn_Click(object sender, EventArgs e)
         {
+            if (JsonVal_Txt.Text == "")
+            {
+                JsonVal_Txt.BackColor = Color.Red;
+                MessageBox.Show("Insert keyword!");
+                JsonVal_Txt.BackColor = Color.Black;
+                return;
+            }
+
             OutJson.Text = "";
 
             Thread ParseVal = new Thread(() => ParseVal_Thrd(JsonVal_Txt.Text, OutParse.Text, CharSpace_Txt.Text));
@@ -6516,6 +6546,16 @@ namespace Ostium
 
         void ParseNodeJson_Btn_Click(object sender, EventArgs e)
         {
+            if (JsonVal_Txt.Text == "" || JsonNode_Txt.Text == "")
+            {
+                JsonVal_Txt.BackColor = Color.Red;
+                JsonNode_Txt.BackColor = Color.Red;
+                MessageBox.Show("Insert keyword!");
+                JsonVal_Txt.BackColor = Color.Black;
+                JsonNode_Txt.BackColor = Color.Black;
+                return;
+            }
+
             OutJson.Text = "";
 
             Thread ParseNode = new Thread(() => ParseNode_Thrd(JsonVal_Txt.Text, JsonCnt_txt.Text, OutParse.Text, JsonNode_Txt.Text, CharSpace_Txt.Text));
@@ -6524,12 +6564,30 @@ namespace Ostium
 
         void TableParse_Btn_Click(object sender, EventArgs e)
         {
+            if (JsonVal_Txt.Text == "")
+            {
+                JsonVal_Txt.BackColor = Color.Red;
+                MessageBox.Show("Insert keyword!");
+                JsonVal_Txt.BackColor = Color.Black;
+                return;
+            }
+
             Thread TableParseVal = new Thread(() => TableParseVal_Thrd());
             TableParseVal.Start();
         }
 
         void TableNode_Btn_Click(object sender, EventArgs e)
         {
+            if (JsonVal_Txt.Text == "" || JsonNode_Txt.Text == "")
+            {
+                JsonVal_Txt.BackColor = Color.Red;
+                JsonNode_Txt.BackColor = Color.Red;
+                MessageBox.Show("Insert keyword!");
+                JsonVal_Txt.BackColor = Color.Black;
+                JsonNode_Txt.BackColor = Color.Black;
+                return;
+            }
+
             Thread TableParseNode = new Thread(() => TableParseNode_Thrd());
             TableParseNode.Start();
         }
