@@ -269,6 +269,7 @@
             this.OpnJsonDirTable_Btn = new System.Windows.Forms.Button();
             this.panel33 = new System.Windows.Forms.Panel();
             this.JsonPanel3_Pnl = new System.Windows.Forms.Panel();
+            this.ChgCult_Chk = new System.Windows.Forms.CheckBox();
             this.BrktsL_Btn = new System.Windows.Forms.Button();
             this.BrcktB_Txt = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -470,7 +471,7 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.ChgCult_Chk = new System.Windows.Forms.CheckBox();
+            this.FileOpnJson_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2698,7 +2699,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2984,7 +2984,6 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3529,6 +3528,17 @@
             this.JsonPanel3_Pnl.Name = "JsonPanel3_Pnl";
             this.JsonPanel3_Pnl.Size = new System.Drawing.Size(1326, 22);
             this.JsonPanel3_Pnl.TabIndex = 4;
+            // 
+            // ChgCult_Chk
+            // 
+            this.ChgCult_Chk.AutoSize = true;
+            this.ChgCult_Chk.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ChgCult_Chk.Location = new System.Drawing.Point(1168, 0);
+            this.ChgCult_Chk.Name = "ChgCult_Chk";
+            this.ChgCult_Chk.Size = new System.Drawing.Size(127, 22);
+            this.ChgCult_Chk.TabIndex = 32;
+            this.ChgCult_Chk.Text = "Change Culture";
+            this.ChgCult_Chk.UseVisualStyleBackColor = true;
             // 
             // BrktsL_Btn
             // 
@@ -4861,7 +4871,8 @@
             this.LatTCurrent_Lbl,
             this.Separator,
             this.LonGtCurrent_Lbl,
-            this.TtsButton_Sts});
+            this.TtsButton_Sts,
+            this.FileOpnJson_Lbl});
             this.Status_Strip.Location = new System.Drawing.Point(0, 639);
             this.Status_Strip.Name = "Status_Strip";
             this.Status_Strip.Size = new System.Drawing.Size(1334, 22);
@@ -4955,17 +4966,19 @@
             // 
             // ProjectMapOpn_Lbl
             // 
+            this.ProjectMapOpn_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectMapOpn_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.ProjectMapOpn_Lbl.Name = "ProjectMapOpn_Lbl";
-            this.ProjectMapOpn_Lbl.Size = new System.Drawing.Size(15, 17);
+            this.ProjectMapOpn_Lbl.Size = new System.Drawing.Size(14, 17);
             this.ProjectMapOpn_Lbl.Text = "_";
             this.ProjectMapOpn_Lbl.Visible = false;
             // 
             // LatTCurrent_Lbl
             // 
+            this.LatTCurrent_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LatTCurrent_Lbl.ForeColor = System.Drawing.Color.Lime;
             this.LatTCurrent_Lbl.Name = "LatTCurrent_Lbl";
-            this.LatTCurrent_Lbl.Size = new System.Drawing.Size(15, 17);
+            this.LatTCurrent_Lbl.Size = new System.Drawing.Size(14, 17);
             this.LatTCurrent_Lbl.Text = "_";
             this.LatTCurrent_Lbl.Visible = false;
             // 
@@ -4979,9 +4992,10 @@
             // 
             // LonGtCurrent_Lbl
             // 
+            this.LonGtCurrent_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LonGtCurrent_Lbl.ForeColor = System.Drawing.Color.Lime;
             this.LonGtCurrent_Lbl.Name = "LonGtCurrent_Lbl";
-            this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(15, 17);
+            this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(14, 17);
             this.LonGtCurrent_Lbl.Text = "_";
             this.LonGtCurrent_Lbl.Visible = false;
             // 
@@ -5874,16 +5888,13 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ChgCult_Chk
+            // FileOpnJson_Lbl
             // 
-            this.ChgCult_Chk.AutoSize = true;
-            this.ChgCult_Chk.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ChgCult_Chk.Location = new System.Drawing.Point(1168, 0);
-            this.ChgCult_Chk.Name = "ChgCult_Chk";
-            this.ChgCult_Chk.Size = new System.Drawing.Size(127, 22);
-            this.ChgCult_Chk.TabIndex = 32;
-            this.ChgCult_Chk.Text = "Change Culture";
-            this.ChgCult_Chk.UseVisualStyleBackColor = true;
+            this.FileOpnJson_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileOpnJson_Lbl.ForeColor = System.Drawing.Color.White;
+            this.FileOpnJson_Lbl.Name = "FileOpnJson_Lbl";
+            this.FileOpnJson_Lbl.Size = new System.Drawing.Size(14, 17);
+            this.FileOpnJson_Lbl.Text = "_";
             // 
             // Main_Frm
             // 
@@ -6441,6 +6452,7 @@
         private System.Windows.Forms.RichTextBox JsonOutA_txt;
         private System.Windows.Forms.Button BrktsL_Btn;
         private System.Windows.Forms.CheckBox ChgCult_Chk;
+        private System.Windows.Forms.ToolStripStatusLabel FileOpnJson_Lbl;
     }
 }
 

@@ -2500,6 +2500,7 @@ namespace Ostium
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
                         TtsButton_Sts.Visible = false;
+                        FileOpnJson_Lbl.Visible = false;
 
                         if (JavaEnableDisableFeed_Btn.Text == "Javascript Disable")
                         {
@@ -2535,6 +2536,7 @@ namespace Ostium
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
                         TtsButton_Sts.Visible = false;
+                        FileOpnJson_Lbl.Visible = false;
 
                         ValueChange_Txt.ForeColor = Color.DimGray;
                         ValueChange_Txt.Text = "update URL and Name here";
@@ -2563,6 +2565,7 @@ namespace Ostium
                         LonGtCurrent_Lbl.Visible = false;
                         ProjectMapOpn_Lbl.Visible = false;
                         TtsButton_Sts.Visible = false;
+                        FileOpnJson_Lbl.Visible = false;
                         break;                        
                     }
                 case 4:
@@ -2585,6 +2588,7 @@ namespace Ostium
                     LonGtCurrent_Lbl.Visible = true;
                     ProjectMapOpn_Lbl.Visible = true;
                     TtsButton_Sts.Visible = false;
+                    FileOpnJson_Lbl.Visible = false;
 
                     if (VerifMapOpn == "off")
                     {
@@ -2614,6 +2618,7 @@ namespace Ostium
                     LonGtCurrent_Lbl.Visible = false;
                     ProjectMapOpn_Lbl.Visible = false;
                     TtsButton_Sts.Visible = false;
+                    FileOpnJson_Lbl.Visible = true;
 
                     OutParse = JsonOutA_txt;
                     OutJson = JsonOutB_txt;
@@ -2638,6 +2643,7 @@ namespace Ostium
                     LonGtCurrent_Lbl.Visible = false;
                     ProjectMapOpn_Lbl.Visible = false;
                     TtsButton_Sts.Visible = false;
+                    FileOpnJson_Lbl.Visible = false;
 
                     DireSizeCalc(AppStart, OstiumDir_Lbl);
                     DireSizeCalc(Plugins, AddOnDir_Lbl);
@@ -2675,6 +2681,7 @@ namespace Ostium
             LonGtCurrent_Lbl.Visible = false;
             ProjectMapOpn_Lbl.Visible = false;
             TtsButton_Sts.Visible = true;
+            FileOpnJson_Lbl.Visible = false;
 
             if (JavaEnableDisable_Btn.Text == "Javascript Disable")
                 JavaDisable_Lbl.Visible = true;
@@ -6459,6 +6466,7 @@ namespace Ostium
 
             if (fileopen != "")
             {
+                FileOpnJson_Lbl.Text = "File open: " + Path.GetFileName(fileopen);
                 OutParse.Text = "";
                 FileAsync(fileopen);
             }
