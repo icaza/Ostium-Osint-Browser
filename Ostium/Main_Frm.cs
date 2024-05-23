@@ -6657,7 +6657,10 @@ namespace Ostium
                 {
                     foreach (string word in words)
                     {
-                        xO += val[word.TrimEnd(charsToTrim)] + charspace;
+                        if (ChgCult_Chk.Checked)
+                            xO += val[word.TrimEnd(charsToTrim)].ToString(new CultureInfo("us-US")) + charspace;
+                        else
+                            xO += val[word.TrimEnd(charsToTrim)] + charspace;
                     }
 
                     sendval += xO + "\r\n";
@@ -6695,7 +6698,10 @@ namespace Ostium
 
                 foreach (string word in words)
                 {
-                    xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
+                    if (ChgCult_Chk.Checked)
+                        xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim).ToString(new CultureInfo("us-US")) + "</td>";
+                    else
+                        xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
                 }
 
                 file.WriteLine(xO);
@@ -6711,7 +6717,10 @@ namespace Ostium
                 {
                     foreach (string word in words)
                     {
-                        xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
+                        if (ChgCult_Chk.Checked)
+                            xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)].ToString(new CultureInfo("us-US")) + "</td>";
+                        else
+                            xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
                     }
 
                     file.WriteLine(xO);
@@ -6754,7 +6763,10 @@ namespace Ostium
                     {
                         foreach (string word in words)
                         {
-                            xO += val[word.TrimEnd(charsToTrim)] + charspace;
+                            if (ChgCult_Chk.Checked)
+                                xO += val[word.TrimEnd(charsToTrim)].ToString(new CultureInfo("us-US")) + charspace;
+                            else
+                                xO += val[word.TrimEnd(charsToTrim)] + charspace;
                         }
 
                         sendval += xO + "\r\n";
@@ -6793,7 +6805,10 @@ namespace Ostium
 
                 foreach (string word in words)
                 {
-                    xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
+                    if (ChgCult_Chk.Checked)
+                        xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim).ToString(new CultureInfo("us-US")) + "</td>";
+                    else
+                        xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
                 }
 
                 file.WriteLine(xO);
@@ -6815,7 +6830,10 @@ namespace Ostium
                     {
                         foreach (string word in words)
                         {
-                            xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
+                            if (ChgCult_Chk.Checked)
+                                xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)].ToString(new CultureInfo("us-US")) + "</td>";
+                            else
+                                xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
                         }
 
                         file.WriteLine(xO);
