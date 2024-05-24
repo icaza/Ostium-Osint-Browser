@@ -242,6 +242,9 @@ namespace Ostium
                     /// <param value="1">Message False or True update</param>
                     ///
                     VerifyUPDT("Ostium", 0);
+
+                    OutParse = JsonOutA_txt;
+                    OutJson = JsonOutB_txt;
                 });
             }
             catch (Exception ex)
@@ -2619,9 +2622,6 @@ namespace Ostium
                     ProjectMapOpn_Lbl.Visible = false;
                     TtsButton_Sts.Visible = false;
                     FileOpnJson_Lbl.Visible = true;
-
-                    OutParse = JsonOutA_txt;
-                    OutJson = JsonOutB_txt;
                     break;
                 case 6:
                     Tools_TAB_0.Visible = false;
