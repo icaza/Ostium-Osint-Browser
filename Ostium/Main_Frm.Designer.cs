@@ -3887,7 +3887,7 @@
             this.TableNode_Btn.Name = "TableNode_Btn";
             this.TableNode_Btn.Size = new System.Drawing.Size(85, 32);
             this.TableNode_Btn.TabIndex = 23;
-            this.TableNode_Btn.Text = "Oject Table";
+            this.TableNode_Btn.Text = "Object Table";
             this.TableNode_Btn.UseVisualStyleBackColor = false;
             this.TableNode_Btn.Click += new System.EventHandler(this.TableNode_Btn_Click);
             // 
