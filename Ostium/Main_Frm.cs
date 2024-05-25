@@ -6997,6 +6997,51 @@ namespace Ostium
                 WbOutB.Source = uri;
         }
 
+        private void Extd_Btn_Click(object sender, EventArgs e)
+        {
+            string Btn = (sender as Button).Name;
+            if (Btn == ExtdA_Btn.Name)
+            {
+                if (!PanelBjson_Pnl.Visible)
+                {
+                    WbOutA.Dock = DockStyle.Top;
+                    WbOutB.Dock = DockStyle.Fill;
+                    WbOutB.Visible = true;
+                    PanelBjson_Pnl.Visible = true;
+                }
+                else
+                {
+                    WbOutA.Dock = DockStyle.Fill;
+                    WbOutB.Dock = DockStyle.None;
+                    WbOutB.Visible = false;
+                    PanelBjson_Pnl.Visible = false;
+                }
+
+                PanelAjson_Pnl.Visible = true;
+                WbOutA.Visible = true;
+            }
+            else
+            {
+                if (!PanelAjson_Pnl.Visible)
+                {
+                    WbOutA.Dock = DockStyle.Top;
+                    WbOutB.Dock = DockStyle.Fill;
+                    WbOutA.Visible = true;
+                    PanelAjson_Pnl.Visible = true;
+                }
+                else
+                {
+                    WbOutA.Dock = DockStyle.None;
+                    WbOutB.Dock = DockStyle.Fill;
+                    WbOutB.Visible = false;
+                    PanelAjson_Pnl.Visible = false;
+                }
+
+                PanelBjson_Pnl.Visible = true;
+                WbOutB.Visible = true;
+            }
+        }
+
         #endregion
 
         #region Invoke_Json

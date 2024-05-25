@@ -252,12 +252,14 @@
             this.label24 = new System.Windows.Forms.Label();
             this.Json_Tab = new System.Windows.Forms.TabPage();
             this.WbOutB = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.panel35 = new System.Windows.Forms.Panel();
+            this.PanelBjson_Pnl = new System.Windows.Forms.Panel();
+            this.ExtdB_Btn = new System.Windows.Forms.Button();
             this.EmptyB_Btn = new System.Windows.Forms.Button();
             this.RfreshB_Btn = new System.Windows.Forms.Button();
             this.OutJsonB_Chk = new System.Windows.Forms.CheckBox();
             this.WbOutA = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.panel34 = new System.Windows.Forms.Panel();
+            this.PanelAjson_Pnl = new System.Windows.Forms.Panel();
+            this.ExtdA_Btn = new System.Windows.Forms.Button();
             this.EmptyA_Btn = new System.Windows.Forms.Button();
             this.RfreshA_Btn = new System.Windows.Forms.Button();
             this.OutJsonA_Chk = new System.Windows.Forms.CheckBox();
@@ -520,9 +522,9 @@
             this.Map_Cmd_Pnl.SuspendLayout();
             this.Json_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).BeginInit();
-            this.panel35.SuspendLayout();
+            this.PanelBjson_Pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutA)).BeginInit();
-            this.panel34.SuspendLayout();
+            this.PanelAjson_Pnl.SuspendLayout();
             this.JsonList_Pnl.SuspendLayout();
             this.JsonPanel3_Pnl.SuspendLayout();
             this.JsonPanel2_Pnl.SuspendLayout();
@@ -2704,7 +2706,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2990,7 +2991,6 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3317,9 +3317,9 @@
             // 
             this.Json_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Json_Tab.Controls.Add(this.WbOutB);
-            this.Json_Tab.Controls.Add(this.panel35);
+            this.Json_Tab.Controls.Add(this.PanelBjson_Pnl);
             this.Json_Tab.Controls.Add(this.WbOutA);
-            this.Json_Tab.Controls.Add(this.panel34);
+            this.Json_Tab.Controls.Add(this.PanelAjson_Pnl);
             this.Json_Tab.Controls.Add(this.JsonList_Pnl);
             this.Json_Tab.Controls.Add(this.panel33);
             this.Json_Tab.Controls.Add(this.JsonPanel3_Pnl);
@@ -3349,16 +3349,36 @@
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
             // 
-            // panel35
+            // PanelBjson_Pnl
             // 
-            this.panel35.Controls.Add(this.EmptyB_Btn);
-            this.panel35.Controls.Add(this.RfreshB_Btn);
-            this.panel35.Controls.Add(this.OutJsonB_Chk);
-            this.panel35.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel35.Location = new System.Drawing.Point(0, 295);
-            this.panel35.Name = "panel35";
-            this.panel35.Size = new System.Drawing.Size(1126, 25);
-            this.panel35.TabIndex = 11;
+            this.PanelBjson_Pnl.Controls.Add(this.ExtdB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.EmptyB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.RfreshB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.OutJsonB_Chk);
+            this.PanelBjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelBjson_Pnl.Location = new System.Drawing.Point(0, 295);
+            this.PanelBjson_Pnl.Name = "PanelBjson_Pnl";
+            this.PanelBjson_Pnl.Size = new System.Drawing.Size(1126, 25);
+            this.PanelBjson_Pnl.TabIndex = 11;
+            // 
+            // ExtdB_Btn
+            // 
+            this.ExtdB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ExtdB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExtdB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ExtdB_Btn.FlatAppearance.BorderSize = 0;
+            this.ExtdB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ExtdB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ExtdB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExtdB_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExtdB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ExtdB_Btn.Location = new System.Drawing.Point(228, 0);
+            this.ExtdB_Btn.Name = "ExtdB_Btn";
+            this.ExtdB_Btn.Size = new System.Drawing.Size(84, 25);
+            this.ExtdB_Btn.TabIndex = 22;
+            this.ExtdB_Btn.Text = "Extend";
+            this.ExtdB_Btn.UseVisualStyleBackColor = false;
+            this.ExtdB_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
             // 
             // EmptyB_Btn
             // 
@@ -3425,16 +3445,36 @@
             this.WbOutA.TabIndex = 14;
             this.WbOutA.ZoomFactor = 1D;
             // 
-            // panel34
+            // PanelAjson_Pnl
             // 
-            this.panel34.Controls.Add(this.EmptyA_Btn);
-            this.panel34.Controls.Add(this.RfreshA_Btn);
-            this.panel34.Controls.Add(this.OutJsonA_Chk);
-            this.panel34.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel34.Location = new System.Drawing.Point(0, 106);
-            this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(1126, 25);
-            this.panel34.TabIndex = 10;
+            this.PanelAjson_Pnl.Controls.Add(this.ExtdA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.EmptyA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.RfreshA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.OutJsonA_Chk);
+            this.PanelAjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelAjson_Pnl.Location = new System.Drawing.Point(0, 106);
+            this.PanelAjson_Pnl.Name = "PanelAjson_Pnl";
+            this.PanelAjson_Pnl.Size = new System.Drawing.Size(1126, 25);
+            this.PanelAjson_Pnl.TabIndex = 10;
+            // 
+            // ExtdA_Btn
+            // 
+            this.ExtdA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ExtdA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExtdA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ExtdA_Btn.FlatAppearance.BorderSize = 0;
+            this.ExtdA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ExtdA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ExtdA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExtdA_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExtdA_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ExtdA_Btn.Location = new System.Drawing.Point(228, 0);
+            this.ExtdA_Btn.Name = "ExtdA_Btn";
+            this.ExtdA_Btn.Size = new System.Drawing.Size(84, 25);
+            this.ExtdA_Btn.TabIndex = 21;
+            this.ExtdA_Btn.Text = "Extend";
+            this.ExtdA_Btn.UseVisualStyleBackColor = false;
+            this.ExtdA_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
             // 
             // EmptyA_Btn
             // 
@@ -6037,11 +6077,11 @@
             this.Json_Tab.ResumeLayout(false);
             this.Json_Tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).EndInit();
-            this.panel35.ResumeLayout(false);
-            this.panel35.PerformLayout();
+            this.PanelBjson_Pnl.ResumeLayout(false);
+            this.PanelBjson_Pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutA)).EndInit();
-            this.panel34.ResumeLayout(false);
-            this.panel34.PerformLayout();
+            this.PanelAjson_Pnl.ResumeLayout(false);
+            this.PanelAjson_Pnl.PerformLayout();
             this.JsonList_Pnl.ResumeLayout(false);
             this.JsonPanel3_Pnl.ResumeLayout(false);
             this.JsonPanel3_Pnl.PerformLayout();
@@ -6509,9 +6549,9 @@
         private System.Windows.Forms.Button OpnJsonDirTable_Btn;
         private System.Windows.Forms.ListBox TableJson_Lst;
         private System.Windows.Forms.Button OpnTableList_Btn;
-        private System.Windows.Forms.Panel panel34;
+        private System.Windows.Forms.Panel PanelAjson_Pnl;
         private System.Windows.Forms.CheckBox OutJsonA_Chk;
-        private System.Windows.Forms.Panel panel35;
+        private System.Windows.Forms.Panel PanelBjson_Pnl;
         private System.Windows.Forms.CheckBox OutJsonB_Chk;
         private System.Windows.Forms.CheckBox ChgCult_Chk;
         private System.Windows.Forms.ToolStripStatusLabel FileOpnJson_Lbl;
@@ -6522,6 +6562,8 @@
         private System.Windows.Forms.Button RfreshA_Btn;
         private System.Windows.Forms.Button EmptyB_Btn;
         private System.Windows.Forms.Button EmptyA_Btn;
+        private System.Windows.Forms.Button ExtdB_Btn;
+        private System.Windows.Forms.Button ExtdA_Btn;
     }
 }
 
