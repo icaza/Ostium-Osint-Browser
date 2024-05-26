@@ -466,9 +466,9 @@
             this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.LatT_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.LonGt_txt = new System.Windows.Forms.ToolStripTextBox();
+            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
             this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
@@ -1111,10 +1111,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -3141,7 +3141,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 25);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3178,7 +3178,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 581);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3196,7 +3196,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 581);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3211,7 +3211,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 166);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 414);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 385);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3243,7 +3243,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 580);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 551);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3904,7 +3904,7 @@
             this.OpnTableList_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpnTableList_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnTableList_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.OpnTableList_Btn.Location = new System.Drawing.Point(590, 0);
+            this.OpnTableList_Btn.Location = new System.Drawing.Point(606, 0);
             this.OpnTableList_Btn.Name = "OpnTableList_Btn";
             this.OpnTableList_Btn.Size = new System.Drawing.Size(109, 32);
             this.OpnTableList_Btn.TabIndex = 24;
@@ -3925,7 +3925,7 @@
             this.TableNode_Btn.ForeColor = System.Drawing.Color.White;
             this.TableNode_Btn.Location = new System.Drawing.Point(505, 0);
             this.TableNode_Btn.Name = "TableNode_Btn";
-            this.TableNode_Btn.Size = new System.Drawing.Size(85, 32);
+            this.TableNode_Btn.Size = new System.Drawing.Size(101, 32);
             this.TableNode_Btn.TabIndex = 23;
             this.TableNode_Btn.Text = "Object Table";
             this.TableNode_Btn.UseVisualStyleBackColor = false;
@@ -5686,9 +5686,9 @@
             this.ToolsMap_Mnu,
             this.GmapProvider_Cbx,
             this.toolStripLabel3,
-            this.LatT_Txt,
+            this.LatLon_Txt,
             this.toolStripLabel5,
-            this.LonGt_txt,
+            this.OrderLL_txt,
             this.GoLatLong_Tls,
             this.toolStripSeparator23,
             this.toolStripLabel4,
@@ -5906,42 +5906,45 @@
             // 
             this.toolStripLabel3.ForeColor = System.Drawing.Color.Gray;
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(55, 22);
-            this.toolStripLabel3.Text = "latitude";
+            this.toolStripLabel3.Size = new System.Drawing.Size(51, 22);
+            this.toolStripLabel3.Text = "lat/Lon";
             // 
-            // LatT_Txt
+            // LatLon_Txt
             // 
-            this.LatT_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LatT_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LatT_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatT_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LatT_Txt.Name = "LatT_Txt";
-            this.LatT_Txt.Size = new System.Drawing.Size(100, 25);
+            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.LatLon_Txt.Name = "LatLon_Txt";
+            this.LatLon_Txt.Size = new System.Drawing.Size(200, 25);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.ForeColor = System.Drawing.Color.Gray;
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(66, 22);
-            this.toolStripLabel5.Text = "longitude";
+            this.toolStripLabel5.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel5.Text = "Order";
             // 
-            // LonGt_txt
+            // OrderLL_txt
             // 
-            this.LonGt_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LonGt_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LonGt_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LonGt_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LonGt_txt.Name = "LonGt_txt";
-            this.LonGt_txt.Size = new System.Drawing.Size(100, 25);
+            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.OrderLL_txt.Name = "OrderLL_txt";
+            this.OrderLL_txt.Size = new System.Drawing.Size(45, 25);
+            this.OrderLL_txt.Text = "lalo";
+            this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // GoLatLong_Tls
             // 
+            this.GoLatLong_Tls.AutoSize = false;
             this.GoLatLong_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.GoLatLong_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.GoLatLong_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoLatLong_Tls.Image")));
             this.GoLatLong_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoLatLong_Tls.Name = "GoLatLong_Tls";
-            this.GoLatLong_Tls.Size = new System.Drawing.Size(27, 22);
+            this.GoLatLong_Tls.Size = new System.Drawing.Size(50, 22);
             this.GoLatLong_Tls.Text = "go";
             this.GoLatLong_Tls.Click += new System.EventHandler(this.GoLatLong_Tls_Click);
             // 
@@ -5968,12 +5971,13 @@
             // 
             // GoWord_Tls
             // 
+            this.GoWord_Tls.AutoSize = false;
             this.GoWord_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.GoWord_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.GoWord_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoWord_Tls.Image")));
             this.GoWord_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoWord_Tls.Name = "GoWord_Tls";
-            this.GoWord_Tls.Size = new System.Drawing.Size(27, 22);
+            this.GoWord_Tls.Size = new System.Drawing.Size(50, 22);
             this.GoWord_Tls.Text = "go";
             this.GoWord_Tls.Click += new System.EventHandler(this.GoWord_Tls_Click);
             // 
@@ -6461,9 +6465,9 @@
         private System.Windows.Forms.ToolStripButton GoLatLong_Tls;
         private System.Windows.Forms.ToolStripComboBox GmapProvider_Cbx;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox LatT_Txt;
+        private System.Windows.Forms.ToolStripTextBox LatLon_Txt;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripTextBox LonGt_txt;
+        private System.Windows.Forms.ToolStripTextBox OrderLL_txt;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripTextBox KeywordMap_Txt;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;

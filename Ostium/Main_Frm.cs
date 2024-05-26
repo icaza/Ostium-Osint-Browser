@@ -32,6 +32,7 @@ using GMap.NET;
 using System.Globalization;
 using System.Text.Json.Nodes;
 using Microsoft.Web.WebView2.WinForms;
+using Microsoft.Ajax.Utilities;
 
 namespace Ostium
 {
@@ -6085,19 +6086,40 @@ namespace Ostium
         {
             try
             {
-                if (LatT_Txt.Text == "" || LonGt_txt.Text == "")
+                if (LatLon_Txt.Text == "")
                 {
-                    LatT_Txt.BackColor = Color.Red;
-                    LonGt_txt.BackColor = Color.Red;
+                    LatLon_Txt.BackColor = Color.Red;
                     MessageBox.Show("False coordinates!");
-                    LatT_Txt.BackColor = Color.FromArgb(28, 28, 28);
-                    LonGt_txt.BackColor = Color.FromArgb(28, 28, 28);
+                    LatLon_Txt.BackColor = Color.FromArgb(28, 28, 28);
                     return;
+                }
+
+                string LaT = "";
+                string LoN = "";
+                string stn = LatLon_Txt.Text;
+
+                char[] charsToTrim = { ' ' };
+                string[] words = stn.Split();
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    if (OrderLL_txt.Text == "lalo")
+                    {
+                        LaT = words[0]; LoN = words[1];
+                    }
+                    else if (OrderLL_txt.Text == "lola")
+                    {
+                        LaT = words[1]; LoN = words[0];
+                    }
+                    else
+                    {
+                        MessageBox.Show("Select the correct order for Latitude and Longitude! lalo or lola.");
+                    }
                 }
 
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
-                GoLatLong(LatT_Txt.Text, LonGt_txt.Text, LatT_Txt.Text + " " + LonGt_txt.Text);
+                GoLatLong(LaT, LoN, LaT + " " + LoN);
             }
             catch (Exception ex)
             {
@@ -6674,6 +6696,8 @@ namespace Ostium
                     WbOutA.Source = uri;
                 else
                     WbOutB.Source = uri;
+
+                Beep(1000, 400);
             }
             catch (Exception ex)
             {
