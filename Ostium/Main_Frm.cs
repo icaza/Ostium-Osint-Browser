@@ -175,7 +175,7 @@ namespace Ostium
         /// 
         readonly string upftOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "7";
+        readonly string versionNow = "8";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -5634,7 +5634,7 @@ namespace Ostium
         #region Invoke_Diagram
         ///
         /// <summary>
-        /// Opening the diagram in a new wBrowser nail
+        /// Opening the diagram in a new wBrowser
         /// </summary>
         /// <param name="value"></param>
         /// <param value="0">The diagram creation file is in the diagram directory</param>
@@ -5777,7 +5777,14 @@ namespace Ostium
                 senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-
+        ///
+        /// <summary>
+        /// Create a new project from a list of points
+        /// </summary>
+        /// <param name="Vrfy">Checks if the operation is not abandoned</param>
+        /// <param name="0">Continue</param>
+        /// <param name="1">Return</param>
+        /// 
         void NewProjectMapList_Tls_Click(object sender, EventArgs e)
         {
             Vrfy = 0;
@@ -5803,7 +5810,7 @@ namespace Ostium
         /// <param name="values[0]">Point Name</param>
         /// <param name="values[1]">Latitude</param>
         /// <param name="values[2]">Longitude</param>
-        /// <param name="values[3]">Description/Infos</param>
+        /// <param name="values[3]">Marker/Description/Infos</param>
         /// 
         void AutoCreatePoints_Thrd(string fileopn)
         {
@@ -5817,7 +5824,7 @@ namespace Ostium
                 }
             }
 
-            MessageBox.Show("Ok");
+            MessageBox.Show("Completed.");
         }
 
         void CreateProjectMap(int val)
@@ -5845,8 +5852,7 @@ namespace Ostium
                     {
                         Vrfy = 1;
                         return;
-                    }
-                        
+                    }                        
                 }
 
                 XmlTextWriter writer = new XmlTextWriter(MapDir + ValName + ".xml", Encoding.UTF8);
@@ -7167,7 +7173,8 @@ namespace Ostium
         ///
         void AnnonceUpdate(string softName)
         {
-            var result = MessageBox.Show("An update is available for the " + softName + " software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("An update is available for the " + softName + 
+                " software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 if (result == DialogResult.Yes)
