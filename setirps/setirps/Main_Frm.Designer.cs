@@ -110,8 +110,9 @@
             this.Server_Sprite_Var = new System.Windows.Forms.Label();
             this.Server_Sprite_Select = new System.Windows.Forms.Label();
             this.Panel_Button = new System.Windows.Forms.Panel();
-            this.RemoveItem_Btn = new System.Windows.Forms.Button();
             this.Finalise_Btn = new System.Windows.Forms.Button();
+            this.RemoveItem_Btn = new System.Windows.Forms.Button();
+            this.CursorPosition_Chk = new System.Windows.Forms.CheckBox();
             this.InsertValueAB_Btn = new System.Windows.Forms.Button();
             this.AddValueB_Txt = new System.Windows.Forms.Button();
             this.ValueB_Txt = new System.Windows.Forms.TextBox();
@@ -133,11 +134,10 @@
             this.CreateDiagram_Btn = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ProjectOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.NewProject_Btn = new System.Windows.Forms.Button();
             this.OpnXML_Btn = new System.Windows.Forms.Button();
-            this.CursorPosition_Chk = new System.Windows.Forms.CheckBox();
             this.AppStartup_Btn = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_Tls.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.Panel_Site.SuspendLayout();
@@ -1174,6 +1174,23 @@
             this.Panel_Button.Size = new System.Drawing.Size(877, 22);
             this.Panel_Button.TabIndex = 11;
             // 
+            // Finalise_Btn
+            // 
+            this.Finalise_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Finalise_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Finalise_Btn.FlatAppearance.BorderSize = 0;
+            this.Finalise_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Finalise_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Finalise_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Finalise_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.Finalise_Btn.Location = new System.Drawing.Point(768, 0);
+            this.Finalise_Btn.Name = "Finalise_Btn";
+            this.Finalise_Btn.Size = new System.Drawing.Size(60, 22);
+            this.Finalise_Btn.TabIndex = 10;
+            this.Finalise_Btn.Text = "Finalise";
+            this.Finalise_Btn.UseVisualStyleBackColor = true;
+            this.Finalise_Btn.Click += new System.EventHandler(this.Finalise_Btn_Click);
+            // 
             // RemoveItem_Btn
             // 
             this.RemoveItem_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1191,22 +1208,18 @@
             this.RemoveItem_Btn.UseVisualStyleBackColor = true;
             this.RemoveItem_Btn.Click += new System.EventHandler(this.RemoveItem_Btn_Click);
             // 
-            // Finalise_Btn
+            // CursorPosition_Chk
             // 
-            this.Finalise_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Finalise_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Finalise_Btn.FlatAppearance.BorderSize = 0;
-            this.Finalise_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Finalise_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Finalise_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Finalise_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.Finalise_Btn.Location = new System.Drawing.Point(768, 0);
-            this.Finalise_Btn.Name = "Finalise_Btn";
-            this.Finalise_Btn.Size = new System.Drawing.Size(60, 22);
-            this.Finalise_Btn.TabIndex = 10;
-            this.Finalise_Btn.Text = "Finalise";
-            this.Finalise_Btn.UseVisualStyleBackColor = true;
-            this.Finalise_Btn.Click += new System.EventHandler(this.Finalise_Btn_Click);
+            this.CursorPosition_Chk.AutoSize = true;
+            this.CursorPosition_Chk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CursorPosition_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CursorPosition_Chk.ForeColor = System.Drawing.Color.Yellow;
+            this.CursorPosition_Chk.Location = new System.Drawing.Point(555, 0);
+            this.CursorPosition_Chk.Name = "CursorPosition_Chk";
+            this.CursorPosition_Chk.Size = new System.Drawing.Size(113, 22);
+            this.CursorPosition_Chk.TabIndex = 12;
+            this.CursorPosition_Chk.Text = "Cursor Position";
+            this.CursorPosition_Chk.UseVisualStyleBackColor = true;
             // 
             // InsertValueAB_Btn
             // 
@@ -1476,6 +1489,15 @@
             this.ProjectOpn_Lbl.Size = new System.Drawing.Size(19, 17);
             this.ProjectOpn_Lbl.Text = "...";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(341, 17);
+            this.toolStripStatusLabel1.Text = "by Icaza Media veydunet.com with plantUML plantuml.com";
+            // 
             // NewProject_Btn
             // 
             this.NewProject_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -1510,19 +1532,6 @@
             this.OpnXML_Btn.UseVisualStyleBackColor = false;
             this.OpnXML_Btn.Click += new System.EventHandler(this.OpnXML_Btn_Click);
             // 
-            // CursorPosition_Chk
-            // 
-            this.CursorPosition_Chk.AutoSize = true;
-            this.CursorPosition_Chk.Dock = System.Windows.Forms.DockStyle.Left;
-            this.CursorPosition_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CursorPosition_Chk.ForeColor = System.Drawing.Color.Yellow;
-            this.CursorPosition_Chk.Location = new System.Drawing.Point(555, 0);
-            this.CursorPosition_Chk.Name = "CursorPosition_Chk";
-            this.CursorPosition_Chk.Size = new System.Drawing.Size(113, 22);
-            this.CursorPosition_Chk.TabIndex = 12;
-            this.CursorPosition_Chk.Text = "Cursor Position";
-            this.CursorPosition_Chk.UseVisualStyleBackColor = true;
-            // 
             // AppStartup_Btn
             // 
             this.AppStartup_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -1539,15 +1548,6 @@
             this.AppStartup_Btn.Text = "App Startup";
             this.AppStartup_Btn.UseVisualStyleBackColor = false;
             this.AppStartup_Btn.Click += new System.EventHandler(this.AppStartup_Btn_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(341, 17);
-            this.toolStripStatusLabel1.Text = "by Icaza Media veydunet.com with plantUML plantuml.com";
             // 
             // Main_Frm
             // 

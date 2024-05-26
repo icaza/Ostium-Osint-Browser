@@ -251,18 +251,25 @@
             this.LocationName_Txt = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.Json_Tab = new System.Windows.Forms.TabPage();
-            this.JsonParse_txt = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.JsonOut_txt = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.Menu_Mnu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Cut_Tools = new System.Windows.Forms.ToolStripMenuItem();
-            this.Copy_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.Paste_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.Delete_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
-            this.SelectAll_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.WbOutB = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.PanelBjson_Pnl = new System.Windows.Forms.Panel();
+            this.ExtdB_Btn = new System.Windows.Forms.Button();
+            this.EmptyB_Btn = new System.Windows.Forms.Button();
+            this.RfreshB_Btn = new System.Windows.Forms.Button();
+            this.OutJsonB_Chk = new System.Windows.Forms.CheckBox();
+            this.WbOutA = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.PanelAjson_Pnl = new System.Windows.Forms.Panel();
+            this.ExtdA_Btn = new System.Windows.Forms.Button();
+            this.EmptyA_Btn = new System.Windows.Forms.Button();
+            this.RfreshA_Btn = new System.Windows.Forms.Button();
+            this.OutJsonA_Chk = new System.Windows.Forms.CheckBox();
+            this.JsonList_Pnl = new System.Windows.Forms.Panel();
+            this.TableJson_Lst = new System.Windows.Forms.ListBox();
+            this.OpnJsonDirTable_Btn = new System.Windows.Forms.Button();
             this.panel33 = new System.Windows.Forms.Panel();
             this.JsonPanel3_Pnl = new System.Windows.Forms.Panel();
-            this.PermuteOut_Btn = new System.Windows.Forms.Button();
+            this.Brkt_Chk = new System.Windows.Forms.CheckBox();
+            this.ChgCult_Chk = new System.Windows.Forms.CheckBox();
             this.BrcktB_Txt = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.BrcktA_Txt = new System.Windows.Forms.TextBox();
@@ -283,13 +290,13 @@
             this.JsonUsrAgt_Txt = new System.Windows.Forms.TextBox();
             this.panel32 = new System.Windows.Forms.Panel();
             this.JsonBtn_Pnl = new System.Windows.Forms.Panel();
+            this.OpnTableList_Btn = new System.Windows.Forms.Button();
             this.TableNode_Btn = new System.Windows.Forms.Button();
             this.TableParse_Btn = new System.Windows.Forms.Button();
             this.JsonSaveData_Btn = new System.Windows.Forms.Button();
             this.JsonOpnListUri_Btn = new System.Windows.Forms.Button();
             this.JsonSaveUri_Btn = new System.Windows.Forms.Button();
             this.JsonSaveFile_Btn = new System.Windows.Forms.Button();
-            this.LastJson_Btn = new System.Windows.Forms.Button();
             this.JsonOpnFile_Btn = new System.Windows.Forms.Button();
             this.Options_Tab = new System.Windows.Forms.TabPage();
             this.Panel_WorkspaceSize = new System.Windows.Forms.Panel();
@@ -359,6 +366,13 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.Menu_Mnu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Cut_Tools = new System.Windows.Forms.ToolStripMenuItem();
+            this.Copy_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Paste_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Delete_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.SelectAll_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -375,6 +389,7 @@
             this.LonGtCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
             this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileOpnJson_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
             this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -451,9 +466,9 @@
             this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.LatT_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.LonGt_txt = new System.Windows.Forms.ToolStripTextBox();
+            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
             this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
@@ -506,9 +521,11 @@
             this.Map_Tab.SuspendLayout();
             this.Map_Cmd_Pnl.SuspendLayout();
             this.Json_Tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.JsonParse_txt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.JsonOut_txt)).BeginInit();
-            this.Menu_Mnu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).BeginInit();
+            this.PanelBjson_Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WbOutA)).BeginInit();
+            this.PanelAjson_Pnl.SuspendLayout();
+            this.JsonList_Pnl.SuspendLayout();
             this.JsonPanel3_Pnl.SuspendLayout();
             this.JsonPanel2_Pnl.SuspendLayout();
             this.JsonBtn_Pnl.SuspendLayout();
@@ -522,6 +539,7 @@
             this.Panel_ConfigXml.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel27.SuspendLayout();
+            this.Menu_Mnu.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
@@ -1093,10 +1111,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1118,7 +1136,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 25);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1131,7 +1149,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 501);
+            this.WBrowse.Size = new System.Drawing.Size(920, 472);
             this.WBrowse.Source = new System.Uri("https://icaza.github.io/", System.UriKind.Absolute);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
@@ -1149,7 +1167,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 531);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 502);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 53);
@@ -1244,7 +1262,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 554);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 525);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1253,7 +1271,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 526);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 497);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -1307,7 +1325,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 450);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 421);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -1708,7 +1726,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 581);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 552);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -1722,7 +1740,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 237);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 208);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -1732,7 +1750,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 264);
+            this.label5.Location = new System.Drawing.Point(0, 235);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -1744,7 +1762,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 288);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 259);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1766,7 +1784,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 390);
+            this.label1.Location = new System.Drawing.Point(0, 361);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -1778,7 +1796,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 414);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 385);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1789,7 +1807,7 @@
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 516);
+            this.label23.Location = new System.Drawing.Point(0, 487);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -1801,7 +1819,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 540);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 511);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -1815,7 +1833,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 584);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 555);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
@@ -1832,7 +1850,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 25);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -1853,7 +1871,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 560);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 531);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -1904,7 +1922,7 @@
             this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
-            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 560);
+            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 531);
             this.WBrowsefeed.TabIndex = 4;
             this.WBrowsefeed.ZoomFactor = 1D;
             // 
@@ -2105,7 +2123,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 25);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2117,7 +2135,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 509);
+            this.panel1.Size = new System.Drawing.Size(1320, 480);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2130,7 +2148,7 @@
             this.DataValue_Lst.ItemHeight = 16;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 509);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 480);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2144,7 +2162,7 @@
             this.DataTable_Lst.ItemHeight = 16;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 509);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 480);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2159,7 +2177,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 509);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 480);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -2550,7 +2568,7 @@
             this.Workflow_Tab.ForeColor = System.Drawing.Color.White;
             this.Workflow_Tab.Location = new System.Drawing.Point(4, 25);
             this.Workflow_Tab.Name = "Workflow_Tab";
-            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Workflow_Tab.TabIndex = 7;
             this.Workflow_Tab.Text = "WORKFLOW";
             // 
@@ -2567,7 +2585,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 610);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 581);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // groupBox2
@@ -2577,9 +2595,9 @@
             this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 308);
+            this.groupBox2.Location = new System.Drawing.Point(3, 293);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(355, 299);
+            this.groupBox2.Size = new System.Drawing.Size(355, 285);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select model";
@@ -2595,7 +2613,7 @@
             this.ModelList_Lst.ItemHeight = 16;
             this.ModelList_Lst.Location = new System.Drawing.Point(3, 19);
             this.ModelList_Lst.Name = "ModelList_Lst";
-            this.ModelList_Lst.Size = new System.Drawing.Size(349, 247);
+            this.ModelList_Lst.Size = new System.Drawing.Size(349, 233);
             this.ModelList_Lst.TabIndex = 0;
             this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
             // 
@@ -2604,7 +2622,7 @@
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
             this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 266);
+            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 252);
             this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
             this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(349, 30);
             this.PanelWrkButtonModel_Pnl.TabIndex = 20;
@@ -2660,7 +2678,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 299);
+            this.groupBox1.Size = new System.Drawing.Size(355, 284);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create a model";
@@ -2696,7 +2714,7 @@
             this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
-            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 186);
+            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 171);
             this.ModelItem_Txt.TabIndex = 15;
             this.ModelItem_Txt.Zoom = 100;
             // 
@@ -2762,7 +2780,7 @@
             this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModelCreate_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModelCreate_Btn.ForeColor = System.Drawing.Color.White;
-            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 266);
+            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 251);
             this.ModelCreate_Btn.Name = "ModelCreate_Btn";
             this.ModelCreate_Btn.Size = new System.Drawing.Size(349, 30);
             this.ModelCreate_Btn.TabIndex = 18;
@@ -2776,7 +2794,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel13.Location = new System.Drawing.Point(1144, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(10, 610);
+            this.panel13.Size = new System.Drawing.Size(10, 581);
             this.panel13.TabIndex = 26;
             // 
             // panel12
@@ -2785,7 +2803,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(773, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 610);
+            this.panel12.Size = new System.Drawing.Size(10, 581);
             this.panel12.TabIndex = 24;
             // 
             // Itemwf_Cbx
@@ -2805,7 +2823,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel17.Location = new System.Drawing.Point(523, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(250, 610);
+            this.panel17.Size = new System.Drawing.Size(250, 581);
             this.panel17.TabIndex = 28;
             // 
             // StatWorkflow_Lst
@@ -2818,7 +2836,7 @@
             this.StatWorkflow_Lst.ItemHeight = 16;
             this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
             this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
-            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 600);
+            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 571);
             this.StatWorkflow_Lst.TabIndex = 19;
             this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
             // 
@@ -2836,7 +2854,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(513, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 610);
+            this.panel16.Size = new System.Drawing.Size(10, 581);
             this.panel16.TabIndex = 27;
             // 
             // panel2
@@ -2851,7 +2869,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(10, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(503, 610);
+            this.panel2.Size = new System.Drawing.Size(503, 581);
             this.panel2.TabIndex = 15;
             // 
             // ProjectOpn_Lst
@@ -2864,7 +2882,7 @@
             this.ProjectOpn_Lst.ItemHeight = 16;
             this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 42);
             this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
-            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 177);
+            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 148);
             this.ProjectOpn_Lst.TabIndex = 2;
             this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
             // 
@@ -2936,7 +2954,7 @@
             // 
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 219);
+            this.panel4.Location = new System.Drawing.Point(0, 190);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(503, 33);
             this.panel4.TabIndex = 13;
@@ -2977,7 +2995,7 @@
             this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
-            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
+            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 223);
             this.AddItemswf_Txt.Name = "AddItemswf_Txt";
             this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2997,7 +3015,7 @@
             this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateXMLwf_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.White;
-            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 542);
+            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 513);
             this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
             this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
             this.CreateXMLwf_btn.TabIndex = 4;
@@ -3010,7 +3028,7 @@
             this.panel7.Controls.Add(this.AddItemwf_Btn);
             this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 573);
+            this.panel7.Location = new System.Drawing.Point(0, 544);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(503, 37);
             this.panel7.TabIndex = 16;
@@ -3050,7 +3068,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 610);
+            this.panel11.Size = new System.Drawing.Size(10, 581);
             this.panel11.TabIndex = 23;
             // 
             // panel19
@@ -3063,7 +3081,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel19.Location = new System.Drawing.Point(1154, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(172, 610);
+            this.panel19.Size = new System.Drawing.Size(172, 581);
             this.panel19.TabIndex = 29;
             // 
             // TmpFile_Txt
@@ -3084,7 +3102,7 @@
             this.Timeline_Lst.ItemHeight = 16;
             this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
             this.Timeline_Lst.Name = "Timeline_Lst";
-            this.Timeline_Lst.Size = new System.Drawing.Size(172, 577);
+            this.Timeline_Lst.Size = new System.Drawing.Size(172, 548);
             this.Timeline_Lst.TabIndex = 22;
             this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
             // 
@@ -3099,7 +3117,7 @@
             this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetTimeline_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 587);
+            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 558);
             this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
             this.ResetTimeline_Btn.Size = new System.Drawing.Size(172, 23);
             this.ResetTimeline_Btn.TabIndex = 24;
@@ -3125,7 +3143,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 25);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3162,7 +3180,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 581);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3180,7 +3198,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 581);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3195,7 +3213,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 166);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 414);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 385);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3227,7 +3245,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 580);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 551);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3300,8 +3318,11 @@
             // Json_Tab
             // 
             this.Json_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Json_Tab.Controls.Add(this.JsonParse_txt);
-            this.Json_Tab.Controls.Add(this.JsonOut_txt);
+            this.Json_Tab.Controls.Add(this.WbOutB);
+            this.Json_Tab.Controls.Add(this.PanelBjson_Pnl);
+            this.Json_Tab.Controls.Add(this.WbOutA);
+            this.Json_Tab.Controls.Add(this.PanelAjson_Pnl);
+            this.Json_Tab.Controls.Add(this.JsonList_Pnl);
             this.Json_Tab.Controls.Add(this.panel33);
             this.Json_Tab.Controls.Add(this.JsonPanel3_Pnl);
             this.Json_Tab.Controls.Add(this.panel31);
@@ -3312,149 +3333,248 @@
             this.Json_Tab.ForeColor = System.Drawing.Color.White;
             this.Json_Tab.Location = new System.Drawing.Point(4, 25);
             this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Json_Tab.TabIndex = 10;
             this.Json_Tab.Text = "JSON";
             // 
-            // JsonParse_txt
+            // WbOutB
             // 
-            this.JsonParse_txt.AcceptsTab = false;
-            this.JsonParse_txt.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.JsonParse_txt.AutoIndent = false;
-            this.JsonParse_txt.AutoIndentChars = false;
-            this.JsonParse_txt.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>.+)\r\n";
-            this.JsonParse_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
-            this.JsonParse_txt.BackBrush = null;
-            this.JsonParse_txt.BackColor = System.Drawing.Color.Black;
-            this.JsonParse_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
-            this.JsonParse_txt.CharHeight = 14;
-            this.JsonParse_txt.CharWidth = 8;
-            this.JsonParse_txt.CommentPrefix = "--";
-            this.JsonParse_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.JsonParse_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.JsonParse_txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.JsonParse_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.JsonParse_txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonParse_txt.IsReplaceMode = false;
-            this.JsonParse_txt.Language = FastColoredTextBoxNS.Language.Lua;
-            this.JsonParse_txt.LeftBracket = '(';
-            this.JsonParse_txt.LeftBracket2 = '{';
-            this.JsonParse_txt.Location = new System.Drawing.Point(0, 328);
-            this.JsonParse_txt.Name = "JsonParse_txt";
-            this.JsonParse_txt.Paddings = new System.Windows.Forms.Padding(0);
-            this.JsonParse_txt.RightBracket = ')';
-            this.JsonParse_txt.RightBracket2 = '}';
-            this.JsonParse_txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.JsonParse_txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("JsonParse_txt.ServiceColors")));
-            this.JsonParse_txt.Size = new System.Drawing.Size(1326, 260);
-            this.JsonParse_txt.TabIndex = 7;
-            this.JsonParse_txt.Zoom = 100;
+            this.WbOutB.AllowExternalDrop = true;
+            this.WbOutB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.WbOutB.CreationProperties = null;
+            this.WbOutB.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WbOutB.Location = new System.Drawing.Point(0, 320);
+            this.WbOutB.Name = "WbOutB";
+            this.WbOutB.Size = new System.Drawing.Size(1126, 239);
+            this.WbOutB.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
+            this.WbOutB.TabIndex = 15;
+            this.WbOutB.ZoomFactor = 1D;
             // 
-            // JsonOut_txt
+            // PanelBjson_Pnl
             // 
-            this.JsonOut_txt.AcceptsTab = false;
-            this.JsonOut_txt.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.JsonOut_txt.AutoIndent = false;
-            this.JsonOut_txt.AutoIndentChars = false;
-            this.JsonOut_txt.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n";
-            this.JsonOut_txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
-            this.JsonOut_txt.BackBrush = null;
-            this.JsonOut_txt.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
-            this.JsonOut_txt.CharHeight = 14;
-            this.JsonOut_txt.CharWidth = 8;
-            this.JsonOut_txt.ContextMenuStrip = this.Menu_Mnu;
-            this.JsonOut_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.JsonOut_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.JsonOut_txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.JsonOut_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.JsonOut_txt.ForeColor = System.Drawing.Color.Black;
-            this.JsonOut_txt.IsReplaceMode = false;
-            this.JsonOut_txt.Language = FastColoredTextBoxNS.Language.JS;
-            this.JsonOut_txt.LeftBracket = '(';
-            this.JsonOut_txt.LeftBracket2 = '{';
-            this.JsonOut_txt.Location = new System.Drawing.Point(0, 106);
-            this.JsonOut_txt.Name = "JsonOut_txt";
-            this.JsonOut_txt.Paddings = new System.Windows.Forms.Padding(0);
-            this.JsonOut_txt.RightBracket = ')';
-            this.JsonOut_txt.RightBracket2 = '}';
-            this.JsonOut_txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.JsonOut_txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("JsonOut_txt.ServiceColors")));
-            this.JsonOut_txt.Size = new System.Drawing.Size(1326, 222);
-            this.JsonOut_txt.TabIndex = 6;
-            this.JsonOut_txt.Zoom = 100;
+            this.PanelBjson_Pnl.Controls.Add(this.ExtdB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.EmptyB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.RfreshB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.OutJsonB_Chk);
+            this.PanelBjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelBjson_Pnl.Location = new System.Drawing.Point(0, 295);
+            this.PanelBjson_Pnl.Name = "PanelBjson_Pnl";
+            this.PanelBjson_Pnl.Size = new System.Drawing.Size(1126, 25);
+            this.PanelBjson_Pnl.TabIndex = 11;
             // 
-            // Menu_Mnu
+            // ExtdB_Btn
             // 
-            this.Menu_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Cut_Tools,
-            this.Copy_Mnu,
-            this.Paste_Mnu,
-            this.Delete_Mnu,
-            this.toolStripSeparator28,
-            this.SelectAll_Mnu});
-            this.Menu_Mnu.Name = "Menu_Mnu";
-            this.Menu_Mnu.Size = new System.Drawing.Size(136, 120);
+            this.ExtdB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ExtdB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExtdB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ExtdB_Btn.FlatAppearance.BorderSize = 0;
+            this.ExtdB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ExtdB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ExtdB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExtdB_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExtdB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ExtdB_Btn.Location = new System.Drawing.Point(228, 0);
+            this.ExtdB_Btn.Name = "ExtdB_Btn";
+            this.ExtdB_Btn.Size = new System.Drawing.Size(84, 25);
+            this.ExtdB_Btn.TabIndex = 22;
+            this.ExtdB_Btn.Text = "Extend";
+            this.ExtdB_Btn.UseVisualStyleBackColor = false;
+            this.ExtdB_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
             // 
-            // Cut_Tools
+            // EmptyB_Btn
             // 
-            this.Cut_Tools.Name = "Cut_Tools";
-            this.Cut_Tools.Size = new System.Drawing.Size(135, 22);
-            this.Cut_Tools.Text = "Cut";
-            this.Cut_Tools.Click += new System.EventHandler(this.Cut_Tools_Click);
+            this.EmptyB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.EmptyB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EmptyB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.EmptyB_Btn.FlatAppearance.BorderSize = 0;
+            this.EmptyB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.EmptyB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.EmptyB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EmptyB_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmptyB_Btn.ForeColor = System.Drawing.Color.Red;
+            this.EmptyB_Btn.Location = new System.Drawing.Point(164, 0);
+            this.EmptyB_Btn.Name = "EmptyB_Btn";
+            this.EmptyB_Btn.Size = new System.Drawing.Size(64, 25);
+            this.EmptyB_Btn.TabIndex = 21;
+            this.EmptyB_Btn.Text = "Empty";
+            this.EmptyB_Btn.UseVisualStyleBackColor = false;
+            this.EmptyB_Btn.Click += new System.EventHandler(this.Empty_Btn_Click);
             // 
-            // Copy_Mnu
+            // RfreshB_Btn
             // 
-            this.Copy_Mnu.Name = "Copy_Mnu";
-            this.Copy_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Copy_Mnu.Text = "Copy";
-            this.Copy_Mnu.Click += new System.EventHandler(this.Copy_Mnu_Click);
+            this.RfreshB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.RfreshB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RfreshB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RfreshB_Btn.FlatAppearance.BorderSize = 0;
+            this.RfreshB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.RfreshB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.RfreshB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RfreshB_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RfreshB_Btn.ForeColor = System.Drawing.Color.White;
+            this.RfreshB_Btn.Location = new System.Drawing.Point(80, 0);
+            this.RfreshB_Btn.Name = "RfreshB_Btn";
+            this.RfreshB_Btn.Size = new System.Drawing.Size(84, 25);
+            this.RfreshB_Btn.TabIndex = 20;
+            this.RfreshB_Btn.Text = "Refresh";
+            this.RfreshB_Btn.UseVisualStyleBackColor = false;
+            this.RfreshB_Btn.Click += new System.EventHandler(this.Rfresh_Btn_Click);
             // 
-            // Paste_Mnu
+            // OutJsonB_Chk
             // 
-            this.Paste_Mnu.Name = "Paste_Mnu";
-            this.Paste_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Paste_Mnu.Text = "Paste";
-            this.Paste_Mnu.Click += new System.EventHandler(this.Paste_Mnu_Click);
+            this.OutJsonB_Chk.AutoSize = true;
+            this.OutJsonB_Chk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OutJsonB_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.OutJsonB_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutJsonB_Chk.Location = new System.Drawing.Point(0, 0);
+            this.OutJsonB_Chk.Name = "OutJsonB_Chk";
+            this.OutJsonB_Chk.Size = new System.Drawing.Size(80, 25);
+            this.OutJsonB_Chk.TabIndex = 9;
+            this.OutJsonB_Chk.Text = "parse in";
+            this.OutJsonB_Chk.UseVisualStyleBackColor = true;
             // 
-            // Delete_Mnu
+            // WbOutA
             // 
-            this.Delete_Mnu.Name = "Delete_Mnu";
-            this.Delete_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Delete_Mnu.Text = "Delete";
-            this.Delete_Mnu.Click += new System.EventHandler(this.Delete_Mnu_Click);
+            this.WbOutA.AllowExternalDrop = true;
+            this.WbOutA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.WbOutA.CreationProperties = null;
+            this.WbOutA.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WbOutA.Dock = System.Windows.Forms.DockStyle.Top;
+            this.WbOutA.Location = new System.Drawing.Point(0, 131);
+            this.WbOutA.Name = "WbOutA";
+            this.WbOutA.Size = new System.Drawing.Size(1126, 164);
+            this.WbOutA.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
+            this.WbOutA.TabIndex = 14;
+            this.WbOutA.ZoomFactor = 1D;
             // 
-            // toolStripSeparator28
+            // PanelAjson_Pnl
             // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(132, 6);
+            this.PanelAjson_Pnl.Controls.Add(this.ExtdA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.EmptyA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.RfreshA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.OutJsonA_Chk);
+            this.PanelAjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelAjson_Pnl.Location = new System.Drawing.Point(0, 106);
+            this.PanelAjson_Pnl.Name = "PanelAjson_Pnl";
+            this.PanelAjson_Pnl.Size = new System.Drawing.Size(1126, 25);
+            this.PanelAjson_Pnl.TabIndex = 10;
             // 
-            // SelectAll_Mnu
+            // ExtdA_Btn
             // 
-            this.SelectAll_Mnu.Name = "SelectAll_Mnu";
-            this.SelectAll_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.SelectAll_Mnu.Text = "Select all";
-            this.SelectAll_Mnu.Click += new System.EventHandler(this.SelectAll_Mnu_Click);
+            this.ExtdA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ExtdA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExtdA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ExtdA_Btn.FlatAppearance.BorderSize = 0;
+            this.ExtdA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ExtdA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ExtdA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExtdA_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExtdA_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ExtdA_Btn.Location = new System.Drawing.Point(228, 0);
+            this.ExtdA_Btn.Name = "ExtdA_Btn";
+            this.ExtdA_Btn.Size = new System.Drawing.Size(84, 25);
+            this.ExtdA_Btn.TabIndex = 21;
+            this.ExtdA_Btn.Text = "Extend";
+            this.ExtdA_Btn.UseVisualStyleBackColor = false;
+            this.ExtdA_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
+            // 
+            // EmptyA_Btn
+            // 
+            this.EmptyA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.EmptyA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EmptyA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.EmptyA_Btn.FlatAppearance.BorderSize = 0;
+            this.EmptyA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.EmptyA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.EmptyA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EmptyA_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmptyA_Btn.ForeColor = System.Drawing.Color.Red;
+            this.EmptyA_Btn.Location = new System.Drawing.Point(164, 0);
+            this.EmptyA_Btn.Name = "EmptyA_Btn";
+            this.EmptyA_Btn.Size = new System.Drawing.Size(64, 25);
+            this.EmptyA_Btn.TabIndex = 20;
+            this.EmptyA_Btn.Text = "Empty";
+            this.EmptyA_Btn.UseVisualStyleBackColor = false;
+            this.EmptyA_Btn.Click += new System.EventHandler(this.Empty_Btn_Click);
+            // 
+            // RfreshA_Btn
+            // 
+            this.RfreshA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.RfreshA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RfreshA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RfreshA_Btn.FlatAppearance.BorderSize = 0;
+            this.RfreshA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.RfreshA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.RfreshA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RfreshA_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RfreshA_Btn.ForeColor = System.Drawing.Color.White;
+            this.RfreshA_Btn.Location = new System.Drawing.Point(80, 0);
+            this.RfreshA_Btn.Name = "RfreshA_Btn";
+            this.RfreshA_Btn.Size = new System.Drawing.Size(84, 25);
+            this.RfreshA_Btn.TabIndex = 19;
+            this.RfreshA_Btn.Text = "Refresh";
+            this.RfreshA_Btn.UseVisualStyleBackColor = false;
+            this.RfreshA_Btn.Click += new System.EventHandler(this.Rfresh_Btn_Click);
+            // 
+            // OutJsonA_Chk
+            // 
+            this.OutJsonA_Chk.AutoSize = true;
+            this.OutJsonA_Chk.Checked = true;
+            this.OutJsonA_Chk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OutJsonA_Chk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OutJsonA_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.OutJsonA_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutJsonA_Chk.Location = new System.Drawing.Point(0, 0);
+            this.OutJsonA_Chk.Name = "OutJsonA_Chk";
+            this.OutJsonA_Chk.Size = new System.Drawing.Size(80, 25);
+            this.OutJsonA_Chk.TabIndex = 9;
+            this.OutJsonA_Chk.Text = "parse in";
+            this.OutJsonA_Chk.UseVisualStyleBackColor = true;
+            // 
+            // JsonList_Pnl
+            // 
+            this.JsonList_Pnl.Controls.Add(this.TableJson_Lst);
+            this.JsonList_Pnl.Controls.Add(this.OpnJsonDirTable_Btn);
+            this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
+            this.JsonList_Pnl.Name = "JsonList_Pnl";
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 453);
+            this.JsonList_Pnl.TabIndex = 8;
+            this.JsonList_Pnl.Visible = false;
+            // 
+            // TableJson_Lst
+            // 
+            this.TableJson_Lst.BackColor = System.Drawing.Color.Black;
+            this.TableJson_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TableJson_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableJson_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableJson_Lst.ForeColor = System.Drawing.Color.Lime;
+            this.TableJson_Lst.FormattingEnabled = true;
+            this.TableJson_Lst.ItemHeight = 14;
+            this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
+            this.TableJson_Lst.Name = "TableJson_Lst";
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 421);
+            this.TableJson_Lst.TabIndex = 25;
+            this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
+            // 
+            // OpnJsonDirTable_Btn
+            // 
+            this.OpnJsonDirTable_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OpnJsonDirTable_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OpnJsonDirTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OpnJsonDirTable_Btn.FlatAppearance.BorderSize = 0;
+            this.OpnJsonDirTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.OpnJsonDirTable_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.OpnJsonDirTable_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpnJsonDirTable_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnJsonDirTable_Btn.ForeColor = System.Drawing.Color.White;
+            this.OpnJsonDirTable_Btn.Location = new System.Drawing.Point(0, 0);
+            this.OpnJsonDirTable_Btn.Name = "OpnJsonDirTable_Btn";
+            this.OpnJsonDirTable_Btn.Size = new System.Drawing.Size(200, 32);
+            this.OpnJsonDirTable_Btn.TabIndex = 24;
+            this.OpnJsonDirTable_Btn.Text = "Open Directory";
+            this.OpnJsonDirTable_Btn.UseVisualStyleBackColor = false;
+            this.OpnJsonDirTable_Btn.Click += new System.EventHandler(this.OpnJsonDirTable_Btn_Click);
             // 
             // panel33
             // 
@@ -3466,7 +3586,8 @@
             // 
             // JsonPanel3_Pnl
             // 
-            this.JsonPanel3_Pnl.Controls.Add(this.PermuteOut_Btn);
+            this.JsonPanel3_Pnl.Controls.Add(this.Brkt_Chk);
+            this.JsonPanel3_Pnl.Controls.Add(this.ChgCult_Chk);
             this.JsonPanel3_Pnl.Controls.Add(this.BrcktB_Txt);
             this.JsonPanel3_Pnl.Controls.Add(this.label30);
             this.JsonPanel3_Pnl.Controls.Add(this.BrcktA_Txt);
@@ -3486,24 +3607,27 @@
             this.JsonPanel3_Pnl.Size = new System.Drawing.Size(1326, 22);
             this.JsonPanel3_Pnl.TabIndex = 4;
             // 
-            // PermuteOut_Btn
+            // Brkt_Chk
             // 
-            this.PermuteOut_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.PermuteOut_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PermuteOut_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PermuteOut_Btn.FlatAppearance.BorderSize = 0;
-            this.PermuteOut_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.PermuteOut_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.PermuteOut_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PermuteOut_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PermuteOut_Btn.ForeColor = System.Drawing.Color.White;
-            this.PermuteOut_Btn.Image = global::Ostium.Properties.Resources.Top;
-            this.PermuteOut_Btn.Location = new System.Drawing.Point(1304, 0);
-            this.PermuteOut_Btn.Name = "PermuteOut_Btn";
-            this.PermuteOut_Btn.Size = new System.Drawing.Size(22, 22);
-            this.PermuteOut_Btn.TabIndex = 31;
-            this.PermuteOut_Btn.UseVisualStyleBackColor = false;
-            this.PermuteOut_Btn.Click += new System.EventHandler(this.PermuteOut_Btn_Click);
+            this.Brkt_Chk.AutoSize = true;
+            this.Brkt_Chk.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Brkt_Chk.Location = new System.Drawing.Point(1161, 0);
+            this.Brkt_Chk.Name = "Brkt_Chk";
+            this.Brkt_Chk.Size = new System.Drawing.Size(38, 22);
+            this.Brkt_Chk.TabIndex = 33;
+            this.Brkt_Chk.Text = "[]";
+            this.Brkt_Chk.UseVisualStyleBackColor = true;
+            // 
+            // ChgCult_Chk
+            // 
+            this.ChgCult_Chk.AutoSize = true;
+            this.ChgCult_Chk.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ChgCult_Chk.Location = new System.Drawing.Point(1199, 0);
+            this.ChgCult_Chk.Name = "ChgCult_Chk";
+            this.ChgCult_Chk.Size = new System.Drawing.Size(127, 22);
+            this.ChgCult_Chk.TabIndex = 32;
+            this.ChgCult_Chk.Text = "Change Culture";
+            this.ChgCult_Chk.UseVisualStyleBackColor = true;
             // 
             // BrcktB_Txt
             // 
@@ -3512,7 +3636,8 @@
             this.BrcktB_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktB_Txt.Location = new System.Drawing.Point(1210, 0);
+            this.BrcktB_Txt.Location = new System.Drawing.Point(1060, 0);
+            this.BrcktB_Txt.Multiline = true;
             this.BrcktB_Txt.Name = "BrcktB_Txt";
             this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktB_Txt.TabIndex = 29;
@@ -3522,7 +3647,7 @@
             // 
             this.label30.Dock = System.Windows.Forms.DockStyle.Left;
             this.label30.ForeColor = System.Drawing.Color.Gray;
-            this.label30.Location = new System.Drawing.Point(1176, 0);
+            this.label30.Location = new System.Drawing.Point(1026, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(34, 22);
             this.label30.TabIndex = 28;
@@ -3536,7 +3661,8 @@
             this.BrcktA_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktA_Txt.Location = new System.Drawing.Point(1139, 0);
+            this.BrcktA_Txt.Location = new System.Drawing.Point(989, 0);
+            this.BrcktA_Txt.Multiline = true;
             this.BrcktA_Txt.Name = "BrcktA_Txt";
             this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktA_Txt.TabIndex = 27;
@@ -3553,9 +3679,9 @@
             this.ReplaceBrckt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReplaceBrckt_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReplaceBrckt_btn.ForeColor = System.Drawing.Color.White;
-            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(1051, 0);
+            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(921, 0);
             this.ReplaceBrckt_btn.Name = "ReplaceBrckt_btn";
-            this.ReplaceBrckt_btn.Size = new System.Drawing.Size(88, 22);
+            this.ReplaceBrckt_btn.Size = new System.Drawing.Size(68, 22);
             this.ReplaceBrckt_btn.TabIndex = 30;
             this.ReplaceBrckt_btn.Text = "Replace";
             this.ReplaceBrckt_btn.UseVisualStyleBackColor = false;
@@ -3565,11 +3691,11 @@
             // 
             this.label29.Dock = System.Windows.Forms.DockStyle.Left;
             this.label29.ForeColor = System.Drawing.Color.Gray;
-            this.label29.Location = new System.Drawing.Point(921, 0);
+            this.label29.Location = new System.Drawing.Point(847, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(130, 22);
+            this.label29.Size = new System.Drawing.Size(74, 22);
             this.label29.TabIndex = 26;
-            this.label29.Text = "Replace brackets";
+            this.label29.Text = "Replace";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CharSpace_Txt
@@ -3579,7 +3705,7 @@
             this.CharSpace_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.CharSpace_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CharSpace_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.CharSpace_Txt.Location = new System.Drawing.Point(894, 0);
+            this.CharSpace_Txt.Location = new System.Drawing.Point(820, 0);
             this.CharSpace_Txt.Name = "CharSpace_Txt";
             this.CharSpace_Txt.Size = new System.Drawing.Size(27, 22);
             this.CharSpace_Txt.TabIndex = 25;
@@ -3590,11 +3716,11 @@
             // 
             this.label28.Dock = System.Windows.Forms.DockStyle.Left;
             this.label28.ForeColor = System.Drawing.Color.Gray;
-            this.label28.Location = new System.Drawing.Point(764, 0);
+            this.label28.Location = new System.Drawing.Point(729, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(130, 22);
+            this.label28.Size = new System.Drawing.Size(91, 22);
             this.label28.TabIndex = 24;
-            this.label28.Text = "Separator char";
+            this.label28.Text = "Separator";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // JsonCnt_txt
@@ -3604,9 +3730,9 @@
             this.JsonCnt_txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonCnt_txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonCnt_txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonCnt_txt.Location = new System.Drawing.Point(710, 0);
+            this.JsonCnt_txt.Location = new System.Drawing.Point(680, 0);
             this.JsonCnt_txt.Name = "JsonCnt_txt";
-            this.JsonCnt_txt.Size = new System.Drawing.Size(54, 22);
+            this.JsonCnt_txt.Size = new System.Drawing.Size(49, 22);
             this.JsonCnt_txt.TabIndex = 23;
             this.JsonCnt_txt.Text = "1";
             this.JsonCnt_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -3615,7 +3741,7 @@
             // 
             this.label27.Dock = System.Windows.Forms.DockStyle.Left;
             this.label27.ForeColor = System.Drawing.Color.Gray;
-            this.label27.Location = new System.Drawing.Point(648, 0);
+            this.label27.Location = new System.Drawing.Point(618, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(62, 22);
             this.label27.TabIndex = 22;
@@ -3629,7 +3755,7 @@
             this.JsonNode_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonNode_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonNode_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonNode_Txt.Location = new System.Drawing.Point(412, 0);
+            this.JsonNode_Txt.Location = new System.Drawing.Point(382, 0);
             this.JsonNode_Txt.Name = "JsonNode_Txt";
             this.JsonNode_Txt.Size = new System.Drawing.Size(236, 22);
             this.JsonNode_Txt.TabIndex = 21;
@@ -3645,11 +3771,11 @@
             this.ParseNodeJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ParseNodeJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParseNodeJson_Btn.ForeColor = System.Drawing.Color.White;
-            this.ParseNodeJson_Btn.Location = new System.Drawing.Point(324, 0);
+            this.ParseNodeJson_Btn.Location = new System.Drawing.Point(285, 0);
             this.ParseNodeJson_Btn.Name = "ParseNodeJson_Btn";
-            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(88, 22);
+            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(97, 22);
             this.ParseNodeJson_Btn.TabIndex = 20;
-            this.ParseNodeJson_Btn.Text = "Parse Node";
+            this.ParseNodeJson_Btn.Text = "Parse Object";
             this.ParseNodeJson_Btn.UseVisualStyleBackColor = false;
             this.ParseNodeJson_Btn.Click += new System.EventHandler(this.ParseNodeJson_Btn_Click);
             // 
@@ -3660,7 +3786,7 @@
             this.JsonVal_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonVal_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonVal_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonVal_Txt.Location = new System.Drawing.Point(88, 0);
+            this.JsonVal_Txt.Location = new System.Drawing.Point(49, 0);
             this.JsonVal_Txt.Name = "JsonVal_Txt";
             this.JsonVal_Txt.Size = new System.Drawing.Size(236, 22);
             this.JsonVal_Txt.TabIndex = 19;
@@ -3678,7 +3804,7 @@
             this.ParseJson_Btn.ForeColor = System.Drawing.Color.White;
             this.ParseJson_Btn.Location = new System.Drawing.Point(0, 0);
             this.ParseJson_Btn.Name = "ParseJson_Btn";
-            this.ParseJson_Btn.Size = new System.Drawing.Size(88, 22);
+            this.ParseJson_Btn.Size = new System.Drawing.Size(49, 22);
             this.ParseJson_Btn.TabIndex = 18;
             this.ParseJson_Btn.Text = "Parse";
             this.ParseJson_Btn.UseVisualStyleBackColor = false;
@@ -3709,9 +3835,9 @@
             this.JsonUri_Txt.Dock = System.Windows.Forms.DockStyle.Top;
             this.JsonUri_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUri_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonUri_Txt.Location = new System.Drawing.Point(88, 0);
+            this.JsonUri_Txt.Location = new System.Drawing.Point(49, 0);
             this.JsonUri_Txt.Name = "JsonUri_Txt";
-            this.JsonUri_Txt.Size = new System.Drawing.Size(1238, 22);
+            this.JsonUri_Txt.Size = new System.Drawing.Size(1277, 22);
             this.JsonUri_Txt.TabIndex = 18;
             // 
             // GetJson_Btn
@@ -3727,7 +3853,7 @@
             this.GetJson_Btn.ForeColor = System.Drawing.Color.White;
             this.GetJson_Btn.Location = new System.Drawing.Point(0, 0);
             this.GetJson_Btn.Name = "GetJson_Btn";
-            this.GetJson_Btn.Size = new System.Drawing.Size(88, 22);
+            this.GetJson_Btn.Size = new System.Drawing.Size(49, 22);
             this.GetJson_Btn.TabIndex = 17;
             this.GetJson_Btn.Text = "GET";
             this.GetJson_Btn.UseVisualStyleBackColor = false;
@@ -3740,7 +3866,7 @@
             this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 588);
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 559);
             this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
             this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
             this.JsonUsrAgt_Txt.TabIndex = 0;
@@ -3755,19 +3881,38 @@
             // 
             // JsonBtn_Pnl
             // 
+            this.JsonBtn_Pnl.Controls.Add(this.OpnTableList_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.TableNode_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.TableParse_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonSaveData_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonOpnListUri_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonSaveUri_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonSaveFile_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.LastJson_Btn);
             this.JsonBtn_Pnl.Controls.Add(this.JsonOpnFile_Btn);
             this.JsonBtn_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.JsonBtn_Pnl.Location = new System.Drawing.Point(0, 0);
             this.JsonBtn_Pnl.Name = "JsonBtn_Pnl";
             this.JsonBtn_Pnl.Size = new System.Drawing.Size(1326, 32);
             this.JsonBtn_Pnl.TabIndex = 0;
+            // 
+            // OpnTableList_Btn
+            // 
+            this.OpnTableList_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OpnTableList_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OpnTableList_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OpnTableList_Btn.FlatAppearance.BorderSize = 0;
+            this.OpnTableList_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.OpnTableList_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.OpnTableList_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpnTableList_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnTableList_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.OpnTableList_Btn.Location = new System.Drawing.Point(606, 0);
+            this.OpnTableList_Btn.Name = "OpnTableList_Btn";
+            this.OpnTableList_Btn.Size = new System.Drawing.Size(109, 32);
+            this.OpnTableList_Btn.TabIndex = 24;
+            this.OpnTableList_Btn.Text = "Open Table List";
+            this.OpnTableList_Btn.UseVisualStyleBackColor = false;
+            this.OpnTableList_Btn.Click += new System.EventHandler(this.OpnTableList_Btn_Click);
             // 
             // TableNode_Btn
             // 
@@ -3780,11 +3925,11 @@
             this.TableNode_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TableNode_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableNode_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableNode_Btn.Location = new System.Drawing.Point(625, 0);
+            this.TableNode_Btn.Location = new System.Drawing.Point(505, 0);
             this.TableNode_Btn.Name = "TableNode_Btn";
-            this.TableNode_Btn.Size = new System.Drawing.Size(85, 32);
+            this.TableNode_Btn.Size = new System.Drawing.Size(101, 32);
             this.TableNode_Btn.TabIndex = 23;
-            this.TableNode_Btn.Text = "Node Table";
+            this.TableNode_Btn.Text = "Object Table";
             this.TableNode_Btn.UseVisualStyleBackColor = false;
             this.TableNode_Btn.Click += new System.EventHandler(this.TableNode_Btn_Click);
             // 
@@ -3799,11 +3944,11 @@
             this.TableParse_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TableParse_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableParse_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableParse_Btn.Location = new System.Drawing.Point(537, 0);
+            this.TableParse_Btn.Location = new System.Drawing.Point(453, 0);
             this.TableParse_Btn.Name = "TableParse_Btn";
-            this.TableParse_Btn.Size = new System.Drawing.Size(88, 32);
+            this.TableParse_Btn.Size = new System.Drawing.Size(52, 32);
             this.TableParse_Btn.TabIndex = 22;
-            this.TableParse_Btn.Text = "Create Table";
+            this.TableParse_Btn.Text = "Table";
             this.TableParse_Btn.UseVisualStyleBackColor = false;
             this.TableParse_Btn.Click += new System.EventHandler(this.TableParse_Btn_Click);
             // 
@@ -3817,10 +3962,10 @@
             this.JsonSaveData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonSaveData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveData_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.White;
-            this.JsonSaveData_Btn.Location = new System.Drawing.Point(450, 0);
+            this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.JsonSaveData_Btn.Location = new System.Drawing.Point(368, 0);
             this.JsonSaveData_Btn.Name = "JsonSaveData_Btn";
-            this.JsonSaveData_Btn.Size = new System.Drawing.Size(87, 32);
+            this.JsonSaveData_Btn.Size = new System.Drawing.Size(85, 32);
             this.JsonSaveData_Btn.TabIndex = 20;
             this.JsonSaveData_Btn.Text = "Save DATA";
             this.JsonSaveData_Btn.UseVisualStyleBackColor = false;
@@ -3833,11 +3978,11 @@
             this.JsonOpnListUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonOpnListUri_Btn.FlatAppearance.BorderSize = 0;
             this.JsonOpnListUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.JsonOpnListUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonOpnListUri_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.White;
-            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(348, 0);
+            this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(266, 0);
             this.JsonOpnListUri_Btn.Name = "JsonOpnListUri_Btn";
             this.JsonOpnListUri_Btn.Size = new System.Drawing.Size(102, 32);
             this.JsonOpnListUri_Btn.TabIndex = 19;
@@ -3855,8 +4000,8 @@
             this.JsonSaveUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonSaveUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveUri_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonSaveUri_Btn.ForeColor = System.Drawing.Color.White;
-            this.JsonSaveUri_Btn.Location = new System.Drawing.Point(246, 0);
+            this.JsonSaveUri_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.JsonSaveUri_Btn.Location = new System.Drawing.Point(164, 0);
             this.JsonSaveUri_Btn.Name = "JsonSaveUri_Btn";
             this.JsonSaveUri_Btn.Size = new System.Drawing.Size(102, 32);
             this.JsonSaveUri_Btn.TabIndex = 18;
@@ -3874,33 +4019,14 @@
             this.JsonSaveFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.JsonSaveFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveFile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.White;
-            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(164, 0);
+            this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(82, 0);
             this.JsonSaveFile_Btn.Name = "JsonSaveFile_Btn";
             this.JsonSaveFile_Btn.Size = new System.Drawing.Size(82, 32);
             this.JsonSaveFile_Btn.TabIndex = 17;
             this.JsonSaveFile_Btn.Text = "Save Json";
             this.JsonSaveFile_Btn.UseVisualStyleBackColor = false;
             this.JsonSaveFile_Btn.Click += new System.EventHandler(this.JsonSaveFile_Btn_Click);
-            // 
-            // LastJson_Btn
-            // 
-            this.LastJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LastJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LastJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LastJson_Btn.FlatAppearance.BorderSize = 0;
-            this.LastJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.LastJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.LastJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LastJson_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LastJson_Btn.ForeColor = System.Drawing.Color.White;
-            this.LastJson_Btn.Location = new System.Drawing.Point(82, 0);
-            this.LastJson_Btn.Name = "LastJson_Btn";
-            this.LastJson_Btn.Size = new System.Drawing.Size(82, 32);
-            this.LastJson_Btn.TabIndex = 21;
-            this.LastJson_Btn.Text = "Last Json";
-            this.LastJson_Btn.UseVisualStyleBackColor = false;
-            this.LastJson_Btn.Click += new System.EventHandler(this.LastJson_Btn_Click);
             // 
             // JsonOpnFile_Btn
             // 
@@ -3909,10 +4035,10 @@
             this.JsonOpnFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonOpnFile_Btn.FlatAppearance.BorderSize = 0;
             this.JsonOpnFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.JsonOpnFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonOpnFile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.White;
+            this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.JsonOpnFile_Btn.Location = new System.Drawing.Point(0, 0);
             this.JsonOpnFile_Btn.Name = "JsonOpnFile_Btn";
             this.JsonOpnFile_Btn.Size = new System.Drawing.Size(82, 32);
@@ -3936,7 +4062,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 25);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -3947,7 +4073,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 590);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 561);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -3958,7 +4084,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 590);
+            this.groupBox5.Size = new System.Drawing.Size(328, 561);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -3995,7 +4121,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 19);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 568);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 539);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // MapDir_Lbl
@@ -4304,7 +4430,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 590);
+            this.panel26.Size = new System.Drawing.Size(10, 561);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
@@ -4314,7 +4440,7 @@
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 590);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 561);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
             // groupBox6
@@ -4324,7 +4450,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox6.Location = new System.Drawing.Point(0, 393);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 197);
+            this.groupBox6.Size = new System.Drawing.Size(244, 168);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
@@ -4332,10 +4458,12 @@
             // SaveCookies_Chk
             // 
             this.SaveCookies_Chk.AutoSize = true;
+            this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SaveCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
             this.SaveCookies_Chk.Location = new System.Drawing.Point(25, 30);
             this.SaveCookies_Chk.Name = "SaveCookies_Chk";
-            this.SaveCookies_Chk.Size = new System.Drawing.Size(194, 36);
+            this.SaveCookies_Chk.Size = new System.Drawing.Size(192, 36);
             this.SaveCookies_Chk.TabIndex = 0;
             this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
             this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4492,7 +4620,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 590);
+            this.panel25.Size = new System.Drawing.Size(10, 561);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -4502,7 +4630,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 590);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 561);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -4527,7 +4655,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 557);
+            this.groupBox3.Size = new System.Drawing.Size(714, 528);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -4698,7 +4826,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 557);
+            this.panel27.Location = new System.Drawing.Point(0, 528);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -4745,7 +4873,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 600);
+            this.panel24.Location = new System.Drawing.Point(10, 571);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -4765,7 +4893,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 610);
+            this.panel22.Size = new System.Drawing.Size(10, 581);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -4774,8 +4902,61 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 610);
+            this.panel21.Size = new System.Drawing.Size(10, 581);
             this.panel21.TabIndex = 20;
+            // 
+            // Menu_Mnu
+            // 
+            this.Menu_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Cut_Tools,
+            this.Copy_Mnu,
+            this.Paste_Mnu,
+            this.Delete_Mnu,
+            this.toolStripSeparator28,
+            this.SelectAll_Mnu});
+            this.Menu_Mnu.Name = "Menu_Mnu";
+            this.Menu_Mnu.Size = new System.Drawing.Size(136, 120);
+            // 
+            // Cut_Tools
+            // 
+            this.Cut_Tools.Name = "Cut_Tools";
+            this.Cut_Tools.Size = new System.Drawing.Size(135, 22);
+            this.Cut_Tools.Text = "Cut";
+            this.Cut_Tools.Click += new System.EventHandler(this.Cut_Tools_Click);
+            // 
+            // Copy_Mnu
+            // 
+            this.Copy_Mnu.Name = "Copy_Mnu";
+            this.Copy_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.Copy_Mnu.Text = "Copy";
+            this.Copy_Mnu.Click += new System.EventHandler(this.Copy_Mnu_Click);
+            // 
+            // Paste_Mnu
+            // 
+            this.Paste_Mnu.Name = "Paste_Mnu";
+            this.Paste_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.Paste_Mnu.Text = "Paste";
+            this.Paste_Mnu.Click += new System.EventHandler(this.Paste_Mnu_Click);
+            // 
+            // Delete_Mnu
+            // 
+            this.Delete_Mnu.Name = "Delete_Mnu";
+            this.Delete_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.Delete_Mnu.Text = "Delete";
+            this.Delete_Mnu.Click += new System.EventHandler(this.Delete_Mnu_Click);
+            // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(132, 6);
+            // 
+            // SelectAll_Mnu
+            // 
+            this.SelectAll_Mnu.Name = "SelectAll_Mnu";
+            this.SelectAll_Mnu.Size = new System.Drawing.Size(135, 22);
+            this.SelectAll_Mnu.Text = "Select all";
+            this.SelectAll_Mnu.Click += new System.EventHandler(this.SelectAll_Mnu_Click);
             // 
             // Status_Strip
             // 
@@ -4795,7 +4976,8 @@
             this.LatTCurrent_Lbl,
             this.Separator,
             this.LonGtCurrent_Lbl,
-            this.TtsButton_Sts});
+            this.TtsButton_Sts,
+            this.FileOpnJson_Lbl});
             this.Status_Strip.Location = new System.Drawing.Point(0, 639);
             this.Status_Strip.Name = "Status_Strip";
             this.Status_Strip.Size = new System.Drawing.Size(1334, 22);
@@ -4889,17 +5071,19 @@
             // 
             // ProjectMapOpn_Lbl
             // 
+            this.ProjectMapOpn_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectMapOpn_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.ProjectMapOpn_Lbl.Name = "ProjectMapOpn_Lbl";
-            this.ProjectMapOpn_Lbl.Size = new System.Drawing.Size(15, 17);
+            this.ProjectMapOpn_Lbl.Size = new System.Drawing.Size(14, 17);
             this.ProjectMapOpn_Lbl.Text = "_";
             this.ProjectMapOpn_Lbl.Visible = false;
             // 
             // LatTCurrent_Lbl
             // 
+            this.LatTCurrent_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LatTCurrent_Lbl.ForeColor = System.Drawing.Color.Lime;
             this.LatTCurrent_Lbl.Name = "LatTCurrent_Lbl";
-            this.LatTCurrent_Lbl.Size = new System.Drawing.Size(15, 17);
+            this.LatTCurrent_Lbl.Size = new System.Drawing.Size(14, 17);
             this.LatTCurrent_Lbl.Text = "_";
             this.LatTCurrent_Lbl.Visible = false;
             // 
@@ -4913,9 +5097,10 @@
             // 
             // LonGtCurrent_Lbl
             // 
+            this.LonGtCurrent_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LonGtCurrent_Lbl.ForeColor = System.Drawing.Color.Lime;
             this.LonGtCurrent_Lbl.Name = "LonGtCurrent_Lbl";
-            this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(15, 17);
+            this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(14, 17);
             this.LonGtCurrent_Lbl.Text = "_";
             this.LonGtCurrent_Lbl.Visible = false;
             // 
@@ -4936,6 +5121,15 @@
             this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
             this.OpnURL_TlsTools.Text = "Open URL in New Tab";
             this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
+            // 
+            // FileOpnJson_Lbl
+            // 
+            this.FileOpnJson_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileOpnJson_Lbl.ForeColor = System.Drawing.Color.White;
+            this.FileOpnJson_Lbl.Name = "FileOpnJson_Lbl";
+            this.FileOpnJson_Lbl.Size = new System.Drawing.Size(14, 17);
+            this.FileOpnJson_Lbl.Text = "_";
+            this.FileOpnJson_Lbl.Visible = false;
             // 
             // Tools_TAB_1
             // 
@@ -5121,8 +5315,8 @@
             this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
-            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(90, 20);
-            this.CollapseTitleFeed_Btn.Text = "Collapse Off";
+            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(88, 20);
+            this.CollapseTitleFeed_Btn.Text = "Collapse On";
             this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
             // 
             // GoFeed_Txt
@@ -5494,9 +5688,9 @@
             this.ToolsMap_Mnu,
             this.GmapProvider_Cbx,
             this.toolStripLabel3,
-            this.LatT_Txt,
+            this.LatLon_Txt,
             this.toolStripLabel5,
-            this.LonGt_txt,
+            this.OrderLL_txt,
             this.GoLatLong_Tls,
             this.toolStripSeparator23,
             this.toolStripLabel4,
@@ -5714,42 +5908,45 @@
             // 
             this.toolStripLabel3.ForeColor = System.Drawing.Color.Gray;
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(55, 22);
-            this.toolStripLabel3.Text = "latitude";
+            this.toolStripLabel3.Size = new System.Drawing.Size(51, 22);
+            this.toolStripLabel3.Text = "lat/Lon";
             // 
-            // LatT_Txt
+            // LatLon_Txt
             // 
-            this.LatT_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LatT_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LatT_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatT_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LatT_Txt.Name = "LatT_Txt";
-            this.LatT_Txt.Size = new System.Drawing.Size(100, 25);
+            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.LatLon_Txt.Name = "LatLon_Txt";
+            this.LatLon_Txt.Size = new System.Drawing.Size(200, 25);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.ForeColor = System.Drawing.Color.Gray;
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(66, 22);
-            this.toolStripLabel5.Text = "longitude";
+            this.toolStripLabel5.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel5.Text = "Order";
             // 
-            // LonGt_txt
+            // OrderLL_txt
             // 
-            this.LonGt_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LonGt_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LonGt_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LonGt_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LonGt_txt.Name = "LonGt_txt";
-            this.LonGt_txt.Size = new System.Drawing.Size(100, 25);
+            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.OrderLL_txt.Name = "OrderLL_txt";
+            this.OrderLL_txt.Size = new System.Drawing.Size(45, 25);
+            this.OrderLL_txt.Text = "lalo";
+            this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // GoLatLong_Tls
             // 
+            this.GoLatLong_Tls.AutoSize = false;
             this.GoLatLong_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.GoLatLong_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.GoLatLong_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoLatLong_Tls.Image")));
             this.GoLatLong_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoLatLong_Tls.Name = "GoLatLong_Tls";
-            this.GoLatLong_Tls.Size = new System.Drawing.Size(27, 22);
+            this.GoLatLong_Tls.Size = new System.Drawing.Size(50, 22);
             this.GoLatLong_Tls.Text = "go";
             this.GoLatLong_Tls.Click += new System.EventHandler(this.GoLatLong_Tls_Click);
             // 
@@ -5776,12 +5973,13 @@
             // 
             // GoWord_Tls
             // 
+            this.GoWord_Tls.AutoSize = false;
             this.GoWord_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.GoWord_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.GoWord_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoWord_Tls.Image")));
             this.GoWord_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoWord_Tls.Name = "GoWord_Tls";
-            this.GoWord_Tls.Size = new System.Drawing.Size(27, 22);
+            this.GoWord_Tls.Size = new System.Drawing.Size(50, 22);
             this.GoWord_Tls.Text = "go";
             this.GoWord_Tls.Click += new System.EventHandler(this.GoWord_Tls_Click);
             // 
@@ -5884,9 +6082,13 @@
             this.Map_Cmd_Pnl.PerformLayout();
             this.Json_Tab.ResumeLayout(false);
             this.Json_Tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.JsonParse_txt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.JsonOut_txt)).EndInit();
-            this.Menu_Mnu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).EndInit();
+            this.PanelBjson_Pnl.ResumeLayout(false);
+            this.PanelBjson_Pnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.WbOutA)).EndInit();
+            this.PanelAjson_Pnl.ResumeLayout(false);
+            this.PanelAjson_Pnl.PerformLayout();
+            this.JsonList_Pnl.ResumeLayout(false);
             this.JsonPanel3_Pnl.ResumeLayout(false);
             this.JsonPanel3_Pnl.PerformLayout();
             this.JsonPanel2_Pnl.ResumeLayout(false);
@@ -5905,6 +6107,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel27.ResumeLayout(false);
+            this.Menu_Mnu.ResumeLayout(false);
             this.Status_Strip.ResumeLayout(false);
             this.Status_Strip.PerformLayout();
             this.Tools_TAB_1.ResumeLayout(false);
@@ -6264,9 +6467,9 @@
         private System.Windows.Forms.ToolStripButton GoLatLong_Tls;
         private System.Windows.Forms.ToolStripComboBox GmapProvider_Cbx;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox LatT_Txt;
+        private System.Windows.Forms.ToolStripTextBox LatLon_Txt;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripTextBox LonGt_txt;
+        private System.Windows.Forms.ToolStripTextBox OrderLL_txt;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripTextBox KeywordMap_Txt;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;
@@ -6324,15 +6527,12 @@
         private System.Windows.Forms.TextBox JsonCnt_txt;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panel33;
-        private FastColoredTextBoxNS.FastColoredTextBox JsonOut_txt;
-        private FastColoredTextBoxNS.FastColoredTextBox JsonParse_txt;
         private System.Windows.Forms.Button JsonSaveFile_Btn;
         private System.Windows.Forms.Button JsonSaveUri_Btn;
         private System.Windows.Forms.Button JsonOpnListUri_Btn;
         private System.Windows.Forms.Button JsonSaveData_Btn;
         private System.Windows.Forms.TextBox CharSpace_Txt;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button LastJson_Btn;
         private System.Windows.Forms.ContextMenuStrip Menu_Mnu;
         private System.Windows.Forms.ToolStripMenuItem Cut_Tools;
         private System.Windows.Forms.ToolStripMenuItem Copy_Mnu;
@@ -6349,9 +6549,27 @@
         private System.Windows.Forms.TextBox BrcktA_Txt;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button ReplaceBrckt_btn;
-        private System.Windows.Forms.Button PermuteOut_Btn;
         private System.Windows.Forms.Button TableParse_Btn;
         private System.Windows.Forms.Button TableNode_Btn;
+        private System.Windows.Forms.Panel JsonList_Pnl;
+        private System.Windows.Forms.Button OpnJsonDirTable_Btn;
+        private System.Windows.Forms.ListBox TableJson_Lst;
+        private System.Windows.Forms.Button OpnTableList_Btn;
+        private System.Windows.Forms.Panel PanelAjson_Pnl;
+        private System.Windows.Forms.CheckBox OutJsonA_Chk;
+        private System.Windows.Forms.Panel PanelBjson_Pnl;
+        private System.Windows.Forms.CheckBox OutJsonB_Chk;
+        private System.Windows.Forms.CheckBox ChgCult_Chk;
+        private System.Windows.Forms.ToolStripStatusLabel FileOpnJson_Lbl;
+        private Microsoft.Web.WebView2.WinForms.WebView2 WbOutA;
+        private Microsoft.Web.WebView2.WinForms.WebView2 WbOutB;
+        private System.Windows.Forms.CheckBox Brkt_Chk;
+        private System.Windows.Forms.Button RfreshB_Btn;
+        private System.Windows.Forms.Button RfreshA_Btn;
+        private System.Windows.Forms.Button EmptyB_Btn;
+        private System.Windows.Forms.Button EmptyA_Btn;
+        private System.Windows.Forms.Button ExtdB_Btn;
+        private System.Windows.Forms.Button ExtdA_Btn;
     }
 }
 
