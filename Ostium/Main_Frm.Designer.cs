@@ -302,6 +302,8 @@
             this.Panel_WorkspaceSize = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.PanelOptDir_Pnl = new System.Windows.Forms.Panel();
+            this.JsonDir_Lbl = new System.Windows.Forms.Label();
+            this.JsonDir_Opn = new System.Windows.Forms.Label();
             this.MapDir_Lbl = new System.Windows.Forms.Label();
             this.MapDir_Opn = new System.Windows.Forms.Label();
             this.OstiumDir_Opn = new System.Windows.Forms.Label();
@@ -447,6 +449,7 @@
             this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
@@ -4092,6 +4095,8 @@
             // PanelOptDir_Pnl
             // 
             this.PanelOptDir_Pnl.AutoScroll = true;
+            this.PanelOptDir_Pnl.Controls.Add(this.JsonDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.JsonDir_Opn);
             this.PanelOptDir_Pnl.Controls.Add(this.MapDir_Lbl);
             this.PanelOptDir_Pnl.Controls.Add(this.MapDir_Opn);
             this.PanelOptDir_Pnl.Controls.Add(this.OstiumDir_Opn);
@@ -4123,6 +4128,29 @@
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
             this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 539);
             this.PanelOptDir_Pnl.TabIndex = 24;
+            // 
+            // JsonDir_Lbl
+            // 
+            this.JsonDir_Lbl.AutoSize = true;
+            this.JsonDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.JsonDir_Lbl.Location = new System.Drawing.Point(8, 629);
+            this.JsonDir_Lbl.Name = "JsonDir_Lbl";
+            this.JsonDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.JsonDir_Lbl.TabIndex = 27;
+            this.JsonDir_Lbl.Text = "0";
+            // 
+            // JsonDir_Opn
+            // 
+            this.JsonDir_Opn.AutoSize = true;
+            this.JsonDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonDir_Opn.ForeColor = System.Drawing.Color.White;
+            this.JsonDir_Opn.Location = new System.Drawing.Point(8, 608);
+            this.JsonDir_Opn.Name = "JsonDir_Opn";
+            this.JsonDir_Opn.Size = new System.Drawing.Size(132, 16);
+            this.JsonDir_Opn.TabIndex = 26;
+            this.JsonDir_Opn.Text = "Json files Directory";
+            this.JsonDir_Opn.Click += new System.EventHandler(this.JsonDir_Opn_Click);
             // 
             // MapDir_Lbl
             // 
@@ -5712,7 +5740,8 @@
             this.MapProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.MapProject_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewProjectMap_Tls,
-            this.NewProjectMapList_Tls});
+            this.NewProjectMapList_Tls,
+            this.NewProjectMapLatLon_Tls});
             this.MapProject_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.MapProject_Tls.Image = ((System.Drawing.Image)(resources.GetObject("MapProject_Tls.Image")));
             this.MapProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -5724,16 +5753,23 @@
             // 
             this.NewProjectMap_Tls.ForeColor = System.Drawing.Color.Black;
             this.NewProjectMap_Tls.Name = "NewProjectMap_Tls";
-            this.NewProjectMap_Tls.Size = new System.Drawing.Size(302, 22);
+            this.NewProjectMap_Tls.Size = new System.Drawing.Size(455, 22);
             this.NewProjectMap_Tls.Text = "New Location Project";
             this.NewProjectMap_Tls.Click += new System.EventHandler(this.NewProjectMap_Tls_Click);
             // 
             // NewProjectMapList_Tls
             // 
             this.NewProjectMapList_Tls.Name = "NewProjectMapList_Tls";
-            this.NewProjectMapList_Tls.Size = new System.Drawing.Size(302, 22);
+            this.NewProjectMapList_Tls.Size = new System.Drawing.Size(455, 22);
             this.NewProjectMapList_Tls.Text = "Create a project from a list of points";
             this.NewProjectMapList_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
+            // 
+            // NewProjectMapLatLon_Tls
+            // 
+            this.NewProjectMapLatLon_Tls.Name = "NewProjectMapLatLon_Tls";
+            this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(455, 22);
+            this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
+            this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
             // 
             // FilesMap_Mnu
             // 
@@ -6570,6 +6606,9 @@
         private System.Windows.Forms.Button EmptyA_Btn;
         private System.Windows.Forms.Button ExtdB_Btn;
         private System.Windows.Forms.Button ExtdA_Btn;
+        private System.Windows.Forms.Label JsonDir_Lbl;
+        private System.Windows.Forms.Label JsonDir_Opn;
+        private System.Windows.Forms.ToolStripMenuItem NewProjectMapLatLon_Tls;
     }
 }
 

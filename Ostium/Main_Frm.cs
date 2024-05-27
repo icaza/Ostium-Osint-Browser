@@ -32,7 +32,7 @@ using GMap.NET;
 using System.Globalization;
 using System.Text.Json.Nodes;
 using Microsoft.Web.WebView2.WinForms;
-using Microsoft.Ajax.Utilities;
+using System.Data.Entity.Infrastructure;
 
 namespace Ostium
 {
@@ -2663,6 +2663,7 @@ namespace Ostium
                     DireSizeCalc(Setirps, SpritesDir_Lbl);
                     DireSizeCalc(BkmkltDir, BkmkltDir_Lbl);
                     DireSizeCalc(MapDir, MapDir_Lbl);
+                    DireSizeCalc(JsonDir, JsonDir_Lbl);
                     break;
             }
         }
@@ -5415,6 +5416,12 @@ namespace Ostium
                 Process.Start(MapDir);
         }
 
+        private void JsonDir_Opn_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(JsonDir))
+                Process.Start(JsonDir);
+        }
+
         #endregion
 
         #region Process_
@@ -5782,11 +5789,18 @@ namespace Ostium
         /// Create a new project from a list of points
         /// </summary>
         /// <param name="Vrfy">Checks if the operation is not abandoned</param>
-        /// <param name="0">Continue</param>
-        /// <param name="1">Return</param>
+        /// <param value="0">Continue</param>
+        /// <param value="1">Return</param>
         /// 
         void NewProjectMapList_Tls_Click(object sender, EventArgs e)
         {
+            int model;
+            string Btn = (sender as ToolStripMenuItem).Name;
+            if (Btn == NewProjectMapList_Tls.Name)
+                model = 0;
+            else
+                model = 1;
+
             Vrfy = 0;
             
             CreateProjectMap(1);
@@ -5801,7 +5815,7 @@ namespace Ostium
 
             MessageBox.Show(MessageStartGeoloc);
 
-            Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen));
+            Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen, model));
             AutoCreatePoints.Start();
         }
         ///
@@ -5811,16 +5825,27 @@ namespace Ostium
         /// <param name="values[1]">Latitude</param>
         /// <param name="values[2]">Longitude</param>
         /// <param name="values[3]">Marker/Description/Infos</param>
+        /// <param name="model">Model csv or other</param>
+        /// <param value="0">Name/Latitude/Longitude/Marker</param>
+        /// <param value="1">Latitude/Longitude</param>
+        /// <param name="Una">Use random name</param>
         /// 
-        void AutoCreatePoints_Thrd(string fileopn)
+        void AutoCreatePoints_Thrd(string fileopn, int model)
         {
+            CreateNameAleat();
+            int inct = 0;
+
             using (var reader = new StreamReader(fileopn))
             {
                 while (!reader.EndOfStream)
                 {
+                    inct += 1;
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    AddNewLocPoints(values[0], values[1], values[2], values[3]);
+                    if (model == 0)
+                        AddNewLocPoints(values[0], values[1], values[2], values[3]);
+                    else
+                        AddNewLocPoints(Una + inct, values[0], values[1], Una + inct);
                 }
             }
 
@@ -6330,7 +6355,6 @@ namespace Ostium
                 LatT = double.Parse(lat, CultureInfo.InvariantCulture);
                 LonGt = double.Parse(lon, CultureInfo.InvariantCulture);
 
-                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
                 GMapOverlay markers = new GMapOverlay("markers");
                 GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
                 {
