@@ -32,6 +32,7 @@ using GMap.NET;
 using System.Globalization;
 using System.Text.Json.Nodes;
 using Microsoft.Web.WebView2.WinForms;
+using Microsoft.VisualBasic.Logging;
 
 namespace Ostium
 {
@@ -6150,6 +6151,9 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
                 GoLatLong(LaT, LoN, LaT + " " + LoN);
+                LatT = double.Parse(LaT, CultureInfo.InvariantCulture);
+                LonGt = double.Parse(LoN, CultureInfo.InvariantCulture);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
             }
             catch (Exception ex)
             {
@@ -6408,16 +6412,22 @@ namespace Ostium
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(MapXmlOpn);
                 XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Location/Point_Point");
-
+                var La = "";
+                var Lo = "";
                 for (int i = 0; i < nodeList.Count; i++)
                 {
                     //string name = string.Format("{0}", nodeList[i].ChildNodes.Item(0).InnerText);
                     string lat = string.Format("{0}", nodeList[i].Attributes.Item(0).InnerText);
+                    La = lat;
                     string lon = string.Format("{0}", nodeList[i].Attributes.Item(1).InnerText);
+                    Lo = lon;
                     string txtmarker = string.Format("{0}", nodeList[i].Attributes.Item(2).InnerText);
 
                     GoLatLong(lat, lon, txtmarker);
                 }
+                LatT = double.Parse(La, CultureInfo.InvariantCulture);
+                LonGt = double.Parse(Lo, CultureInfo.InvariantCulture);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
             }
             catch (Exception ex)
             {
