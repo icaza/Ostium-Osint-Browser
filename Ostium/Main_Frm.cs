@@ -6204,6 +6204,9 @@ namespace Ostium
 
         void AddNewLocPoints(string locationname, string lat, string lon, string txtmarker)
         {
+            if (lat == "" || lon == "")
+                return;
+
             XmlDocument doc = new XmlDocument();
             XmlTextReader xmlReader = new XmlTextReader(MapXmlOpn);
             doc.Load(xmlReader);

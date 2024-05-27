@@ -1114,10 +1114,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1139,7 +1139,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 25);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 581);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1152,7 +1152,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 472);
+            this.WBrowse.Size = new System.Drawing.Size(920, 501);
             this.WBrowse.Source = new System.Uri("https://icaza.github.io/", System.UriKind.Absolute);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
@@ -1170,7 +1170,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 502);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 531);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 53);
@@ -1265,7 +1265,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 525);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 554);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1274,7 +1274,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 497);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 526);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -1328,7 +1328,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 421);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 450);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -1729,7 +1729,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 552);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 581);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -1743,7 +1743,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 208);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 237);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -1753,7 +1753,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 235);
+            this.label5.Location = new System.Drawing.Point(0, 264);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -1765,7 +1765,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 259);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 288);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1787,7 +1787,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 361);
+            this.label1.Location = new System.Drawing.Point(0, 390);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -1799,7 +1799,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 385);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 414);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1810,7 +1810,7 @@
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 487);
+            this.label23.Location = new System.Drawing.Point(0, 516);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -1822,7 +1822,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 511);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 540);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -1836,7 +1836,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 555);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 584);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
