@@ -368,13 +368,6 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.Menu_Mnu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Cut_Tools = new System.Windows.Forms.ToolStripMenuItem();
-            this.Copy_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.Paste_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.Delete_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
-            this.SelectAll_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -542,7 +535,6 @@
             this.Panel_ConfigXml.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel27.SuspendLayout();
-            this.Menu_Mnu.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
@@ -4931,59 +4923,6 @@
             this.panel21.Size = new System.Drawing.Size(10, 610);
             this.panel21.TabIndex = 20;
             // 
-            // Menu_Mnu
-            // 
-            this.Menu_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Mnu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Cut_Tools,
-            this.Copy_Mnu,
-            this.Paste_Mnu,
-            this.Delete_Mnu,
-            this.toolStripSeparator28,
-            this.SelectAll_Mnu});
-            this.Menu_Mnu.Name = "Menu_Mnu";
-            this.Menu_Mnu.Size = new System.Drawing.Size(136, 120);
-            // 
-            // Cut_Tools
-            // 
-            this.Cut_Tools.Name = "Cut_Tools";
-            this.Cut_Tools.Size = new System.Drawing.Size(135, 22);
-            this.Cut_Tools.Text = "Cut";
-            this.Cut_Tools.Click += new System.EventHandler(this.Cut_Tools_Click);
-            // 
-            // Copy_Mnu
-            // 
-            this.Copy_Mnu.Name = "Copy_Mnu";
-            this.Copy_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Copy_Mnu.Text = "Copy";
-            this.Copy_Mnu.Click += new System.EventHandler(this.Copy_Mnu_Click);
-            // 
-            // Paste_Mnu
-            // 
-            this.Paste_Mnu.Name = "Paste_Mnu";
-            this.Paste_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Paste_Mnu.Text = "Paste";
-            this.Paste_Mnu.Click += new System.EventHandler(this.Paste_Mnu_Click);
-            // 
-            // Delete_Mnu
-            // 
-            this.Delete_Mnu.Name = "Delete_Mnu";
-            this.Delete_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.Delete_Mnu.Text = "Delete";
-            this.Delete_Mnu.Click += new System.EventHandler(this.Delete_Mnu_Click);
-            // 
-            // toolStripSeparator28
-            // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(132, 6);
-            // 
-            // SelectAll_Mnu
-            // 
-            this.SelectAll_Mnu.Name = "SelectAll_Mnu";
-            this.SelectAll_Mnu.Size = new System.Drawing.Size(135, 22);
-            this.SelectAll_Mnu.Text = "Select all";
-            this.SelectAll_Mnu.Click += new System.EventHandler(this.SelectAll_Mnu_Click);
-            // 
             // Status_Strip
             // 
             this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -6141,7 +6080,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.panel27.ResumeLayout(false);
-            this.Menu_Mnu.ResumeLayout(false);
             this.Status_Strip.ResumeLayout(false);
             this.Status_Strip.PerformLayout();
             this.Tools_TAB_1.ResumeLayout(false);
@@ -6567,13 +6505,6 @@
         private System.Windows.Forms.Button JsonSaveData_Btn;
         private System.Windows.Forms.TextBox CharSpace_Txt;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.ContextMenuStrip Menu_Mnu;
-        private System.Windows.Forms.ToolStripMenuItem Cut_Tools;
-        private System.Windows.Forms.ToolStripMenuItem Copy_Mnu;
-        private System.Windows.Forms.ToolStripMenuItem Paste_Mnu;
-        private System.Windows.Forms.ToolStripMenuItem Delete_Mnu;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
-        private System.Windows.Forms.ToolStripMenuItem SelectAll_Mnu;
         private System.Windows.Forms.ToolStripDropDownButton MapProject_Tls;
         private System.Windows.Forms.ToolStripMenuItem NewProjectMap_Tls;
         private System.Windows.Forms.ToolStripMenuItem NewProjectMapList_Tls;

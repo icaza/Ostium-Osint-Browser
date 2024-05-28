@@ -1108,9 +1108,9 @@ namespace Ostium
         /// "url_dflt_cnf.ost" and/or restart the application to return to the default wBrowser agent
         /// </summary>
         /// <param name="ClearOnOff"></param>
-        /// <param name="on"></param>
+        /// <param value="on"></param>
         /// Clean request notification True
-        /// <param name="off"></param>
+        /// <param value="off"></param>
         /// No notification of cleaning request when auto restart of the application to return the default user-agent
         /// 
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
@@ -1137,9 +1137,9 @@ namespace Ostium
         /// "url_dflt_cnf.ost" and/or restarting the application
         /// </summary>
         /// <param name="ClearOnOff"></param>
-        /// <param name="on"></param>
+        /// <param value="on"></param>
         /// Clean request notification True
-        /// <param name="off"></param>
+        /// <param value="off"></param>
         /// No notification of cleaning request when auto restart of the application to return the default user-agent
         /// 
         void Googlebot_Btn_Click(object sender, EventArgs e)
@@ -6086,6 +6086,7 @@ namespace Ostium
         void CopyGeoMap_Tls_Click(object sender, EventArgs e)
         {
             Clipboard.SetData(DataFormats.Text, LatTCurrent_Lbl.Text + " " + LonGtCurrent_Lbl.Text);
+            Beep(1000, 400);
         }
 
         void GoLatLong_Tls_Click(object sender, EventArgs e)
@@ -7108,35 +7109,6 @@ namespace Ostium
         void OpnTableJson_Invk(string val)
         {
             GoBrowser("file:///" + val, 1);
-        }
-
-        #endregion
-
-        #region ContextMenu_
-
-        void Cut_Tools_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "x");
-        }
-
-        void Copy_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "c");
-        }
-
-        void Paste_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "v");
-        }
-
-        void Delete_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("{DEL}");
-        }
-
-        void SelectAll_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "a");
         }
 
         #endregion

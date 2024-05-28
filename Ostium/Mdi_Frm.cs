@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 using Icaza;
 using LoadDirectory;
@@ -60,9 +59,7 @@ namespace Ostium
                 ChargeListURL(FileDirAll + URLlist_Cbx.Text);
 
                 for (int i = 0; i < UrlOpn_Lst.Items.Count; i++)
-                {
                     OpnNewForm(UrlOpn_Lst.Items[i].ToString());
-                }
             }
             catch (Exception ex)
             {

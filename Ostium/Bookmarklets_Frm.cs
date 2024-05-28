@@ -227,8 +227,7 @@ namespace Ostium
 
         void Copy_Mnu_Click(object sender, EventArgs e)
         {
-            if (ScriptTxt_Txt.SelectedText != "")
-                Clipboard.SetDataObject(ScriptTxt_Txt.SelectedText);
+            SendKeys.Send("^" + "c");
         }
 
         void Paste_Mnu_Click(object sender, EventArgs e)
