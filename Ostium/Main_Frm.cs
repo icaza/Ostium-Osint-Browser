@@ -172,7 +172,7 @@ namespace Ostium
         /// <param name="versionNow">Current version of the application to compare with the Http request = > "updt_ostium.html"</param>
         /// </summary>
         /// 
-        readonly string upftOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
+        readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
         readonly string versionNow = "8";
 
@@ -688,7 +688,7 @@ namespace Ostium
         /// Navigation starting => check if user-agent modification is enabled
         /// </summary>
         /// <param name="UserAgentOnOff"></param>
-        /// <param name="on">If enabled user-agent modification</param>
+        /// <param value="on">If enabled user-agent modification</param>
         /// 
         void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
@@ -780,7 +780,7 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowse_EventHandlers(WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
@@ -849,7 +849,7 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowsefeed_EventHandlers(WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
@@ -3059,12 +3059,12 @@ namespace Ostium
                 {
                     if (File.Exists(FileSelect))
                     {
-                        using (Process objProcess = new Process())
+                        using (Process objProc = new Process())
                         {
-                            objProcess.StartInfo.FileName = AppStart + "OstiumE.exe";
-                            objProcess.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
-                            objProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                            objProcess.Start();
+                            objProc.StartInfo.FileName = AppStart + "OstiumE.exe";
+                            objProc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                            objProc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                            objProc.Start();
                         }
                     }
                 }
@@ -3854,16 +3854,11 @@ namespace Ostium
 
         void Db_OrderLst_Btn_Click(object sender, EventArgs e)
         {
+            DataValue_Lst.Sorted = !DataValue_Lst.Sorted;
             if (DataValue_Lst.Sorted)
-            {
-                Db_OrderLst_Btn.ForeColor = Color.White;
-                DataValue_Lst.Sorted = false;
-            }
-            else
-            {
                 Db_OrderLst_Btn.ForeColor = Color.Lime;
-                DataValue_Lst.Sorted = true;
-            }            
+            else
+                Db_OrderLst_Btn.ForeColor = Color.White;
         }
 
         #endregion
@@ -3880,8 +3875,8 @@ namespace Ostium
         /// Loading the RSS feed category into List or administering the RSS feed category file
         /// </summary>
         /// <param name="ManageFeed"></param>
-        /// <param name="on">Opening rss feed category file for editing</param>
-        /// <param name="off">Loading the category's RSS feed</param>
+        /// <param value="on">Opening rss feed category file for editing</param>
+        /// <param value="off">Loading the category's RSS feed</param>
         /// <param name="LoadFeed"></param>
         /// <param value="0">Cleaning the List before loading</param>
         ///
@@ -3946,7 +3941,7 @@ namespace Ostium
         /// <summary>
         /// Loading the list of Flows
         /// </summary>
-        /// <param name="value">RSS Feed URL for the category </param>
+        /// <param value="value">RSS Feed URL for the category </param>
         /// <param name="FeedTitle">Loading RSS feed sites</param>
         /// <param name="ListCount">Counter of the number of Titles per RSS feed site</param>
         /// <param name="ItemTitleAdd">Added title in "Title_Lst"</param>
@@ -4478,7 +4473,7 @@ namespace Ostium
         /// <summary>
         /// Cookies save
         /// </summary>
-        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
+        /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
         async void GetCookie(string URLs)
         {
             try
@@ -4547,7 +4542,7 @@ namespace Ostium
                     return;
                 }
                 ///
-                /// Verifie si doublons
+                /// Check for duplicates
                 /// 
                 ListBox WordVerify = new ListBox();
                 ListBox WordCompare = new ListBox();
@@ -6538,17 +6533,13 @@ namespace Ostium
 
                 if (OutJsonA_Chk.Checked)
                 {
-                    if (File.Exists(JsonA))
-                        File.Delete(JsonA);
-                    File.Copy(fileopen, JsonA);
+                    File.Copy(fileopen, JsonA, true);
                     Uri uri = new Uri("file:///" + JsonA);
                     WbOutA.Source = uri;
                 }
                 else
                 {
-                    if (File.Exists(JsonB))
-                        File.Delete(JsonB);
-                    File.Copy(fileopen, JsonB);
+                    File.Copy(fileopen, JsonB, true);
                     Uri uri = new Uri("file:///" + JsonB);
                     WbOutB.Source = uri;
                 }
@@ -6703,7 +6694,8 @@ namespace Ostium
 
             string txt = File.ReadAllText(Jselect);
             txt = txt.Replace(BrcktA_Txt.Text, BrcktB_Txt.Text);
-            File.WriteAllText(Jselect, txt);         
+            File.WriteAllText(Jselect, txt);
+            Beep(1200, 200);
         }
 
         void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
@@ -6731,8 +6723,10 @@ namespace Ostium
                     Jselect = JsonA;
                 else
                     Jselect = JsonB;
+
                 File_Write(Jselect, $"{jsonResponse}");
                 Uri uri = new Uri("file:///" + Jselect);
+
                 if (OutJsonA_Chk.Checked)
                     WbOutA.Source = uri;
                 else
@@ -6764,7 +6758,7 @@ namespace Ostium
                 if (Brkt_Chk.Checked)
                     OutJs = "[" + OutJs + "]";
 
-                JArray jsonVal = JArray.Parse(OutJs); //jsonout
+                JArray jsonVal = JArray.Parse(OutJs);
                 dynamic valjson = jsonVal;
 
                 foreach (dynamic val in valjson)
@@ -6814,7 +6808,7 @@ namespace Ostium
                 if (Brkt_Chk.Checked)
                     OutJs = "[" + OutJs + "]";
 
-                JArray jsonVal = JArray.Parse(OutJs); //OutParse.Text
+                JArray jsonVal = JArray.Parse(OutJs);
                 dynamic valjson = jsonVal;
 
                 string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
@@ -6885,7 +6879,7 @@ namespace Ostium
                     OutJs = "[" + OutJs + "]";
 
                 int CntEnd = Convert.ToInt32(count);
-                JsonNode CastNode = JsonNode.Parse(OutJs); //jsonout
+                JsonNode CastNode = JsonNode.Parse(OutJs);
                 JsonNode SelNode = CastNode[jsonnode];
 
                 for (int i = 0; i < CntEnd; i++)
@@ -6942,7 +6936,7 @@ namespace Ostium
                     OutJs = "[" + OutJs + "]";
 
                 int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
-                JsonNode CastNode = JsonNode.Parse(OutJs); //OutParse.Text
+                JsonNode CastNode = JsonNode.Parse(OutJs);
                 JsonNode SelNode = CastNode[JsonNode_Txt.Text];
 
                 string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
@@ -7182,7 +7176,7 @@ namespace Ostium
             try
             {
                 HttpClient client = new HttpClient();
-                var response = await client.GetAsync(upftOnlineFile);
+                var response = await client.GetAsync(updtOnlineFile);
                 string updtValue = await response.Content.ReadAsStringAsync();
 
                 if (versionNow != updtValue)
