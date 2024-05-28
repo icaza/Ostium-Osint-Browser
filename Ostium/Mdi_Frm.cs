@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using Icaza;
 using LoadDirectory;
@@ -47,9 +48,7 @@ namespace Ostium
         void NewFrm_Mnu_Click(object sender, EventArgs e)
         {
             if (@Class_Var.URL_HOME == "")
-            {
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
-            }
 
             OpnNewForm(@Class_Var.URL_HOME);
         }
@@ -74,9 +73,7 @@ namespace Ostium
         void AddUrlGrp_Btn_Click(object sender, EventArgs e)
         {
             if (URLlist_Cbx.Text != "")
-            {
                 OpnFileOpt(FileDirAll + URLlist_Cbx.Text);
-            }
         }
 
         void ChargeListURL(string fileselect)
@@ -173,13 +170,13 @@ namespace Ostium
                 {
                     if (File.Exists(FileSelect))
                     {
-                        Process objProcess;
-                        objProcess = new Process();
-                        objProcess.StartInfo.FileName = AppStart + "OstiumE.exe";
-                        objProcess.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
-                        objProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                        objProcess.Start();
-                        objProcess.Close();
+                        Process objProc;
+                        objProc = new Process();
+                        objProc.StartInfo.FileName = AppStart + "OstiumE.exe";
+                        objProc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                        objProc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                        objProc.Start();
+                        objProc.Close();
                     }
                 }
             }

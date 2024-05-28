@@ -1872,7 +1872,7 @@ namespace Ostium
         /// Opening the WorkFlow project XML file in the editor
         /// </summary>
         /// <param name="OpenFile_Editor"></param>
-        /// <param value="NameProjectwf_Txt">Selected WorkFlow project</param>
+        /// <param name="NameProjectwf_Txt">Selected WorkFlow project</param>
         /// 
         void EditXml_Tls_Click(object sender, EventArgs e)
         {
@@ -1880,9 +1880,7 @@ namespace Ostium
                 return;
 
             if (File.Exists(Workflow + NameProjectwf_Txt.Text + ".xml"))
-            {
                 OpenFile_Editor(Workflow + NameProjectwf_Txt.Text + ".xml");
-            }            
         }
         ///
         /// <summary>
@@ -2065,13 +2063,9 @@ namespace Ostium
                 string argumentsIs = "";
 
                 if (value == 0)
-                {
                     argumentsIs = "java -jar plantuml.jar " + DiagramDir + fileselect + " -tsvg -charset UTF-8";
-                }
                 else if (value == 1)
-                {
                     argumentsIs = "java -jar plantuml.jar " + fileselect + " -tsvg -charset UTF-8";
-                }              
 
                 using (Process proc = new Process())
                 {
@@ -2188,13 +2182,9 @@ namespace Ostium
                     file_create.WriteLine("title " + NameProjectwf_Txt.Text);
 
                     if (value == 0)
-                    {
                         file_create.WriteLine("+ " + NameProjectwf_Txt.Text);
-                    }
                     else if (value == 1)
-                    {
                         file_create.WriteLine("* " + NameProjectwf_Txt.Text);
-                    }
                 }
 
                 for (int i = 0; i < WorkflowItem_Lst.Items.Count; i++)
@@ -2207,13 +2197,9 @@ namespace Ostium
                         using (StreamWriter file_create = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                         {
                             if (value == 0)
-                            {
                                 file_create.WriteLine("++ " + WorkflowItem_Lst.Items[i].ToString());
-                            }
                             else if (value == 1)
-                            {
                                 file_create.WriteLine("** " + WorkflowItem_Lst.Items[i].ToString());
-                            }
                         }
 
                         XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/" + WorkflowItem_Lst.Items[i].ToString() + "/" + element);
@@ -2510,9 +2496,7 @@ namespace Ostium
                         FileOpnJson_Lbl.Visible = false;
 
                         if (JavaEnableDisableFeed_Btn.Text == "Javascript Disable")
-                        {
                             JavaDisableFeed_Lbl.Visible = true;
-                        }
 
                         JavaDisable_Lbl.Visible = false;
 
@@ -2713,10 +2697,7 @@ namespace Ostium
                     URLbrowse_Cbx.Items.Add(formatURI);
                 }
 
-                if (File.Exists(A))
-                    File.Delete(A);
-
-                using (StreamWriter SW = new StreamWriter(A, true))
+                using (StreamWriter SW = new StreamWriter(A, false))
                 {
                     foreach (string itm in URLbrowse_Cbx.Items)
                         SW.WriteLine(itm);
