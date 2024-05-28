@@ -6089,6 +6089,12 @@ namespace Ostium
             Beep(1000, 400);
         }
 
+        private void ClearMap_Tls_Click(object sender, EventArgs e)
+        {
+            GMap_Ctrl.Overlays.Clear();
+            overlayOne.Markers.Clear();
+        }
+
         void GoLatLong_Tls_Click(object sender, EventArgs e)
         {
             try

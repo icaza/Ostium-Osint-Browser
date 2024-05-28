@@ -473,6 +473,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -5770,7 +5772,9 @@
             this.OpnBingMap_Tls,
             this.OpenGoogleEarth_Tls,
             this.toolStripSeparator26,
-            this.CopyGeoMap_Tls});
+            this.CopyGeoMap_Tls,
+            this.toolStripSeparator28,
+            this.ClearMap_Tls});
             this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.White;
             this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
             this.ToolsMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -5978,6 +5982,18 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ClearMap_Tls
+            // 
+            this.ClearMap_Tls.Name = "ClearMap_Tls";
+            this.ClearMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.ClearMap_Tls.Text = "Clear Map";
+            this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
+            // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(230, 6);
             // 
             // Main_Frm
             // 
@@ -6538,6 +6554,8 @@
         private System.Windows.Forms.Label JsonDir_Lbl;
         private System.Windows.Forms.Label JsonDir_Opn;
         private System.Windows.Forms.ToolStripMenuItem NewProjectMapLatLon_Tls;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
+        private System.Windows.Forms.ToolStripMenuItem ClearMap_Tls;
     }
 }
 
