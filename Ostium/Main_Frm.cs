@@ -32,7 +32,6 @@ using GMap.NET;
 using System.Globalization;
 using System.Text.Json.Nodes;
 using Microsoft.Web.WebView2.WinForms;
-using Microsoft.Ajax.Utilities;
 
 namespace Ostium
 {
@@ -173,7 +172,7 @@ namespace Ostium
         /// <param name="versionNow">Current version of the application to compare with the Http request = > "updt_ostium.html"</param>
         /// </summary>
         /// 
-        readonly string upftOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
+        readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
         readonly string versionNow = "8";
 
@@ -689,7 +688,7 @@ namespace Ostium
         /// Navigation starting => check if user-agent modification is enabled
         /// </summary>
         /// <param name="UserAgentOnOff"></param>
-        /// <param name="on">If enabled user-agent modification</param>
+        /// <param value="on">If enabled user-agent modification</param>
         /// 
         void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
@@ -781,7 +780,7 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowse_EventHandlers(WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
@@ -850,7 +849,7 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowsefeed_EventHandlers(WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
@@ -1109,9 +1108,9 @@ namespace Ostium
         /// "url_dflt_cnf.ost" and/or restart the application to return to the default wBrowser agent
         /// </summary>
         /// <param name="ClearOnOff"></param>
-        /// <param name="on"></param>
+        /// <param value="on"></param>
         /// Clean request notification True
-        /// <param name="off"></param>
+        /// <param value="off"></param>
         /// No notification of cleaning request when auto restart of the application to return the default user-agent
         /// 
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
@@ -1138,9 +1137,9 @@ namespace Ostium
         /// "url_dflt_cnf.ost" and/or restarting the application
         /// </summary>
         /// <param name="ClearOnOff"></param>
-        /// <param name="on"></param>
+        /// <param value="on"></param>
         /// Clean request notification True
-        /// <param name="off"></param>
+        /// <param value="off"></param>
         /// No notification of cleaning request when auto restart of the application to return the default user-agent
         /// 
         void Googlebot_Btn_Click(object sender, EventArgs e)
@@ -1873,7 +1872,7 @@ namespace Ostium
         /// Opening the WorkFlow project XML file in the editor
         /// </summary>
         /// <param name="OpenFile_Editor"></param>
-        /// <param value="NameProjectwf_Txt">Selected WorkFlow project</param>
+        /// <param name="NameProjectwf_Txt">Selected WorkFlow project</param>
         /// 
         void EditXml_Tls_Click(object sender, EventArgs e)
         {
@@ -1881,9 +1880,7 @@ namespace Ostium
                 return;
 
             if (File.Exists(Workflow + NameProjectwf_Txt.Text + ".xml"))
-            {
                 OpenFile_Editor(Workflow + NameProjectwf_Txt.Text + ".xml");
-            }            
         }
         ///
         /// <summary>
@@ -2066,13 +2063,9 @@ namespace Ostium
                 string argumentsIs = "";
 
                 if (value == 0)
-                {
                     argumentsIs = "java -jar plantuml.jar " + DiagramDir + fileselect + " -tsvg -charset UTF-8";
-                }
                 else if (value == 1)
-                {
                     argumentsIs = "java -jar plantuml.jar " + fileselect + " -tsvg -charset UTF-8";
-                }              
 
                 using (Process proc = new Process())
                 {
@@ -2189,13 +2182,9 @@ namespace Ostium
                     file_create.WriteLine("title " + NameProjectwf_Txt.Text);
 
                     if (value == 0)
-                    {
                         file_create.WriteLine("+ " + NameProjectwf_Txt.Text);
-                    }
                     else if (value == 1)
-                    {
                         file_create.WriteLine("* " + NameProjectwf_Txt.Text);
-                    }
                 }
 
                 for (int i = 0; i < WorkflowItem_Lst.Items.Count; i++)
@@ -2208,13 +2197,9 @@ namespace Ostium
                         using (StreamWriter file_create = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                         {
                             if (value == 0)
-                            {
                                 file_create.WriteLine("++ " + WorkflowItem_Lst.Items[i].ToString());
-                            }
                             else if (value == 1)
-                            {
                                 file_create.WriteLine("** " + WorkflowItem_Lst.Items[i].ToString());
-                            }
                         }
 
                         XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/" + WorkflowItem_Lst.Items[i].ToString() + "/" + element);
@@ -2511,9 +2496,7 @@ namespace Ostium
                         FileOpnJson_Lbl.Visible = false;
 
                         if (JavaEnableDisableFeed_Btn.Text == "Javascript Disable")
-                        {
                             JavaDisableFeed_Lbl.Visible = true;
-                        }
 
                         JavaDisable_Lbl.Visible = false;
 
@@ -2663,6 +2646,7 @@ namespace Ostium
                     DireSizeCalc(Setirps, SpritesDir_Lbl);
                     DireSizeCalc(BkmkltDir, BkmkltDir_Lbl);
                     DireSizeCalc(MapDir, MapDir_Lbl);
+                    DireSizeCalc(JsonDir, JsonDir_Lbl);
                     break;
             }
         }
@@ -2713,10 +2697,7 @@ namespace Ostium
                     URLbrowse_Cbx.Items.Add(formatURI);
                 }
 
-                if (File.Exists(A))
-                    File.Delete(A);
-
-                using (StreamWriter SW = new StreamWriter(A, true))
+                using (StreamWriter SW = new StreamWriter(A, false))
                 {
                     foreach (string itm in URLbrowse_Cbx.Items)
                         SW.WriteLine(itm);
@@ -3059,12 +3040,12 @@ namespace Ostium
                 {
                     if (File.Exists(FileSelect))
                     {
-                        using (Process objProcess = new Process())
+                        using (Process objProc = new Process())
                         {
-                            objProcess.StartInfo.FileName = AppStart + "OstiumE.exe";
-                            objProcess.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
-                            objProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                            objProcess.Start();
+                            objProc.StartInfo.FileName = AppStart + "OstiumE.exe";
+                            objProc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                            objProc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                            objProc.Start();
                         }
                     }
                 }
@@ -3854,16 +3835,11 @@ namespace Ostium
 
         void Db_OrderLst_Btn_Click(object sender, EventArgs e)
         {
+            DataValue_Lst.Sorted = !DataValue_Lst.Sorted;
             if (DataValue_Lst.Sorted)
-            {
-                Db_OrderLst_Btn.ForeColor = Color.White;
-                DataValue_Lst.Sorted = false;
-            }
-            else
-            {
                 Db_OrderLst_Btn.ForeColor = Color.Lime;
-                DataValue_Lst.Sorted = true;
-            }            
+            else
+                Db_OrderLst_Btn.ForeColor = Color.White;
         }
 
         #endregion
@@ -3880,8 +3856,8 @@ namespace Ostium
         /// Loading the RSS feed category into List or administering the RSS feed category file
         /// </summary>
         /// <param name="ManageFeed"></param>
-        /// <param name="on">Opening rss feed category file for editing</param>
-        /// <param name="off">Loading the category's RSS feed</param>
+        /// <param value="on">Opening rss feed category file for editing</param>
+        /// <param value="off">Loading the category's RSS feed</param>
         /// <param name="LoadFeed"></param>
         /// <param value="0">Cleaning the List before loading</param>
         ///
@@ -3946,7 +3922,7 @@ namespace Ostium
         /// <summary>
         /// Loading the list of Flows
         /// </summary>
-        /// <param name="value">RSS Feed URL for the category </param>
+        /// <param value="value">RSS Feed URL for the category </param>
         /// <param name="FeedTitle">Loading RSS feed sites</param>
         /// <param name="ListCount">Counter of the number of Titles per RSS feed site</param>
         /// <param name="ItemTitleAdd">Added title in "Title_Lst"</param>
@@ -4478,7 +4454,7 @@ namespace Ostium
         /// <summary>
         /// Cookies save
         /// </summary>
-        /// <param name="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
+        /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
         async void GetCookie(string URLs)
         {
             try
@@ -4547,7 +4523,7 @@ namespace Ostium
                     return;
                 }
                 ///
-                /// Verifie si doublons
+                /// Check for duplicates
                 /// 
                 ListBox WordVerify = new ListBox();
                 ListBox WordCompare = new ListBox();
@@ -5415,6 +5391,12 @@ namespace Ostium
                 Process.Start(MapDir);
         }
 
+        private void JsonDir_Opn_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(JsonDir))
+                Process.Start(JsonDir);
+        }
+
         #endregion
 
         #region Process_
@@ -5782,11 +5764,18 @@ namespace Ostium
         /// Create a new project from a list of points
         /// </summary>
         /// <param name="Vrfy">Checks if the operation is not abandoned</param>
-        /// <param name="0">Continue</param>
-        /// <param name="1">Return</param>
+        /// <param value="0">Continue</param>
+        /// <param value="1">Return</param>
         /// 
         void NewProjectMapList_Tls_Click(object sender, EventArgs e)
         {
+            int model;
+            string Btn = (sender as ToolStripMenuItem).Name;
+            if (Btn == NewProjectMapList_Tls.Name)
+                model = 0;
+            else
+                model = 1;
+
             Vrfy = 0;
             
             CreateProjectMap(1);
@@ -5801,7 +5790,7 @@ namespace Ostium
 
             MessageBox.Show(MessageStartGeoloc);
 
-            Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen));
+            Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen, model));
             AutoCreatePoints.Start();
         }
         ///
@@ -5811,16 +5800,27 @@ namespace Ostium
         /// <param name="values[1]">Latitude</param>
         /// <param name="values[2]">Longitude</param>
         /// <param name="values[3]">Marker/Description/Infos</param>
+        /// <param name="model">Model csv or other</param>
+        /// <param value="0">Name/Latitude/Longitude/Marker</param>
+        /// <param value="1">Latitude/Longitude</param>
+        /// <param name="Una">Use random name</param>
         /// 
-        void AutoCreatePoints_Thrd(string fileopn)
+        void AutoCreatePoints_Thrd(string fileopn, int model)
         {
+            CreateNameAleat();
+            int inct = 0;
+
             using (var reader = new StreamReader(fileopn))
             {
                 while (!reader.EndOfStream)
                 {
+                    inct += 1;
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    AddNewLocPoints(values[0], values[1], values[2], values[3]);
+                    if (model == 0)
+                        AddNewLocPoints(values[0], values[1], values[2], values[3]);
+                    else
+                        AddNewLocPoints(Una + inct, values[0], values[1], Una + inct);
                 }
             }
 
@@ -6086,6 +6086,13 @@ namespace Ostium
         void CopyGeoMap_Tls_Click(object sender, EventArgs e)
         {
             Clipboard.SetData(DataFormats.Text, LatTCurrent_Lbl.Text + " " + LonGtCurrent_Lbl.Text);
+            Beep(1000, 400);
+        }
+
+        private void ClearMap_Tls_Click(object sender, EventArgs e)
+        {
+            GMap_Ctrl.Overlays.Clear();
+            overlayOne.Markers.Clear();
         }
 
         void GoLatLong_Tls_Click(object sender, EventArgs e)
@@ -6126,6 +6133,9 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
                 GoLatLong(LaT, LoN, LaT + " " + LoN);
+                LatT = double.Parse(LaT, CultureInfo.InvariantCulture);
+                LonGt = double.Parse(LoN, CultureInfo.InvariantCulture);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
             }
             catch (Exception ex)
             {
@@ -6177,6 +6187,9 @@ namespace Ostium
 
         void AddNewLocPoints(string locationname, string lat, string lon, string txtmarker)
         {
+            if (lat == "" || lon == "")
+                return;
+
             XmlDocument doc = new XmlDocument();
             XmlTextReader xmlReader = new XmlTextReader(MapXmlOpn);
             doc.Load(xmlReader);
@@ -6330,7 +6343,6 @@ namespace Ostium
                 LatT = double.Parse(lat, CultureInfo.InvariantCulture);
                 LonGt = double.Parse(lon, CultureInfo.InvariantCulture);
 
-                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
                 GMapOverlay markers = new GMapOverlay("markers");
                 GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
                 {
@@ -6385,16 +6397,22 @@ namespace Ostium
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(MapXmlOpn);
                 XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Location/Point_Point");
-
+                var La = "";
+                var Lo = "";
                 for (int i = 0; i < nodeList.Count; i++)
                 {
                     //string name = string.Format("{0}", nodeList[i].ChildNodes.Item(0).InnerText);
                     string lat = string.Format("{0}", nodeList[i].Attributes.Item(0).InnerText);
+                    La = lat;
                     string lon = string.Format("{0}", nodeList[i].Attributes.Item(1).InnerText);
+                    Lo = lon;
                     string txtmarker = string.Format("{0}", nodeList[i].Attributes.Item(2).InnerText);
 
                     GoLatLong(lat, lon, txtmarker);
                 }
+                LatT = double.Parse(La, CultureInfo.InvariantCulture);
+                LonGt = double.Parse(Lo, CultureInfo.InvariantCulture);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
             }
             catch (Exception ex)
             {
@@ -6503,17 +6521,13 @@ namespace Ostium
 
                 if (OutJsonA_Chk.Checked)
                 {
-                    if (File.Exists(JsonA))
-                        File.Delete(JsonA);
-                    File.Copy(fileopen, JsonA);
+                    File.Copy(fileopen, JsonA, true);
                     Uri uri = new Uri("file:///" + JsonA);
                     WbOutA.Source = uri;
                 }
                 else
                 {
-                    if (File.Exists(JsonB))
-                        File.Delete(JsonB);
-                    File.Copy(fileopen, JsonB);
+                    File.Copy(fileopen, JsonB, true);
                     Uri uri = new Uri("file:///" + JsonB);
                     WbOutB.Source = uri;
                 }
@@ -6668,7 +6682,8 @@ namespace Ostium
 
             string txt = File.ReadAllText(Jselect);
             txt = txt.Replace(BrcktA_Txt.Text, BrcktB_Txt.Text);
-            File.WriteAllText(Jselect, txt);         
+            File.WriteAllText(Jselect, txt);
+            Beep(1200, 200);
         }
 
         void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
@@ -6696,8 +6711,10 @@ namespace Ostium
                     Jselect = JsonA;
                 else
                     Jselect = JsonB;
+
                 File_Write(Jselect, $"{jsonResponse}");
                 Uri uri = new Uri("file:///" + Jselect);
+
                 if (OutJsonA_Chk.Checked)
                     WbOutA.Source = uri;
                 else
@@ -6729,7 +6746,7 @@ namespace Ostium
                 if (Brkt_Chk.Checked)
                     OutJs = "[" + OutJs + "]";
 
-                JArray jsonVal = JArray.Parse(OutJs); //jsonout
+                JArray jsonVal = JArray.Parse(OutJs);
                 dynamic valjson = jsonVal;
 
                 foreach (dynamic val in valjson)
@@ -6779,7 +6796,7 @@ namespace Ostium
                 if (Brkt_Chk.Checked)
                     OutJs = "[" + OutJs + "]";
 
-                JArray jsonVal = JArray.Parse(OutJs); //OutParse.Text
+                JArray jsonVal = JArray.Parse(OutJs);
                 dynamic valjson = jsonVal;
 
                 string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
@@ -6850,7 +6867,7 @@ namespace Ostium
                     OutJs = "[" + OutJs + "]";
 
                 int CntEnd = Convert.ToInt32(count);
-                JsonNode CastNode = JsonNode.Parse(OutJs); //jsonout
+                JsonNode CastNode = JsonNode.Parse(OutJs);
                 JsonNode SelNode = CastNode[jsonnode];
 
                 for (int i = 0; i < CntEnd; i++)
@@ -6907,7 +6924,7 @@ namespace Ostium
                     OutJs = "[" + OutJs + "]";
 
                 int CntEnd = Convert.ToInt32(JsonCnt_txt.Text);
-                JsonNode CastNode = JsonNode.Parse(OutJs); //OutParse.Text
+                JsonNode CastNode = JsonNode.Parse(OutJs);
                 JsonNode SelNode = CastNode[JsonNode_Txt.Text];
 
                 string t = "<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><title>Ostium Home</title><link rel=\"stylesheet\" " +
@@ -7102,35 +7119,6 @@ namespace Ostium
 
         #endregion
 
-        #region ContextMenu_
-
-        void Cut_Tools_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "x");
-        }
-
-        void Copy_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "c");
-        }
-
-        void Paste_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "v");
-        }
-
-        void Delete_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("{DEL}");
-        }
-
-        void SelectAll_Mnu_Click(object sender, EventArgs e)
-        {
-            SendKeys.Send("^" + "a");
-        }
-
-        #endregion
-
         #region Update_
         ///
         /// <summary>
@@ -7147,7 +7135,7 @@ namespace Ostium
             try
             {
                 HttpClient client = new HttpClient();
-                var response = await client.GetAsync(upftOnlineFile);
+                var response = await client.GetAsync(updtOnlineFile);
                 string updtValue = await response.Content.ReadAsStringAsync();
 
                 if (versionNow != updtValue)

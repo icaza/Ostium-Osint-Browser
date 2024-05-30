@@ -286,9 +286,7 @@ namespace Ostium
                     ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
 
                     if (File.Exists(Dirscript + ScriptSelect + ".js"))
-                    {
                         File.Delete(Dirscript + ScriptSelect + ".js");
-                    }
 
                     List_Object.Items.Remove(List_Object.SelectedItem);
 
@@ -383,8 +381,7 @@ namespace Ostium
 
         void Copy_Mnu_Click(object sender, EventArgs e)
         {
-            if (ScriptTxt_Txt.SelectedText != "")
-                Clipboard.SetDataObject(ScriptTxt_Txt.SelectedText);
+            SendKeys.Send("^" + "c");
         }
 
         void Paste_Mnu_Click(object sender, EventArgs e)
