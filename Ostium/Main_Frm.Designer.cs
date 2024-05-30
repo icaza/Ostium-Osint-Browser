@@ -460,6 +460,8 @@
             this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
@@ -473,8 +475,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2703,6 +2703,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2988,6 +2989,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -5848,6 +5850,18 @@
             this.CopyGeoMap_Tls.Text = "Copy Geolocation";
             this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
             // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(230, 6);
+            // 
+            // ClearMap_Tls
+            // 
+            this.ClearMap_Tls.Name = "ClearMap_Tls";
+            this.ClearMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.ClearMap_Tls.Text = "Clear Map";
+            this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
+            // 
             // GmapProvider_Cbx
             // 
             this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -5982,18 +5996,6 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ClearMap_Tls
-            // 
-            this.ClearMap_Tls.Name = "ClearMap_Tls";
-            this.ClearMap_Tls.Size = new System.Drawing.Size(233, 22);
-            this.ClearMap_Tls.Text = "Clear Map";
-            this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
-            // 
-            // toolStripSeparator28
-            // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(230, 6);
             // 
             // Main_Frm
             // 
