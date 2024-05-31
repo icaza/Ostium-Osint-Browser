@@ -203,7 +203,7 @@
             this.UserAgent_Txt.Size = new System.Drawing.Size(724, 13);
             this.UserAgent_Txt.TabIndex = 0;
             this.UserAgent_Txt.Text = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
-    "Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0";
+    "Chrome/125.0.0.0 Safari/537.36";
             // 
             // label1
             // 

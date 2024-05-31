@@ -2016,8 +2016,6 @@ namespace Ostium
 
                     if (value == 1)
                         fc.Write("@endjson");
-
-                    fc.Close();
                 }
             }
             catch (Exception ex)
