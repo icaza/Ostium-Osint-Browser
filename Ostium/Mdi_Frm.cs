@@ -167,13 +167,13 @@ namespace Ostium
                 {
                     if (File.Exists(FileSelect))
                     {
-                        Process objProc;
-                        objProc = new Process();
-                        objProc.StartInfo.FileName = AppStart + "OstiumE.exe";
-                        objProc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
-                        objProc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                        objProc.Start();
-                        objProc.Close();
+                        Process Proc;
+                        Proc = new Process();
+                        Proc.StartInfo.FileName = AppStart + "OstiumE.exe";
+                        Proc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                        Proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                        Proc.Start();
+                        Proc.Close();
                     }
                 }
             }

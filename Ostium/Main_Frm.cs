@@ -174,7 +174,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "8";
+        readonly string versionNow = "9";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -983,9 +983,7 @@ namespace Ostium
                     else
                     {
                         if (Class_Var.URL_DEFAUT_WSEARCH == "")
-                        {
                             Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
-                        }
 
                         uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
                             string.Join("+", Uri.EscapeDataString(rawUrl).Split(new string[] { "%20" }, StringSplitOptions.RemoveEmptyEntries)));
@@ -1108,10 +1106,8 @@ namespace Ostium
         /// "url_dflt_cnf.ost" and/or restart the application to return to the default wBrowser agent
         /// </summary>
         /// <param name="ClearOnOff"></param>
-        /// <param value="on"></param>
-        /// Clean request notification True
-        /// <param value="off"></param>
-        /// No notification of cleaning request when auto restart of the application to return the default user-agent
+        /// <param value="on">Clean request notification True</param>
+        /// <param value="off">No notification of cleaning request when auto restart of the application to return the default user-agent</param>
         /// 
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
         {
@@ -1137,10 +1133,8 @@ namespace Ostium
         /// "url_dflt_cnf.ost" and/or restarting the application
         /// </summary>
         /// <param name="ClearOnOff"></param>
-        /// <param value="on"></param>
-        /// Clean request notification True
-        /// <param value="off"></param>
-        /// No notification of cleaning request when auto restart of the application to return the default user-agent
+        /// <param value="on">Clean request notification True</param>
+        /// <param value="off">No notification of cleaning request when auto restart of the application to return the default user-agent</param>
         /// 
         void Googlebot_Btn_Click(object sender, EventArgs e)
         {
@@ -1164,8 +1158,7 @@ namespace Ostium
         /// <summary>
         /// Reformatting of the nickname/word entered in "Word_Construct_URL_Txt" before sending to => Construct_URL for URL construction
         /// </summary>
-        /// <param name="Construct_URL"></param>
-        /// Creation of URL with the nickname or search word
+        /// <param name="Construct_URL">Creation of URL with the nickname or search word</param>
         /// 
         void Word_Construct_URL_Btn_Click(object sender, EventArgs e)
         {
@@ -1257,7 +1250,6 @@ namespace Ostium
 
                 string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
                 WBrowse.Source = new Uri(@formatURI);
-
             }
             catch (Exception ex)
             {
@@ -1287,8 +1279,7 @@ namespace Ostium
         /// <summary>
         /// Unshort URL
         /// </summary>
-        /// <param name="Uri"></param>
-        /// URL to check
+        /// <param name="Uri">URL to check</param>
         /// 
         void StartUnshortUrl(string Uri)
         {
@@ -1512,8 +1503,7 @@ namespace Ostium
         /// Opening URL List in the "OpenSource_Frm" window
         /// </summary>
         /// <param name="Open_Source_Frm"></param>
-        /// <param value="filePath"></param>
-        /// Selected file
+        /// <param value="filePath">Selected file</param>
         /// 
         void OpenListLink_Btn_Click(object sender, EventArgs e)
         {
@@ -1560,7 +1550,7 @@ namespace Ostium
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
                 Process.Start(Class_Var.DEFAULT_EDITOR);
             else
-                MessageBox.Show("File Editor are not exist in directory, verify your config file!", "Error!");
+                MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
         }
 
         void OpnDirectory_Btn_Click(object sender, EventArgs e)
@@ -1576,10 +1566,8 @@ namespace Ostium
         /// <summary>
         /// JS script injection into web page
         /// </summary>
-        /// <param name="InputBox"></param>
-        /// Enter the script
-        /// <param value="ScriptInject"></param>
-        /// Script to inject
+        /// <param name="InputBox">Enter the script</param>
+        /// <param value="ScriptInject">Script to inject</param>
         /// 
         async void InjectScript_Btn_Click(object sender, EventArgs e)
         {
@@ -1664,24 +1652,20 @@ namespace Ostium
 
             if (result != DialogResult.Yes)
                 return;
+
             CreateConfigFile(0);
         }
 
         void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
         {
-            var settings = WBrowse.CoreWebView2.Settings;
+            var settings = WBrowse.CoreWebView2.Settings;            
+            settings.IsScriptEnabled = !settings.IsScriptEnabled;
+            JavaDisable_Lbl.Visible = !JavaDisable_Lbl.Visible;
+
             if (JavaEnableDisable_Btn.Text == "Javascript Enable")
-            {
-                JavaDisable_Lbl.Visible = true;
                 JavaEnableDisable_Btn.Text = "Javascript Disable";
-                settings.IsScriptEnabled = false;
-            }
             else
-            {
-                JavaDisable_Lbl.Visible = false;
                 JavaEnableDisable_Btn.Text = "Javascript Enable";
-                settings.IsScriptEnabled = true;
-            }
         }
         ///
         /// <summary>
@@ -1800,18 +1784,13 @@ namespace Ostium
         void JavaEnableDisableFeed_Btn_Click(object sender, EventArgs e)
         {
             var settings = WBrowsefeed.CoreWebView2.Settings;
+            settings.IsScriptEnabled = !settings.IsScriptEnabled;
+            JavaDisableFeed_Lbl.Visible = !JavaDisableFeed_Lbl.Visible;
+
             if (JavaEnableDisableFeed_Btn.Text == "Javascript Enable")
-            {
-                JavaDisableFeed_Lbl.Visible = true;
                 JavaEnableDisableFeed_Btn.Text = "Javascript Disable";
-                settings.IsScriptEnabled = false;
-            }
             else
-            {
-                JavaDisableFeed_Lbl.Visible = false;
                 JavaEnableDisableFeed_Btn.Text = "Javascript Enable";
-                settings.IsScriptEnabled = true;
-            }
         }
 
         #endregion
@@ -2025,21 +2004,20 @@ namespace Ostium
                 json = json.Replace("@", "");
                 json = Regex.Replace(json, @"/\*.+?\*/", string.Empty);
 
-                using (StreamWriter file_create = new StreamWriter(dirFileConvert))
+                using (StreamWriter fc = new StreamWriter(dirFileConvert))
                 {
                     if (value == 1)
                     {
-                        file_create.WriteLine("@startjson");
-                        file_create.WriteLine("!theme " + ThemeDiag);
-                        
+                        fc.WriteLine("@startjson");
+                        fc.WriteLine("!theme " + ThemeDiag);                       
                     }
 
-                    file_create.WriteLine(json);
+                    fc.WriteLine(json);
 
                     if (value == 1)
-                        file_create.Write("@endjson");
+                        fc.Write("@endjson");
 
-                    file_create.Close();
+                    fc.Close();
                 }
             }
             catch (Exception ex)
@@ -2169,22 +2147,22 @@ namespace Ostium
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(Workflow + NameProjectwf_Txt.Text + ".xml");
 
-                using (StreamWriter file_create = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
+                using (StreamWriter fc = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                 {
-                    file_create.WriteLine("@startmindmap");
-                    file_create.WriteLine("skinparam titleBorderRoundCorner 15");
-                    file_create.WriteLine("skinparam titleBorderThickness 2");
-                    file_create.WriteLine("skinparam titleBorderColor red");
-                    file_create.WriteLine("skinparam titleBackgroundColor Aqua-CadetBlue");
-                    file_create.WriteLine("!theme " + ThemeDiag);
-                    file_create.WriteLine("footer https://veydunet.com/ostium");
-                    file_create.WriteLine("caption Ostium Osint Browser");
-                    file_create.WriteLine("title " + NameProjectwf_Txt.Text);
+                    fc.WriteLine("@startmindmap");
+                    fc.WriteLine("skinparam titleBorderRoundCorner 15");
+                    fc.WriteLine("skinparam titleBorderThickness 2");
+                    fc.WriteLine("skinparam titleBorderColor red");
+                    fc.WriteLine("skinparam titleBackgroundColor Aqua-CadetBlue");
+                    fc.WriteLine("!theme " + ThemeDiag);
+                    fc.WriteLine("footer https://veydunet.com/ostium");
+                    fc.WriteLine("caption Ostium Osint Browser");
+                    fc.WriteLine("title " + NameProjectwf_Txt.Text);
 
                     if (value == 0)
-                        file_create.WriteLine("+ " + NameProjectwf_Txt.Text);
+                        fc.WriteLine("+ " + NameProjectwf_Txt.Text);
                     else if (value == 1)
-                        file_create.WriteLine("* " + NameProjectwf_Txt.Text);
+                        fc.WriteLine("* " + NameProjectwf_Txt.Text);
                 }
 
                 for (int i = 0; i < WorkflowItem_Lst.Items.Count; i++)
@@ -2194,12 +2172,12 @@ namespace Ostium
                         element = WorkflowItem_Lst.Items[i].ToString();
                         element += "_" + element;
 
-                        using (StreamWriter file_create = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
+                        using (StreamWriter fc = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                         {
                             if (value == 0)
-                                file_create.WriteLine("++ " + WorkflowItem_Lst.Items[i].ToString());
+                                fc.WriteLine("++ " + WorkflowItem_Lst.Items[i].ToString());
                             else if (value == 1)
-                                file_create.WriteLine("** " + WorkflowItem_Lst.Items[i].ToString());
+                                fc.WriteLine("** " + WorkflowItem_Lst.Items[i].ToString());
                         }
 
                         XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/" + WorkflowItem_Lst.Items[i].ToString() + "/" + element);
@@ -2213,31 +2191,31 @@ namespace Ostium
                             string strnote = string.Format("{0}", nodeList[e].Attributes.Item(3).InnerText);
                             string strurl = string.Format("{0}", nodeList[e].Attributes.Item(4).InnerText);
 
-                            using (StreamWriter file_create = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
+                            using (StreamWriter fc = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                             {
                                 if (value == 0)
                                 {
-                                    file_create.WriteLine("+++ " + strtext);
+                                    fc.WriteLine("+++ " + strtext);
                                 }
                                 else if (value == 1)
                                 {
-                                    file_create.WriteLine("***:" + strnote);
-                                    file_create.WriteLine("<code>");
-                                    file_create.WriteLine(strtext);
-                                    file_create.WriteLine(strurl);
-                                    file_create.WriteLine("-----------");
-                                    file_create.WriteLine(string.Format("{0} {1} {2}", strauth, strdate, strtime));
-                                    file_create.WriteLine("</code>");
-                                    file_create.WriteLine(";");
+                                    fc.WriteLine("***:" + strnote);
+                                    fc.WriteLine("<code>");
+                                    fc.WriteLine(strtext);
+                                    fc.WriteLine(strurl);
+                                    fc.WriteLine("-----------");
+                                    fc.WriteLine(string.Format("{0} {1} {2}", strauth, strdate, strtime));
+                                    fc.WriteLine("</code>");
+                                    fc.WriteLine(";");
                                 }
                             }
                         }
                     }
                 }
 
-                using (StreamWriter file_create = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
+                using (StreamWriter fc = File.AppendText(DiagramDir + NameProjectwf_Txt.Text + ".txt"))
                 {
-                    file_create.Write("@endmindmap");
+                    fc.Write("@endmindmap");
                 }
 
                 FileDiag = NameProjectwf_Txt.Text + ".svg";
@@ -2297,12 +2275,12 @@ namespace Ostium
                         TmpFile_Txt.Text = sr.ReadToEnd();
                     }
 
-                    using (StreamWriter file_create = new StreamWriter(DiagramDir + "temp_file.txt"))
+                    using (StreamWriter fc = new StreamWriter(DiagramDir + "temp_file.txt"))
                     {
-                        file_create.WriteLine("@startjson");
-                        file_create.WriteLine("!theme " + ThemeDiag);
-                        file_create.WriteLine(TmpFile_Txt.Text);
-                        file_create.Write("@endjson");
+                        fc.WriteLine("@startjson");
+                        fc.WriteLine("!theme " + ThemeDiag);
+                        fc.WriteLine(TmpFile_Txt.Text);
+                        fc.Write("@endjson");
                     }
 
                     FileDiag = "temp_file.svg";
@@ -2989,9 +2967,9 @@ namespace Ostium
         {
             try
             {
-                using (StreamWriter file_create = File.AppendText(fileName))
+                using (StreamWriter fc = File.AppendText(fileName))
                 {
-                    file_create.WriteLine(fileValue);
+                    fc.WriteLine(fileValue);
                 }
             }
             catch (Exception ex)
@@ -3040,12 +3018,12 @@ namespace Ostium
                 {
                     if (File.Exists(FileSelect))
                     {
-                        using (Process objProc = new Process())
+                        using (Process Proc = new Process())
                         {
-                            objProc.StartInfo.FileName = AppStart + "OstiumE.exe";
-                            objProc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
-                            objProc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                            objProc.Start();
+                            Proc.StartInfo.FileName = AppStart + "OstiumE.exe";
+                            Proc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                            Proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                            Proc.Start();
                         }
                     }
                 }
@@ -3299,7 +3277,6 @@ namespace Ostium
                 if (DBadmin == "off")
                 {
                     OpnAllTable();
-
                     Beep(1000, 400);
                 }
                 DBadmin = "off";
@@ -3333,13 +3310,9 @@ namespace Ostium
                 while (reader.Read())
                 {
                     if (ObjLstCbx == "lst")
-                    {
                         List_Object.Items.Add(reader[valueDB]);
-                    }
                     else
-                    {
                         Cbx_Object.Items.Add(reader[valueDB]);
-                    }
                 }
 
                 myDB.Close();
@@ -3381,13 +3354,9 @@ namespace Ostium
                 while (reader.Read())
                 {
                     if (DBadmin == "off")
-                    {
                         WBrowse.Source = new Uri((string)reader[valueDB]);
-                    }
                     else
-                    {
                         DataValue_Opn.Text = (string)reader[valueDB];
-                    }
                 }
 
                 myDB.Close();
@@ -3807,9 +3776,7 @@ namespace Ostium
                 doc.Load(xmlReader);
 
                 if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/DB_USE_DEFAULT") is XmlElement nod)
-                {
                     nod.InnerText = NameDB;
-                }
 
                 xmlReader.Close();
                 doc.Save(AppStart + "config.xml");
@@ -4198,13 +4165,9 @@ namespace Ostium
                         int icr = Convert.ToInt32(GoFeed_Txt.Text);
 
                         if (icr <= Title_Lst.Items.Count)
-                        {
                             Title_Lst.SetSelected(icr - 1, true);
-                        }
                         else
-                        {
                             MessageBox.Show("Max count title = " + Title_Lst.Items.Count);
-                        }
                     }
                 }
             }
@@ -4235,19 +4198,15 @@ namespace Ostium
 
         void SpeakOpenPnl_Btn_Click(object sender, EventArgs e)
         {
-            if (!Speak_Pnl.Visible)
-            {
-                Speak_Pnl.Visible = true;
-                
-                if (VerifLangOpn == 0)
-                    LoadLang();
+            Speak_Pnl.Visible = !Speak_Pnl.Visible;
 
+            if (VerifLangOpn == 0)
+                LoadLang();
+
+            if (Speak_Pnl.Visible)
+            {
                 VolumeValue_Lbl.Text = "Volume: " + Convert.ToString(VolumeVal_Track.Value);
                 RateValue_Lbl.Text = "Rate: " + Convert.ToString(RateVal_Track.Value);
-            }
-            else
-            {
-                Speak_Pnl.Visible = false;
             }
         }
 
@@ -4369,16 +4328,14 @@ namespace Ostium
                 doc.Load(xmlReader);
 
                 if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/" + nodeselect) is XmlElement nod)
-                {
                     nod.InnerText = Convert.ToString(value);
-                }
 
                 xmlReader.Close();
                 doc.Save(AppStart + "config.xml");                
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ChangeDBdefault: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! SaveVolumeRate: ", ex.Message, "Main_Frm", AppStart);
             }
         }
 
@@ -4451,10 +4408,12 @@ namespace Ostium
         }
 
         #endregion
+        ///
         /// <summary>
         /// Cookies save
         /// </summary>
         /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
+        /// 
         async void GetCookie(string URLs)
         {
             try
@@ -4559,9 +4518,7 @@ namespace Ostium
                 foreach (string s in str)
                 {
                     if (s.Trim().Length > 0)
-                    {
                         AddItemswf_Txt.Text += s + "\r\n";
-                    }
                 }
 
                 File_Write(AppStart + "tempItemAdd.txt", AddItemswf_Txt.Text);
@@ -4579,9 +4536,7 @@ namespace Ostium
                 for (int i = 0; i < List_Wf.Items.Count; i++)
                 {
                     if (List_Wf.Items[i].ToString() != "")
-                    {
                         writer.WriteElementString("Item", List_Wf.Items[i].ToString());
-                    }
                 }
 
                 writer.WriteEndElement();
@@ -4666,9 +4621,7 @@ namespace Ostium
                 int y;
                 y = Itemwf_Cbx.FindStringExact(AddSingleItemswf_Txt.Text);
                 if (y == -1)
-                {
                     AddDataWorkflow("KeywordItemCollect", "Item", AddSingleItemswf_Txt.Text, "no");
-                }
 
                 Itemwf_Cbx.Items.Clear();
                 WorkflowItem_Lst.Items.Clear();
@@ -4825,9 +4778,7 @@ namespace Ostium
                 foreach (string s in str)
                 {
                     if (s.Trim().Length > 0)
-                    {
                         AddTextWorkflow_Txt.Text += s + " ";
-                    }
                 }
 
                 string header = AddTextWorkflow_Txt.Text;
@@ -4904,9 +4855,7 @@ namespace Ostium
                             foreach (string s in str)
                             {
                                 if (s.Trim().Length > 0)
-                                {
                                     AddTNoteWorkflow_Txt.Text += s + " ";
-                                }
                             }
 
                             string header = AddTNoteWorkflow_Txt.Text;
@@ -4923,9 +4872,7 @@ namespace Ostium
                             foreach (string s in str)
                             {
                                 if (s.Trim().Length > 0)
-                                {
                                     AddUrlWorkflow_Txt.Text += s + " ";
-                                }
                             }
 
                             string header = AddUrlWorkflow_Txt.Text;
@@ -5043,13 +4990,9 @@ namespace Ostium
                     string strvalue = string.Format("{0}", nodeList[i].ChildNodes.Item(0).InnerText);
 
                     if (LoadStat == "y")
-                    {
                         Invoke(new Action<string>(LoadItemKeyword_Invk), strvalue);
-                    }
                     else
-                    {
-                        Invoke(new Action<string>(SRCpageAdd), strvalue);                        
-                    }
+                        Invoke(new Action<string>(SRCpageAdd), strvalue);
                 }
 
                 if (LoadStat == "n")
@@ -5125,9 +5068,7 @@ namespace Ostium
                     foreach (string s in str)
                     {
                         if (s.Trim().Length > 0)
-                        {
                             ModelItem_Txt.Text += s + "\r\n";
-                        }
                     }
 
                     if (File.Exists(WorkflowModel + ModelName_Txt.Text + ".txt"))
@@ -5275,40 +5216,40 @@ namespace Ostium
             MessageBox.Show("Config save.");
         }
 
-        void URLdirect_Opt_Btn_Click(object sender, EventArgs e)
+        void Furldir_Opt_Click(object sender, EventArgs e)
         {
             OpnFileOpt(FileDir + "url.txt");
         }
 
-        void URLconstruct_Opt_Btn_Click(object sender, EventArgs e)
+        void Furlconst_Opt_Click(object sender, EventArgs e)
         {
             OpnFileOpt(FileDir + @"url-constructor\construct_url.txt");
         }
 
-        void URLconstructDir_Opt_Btn_Click(object sender, EventArgs e)
+        void Furlconstdir_Opt_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(FileDir + "url-constructor"))
                 Process.Start(FileDir + "url-constructor");
         }
 
-        void AddOntools_Opt_Btn_Click(object sender, EventArgs e)
+        void AddOntools_Opt_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(Plugins))
                 Process.Start(Plugins);
         }
 
-        void MultipleWin_Opt_Btn_Click(object sender, EventArgs e)
+        void Fmultiplewin_Opt_Click(object sender, EventArgs e)
         {
             OpnFileOpt(FileDir + @"grp-frm\grp_frm_url_opn.txt");
         }
 
-        void MultipleWinDir_Opt_Btn_Click(object sender, EventArgs e)
+        void MultipleDir_Opt_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(FileDir + "grp-frm"))
                 Process.Start(FileDir + "grp-frm");
         }
 
-        void GoogleDork_Opt_Btn_Click(object sender, EventArgs e)
+        void Fgdork_Opt_Click(object sender, EventArgs e)
         {
             OpnFileOpt(FileDir + "gdork.txt"); 
         }
@@ -5625,13 +5566,9 @@ namespace Ostium
         void CreateDiagram_Invk(string value)
         {
             if (Commut == 0)
-            {
                 GoBrowser("file:///" + DiagramDir + value, 1);
-            }
             else if(Commut == 1)
-            {
                 GoBrowser("file:///" + value, 1);
-            }
         }
 
         #endregion
@@ -5973,16 +5910,11 @@ namespace Ostium
 
         void CrossCenter_Tls_Click(object sender, EventArgs e)
         {
+            GMap_Ctrl.ShowCenter = !GMap_Ctrl.ShowCenter;
             if (CrossCenter == "on")
-            {
                 CrossCenter = "off";
-                GMap_Ctrl.ShowCenter = false;
-            }
             else
-            {
                 CrossCenter = "on";
-                GMap_Ctrl.ShowCenter = true;
-            }
         }
 
         void ScreenShotGmap_Tls_Click(object sender, EventArgs e)
@@ -6776,7 +6708,7 @@ namespace Ostium
             try
             {
                 CreateNameAleat();
-                StreamWriter file = new StreamWriter(JsonDirTable + Una + "_table.html");
+                StreamWriter fw = new StreamWriter(JsonDirTable + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
@@ -6803,7 +6735,7 @@ namespace Ostium
                     "href=\"style.css\"></head><body><div class=\"relative overflow-hidden shadow-md rounded-lg\"><table class=\"table-fixed w-full " +
                     "text-left\"><thead class=\"uppercase bg-[#6b7280] text-[#e5e7eb]\" style=\"background-color: #6b7280; color: #e5e7eb;\"><tr>";
 
-                file.WriteLine(t);
+                fw.WriteLine(t);
 
                 foreach (string word in words)
                 {
@@ -6813,12 +6745,12 @@ namespace Ostium
                         xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
                 }
 
-                file.WriteLine(xO);
+                fw.WriteLine(xO);
 
                 t = "</tr></thead><tbody class=\"bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]\" style=\"background-color: #FFFFFF; " +
                     "color: #6b7280;\"><tr class=\"py-5\">";
 
-                file.WriteLine(t);
+                fw.WriteLine(t);
 
                 xO = "";
 
@@ -6832,13 +6764,13 @@ namespace Ostium
                             xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
                     }
 
-                    file.WriteLine(xO);
+                    fw.WriteLine(xO);
                     xO = "";
-                    file.WriteLine("</tr><tr class=\"py-5\">");
+                    fw.WriteLine("</tr><tr class=\"py-5\">");
                 }
 
-                file.WriteLine("</tr></tbody></table></div></body></html>");
-                file.Close();
+                fw.WriteLine("</tr></tbody></table></div></body></html>");
+                fw.Close();
 
                 Invoke(new Action<string>(OpnTableJson_Invk), JsonDirTable + Una + "_table.html");
             }
@@ -6903,7 +6835,7 @@ namespace Ostium
             try
             {
                 CreateNameAleat();
-                StreamWriter file = new StreamWriter(JsonDirTable + Una + "_table.html");
+                StreamWriter fw = new StreamWriter(JsonDirTable + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
                 string xO = "";
@@ -6931,7 +6863,7 @@ namespace Ostium
     "href=\"style.css\"></head><body><div class=\"relative overflow-hidden shadow-md rounded-lg\"><table class=\"table-fixed w-full " +
     "text-left\"><thead class=\"uppercase bg-[#6b7280] text-[#e5e7eb]\" style=\"background-color: #6b7280; color: #e5e7eb;\"><tr>";
 
-                file.WriteLine(t);
+                fw.WriteLine(t);
 
                 foreach (string word in words)
                 {
@@ -6941,12 +6873,12 @@ namespace Ostium
                         xO += "<td class=\"py-1 border text-center  p-4\">" + word.TrimEnd(charsToTrim) + "</td>";
                 }
 
-                file.WriteLine(xO);
+                fw.WriteLine(xO);
 
                 t = "</tr></thead><tbody class=\"bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]\" style=\"background-color: #FFFFFF; " +
                     "color: #6b7280;\"><tr class=\"py-5\">";
 
-                file.WriteLine(t);
+                fw.WriteLine(t);
 
                 xO = "";
 
@@ -6966,14 +6898,14 @@ namespace Ostium
                                 xO += "<td class=\"py-1 border text-center  p-4\">" + val[word.TrimEnd(charsToTrim)] + "</td>";
                         }
 
-                        file.WriteLine(xO);
+                        fw.WriteLine(xO);
                         xO = "";
-                        file.WriteLine("</tr><tr class=\"py-5\">");
+                        fw.WriteLine("</tr><tr class=\"py-5\">");
                     }
                 }
 
-                file.WriteLine("</tr></tbody></table></div></body></html>");
-                file.Close();
+                fw.WriteLine("</tr></tbody></table></div></body></html>");
+                fw.Close();
 
                 Invoke(new Action<string>(OpnTableJson_Invk), JsonDirTable + Una + "_table.html");
             }
@@ -7003,26 +6935,17 @@ namespace Ostium
         void OutJsonA_Chk_Click(object sender, EventArgs e)
         {
             if (OutJsonA_Chk.Checked)
-            {
                 OutJsonB_Chk.Checked = false;
-            }
             else
-            {
                 OutJsonB_Chk.Checked = true;
-            }
         }
 
         void OutJsonB_Chk_Click(object sender, EventArgs e)
         {
             if (OutJsonB_Chk.Checked)
-            {
                 OutJsonA_Chk.Checked = false;
-            }
             else
-            {
                 OutJsonA_Chk.Checked = true;
-            }
-
         }
 
         private void Rfresh_Btn_Click(object sender, EventArgs e)
@@ -7166,9 +7089,7 @@ namespace Ostium
             try
             {
                 if (result == DialogResult.Yes)
-                {
                     GoBrowser(WebPageUpdate, 0);
-                }
             }
             catch (Exception ex)
             {
