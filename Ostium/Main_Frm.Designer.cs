@@ -2703,6 +2703,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2988,6 +2989,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3206,9 +3208,9 @@
             this.PointLoc_Lst.ForeColor = System.Drawing.Color.Lime;
             this.PointLoc_Lst.FormattingEnabled = true;
             this.PointLoc_Lst.ItemHeight = 14;
-            this.PointLoc_Lst.Location = new System.Drawing.Point(0, 166);
+            this.PointLoc_Lst.Location = new System.Drawing.Point(0, 143);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 414);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 437);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3221,7 +3223,7 @@
             this.TxtMarker_Chk.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtMarker_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtMarker_Chk.ForeColor = System.Drawing.Color.Gray;
-            this.TxtMarker_Chk.Location = new System.Drawing.Point(0, 149);
+            this.TxtMarker_Chk.Location = new System.Drawing.Point(0, 126);
             this.TxtMarker_Chk.Name = "TxtMarker_Chk";
             this.TxtMarker_Chk.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.TxtMarker_Chk.Size = new System.Drawing.Size(200, 17);
@@ -3254,7 +3256,7 @@
             this.label26.Dock = System.Windows.Forms.DockStyle.Top;
             this.label26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label26.Location = new System.Drawing.Point(0, 121);
+            this.label26.Location = new System.Drawing.Point(0, 98);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(200, 28);
             this.label26.TabIndex = 23;
@@ -3267,7 +3269,7 @@
             this.TextMarker_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextMarker_Txt.Dock = System.Windows.Forms.DockStyle.Top;
             this.TextMarker_Txt.ForeColor = System.Drawing.Color.White;
-            this.TextMarker_Txt.Location = new System.Drawing.Point(0, 72);
+            this.TextMarker_Txt.Location = new System.Drawing.Point(0, 49);
             this.TextMarker_Txt.Multiline = true;
             this.TextMarker_Txt.Name = "TextMarker_Txt";
             this.TextMarker_Txt.Size = new System.Drawing.Size(200, 49);
@@ -3279,7 +3281,7 @@
             this.label25.Dock = System.Windows.Forms.DockStyle.Top;
             this.label25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label25.Location = new System.Drawing.Point(0, 44);
+            this.label25.Location = new System.Drawing.Point(0, 21);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(200, 28);
             this.label25.TabIndex = 21;
@@ -3291,8 +3293,9 @@
             this.LocationName_Txt.BackColor = System.Drawing.Color.Black;
             this.LocationName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LocationName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LocationName_Txt.Enabled = false;
             this.LocationName_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.LocationName_Txt.Location = new System.Drawing.Point(0, 28);
+            this.LocationName_Txt.Location = new System.Drawing.Point(0, 5);
             this.LocationName_Txt.Name = "LocationName_Txt";
             this.LocationName_Txt.Size = new System.Drawing.Size(200, 16);
             this.LocationName_Txt.TabIndex = 19;
@@ -3305,9 +3308,8 @@
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label24.Location = new System.Drawing.Point(0, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(200, 28);
+            this.label24.Size = new System.Drawing.Size(200, 5);
             this.label24.TabIndex = 20;
-            this.label24.Text = "Location Name";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Json_Tab

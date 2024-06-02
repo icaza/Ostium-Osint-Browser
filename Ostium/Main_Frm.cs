@@ -6098,16 +6098,11 @@ namespace Ostium
                     return;
                 }
 
-                if (LocationName_Txt.Text == "")
-                {
-                    LocationName_Txt.BackColor = Color.Red;
-                    MessageBox.Show("Insert Name!");
-                    LocationName_Txt.BackColor = Color.FromArgb(28, 28, 28);
-                    return;
-                }
-
+                CreateNameAleat();
+                LocationName_Txt.Text = "Pts_" + Una;
                 AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Lbl.Text, LonGtCurrent_Lbl.Text, TextMarker_Txt.Text);
                 OpnLocationPoints();
+                Beep(1000, 400);
             }
             catch (Exception ex)
             {
