@@ -335,13 +335,13 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.MultipleWinDir_Opt_Btn = new System.Windows.Forms.Button();
-            this.URLconstructDir_Opt_Btn = new System.Windows.Forms.Button();
-            this.GoogleDork_Opt_Btn = new System.Windows.Forms.Button();
-            this.MultipleWin_Opt_Btn = new System.Windows.Forms.Button();
-            this.AddOntools_Opt_Btn = new System.Windows.Forms.Button();
-            this.URLconstruct_Opt_Btn = new System.Windows.Forms.Button();
-            this.URLdirect_Opt_Btn = new System.Windows.Forms.Button();
+            this.MultipleDir_Opt = new System.Windows.Forms.Button();
+            this.Furlconstdir_Opt = new System.Windows.Forms.Button();
+            this.Fgdork_Opt = new System.Windows.Forms.Button();
+            this.Fmultiplewin_Opt = new System.Windows.Forms.Button();
+            this.AddOntools_Opt = new System.Windows.Forms.Button();
+            this.Furlconst_Opt = new System.Windows.Forms.Button();
+            this.Furldir_Opt = new System.Windows.Forms.Button();
             this.panel25 = new System.Windows.Forms.Panel();
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -3208,9 +3208,9 @@
             this.PointLoc_Lst.ForeColor = System.Drawing.Color.Lime;
             this.PointLoc_Lst.FormattingEnabled = true;
             this.PointLoc_Lst.ItemHeight = 14;
-            this.PointLoc_Lst.Location = new System.Drawing.Point(0, 166);
+            this.PointLoc_Lst.Location = new System.Drawing.Point(0, 143);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 414);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 437);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3223,7 +3223,7 @@
             this.TxtMarker_Chk.Dock = System.Windows.Forms.DockStyle.Top;
             this.TxtMarker_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtMarker_Chk.ForeColor = System.Drawing.Color.Gray;
-            this.TxtMarker_Chk.Location = new System.Drawing.Point(0, 149);
+            this.TxtMarker_Chk.Location = new System.Drawing.Point(0, 126);
             this.TxtMarker_Chk.Name = "TxtMarker_Chk";
             this.TxtMarker_Chk.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.TxtMarker_Chk.Size = new System.Drawing.Size(200, 17);
@@ -3256,7 +3256,7 @@
             this.label26.Dock = System.Windows.Forms.DockStyle.Top;
             this.label26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label26.Location = new System.Drawing.Point(0, 121);
+            this.label26.Location = new System.Drawing.Point(0, 98);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(200, 28);
             this.label26.TabIndex = 23;
@@ -3269,7 +3269,7 @@
             this.TextMarker_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextMarker_Txt.Dock = System.Windows.Forms.DockStyle.Top;
             this.TextMarker_Txt.ForeColor = System.Drawing.Color.White;
-            this.TextMarker_Txt.Location = new System.Drawing.Point(0, 72);
+            this.TextMarker_Txt.Location = new System.Drawing.Point(0, 49);
             this.TextMarker_Txt.Multiline = true;
             this.TextMarker_Txt.Name = "TextMarker_Txt";
             this.TextMarker_Txt.Size = new System.Drawing.Size(200, 49);
@@ -3281,7 +3281,7 @@
             this.label25.Dock = System.Windows.Forms.DockStyle.Top;
             this.label25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label25.Location = new System.Drawing.Point(0, 44);
+            this.label25.Location = new System.Drawing.Point(0, 21);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(200, 28);
             this.label25.TabIndex = 21;
@@ -3293,8 +3293,9 @@
             this.LocationName_Txt.BackColor = System.Drawing.Color.Black;
             this.LocationName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LocationName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LocationName_Txt.Enabled = false;
             this.LocationName_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.LocationName_Txt.Location = new System.Drawing.Point(0, 28);
+            this.LocationName_Txt.Location = new System.Drawing.Point(0, 5);
             this.LocationName_Txt.Name = "LocationName_Txt";
             this.LocationName_Txt.Size = new System.Drawing.Size(200, 16);
             this.LocationName_Txt.TabIndex = 19;
@@ -3307,9 +3308,8 @@
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label24.Location = new System.Drawing.Point(0, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(200, 28);
+            this.label24.Size = new System.Drawing.Size(200, 5);
             this.label24.TabIndex = 20;
-            this.label24.Text = "Location Name";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Json_Tab
@@ -3408,7 +3408,7 @@
             this.RfreshB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.RfreshB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RfreshB_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RfreshB_Btn.ForeColor = System.Drawing.Color.White;
+            this.RfreshB_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.RfreshB_Btn.Location = new System.Drawing.Point(80, 0);
             this.RfreshB_Btn.Name = "RfreshB_Btn";
             this.RfreshB_Btn.Size = new System.Drawing.Size(84, 25);
@@ -3504,7 +3504,7 @@
             this.RfreshA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.RfreshA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RfreshA_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RfreshA_Btn.ForeColor = System.Drawing.Color.White;
+            this.RfreshA_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.RfreshA_Btn.Location = new System.Drawing.Point(80, 0);
             this.RfreshA_Btn.Name = "RfreshA_Btn";
             this.RfreshA_Btn.Size = new System.Drawing.Size(84, 25);
@@ -4494,13 +4494,13 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.MultipleWinDir_Opt_Btn);
-            this.groupBox4.Controls.Add(this.URLconstructDir_Opt_Btn);
-            this.groupBox4.Controls.Add(this.GoogleDork_Opt_Btn);
-            this.groupBox4.Controls.Add(this.MultipleWin_Opt_Btn);
-            this.groupBox4.Controls.Add(this.AddOntools_Opt_Btn);
-            this.groupBox4.Controls.Add(this.URLconstruct_Opt_Btn);
-            this.groupBox4.Controls.Add(this.URLdirect_Opt_Btn);
+            this.groupBox4.Controls.Add(this.MultipleDir_Opt);
+            this.groupBox4.Controls.Add(this.Furlconstdir_Opt);
+            this.groupBox4.Controls.Add(this.Fgdork_Opt);
+            this.groupBox4.Controls.Add(this.Fmultiplewin_Opt);
+            this.groupBox4.Controls.Add(this.AddOntools_Opt);
+            this.groupBox4.Controls.Add(this.Furlconst_Opt);
+            this.groupBox4.Controls.Add(this.Furldir_Opt);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
@@ -4510,131 +4510,131 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "config files";
             // 
-            // MultipleWinDir_Opt_Btn
+            // MultipleDir_Opt
             // 
-            this.MultipleWinDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleWinDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MultipleWinDir_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.MultipleWinDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.MultipleWinDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MultipleWinDir_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MultipleWinDir_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.MultipleWinDir_Opt_Btn.Location = new System.Drawing.Point(14, 290);
-            this.MultipleWinDir_Opt_Btn.Name = "MultipleWinDir_Opt_Btn";
-            this.MultipleWinDir_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.MultipleWinDir_Opt_Btn.TabIndex = 23;
-            this.MultipleWinDir_Opt_Btn.Text = "Multiple Windows Directory";
-            this.MultipleWinDir_Opt_Btn.UseVisualStyleBackColor = false;
-            this.MultipleWinDir_Opt_Btn.Click += new System.EventHandler(this.MultipleWinDir_Opt_Btn_Click);
+            this.MultipleDir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.MultipleDir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MultipleDir_Opt.FlatAppearance.BorderSize = 0;
+            this.MultipleDir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.MultipleDir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.MultipleDir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MultipleDir_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MultipleDir_Opt.ForeColor = System.Drawing.Color.White;
+            this.MultipleDir_Opt.Location = new System.Drawing.Point(14, 290);
+            this.MultipleDir_Opt.Name = "MultipleDir_Opt";
+            this.MultipleDir_Opt.Size = new System.Drawing.Size(218, 36);
+            this.MultipleDir_Opt.TabIndex = 23;
+            this.MultipleDir_Opt.Text = "Multiple Windows Directory";
+            this.MultipleDir_Opt.UseVisualStyleBackColor = false;
+            this.MultipleDir_Opt.Click += new System.EventHandler(this.MultipleDir_Opt_Click);
             // 
-            // URLconstructDir_Opt_Btn
+            // Furlconstdir_Opt
             // 
-            this.URLconstructDir_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLconstructDir_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.URLconstructDir_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.URLconstructDir_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.URLconstructDir_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.URLconstructDir_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.URLconstructDir_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLconstructDir_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.URLconstructDir_Opt_Btn.Location = new System.Drawing.Point(14, 140);
-            this.URLconstructDir_Opt_Btn.Name = "URLconstructDir_Opt_Btn";
-            this.URLconstructDir_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.URLconstructDir_Opt_Btn.TabIndex = 22;
-            this.URLconstructDir_Opt_Btn.Text = "URL Construct Directory";
-            this.URLconstructDir_Opt_Btn.UseVisualStyleBackColor = false;
-            this.URLconstructDir_Opt_Btn.Click += new System.EventHandler(this.URLconstructDir_Opt_Btn_Click);
+            this.Furlconstdir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Furlconstdir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Furlconstdir_Opt.FlatAppearance.BorderSize = 0;
+            this.Furlconstdir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Furlconstdir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.Furlconstdir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Furlconstdir_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Furlconstdir_Opt.ForeColor = System.Drawing.Color.White;
+            this.Furlconstdir_Opt.Location = new System.Drawing.Point(14, 140);
+            this.Furlconstdir_Opt.Name = "Furlconstdir_Opt";
+            this.Furlconstdir_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Furlconstdir_Opt.TabIndex = 22;
+            this.Furlconstdir_Opt.Text = "URL Construct Directory";
+            this.Furlconstdir_Opt.UseVisualStyleBackColor = false;
+            this.Furlconstdir_Opt.Click += new System.EventHandler(this.Furlconstdir_Opt_Click);
             // 
-            // GoogleDork_Opt_Btn
+            // Fgdork_Opt
             // 
-            this.GoogleDork_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GoogleDork_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.GoogleDork_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.GoogleDork_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.GoogleDork_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.GoogleDork_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GoogleDork_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoogleDork_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.GoogleDork_Opt_Btn.Location = new System.Drawing.Point(14, 340);
-            this.GoogleDork_Opt_Btn.Name = "GoogleDork_Opt_Btn";
-            this.GoogleDork_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.GoogleDork_Opt_Btn.TabIndex = 21;
-            this.GoogleDork_Opt_Btn.Text = "Google Dork";
-            this.GoogleDork_Opt_Btn.UseVisualStyleBackColor = false;
-            this.GoogleDork_Opt_Btn.Click += new System.EventHandler(this.GoogleDork_Opt_Btn_Click);
+            this.Fgdork_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Fgdork_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Fgdork_Opt.FlatAppearance.BorderSize = 0;
+            this.Fgdork_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Fgdork_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.Fgdork_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Fgdork_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fgdork_Opt.ForeColor = System.Drawing.Color.White;
+            this.Fgdork_Opt.Location = new System.Drawing.Point(14, 340);
+            this.Fgdork_Opt.Name = "Fgdork_Opt";
+            this.Fgdork_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Fgdork_Opt.TabIndex = 21;
+            this.Fgdork_Opt.Text = "Google Dork";
+            this.Fgdork_Opt.UseVisualStyleBackColor = false;
+            this.Fgdork_Opt.Click += new System.EventHandler(this.Fgdork_Opt_Click);
             // 
-            // MultipleWin_Opt_Btn
+            // Fmultiplewin_Opt
             // 
-            this.MultipleWin_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleWin_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MultipleWin_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.MultipleWin_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.MultipleWin_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.MultipleWin_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MultipleWin_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MultipleWin_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.MultipleWin_Opt_Btn.Location = new System.Drawing.Point(14, 240);
-            this.MultipleWin_Opt_Btn.Name = "MultipleWin_Opt_Btn";
-            this.MultipleWin_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.MultipleWin_Opt_Btn.TabIndex = 20;
-            this.MultipleWin_Opt_Btn.Text = "Multiple Windows default File";
-            this.MultipleWin_Opt_Btn.UseVisualStyleBackColor = false;
-            this.MultipleWin_Opt_Btn.Click += new System.EventHandler(this.MultipleWin_Opt_Btn_Click);
+            this.Fmultiplewin_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Fmultiplewin_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Fmultiplewin_Opt.FlatAppearance.BorderSize = 0;
+            this.Fmultiplewin_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Fmultiplewin_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.Fmultiplewin_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Fmultiplewin_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fmultiplewin_Opt.ForeColor = System.Drawing.Color.White;
+            this.Fmultiplewin_Opt.Location = new System.Drawing.Point(14, 240);
+            this.Fmultiplewin_Opt.Name = "Fmultiplewin_Opt";
+            this.Fmultiplewin_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Fmultiplewin_Opt.TabIndex = 20;
+            this.Fmultiplewin_Opt.Text = "Multiple Windows default File";
+            this.Fmultiplewin_Opt.UseVisualStyleBackColor = false;
+            this.Fmultiplewin_Opt.Click += new System.EventHandler(this.Fmultiplewin_Opt_Click);
             // 
-            // AddOntools_Opt_Btn
+            // AddOntools_Opt
             // 
-            this.AddOntools_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddOntools_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddOntools_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.AddOntools_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddOntools_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.AddOntools_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddOntools_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOntools_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddOntools_Opt_Btn.Location = new System.Drawing.Point(14, 190);
-            this.AddOntools_Opt_Btn.Name = "AddOntools_Opt_Btn";
-            this.AddOntools_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.AddOntools_Opt_Btn.TabIndex = 19;
-            this.AddOntools_Opt_Btn.Text = "Add-On Tools";
-            this.AddOntools_Opt_Btn.UseVisualStyleBackColor = false;
-            this.AddOntools_Opt_Btn.Click += new System.EventHandler(this.AddOntools_Opt_Btn_Click);
+            this.AddOntools_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.AddOntools_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddOntools_Opt.FlatAppearance.BorderSize = 0;
+            this.AddOntools_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.AddOntools_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.AddOntools_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddOntools_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddOntools_Opt.ForeColor = System.Drawing.Color.White;
+            this.AddOntools_Opt.Location = new System.Drawing.Point(14, 190);
+            this.AddOntools_Opt.Name = "AddOntools_Opt";
+            this.AddOntools_Opt.Size = new System.Drawing.Size(218, 36);
+            this.AddOntools_Opt.TabIndex = 19;
+            this.AddOntools_Opt.Text = "Add-On Tools";
+            this.AddOntools_Opt.UseVisualStyleBackColor = false;
+            this.AddOntools_Opt.Click += new System.EventHandler(this.AddOntools_Opt_Click);
             // 
-            // URLconstruct_Opt_Btn
+            // Furlconst_Opt
             // 
-            this.URLconstruct_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLconstruct_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.URLconstruct_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.URLconstruct_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.URLconstruct_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.URLconstruct_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.URLconstruct_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLconstruct_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.URLconstruct_Opt_Btn.Location = new System.Drawing.Point(14, 90);
-            this.URLconstruct_Opt_Btn.Name = "URLconstruct_Opt_Btn";
-            this.URLconstruct_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.URLconstruct_Opt_Btn.TabIndex = 18;
-            this.URLconstruct_Opt_Btn.Text = "URL Construct File";
-            this.URLconstruct_Opt_Btn.UseVisualStyleBackColor = false;
-            this.URLconstruct_Opt_Btn.Click += new System.EventHandler(this.URLconstruct_Opt_Btn_Click);
+            this.Furlconst_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Furlconst_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Furlconst_Opt.FlatAppearance.BorderSize = 0;
+            this.Furlconst_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Furlconst_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.Furlconst_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Furlconst_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Furlconst_Opt.ForeColor = System.Drawing.Color.White;
+            this.Furlconst_Opt.Location = new System.Drawing.Point(14, 90);
+            this.Furlconst_Opt.Name = "Furlconst_Opt";
+            this.Furlconst_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Furlconst_Opt.TabIndex = 18;
+            this.Furlconst_Opt.Text = "URL Construct File";
+            this.Furlconst_Opt.UseVisualStyleBackColor = false;
+            this.Furlconst_Opt.Click += new System.EventHandler(this.Furlconst_Opt_Click);
             // 
-            // URLdirect_Opt_Btn
+            // Furldir_Opt
             // 
-            this.URLdirect_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.URLdirect_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.URLdirect_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.URLdirect_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.URLdirect_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.URLdirect_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.URLdirect_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLdirect_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.URLdirect_Opt_Btn.Location = new System.Drawing.Point(14, 40);
-            this.URLdirect_Opt_Btn.Name = "URLdirect_Opt_Btn";
-            this.URLdirect_Opt_Btn.Size = new System.Drawing.Size(218, 36);
-            this.URLdirect_Opt_Btn.TabIndex = 17;
-            this.URLdirect_Opt_Btn.Text = "URL Direct";
-            this.URLdirect_Opt_Btn.UseVisualStyleBackColor = false;
-            this.URLdirect_Opt_Btn.Click += new System.EventHandler(this.URLdirect_Opt_Btn_Click);
+            this.Furldir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Furldir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Furldir_Opt.FlatAppearance.BorderSize = 0;
+            this.Furldir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Furldir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.Furldir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Furldir_Opt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Furldir_Opt.ForeColor = System.Drawing.Color.White;
+            this.Furldir_Opt.Location = new System.Drawing.Point(14, 40);
+            this.Furldir_Opt.Name = "Furldir_Opt";
+            this.Furldir_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Furldir_Opt.TabIndex = 17;
+            this.Furldir_Opt.Text = "URL Direct";
+            this.Furldir_Opt.UseVisualStyleBackColor = false;
+            this.Furldir_Opt.Click += new System.EventHandler(this.Furldir_Opt_Click);
             // 
             // panel25
             // 
@@ -6353,14 +6353,14 @@
         private System.Windows.Forms.TextBox DefaultEditor_Opt_Txt;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button SaveConfig_Opt_Btn;
-        private System.Windows.Forms.Button URLdirect_Opt_Btn;
+        private System.Windows.Forms.Button Furldir_Opt;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button URLconstruct_Opt_Btn;
-        private System.Windows.Forms.Button MultipleWin_Opt_Btn;
-        private System.Windows.Forms.Button AddOntools_Opt_Btn;
-        private System.Windows.Forms.Button GoogleDork_Opt_Btn;
-        private System.Windows.Forms.Button MultipleWinDir_Opt_Btn;
-        private System.Windows.Forms.Button URLconstructDir_Opt_Btn;
+        private System.Windows.Forms.Button Furlconst_Opt;
+        private System.Windows.Forms.Button Fmultiplewin_Opt;
+        private System.Windows.Forms.Button AddOntools_Opt;
+        private System.Windows.Forms.Button Fgdork_Opt;
+        private System.Windows.Forms.Button MultipleDir_Opt;
+        private System.Windows.Forms.Button Furlconstdir_Opt;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label WorkFlowDir_Opn;
         private System.Windows.Forms.Label ScriptDir_Opn;

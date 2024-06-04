@@ -205,9 +205,7 @@ namespace Ostium
                     else
                     {
                         if (Class_Var.URL_DEFAUT_WSEARCH == "")
-                        {
                             Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
-                        }
 
                         uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
                             string.Join("+", Uri.EscapeDataString(rawUrl).Split(new string[] { "%20" }, StringSplitOptions.RemoveEmptyEntries)));
@@ -264,17 +262,17 @@ namespace Ostium
         void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
         {
             var settings = WBrowse.CoreWebView2.Settings;
+            settings.IsScriptEnabled = !settings.IsScriptEnabled;
+
             if (JavaEnableDisable_Btn.Text == "Javascript Enable")
             {
                 JavaEnableDisable_Btn.Text = "Javascript Disable";
                 JavaEnableDisable_Btn.ForeColor = Color.Red;
-                settings.IsScriptEnabled = false;
             }
             else
             {
                 JavaEnableDisable_Btn.Text = "Javascript Enable";
                 JavaEnableDisable_Btn.ForeColor = Color.Lime;
-                settings.IsScriptEnabled = true;
             }
         }
 
@@ -283,10 +281,12 @@ namespace Ostium
             if (e.KeyChar == (char)Keys.Enter)
                 GoBrowser(URLbrowse_Cbx.Text);
         }
+        ///
         /// <summary>
         /// Cookies save
         /// </summary>
         /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True,  by default is False</param>
+        /// 
         async void GetCookie(string URLs)
         {
             try

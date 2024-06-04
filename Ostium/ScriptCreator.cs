@@ -153,15 +153,15 @@ namespace Ostium
 
                 if (!File.Exists(Dirscript + ScriptSelect + ".js"))
                 {
-                    using (StreamWriter file_create = File.AppendText(Scripts + FileUrl))
+                    using (StreamWriter fc = File.AppendText(Scripts + FileUrl))
                     {
-                        file_create.WriteLine(SiteUrl_Txt.Text);
+                        fc.WriteLine(SiteUrl_Txt.Text);
                     }
                 }
 
-                using (StreamWriter file_create = new StreamWriter(Dirscript + ScriptSelect + ".js"))
+                using (StreamWriter fc = new StreamWriter(Dirscript + ScriptSelect + ".js"))
                 {
-                    file_create.Write(ScriptTxt_Txt.Text);
+                    fc.Write(ScriptTxt_Txt.Text);
                 }
 
                 List_Object.Items.Clear();
@@ -182,9 +182,7 @@ namespace Ostium
                 if (ScriptUrl_Lst.SelectedIndex != -1)
                 {
                     if (!Directory.Exists(Scripts + "scriptpause"))
-                    {
                         Directory.CreateDirectory(Scripts + "scriptpause");
-                    }
 
                     List_Object = ScriptUrl_Lst;
                     PauseScript("scripturl.ost", "scripturlp.ost", Scripts, Scripts + @"scriptpause\");
