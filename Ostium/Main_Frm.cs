@@ -6256,12 +6256,12 @@ namespace Ostium
             }
         }
 
-        void GoLatLong(string lat, string lon, string tooltxt)
+        void GoLatLong(string lat, string lon, string txtmarker)
         {
             try
             {
-                if (tooltxt == "")
-                    tooltxt = "Here";
+                if (txtmarker == "")
+                    txtmarker = "Here";
 
                 VerifySizeZoom();
 
@@ -6272,7 +6272,7 @@ namespace Ostium
                 GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
                 {
                     ToolTipMode = MarkerTooltipMode.Always,
-                    ToolTipText = tooltxt
+                    ToolTipText = "\r\n" + txtmarker
                 };
 
                 marker.ToolTip.Fill = Brushes.Yellow;
