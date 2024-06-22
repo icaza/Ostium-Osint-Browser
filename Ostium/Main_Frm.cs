@@ -116,7 +116,6 @@ namespace Ostium
         string NameUriDB = "";
         string UnshortURLval = "";
         string Una = "";
-        //readonly int CMDconsSwitch;
         string TableOpen = "";
         string Tables_Lst_Opt = "add";
         string DataAddSelectUri = "";
@@ -917,6 +916,11 @@ namespace Ostium
                                       CoreWebView2BrowsingDataKinds.CacheStorage |
                                       CoreWebView2BrowsingDataKinds.IndexedDb |
                                       CoreWebView2BrowsingDataKinds.LocalStorage |
+                                      CoreWebView2BrowsingDataKinds.DiskCache |
+                                      CoreWebView2BrowsingDataKinds.FileSystems |
+                                      CoreWebView2BrowsingDataKinds.ServiceWorkers |
+                                      CoreWebView2BrowsingDataKinds.Settings |
+                                      CoreWebView2BrowsingDataKinds.WebSql |
                                       CoreWebView2BrowsingDataKinds.AllSite |
                                       CoreWebView2BrowsingDataKinds.BrowsingHistory;
                 profile.ClearBrowsingDataAsync(dataKinds);
@@ -1238,8 +1242,7 @@ namespace Ostium
         /// Translation of the web page via the default translation site of the file "url_dflt_cnf.ost"
         /// or the one chosen by the user "Class_Var.URL_TRAD_WEBPAGE"
         /// </summary>
-        /// <param name="replace_query"></param>
-        /// Replacement characters for the URL to translate and open in wBrowser
+        /// <param name="replace_query">Replacement characters for the URL to translate and open in wBrowser</param>
         /// 
         void TraductPage_Btn_Click(object sender, EventArgs e)
         {
@@ -1256,12 +1259,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! TraductPage_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Unshort URL
-        /// </summary>
-        /// <param name="StartUnshortUrl"></param>
-        /// 
+
         void UnshortUrl_Btn_Click(object sender, EventArgs e)
         {
             if (URLbrowse_Cbx.Text != "")
@@ -1315,7 +1313,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Execution Add-on of the add-on directory
+        /// Start Add-on of the add-on directory
         /// </summary>
         /// 
         void AddOn_Cbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -1519,11 +1517,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! OpenListLink_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// MDI Form open
-        /// </summary>
-        /// 
+
         void OpnGroupFrm_Btn_Click(object sender, EventArgs e)
         {
             mdiFrm = new Mdi_Frm();
@@ -1562,13 +1556,7 @@ namespace Ostium
         {
             WBrowse.Source = new Uri(@AppStart);
         }
-        ///
-        /// <summary>
-        /// JS script injection into web page
-        /// </summary>
-        /// <param name="InputBox">Enter the script</param>
-        /// <param value="ScriptInject">Script to inject</param>
-        /// 
+
         async void InjectScript_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -1609,8 +1597,6 @@ namespace Ostium
         /// <summary>
         /// RegEX injection in web page
         /// </summary>
-        /// <param name="InputBox">Enter the script</param>
-        /// <param value="ScriptInject">Script to inject</param>
         ///
         void RegexCmd_Btn_Click(object sender, EventArgs e)
         {
@@ -2560,7 +2546,7 @@ namespace Ostium
                     if (VerifMapOpn == "off")
                     {
                         Mkmarker = GMarkerGoogleType.red_dot;
-                        OpenMaps("Horta", 12); // Adresse, Provider
+                        OpenMaps("Paris", 12); // Adresse, Provider
                     }
                     PointLoc_Lst.Items.Clear();
                     loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
@@ -2700,9 +2686,7 @@ namespace Ostium
                     Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
 
                 HttpClient client = new HttpClient();
-
                 client.DefaultRequestHeaders.UserAgent.ParseAdd(Class_Var.URL_USER_AGENT_SRC_PAGE);
-
                 var response = await client.GetAsync(WBrowse.Source.AbsoluteUri);
                 string pageContents = await response.Content.ReadAsStringAsync();
 
@@ -5650,32 +5634,31 @@ namespace Ostium
 
                 VerifySizeZoom();
                 VerifMapOpn = "on";
-                GMap_Ctrl.SetPositionByKeywords(adress);
                 GmapProviderSelect(provid);
+                GMap_Ctrl.Manager.Mode = AccessMode.ServerOnly;
+                GMap_Ctrl.SetPositionByKeywords(adress);
                 GMap_Ctrl.Zoom = MapZoom;
                 GMap_Ctrl.IgnoreMarkerOnMouseWheel = true;
-                GMap_Ctrl.Manager.Mode = AccessMode.ServerOnly;
                 GMap_Ctrl.Overlays.Add(overlayOne);
                 GMap_Ctrl.ShowCenter = true;
 
-                LatT = double.Parse(LatTCurrent_Lbl.Text, CultureInfo.InvariantCulture);
-                LonGt = double.Parse(LonGtCurrent_Lbl.Text, CultureInfo.InvariantCulture);
-                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
-                GMapOverlay markers = new GMapOverlay("markers");
-                GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
-                {
-                    ToolTipMode = MarkerTooltipMode.Always,
-                    ToolTipText = KeywordMap_Txt.Text
-                };
+                //LatT = double.Parse(LatTCurrent_Lbl.Text, CultureInfo.InvariantCulture);
+                //LonGt = double.Parse(LonGtCurrent_Lbl.Text, CultureInfo.InvariantCulture);
+                //GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
+                //GMapOverlay markers = new GMapOverlay("markers");
+                //GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
+                //{
+                //    ToolTipText = KeywordMap_Txt.Text
+                //};
 
-                marker.ToolTip.Fill = Brushes.Black;
-                marker.ToolTip.Foreground = Brushes.White;
-                marker.ToolTip.Stroke = Pens.Black;
-                marker.ToolTip.TextPadding = new Size(10, 10);
-                if (TxtMarker_Chk.Checked)
-                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                markers.Markers.Add(marker);
-                GMap_Ctrl.Overlays.Add(markers);
+                //marker.ToolTip.Fill = Brushes.Black;
+                //marker.ToolTip.Foreground = Brushes.White;
+                //marker.ToolTip.Stroke = Pens.Black;
+                //marker.ToolTip.TextPadding = new Size(10, 10);
+                //if (TxtMarker_Chk.Checked)
+                //    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                //markers.Markers.Add(marker);
+                //GMap_Ctrl.Overlays.Add(markers);
             }
             catch (Exception ex)
             {
@@ -6423,11 +6406,7 @@ namespace Ostium
         }
 
         #endregion
-        /// <summary>
-        /// Statusbar Button, open URL in BROWSx Tab
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         void OpnURL_TlsTools_Click(object sender, EventArgs e)
         {
             GoBrowser(URLtxt_txt.Text, 1);

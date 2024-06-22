@@ -3633,7 +3633,7 @@
             this.BrcktB_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktB_Txt.Location = new System.Drawing.Point(1060, 0);
+            this.BrcktB_Txt.Location = new System.Drawing.Point(996, 0);
             this.BrcktB_Txt.Multiline = true;
             this.BrcktB_Txt.Name = "BrcktB_Txt";
             this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
@@ -3644,7 +3644,7 @@
             // 
             this.label30.Dock = System.Windows.Forms.DockStyle.Left;
             this.label30.ForeColor = System.Drawing.Color.Gray;
-            this.label30.Location = new System.Drawing.Point(1026, 0);
+            this.label30.Location = new System.Drawing.Point(962, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(34, 22);
             this.label30.TabIndex = 28;
@@ -3658,7 +3658,7 @@
             this.BrcktA_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktA_Txt.Location = new System.Drawing.Point(989, 0);
+            this.BrcktA_Txt.Location = new System.Drawing.Point(925, 0);
             this.BrcktA_Txt.Multiline = true;
             this.BrcktA_Txt.Name = "BrcktA_Txt";
             this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
@@ -3676,7 +3676,7 @@
             this.ReplaceBrckt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReplaceBrckt_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReplaceBrckt_btn.ForeColor = System.Drawing.Color.White;
-            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(921, 0);
+            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(857, 0);
             this.ReplaceBrckt_btn.Name = "ReplaceBrckt_btn";
             this.ReplaceBrckt_btn.Size = new System.Drawing.Size(68, 22);
             this.ReplaceBrckt_btn.TabIndex = 30;
@@ -3690,9 +3690,8 @@
             this.label29.ForeColor = System.Drawing.Color.Gray;
             this.label29.Location = new System.Drawing.Point(847, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(74, 22);
+            this.label29.Size = new System.Drawing.Size(10, 22);
             this.label29.TabIndex = 26;
-            this.label29.Text = "Replace";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CharSpace_Txt
@@ -6530,7 +6529,6 @@
         private System.Windows.Forms.TextBox BrcktB_Txt;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox BrcktA_Txt;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button ReplaceBrckt_btn;
         private System.Windows.Forms.Button TableParse_Btn;
         private System.Windows.Forms.Button TableNode_Btn;
@@ -6558,6 +6556,7 @@
         private System.Windows.Forms.ToolStripMenuItem NewProjectMapLatLon_Tls;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
         private System.Windows.Forms.ToolStripMenuItem ClearMap_Tls;
+        private System.Windows.Forms.Label label29;
     }
 }
 
