@@ -182,9 +182,7 @@ namespace Ostium
         #endregion
 
         #region Frm_
-        ///
-        /// <param name="SoftVersion">Version and Assembly checking</param>
-        ///
+
         public Main_Frm()
         {
             InitializeComponent();
@@ -357,11 +355,7 @@ namespace Ostium
             /// 
             Config_Ini(AppStart + "config.xml");
         }
-        ///
-        /// <summary>
-        /// Creation of the different directories of the application => DirectoryCreate
-        /// </summary>
-        /// 
+
         void CreateDirectory()
         {
             try
@@ -396,24 +390,13 @@ namespace Ostium
                 senderror.ErrorLog("Error! CreateDirectory: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Creation of different directories if Not exist!
-        /// </summary>
-        /// <param name="dir">Directory being created</param>
-        /// 
+
         void DirectoryCreate(string dir)
         {
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
-        ///
-        /// <summary>
-        /// Loading the configuration from the "config.xml" file
-        /// Class_var.cs variable registrations
-        /// </summary>
-        /// <param name="ConfigFile"></param>
-        /// 
+
         void Config_Ini(string ConfigFile)
         {
             try
@@ -578,13 +561,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Config_Ini: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Calculate and display the size of application directories
-        /// </summary>
-        /// <param name="directoryname">Directory address</param>
-        /// <param name="objectsend">Loading the size into the corresponding Label object</param>
-        /// 
+
         async void DireSizeCalc(string directoryname, object objectsend)
         {
             try
@@ -670,10 +647,6 @@ namespace Ostium
             menuList.Insert(menuList.Count, newItem2);
         }
         ///
-        /// <summary>
-        /// Updated the wBrowse TAB index title bar
-        /// </summary>
-        /// <param name="message">Title of the current web page</param>
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
         /// 
         void WBrowse_UpdtTitleEvent(string message)
@@ -861,8 +834,9 @@ namespace Ostium
         /// <summary>
         /// Script injection
         /// </summary>
-        /// <param name="WBrowse.Source.AbsoluteUri">URL of the current site, removing special characters from the URL and adding the ".js" extension
-        /// to check if a ".js" script name of the same name exists, if True injecting the script contained in the file on the current web page</param>
+        /// <param name="WBrowse.Source.AbsoluteUri">URL of the current site, verify if URL exist on list script, if exist removing special characters
+        ///  from the URL and adding the ".js" extension to check if a ".js" script name of the same name exists, if true injecting the script contained 
+        ///  in the file on the current web page</param>
         /// 
         async void ScriptInject()
         {
@@ -1187,11 +1161,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Word_Construct_URL_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Opening. Closing prompt
-        /// </summary>
-        ///
+
         void Console_Btn_Click(object sender, EventArgs e)
         {
             Console_Cmd_Txt.Visible = !Console_Cmd_Txt.Visible;
@@ -1219,11 +1189,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Mute_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Copy the URL of the current web page to the clipboard
-        /// </summary>
-        /// 
+
         void CopyURL_Mnu_Click(object sender, EventArgs e)
         {
             try
@@ -1273,12 +1239,7 @@ namespace Ostium
                 URLbrowse_Cbx.BackColor = Color.FromArgb(41, 44, 51);
             }
         }
-        ///
-        /// <summary>
-        /// Unshort URL
-        /// </summary>
-        /// <param name="Uri">URL to check</param>
-        /// 
+
         void StartUnshortUrl(string Uri)
         {
             UnshortURLval = Uri;
@@ -1286,11 +1247,7 @@ namespace Ostium
             Thread Thr_UnshortUrl = new Thread(new ThreadStart(UnshortUrl));
             Thr_UnshortUrl.Start();
         }
-        ///
-        /// <summary>
-        /// Unshort URL Http web request Header
-        /// </summary>
-        /// 
+
         void UnshortUrl()
         {
             try
@@ -1311,11 +1268,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! => UnshortUrl() Exception: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Start Add-on of the add-on directory
-        /// </summary>
-        /// 
+
         void AddOn_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1358,8 +1311,6 @@ namespace Ostium
         ///
         /// <summary>
         /// Opening in the "OpenSource_Frm" window of the file "filesdir/gh.txt" (Google Dork) if file exists True
-        /// </summary>
-        /// <param name="Open_Source_Frm">Opening the window</param>
         ///
         void GoogleDork_Btn_Click(object sender, EventArgs e)
         {
@@ -1383,24 +1334,13 @@ namespace Ostium
                 senderror.ErrorLog("Error! WebpageToPng_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Opening the “Html Text Form” Text Browser window
-        /// </summary>
-        /// 
+
         public void HTMLtxt_Btn_Click(object sender, EventArgs e)
         {
             HtmlTextFrm = new HtmlText_Frm();
             HtmlTextFrm.Show();
         }
-        ///
-        /// <summary>
-        /// Web page to Png
-        /// </summary>
-        /// <param name="currentControlClipOnly"></param>
-        /// <returns></returns>
-        /// wBrowser capture
-        ///
+
         async Task<Image> TakeWebScreenshot(bool currentControlClipOnly = false)
         {
             dynamic scl = null;
@@ -1420,13 +1360,7 @@ namespace Ostium
             var img = await GetWebBrowserBitmap(siz);
             return img;
         }
-        ///
-        /// <summary>
-        /// Web page to Png
-        /// </summary>
-        /// <param name="clipSize"></param>
-        /// <returns></returns>
-        /// 
+
         async Task<Bitmap> GetWebBrowserBitmap(Size clipSize)
         {
             dynamic clip = new JObject();
@@ -1449,33 +1383,17 @@ namespace Ostium
             var ms = new MemoryStream(Convert.FromBase64String(imgData));
             return (Bitmap)Image.FromStream(ms);
         }
-        ///
-        /// <summary>
-        /// Opening the cookie file in the editor
-        /// </summary>
-        /// <param name="OpenFile_Editor"></param>
-        /// <param value="filesdir/memo.txt"></param>
-        ///
+
         void Cookie_Btn_Click(object sender, EventArgs e)
         {
             OpenFile_Editor(AppStart + "cookie.txt");
         }
-        ///
-        /// <summary>
-        /// Opening the cookie injection element
-        /// </summary>
-        ///
+
         void SetCookie_Btn_Click(object sender, EventArgs e)
         {
             Cookie_Pnl.Visible = !Cookie_Pnl.Visible;
         }
-        ///
-        /// <summary>
-        /// <param name="fileopen">Selection and Opening of file in the editor</param>
-        /// </summary>
-        /// <param name="OpenFile_Editor"></param>
-        /// <param value="filePath">Selected file</param>
-        ///
+
         void OpnFilOnEditor_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -1496,13 +1414,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! OpnFilOnEditor_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Opening URL List in the "OpenSource_Frm" window
-        /// </summary>
-        /// <param name="Open_Source_Frm"></param>
-        /// <param value="filePath">Selected file</param>
-        /// 
+
         void OpenListLink_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -1523,22 +1435,12 @@ namespace Ostium
             mdiFrm = new Mdi_Frm();
             mdiFrm.Show();
         }
-        ///
-        /// <summary>
-        /// Opening the memo file in the editor
-        /// </summary>
-        /// <param name="OpnFileOpt"></param>
-        /// <param value="filesdir/memo.txt"></param>
-        /// 
+
         public void Memo_Btn_Click(object sender, EventArgs e)
         {
             OpnFileOpt(AppStart + "memo.txt");
         }
-        ///
-        /// <summary>
-        /// Checking the existence and opening of the default editor "Class_Var.DEFAULT_EDITOR"
-        /// </summary>
-        /// 
+
         void Editor_Btn_Click(object sender, EventArgs e)
         {
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
@@ -1593,11 +1495,7 @@ namespace Ostium
             scriptCreatorFrm = new ScriptCreator();
             scriptCreatorFrm.Show();
         }
-        ///
-        /// <summary>
-        /// RegEX injection in web page
-        /// </summary>
-        ///
+
         void RegexCmd_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -1653,13 +1551,7 @@ namespace Ostium
             else
                 JavaEnableDisable_Btn.Text = "Javascript Enable";
         }
-        ///
-        /// <summary>
-        /// Backup/Compression of selected directories with 7zip creation of a ".bat" file, creation of the "Archives.zip" archive
-        /// </summary>
-        /// <param name="7zip"></param>
-        /// <param name="Archive-DB-FILES-FEED.bat"></param>
-        ///
+
         void ArchiveDirectory_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -1724,13 +1616,7 @@ namespace Ostium
         #endregion
 
         #region Tools_Tab_1
-        ///
-        /// <summary>
-        /// Opening RSS feed category in the editor
-        /// </summary>
-        /// <param name="OpenFile_Editor"></param>
-        /// <param name="CategorieFeed_Cbx">Selection of the category to open</param>
-        /// 
+
         void OpnFileCategory_Btn_Click(object sender, EventArgs e)
         {
             if (CategorieFeed_Cbx.Text != "")
@@ -1751,13 +1637,7 @@ namespace Ostium
             Clipboard.SetData(DataFormats.Text, textData);
             Beep(1500, 400);
         }
-        ///
-        /// <summary>
-        /// Translation and display of the web page via the default translation site of the "url_dflt_cnf.ost" file or the one chosen by
-        /// the user "Class_Var.URL_TRAD_WEBPAGE"
-        /// </summary>
-        /// <param name="replace_query">Replacement value with URL</param>
-        /// 
+
         void TraductPageFeed_Btn_Click(object sender, EventArgs e)
         {
             if (Class_Var.URL_TRAD_WEBPAGE == "")
@@ -1787,11 +1667,7 @@ namespace Ostium
         {
             Reset();
         }
-        ///
-        /// <summary>
-        /// Delete project WorkFlow 
-        /// </summary>
-        /// 
+
         void DeleteProject_Tls_Click(object sender, EventArgs e)
         {
             if (NameProjectwf_Txt.Text == "")
@@ -1814,11 +1690,7 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
             }
         }
-        ///
-        /// <summary>
-        /// Displaying the WorkFlow project XML file in wBrowser
-        /// </summary>
-        ///
+
         void ViewXml_Tls_Click(object sender, EventArgs e)
         {
             if (NameProjectwf_Txt.Text == "")
@@ -1832,13 +1704,7 @@ namespace Ostium
                 Control_Tab.SelectedIndex = 0;
             }                
         }
-        ///
-        /// <summary>
-        /// Opening the WorkFlow project XML file in the editor
-        /// </summary>
-        /// <param name="OpenFile_Editor"></param>
-        /// <param name="NameProjectwf_Txt">Selected WorkFlow project</param>
-        /// 
+
         void EditXml_Tls_Click(object sender, EventArgs e)
         {
             if (NameProjectwf_Txt.Text == "")
@@ -1847,11 +1713,7 @@ namespace Ostium
             if (File.Exists(Workflow + NameProjectwf_Txt.Text + ".xml"))
                 OpenFile_Editor(Workflow + NameProjectwf_Txt.Text + ".xml");
         }
-        ///
-        /// <summary>
-        /// Export of the WorkFlow project in XML format
-        /// </summary>
-        ///
+
         void ExportXml_Tls_Click(object sender, EventArgs e)
         {
             try
@@ -1884,11 +1746,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! ExportXml_Tls_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Export of the WorkFlow project in Json format
-        /// </summary>
-        /// 
+
         void ExportJson_Tls_Click(object sender, EventArgs e)
         {
             try
@@ -2641,8 +2499,8 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// URL construction from a list loaded with the URL construction file selected and
-        /// created a temporary file <param name="A"></param> to open all URLs in the multi-window form Temp-Url-Construct.txt
+        /// URL construction from a list loaded with the URL construction file selected and created a temporary file
+        /// to open all URLs in the multi-window form
         /// </summary>
         /// <param name="replace_query">Replacement value with the searched nickname/word</param>
         /// 
@@ -2882,13 +2740,7 @@ namespace Ostium
         #endregion
 
         #region File_List_Create
-        ///
-        /// <summary>
-        /// File creation with overwriting if the file exists
-        /// </summary>
-        /// <param name="fileName">Name of the file to create</param>
-        /// <param name="content">Data of the file to register</param>
-        /// 
+
         void File_Write(string fileName, string content)
         {
             try
@@ -2907,7 +2759,6 @@ namespace Ostium
         /// <summary>
         /// Creation of List file
         /// </summary>
-        /// <param name="nameFile">List file name</param>
         /// <param name="opnOrNo"></param>
         /// <param value="yes">Saves the file and opens the list in the "Open_Source_Frm" window</param>
         /// <param value="no">Save the file without displaying it</param>
@@ -2938,13 +2789,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! List_Create: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// File creation in add mode
-        /// </summary>
-        /// <param name="fileName">Name of the file to create</param>
-        /// <param name="fileValue">File data to register</param>
-        /// 
+
         void CreateData(string fileName, string fileValue)
         {
             try
@@ -2959,12 +2804,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! CreateData: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Opening file to "OpenFile_Editor"
-        /// </summary>
-        /// <param name="dir_dir">Checking the existence of the file if False it is created then opened with the editor</param>
-        /// 
+
         void OpnFileOpt(string dir_dir)
         {
             if (!File.Exists(AppStart + "OstiumE.exe"))
@@ -2980,12 +2820,7 @@ namespace Ostium
         }
 
         #endregion
-        ///
-        /// <summary>
-        /// Opening a file with the editor
-        /// </summary>
-        /// <param name="FileSelect">File to open</param>
-        ///
+
         void OpenFile_Editor(string FileSelect)
         {
             try
@@ -3015,24 +2850,14 @@ namespace Ostium
                 senderror.ErrorLog("Error! OpenFile_Editor: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Opening file in the "Doc_Frm" window
-        /// </summary>
-        /// <param name="fileNameSelect">File to open</param>
-        /// 
+
         void Open_Doc_Frm(string fileSelect)
         {
             Class_Var.File_Open = fileSelect;
             docForm = new Doc_Frm();
             docForm.Show();
         }
-        ///
-        /// <summary>
-        /// Opening file in the "OpenSource_Frm" window
-        /// </summary>
-        /// <param name="fileNameSelect">File to open</param>
-        /// 
+
         void Open_Source_Frm(string fileSelect)
         {
             Class_Var.File_Open = fileSelect;
@@ -3136,12 +2961,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! DatabasePnl: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Add Table, adding a new category to the database
-        /// </summary>
-        /// <param name="Sqlite_Cmd">mysql command to execute</param>
-        ///
+
         void AddTable_Btn_Click(object sender, EventArgs e)
         {
             TableName_Txt.Text = Regex.Replace(TableName_Txt.Text, "[^a-zA-Z]", "");
@@ -3223,7 +3043,6 @@ namespace Ostium
         /// <summary>
         /// Opening all categories of the database and display
         /// </summary>
-        /// <param name="Sqlite_Read">mysql command to execute</param>
         /// <param name="List_Object">CBX or List object to load</param>
         /// 
         void OpnAllTable()
@@ -3411,12 +3230,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! ChangeDefDB_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// mysql command from the "TAB Data" section
-        /// </summary>
-        /// <param name="Sqlite_Read">mysql command</param>
-        ///
+
         void ExecuteCMDsql_Btn_Click(object sender, EventArgs e)
         {
             DataValue_Lst.Items.Clear();
@@ -3424,11 +3238,7 @@ namespace Ostium
 
             Sqlite_Read(ExecuteCMDsql_Txt.Text, ValueCMDsql_Txt.Text, "lst");
         }
-        ///
-        /// <summary>
-        /// Delete Table (category)
-        /// </summary>
-        ///
+
         void Db_Delete_Table_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -3466,11 +3276,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Db_Delete_Table_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Delete an entry (category url)
-        /// </summary>
-        ///
+
         void Db_Delete_Table_Value_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -3509,11 +3315,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Db_Delete_Table_Value_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Delete All entries (all urls in a category)
-        /// </summary>
-        ///
+
         void Db_Delete_Table_AllValue_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -3546,11 +3348,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Db_Delete_Table_AllValue_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Rename the URL of a database category
-        /// </summary>
-        /// 
+
         void Db_Update_Name_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -3614,11 +3412,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Db_Update_Name_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Modify the value of a URL of a database category
-        /// </summary>
-        ///
+
         void Db_Update_Value_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -3743,12 +3537,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! DataValue_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Change of the default database and modification in the "config.xml" file
-        /// </summary>
-        /// <param name="NameDB">Database name</param>
-        /// 
+
         void ChangeDBdefault(string NameDB)
         {
             try
@@ -3852,11 +3641,7 @@ namespace Ostium
                 CollapseTitleFeed_Btn.Text = "Collapse Off";
             }
         }
-        ///
-        /// <summary>
-        /// RSS feed selection site by site
-        /// </summary>
-        ///
+
         void CountBlockSite_Lbl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CountBlockSite_Lbl.SelectedIndex != -1)
@@ -4131,11 +3916,7 @@ namespace Ostium
             else
                 CollapseTitleFeed_Btn.Text = "Collapse On";
         }
-        ///
-        /// <summary>
-        /// Select a title by its index number
-        /// </summary>
-        /// 
+
         void GoFeed_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -4163,11 +3944,7 @@ namespace Ostium
         {
             GoFeed_Txt.Text = "";
         }
-        ///
-        /// <summary>
-        /// Opening the Home Page if configured "@Class_Var.URL_HOME" or opening the default page of the file "url_dflt_cnf.ost"
-        /// </summary>
-        ///
+
         void HomeFeed_Btn_Click(object sender, EventArgs e)
         {
             WBrowsefeed.Source = new Uri(HomeUrlRSS);
@@ -5350,12 +5127,7 @@ namespace Ostium
             }
 
         }
-        ///
-        /// <summary>
-        /// Checks if process True
-        /// </summary>
-        /// <param name="ProcessVerif">Name of process to check</param>
-        /// 
+ 
         void VerifyProcess(string ProcessVerif)
         {
             try
@@ -5371,12 +5143,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! VerifyProcess: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Checks if process True and Kill process
-        /// </summary>
-        /// <param name="ProcessKill">Process Name to Kill</param>
-        /// 
+
         void KillProcessJAVAW(string ProcessKill)
         {
             try
@@ -7019,11 +6786,8 @@ namespace Ostium
         /// <summary>
         /// Checking updates via Http request and comparison with the variable => "versionNow"
         /// </summary>
-        /// <param name="softName">Application name</param>
-        /// <param name="announcement"></param>
         /// <param value="0">Auto check no announcement if update False announcement if True</param>
         /// <param value="1">Manual check announces whether False or True</param>
-        /// <param name="AnnonceUpdate">Update message available</param>
         ///
         async void VerifyUPDT(string softName, int annoncE)
         {
@@ -7048,12 +6812,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! VerifyUPDT: ", ex.Message, "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Announcement if Updated True
-        /// </summary>
-        /// <param name="softName">Application name</param>
-        ///
+
         void AnnonceUpdate(string softName)
         {
             var result = MessageBox.Show("An update is available for the " + softName + 
