@@ -609,21 +609,26 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on Youtube", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
             newItem1.CustomItemSelected += delegate (object send, object ex)
             {
-                string pageUri = "";
-
-                if (Clipboard.ContainsText(TextDataFormat.Text))
-                    pageUri = Clipboard.GetText(TextDataFormat.Text);
-
                 SynchronizationContext.Current.Post((_) =>
                 {
-                    GoBrowser("https://www.youtube.com/results?search_query=" + pageUri, 1);
+                    if (UriYoutube == "https://www.youtube.com/watch?v=")
+                    {
+                        string pageUri = WBrowse.Source.AbsoluteUri;
+                        pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
+                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
+                        GoBrowser("file:///" + AppStart + "tmpytb.html", 0);
+                    }
+                    else
+                    {
+                        MessageBox.Show("You are not on Youtube!");
+                    }
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed new Tab", null, CoreWebView2ContextMenuItemKind.Command);
             newItem2.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
