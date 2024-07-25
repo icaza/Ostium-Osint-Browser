@@ -1391,7 +1391,13 @@ namespace Ostium
 
         void Cookie_Btn_Click(object sender, EventArgs e)
         {
-            OpenFile_Editor(AppStart + "cookie.txt");
+            if (!SaveCookies_Chk.Checked)
+            {
+                MessageBox.Show("Saving cookies in a text file is not enabled in the options.");
+            }
+
+            if (File.Exists(AppStart + "cookie.txt"))
+                OpenFile_Editor(AppStart + "cookie.txt");
         }
 
         void SetCookie_Btn_Click(object sender, EventArgs e)
