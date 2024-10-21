@@ -555,6 +555,7 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
 
                 Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
+                Class_Var.SCRIPTCREATOR = "off";
             }
             catch (Exception ex)
             {
@@ -1503,8 +1504,12 @@ namespace Ostium
 
         void OpenScriptEdit_Btn_Click(object sender, EventArgs e)
         {
-            scriptCreatorFrm = new ScriptCreator();
-            scriptCreatorFrm.Show();
+            if (Class_Var.SCRIPTCREATOR == "off")
+            {
+                Class_Var.SCRIPTCREATOR = "on";
+                scriptCreatorFrm = new ScriptCreator();
+                scriptCreatorFrm.Show();
+            }
         }
 
         void RegexCmd_Btn_Click(object sender, EventArgs e)
@@ -5525,6 +5530,8 @@ namespace Ostium
 
         void CreateProjectMap(int val)
         {
+            SelectName:
+
             string message, title;
             object NameInsert;
 
@@ -5547,7 +5554,7 @@ namespace Ostium
                     else
                     {
                         Vrfy = 1;
-                        return;
+                        goto SelectName;
                     }                        
                 }
 

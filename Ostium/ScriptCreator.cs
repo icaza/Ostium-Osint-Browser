@@ -27,6 +27,8 @@ namespace Ostium
         public ScriptCreator()
         {
             InitializeComponent();
+
+            FormClosing += new FormClosingEventHandler(ScriptCreator_Closed);
         }
 
         void ScriptCreator_Load(object sender, EventArgs e)
@@ -42,6 +44,11 @@ namespace Ostium
                 ScriptUrlp_Lst.Items.Clear();
                 ScriptUrlp_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturlp.ost"));
             }
+        }
+
+        void ScriptCreator_Closed(object sender, EventArgs e)
+        {
+            Class_Var.SCRIPTCREATOR = "off";
         }
 
         #region Btn_
