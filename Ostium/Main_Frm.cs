@@ -1328,12 +1328,13 @@ namespace Ostium
         {
             try
             {
+                string Domain = WBrowse.Source.IdnHost;
                 var img = await TakeWebScreenshot();
                 CreateNameAleat();
-                img.Save(Pictures + Una + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                img.Save(Pictures + Una + "_" + Domain + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 Beep(800, 200);
 
-                Process.Start(Pictures + Una + ".png");
+                Process.Start(Pictures + Una + "_" + Domain + ".png");
             }
             catch (Exception ex)
             {
@@ -1382,6 +1383,12 @@ namespace Ostium
             var imgData = (string)JObject.Parse(devData).data;
             var ms = new MemoryStream(Convert.FromBase64String(imgData));
             return (Bitmap)Image.FromStream(ms);
+        }
+
+        public void HTMLtxt_Btn_Click(object sender, EventArgs e)
+        {
+            HtmlTextFrm = new HtmlText_Frm();
+            HtmlTextFrm.Show();
         }
 
         void Cookie_Btn_Click(object sender, EventArgs e)
