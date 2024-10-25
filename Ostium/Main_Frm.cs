@@ -1341,12 +1341,6 @@ namespace Ostium
             }
         }
 
-        public void HTMLtxt_Btn_Click(object sender, EventArgs e)
-        {
-            HtmlTextFrm = new HtmlText_Frm();
-            HtmlTextFrm.Show();
-        }
-
         async Task<Image> TakeWebScreenshot(bool currentControlClipOnly = false)
         {
             dynamic scl = null;
