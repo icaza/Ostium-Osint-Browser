@@ -1591,6 +1591,18 @@ namespace Ostium
         {
             try
             {
+                var ArchiveDir = new List<string>()
+                    {
+                        DBdirectory,
+                        FeedDir,
+                        FileDir,
+                        Workflow,
+                        Scripts,
+                        Setirps,
+                        MapDir,
+                        JsonDir
+                    };
+
                 using (StreamWriter addtxt = new StreamWriter(AppStart + "Archive-DB-FILES-FEED.bat"))
                 {
                     addtxt.WriteLine("@echo off");
@@ -1600,14 +1612,11 @@ namespace Ostium
                     addtxt.WriteLine("@echo.");
                     addtxt.WriteLine("echo Backup: DATABASE - FEED - FILES");
                     addtxt.WriteLine("@echo.");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + DBdirectory + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FeedDir + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FileDir + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Workflow + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Scripts + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Setirps + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + MapDir + " -mx9 -mtc=on");
-                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + JsonDir + " -mx9 -mtc=on");
+
+                    for (int i = 0; i < ArchiveDir.Count; i++)
+                    {
+                        addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveDir[i].ToString() + " -mx9 -mtc=on");
+                    }
 
                     if (ArchiveAdd_Lst.Items.Count > 0)
                     {
