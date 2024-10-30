@@ -353,6 +353,15 @@ namespace Ostium
             ///
             /// Loading the configuration from the "config.xml" file
             /// 
+
+            if (ArchiveAdd_Txt.Text != "")
+            {
+                using (StreamWriter fc = new StreamWriter(AppStart + "archiveAdd.txt"))
+                {
+                    fc.Write(ArchiveAdd_Txt.Text);
+                }
+            }
+
             Config_Ini(AppStart + "config.xml");
         }
 
@@ -546,6 +555,15 @@ namespace Ostium
                 {
                     ScriptUrl_Lst.Items.Clear();
                     ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
+                }
+
+                if(File.Exists(AppStart + "archiveAdd.txt"))
+                {
+                    using (StreamReader sr = new StreamReader(AppStart + "archiveAdd.txt"))
+                    {
+                        ArchiveAdd_Txt.Text = sr.ReadToEnd();
+                    }
+                    ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(AppStart + "archiveAdd.txt"));
                 }
 
                 loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
@@ -1573,24 +1591,33 @@ namespace Ostium
         {
             try
             {
-                using (StreamWriter instxt = new StreamWriter(AppStart + "Archive-DB-FILES-FEED.bat"))
+                using (StreamWriter addtxt = new StreamWriter(AppStart + "Archive-DB-FILES-FEED.bat"))
                 {
-                    instxt.WriteLine("@echo off");
-                    instxt.WriteLine("echo ".PadRight(39, '-'));
-                    instxt.WriteLine("echo          Ostium by ICAZA MEDIA");
-                    instxt.WriteLine("echo ".PadRight(39, '-'));
-                    instxt.WriteLine("@echo.");
-                    instxt.WriteLine("echo Backup: DATABASE - FEED - FILES");
-                    instxt.WriteLine("@echo.");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + DBdirectory + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FeedDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FileDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Workflow + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Scripts + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Setirps + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + MapDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + JsonDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("pause");
+                    addtxt.WriteLine("@echo off");
+                    addtxt.WriteLine("echo ".PadRight(39, '-'));
+                    addtxt.WriteLine("echo          Ostium by ICAZA MEDIA");
+                    addtxt.WriteLine("echo ".PadRight(39, '-'));
+                    addtxt.WriteLine("@echo.");
+                    addtxt.WriteLine("echo Backup: DATABASE - FEED - FILES");
+                    addtxt.WriteLine("@echo.");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + DBdirectory + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FeedDir + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FileDir + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Workflow + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Scripts + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Setirps + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + MapDir + " -mx9 -mtc=on");
+                    addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + JsonDir + " -mx9 -mtc=on");
+
+                    if (ArchiveAdd_Lst.Items.Count > 0)
+                    {
+                        for (int i = 0; i < ArchiveAdd_Lst.Items.Count; i++)
+                        {
+                            addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveAdd_Lst.Items[i].ToString() + " -mx9 -mtc=on");
+                        }
+                    }
+
+                    addtxt.WriteLine("pause");
                 }
                 Process.Start(AppStart + "Archive-DB-FILES-FEED.bat");
             }

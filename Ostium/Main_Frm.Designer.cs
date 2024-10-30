@@ -475,6 +475,11 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.ArchiveAdd_Txt = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -541,6 +546,7 @@
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
             this.Tools_TAB_4.SuspendLayout();
+            this.PanelGrpOpt_Pnl.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tools_TAB_0
@@ -2703,7 +2709,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -2989,7 +2994,6 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -4466,6 +4470,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.ArchiveAdd_Lst);
             this.groupBox6.Controls.Add(this.SaveCookies_Chk);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -4656,22 +4661,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.DefaultEditor_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.GoogBot_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.UserAgentHttp_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.UserAgent_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.SearchEngine_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.UrlTradWebPage_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.UrlHome_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.DB_Default_Opt_Txt);
-            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.PanelGrpOpt_Pnl);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -4686,16 +4676,16 @@
             this.DefaultEditor_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.DefaultEditor_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DefaultEditor_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.DefaultEditor_Opt_Txt.Location = new System.Drawing.Point(11, 501);
+            this.DefaultEditor_Opt_Txt.Location = new System.Drawing.Point(7, 470);
             this.DefaultEditor_Opt_Txt.Name = "DefaultEditor_Opt_Txt";
-            this.DefaultEditor_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.DefaultEditor_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.DefaultEditor_Opt_Txt.TabIndex = 15;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(8, 480);
+            this.label22.Location = new System.Drawing.Point(4, 449);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(97, 16);
             this.label22.TabIndex = 14;
@@ -4706,16 +4696,16 @@
             this.GoogBot_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.GoogBot_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.GoogBot_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.GoogBot_Opt_Txt.Location = new System.Drawing.Point(11, 439);
+            this.GoogBot_Opt_Txt.Location = new System.Drawing.Point(7, 408);
             this.GoogBot_Opt_Txt.Name = "GoogBot_Opt_Txt";
-            this.GoogBot_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.GoogBot_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.GoogBot_Opt_Txt.TabIndex = 13;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(8, 418);
+            this.label21.Location = new System.Drawing.Point(4, 387);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(158, 16);
             this.label21.TabIndex = 12;
@@ -4726,16 +4716,16 @@
             this.UserAgentHttp_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.UserAgentHttp_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserAgentHttp_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UserAgentHttp_Opt_Txt.Location = new System.Drawing.Point(11, 376);
+            this.UserAgentHttp_Opt_Txt.Location = new System.Drawing.Point(7, 345);
             this.UserAgentHttp_Opt_Txt.Name = "UserAgentHttp_Opt_Txt";
-            this.UserAgentHttp_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.UserAgentHttp_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.UserAgentHttp_Opt_Txt.TabIndex = 11;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(8, 355);
+            this.label20.Location = new System.Drawing.Point(4, 324);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(151, 16);
             this.label20.TabIndex = 10;
@@ -4746,16 +4736,16 @@
             this.UserAgent_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.UserAgent_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserAgent_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UserAgent_Opt_Txt.Location = new System.Drawing.Point(11, 313);
+            this.UserAgent_Opt_Txt.Location = new System.Drawing.Point(7, 282);
             this.UserAgent_Opt_Txt.Name = "UserAgent_Opt_Txt";
-            this.UserAgent_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.UserAgent_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.UserAgent_Opt_Txt.TabIndex = 9;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(8, 292);
+            this.label19.Location = new System.Drawing.Point(4, 261);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(80, 16);
             this.label19.TabIndex = 8;
@@ -4766,16 +4756,16 @@
             this.SearchEngine_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.SearchEngine_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SearchEngine_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.SearchEngine_Opt_Txt.Location = new System.Drawing.Point(11, 250);
+            this.SearchEngine_Opt_Txt.Location = new System.Drawing.Point(7, 219);
             this.SearchEngine_Opt_Txt.Name = "SearchEngine_Opt_Txt";
-            this.SearchEngine_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.SearchEngine_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.SearchEngine_Opt_Txt.TabIndex = 7;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(8, 229);
+            this.label18.Location = new System.Drawing.Point(4, 198);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(101, 16);
             this.label18.TabIndex = 6;
@@ -4786,16 +4776,16 @@
             this.UrlTradWebPage_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.UrlTradWebPage_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UrlTradWebPage_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UrlTradWebPage_Opt_Txt.Location = new System.Drawing.Point(11, 187);
+            this.UrlTradWebPage_Opt_Txt.Location = new System.Drawing.Point(7, 156);
             this.UrlTradWebPage_Opt_Txt.Name = "UrlTradWebPage_Opt_Txt";
-            this.UrlTradWebPage_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.UrlTradWebPage_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.UrlTradWebPage_Opt_Txt.TabIndex = 5;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(8, 166);
+            this.label17.Location = new System.Drawing.Point(4, 135);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(114, 16);
             this.label17.TabIndex = 4;
@@ -4806,16 +4796,16 @@
             this.UrlHome_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.UrlHome_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UrlHome_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UrlHome_Opt_Txt.Location = new System.Drawing.Point(11, 124);
+            this.UrlHome_Opt_Txt.Location = new System.Drawing.Point(7, 93);
             this.UrlHome_Opt_Txt.Name = "UrlHome_Opt_Txt";
-            this.UrlHome_Opt_Txt.Size = new System.Drawing.Size(694, 23);
+            this.UrlHome_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.UrlHome_Opt_Txt.TabIndex = 3;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(8, 103);
+            this.label13.Location = new System.Drawing.Point(3, 72);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(80, 16);
             this.label13.TabIndex = 2;
@@ -4827,16 +4817,16 @@
             this.DB_Default_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DB_Default_Opt_Txt.Enabled = false;
             this.DB_Default_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.DB_Default_Opt_Txt.Location = new System.Drawing.Point(10, 61);
+            this.DB_Default_Opt_Txt.Location = new System.Drawing.Point(6, 30);
             this.DB_Default_Opt_Txt.Name = "DB_Default_Opt_Txt";
-            this.DB_Default_Opt_Txt.Size = new System.Drawing.Size(695, 23);
+            this.DB_Default_Opt_Txt.Size = new System.Drawing.Size(676, 23);
             this.DB_Default_Opt_Txt.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(8, 40);
+            this.label4.Location = new System.Drawing.Point(4, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(363, 16);
             this.label4.TabIndex = 0;
@@ -5996,6 +5986,74 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // PanelGrpOpt_Pnl
+            // 
+            this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.ArchiveAdd_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label31);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label4);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.DefaultEditor_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.DB_Default_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label22);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label13);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.GoogBot_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlHome_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label21);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label17);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgentHttp_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlTradWebPage_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label20);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label18);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgent_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.SearchEngine_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label19);
+            this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 19);
+            this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 535);
+            this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.Color.White;
+            this.label31.Location = new System.Drawing.Point(4, 511);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(307, 16);
+            this.label31.TabIndex = 16;
+            this.label31.Text = "Add directory to save in archive (line by line)";
+            // 
+            // ArchiveAdd_Txt
+            // 
+            this.ArchiveAdd_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 533);
+            this.ArchiveAdd_Txt.Multiline = true;
+            this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
+            this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
+            this.ArchiveAdd_Txt.TabIndex = 17;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.White;
+            this.label32.Location = new System.Drawing.Point(8, 697);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(0, 16);
+            this.label32.TabIndex = 18;
+            // 
+            // ArchiveAdd_Lst
+            // 
+            this.ArchiveAdd_Lst.FormattingEnabled = true;
+            this.ArchiveAdd_Lst.ItemHeight = 16;
+            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(14, 158);
+            this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
+            this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 20);
+            this.ArchiveAdd_Lst.TabIndex = 1;
+            this.ArchiveAdd_Lst.Visible = false;
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6095,7 +6153,6 @@
             this.groupBox4.ResumeLayout(false);
             this.Panel_ConfigXml.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.panel27.ResumeLayout(false);
             this.Status_Strip.ResumeLayout(false);
             this.Status_Strip.PerformLayout();
@@ -6105,6 +6162,8 @@
             this.Tools_TAB_3.PerformLayout();
             this.Tools_TAB_4.ResumeLayout(false);
             this.Tools_TAB_4.PerformLayout();
+            this.PanelGrpOpt_Pnl.ResumeLayout(false);
+            this.PanelGrpOpt_Pnl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6557,6 +6616,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
         private System.Windows.Forms.ToolStripMenuItem ClearMap_Tls;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Panel PanelGrpOpt_Pnl;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox ArchiveAdd_Txt;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.ListBox ArchiveAdd_Lst;
     }
 }
 
