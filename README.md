@@ -23,29 +23,4 @@ https://www.youtube.com/@lexplikateur
 
 Ostium Osint Browser is powered by the Open Source Chromium project and other free software.
 
-Chromium
-    https://www.chromium.org/
-
-Free software
-    edge://credits/
-
-Microsoft.Web.WebView2
-    https://developer.microsoft.com/fr-fr/microsoft-edge/webview2/?form=MA13LH
-
-PlantUML
-    https://plantuml.com/
-
-System.Data.SQLite
-    https://system.data.sqlite.org/index.html/doc/trunk/www/index.wiki
-
-HtmlAgilityPack
-    https://html-agility-pack.net/
-
-FastColoredTextBox
-    https://github.com/PavelTorgashov/FastColoredTextBox
-
-Sprites
-    https://github.com/plantuml/plantuml-stdlib/tree/master/osa2
-    
-GMap.NET
-    https://github.com/judero01col/GMap.NET
+https://github.com/icaza/Ostium-Osint-Browser/network/dependencies
