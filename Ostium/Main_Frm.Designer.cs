@@ -333,6 +333,7 @@
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
             this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.MultipleDir_Opt = new System.Windows.Forms.Button();
@@ -345,22 +346,26 @@
             this.panel25 = new System.Windows.Forms.Panel();
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.DefaultEditor_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.GoogBot_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.UserAgentHttp_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.UserAgent_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.SearchEngine_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.UrlTradWebPage_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.UrlHome_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.DB_Default_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.ArchiveAdd_Txt = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.DefaultEditor_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.DB_Default_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.GoogBot_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.UrlHome_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.UserAgentHttp_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.UrlTradWebPage_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.UserAgent_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.SearchEngine_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.SaveConfig_Opt_Btn = new System.Windows.Forms.Button();
             this.ResetConfig_Btn = new System.Windows.Forms.Button();
@@ -475,11 +480,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
-            this.label31 = new System.Windows.Forms.Label();
-            this.ArchiveAdd_Txt = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -541,12 +541,12 @@
             this.groupBox4.SuspendLayout();
             this.Panel_ConfigXml.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.PanelGrpOpt_Pnl.SuspendLayout();
             this.panel27.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.Tools_TAB_1.SuspendLayout();
             this.Tools_TAB_3.SuspendLayout();
             this.Tools_TAB_4.SuspendLayout();
-            this.PanelGrpOpt_Pnl.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tools_TAB_0
@@ -1853,7 +1853,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 25);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -1874,7 +1874,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 560);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 531);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -1925,7 +1925,7 @@
             this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
-            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 560);
+            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 531);
             this.WBrowsefeed.TabIndex = 4;
             this.WBrowsefeed.ZoomFactor = 1D;
             // 
@@ -2126,7 +2126,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 25);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2138,7 +2138,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 509);
+            this.panel1.Size = new System.Drawing.Size(1320, 480);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2151,7 +2151,7 @@
             this.DataValue_Lst.ItemHeight = 16;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 509);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 480);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2165,7 +2165,7 @@
             this.DataTable_Lst.ItemHeight = 16;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 509);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 480);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2180,7 +2180,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 509);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 480);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -2571,7 +2571,7 @@
             this.Workflow_Tab.ForeColor = System.Drawing.Color.White;
             this.Workflow_Tab.Location = new System.Drawing.Point(4, 25);
             this.Workflow_Tab.Name = "Workflow_Tab";
-            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Workflow_Tab.TabIndex = 7;
             this.Workflow_Tab.Text = "WORKFLOW";
             // 
@@ -2588,7 +2588,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 610);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 581);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // groupBox2
@@ -2598,9 +2598,9 @@
             this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 308);
+            this.groupBox2.Location = new System.Drawing.Point(3, 293);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(355, 299);
+            this.groupBox2.Size = new System.Drawing.Size(355, 285);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select model";
@@ -2616,7 +2616,7 @@
             this.ModelList_Lst.ItemHeight = 16;
             this.ModelList_Lst.Location = new System.Drawing.Point(3, 19);
             this.ModelList_Lst.Name = "ModelList_Lst";
-            this.ModelList_Lst.Size = new System.Drawing.Size(349, 247);
+            this.ModelList_Lst.Size = new System.Drawing.Size(349, 233);
             this.ModelList_Lst.TabIndex = 0;
             this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
             // 
@@ -2625,7 +2625,7 @@
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
             this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 266);
+            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 252);
             this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
             this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(349, 30);
             this.PanelWrkButtonModel_Pnl.TabIndex = 20;
@@ -2681,7 +2681,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 299);
+            this.groupBox1.Size = new System.Drawing.Size(355, 284);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create a model";
@@ -2716,7 +2716,7 @@
             this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
-            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 186);
+            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 171);
             this.ModelItem_Txt.TabIndex = 15;
             this.ModelItem_Txt.Zoom = 100;
             // 
@@ -2782,7 +2782,7 @@
             this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModelCreate_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModelCreate_Btn.ForeColor = System.Drawing.Color.White;
-            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 266);
+            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 251);
             this.ModelCreate_Btn.Name = "ModelCreate_Btn";
             this.ModelCreate_Btn.Size = new System.Drawing.Size(349, 30);
             this.ModelCreate_Btn.TabIndex = 18;
@@ -2796,7 +2796,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel13.Location = new System.Drawing.Point(1144, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(10, 610);
+            this.panel13.Size = new System.Drawing.Size(10, 581);
             this.panel13.TabIndex = 26;
             // 
             // panel12
@@ -2805,7 +2805,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(773, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 610);
+            this.panel12.Size = new System.Drawing.Size(10, 581);
             this.panel12.TabIndex = 24;
             // 
             // Itemwf_Cbx
@@ -2825,7 +2825,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel17.Location = new System.Drawing.Point(523, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(250, 610);
+            this.panel17.Size = new System.Drawing.Size(250, 581);
             this.panel17.TabIndex = 28;
             // 
             // StatWorkflow_Lst
@@ -2838,7 +2838,7 @@
             this.StatWorkflow_Lst.ItemHeight = 16;
             this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
             this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
-            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 600);
+            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 571);
             this.StatWorkflow_Lst.TabIndex = 19;
             this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
             // 
@@ -2856,7 +2856,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(513, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 610);
+            this.panel16.Size = new System.Drawing.Size(10, 581);
             this.panel16.TabIndex = 27;
             // 
             // panel2
@@ -2871,7 +2871,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(10, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(503, 610);
+            this.panel2.Size = new System.Drawing.Size(503, 581);
             this.panel2.TabIndex = 15;
             // 
             // ProjectOpn_Lst
@@ -2884,7 +2884,7 @@
             this.ProjectOpn_Lst.ItemHeight = 16;
             this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 42);
             this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
-            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 177);
+            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 148);
             this.ProjectOpn_Lst.TabIndex = 2;
             this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
             // 
@@ -2956,7 +2956,7 @@
             // 
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 219);
+            this.panel4.Location = new System.Drawing.Point(0, 190);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(503, 33);
             this.panel4.TabIndex = 13;
@@ -2996,7 +2996,7 @@
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
-            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
+            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 223);
             this.AddItemswf_Txt.Name = "AddItemswf_Txt";
             this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -3016,7 +3016,7 @@
             this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateXMLwf_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.White;
-            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 542);
+            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 513);
             this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
             this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
             this.CreateXMLwf_btn.TabIndex = 4;
@@ -3029,7 +3029,7 @@
             this.panel7.Controls.Add(this.AddItemwf_Btn);
             this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 573);
+            this.panel7.Location = new System.Drawing.Point(0, 544);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(503, 37);
             this.panel7.TabIndex = 16;
@@ -3069,7 +3069,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 610);
+            this.panel11.Size = new System.Drawing.Size(10, 581);
             this.panel11.TabIndex = 23;
             // 
             // panel19
@@ -3082,7 +3082,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel19.Location = new System.Drawing.Point(1154, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(172, 610);
+            this.panel19.Size = new System.Drawing.Size(172, 581);
             this.panel19.TabIndex = 29;
             // 
             // TmpFile_Txt
@@ -3103,7 +3103,7 @@
             this.Timeline_Lst.ItemHeight = 16;
             this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
             this.Timeline_Lst.Name = "Timeline_Lst";
-            this.Timeline_Lst.Size = new System.Drawing.Size(172, 577);
+            this.Timeline_Lst.Size = new System.Drawing.Size(172, 548);
             this.Timeline_Lst.TabIndex = 22;
             this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
             // 
@@ -3118,7 +3118,7 @@
             this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetTimeline_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 587);
+            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 558);
             this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
             this.ResetTimeline_Btn.Size = new System.Drawing.Size(172, 23);
             this.ResetTimeline_Btn.TabIndex = 24;
@@ -3144,7 +3144,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 25);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3181,7 +3181,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 581);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3199,7 +3199,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 581);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3214,7 +3214,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 143);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 437);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 408);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3246,7 +3246,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 580);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 551);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3334,7 +3334,7 @@
             this.Json_Tab.ForeColor = System.Drawing.Color.White;
             this.Json_Tab.Location = new System.Drawing.Point(4, 25);
             this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 581);
             this.Json_Tab.TabIndex = 10;
             this.Json_Tab.Text = "JSON";
             // 
@@ -3347,7 +3347,7 @@
             this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbOutB.Location = new System.Drawing.Point(0, 320);
             this.WbOutB.Name = "WbOutB";
-            this.WbOutB.Size = new System.Drawing.Size(1126, 268);
+            this.WbOutB.Size = new System.Drawing.Size(1126, 239);
             this.WbOutB.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
@@ -3539,7 +3539,7 @@
             this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
             this.JsonList_Pnl.Name = "JsonList_Pnl";
-            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 482);
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 453);
             this.JsonList_Pnl.TabIndex = 8;
             this.JsonList_Pnl.Visible = false;
             // 
@@ -3554,7 +3554,7 @@
             this.TableJson_Lst.ItemHeight = 14;
             this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
             this.TableJson_Lst.Name = "TableJson_Lst";
-            this.TableJson_Lst.Size = new System.Drawing.Size(200, 450);
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 421);
             this.TableJson_Lst.TabIndex = 25;
             this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
             // 
@@ -3866,7 +3866,7 @@
             this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 588);
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 559);
             this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
             this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
             this.JsonUsrAgt_Txt.TabIndex = 0;
@@ -4481,6 +4481,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
             // 
+            // ArchiveAdd_Lst
+            // 
+            this.ArchiveAdd_Lst.FormattingEnabled = true;
+            this.ArchiveAdd_Lst.ItemHeight = 16;
+            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(14, 158);
+            this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
+            this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 20);
+            this.ArchiveAdd_Lst.TabIndex = 1;
+            this.ArchiveAdd_Lst.Visible = false;
+            // 
             // SaveCookies_Chk
             // 
             this.SaveCookies_Chk.AutoSize = true;
@@ -4671,6 +4681,74 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
             // 
+            // PanelGrpOpt_Pnl
+            // 
+            this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.ArchiveAdd_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label31);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label4);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.DefaultEditor_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.DB_Default_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label22);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label13);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.GoogBot_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlHome_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label21);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label17);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgentHttp_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlTradWebPage_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label20);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label18);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgent_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.SearchEngine_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label19);
+            this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 19);
+            this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 535);
+            this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.White;
+            this.label32.Location = new System.Drawing.Point(8, 697);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(0, 16);
+            this.label32.TabIndex = 18;
+            // 
+            // ArchiveAdd_Txt
+            // 
+            this.ArchiveAdd_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 533);
+            this.ArchiveAdd_Txt.Multiline = true;
+            this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
+            this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
+            this.ArchiveAdd_Txt.TabIndex = 17;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.Color.White;
+            this.label31.Location = new System.Drawing.Point(4, 511);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(307, 16);
+            this.label31.TabIndex = 16;
+            this.label31.Text = "Add directory to save in archive (line by line)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(4, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(309, 16);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Default DataBase Name (change in DATA tab)";
+            // 
             // DefaultEditor_Opt_Txt
             // 
             this.DefaultEditor_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -4680,136 +4758,6 @@
             this.DefaultEditor_Opt_Txt.Name = "DefaultEditor_Opt_Txt";
             this.DefaultEditor_Opt_Txt.Size = new System.Drawing.Size(675, 23);
             this.DefaultEditor_Opt_Txt.TabIndex = 15;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(4, 449);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(97, 16);
-            this.label22.TabIndex = 14;
-            this.label22.Text = "Default Editor";
-            // 
-            // GoogBot_Opt_Txt
-            // 
-            this.GoogBot_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GoogBot_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GoogBot_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.GoogBot_Opt_Txt.Location = new System.Drawing.Point(7, 408);
-            this.GoogBot_Opt_Txt.Name = "GoogBot_Opt_Txt";
-            this.GoogBot_Opt_Txt.Size = new System.Drawing.Size(675, 23);
-            this.GoogBot_Opt_Txt.TabIndex = 13;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(4, 387);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(158, 16);
-            this.label21.TabIndex = 12;
-            this.label21.Text = "GoogleBot or other Bot";
-            // 
-            // UserAgentHttp_Opt_Txt
-            // 
-            this.UserAgentHttp_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UserAgentHttp_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserAgentHttp_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UserAgentHttp_Opt_Txt.Location = new System.Drawing.Point(7, 345);
-            this.UserAgentHttp_Opt_Txt.Name = "UserAgentHttp_Opt_Txt";
-            this.UserAgentHttp_Opt_Txt.Size = new System.Drawing.Size(675, 23);
-            this.UserAgentHttp_Opt_Txt.TabIndex = 11;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(4, 324);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(151, 16);
-            this.label20.TabIndex = 10;
-            this.label20.Text = "User Agent HttpClient";
-            // 
-            // UserAgent_Opt_Txt
-            // 
-            this.UserAgent_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UserAgent_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserAgent_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UserAgent_Opt_Txt.Location = new System.Drawing.Point(7, 282);
-            this.UserAgent_Opt_Txt.Name = "UserAgent_Opt_Txt";
-            this.UserAgent_Opt_Txt.Size = new System.Drawing.Size(675, 23);
-            this.UserAgent_Opt_Txt.TabIndex = 9;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(4, 261);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(80, 16);
-            this.label19.TabIndex = 8;
-            this.label19.Text = "User Agent";
-            // 
-            // SearchEngine_Opt_Txt
-            // 
-            this.SearchEngine_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SearchEngine_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchEngine_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.SearchEngine_Opt_Txt.Location = new System.Drawing.Point(7, 219);
-            this.SearchEngine_Opt_Txt.Name = "SearchEngine_Opt_Txt";
-            this.SearchEngine_Opt_Txt.Size = new System.Drawing.Size(675, 23);
-            this.SearchEngine_Opt_Txt.TabIndex = 7;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(4, 198);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(101, 16);
-            this.label18.TabIndex = 6;
-            this.label18.Text = "Search Engine";
-            // 
-            // UrlTradWebPage_Opt_Txt
-            // 
-            this.UrlTradWebPage_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UrlTradWebPage_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UrlTradWebPage_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UrlTradWebPage_Opt_Txt.Location = new System.Drawing.Point(7, 156);
-            this.UrlTradWebPage_Opt_Txt.Name = "UrlTradWebPage_Opt_Txt";
-            this.UrlTradWebPage_Opt_Txt.Size = new System.Drawing.Size(675, 23);
-            this.UrlTradWebPage_Opt_Txt.TabIndex = 5;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(4, 135);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(114, 16);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "Traduction Page";
-            // 
-            // UrlHome_Opt_Txt
-            // 
-            this.UrlHome_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UrlHome_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UrlHome_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UrlHome_Opt_Txt.Location = new System.Drawing.Point(7, 93);
-            this.UrlHome_Opt_Txt.Name = "UrlHome_Opt_Txt";
-            this.UrlHome_Opt_Txt.Size = new System.Drawing.Size(675, 23);
-            this.UrlHome_Opt_Txt.TabIndex = 3;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(3, 72);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 16);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Home Page";
             // 
             // DB_Default_Opt_Txt
             // 
@@ -4822,15 +4770,135 @@
             this.DB_Default_Opt_Txt.Size = new System.Drawing.Size(676, 23);
             this.DB_Default_Opt_Txt.TabIndex = 1;
             // 
-            // label4
+            // label22
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(4, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(363, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Default DataBase Name (change directly in DATA tab)";
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(4, 449);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(97, 16);
+            this.label22.TabIndex = 14;
+            this.label22.Text = "Default Editor";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(3, 72);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 16);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Home Page";
+            // 
+            // GoogBot_Opt_Txt
+            // 
+            this.GoogBot_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.GoogBot_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GoogBot_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.GoogBot_Opt_Txt.Location = new System.Drawing.Point(7, 408);
+            this.GoogBot_Opt_Txt.Name = "GoogBot_Opt_Txt";
+            this.GoogBot_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.GoogBot_Opt_Txt.TabIndex = 13;
+            // 
+            // UrlHome_Opt_Txt
+            // 
+            this.UrlHome_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.UrlHome_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UrlHome_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.UrlHome_Opt_Txt.Location = new System.Drawing.Point(7, 93);
+            this.UrlHome_Opt_Txt.Name = "UrlHome_Opt_Txt";
+            this.UrlHome_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UrlHome_Opt_Txt.TabIndex = 3;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(4, 387);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(158, 16);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "GoogleBot or other Bot";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(4, 135);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(114, 16);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Traduction Page";
+            // 
+            // UserAgentHttp_Opt_Txt
+            // 
+            this.UserAgentHttp_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.UserAgentHttp_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserAgentHttp_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.UserAgentHttp_Opt_Txt.Location = new System.Drawing.Point(7, 345);
+            this.UserAgentHttp_Opt_Txt.Name = "UserAgentHttp_Opt_Txt";
+            this.UserAgentHttp_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UserAgentHttp_Opt_Txt.TabIndex = 11;
+            // 
+            // UrlTradWebPage_Opt_Txt
+            // 
+            this.UrlTradWebPage_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.UrlTradWebPage_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UrlTradWebPage_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.UrlTradWebPage_Opt_Txt.Location = new System.Drawing.Point(7, 156);
+            this.UrlTradWebPage_Opt_Txt.Name = "UrlTradWebPage_Opt_Txt";
+            this.UrlTradWebPage_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UrlTradWebPage_Opt_Txt.TabIndex = 5;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(4, 324);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(151, 16);
+            this.label20.TabIndex = 10;
+            this.label20.Text = "User Agent HttpClient";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(4, 198);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(101, 16);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Search Engine";
+            // 
+            // UserAgent_Opt_Txt
+            // 
+            this.UserAgent_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.UserAgent_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserAgent_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.UserAgent_Opt_Txt.Location = new System.Drawing.Point(7, 282);
+            this.UserAgent_Opt_Txt.Name = "UserAgent_Opt_Txt";
+            this.UserAgent_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UserAgent_Opt_Txt.TabIndex = 9;
+            // 
+            // SearchEngine_Opt_Txt
+            // 
+            this.SearchEngine_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SearchEngine_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchEngine_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.SearchEngine_Opt_Txt.Location = new System.Drawing.Point(7, 219);
+            this.SearchEngine_Opt_Txt.Name = "SearchEngine_Opt_Txt";
+            this.SearchEngine_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.SearchEngine_Opt_Txt.TabIndex = 7;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(4, 261);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(131, 16);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "User Agent Search";
             // 
             // panel27
             // 
@@ -5986,74 +6054,6 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // PanelGrpOpt_Pnl
-            // 
-            this.PanelGrpOpt_Pnl.AutoScroll = true;
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.ArchiveAdd_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label31);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label4);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.DefaultEditor_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.DB_Default_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label22);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label13);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.GoogBot_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlHome_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label21);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label17);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgentHttp_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlTradWebPage_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label20);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label18);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgent_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.SearchEngine_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label19);
-            this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 19);
-            this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 535);
-            this.PanelGrpOpt_Pnl.TabIndex = 16;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 511);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(307, 16);
-            this.label31.TabIndex = 16;
-            this.label31.Text = "Add directory to save in archive (line by line)";
-            // 
-            // ArchiveAdd_Txt
-            // 
-            this.ArchiveAdd_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 533);
-            this.ArchiveAdd_Txt.Multiline = true;
-            this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
-            this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
-            this.ArchiveAdd_Txt.TabIndex = 17;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(8, 697);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(0, 16);
-            this.label32.TabIndex = 18;
-            // 
-            // ArchiveAdd_Lst
-            // 
-            this.ArchiveAdd_Lst.FormattingEnabled = true;
-            this.ArchiveAdd_Lst.ItemHeight = 16;
-            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(14, 158);
-            this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
-            this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 20);
-            this.ArchiveAdd_Lst.TabIndex = 1;
-            this.ArchiveAdd_Lst.Visible = false;
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6153,6 +6153,8 @@
             this.groupBox4.ResumeLayout(false);
             this.Panel_ConfigXml.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.PanelGrpOpt_Pnl.ResumeLayout(false);
+            this.PanelGrpOpt_Pnl.PerformLayout();
             this.panel27.ResumeLayout(false);
             this.Status_Strip.ResumeLayout(false);
             this.Status_Strip.PerformLayout();
@@ -6162,8 +6164,6 @@
             this.Tools_TAB_3.PerformLayout();
             this.Tools_TAB_4.ResumeLayout(false);
             this.Tools_TAB_4.PerformLayout();
-            this.PanelGrpOpt_Pnl.ResumeLayout(false);
-            this.PanelGrpOpt_Pnl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
