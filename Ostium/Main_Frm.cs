@@ -3529,6 +3529,8 @@ namespace Ostium
 
                     DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
                     DBSelectOpen_Lbl.Text = "DB open: " + DataBaze_Opn.Text;
+                    TableOpen_Lbl.Text = "";
+                    RecordsCount_Lbl.Text = "";
 
                     D4ta = DBdirectory + DataBaze_Opn.Text;
 
@@ -5212,7 +5214,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! KillProcessMSEDGE: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! KillProcessJAVAW: ", ex.Message, "Main_Frm", AppStart);
             }
         }
 
