@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using Icaza;
+using System.IO;
 
 namespace Ostium
 {
@@ -18,9 +19,11 @@ namespace Ostium
         static extern bool Beep(int freq, int duration);
 
         readonly IcazaClass senderror = new IcazaClass();
+        readonly IcazaClass selectdir = new IcazaClass();
 
         readonly string AppStart = Application.StartupPath + @"\";
         string UriTxt = "";
+        string Una = "";
 
         #endregion
 
@@ -133,6 +136,11 @@ namespace Ostium
             }
         }
 
+        void CreateNameAleat()
+        {            
+            Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
+        }
+
         #region Invoke_
 
         void RegReplaceTxt(string value)
@@ -187,9 +195,49 @@ namespace Ostium
 
         void CopyUrl_Btn_Click(object sender, EventArgs e)
         {
-            string textData = URLbrowse_Cbx.Text;
-            Clipboard.SetData(DataFormats.Text, textData);
-            Beep(1500, 400);
+            if (URLbrowse_Cbx.Text != "")
+            {
+                string textData = URLbrowse_Cbx.Text;
+                Clipboard.SetData(DataFormats.Text, textData);
+                Beep(1500, 400);
+            }
+        }
+
+        private void SavePageTxt_Btn_Click(object sender, EventArgs e)
+        {
+            if (WbrowseTxt.Text != "")
+            {
+                string dirselect = selectdir.Dirselect();
+
+                string namef = UriTxt;
+                namef = Regex.Replace(namef, @"[^a-zA-Z0-9]", "_").Replace("https", "");
+
+                string C = namef;
+                string D = "";
+
+                if (C.Length > 50)
+                    D += C.Substring(0, 50);
+                else
+                    D = C;
+
+                CreateNameAleat();
+
+                try
+                {
+                    if (dirselect != "")
+                    {
+                        using (StreamWriter fc = File.AppendText(dirselect + @"\" + Una + "_" + D + ".txt"))
+                        {
+                            fc.WriteLine(WbrowseTxt.Text);
+                        }
+                        Beep(800, 200);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("Error! SavePageTxt_Btn_Click: ", ex.Message, "HtmlText_Frm", AppStart);
+                }
+            }
         }
 
         void EmptyCbx_Btn_Click(object sender, EventArgs e)

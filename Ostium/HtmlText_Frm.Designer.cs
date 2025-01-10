@@ -40,6 +40,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.UserAgent_Txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.SavePageTxt_Btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -54,6 +55,7 @@
             this.panel1.Controls.Add(this.URLbrowse_Cbx);
             this.panel1.Controls.Add(this.EmptyCbx_Btn);
             this.panel1.Controls.Add(this.Go_Btn);
+            this.panel1.Controls.Add(this.SavePageTxt_Btn);
             this.panel1.Controls.Add(this.CopyUrl_Btn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -69,9 +71,9 @@
             this.URLbrowse_Cbx.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.Gold;
             this.URLbrowse_Cbx.FormattingEnabled = true;
-            this.URLbrowse_Cbx.Location = new System.Drawing.Point(77, 0);
+            this.URLbrowse_Cbx.Location = new System.Drawing.Point(130, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(663, 24);
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(610, 24);
             this.URLbrowse_Cbx.TabIndex = 10;
             // 
             // EmptyCbx_Btn
@@ -86,7 +88,7 @@
             this.EmptyCbx_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EmptyCbx_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmptyCbx_Btn.ForeColor = System.Drawing.Color.White;
-            this.EmptyCbx_Btn.Location = new System.Drawing.Point(53, 0);
+            this.EmptyCbx_Btn.Location = new System.Drawing.Point(106, 0);
             this.EmptyCbx_Btn.Name = "EmptyCbx_Btn";
             this.EmptyCbx_Btn.Size = new System.Drawing.Size(24, 22);
             this.EmptyCbx_Btn.TabIndex = 11;
@@ -217,6 +219,26 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "User-Agent:";
             // 
+            // SavePageTxt_Btn
+            // 
+            this.SavePageTxt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.SavePageTxt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SavePageTxt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SavePageTxt_Btn.FlatAppearance.BorderSize = 0;
+            this.SavePageTxt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.SavePageTxt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.SavePageTxt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
+            this.SavePageTxt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SavePageTxt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SavePageTxt_Btn.ForeColor = System.Drawing.Color.White;
+            this.SavePageTxt_Btn.Location = new System.Drawing.Point(53, 0);
+            this.SavePageTxt_Btn.Name = "SavePageTxt_Btn";
+            this.SavePageTxt_Btn.Size = new System.Drawing.Size(53, 22);
+            this.SavePageTxt_Btn.TabIndex = 12;
+            this.SavePageTxt_Btn.Text = "Save";
+            this.SavePageTxt_Btn.UseVisualStyleBackColor = false;
+            this.SavePageTxt_Btn.Click += new System.EventHandler(this.SavePageTxt_Btn_Click);
+            // 
             // HtmlText_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,5 +275,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox UserAgent_Txt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button SavePageTxt_Btn;
     }
 }

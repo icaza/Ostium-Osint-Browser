@@ -82,7 +82,7 @@ namespace Ostium
         readonly string MapDir = Application.StartupPath + @"\map\";
         readonly string JsonDir = Application.StartupPath + @"\json-files\";
         readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
-        public string D4ta = "default_database_name";
+        string D4ta = "default_database_name";
         ///
         /// <summary>
         /// Objects
@@ -173,11 +173,12 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "16";
+        readonly string versionNow = "17";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
         string FileOpnJson = "";
+        readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
 
         #endregion
 
@@ -353,6 +354,15 @@ namespace Ostium
             ///
             /// Loading the configuration from the "config.xml" file
             /// 
+
+            if (ArchiveAdd_Txt.Text != "")
+            {
+                using (StreamWriter fc = new StreamWriter(AppStart + "archiveAdd.txt"))
+                {
+                    fc.Write(ArchiveAdd_Txt.Text);
+                }
+            }
+
             Config_Ini(AppStart + "config.xml");
         }
 
@@ -548,6 +558,15 @@ namespace Ostium
                     ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
                 }
 
+                if(File.Exists(AppStart + "archiveAdd.txt"))
+                {
+                    using (StreamReader sr = new StreamReader(AppStart + "archiveAdd.txt"))
+                    {
+                        ArchiveAdd_Txt.Text = sr.ReadToEnd();
+                    }
+                    ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(AppStart + "archiveAdd.txt"));
+                }
+
                 loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
                 loadfiledir.LoadFileDirectory(FileDir + "url-constructor", "txt", "cbxts", Construct_URL_Cbx);
                 loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
@@ -555,6 +574,7 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
 
                 Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
+                Class_Var.SCRIPTCREATOR = "off";
             }
             catch (Exception ex)
             {
@@ -880,7 +900,7 @@ namespace Ostium
         /// <param value="0">No opening application directory to start full purge.bat cleanup</param>
         /// <param value="1">Opening application directory to start full purge.bat cleanup</param>
         /// 
-        private void ClearData(int val)
+        void ClearData(int val)
         {
             CoreWebView2Profile profile;
             if (WBrowse.CoreWebView2 != null)
@@ -1327,23 +1347,18 @@ namespace Ostium
         {
             try
             {
+                string Domain = WBrowse.Source.IdnHost;
                 var img = await TakeWebScreenshot();
                 CreateNameAleat();
-                img.Save(Pictures + Una + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                img.Save(Pictures + Una + "_" + Domain + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 Beep(800, 200);
 
-                Process.Start(Pictures + Una + ".png");
+                Process.Start(Pictures + Una + "_" + Domain + ".png");
             }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! WebpageToPng_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
-        }
-
-        public void HTMLtxt_Btn_Click(object sender, EventArgs e)
-        {
-            HtmlTextFrm = new HtmlText_Frm();
-            HtmlTextFrm.Show();
         }
 
         async Task<Image> TakeWebScreenshot(bool currentControlClipOnly = false)
@@ -1387,6 +1402,12 @@ namespace Ostium
             var imgData = (string)JObject.Parse(devData).data;
             var ms = new MemoryStream(Convert.FromBase64String(imgData));
             return (Bitmap)Image.FromStream(ms);
+        }
+
+        void HTMLtxt_Btn_Click(object sender, EventArgs e)
+        {
+            HtmlTextFrm = new HtmlText_Frm();
+            HtmlTextFrm.Show();
         }
 
         void Cookie_Btn_Click(object sender, EventArgs e)
@@ -1447,7 +1468,7 @@ namespace Ostium
             mdiFrm.Show();
         }
 
-        public void Memo_Btn_Click(object sender, EventArgs e)
+        void Memo_Btn_Click(object sender, EventArgs e)
         {
             OpnFileOpt(AppStart + "memo.txt");
         }
@@ -1503,8 +1524,12 @@ namespace Ostium
 
         void OpenScriptEdit_Btn_Click(object sender, EventArgs e)
         {
-            scriptCreatorFrm = new ScriptCreator();
-            scriptCreatorFrm.Show();
+            if (Class_Var.SCRIPTCREATOR == "off")
+            {
+                Class_Var.SCRIPTCREATOR = "on";
+                scriptCreatorFrm = new ScriptCreator();
+                scriptCreatorFrm.Show();
+            }
         }
 
         void RegexCmd_Btn_Click(object sender, EventArgs e)
@@ -1531,6 +1556,37 @@ namespace Ostium
                 senderror.ErrorLog("Error! RegexCmd_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
+
+        void HiglitAddWord_Btn_Click(object sender, EventArgs e)
+        {
+            OpnFileOpt(HighlitFile);
+        }
+
+        void HiglitInject_Btn_Click(object sender, EventArgs e)
+        {
+            using (var reader = new StreamReader(HighlitFile))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    ColorWord(values[0], values[1]);
+                }
+            }
+        }
+
+        async void ColorWord(string valword, string valcolor)
+        {
+            try
+            {
+                await WBrowse.ExecuteScriptAsync("function highlightWord(n){function t(i){if(i.nodeType===Node.TEXT_NODE){const r=new RegExp(`(${n})`,\"gi\"),t=i.parentNode;if(t&&t.nodeName!==\"A\"){const u=i.textContent.replace(r,'<span style=\"color: " + valcolor + "; font-weight: bold;\">$1<\\/span>'),n=document.createElement(\"span\");n.innerHTML=u;t.replaceChild(n,i)}}else i.nodeType===Node.ELEMENT_NODE&&Array.from(i.childNodes).forEach(t)}t(document.body)}highlightWord(\"" + valword + "\")");
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Execute ColorWord Script Fails!");
+            }            
+        }
+
         ///
         /// <summary>
         /// Reset default configuration
@@ -1567,24 +1623,42 @@ namespace Ostium
         {
             try
             {
-                using (StreamWriter instxt = new StreamWriter(AppStart + "Archive-DB-FILES-FEED.bat"))
+                var ArchiveDir = new List<string>()
+                    {
+                        DBdirectory,
+                        FeedDir,
+                        FileDir,
+                        Workflow,
+                        Scripts,
+                        Setirps,
+                        MapDir,
+                        JsonDir
+                    };
+
+                using (StreamWriter addtxt = new StreamWriter(AppStart + "Archive-DB-FILES-FEED.bat"))
                 {
-                    instxt.WriteLine("@echo off");
-                    instxt.WriteLine("echo ".PadRight(39, '-'));
-                    instxt.WriteLine("echo          Ostium by ICAZA MEDIA");
-                    instxt.WriteLine("echo ".PadRight(39, '-'));
-                    instxt.WriteLine("@echo.");
-                    instxt.WriteLine("echo Backup: DATABASE - FEED - FILES");
-                    instxt.WriteLine("@echo.");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + DBdirectory + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FeedDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + FileDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Workflow + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Scripts + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + Setirps + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + MapDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + JsonDir + " -mx9 -mtc=on");
-                    instxt.WriteLine("pause");
+                    addtxt.WriteLine("@echo off");
+                    addtxt.WriteLine("echo ".PadRight(39, '-'));
+                    addtxt.WriteLine("echo          Ostium by ICAZA MEDIA");
+                    addtxt.WriteLine("echo ".PadRight(39, '-'));
+                    addtxt.WriteLine("@echo.");
+                    addtxt.WriteLine("echo Backup: DATABASE - FEED - FILES");
+                    addtxt.WriteLine("@echo.");
+
+                    for (int i = 0; i < ArchiveDir.Count; i++)
+                    {
+                        addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveDir[i].ToString() + " -mx9 -mtc=on");
+                    }
+
+                    if (ArchiveAdd_Lst.Items.Count > 0)
+                    {
+                        for (int i = 0; i < ArchiveAdd_Lst.Items.Count; i++)
+                        {
+                            addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveAdd_Lst.Items[i].ToString() + " -mx9 -mtc=on");
+                        }
+                    }
+
+                    addtxt.WriteLine("pause");
                 }
                 Process.Start(AppStart + "Archive-DB-FILES-FEED.bat");
             }
@@ -2562,7 +2636,7 @@ namespace Ostium
                 File_Write(AppStart + "sourcepage", pageContents);
             }
             catch
-            { }
+            {}
         }
 
         void CreateNameAleat()
@@ -2678,74 +2752,79 @@ namespace Ostium
             StreamReader sr = new StreamReader(AppStart + "sourcepage");
             Invoke(new Action<string>(SRCpageAdd), "listclear");
 
-            switch (cmdSwitch)
+            try
             {
-                case 0: // links
-                    {
-                        Source_Page_Lst.Sorted = false;
-
-                        foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*"))
+                switch (cmdSwitch)
+                {
+                    case 0: // links
                         {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            Source_Page_Lst.Sorted = false;
+
+                            foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*"))
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case 1: // word
-                    {
+                    case 1: // word
+                        {
+                            Source_Page_Lst.Sorted = true;
+
+                            foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"\b[a-zA-ZÀ-ž]\w+"))
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
+                            break;
+                        }
+                    case 2: // text link
+                        {
+                            Source_Page_Lst.Sorted = false;
+
+                            string ex = @"<\s*a[^>]*>(?<valeur>([^<]*))</a>";
+                            Regex regex = new Regex(ex, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                            MatchCollection resultats = regex.Matches(sr.ReadToEnd());
+                            foreach (Match resultat in resultats)
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), resultat.Groups["valeur"].Value);
+                            }
+                            break;
+                        }
+                    case 3: // word without duplicate
                         Source_Page_Lst.Sorted = true;
 
                         foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"\b[a-zA-ZÀ-ž]\w+"))
                         {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            int x;
+                            x = Source_Page_Lst.FindStringExact(match.Value);
+                            if (x == -1)
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
                         }
                         break;
-                    }
-                case 2: // text link
-                    {
-                        Source_Page_Lst.Sorted = false;
-
-                        string ex = @"<\s*a[^>]*>(?<valeur>([^<]*))</a>";
-                        Regex regex = new Regex(ex, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-                        MatchCollection resultats = regex.Matches(sr.ReadToEnd());
-                        foreach (Match resultat in resultats)
+                    case 4: // regex
                         {
-                            Invoke(new Action<string>(SRCpageAdd), resultat.Groups["valeur"].Value);
-                        }
-                        break;
-                    }
-                case 3: // word without duplicate
-                    Source_Page_Lst.Sorted = true;
+                            Source_Page_Lst.Sorted = true;
 
-                    foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"\b[a-zA-ZÀ-ž]\w+"))
-                    {
-                        int x;
-                        x = Source_Page_Lst.FindStringExact(match.Value);
-                        if (x == -1)
-                        {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            foreach (Match match in Regex.Matches(sr.ReadToEnd(), regxCmd))
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
+                            break;
                         }
-                    }
-                    break;
-                case 4: // regex
-                    {
-                        Source_Page_Lst.Sorted = true;
+                    default:
+                        {
+                            MessageBox.Show("Command not recognized! Type help for more information.");
+                            break;
+                        }
+                }
 
-                        foreach (Match match in Regex.Matches(sr.ReadToEnd(), regxCmd))
-                        {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
-                        }
-                        break;
-                    }
-                default:
-                    {
-                        MessageBox.Show("Command not recognized! Type help for more information.");
-                        break;
-                    }
+                Invoke(new Action<string>(SRCpageAdd), "listcreate");
+
+                sr.Close();
             }
-
-            Invoke(new Action<string>(SRCpageAdd), "listcreate");
-
-            sr.Close();
+            catch
+            { }
         }
 
         #endregion
@@ -3487,6 +3566,8 @@ namespace Ostium
 
                     DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
                     DBSelectOpen_Lbl.Text = "DB open: " + DataBaze_Opn.Text;
+                    TableOpen_Lbl.Text = "";
+                    RecordsCount_Lbl.Text = "";
 
                     D4ta = DBdirectory + DataBaze_Opn.Text;
 
@@ -4167,7 +4248,7 @@ namespace Ostium
             GoBrowser("edge://site-engagement", 0);
         }
 
-        private void ClrHistory_Param_Click(object sender, EventArgs e)
+        void ClrHistory_Param_Click(object sender, EventArgs e)
         {
             ClearData(0);
         }
@@ -4221,7 +4302,7 @@ namespace Ostium
             }
         }
 
-        private void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
+        void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (SaveCookies_Chk.Checked)
                 Class_Var.COOKIES_SAVE = 1; // Save
@@ -5102,7 +5183,7 @@ namespace Ostium
                 Process.Start(MapDir);
         }
 
-        private void JsonDir_Opn_Click(object sender, EventArgs e)
+        void JsonDir_Opn_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(JsonDir))
                 Process.Start(JsonDir);
@@ -5170,7 +5251,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! KillProcessMSEDGE: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! KillProcessJAVAW: ", ex.Message, "Main_Frm", AppStart);
             }
         }
 
@@ -5217,7 +5298,7 @@ namespace Ostium
         {
             if (value == "listclear")
             {
-                Source_Page_Lst.Items.Clear();
+                Source_Page_Lst.Items.Clear();                
             }
             else if (value == "listcreate")
             {
@@ -5227,7 +5308,7 @@ namespace Ostium
             }
             else
             {
-                Source_Page_Lst.Items.Add(value);
+                Source_Page_Lst.Items.Add(value);                                    
             }
         }
 
@@ -5525,6 +5606,8 @@ namespace Ostium
 
         void CreateProjectMap(int val)
         {
+            SelectName:
+
             string message, title;
             object NameInsert;
 
@@ -5547,7 +5630,7 @@ namespace Ostium
                     else
                     {
                         Vrfy = 1;
-                        return;
+                        goto SelectName;
                     }                        
                 }
 
@@ -5780,7 +5863,7 @@ namespace Ostium
             Beep(1000, 400);
         }
 
-        private void ClearMap_Tls_Click(object sender, EventArgs e)
+        void ClearMap_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.Overlays.Clear();
             overlayOne.Markers.Clear();
@@ -6698,7 +6781,7 @@ namespace Ostium
                 OutJsonA_Chk.Checked = true;
         }
 
-        private void Rfresh_Btn_Click(object sender, EventArgs e)
+        void Rfresh_Btn_Click(object sender, EventArgs e)
         {
             string Btn = (sender as Button).Name;
             if (Btn == RfreshA_Btn.Name)
@@ -6707,7 +6790,7 @@ namespace Ostium
                 WbOutB.Reload();
         }
 
-        private void Empty_Btn_Click(object sender, EventArgs e)
+        void Empty_Btn_Click(object sender, EventArgs e)
         {
             string Btn = (sender as Button).Name;
             Uri uri = new Uri("https://veydunet.com/ostium/ostium.html");
@@ -6717,7 +6800,7 @@ namespace Ostium
                 WbOutB.Source = uri;
         }
 
-        private void Extd_Btn_Click(object sender, EventArgs e)
+        void Extd_Btn_Click(object sender, EventArgs e)
         {
             string Btn = (sender as Button).Name;
             if (Btn == ExtdA_Btn.Name)

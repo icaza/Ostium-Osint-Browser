@@ -18,6 +18,7 @@
         public static int RATE_TRACK_var;
         public static string BKMKLT_var;
         public static int COOKIES_SAVE_var;
+        public static string SCRIPTCREATOR_var;
 
         public static string File_Open
         {
@@ -208,6 +209,18 @@
             set
             {
                 COOKIES_SAVE_var = value;
+            }
+        }
+
+        public static string SCRIPTCREATOR
+        {
+            get
+            {
+                return SCRIPTCREATOR_var;
+            }
+            set
+            {
+                SCRIPTCREATOR_var = value;
             }
         }
     }
