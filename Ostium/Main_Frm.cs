@@ -82,7 +82,7 @@ namespace Ostium
         readonly string MapDir = Application.StartupPath + @"\map\";
         readonly string JsonDir = Application.StartupPath + @"\json-files\";
         readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
-        public string D4ta = "default_database_name";
+        string D4ta = "default_database_name";
         ///
         /// <summary>
         /// Objects
@@ -4248,7 +4248,7 @@ namespace Ostium
             GoBrowser("edge://site-engagement", 0);
         }
 
-        private void ClrHistory_Param_Click(object sender, EventArgs e)
+        void ClrHistory_Param_Click(object sender, EventArgs e)
         {
             ClearData(0);
         }
@@ -5183,7 +5183,7 @@ namespace Ostium
                 Process.Start(MapDir);
         }
 
-        private void JsonDir_Opn_Click(object sender, EventArgs e)
+        void JsonDir_Opn_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(JsonDir))
                 Process.Start(JsonDir);
@@ -5863,7 +5863,7 @@ namespace Ostium
             Beep(1000, 400);
         }
 
-        private void ClearMap_Tls_Click(object sender, EventArgs e)
+        void ClearMap_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.Overlays.Clear();
             overlayOne.Markers.Clear();
@@ -6781,7 +6781,7 @@ namespace Ostium
                 OutJsonA_Chk.Checked = true;
         }
 
-        private void Rfresh_Btn_Click(object sender, EventArgs e)
+        void Rfresh_Btn_Click(object sender, EventArgs e)
         {
             string Btn = (sender as Button).Name;
             if (Btn == RfreshA_Btn.Name)
@@ -6790,7 +6790,7 @@ namespace Ostium
                 WbOutB.Reload();
         }
 
-        private void Empty_Btn_Click(object sender, EventArgs e)
+        void Empty_Btn_Click(object sender, EventArgs e)
         {
             string Btn = (sender as Button).Name;
             Uri uri = new Uri("https://veydunet.com/ostium/ostium.html");
@@ -6800,7 +6800,7 @@ namespace Ostium
                 WbOutB.Source = uri;
         }
 
-        private void Extd_Btn_Click(object sender, EventArgs e)
+        void Extd_Btn_Click(object sender, EventArgs e)
         {
             string Btn = (sender as Button).Name;
             if (Btn == ExtdA_Btn.Name)
