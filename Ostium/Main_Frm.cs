@@ -178,6 +178,7 @@ namespace Ostium
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
         string FileOpnJson = "";
+        readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
 
         #endregion
 
@@ -899,7 +900,7 @@ namespace Ostium
         /// <param value="0">No opening application directory to start full purge.bat cleanup</param>
         /// <param value="1">Opening application directory to start full purge.bat cleanup</param>
         /// 
-        private void ClearData(int val)
+        void ClearData(int val)
         {
             CoreWebView2Profile profile;
             if (WBrowse.CoreWebView2 != null)
@@ -1403,7 +1404,7 @@ namespace Ostium
             return (Bitmap)Image.FromStream(ms);
         }
 
-        public void HTMLtxt_Btn_Click(object sender, EventArgs e)
+        void HTMLtxt_Btn_Click(object sender, EventArgs e)
         {
             HtmlTextFrm = new HtmlText_Frm();
             HtmlTextFrm.Show();
@@ -1467,7 +1468,7 @@ namespace Ostium
             mdiFrm.Show();
         }
 
-        public void Memo_Btn_Click(object sender, EventArgs e)
+        void Memo_Btn_Click(object sender, EventArgs e)
         {
             OpnFileOpt(AppStart + "memo.txt");
         }
@@ -1555,6 +1556,37 @@ namespace Ostium
                 senderror.ErrorLog("Error! RegexCmd_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
             }
         }
+
+        void HiglitAddWord_Btn_Click(object sender, EventArgs e)
+        {
+            OpnFileOpt(HighlitFile);
+        }
+
+        void HiglitInject_Btn_Click(object sender, EventArgs e)
+        {
+            using (var reader = new StreamReader(HighlitFile))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    ColorWord(values[0], values[1]);
+                }
+            }
+        }
+
+        async void ColorWord(string valword, string valcolor)
+        {
+            try
+            {
+                await WBrowse.ExecuteScriptAsync("function highlightWord(n){function t(i){if(i.nodeType===Node.TEXT_NODE){const r=new RegExp(`(${n})`,\"gi\"),t=i.parentNode;if(t&&t.nodeName!==\"A\"){const u=i.textContent.replace(r,'<span style=\"color: " + valcolor + "; font-weight: bold;\">$1<\\/span>'),n=document.createElement(\"span\");n.innerHTML=u;t.replaceChild(n,i)}}else i.nodeType===Node.ELEMENT_NODE&&Array.from(i.childNodes).forEach(t)}t(document.body)}highlightWord(\"" + valword + "\")");
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Execute ColorWord Script Fails!");
+            }            
+        }
+
         ///
         /// <summary>
         /// Reset default configuration
@@ -2604,7 +2636,7 @@ namespace Ostium
                 File_Write(AppStart + "sourcepage", pageContents);
             }
             catch
-            { }
+            {}
         }
 
         void CreateNameAleat()
@@ -2720,74 +2752,79 @@ namespace Ostium
             StreamReader sr = new StreamReader(AppStart + "sourcepage");
             Invoke(new Action<string>(SRCpageAdd), "listclear");
 
-            switch (cmdSwitch)
+            try
             {
-                case 0: // links
-                    {
-                        Source_Page_Lst.Sorted = false;
-
-                        foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*"))
+                switch (cmdSwitch)
+                {
+                    case 0: // links
                         {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            Source_Page_Lst.Sorted = false;
+
+                            foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*"))
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case 1: // word
-                    {
+                    case 1: // word
+                        {
+                            Source_Page_Lst.Sorted = true;
+
+                            foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"\b[a-zA-ZÀ-ž]\w+"))
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
+                            break;
+                        }
+                    case 2: // text link
+                        {
+                            Source_Page_Lst.Sorted = false;
+
+                            string ex = @"<\s*a[^>]*>(?<valeur>([^<]*))</a>";
+                            Regex regex = new Regex(ex, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                            MatchCollection resultats = regex.Matches(sr.ReadToEnd());
+                            foreach (Match resultat in resultats)
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), resultat.Groups["valeur"].Value);
+                            }
+                            break;
+                        }
+                    case 3: // word without duplicate
                         Source_Page_Lst.Sorted = true;
 
                         foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"\b[a-zA-ZÀ-ž]\w+"))
                         {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            int x;
+                            x = Source_Page_Lst.FindStringExact(match.Value);
+                            if (x == -1)
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
                         }
                         break;
-                    }
-                case 2: // text link
-                    {
-                        Source_Page_Lst.Sorted = false;
-
-                        string ex = @"<\s*a[^>]*>(?<valeur>([^<]*))</a>";
-                        Regex regex = new Regex(ex, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-                        MatchCollection resultats = regex.Matches(sr.ReadToEnd());
-                        foreach (Match resultat in resultats)
+                    case 4: // regex
                         {
-                            Invoke(new Action<string>(SRCpageAdd), resultat.Groups["valeur"].Value);
-                        }
-                        break;
-                    }
-                case 3: // word without duplicate
-                    Source_Page_Lst.Sorted = true;
+                            Source_Page_Lst.Sorted = true;
 
-                    foreach (Match match in Regex.Matches(sr.ReadToEnd(), @"\b[a-zA-ZÀ-ž]\w+"))
-                    {
-                        int x;
-                        x = Source_Page_Lst.FindStringExact(match.Value);
-                        if (x == -1)
-                        {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            foreach (Match match in Regex.Matches(sr.ReadToEnd(), regxCmd))
+                            {
+                                Invoke(new Action<string>(SRCpageAdd), match.Value);
+                            }
+                            break;
                         }
-                    }
-                    break;
-                case 4: // regex
-                    {
-                        Source_Page_Lst.Sorted = true;
+                    default:
+                        {
+                            MessageBox.Show("Command not recognized! Type help for more information.");
+                            break;
+                        }
+                }
 
-                        foreach (Match match in Regex.Matches(sr.ReadToEnd(), regxCmd))
-                        {
-                            Invoke(new Action<string>(SRCpageAdd), match.Value);
-                        }
-                        break;
-                    }
-                default:
-                    {
-                        MessageBox.Show("Command not recognized! Type help for more information.");
-                        break;
-                    }
+                Invoke(new Action<string>(SRCpageAdd), "listcreate");
+
+                sr.Close();
             }
-
-            Invoke(new Action<string>(SRCpageAdd), "listcreate");
-
-            sr.Close();
+            catch
+            { }
         }
 
         #endregion
@@ -4265,7 +4302,7 @@ namespace Ostium
             }
         }
 
-        private void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
+        void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (SaveCookies_Chk.Checked)
                 Class_Var.COOKIES_SAVE = 1; // Save
@@ -5261,7 +5298,7 @@ namespace Ostium
         {
             if (value == "listclear")
             {
-                Source_Page_Lst.Items.Clear();
+                Source_Page_Lst.Items.Clear();                
             }
             else if (value == "listcreate")
             {
@@ -5271,7 +5308,7 @@ namespace Ostium
             }
             else
             {
-                Source_Page_Lst.Items.Add(value);
+                Source_Page_Lst.Items.Add(value);                                    
             }
         }
 
