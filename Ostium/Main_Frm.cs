@@ -1430,9 +1430,9 @@ namespace Ostium
         {
             try
             {
-                if (!File.Exists(AppStart + "OstiumE.exe"))
+                if (!File.Exists(Class_Var.DEFAULT_EDITOR))
                 {
-                    MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                    MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                     return;
                 }
 
@@ -1579,7 +1579,10 @@ namespace Ostium
         {
             try
             {
-                await WBrowse.ExecuteScriptAsync("function highlightWord(n){function t(i){if(i.nodeType===Node.TEXT_NODE){const r=new RegExp(`(${n})`,\"gi\"),t=i.parentNode;if(t&&t.nodeName!==\"A\"){const u=i.textContent.replace(r,'<span style=\"color: " + valcolor + "; font-weight: bold;\">$1<\\/span>'),n=document.createElement(\"span\");n.innerHTML=u;t.replaceChild(n,i)}}else i.nodeType===Node.ELEMENT_NODE&&Array.from(i.childNodes).forEach(t)}t(document.body)}highlightWord(\"" + valword + "\")");
+                await WBrowse.ExecuteScriptAsync("function highlightWord(n){function t(i){if(i.nodeType===Node.TEXT_NODE){const r=new RegExp(`(${n})`,\"gi\")," +
+                    "t=i.parentNode;if(t&&t.nodeName!==\"A\"){const u=i.textContent.replace(r,'<span style=\"color: " + valcolor + "; font-weight: bold;\">$1" +
+                    "<\\/span>'),n=document.createElement(\"span\");n.innerHTML=u;t.replaceChild(n,i)}}else i.nodeType===Node.ELEMENT_NODE&&Array.from(i.childNodes)" +
+                    ".forEach(t)}t(document.body)}highlightWord(\"" + valword + "\")");
             }
             catch (InvalidOperationException ex)
             {
@@ -2897,9 +2900,9 @@ namespace Ostium
 
         void OpnFileOpt(string dir_dir)
         {
-            if (!File.Exists(AppStart + "OstiumE.exe"))
+            if (!File.Exists(Class_Var.DEFAULT_EDITOR))
             {
-                MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                 return;
             }
 
@@ -2915,11 +2918,19 @@ namespace Ostium
         {
             try
             {
-                if (!File.Exists(AppStart + "OstiumE.exe"))
+                if (!File.Exists(Class_Var.DEFAULT_EDITOR))
                 {
-                    MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                    MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                     return;
                 }
+
+                string aArg = "";
+                string strName = Path.GetFileName(Class_Var.DEFAULT_EDITOR);
+                if (strName == "OstiumE.exe")
+                    aArg = "/input=\"" + FileSelect + "\"";
+                else
+                    aArg = FileSelect;
+
 
                 if (FileSelect != "")
                 {
@@ -2927,8 +2938,8 @@ namespace Ostium
                     {
                         using (Process Proc = new Process())
                         {
-                            Proc.StartInfo.FileName = AppStart + "OstiumE.exe";
-                            Proc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                            Proc.StartInfo.FileName = Class_Var.DEFAULT_EDITOR;
+                            Proc.StartInfo.Arguments = aArg;
                             Proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                             Proc.Start();
                         }
