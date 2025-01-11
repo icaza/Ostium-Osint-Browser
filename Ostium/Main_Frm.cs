@@ -1300,6 +1300,9 @@ namespace Ostium
             {
                 Tools_TAB_0.Focus();
 
+                if (!File.Exists(Plugins + AddOn_Cbx.Text))
+                    return;
+
                 using (Process proc = new Process())
                 {
                     proc.StartInfo.FileName = Plugins + AddOn_Cbx.Text;
