@@ -121,9 +121,9 @@ namespace Ostium
         {
             try
             {
-                if (!File.Exists(AppStart + "OstiumE.exe"))
+                if (!File.Exists(Class_Var.DEFAULT_EDITOR))
                 {
-                    MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                    MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                     return;
                 }
 
@@ -157,23 +157,31 @@ namespace Ostium
         {
             try
             {
-                if (!File.Exists(AppStart + "OstiumE.exe"))
+                if (!File.Exists(Class_Var.DEFAULT_EDITOR))
                 {
-                    MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                    MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                     return;
                 }
+
+                string aArg = "";
+                string strName = Path.GetFileName(Class_Var.DEFAULT_EDITOR);
+                if (strName == "OstiumE.exe")
+                    aArg = "/input=\"" + FileSelect + "\"";
+                else
+                    aArg = FileSelect;
+
 
                 if (FileSelect != "")
                 {
                     if (File.Exists(FileSelect))
                     {
-                        Process Proc;
-                        Proc = new Process();
-                        Proc.StartInfo.FileName = AppStart + "OstiumE.exe";
-                        Proc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
-                        Proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                        Proc.Start();
-                        Proc.Close();
+                        using (Process Proc = new Process())
+                        {
+                            Proc.StartInfo.FileName = Class_Var.DEFAULT_EDITOR;
+                            Proc.StartInfo.Arguments = aArg;
+                            Proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                            Proc.Start();
+                        }
                     }
                 }
             }
