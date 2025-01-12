@@ -677,10 +677,17 @@ namespace Ostium
                 }, null);
             };
 
+            CoreWebView2ContextMenuItem newItem4 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Text select Auto Clipboard", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem4.CustomItemSelected += delegate (object send, object ex)
+            {
+                InjectScript("document.addEventListener(\"mouseup\",()=>{const t=window.getSelection(),n=t.toString();n&&navigator.clipboard.writeText(n).then(()=>{console.log(\"Texte copié : \",n)}).catch(n=>{console.error(\"Erreur lors de la copie : \",n)})})");
+            };
+
             menuList.Insert(menuList.Count, newItem0);
             menuList.Insert(menuList.Count, newItem1);
             menuList.Insert(menuList.Count, newItem2);
             menuList.Insert(menuList.Count, newItem3);
+            menuList.Insert(menuList.Count, newItem4);
         }
         ///
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
@@ -1505,7 +1512,7 @@ namespace Ostium
             WBrowse.Source = new Uri(@AppStart);
         }
 
-        async void InjectScript_Btn_Click(object sender, EventArgs e)
+        void InjectScript_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1520,19 +1527,24 @@ namespace Ostium
 
                 if (ScriptInject != "")
                 {
-                    try
-                    {
-                        await WBrowse.ExecuteScriptAsync(ScriptInject);
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        MessageBox.Show(this, ex.Message, "Execute Script Fails!");
-                    }
+                    InjectScript(ScriptInject);
                 }
             }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! InjectScript_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        async void InjectScript(string scrinj)
+        {
+            try
+            {
+                await WBrowse.ExecuteScriptAsync(scrinj);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Execute Script Fails!");
             }
         }
 
