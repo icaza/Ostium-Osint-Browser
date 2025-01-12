@@ -614,12 +614,22 @@ namespace Ostium
         {
             string UriYoutube = "";
             string C = WBrowse.Source.AbsoluteUri;
-            UriYoutube += C.Substring(0, 32);
+            if (C.Length > 32)
+                UriYoutube += C.Substring(0, 32);
 
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
-            CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Speech", null, CoreWebView2ContextMenuItemKind.Command);
             newItem0.CustomItemSelected += delegate (object send, object ex)
+            {
+                if (VerifLangOpn == 0)
+                    LoadLang();
+
+                Speak_Clipboard_Text();
+            };
+
+            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem1.CustomItemSelected += delegate (object send, object ex)
             {
                 string pageUri = args.ContextMenuTarget.PageUri; ;
 
@@ -629,8 +639,8 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
-            newItem1.CustomItemSelected += delegate (object send, object ex)
+            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem2.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -648,8 +658,8 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed new Tab", null, CoreWebView2ContextMenuItemKind.Command);
-            newItem2.CustomItemSelected += delegate (object send, object ex)
+            CoreWebView2ContextMenuItem newItem3 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed new Tab", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem3.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -670,6 +680,7 @@ namespace Ostium
             menuList.Insert(menuList.Count, newItem0);
             menuList.Insert(menuList.Count, newItem1);
             menuList.Insert(menuList.Count, newItem2);
+            menuList.Insert(menuList.Count, newItem3);
         }
         ///
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
@@ -2917,7 +2928,7 @@ namespace Ostium
 
         #endregion
 
-        void OpenFile_Editor(string FileSelect)
+        void OpenFile_Editor(string fileSelect)
         {
             try
             {
@@ -2930,14 +2941,14 @@ namespace Ostium
                 string aArg = "";
                 string strName = Path.GetFileName(Class_Var.DEFAULT_EDITOR);
                 if (strName == "OstiumE.exe")
-                    aArg = "/input=\"" + FileSelect + "\"";
+                    aArg = "/input=\"" + fileSelect + "\"";
                 else
-                    aArg = FileSelect;
+                    aArg = fileSelect;
 
 
-                if (FileSelect != "")
+                if (fileSelect != "")
                 {
-                    if (File.Exists(FileSelect))
+                    if (File.Exists(fileSelect))
                     {
                         using (Process Proc = new Process())
                         {
@@ -4059,7 +4070,27 @@ namespace Ostium
 
         #endregion
 
-        #region FeedSpeak
+        #region Feed_Speak
+
+        void LoadLang()
+        {
+            try
+            {
+                VerifLangOpn = 1;
+                var VoiceInstall = synth.GetInstalledVoices();
+
+                foreach (InstalledVoice v in VoiceInstall)
+                    LangSelect_Lst.Items.Add(v.VoiceInfo.Name);
+
+                LangSelect_Lst.SelectedIndex = 0;
+
+                synth.SetOutputToDefaultAudioDevice();
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadLang: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
 
         void SpeakOpenPnl_Btn_Click(object sender, EventArgs e)
         {
@@ -4077,40 +4108,23 @@ namespace Ostium
 
         void ReadTitle_Btn_Click(object sender, EventArgs e)
         {
-            try
+            if (CategorieFeed_Cbx.Text != "")
             {
-                if (CategorieFeed_Cbx.Text != "")
-                {
-                    synth.SetOutputToDefaultAudioDevice();
-                    synth.Volume = Class_Var.VOLUME_TRACK;
-                    synth.Rate = Class_Var.RATE_TRACK;                    
-                    synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
+                synth.Volume = Class_Var.VOLUME_TRACK;
+                synth.Rate = Class_Var.RATE_TRACK;
+                synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
 
-                    for (int i = 0; i < Link_Lst.Items.Count; i++)
-                    {
-                        synth.SpeakAsync("Title " + Convert.ToString(i+1) + ": " + Title_Lst.Items[i].ToString());
-                    }
+                for (int i = 0; i < Link_Lst.Items.Count; i++)
+                {
+                    synth.SpeakAsync("Title " + Convert.ToString(i + 1) + ": " + Title_Lst.Items[i].ToString());
                 }
             }
-            catch
-            {}
         }
 
         void ReadClipB_Btn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (CategorieFeed_Cbx.Text != "")
-                {
-                    synth.SetOutputToDefaultAudioDevice();
-                    synth.Volume = Class_Var.VOLUME_TRACK;
-                    synth.Rate = Class_Var.RATE_TRACK;
-                    synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
-                    synth.SpeakAsync(Clipboard.GetText(TextDataFormat.Text));
-                }
-            }
-            catch
-            { }
+            if (CategorieFeed_Cbx.Text != "")
+                Speak_Clipboard_Text();
         }
 
         void PauseSpeak_Btn_Click(object sender, EventArgs e)
@@ -4165,25 +4179,6 @@ namespace Ostium
             Beep(800, 200);
         }
 
-        void LoadLang()
-        {
-            try
-            {
-                VerifLangOpn = 1;
-                synth.SetOutputToDefaultAudioDevice();
-                var VoiceInstall = synth.GetInstalledVoices();
-
-                foreach (InstalledVoice v in VoiceInstall)
-                    LangSelect_Lst.Items.Add(v.VoiceInfo.Name);
-
-                LangSelect_Lst.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! LoadLang: ", ex.Message, "Main_Frm", AppStart);
-            }
-        }
-
         void SaveVolumeRate(string nodeselect, int value)
         {
             try
@@ -4202,6 +4197,19 @@ namespace Ostium
             {
                 senderror.ErrorLog("Error! SaveVolumeRate: ", ex.Message, "Main_Frm", AppStart);
             }
+        }
+
+        void Speak_Clipboard_Text()
+        {
+            try
+            {
+                synth.Volume = Class_Var.VOLUME_TRACK;
+                synth.Rate = Class_Var.RATE_TRACK;
+                synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
+                synth.SpeakAsync(Clipboard.GetText(TextDataFormat.Text));
+            }
+            catch
+            { }
         }
 
         #endregion
