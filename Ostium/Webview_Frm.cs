@@ -47,7 +47,8 @@ namespace Ostium
         {
             string UriYoutube = "";
             string C = WBrowse.Source.AbsoluteUri;
-            UriYoutube += C.Substring(0, 32);
+            if (C.Length > 32)
+                UriYoutube += C.Substring(0, 32);
 
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
@@ -62,22 +63,8 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on Youtube", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
             newItem1.CustomItemSelected += delegate (object send, object ex)
-            {
-                string pageUri = "";
-
-                if (Clipboard.ContainsText(TextDataFormat.Text))
-                    pageUri = Clipboard.GetText(TextDataFormat.Text);
-
-                SynchronizationContext.Current.Post((_) =>
-                {
-                    GoBrowser("https://www.youtube.com/results?search_query=" + pageUri);
-                }, null);
-            };
-
-            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
-            newItem2.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -100,7 +87,6 @@ namespace Ostium
 
             menuList.Insert(menuList.Count, newItem0);
             menuList.Insert(menuList.Count, newItem1);
-            menuList.Insert(menuList.Count, newItem2);
         }
 
         void WBrowse_UpdtTitleEvent(string message)
