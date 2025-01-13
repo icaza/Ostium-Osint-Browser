@@ -680,7 +680,7 @@ namespace Ostium
             CoreWebView2ContextMenuItem newItem4 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Text select Auto Clipboard", null, CoreWebView2ContextMenuItemKind.Command);
             newItem4.CustomItemSelected += delegate (object send, object ex)
             {
-                InjectScript("document.addEventListener(\"mouseup\",()=>{const t=window.getSelection(),n=t.toString();n&&navigator.clipboard.writeText(n).then(()=>{console.log(\"Texte copié : \",n)}).catch(n=>{console.error(\"Erreur lors de la copie : \",n)})})");
+                InjectScript("(function(){const n=document.createElement(\"div\");n.style.position=\"fixed\";n.style.top=\"10px\";n.style.left=\"10px\";n.style.width=\"15px\";n.style.height=\"15px\";n.style.borderRadius=\"50%\";n.style.backgroundColor=\"red\";n.style.zIndex=\"9999\";n.title=\"Automatic copy script is activated\";document.body.appendChild(n);document.addEventListener(\"mouseup\",()=>{const t=window.getSelection(),n=t.toString();n&&navigator.clipboard.writeText(n).then(()=>{console.log(\"Text: \",n)}).catch(n=>{console.error(\"Error: \",n)})})})()");
             };
 
             menuList.Insert(menuList.Count, newItem0);
