@@ -218,21 +218,15 @@ namespace Ostium
                     /// <param value="1">Save the chosen configuration and Reload</param>
                     /// 
                     if (File.Exists(AppStart + "config.xml"))
-                    {
                         Config_Ini(AppStart + "config.xml");
-                    }
                     else
-                    {
                         CreateConfigFile(0);
-                    }
                     ///
                     /// Web URL Home page wBrowser Tab => index and wBrowser Tab => feed
                     /// If empty loading from default URL file
                     ///
                     if (@Class_Var.URL_HOME == "")
-                    {
                         @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
-                    }
 
                     WBrowse.Source = new Uri(@Class_Var.URL_HOME);
                     WBrowsefeed.Source = new Uri(HomeUrlRSS);
@@ -271,9 +265,7 @@ namespace Ostium
                     var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, for complete deletion of the WebView2 usage directory)", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                    {
                         ClearData(1);
-                    }
                 }
             }
             catch { }
@@ -513,9 +505,7 @@ namespace Ostium
                     if (ValueOutput != "" && ValueOutput != ".db")
                     {
                         if (!File.Exists(DBdirectory + ValueOutput))
-                        {
                             SQLiteConnection.CreateFile(DBdirectory + ValueOutput);
-                        }
 
                         DB_Default_Txt.Text = ValueOutput;
                         D4ta = DBdirectory + DB_Default_Txt.Text;                        
@@ -527,9 +517,7 @@ namespace Ostium
                         DB_Default_Txt.Text = "D4taB.db";
 
                         if (!File.Exists(DBdirectory + "D4taB.db"))
-                        {
                             SQLiteConnection.CreateFile(DBdirectory + "D4taB.db");
-                        }
 
                         D4ta = DBdirectory + DB_Default_Txt.Text;
 
@@ -1066,9 +1054,7 @@ namespace Ostium
         void Home_Btn_Click(object sender, EventArgs e)
         {
             if (@Class_Var.URL_HOME == "")
-            {
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
-            }
 
             WBrowse.Source = new Uri(@Class_Var.URL_HOME);
         }
@@ -1080,9 +1066,8 @@ namespace Ostium
                 int x;
                 x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
                 if (x == -1)
-                {
                     URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
-                }
+
                 GoBrowser(URLbrowse_Cbx.Text, 0);
             }
         }
@@ -1434,9 +1419,7 @@ namespace Ostium
         void Cookie_Btn_Click(object sender, EventArgs e)
         {
             if (!SaveCookies_Chk.Checked)
-            {
                 MessageBox.Show("Saving cookies in a text file is not enabled in the options.");
-            }
 
             if (File.Exists(AppStart + "cookie.txt"))
                 OpenFile_Editor(AppStart + "cookie.txt");
@@ -1526,9 +1509,7 @@ namespace Ostium
                 string ScriptInject = Convert.ToString(ScriptSelect);
 
                 if (ScriptInject != "")
-                {
                     InjectScript(ScriptInject);
-                }
             }
             catch (Exception ex)
             {
@@ -3703,6 +3684,7 @@ namespace Ostium
         void Db_OrderLst_Btn_Click(object sender, EventArgs e)
         {
             DataValue_Lst.Sorted = !DataValue_Lst.Sorted;
+
             if (DataValue_Lst.Sorted)
                 Db_OrderLst_Btn.ForeColor = Color.Lime;
             else

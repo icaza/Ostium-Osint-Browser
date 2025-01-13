@@ -103,6 +103,7 @@ namespace Ostium
         void TopNo_Btn_Click(object sender, EventArgs e)
         {
             TopMost = !TopMost;
+
             if (TopNo_Btn.Text == "Top")
                 TopNo_Btn.Text = "Not";
             else

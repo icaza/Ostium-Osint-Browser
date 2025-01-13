@@ -77,9 +77,7 @@ namespace Ostium
                     int x;
                     x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
                     if (x == -1)
-                    {
                         URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
-                    }
 
                     UriTxt = URLbrowse_Cbx.Text;
                     Thread Thr_OpenWebPageTxt = new Thread(new ThreadStart(OpenWebPageTxt));
@@ -116,9 +114,7 @@ namespace Ostium
                     {
                         string text = node.InnerText;
                         if (!string.IsNullOrEmpty(text))
-                        {
                             sb.AppendLine(text.Trim());
-                        }
                     }
                 }
 
@@ -164,9 +160,7 @@ namespace Ostium
                 int x;
                 x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
                 if (x == -1)
-                {
                     URLbrowse_Cbx.Items.Add(e.LinkText);
-                }
 
                 StartOpenWebPageTxt();
             }
@@ -185,9 +179,7 @@ namespace Ostium
                 int x;
                 x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
                 if (x == -1)
-                {
                     URLbrowse_Cbx.Items.Add(ListLinks_Lst.SelectedItem.ToString());
-                }
 
                 StartOpenWebPageTxt();
             }
