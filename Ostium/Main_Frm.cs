@@ -173,7 +173,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "17";
+        readonly string versionNow = "18";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -218,21 +218,15 @@ namespace Ostium
                     /// <param value="1">Save the chosen configuration and Reload</param>
                     /// 
                     if (File.Exists(AppStart + "config.xml"))
-                    {
                         Config_Ini(AppStart + "config.xml");
-                    }
                     else
-                    {
                         CreateConfigFile(0);
-                    }
                     ///
                     /// Web URL Home page wBrowser Tab => index and wBrowser Tab => feed
                     /// If empty loading from default URL file
                     ///
                     if (@Class_Var.URL_HOME == "")
-                    {
                         @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
-                    }
 
                     WBrowse.Source = new Uri(@Class_Var.URL_HOME);
                     WBrowsefeed.Source = new Uri(HomeUrlRSS);
@@ -271,9 +265,7 @@ namespace Ostium
                     var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, for complete deletion of the WebView2 usage directory)", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                    {
                         ClearData(1);
-                    }
                 }
             }
             catch { }
@@ -513,9 +505,7 @@ namespace Ostium
                     if (ValueOutput != "" && ValueOutput != ".db")
                     {
                         if (!File.Exists(DBdirectory + ValueOutput))
-                        {
                             SQLiteConnection.CreateFile(DBdirectory + ValueOutput);
-                        }
 
                         DB_Default_Txt.Text = ValueOutput;
                         D4ta = DBdirectory + DB_Default_Txt.Text;                        
@@ -527,9 +517,7 @@ namespace Ostium
                         DB_Default_Txt.Text = "D4taB.db";
 
                         if (!File.Exists(DBdirectory + "D4taB.db"))
-                        {
                             SQLiteConnection.CreateFile(DBdirectory + "D4taB.db");
-                        }
 
                         D4ta = DBdirectory + DB_Default_Txt.Text;
 
@@ -614,12 +602,22 @@ namespace Ostium
         {
             string UriYoutube = "";
             string C = WBrowse.Source.AbsoluteUri;
-            UriYoutube += C.Substring(0, 32);
+            if (C.Length > 32)
+                UriYoutube += C.Substring(0, 32);
 
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
-            CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Speech", null, CoreWebView2ContextMenuItemKind.Command);
             newItem0.CustomItemSelected += delegate (object send, object ex)
+            {
+                if (VerifLangOpn == 0)
+                    LoadLang();
+
+                Speak_Clipboard_Text();
+            };
+
+            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem1.CustomItemSelected += delegate (object send, object ex)
             {
                 string pageUri = args.ContextMenuTarget.PageUri; ;
 
@@ -629,8 +627,8 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
-            newItem1.CustomItemSelected += delegate (object send, object ex)
+            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem2.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -648,8 +646,8 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem2 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed new Tab", null, CoreWebView2ContextMenuItemKind.Command);
-            newItem2.CustomItemSelected += delegate (object send, object ex)
+            CoreWebView2ContextMenuItem newItem3 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed new Tab", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem3.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
@@ -667,9 +665,17 @@ namespace Ostium
                 }, null);
             };
 
+            CoreWebView2ContextMenuItem newItem4 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Text select Auto Clipboard", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem4.CustomItemSelected += delegate (object send, object ex)
+            {
+                InjectScript("(function(){const n=document.createElement(\"div\");n.style.position=\"fixed\";n.style.top=\"10px\";n.style.left=\"10px\";n.style.width=\"15px\";n.style.height=\"15px\";n.style.borderRadius=\"50%\";n.style.backgroundColor=\"red\";n.style.zIndex=\"9999\";n.title=\"Automatic copy script is activated\";document.body.appendChild(n);document.addEventListener(\"mouseup\",()=>{const t=window.getSelection(),n=t.toString();n&&navigator.clipboard.writeText(n).then(()=>{console.log(\"Text: \",n)}).catch(n=>{console.error(\"Error: \",n)})})})()");
+            };
+
             menuList.Insert(menuList.Count, newItem0);
             menuList.Insert(menuList.Count, newItem1);
             menuList.Insert(menuList.Count, newItem2);
+            menuList.Insert(menuList.Count, newItem3);
+            menuList.Insert(menuList.Count, newItem4);
         }
         ///
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
@@ -1048,9 +1054,7 @@ namespace Ostium
         void Home_Btn_Click(object sender, EventArgs e)
         {
             if (@Class_Var.URL_HOME == "")
-            {
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
-            }
 
             WBrowse.Source = new Uri(@Class_Var.URL_HOME);
         }
@@ -1062,9 +1066,8 @@ namespace Ostium
                 int x;
                 x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
                 if (x == -1)
-                {
                     URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
-                }
+
                 GoBrowser(URLbrowse_Cbx.Text, 0);
             }
         }
@@ -1300,6 +1303,9 @@ namespace Ostium
             {
                 Tools_TAB_0.Focus();
 
+                if (!File.Exists(Plugins + AddOn_Cbx.Text))
+                    return;
+
                 using (Process proc = new Process())
                 {
                     proc.StartInfo.FileName = Plugins + AddOn_Cbx.Text;
@@ -1413,9 +1419,7 @@ namespace Ostium
         void Cookie_Btn_Click(object sender, EventArgs e)
         {
             if (!SaveCookies_Chk.Checked)
-            {
                 MessageBox.Show("Saving cookies in a text file is not enabled in the options.");
-            }
 
             if (File.Exists(AppStart + "cookie.txt"))
                 OpenFile_Editor(AppStart + "cookie.txt");
@@ -1430,9 +1434,9 @@ namespace Ostium
         {
             try
             {
-                if (!File.Exists(AppStart + "OstiumE.exe"))
+                if (!File.Exists(Class_Var.DEFAULT_EDITOR))
                 {
-                    MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                    MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                     return;
                 }
 
@@ -1491,7 +1495,7 @@ namespace Ostium
             WBrowse.Source = new Uri(@AppStart);
         }
 
-        async void InjectScript_Btn_Click(object sender, EventArgs e)
+        void InjectScript_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1505,20 +1509,23 @@ namespace Ostium
                 string ScriptInject = Convert.ToString(ScriptSelect);
 
                 if (ScriptInject != "")
-                {
-                    try
-                    {
-                        await WBrowse.ExecuteScriptAsync(ScriptInject);
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        MessageBox.Show(this, ex.Message, "Execute Script Fails!");
-                    }
-                }
+                    InjectScript(ScriptInject);
             }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! InjectScript_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        async void InjectScript(string scrinj)
+        {
+            try
+            {
+                await WBrowse.ExecuteScriptAsync(scrinj);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Execute Script Fails!");
             }
         }
 
@@ -1579,7 +1586,10 @@ namespace Ostium
         {
             try
             {
-                await WBrowse.ExecuteScriptAsync("function highlightWord(n){function t(i){if(i.nodeType===Node.TEXT_NODE){const r=new RegExp(`(${n})`,\"gi\"),t=i.parentNode;if(t&&t.nodeName!==\"A\"){const u=i.textContent.replace(r,'<span style=\"color: " + valcolor + "; font-weight: bold;\">$1<\\/span>'),n=document.createElement(\"span\");n.innerHTML=u;t.replaceChild(n,i)}}else i.nodeType===Node.ELEMENT_NODE&&Array.from(i.childNodes).forEach(t)}t(document.body)}highlightWord(\"" + valword + "\")");
+                await WBrowse.ExecuteScriptAsync("function highlightWord(n){function t(i){if(i.nodeType===Node.TEXT_NODE){const r=new RegExp(`(${n})`,\"gi\")," +
+                    "t=i.parentNode;if(t&&t.nodeName!==\"A\"){const u=i.textContent.replace(r,'<span style=\"color: " + valcolor + "; font-weight: bold;\">$1" +
+                    "<\\/span>'),n=document.createElement(\"span\");n.innerHTML=u;t.replaceChild(n,i)}}else i.nodeType===Node.ELEMENT_NODE&&Array.from(i.childNodes)" +
+                    ".forEach(t)}t(document.body)}highlightWord(\"" + valword + "\")");
             }
             catch (InvalidOperationException ex)
             {
@@ -2897,9 +2907,9 @@ namespace Ostium
 
         void OpnFileOpt(string dir_dir)
         {
-            if (!File.Exists(AppStart + "OstiumE.exe"))
+            if (!File.Exists(Class_Var.DEFAULT_EDITOR))
             {
-                MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                 return;
             }
 
@@ -2911,24 +2921,32 @@ namespace Ostium
 
         #endregion
 
-        void OpenFile_Editor(string FileSelect)
+        void OpenFile_Editor(string fileSelect)
         {
             try
             {
-                if (!File.Exists(AppStart + "OstiumE.exe"))
+                if (!File.Exists(Class_Var.DEFAULT_EDITOR))
                 {
-                    MessageBox.Show("The OstiumE editor is missing!", "Missing editor");
+                    MessageBox.Show("Editor are not exist in directory, verify your config file!", "Error!");
                     return;
                 }
 
-                if (FileSelect != "")
+                string aArg = "";
+                string strName = Path.GetFileName(Class_Var.DEFAULT_EDITOR);
+                if (strName == "OstiumE.exe")
+                    aArg = "/input=\"" + fileSelect + "\"";
+                else
+                    aArg = fileSelect;
+
+
+                if (fileSelect != "")
                 {
-                    if (File.Exists(FileSelect))
+                    if (File.Exists(fileSelect))
                     {
                         using (Process Proc = new Process())
                         {
-                            Proc.StartInfo.FileName = AppStart + "OstiumE.exe";
-                            Proc.StartInfo.Arguments = "/input=\"" + FileSelect + "\"";
+                            Proc.StartInfo.FileName = Class_Var.DEFAULT_EDITOR;
+                            Proc.StartInfo.Arguments = aArg;
                             Proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                             Proc.Start();
                         }
@@ -3666,6 +3684,7 @@ namespace Ostium
         void Db_OrderLst_Btn_Click(object sender, EventArgs e)
         {
             DataValue_Lst.Sorted = !DataValue_Lst.Sorted;
+
             if (DataValue_Lst.Sorted)
                 Db_OrderLst_Btn.ForeColor = Color.Lime;
             else
@@ -4045,7 +4064,27 @@ namespace Ostium
 
         #endregion
 
-        #region FeedSpeak
+        #region Feed_Speak
+
+        void LoadLang()
+        {
+            try
+            {
+                VerifLangOpn = 1;
+                var VoiceInstall = synth.GetInstalledVoices();
+
+                foreach (InstalledVoice v in VoiceInstall)
+                    LangSelect_Lst.Items.Add(v.VoiceInfo.Name);
+
+                LangSelect_Lst.SelectedIndex = 0;
+
+                synth.SetOutputToDefaultAudioDevice();
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadLang: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
 
         void SpeakOpenPnl_Btn_Click(object sender, EventArgs e)
         {
@@ -4063,40 +4102,23 @@ namespace Ostium
 
         void ReadTitle_Btn_Click(object sender, EventArgs e)
         {
-            try
+            if (CategorieFeed_Cbx.Text != "")
             {
-                if (CategorieFeed_Cbx.Text != "")
-                {
-                    synth.SetOutputToDefaultAudioDevice();
-                    synth.Volume = Class_Var.VOLUME_TRACK;
-                    synth.Rate = Class_Var.RATE_TRACK;                    
-                    synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
+                synth.Volume = Class_Var.VOLUME_TRACK;
+                synth.Rate = Class_Var.RATE_TRACK;
+                synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
 
-                    for (int i = 0; i < Link_Lst.Items.Count; i++)
-                    {
-                        synth.SpeakAsync("Title " + Convert.ToString(i+1) + ": " + Title_Lst.Items[i].ToString());
-                    }
+                for (int i = 0; i < Link_Lst.Items.Count; i++)
+                {
+                    synth.SpeakAsync("Title " + Convert.ToString(i + 1) + ": " + Title_Lst.Items[i].ToString());
                 }
             }
-            catch
-            {}
         }
 
         void ReadClipB_Btn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (CategorieFeed_Cbx.Text != "")
-                {
-                    synth.SetOutputToDefaultAudioDevice();
-                    synth.Volume = Class_Var.VOLUME_TRACK;
-                    synth.Rate = Class_Var.RATE_TRACK;
-                    synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
-                    synth.SpeakAsync(Clipboard.GetText(TextDataFormat.Text));
-                }
-            }
-            catch
-            { }
+            if (CategorieFeed_Cbx.Text != "")
+                Speak_Clipboard_Text();
         }
 
         void PauseSpeak_Btn_Click(object sender, EventArgs e)
@@ -4151,25 +4173,6 @@ namespace Ostium
             Beep(800, 200);
         }
 
-        void LoadLang()
-        {
-            try
-            {
-                VerifLangOpn = 1;
-                synth.SetOutputToDefaultAudioDevice();
-                var VoiceInstall = synth.GetInstalledVoices();
-
-                foreach (InstalledVoice v in VoiceInstall)
-                    LangSelect_Lst.Items.Add(v.VoiceInfo.Name);
-
-                LangSelect_Lst.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! LoadLang: ", ex.Message, "Main_Frm", AppStart);
-            }
-        }
-
         void SaveVolumeRate(string nodeselect, int value)
         {
             try
@@ -4188,6 +4191,19 @@ namespace Ostium
             {
                 senderror.ErrorLog("Error! SaveVolumeRate: ", ex.Message, "Main_Frm", AppStart);
             }
+        }
+
+        void Speak_Clipboard_Text()
+        {
+            try
+            {
+                synth.Volume = Class_Var.VOLUME_TRACK;
+                synth.Rate = Class_Var.RATE_TRACK;
+                synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
+                synth.SpeakAsync(Clipboard.GetText(TextDataFormat.Text));
+            }
+            catch
+            { }
         }
 
         #endregion
