@@ -17,7 +17,7 @@ https://github.com/icaza/Ostium-Osint-Browser/releases/ no install required. Dow
 
 # Demo
 
-https://www.youtube.com/@lexplikateur
+https://youtube.com/playlist?list=PL2P_w0qK8vNugPLFuQ2ap_3Kvi00wrNBy&si=a3VF6P6szfZok3sn
 
 # OOB use
 
