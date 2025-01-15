@@ -195,7 +195,7 @@ namespace Ostium
             }
         }
 
-        private void SavePageTxt_Btn_Click(object sender, EventArgs e)
+        void SavePageTxt_Btn_Click(object sender, EventArgs e)
         {
             if (WbrowseTxt.Text != "")
             {
