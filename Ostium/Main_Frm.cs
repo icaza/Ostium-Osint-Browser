@@ -6346,9 +6346,9 @@ namespace Ostium
         {
             string Jselect;
             if (OutJsonA_Chk.Checked)
-                Jselect = JsonB;
-            else
                 Jselect = JsonA;
+            else
+                Jselect = JsonB;
 
             SavefileShowDiag(Jselect, "files (*.*)|*.*");
         }
@@ -6570,6 +6570,7 @@ namespace Ostium
                     Jselect = JsonA;
                 else
                     Jselect = JsonB;
+
                 using (StreamReader sr = new StreamReader(Jselect))
                 {
                     OutJs = sr.ReadToEnd();
@@ -6697,6 +6698,7 @@ namespace Ostium
                     Jselect = JsonA;
                 else
                     Jselect = JsonB;
+
                 using (StreamReader sr = new StreamReader(Jselect))
                 {
                     OutJs = sr.ReadToEnd();
