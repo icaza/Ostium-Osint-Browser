@@ -35,7 +35,7 @@
             // Sortie_Txt
             // 
             this.Sortie_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Sortie_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Sortie_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Sortie_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Sortie_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Sortie_Txt.ForeColor = System.Drawing.Color.White;
@@ -54,6 +54,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Doc_Frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Doc_Frm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

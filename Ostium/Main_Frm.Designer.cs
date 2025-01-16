@@ -488,6 +488,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -5819,7 +5821,9 @@
             this.MapProject_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewProjectMap_Tls,
             this.NewProjectMapList_Tls,
-            this.NewProjectMapLatLon_Tls});
+            this.NewProjectMapLatLon_Tls,
+            this.toolStripSeparator29,
+            this.EgHelp_Tls});
             this.MapProject_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.MapProject_Tls.Image = ((System.Drawing.Image)(resources.GetObject("MapProject_Tls.Image")));
             this.MapProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -6134,6 +6138,18 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // toolStripSeparator29
+            // 
+            this.toolStripSeparator29.Name = "toolStripSeparator29";
+            this.toolStripSeparator29.Size = new System.Drawing.Size(452, 6);
+            // 
+            // EgHelp_Tls
+            // 
+            this.EgHelp_Tls.Name = "EgHelp_Tls";
+            this.EgHelp_Tls.Size = new System.Drawing.Size(455, 22);
+            this.EgHelp_Tls.Text = "eg. data format";
+            this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6141,8 +6157,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_0);
+            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -6710,6 +6726,8 @@
         private System.Windows.Forms.ContextMenuStrip MapMenu_Strip;
         private System.Windows.Forms.ToolStripMenuItem CopyGeoMap_Mnus;
         private System.Windows.Forms.ToolStripMenuItem ClearMap_Mnus;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
+        private System.Windows.Forms.ToolStripMenuItem EgHelp_Tls;
     }
 }
 

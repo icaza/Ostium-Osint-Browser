@@ -6299,6 +6299,11 @@ namespace Ostium
             }
         }
 
+        void EgHelp_Tls_Click(object sender, EventArgs e)
+        {
+            Open_Doc_Frm(FileDir + "map_points.txt");
+        }
+
         #endregion
 
         void OpnURL_TlsTools_Click(object sender, EventArgs e)

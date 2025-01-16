@@ -41,7 +41,7 @@ namespace Ostium
                     }
 
                     Sortie_Txt.Select(Sortie_Txt.Text.Length, 0);
-                    Text = "File open: " + strName;
+                    Text = "File open: " + strName + " [ Double-click to display the scrollbar ]";
                 }
             }
             catch (Exception ex)
