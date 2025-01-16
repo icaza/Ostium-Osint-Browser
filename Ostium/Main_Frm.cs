@@ -2397,11 +2397,12 @@ namespace Ostium
                         Tools_TAB_4.Visible = false;
                         Text = TmpTitleWBrowsefeed;
                         URLtxt_txt.Text = WBrowsefeed.Source.AbsoluteUri;
-                        TableOpn_Lbl.Visible = false;
+                        TableOpn_Lbl.Visible = false;                        
                         CountFeed_Lbl.Visible = true;
                         DBSelectOpen_Lbl.Visible = false;
                         TableCount_Lbl.Visible = false;
                         TableOpen_Lbl.Visible = false;
+                        TableVal_Lbl.Visible = false;
                         RecordsCount_Lbl.Visible = false;
                         LatTCurrent_Lbl.Visible = false;
                         Separator.Visible = false;
@@ -2429,13 +2430,14 @@ namespace Ostium
                         Tools_TAB_4.Visible = false;
                         URLtxt_txt.Text = "";
                         Text = "DataBase Url";
-                        TableOpn_Lbl.Visible = false;
+                        TableOpn_Lbl.Visible = false;                        
                         CountFeed_Lbl.Visible = false;
                         JavaDisable_Lbl.Visible = false;
                         JavaDisableFeed_Lbl.Visible = false;
                         DBSelectOpen_Lbl.Visible = true;
                         TableCount_Lbl.Visible = true;
                         TableOpen_Lbl.Visible = true;
+                        TableVal_Lbl.Visible = true;
                         RecordsCount_Lbl.Visible = true;
                         LatTCurrent_Lbl.Visible = false;
                         Separator.Visible = false;
@@ -2465,6 +2467,7 @@ namespace Ostium
                         DBSelectOpen_Lbl.Visible = false;
                         TableCount_Lbl.Visible = false;
                         TableOpen_Lbl.Visible = false;
+                        TableVal_Lbl.Visible = false;
                         RecordsCount_Lbl.Visible = false;
                         LatTCurrent_Lbl.Visible = false;
                         Separator.Visible = false;
@@ -2488,6 +2491,7 @@ namespace Ostium
                     DBSelectOpen_Lbl.Visible = false;
                     TableCount_Lbl.Visible = false;
                     TableOpen_Lbl.Visible = false;
+                    TableVal_Lbl.Visible = false;
                     RecordsCount_Lbl.Visible = false;
                     LatTCurrent_Lbl.Visible = true;
                     Separator.Visible = true;
@@ -2518,6 +2522,7 @@ namespace Ostium
                     DBSelectOpen_Lbl.Visible = false;
                     TableCount_Lbl.Visible = false;
                     TableOpen_Lbl.Visible = false;
+                    TableVal_Lbl.Visible = false;
                     RecordsCount_Lbl.Visible = false;
                     LatTCurrent_Lbl.Visible = false;
                     Separator.Visible = false;
@@ -2540,6 +2545,7 @@ namespace Ostium
                     DBSelectOpen_Lbl.Visible = false;
                     TableCount_Lbl.Visible = false;
                     TableOpen_Lbl.Visible = false;
+                    TableVal_Lbl.Visible = false;
                     RecordsCount_Lbl.Visible = false;
                     LatTCurrent_Lbl.Visible = false;
                     Separator.Visible = false;
@@ -2579,6 +2585,7 @@ namespace Ostium
             DBSelectOpen_Lbl.Visible = false;
             TableCount_Lbl.Visible = false;
             TableOpen_Lbl.Visible = false;
+            TableVal_Lbl.Visible = false;
             RecordsCount_Lbl.Visible = false;
             LatTCurrent_Lbl.Visible = false;
             Separator.Visible = false;

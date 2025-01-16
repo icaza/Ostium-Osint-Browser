@@ -378,6 +378,8 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.CountFeed_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -391,8 +393,6 @@
             this.LatTCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
             this.LonGtCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
-            this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.FileOpnJson_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
             this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
@@ -484,6 +484,7 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.TableVal_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1925,8 +1926,9 @@
             this.Title_Lst.FormattingEnabled = true;
             this.Title_Lst.ItemHeight = 16;
             this.Title_Lst.Location = new System.Drawing.Point(0, 0);
+            this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
             this.Title_Lst.Name = "Title_Lst";
-            this.Title_Lst.Size = new System.Drawing.Size(100, 227);
+            this.Title_Lst.Size = new System.Drawing.Size(150, 227);
             this.Title_Lst.TabIndex = 0;
             this.Title_Lst.SelectedIndexChanged += new System.EventHandler(this.Title_Lst_SelectedIndexChanged);
             // 
@@ -1938,9 +1940,10 @@
             this.CountBlockSite_Lbl.ForeColor = System.Drawing.Color.OrangeRed;
             this.CountBlockSite_Lbl.FormattingEnabled = true;
             this.CountBlockSite_Lbl.ItemHeight = 16;
-            this.CountBlockSite_Lbl.Location = new System.Drawing.Point(100, 0);
+            this.CountBlockSite_Lbl.Location = new System.Drawing.Point(150, 0);
+            this.CountBlockSite_Lbl.MaximumSize = new System.Drawing.Size(0, 227);
             this.CountBlockSite_Lbl.Name = "CountBlockSite_Lbl";
-            this.CountBlockSite_Lbl.Size = new System.Drawing.Size(50, 227);
+            this.CountBlockSite_Lbl.Size = new System.Drawing.Size(0, 227);
             this.CountBlockSite_Lbl.TabIndex = 6;
             this.CountBlockSite_Lbl.Visible = false;
             this.CountBlockSite_Lbl.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lbl_SelectedIndexChanged);
@@ -1960,7 +1963,6 @@
             this.WBrowsefeed.AllowExternalDrop = true;
             this.WBrowsefeed.CreationProperties = null;
             this.WBrowsefeed.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
             this.WBrowsefeed.Size = new System.Drawing.Size(1326, 560);
@@ -2259,7 +2261,7 @@
             this.ExecuteCMDsql_Txt.Name = "ExecuteCMDsql_Txt";
             this.ExecuteCMDsql_Txt.Size = new System.Drawing.Size(622, 23);
             this.ExecuteCMDsql_Txt.TabIndex = 0;
-            this.ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE";
+            this.ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE WHERE url_name LIKE \'%word%\';";
             // 
             // label11
             // 
@@ -5031,6 +5033,7 @@
             this.TtsButton_Sts,
             this.URLtxt_txt,
             this.TableOpn_Lbl,
+            this.TableVal_Lbl,
             this.CountFeed_Lbl,
             this.JavaDisable_Lbl,
             this.JavaDisableFeed_Lbl,
@@ -5049,6 +5052,24 @@
             this.Status_Strip.SizingGrip = false;
             this.Status_Strip.TabIndex = 14;
             this.Status_Strip.Text = "statusStrip1";
+            // 
+            // TtsButton_Sts
+            // 
+            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TtsButton_Sts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnURL_TlsTools});
+            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
+            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TtsButton_Sts.Name = "TtsButton_Sts";
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
+            this.TtsButton_Sts.Text = "Tools";
+            // 
+            // OpnURL_TlsTools
+            // 
+            this.OpnURL_TlsTools.Name = "OpnURL_TlsTools";
+            this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
+            this.OpnURL_TlsTools.Text = "Open URL in New Tab";
+            this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
             // 
             // URLtxt_txt
             // 
@@ -5168,24 +5189,6 @@
             this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(14, 17);
             this.LonGtCurrent_Lbl.Text = "_";
             this.LonGtCurrent_Lbl.Visible = false;
-            // 
-            // TtsButton_Sts
-            // 
-            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TtsButton_Sts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpnURL_TlsTools});
-            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
-            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TtsButton_Sts.Name = "TtsButton_Sts";
-            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
-            this.TtsButton_Sts.Text = "Tools";
-            // 
-            // OpnURL_TlsTools
-            // 
-            this.OpnURL_TlsTools.Name = "OpnURL_TlsTools";
-            this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
-            this.OpnURL_TlsTools.Text = "Open URL in New Tab";
-            this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
             // 
             // FileOpnJson_Lbl
             // 
@@ -6093,6 +6096,15 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // TableVal_Lbl
+            // 
+            this.TableVal_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableVal_Lbl.ForeColor = System.Drawing.Color.DimGray;
+            this.TableVal_Lbl.Name = "TableVal_Lbl";
+            this.TableVal_Lbl.Size = new System.Drawing.Size(233, 17);
+            this.TableVal_Lbl.Text = "TABLE (url_date, url_name, url_adress)";
+            this.TableVal_Lbl.Visible = false;
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6664,6 +6676,7 @@
         private System.Windows.Forms.ToolStripMenuItem Highlit_Mnu;
         private System.Windows.Forms.ToolStripMenuItem HiglitAddWord_Btn;
         private System.Windows.Forms.ToolStripMenuItem HiglitInject_Btn;
+        private System.Windows.Forms.ToolStripStatusLabel TableVal_Lbl;
     }
 }
 
