@@ -2397,7 +2397,7 @@ namespace Ostium
                         Tools_TAB_4.Visible = false;
                         Text = TmpTitleWBrowsefeed;
                         URLtxt_txt.Text = WBrowsefeed.Source.AbsoluteUri;
-                        TableOpn_Lbl.Visible = false;                        
+                        TableOpn_Lbl.Visible = false;
                         CountFeed_Lbl.Visible = true;
                         DBSelectOpen_Lbl.Visible = false;
                         TableCount_Lbl.Visible = false;
@@ -2430,7 +2430,7 @@ namespace Ostium
                         Tools_TAB_4.Visible = false;
                         URLtxt_txt.Text = "";
                         Text = "DataBase Url";
-                        TableOpn_Lbl.Visible = false;                        
+                        TableOpn_Lbl.Visible = false;
                         CountFeed_Lbl.Visible = false;
                         JavaDisable_Lbl.Visible = false;
                         JavaDisableFeed_Lbl.Visible = false;
@@ -5771,6 +5771,7 @@ namespace Ostium
         void OpnListLocation_Tls_Click(object sender, EventArgs e)
         {
             Map_Cmd_Pnl.Visible = !Map_Cmd_Pnl.Visible;
+            loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
         }
 
         void CrossCenter_Tls_Click(object sender, EventArgs e)
@@ -6177,8 +6178,17 @@ namespace Ostium
                 overlayOne.Markers.Clear();
                 Mkmarker = GMarkerGoogleType.blue;
                 MapXmlOpn = MapDir + PointLoc_Lst.SelectedItem.ToString();
-                ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
-                OpnLocationPoints();
+
+                if (!File.Exists(MapXmlOpn))
+                {
+                    MessageBox.Show("The project no longer exists! It will be removed from the list.", "Error file not exist!");
+                    loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+                }
+                else
+                {
+                    ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
+                    OpnLocationPoints();
+                }
             }
         }
 

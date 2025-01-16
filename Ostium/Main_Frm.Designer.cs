@@ -245,6 +245,9 @@
             this.Map_Tab = new System.Windows.Forms.TabPage();
             this.TempPointLoc_Lst = new System.Windows.Forms.ListBox();
             this.GMap_Ctrl = new GMap.NET.WindowsForms.GMapControl();
+            this.MapMenu_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CopyGeoMap_Mnus = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearMap_Mnus = new System.Windows.Forms.ToolStripMenuItem();
             this.Map_Cmd_Pnl = new System.Windows.Forms.Panel();
             this.PointLoc_Lst = new System.Windows.Forms.ListBox();
             this.TxtMarker_Chk = new System.Windows.Forms.CheckBox();
@@ -382,6 +385,7 @@
             this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableVal_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.CountFeed_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.JavaDisable_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.JavaDisableFeed_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -484,7 +488,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.TableVal_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -527,6 +530,7 @@
             this.panel7.SuspendLayout();
             this.panel19.SuspendLayout();
             this.Map_Tab.SuspendLayout();
+            this.MapMenu_Strip.SuspendLayout();
             this.Map_Cmd_Pnl.SuspendLayout();
             this.Json_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).BeginInit();
@@ -3203,6 +3207,7 @@
             // 
             this.GMap_Ctrl.Bearing = 0F;
             this.GMap_Ctrl.CanDragMap = true;
+            this.GMap_Ctrl.ContextMenuStrip = this.MapMenu_Strip;
             this.GMap_Ctrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GMap_Ctrl.EmptyTileColor = System.Drawing.Color.Navy;
             this.GMap_Ctrl.GrayScaleMode = false;
@@ -3225,6 +3230,30 @@
             this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
+            // 
+            // MapMenu_Strip
+            // 
+            this.MapMenu_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyGeoMap_Mnus,
+            this.ClearMap_Mnus});
+            this.MapMenu_Strip.Name = "MapMenu_Strip";
+            this.MapMenu_Strip.Size = new System.Drawing.Size(185, 48);
+            // 
+            // CopyGeoMap_Mnus
+            // 
+            this.CopyGeoMap_Mnus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyGeoMap_Mnus.Name = "CopyGeoMap_Mnus";
+            this.CopyGeoMap_Mnus.Size = new System.Drawing.Size(184, 22);
+            this.CopyGeoMap_Mnus.Text = "Copy Geolocation";
+            this.CopyGeoMap_Mnus.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
+            // 
+            // ClearMap_Mnus
+            // 
+            this.ClearMap_Mnus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearMap_Mnus.Name = "ClearMap_Mnus";
+            this.ClearMap_Mnus.Size = new System.Drawing.Size(184, 22);
+            this.ClearMap_Mnus.Text = "Clear Map";
+            this.ClearMap_Mnus.Click += new System.EventHandler(this.ClearMap_Tls_Click);
             // 
             // Map_Cmd_Pnl
             // 
@@ -5089,6 +5118,15 @@
             this.TableOpn_Lbl.Size = new System.Drawing.Size(14, 17);
             this.TableOpn_Lbl.Text = "_";
             // 
+            // TableVal_Lbl
+            // 
+            this.TableVal_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableVal_Lbl.ForeColor = System.Drawing.Color.DimGray;
+            this.TableVal_Lbl.Name = "TableVal_Lbl";
+            this.TableVal_Lbl.Size = new System.Drawing.Size(233, 17);
+            this.TableVal_Lbl.Text = "TABLE (url_date, url_name, url_adress)";
+            this.TableVal_Lbl.Visible = false;
+            // 
             // CountFeed_Lbl
             // 
             this.CountFeed_Lbl.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -6096,15 +6134,6 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // TableVal_Lbl
-            // 
-            this.TableVal_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableVal_Lbl.ForeColor = System.Drawing.Color.DimGray;
-            this.TableVal_Lbl.Name = "TableVal_Lbl";
-            this.TableVal_Lbl.Size = new System.Drawing.Size(233, 17);
-            this.TableVal_Lbl.Text = "TABLE (url_date, url_name, url_adress)";
-            this.TableVal_Lbl.Visible = false;
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6177,6 +6206,7 @@
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             this.Map_Tab.ResumeLayout(false);
+            this.MapMenu_Strip.ResumeLayout(false);
             this.Map_Cmd_Pnl.ResumeLayout(false);
             this.Map_Cmd_Pnl.PerformLayout();
             this.Json_Tab.ResumeLayout(false);
@@ -6677,6 +6707,9 @@
         private System.Windows.Forms.ToolStripMenuItem HiglitAddWord_Btn;
         private System.Windows.Forms.ToolStripMenuItem HiglitInject_Btn;
         private System.Windows.Forms.ToolStripStatusLabel TableVal_Lbl;
+        private System.Windows.Forms.ContextMenuStrip MapMenu_Strip;
+        private System.Windows.Forms.ToolStripMenuItem CopyGeoMap_Mnus;
+        private System.Windows.Forms.ToolStripMenuItem ClearMap_Mnus;
     }
 }
 
