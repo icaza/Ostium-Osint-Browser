@@ -32,6 +32,7 @@ using GMap.NET;
 using System.Globalization;
 using System.Text.Json.Nodes;
 using Microsoft.Web.WebView2.WinForms;
+using System.Drawing.Drawing2D;
 
 namespace Ostium
 {
@@ -5869,6 +5870,11 @@ namespace Ostium
             Beep(1000, 400);
         }
 
+        private void NmodeMap_Tls_Click(object sender, EventArgs e)
+        {
+            GMap_Ctrl.NegativeMode = !GMap_Ctrl.NegativeMode;
+        }
+
         void ClearMap_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.Overlays.Clear();
@@ -6181,8 +6187,7 @@ namespace Ostium
                 var La = "";
                 var Lo = "";
                 for (int i = 0; i < nodeList.Count; i++)
-                {
-                    //string name = string.Format("{0}", nodeList[i].ChildNodes.Item(0).InnerText);
+                {                    
                     string lat = string.Format("{0}", nodeList[i].Attributes.Item(0).InnerText);
                     La = lat;
                     string lon = string.Format("{0}", nodeList[i].Attributes.Item(1).InnerText);
