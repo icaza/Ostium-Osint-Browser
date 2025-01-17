@@ -456,6 +456,8 @@
             this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
@@ -488,8 +490,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
-            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2756,6 +2756,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -3041,6 +3042,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3235,6 +3237,8 @@
             // 
             // MapMenu_Strip
             // 
+            this.MapMenu_Strip.BackColor = System.Drawing.SystemColors.Control;
+            this.MapMenu_Strip.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MapMenu_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyGeoMap_Mnus,
             this.ClearMap_Mnus});
@@ -5853,6 +5857,18 @@
             this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
             this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
             // 
+            // toolStripSeparator29
+            // 
+            this.toolStripSeparator29.Name = "toolStripSeparator29";
+            this.toolStripSeparator29.Size = new System.Drawing.Size(452, 6);
+            // 
+            // EgHelp_Tls
+            // 
+            this.EgHelp_Tls.Name = "EgHelp_Tls";
+            this.EgHelp_Tls.Size = new System.Drawing.Size(455, 22);
+            this.EgHelp_Tls.Text = "eg. data format";
+            this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
+            // 
             // FilesMap_Mnu
             // 
             this.FilesMap_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -6137,18 +6153,6 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // toolStripSeparator29
-            // 
-            this.toolStripSeparator29.Name = "toolStripSeparator29";
-            this.toolStripSeparator29.Size = new System.Drawing.Size(452, 6);
-            // 
-            // EgHelp_Tls
-            // 
-            this.EgHelp_Tls.Name = "EgHelp_Tls";
-            this.EgHelp_Tls.Size = new System.Drawing.Size(455, 22);
-            this.EgHelp_Tls.Text = "eg. data format";
-            this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
             // 
             // Main_Frm
             // 

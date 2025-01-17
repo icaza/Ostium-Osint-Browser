@@ -5523,24 +5523,6 @@ namespace Ostium
                 GMap_Ctrl.IgnoreMarkerOnMouseWheel = true;
                 GMap_Ctrl.Overlays.Add(overlayOne);
                 GMap_Ctrl.ShowCenter = true;
-
-                //LatT = double.Parse(LatTCurrent_Lbl.Text, CultureInfo.InvariantCulture);
-                //LonGt = double.Parse(LonGtCurrent_Lbl.Text, CultureInfo.InvariantCulture);
-                //GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
-                //GMapOverlay markers = new GMapOverlay("markers");
-                //GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
-                //{
-                //    ToolTipText = KeywordMap_Txt.Text
-                //};
-
-                //marker.ToolTip.Fill = Brushes.Black;
-                //marker.ToolTip.Foreground = Brushes.White;
-                //marker.ToolTip.Stroke = Pens.Black;
-                //marker.ToolTip.TextPadding = new Size(10, 10);
-                //if (TxtMarker_Chk.Checked)
-                //    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                //markers.Markers.Add(marker);
-                //GMap_Ctrl.Overlays.Add(markers);
             }
             catch (Exception ex)
             {
@@ -5928,9 +5910,6 @@ namespace Ostium
                     }
                 }
 
-                GMap_Ctrl.Overlays.Clear();
-                overlayOne.Markers.Clear();
-                GoLatLong(LaT, LoN, LaT + " " + LoN);
                 LatT = double.Parse(LaT, CultureInfo.InvariantCulture);
                 LonGt = double.Parse(LoN, CultureInfo.InvariantCulture);
                 GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
