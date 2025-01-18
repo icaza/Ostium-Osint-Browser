@@ -2320,6 +2320,32 @@ namespace Ostium
                 CreateDiagram.Start();
             }
         }
+
+        private void PlantUmlVersion_Mnu_Click(object sender, EventArgs e) // version or license
+        {
+            string Btn = (sender as ToolStripMenuItem).Text;
+
+            if (!File.Exists(DiagramDir + "plantuml.jar"))
+            {
+                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                return;
+            }
+
+            if (!File.Exists(DiagramDir + Btn + "_plantuml.txt"))
+            {
+                MessageBox.Show("Sorry, " + Btn + "_plantuml.txt file is not exist, go to Discord channel Ostium for fix and help.");
+                return;
+            }
+
+            MessageBox.Show(MessageStartDiagram);
+            Timo.Enabled = true;
+
+            FileDiag = Btn + "_plantuml.svg";
+            Commut = 0;
+
+            Thread CreateDiagram = new Thread(() => CreateDiagram_Thrd(Btn + "_plantuml.txt", 0));
+            CreateDiagram.Start();
+        }
         ///
         /// <summary>
         /// Export of the created diagram

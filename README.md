@@ -28,3 +28,5 @@ https://github.com/icaza/Ostium-Osint-Browser/network/dependencies
 Ostium Osint Browser uses PlantUML, which is distributed under the LGPL license.
 
 https://plantuml.com/
+
+https://github.com/plantuml
