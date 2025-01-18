@@ -1975,12 +1975,16 @@ namespace Ostium
         {
             try
             {
+                string limitsize = "";
                 string argumentsIs = "";
 
+                if (Limitsize_Chk.Checked)
+                    limitsize = "-DPLANTUML_LIMIT_SIZE=8192";
+
                 if (value == 0)
-                    argumentsIs = "java -jar plantuml.jar " + DiagramDir + fileselect + " -tsvg -charset UTF-8";
+                    argumentsIs = "java " + limitsize + " -jar plantuml.jar " + DiagramDir + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
                 else if (value == 1)
-                    argumentsIs = "java -jar plantuml.jar " + fileselect + " -tsvg -charset UTF-8";
+                    argumentsIs = "java " + limitsize + " -jar plantuml.jar " + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
 
                 using (Process proc = new Process())
                 {

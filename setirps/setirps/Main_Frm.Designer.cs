@@ -138,6 +138,11 @@
             this.NewProject_Btn = new System.Windows.Forms.Button();
             this.OpnXML_Btn = new System.Windows.Forms.Button();
             this.AppStartup_Btn = new System.Windows.Forms.Button();
+            this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
+            this.CharsetPlant_Txt = new System.Windows.Forms.TextBox();
+            this.Timo = new System.Windows.Forms.Timer(this.components);
+            this.ListSelectTxt_Txt = new System.Windows.Forms.TextBox();
+            this.InsertValue_Btn = new System.Windows.Forms.Button();
             this.Tools_Tls.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.Panel_Site.SuspendLayout();
@@ -151,6 +156,7 @@
             this.Panel_Server_Data.SuspendLayout();
             this.Panel_Network_Data.SuspendLayout();
             this.Panel_Button.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,7 +169,7 @@
             this.ListPic_Lstw.Location = new System.Drawing.Point(0, 34);
             this.ListPic_Lstw.MultiSelect = false;
             this.ListPic_Lstw.Name = "ListPic_Lstw";
-            this.ListPic_Lstw.Size = new System.Drawing.Size(147, 566);
+            this.ListPic_Lstw.Size = new System.Drawing.Size(147, 666);
             this.ListPic_Lstw.TabIndex = 0;
             this.ListPic_Lstw.UseCompatibleStateImageBehavior = false;
             // 
@@ -354,7 +360,7 @@
             this.tableLayoutPanel1.Controls.Add(this.Panel_Server_Data, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.Panel_Network_Data, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(147, 72);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(147, 94);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -362,7 +368,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 506);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 584);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // Panel_Site
@@ -373,7 +379,7 @@
             this.Panel_Site.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Site.Location = new System.Drawing.Point(3, 3);
             this.Panel_Site.Name = "Panel_Site";
-            this.Panel_Site.Size = new System.Drawing.Size(520, 95);
+            this.Panel_Site.Size = new System.Drawing.Size(520, 110);
             this.Panel_Site.TabIndex = 0;
             // 
             // Site_Lst
@@ -385,8 +391,9 @@
             this.Site_Lst.FormattingEnabled = true;
             this.Site_Lst.Location = new System.Drawing.Point(0, 13);
             this.Site_Lst.Name = "Site_Lst";
-            this.Site_Lst.Size = new System.Drawing.Size(520, 82);
+            this.Site_Lst.Size = new System.Drawing.Size(520, 97);
             this.Site_Lst.TabIndex = 1;
+            this.Site_Lst.SelectedIndexChanged += new System.EventHandler(this.Site_Lst_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -405,9 +412,9 @@
             this.Panel_User.Controls.Add(this.User_Lst);
             this.Panel_User.Controls.Add(this.label2);
             this.Panel_User.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_User.Location = new System.Drawing.Point(3, 104);
+            this.Panel_User.Location = new System.Drawing.Point(3, 119);
             this.Panel_User.Name = "Panel_User";
-            this.Panel_User.Size = new System.Drawing.Size(520, 95);
+            this.Panel_User.Size = new System.Drawing.Size(520, 110);
             this.Panel_User.TabIndex = 1;
             // 
             // User_Lst
@@ -419,8 +426,9 @@
             this.User_Lst.FormattingEnabled = true;
             this.User_Lst.Location = new System.Drawing.Point(0, 13);
             this.User_Lst.Name = "User_Lst";
-            this.User_Lst.Size = new System.Drawing.Size(520, 82);
+            this.User_Lst.Size = new System.Drawing.Size(520, 97);
             this.User_Lst.TabIndex = 1;
+            this.User_Lst.SelectedIndexChanged += new System.EventHandler(this.User_Lst_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -439,9 +447,9 @@
             this.Panel_Hardware.Controls.Add(this.Hardware_Lst);
             this.Panel_Hardware.Controls.Add(this.label3);
             this.Panel_Hardware.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Hardware.Location = new System.Drawing.Point(3, 205);
+            this.Panel_Hardware.Location = new System.Drawing.Point(3, 235);
             this.Panel_Hardware.Name = "Panel_Hardware";
-            this.Panel_Hardware.Size = new System.Drawing.Size(520, 95);
+            this.Panel_Hardware.Size = new System.Drawing.Size(520, 110);
             this.Panel_Hardware.TabIndex = 2;
             // 
             // Hardware_Lst
@@ -453,8 +461,9 @@
             this.Hardware_Lst.FormattingEnabled = true;
             this.Hardware_Lst.Location = new System.Drawing.Point(0, 13);
             this.Hardware_Lst.Name = "Hardware_Lst";
-            this.Hardware_Lst.Size = new System.Drawing.Size(520, 82);
+            this.Hardware_Lst.Size = new System.Drawing.Size(520, 97);
             this.Hardware_Lst.TabIndex = 1;
+            this.Hardware_Lst.SelectedIndexChanged += new System.EventHandler(this.Hardware_Lst_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -473,9 +482,9 @@
             this.Panel_Server.Controls.Add(this.Network_Lst);
             this.Panel_Server.Controls.Add(this.label4);
             this.Panel_Server.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Server.Location = new System.Drawing.Point(3, 306);
+            this.Panel_Server.Location = new System.Drawing.Point(3, 351);
             this.Panel_Server.Name = "Panel_Server";
-            this.Panel_Server.Size = new System.Drawing.Size(520, 95);
+            this.Panel_Server.Size = new System.Drawing.Size(520, 110);
             this.Panel_Server.TabIndex = 3;
             // 
             // Network_Lst
@@ -487,8 +496,9 @@
             this.Network_Lst.FormattingEnabled = true;
             this.Network_Lst.Location = new System.Drawing.Point(0, 13);
             this.Network_Lst.Name = "Network_Lst";
-            this.Network_Lst.Size = new System.Drawing.Size(520, 82);
+            this.Network_Lst.Size = new System.Drawing.Size(520, 97);
             this.Network_Lst.TabIndex = 1;
+            this.Network_Lst.SelectedIndexChanged += new System.EventHandler(this.Network_Lst_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -507,9 +517,9 @@
             this.Panel_Network.Controls.Add(this.Server_Lst);
             this.Panel_Network.Controls.Add(this.label5);
             this.Panel_Network.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Network.Location = new System.Drawing.Point(3, 407);
+            this.Panel_Network.Location = new System.Drawing.Point(3, 467);
             this.Panel_Network.Name = "Panel_Network";
-            this.Panel_Network.Size = new System.Drawing.Size(520, 96);
+            this.Panel_Network.Size = new System.Drawing.Size(520, 114);
             this.Panel_Network.TabIndex = 4;
             // 
             // Server_Lst
@@ -521,8 +531,9 @@
             this.Server_Lst.FormattingEnabled = true;
             this.Server_Lst.Location = new System.Drawing.Point(0, 13);
             this.Server_Lst.Name = "Server_Lst";
-            this.Server_Lst.Size = new System.Drawing.Size(520, 83);
+            this.Server_Lst.Size = new System.Drawing.Size(520, 101);
             this.Server_Lst.TabIndex = 1;
+            this.Server_Lst.SelectedIndexChanged += new System.EventHandler(this.Server_Lst_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -551,7 +562,7 @@
             this.Panel_Site_Data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Site_Data.Location = new System.Drawing.Point(529, 3);
             this.Panel_Site_Data.Name = "Panel_Site_Data";
-            this.Panel_Site_Data.Size = new System.Drawing.Size(345, 95);
+            this.Panel_Site_Data.Size = new System.Drawing.Size(345, 110);
             this.Panel_Site_Data.TabIndex = 5;
             // 
             // Add_Site_Val_Btn
@@ -675,9 +686,9 @@
             this.Panel_User_Data.Controls.Add(this.label10);
             this.Panel_User_Data.Controls.Add(this.User_Sprite_Select);
             this.Panel_User_Data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_User_Data.Location = new System.Drawing.Point(529, 104);
+            this.Panel_User_Data.Location = new System.Drawing.Point(529, 119);
             this.Panel_User_Data.Name = "Panel_User_Data";
-            this.Panel_User_Data.Size = new System.Drawing.Size(345, 95);
+            this.Panel_User_Data.Size = new System.Drawing.Size(345, 110);
             this.Panel_User_Data.TabIndex = 6;
             // 
             // Add_User_Val_Btn
@@ -791,9 +802,9 @@
             this.Panel_Hardware_Data.Controls.Add(this.label13);
             this.Panel_Hardware_Data.Controls.Add(this.Hardware_Sprite_Select);
             this.Panel_Hardware_Data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Hardware_Data.Location = new System.Drawing.Point(529, 205);
+            this.Panel_Hardware_Data.Location = new System.Drawing.Point(529, 235);
             this.Panel_Hardware_Data.Name = "Panel_Hardware_Data";
-            this.Panel_Hardware_Data.Size = new System.Drawing.Size(345, 95);
+            this.Panel_Hardware_Data.Size = new System.Drawing.Size(345, 110);
             this.Panel_Hardware_Data.TabIndex = 7;
             // 
             // Add_Hardware_Val_Btn
@@ -926,9 +937,9 @@
             this.Panel_Server_Data.Controls.Add(this.label17);
             this.Panel_Server_Data.Controls.Add(this.Network_Sprite_Select);
             this.Panel_Server_Data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Server_Data.Location = new System.Drawing.Point(529, 306);
+            this.Panel_Server_Data.Location = new System.Drawing.Point(529, 351);
             this.Panel_Server_Data.Name = "Panel_Server_Data";
-            this.Panel_Server_Data.Size = new System.Drawing.Size(345, 95);
+            this.Panel_Server_Data.Size = new System.Drawing.Size(345, 110);
             this.Panel_Server_Data.TabIndex = 8;
             // 
             // Add_Network_Val_Btn
@@ -1041,9 +1052,9 @@
             this.Panel_Network_Data.Controls.Add(this.Server_Sprite_Var);
             this.Panel_Network_Data.Controls.Add(this.Server_Sprite_Select);
             this.Panel_Network_Data.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Network_Data.Location = new System.Drawing.Point(529, 407);
+            this.Panel_Network_Data.Location = new System.Drawing.Point(529, 467);
             this.Panel_Network_Data.Name = "Panel_Network_Data";
-            this.Panel_Network_Data.Size = new System.Drawing.Size(345, 96);
+            this.Panel_Network_Data.Size = new System.Drawing.Size(345, 114);
             this.Panel_Network_Data.TabIndex = 9;
             // 
             // Add_Server_Val_Btn
@@ -1329,10 +1340,10 @@
             this.Out_Txt.Dock = System.Windows.Forms.DockStyle.Right;
             this.Out_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Out_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Out_Txt.Location = new System.Drawing.Point(1014, 72);
+            this.Out_Txt.Location = new System.Drawing.Point(1014, 94);
             this.Out_Txt.Multiline = true;
             this.Out_Txt.Name = "Out_Txt";
-            this.Out_Txt.Size = new System.Drawing.Size(10, 506);
+            this.Out_Txt.Size = new System.Drawing.Size(10, 584);
             this.Out_Txt.TabIndex = 12;
             this.Out_Txt.Text = " ";
             this.Out_Txt.Visible = false;
@@ -1394,10 +1405,14 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.panel2.Controls.Add(this.InsertValue_Btn);
+            this.panel2.Controls.Add(this.ListSelectTxt_Txt);
+            this.panel2.Controls.Add(this.CharsetPlant_Txt);
+            this.panel2.Controls.Add(this.Limitsize_Chk);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(147, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(877, 8);
+            this.panel2.Size = new System.Drawing.Size(877, 30);
             this.panel2.TabIndex = 19;
             // 
             // OpnEditor_Btn
@@ -1474,7 +1489,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ProjectOpn_Lbl,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(147, 578);
+            this.statusStrip1.Location = new System.Drawing.Point(147, 678);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(877, 22);
             this.statusStrip1.SizingGrip = false;
@@ -1549,12 +1564,68 @@
             this.AppStartup_Btn.UseVisualStyleBackColor = false;
             this.AppStartup_Btn.Click += new System.EventHandler(this.AppStartup_Btn_Click);
             // 
+            // Limitsize_Chk
+            // 
+            this.Limitsize_Chk.AutoSize = true;
+            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Limitsize_Chk.ForeColor = System.Drawing.Color.Olive;
+            this.Limitsize_Chk.Location = new System.Drawing.Point(547, 8);
+            this.Limitsize_Chk.Name = "Limitsize_Chk";
+            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 17);
+            this.Limitsize_Chk.TabIndex = 0;
+            this.Limitsize_Chk.Text = "LIMIT_SIZE=8192 default is 4096\r\n";
+            this.Limitsize_Chk.UseVisualStyleBackColor = true;
+            // 
+            // CharsetPlant_Txt
+            // 
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.Gray;
+            this.CharsetPlant_Txt.Location = new System.Drawing.Point(772, 8);
+            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
+            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 14);
+            this.CharsetPlant_Txt.TabIndex = 1;
+            this.CharsetPlant_Txt.Text = "-charset UTF-8";
+            // 
+            // Timo
+            // 
+            this.Timo.Interval = 5000;
+            this.Timo.Tick += new System.EventHandler(this.Timo_Tick);
+            // 
+            // ListSelectTxt_Txt
+            // 
+            this.ListSelectTxt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ListSelectTxt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListSelectTxt_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListSelectTxt_Txt.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.ListSelectTxt_Txt.Location = new System.Drawing.Point(6, 8);
+            this.ListSelectTxt_Txt.Name = "ListSelectTxt_Txt";
+            this.ListSelectTxt_Txt.Size = new System.Drawing.Size(471, 14);
+            this.ListSelectTxt_Txt.TabIndex = 2;
+            // 
+            // InsertValue_Btn
+            // 
+            this.InsertValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.InsertValue_Btn.FlatAppearance.BorderSize = 0;
+            this.InsertValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.InsertValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.InsertValue_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InsertValue_Btn.ForeColor = System.Drawing.Color.White;
+            this.InsertValue_Btn.Location = new System.Drawing.Point(485, 4);
+            this.InsertValue_Btn.Name = "InsertValue_Btn";
+            this.InsertValue_Btn.Size = new System.Drawing.Size(55, 22);
+            this.InsertValue_Btn.TabIndex = 10;
+            this.InsertValue_Btn.Text = "Insert";
+            this.InsertValue_Btn.UseVisualStyleBackColor = true;
+            this.InsertValue_Btn.Click += new System.EventHandler(this.InsertValue_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1024, 600);
+            this.ClientSize = new System.Drawing.Size(1024, 700);
             this.Controls.Add(this.AppStartup_Btn);
             this.Controls.Add(this.OpnXML_Btn);
             this.Controls.Add(this.NewProject_Btn);
@@ -1613,6 +1684,8 @@
             this.Panel_Network_Data.PerformLayout();
             this.Panel_Button.ResumeLayout(false);
             this.Panel_Button.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1730,6 +1803,11 @@
         private System.Windows.Forms.CheckBox CursorPosition_Chk;
         private System.Windows.Forms.Button AppStartup_Btn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.CheckBox Limitsize_Chk;
+        private System.Windows.Forms.TextBox CharsetPlant_Txt;
+        private System.Windows.Forms.Timer Timo;
+        private System.Windows.Forms.TextBox ListSelectTxt_Txt;
+        private System.Windows.Forms.Button InsertValue_Btn;
     }
 }
 
