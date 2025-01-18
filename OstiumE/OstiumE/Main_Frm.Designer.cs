@@ -60,9 +60,6 @@
             this.LUA_Lang = new System.Windows.Forms.ToolStripMenuItem();
             this.Window_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.TopNo_Tools = new System.Windows.Forms.ToolStripMenuItem();
-            this.Config_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.SetColors_Tools = new System.Windows.Forms.ToolStripMenuItem();
-            this.Reload_Tools = new System.Windows.Forms.ToolStripMenuItem();
             this.About_Tools = new System.Windows.Forms.ToolStripButton();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.Lang_Sts = new System.Windows.Forms.ToolStripStatusLabel();
@@ -93,7 +90,6 @@
             this.Edit_Tls,
             this.Lang_Tls,
             this.Window_Tls,
-            this.Config_Tls,
             this.About_Tools});
             this.Tools_Tls.Location = new System.Drawing.Point(0, 0);
             this.Tools_Tls.Name = "Tools_Tls";
@@ -341,37 +337,9 @@
             // TopNo_Tools
             // 
             this.TopNo_Tools.Name = "TopNo_Tools";
-            this.TopNo_Tools.Size = new System.Drawing.Size(98, 22);
+            this.TopNo_Tools.Size = new System.Drawing.Size(180, 22);
             this.TopNo_Tools.Text = "Top";
             this.TopNo_Tools.Click += new System.EventHandler(this.TopNo_Tools_Click);
-            // 
-            // Config_Tls
-            // 
-            this.Config_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Config_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SetColors_Tools,
-            this.Reload_Tools});
-            this.Config_Tls.ForeColor = System.Drawing.Color.White;
-            this.Config_Tls.Image = ((System.Drawing.Image)(resources.GetObject("Config_Tls.Image")));
-            this.Config_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Config_Tls.Name = "Config_Tls";
-            this.Config_Tls.Size = new System.Drawing.Size(61, 22);
-            this.Config_Tls.Text = "Config";
-            this.Config_Tls.Visible = false;
-            // 
-            // SetColors_Tools
-            // 
-            this.SetColors_Tools.Name = "SetColors_Tools";
-            this.SetColors_Tools.Size = new System.Drawing.Size(180, 22);
-            this.SetColors_Tools.Text = "Setcolors";
-            this.SetColors_Tools.Click += new System.EventHandler(this.SetColors_Tools_Click);
-            // 
-            // Reload_Tools
-            // 
-            this.Reload_Tools.Name = "Reload_Tools";
-            this.Reload_Tools.Size = new System.Drawing.Size(180, 22);
-            this.Reload_Tools.Text = "Reload";
-            this.Reload_Tools.Click += new System.EventHandler(this.Reload_Tools_Click);
             // 
             // About_Tools
             // 
@@ -438,7 +406,6 @@
             this.Output_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Output_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.Output_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Output_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.Output_Txt.IsReplaceMode = false;
             this.Output_Txt.Location = new System.Drawing.Point(0, 25);
             this.Output_Txt.Name = "Output_Txt";
@@ -570,9 +537,6 @@
         private System.Windows.Forms.ToolStripDropDownButton Window_Tls;
         private System.Windows.Forms.ToolStripMenuItem TopNo_Tools;
         private System.Windows.Forms.ListBox SetColor_Lbl;
-        private System.Windows.Forms.ToolStripDropDownButton Config_Tls;
-        private System.Windows.Forms.ToolStripMenuItem SetColors_Tools;
-        private System.Windows.Forms.ToolStripMenuItem Reload_Tools;
         private System.Windows.Forms.ToolStripButton About_Tools;
         private System.Windows.Forms.ContextMenuStrip Menu_Mnu;
         private System.Windows.Forms.ToolStripMenuItem Paste_Mnu;

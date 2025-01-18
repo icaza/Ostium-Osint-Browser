@@ -56,16 +56,9 @@ namespace OstiumE
                 Version ver = thisAssemName.Version;
                 Text = string.Format("{0} {1}", thisAssemName.Name, ver);
 
-                //if (File.Exists(SetcolorFile))
-                //{
-                //    SetColor_Lbl.Items.AddRange(File.ReadAllLines(SetcolorFile));
-                //}
-
                 string[] args = Environment.GetCommandLineArgs();
                 if (args.Length < 2)
-                {
                     return;
-                }
 
                 string inputArgument = "/input=";
                 string inputName = "";
@@ -141,11 +134,6 @@ namespace OstiumE
 
             switch (lang)
             {
-                //case "Custom":
-                //    Output_Txt.Language = Language.Custom;
-                //    Output_Txt.CommentPrefix = "//";
-                //    Output_Txt.OnTextChanged();
-                //    break;
                 case "CSharp": Output_Txt.Language = Language.CSharp; break;
                 case "VB": Output_Txt.Language = Language.VB; break;
                 case "HTML": Output_Txt.Language = Language.HTML; break;
@@ -338,45 +326,6 @@ namespace OstiumE
 
         #endregion
 
-        #region Config_
-
-        void SetColors_Tools_Click(object sender, EventArgs e)
-        {
-            //if (File.Exists(SetcolorFile) == true)
-            //{
-            //    StreamReader sr = new StreamReader(SetcolorFile);
-            //    Output_Txt.Text = sr.ReadToEnd();
-            //    sr.Close();
-
-            //    FileOpen = SetcolorFile;
-            //    FileDir_Sts.Text = SetcolorFile;
-            //    Output_Txt.Selection.Start = Place.Empty;
-
-            //    FirstOpen = "off";
-            //}
-        }
-
-        void Reload_Tools_Click(object sender, EventArgs e)
-        {
-            //SetColor_Lbl.Items.Clear();
-
-            //if (File.Exists(SetcolorFile))
-            //{
-            //    SetColor_Lbl.Items.AddRange(File.ReadAllLines(SetcolorFile));
-
-            //    Output_Txt.ClearStylesBuffer();
-            //    Output_Txt.Range.ClearStyle(StyleIndex.All);
-
-            //    Output_Txt.Language = Language.Custom;
-            //    Output_Txt.CommentPrefix = "//";
-            //    Output_Txt.OnTextChanged();
-
-            //    Output_Txt.OnSyntaxHighlight(new TextChangedEventArgs(Output_Txt.Range));
-            //}
-        }
-
-        #endregion
-
         #region ContextMenu_
 
         void Cut_Tools_Click(object sender, EventArgs e)
@@ -387,9 +336,7 @@ namespace OstiumE
         void Copy_Mnu_Click(object sender, EventArgs e)
         {
             if (Output_Txt.SelectedText != "")
-            {
                 Clipboard.SetDataObject(Output_Txt.SelectedText);
-            }
         }
 
         void Paste_Mnu_Click(object sender, EventArgs e)
@@ -411,16 +358,12 @@ namespace OstiumE
 
         void TopNo_Tools_Click(object sender, EventArgs e)
         {
+            TopMost = !TopMost;
+
             if (TopNo_Tools.Text == "Top")
-            {
                 TopNo_Tools.Text = "No Top";
-                TopMost = true;
-            }
             else
-            {
                 TopNo_Tools.Text = "Top";
-                TopMost = false;
-            }
         }
 
         void About_Tools_Click(object sender, EventArgs e)
@@ -463,33 +406,5 @@ namespace OstiumE
                     break;
             }
         }
-
-        //void Output_Txt_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    Output_Txt.OnSyntaxHighlight(new TextChangedEventArgs(Output_Txt.Range));
-
-        //    if (lang.StartsWith("Custom"))
-        //    {
-        //        e.ChangedRange.SetStyle(BlueStyle, SetColor_Lbl.Items[0].ToString());
-        //        e.ChangedRange.SetStyle(BoldStyle, SetColor_Lbl.Items[1].ToString());
-        //        e.ChangedRange.SetStyle(RedStyle, SetColor_Lbl.Items[2].ToString());
-        //        e.ChangedRange.SetStyle(MagentaStyle, SetColor_Lbl.Items[3].ToString());
-        //        e.ChangedRange.SetStyle(GreenStyle, SetColor_Lbl.Items[4].ToString());
-        //        e.ChangedRange.SetStyle(BrownStyle, SetColor_Lbl.Items[5].ToString());
-        //        e.ChangedRange.SetStyle(MaroonStyle, SetColor_Lbl.Items[6].ToString());
-        //        e.ChangedRange.SetStyle(RedStyle, SetColor_Lbl.Items[7].ToString());
-        //        e.ChangedRange.SetStyle(BurlyWoodStyle, SetColor_Lbl.Items[8].ToString());
-        //        e.ChangedRange.SetStyle(CoralStyle, SetColor_Lbl.Items[9].ToString());
-        //        e.ChangedRange.SetStyle(DarkRedStyle, SetColor_Lbl.Items[10].ToString());
-        //        e.ChangedRange.SetStyle(YellowStyle, SetColor_Lbl.Items[11].ToString());
-        //        e.ChangedRange.SetStyle(DodgerBlueStyle, SetColor_Lbl.Items[12].ToString());
-        //        e.ChangedRange.SetStyle(LimeStyle, SetColor_Lbl.Items[13].ToString());
-        //        e.ChangedRange.SetStyle(MediumTurquoiseStyle, SetColor_Lbl.Items[14].ToString());
-        //        e.ChangedRange.SetStyle(OrangeStyle, SetColor_Lbl.Items[15].ToString());
-        //        e.ChangedRange.SetStyle(FuchsiaStyle, SetColor_Lbl.Items[16].ToString());
-        //    }
-        //    if (FirstOpen == "off")
-        //        FileDir_Sts.ForeColor = Color.Red;
-        //}
     }
 }
