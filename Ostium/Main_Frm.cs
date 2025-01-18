@@ -173,7 +173,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "18";
+        readonly string versionNow = "19";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -1975,12 +1975,16 @@ namespace Ostium
         {
             try
             {
+                string limitsize = "";
                 string argumentsIs = "";
 
+                if (Limitsize_Chk.Checked)
+                    limitsize = "-DPLANTUML_LIMIT_SIZE=8192";
+
                 if (value == 0)
-                    argumentsIs = "java -jar plantuml.jar " + DiagramDir + fileselect + " -tsvg -charset UTF-8";
+                    argumentsIs = "java " + limitsize + " -jar plantuml.jar " + DiagramDir + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
                 else if (value == 1)
-                    argumentsIs = "java -jar plantuml.jar " + fileselect + " -tsvg -charset UTF-8";
+                    argumentsIs = "java " + limitsize + " -jar plantuml.jar " + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
 
                 using (Process proc = new Process())
                 {
@@ -2320,6 +2324,32 @@ namespace Ostium
                 CreateDiagram.Start();
             }
         }
+
+        private void PlantUmlVersion_Mnu_Click(object sender, EventArgs e) // version or license
+        {
+            string Btn = (sender as ToolStripMenuItem).Text;
+
+            if (!File.Exists(DiagramDir + "plantuml.jar"))
+            {
+                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                return;
+            }
+
+            if (!File.Exists(DiagramDir + Btn + "_plantuml.txt"))
+            {
+                MessageBox.Show("Sorry, " + Btn + "_plantuml.txt file is not exist, go to Discord channel Ostium for fix and help.");
+                return;
+            }
+
+            MessageBox.Show(MessageStartDiagram);
+            Timo.Enabled = true;
+
+            FileDiag = Btn + "_plantuml.svg";
+            Commut = 0;
+
+            Thread CreateDiagram = new Thread(() => CreateDiagram_Thrd(Btn + "_plantuml.txt", 0));
+            CreateDiagram.Start();
+        }
         ///
         /// <summary>
         /// Export of the created diagram
@@ -2402,6 +2432,7 @@ namespace Ostium
                         DBSelectOpen_Lbl.Visible = false;
                         TableCount_Lbl.Visible = false;
                         TableOpen_Lbl.Visible = false;
+                        TableVal_Lbl.Visible = false;
                         RecordsCount_Lbl.Visible = false;
                         LatTCurrent_Lbl.Visible = false;
                         Separator.Visible = false;
@@ -2436,6 +2467,7 @@ namespace Ostium
                         DBSelectOpen_Lbl.Visible = true;
                         TableCount_Lbl.Visible = true;
                         TableOpen_Lbl.Visible = true;
+                        TableVal_Lbl.Visible = true;
                         RecordsCount_Lbl.Visible = true;
                         LatTCurrent_Lbl.Visible = false;
                         Separator.Visible = false;
@@ -2465,6 +2497,7 @@ namespace Ostium
                         DBSelectOpen_Lbl.Visible = false;
                         TableCount_Lbl.Visible = false;
                         TableOpen_Lbl.Visible = false;
+                        TableVal_Lbl.Visible = false;
                         RecordsCount_Lbl.Visible = false;
                         LatTCurrent_Lbl.Visible = false;
                         Separator.Visible = false;
@@ -2488,6 +2521,7 @@ namespace Ostium
                     DBSelectOpen_Lbl.Visible = false;
                     TableCount_Lbl.Visible = false;
                     TableOpen_Lbl.Visible = false;
+                    TableVal_Lbl.Visible = false;
                     RecordsCount_Lbl.Visible = false;
                     LatTCurrent_Lbl.Visible = true;
                     Separator.Visible = true;
@@ -2518,6 +2552,7 @@ namespace Ostium
                     DBSelectOpen_Lbl.Visible = false;
                     TableCount_Lbl.Visible = false;
                     TableOpen_Lbl.Visible = false;
+                    TableVal_Lbl.Visible = false;
                     RecordsCount_Lbl.Visible = false;
                     LatTCurrent_Lbl.Visible = false;
                     Separator.Visible = false;
@@ -2540,6 +2575,7 @@ namespace Ostium
                     DBSelectOpen_Lbl.Visible = false;
                     TableCount_Lbl.Visible = false;
                     TableOpen_Lbl.Visible = false;
+                    TableVal_Lbl.Visible = false;
                     RecordsCount_Lbl.Visible = false;
                     LatTCurrent_Lbl.Visible = false;
                     Separator.Visible = false;
@@ -2579,6 +2615,7 @@ namespace Ostium
             DBSelectOpen_Lbl.Visible = false;
             TableCount_Lbl.Visible = false;
             TableOpen_Lbl.Visible = false;
+            TableVal_Lbl.Visible = false;
             RecordsCount_Lbl.Visible = false;
             LatTCurrent_Lbl.Visible = false;
             Separator.Visible = false;
@@ -5516,24 +5553,6 @@ namespace Ostium
                 GMap_Ctrl.IgnoreMarkerOnMouseWheel = true;
                 GMap_Ctrl.Overlays.Add(overlayOne);
                 GMap_Ctrl.ShowCenter = true;
-
-                //LatT = double.Parse(LatTCurrent_Lbl.Text, CultureInfo.InvariantCulture);
-                //LonGt = double.Parse(LonGtCurrent_Lbl.Text, CultureInfo.InvariantCulture);
-                //GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
-                //GMapOverlay markers = new GMapOverlay("markers");
-                //GMapMarker marker = new GMarkerGoogle(new PointLatLng(LatT, LonGt), Mkmarker)
-                //{
-                //    ToolTipText = KeywordMap_Txt.Text
-                //};
-
-                //marker.ToolTip.Fill = Brushes.Black;
-                //marker.ToolTip.Foreground = Brushes.White;
-                //marker.ToolTip.Stroke = Pens.Black;
-                //marker.ToolTip.TextPadding = new Size(10, 10);
-                //if (TxtMarker_Chk.Checked)
-                //    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                //markers.Markers.Add(marker);
-                //GMap_Ctrl.Overlays.Add(markers);
             }
             catch (Exception ex)
             {
@@ -5764,6 +5783,7 @@ namespace Ostium
         void OpnListLocation_Tls_Click(object sender, EventArgs e)
         {
             Map_Cmd_Pnl.Visible = !Map_Cmd_Pnl.Visible;
+            loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
         }
 
         void CrossCenter_Tls_Click(object sender, EventArgs e)
@@ -5879,6 +5899,11 @@ namespace Ostium
             Beep(1000, 400);
         }
 
+        void NmodeMap_Tls_Click(object sender, EventArgs e)
+        {
+            GMap_Ctrl.NegativeMode = !GMap_Ctrl.NegativeMode;
+        }
+
         void ClearMap_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.Overlays.Clear();
@@ -5920,9 +5945,6 @@ namespace Ostium
                     }
                 }
 
-                GMap_Ctrl.Overlays.Clear();
-                overlayOne.Markers.Clear();
-                GoLatLong(LaT, LoN, LaT + " " + LoN);
                 LatT = double.Parse(LaT, CultureInfo.InvariantCulture);
                 LonGt = double.Parse(LoN, CultureInfo.InvariantCulture);
                 GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
@@ -6170,8 +6192,17 @@ namespace Ostium
                 overlayOne.Markers.Clear();
                 Mkmarker = GMarkerGoogleType.blue;
                 MapXmlOpn = MapDir + PointLoc_Lst.SelectedItem.ToString();
-                ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
-                OpnLocationPoints();
+
+                if (!File.Exists(MapXmlOpn))
+                {
+                    MessageBox.Show("The project no longer exists! It will be removed from the list.", "Error file not exist!");
+                    loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+                }
+                else
+                {
+                    ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
+                    OpnLocationPoints();
+                }
             }
         }
 
@@ -6185,8 +6216,7 @@ namespace Ostium
                 var La = "";
                 var Lo = "";
                 for (int i = 0; i < nodeList.Count; i++)
-                {
-                    //string name = string.Format("{0}", nodeList[i].ChildNodes.Item(0).InnerText);
+                {                    
                     string lat = string.Format("{0}", nodeList[i].Attributes.Item(0).InnerText);
                     La = lat;
                     string lon = string.Format("{0}", nodeList[i].Attributes.Item(1).InnerText);
@@ -6282,6 +6312,11 @@ namespace Ostium
             }
         }
 
+        void EgHelp_Tls_Click(object sender, EventArgs e)
+        {
+            Open_Doc_Frm(FileDir + "map_points.txt");
+        }
+
         #endregion
 
         void OpnURL_TlsTools_Click(object sender, EventArgs e)
@@ -6346,9 +6381,9 @@ namespace Ostium
         {
             string Jselect;
             if (OutJsonA_Chk.Checked)
-                Jselect = JsonB;
-            else
                 Jselect = JsonA;
+            else
+                Jselect = JsonB;
 
             SavefileShowDiag(Jselect, "files (*.*)|*.*");
         }
@@ -6570,6 +6605,7 @@ namespace Ostium
                     Jselect = JsonA;
                 else
                     Jselect = JsonB;
+
                 using (StreamReader sr = new StreamReader(Jselect))
                 {
                     OutJs = sr.ReadToEnd();
@@ -6697,6 +6733,7 @@ namespace Ostium
                     Jselect = JsonA;
                 else
                     Jselect = JsonB;
+
                 using (StreamReader sr = new StreamReader(Jselect))
                 {
                     OutJs = sr.ReadToEnd();

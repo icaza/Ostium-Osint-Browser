@@ -245,6 +245,9 @@
             this.Map_Tab = new System.Windows.Forms.TabPage();
             this.TempPointLoc_Lst = new System.Windows.Forms.ListBox();
             this.GMap_Ctrl = new GMap.NET.WindowsForms.GMapControl();
+            this.MapMenu_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CopyGeoMap_Mnus = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearMap_Mnus = new System.Windows.Forms.ToolStripMenuItem();
             this.Map_Cmd_Pnl = new System.Windows.Forms.Panel();
             this.PointLoc_Lst = new System.Windows.Forms.ListBox();
             this.TxtMarker_Chk = new System.Windows.Forms.CheckBox();
@@ -378,8 +381,11 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableVal_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.CountFeed_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.JavaDisable_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.JavaDisableFeed_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -391,8 +397,6 @@
             this.LatTCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
             this.LonGtCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
-            this.OpnURL_TlsTools = new System.Windows.Forms.ToolStripMenuItem();
             this.FileOpnJson_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
             this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
@@ -446,12 +450,17 @@
             this.Debug_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.VerifProcessRun_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.KillProcess_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.Timo = new System.Windows.Forms.Timer(this.components);
             this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
             this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
@@ -470,6 +479,7 @@
             this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.NmodeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
@@ -484,6 +494,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
+            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -526,6 +538,7 @@
             this.panel7.SuspendLayout();
             this.panel19.SuspendLayout();
             this.Map_Tab.SuspendLayout();
+            this.MapMenu_Strip.SuspendLayout();
             this.Map_Cmd_Pnl.SuspendLayout();
             this.Json_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).BeginInit();
@@ -1891,7 +1904,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 25);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 579);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -1912,7 +1925,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 560);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 529);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -1925,8 +1938,9 @@
             this.Title_Lst.FormattingEnabled = true;
             this.Title_Lst.ItemHeight = 16;
             this.Title_Lst.Location = new System.Drawing.Point(0, 0);
+            this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
             this.Title_Lst.Name = "Title_Lst";
-            this.Title_Lst.Size = new System.Drawing.Size(100, 227);
+            this.Title_Lst.Size = new System.Drawing.Size(150, 227);
             this.Title_Lst.TabIndex = 0;
             this.Title_Lst.SelectedIndexChanged += new System.EventHandler(this.Title_Lst_SelectedIndexChanged);
             // 
@@ -1938,9 +1952,10 @@
             this.CountBlockSite_Lbl.ForeColor = System.Drawing.Color.OrangeRed;
             this.CountBlockSite_Lbl.FormattingEnabled = true;
             this.CountBlockSite_Lbl.ItemHeight = 16;
-            this.CountBlockSite_Lbl.Location = new System.Drawing.Point(100, 0);
+            this.CountBlockSite_Lbl.Location = new System.Drawing.Point(150, 0);
+            this.CountBlockSite_Lbl.MaximumSize = new System.Drawing.Size(0, 227);
             this.CountBlockSite_Lbl.Name = "CountBlockSite_Lbl";
-            this.CountBlockSite_Lbl.Size = new System.Drawing.Size(50, 227);
+            this.CountBlockSite_Lbl.Size = new System.Drawing.Size(0, 227);
             this.CountBlockSite_Lbl.TabIndex = 6;
             this.CountBlockSite_Lbl.Visible = false;
             this.CountBlockSite_Lbl.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lbl_SelectedIndexChanged);
@@ -1960,7 +1975,6 @@
             this.WBrowsefeed.AllowExternalDrop = true;
             this.WBrowsefeed.CreationProperties = null;
             this.WBrowsefeed.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
             this.WBrowsefeed.Size = new System.Drawing.Size(1326, 560);
@@ -2164,7 +2178,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 25);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 579);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2176,7 +2190,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 509);
+            this.panel1.Size = new System.Drawing.Size(1320, 478);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2189,7 +2203,7 @@
             this.DataValue_Lst.ItemHeight = 16;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 509);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 478);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2203,7 +2217,7 @@
             this.DataTable_Lst.ItemHeight = 16;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 509);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 478);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2218,7 +2232,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 509);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 478);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -2259,7 +2273,7 @@
             this.ExecuteCMDsql_Txt.Name = "ExecuteCMDsql_Txt";
             this.ExecuteCMDsql_Txt.Size = new System.Drawing.Size(622, 23);
             this.ExecuteCMDsql_Txt.TabIndex = 0;
-            this.ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE";
+            this.ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE WHERE url_name LIKE \'%word%\';";
             // 
             // label11
             // 
@@ -2741,7 +2755,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
@@ -3026,7 +3040,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
@@ -3183,7 +3197,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 25);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 579);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3201,6 +3215,7 @@
             // 
             this.GMap_Ctrl.Bearing = 0F;
             this.GMap_Ctrl.CanDragMap = true;
+            this.GMap_Ctrl.ContextMenuStrip = this.MapMenu_Strip;
             this.GMap_Ctrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GMap_Ctrl.EmptyTileColor = System.Drawing.Color.Navy;
             this.GMap_Ctrl.GrayScaleMode = false;
@@ -3220,9 +3235,35 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 579);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
+            // 
+            // MapMenu_Strip
+            // 
+            this.MapMenu_Strip.BackColor = System.Drawing.SystemColors.Control;
+            this.MapMenu_Strip.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapMenu_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyGeoMap_Mnus,
+            this.ClearMap_Mnus});
+            this.MapMenu_Strip.Name = "MapMenu_Strip";
+            this.MapMenu_Strip.Size = new System.Drawing.Size(185, 48);
+            // 
+            // CopyGeoMap_Mnus
+            // 
+            this.CopyGeoMap_Mnus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyGeoMap_Mnus.Name = "CopyGeoMap_Mnus";
+            this.CopyGeoMap_Mnus.Size = new System.Drawing.Size(184, 22);
+            this.CopyGeoMap_Mnus.Text = "Copy Geolocation";
+            this.CopyGeoMap_Mnus.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
+            // 
+            // ClearMap_Mnus
+            // 
+            this.ClearMap_Mnus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearMap_Mnus.Name = "ClearMap_Mnus";
+            this.ClearMap_Mnus.Size = new System.Drawing.Size(184, 22);
+            this.ClearMap_Mnus.Text = "Clear Map";
+            this.ClearMap_Mnus.Click += new System.EventHandler(this.ClearMap_Tls_Click);
             // 
             // Map_Cmd_Pnl
             // 
@@ -3238,7 +3279,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 579);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3253,7 +3294,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 143);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 437);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 406);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3285,7 +3326,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 580);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 549);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3373,7 +3414,7 @@
             this.Json_Tab.ForeColor = System.Drawing.Color.White;
             this.Json_Tab.Location = new System.Drawing.Point(4, 25);
             this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 579);
             this.Json_Tab.TabIndex = 10;
             this.Json_Tab.Text = "JSON";
             // 
@@ -3386,7 +3427,7 @@
             this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbOutB.Location = new System.Drawing.Point(0, 320);
             this.WbOutB.Name = "WbOutB";
-            this.WbOutB.Size = new System.Drawing.Size(1126, 268);
+            this.WbOutB.Size = new System.Drawing.Size(1126, 237);
             this.WbOutB.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
@@ -3578,7 +3619,7 @@
             this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
             this.JsonList_Pnl.Name = "JsonList_Pnl";
-            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 482);
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 451);
             this.JsonList_Pnl.TabIndex = 8;
             this.JsonList_Pnl.Visible = false;
             // 
@@ -3593,7 +3634,7 @@
             this.TableJson_Lst.ItemHeight = 14;
             this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
             this.TableJson_Lst.Name = "TableJson_Lst";
-            this.TableJson_Lst.Size = new System.Drawing.Size(200, 450);
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 419);
             this.TableJson_Lst.TabIndex = 25;
             this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
             // 
@@ -3905,7 +3946,7 @@
             this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 588);
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 557);
             this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
             this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
             this.JsonUsrAgt_Txt.TabIndex = 0;
@@ -4509,6 +4550,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.Limitsize_Chk);
             this.groupBox6.Controls.Add(this.ArchiveAdd_Lst);
             this.groupBox6.Controls.Add(this.SaveCookies_Chk);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -4536,7 +4578,7 @@
             this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SaveCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.SaveCookies_Chk.Location = new System.Drawing.Point(25, 30);
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(13, 30);
             this.SaveCookies_Chk.Name = "SaveCookies_Chk";
             this.SaveCookies_Chk.Size = new System.Drawing.Size(192, 36);
             this.SaveCookies_Chk.TabIndex = 0;
@@ -5028,8 +5070,10 @@
             this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Status_Strip.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TtsButton_Sts,
             this.URLtxt_txt,
             this.TableOpn_Lbl,
+            this.TableVal_Lbl,
             this.CountFeed_Lbl,
             this.JavaDisable_Lbl,
             this.JavaDisableFeed_Lbl,
@@ -5041,7 +5085,6 @@
             this.LatTCurrent_Lbl,
             this.Separator,
             this.LonGtCurrent_Lbl,
-            this.TtsButton_Sts,
             this.FileOpnJson_Lbl});
             this.Status_Strip.Location = new System.Drawing.Point(0, 639);
             this.Status_Strip.Name = "Status_Strip";
@@ -5049,6 +5092,24 @@
             this.Status_Strip.SizingGrip = false;
             this.Status_Strip.TabIndex = 14;
             this.Status_Strip.Text = "statusStrip1";
+            // 
+            // TtsButton_Sts
+            // 
+            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TtsButton_Sts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnURL_TlsTools});
+            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
+            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TtsButton_Sts.Name = "TtsButton_Sts";
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
+            this.TtsButton_Sts.Text = "Tools";
+            // 
+            // OpnURL_TlsTools
+            // 
+            this.OpnURL_TlsTools.Name = "OpnURL_TlsTools";
+            this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
+            this.OpnURL_TlsTools.Text = "Open URL in New Tab";
+            this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
             // 
             // URLtxt_txt
             // 
@@ -5067,6 +5128,15 @@
             this.TableOpn_Lbl.Name = "TableOpn_Lbl";
             this.TableOpn_Lbl.Size = new System.Drawing.Size(14, 17);
             this.TableOpn_Lbl.Text = "_";
+            // 
+            // TableVal_Lbl
+            // 
+            this.TableVal_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableVal_Lbl.ForeColor = System.Drawing.Color.DimGray;
+            this.TableVal_Lbl.Name = "TableVal_Lbl";
+            this.TableVal_Lbl.Size = new System.Drawing.Size(233, 17);
+            this.TableVal_Lbl.Text = "TABLE (url_date, url_name, url_adress)";
+            this.TableVal_Lbl.Visible = false;
             // 
             // CountFeed_Lbl
             // 
@@ -5168,24 +5238,6 @@
             this.LonGtCurrent_Lbl.Size = new System.Drawing.Size(14, 17);
             this.LonGtCurrent_Lbl.Text = "_";
             this.LonGtCurrent_Lbl.Visible = false;
-            // 
-            // TtsButton_Sts
-            // 
-            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TtsButton_Sts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpnURL_TlsTools});
-            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
-            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TtsButton_Sts.Name = "TtsButton_Sts";
-            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
-            this.TtsButton_Sts.Text = "Tools";
-            // 
-            // OpnURL_TlsTools
-            // 
-            this.OpnURL_TlsTools.Name = "OpnURL_TlsTools";
-            this.OpnURL_TlsTools.Size = new System.Drawing.Size(214, 22);
-            this.OpnURL_TlsTools.Text = "Open URL in New Tab";
-            this.OpnURL_TlsTools.Click += new System.EventHandler(this.OpnURL_TlsTools_Click);
             // 
             // FileOpnJson_Lbl
             // 
@@ -5497,7 +5549,9 @@
             this.toolStripLabel2,
             this.ThemDiag_Cbx,
             this.DeleteProject_Tls,
-            this.Debug_Tls});
+            this.Debug_Tls,
+            this.PlantUml_Mnu,
+            this.CharsetPlant_Txt});
             this.Tools_TAB_3.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_3.Name = "Tools_TAB_3";
             this.Tools_TAB_3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -5736,6 +5790,33 @@
             this.KillProcess_Btn.Text = "Kill => OpenJDK Platform binary (javaw)";
             this.KillProcess_Btn.Click += new System.EventHandler(this.KillProcess_Btn_Click);
             // 
+            // PlantUml_Mnu
+            // 
+            this.PlantUml_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PlantUml_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PlantUmlVersion_Mnu,
+            this.PlantUmlLicense_Mnu});
+            this.PlantUml_Mnu.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PlantUml_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("PlantUml_Mnu.Image")));
+            this.PlantUml_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PlantUml_Mnu.Name = "PlantUml_Mnu";
+            this.PlantUml_Mnu.Size = new System.Drawing.Size(78, 28);
+            this.PlantUml_Mnu.Text = "PlantUML";
+            // 
+            // PlantUmlVersion_Mnu
+            // 
+            this.PlantUmlVersion_Mnu.Name = "PlantUmlVersion_Mnu";
+            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.PlantUmlVersion_Mnu.Text = "Version";
+            this.PlantUmlVersion_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
+            // 
+            // PlantUmlLicense_Mnu
+            // 
+            this.PlantUmlLicense_Mnu.Name = "PlantUmlLicense_Mnu";
+            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.PlantUmlLicense_Mnu.Text = "License";
+            this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
+            // 
             // Timo
             // 
             this.Timo.Interval = 5000;
@@ -5778,7 +5859,9 @@
             this.MapProject_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewProjectMap_Tls,
             this.NewProjectMapList_Tls,
-            this.NewProjectMapLatLon_Tls});
+            this.NewProjectMapLatLon_Tls,
+            this.toolStripSeparator29,
+            this.EgHelp_Tls});
             this.MapProject_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
             this.MapProject_Tls.Image = ((System.Drawing.Image)(resources.GetObject("MapProject_Tls.Image")));
             this.MapProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -5807,6 +5890,18 @@
             this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(455, 22);
             this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
             this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
+            // 
+            // toolStripSeparator29
+            // 
+            this.toolStripSeparator29.Name = "toolStripSeparator29";
+            this.toolStripSeparator29.Size = new System.Drawing.Size(452, 6);
+            // 
+            // EgHelp_Tls
+            // 
+            this.EgHelp_Tls.Name = "EgHelp_Tls";
+            this.EgHelp_Tls.Size = new System.Drawing.Size(455, 22);
+            this.EgHelp_Tls.Text = "eg. data format";
+            this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
             // 
             // FilesMap_Mnu
             // 
@@ -5872,6 +5967,7 @@
             this.toolStripSeparator26,
             this.CopyGeoMap_Tls,
             this.toolStripSeparator28,
+            this.NmodeMap_Tls,
             this.ClearMap_Tls});
             this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.White;
             this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
@@ -5950,6 +6046,13 @@
             // 
             this.toolStripSeparator28.Name = "toolStripSeparator28";
             this.toolStripSeparator28.Size = new System.Drawing.Size(230, 6);
+            // 
+            // NmodeMap_Tls
+            // 
+            this.NmodeMap_Tls.Name = "NmodeMap_Tls";
+            this.NmodeMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.NmodeMap_Tls.Text = "Negative Mode";
+            this.NmodeMap_Tls.Click += new System.EventHandler(this.NmodeMap_Tls_Click);
             // 
             // ClearMap_Tls
             // 
@@ -6093,6 +6196,33 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // Limitsize_Chk
+            // 
+            this.Limitsize_Chk.AutoSize = true;
+            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
+            this.Limitsize_Chk.Location = new System.Drawing.Point(13, 80);
+            this.Limitsize_Chk.Name = "Limitsize_Chk";
+            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 36);
+            this.Limitsize_Chk.TabIndex = 2;
+            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\ndefault is 4096";
+            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Limitsize_Chk.UseVisualStyleBackColor = true;
+            // 
+            // CharsetPlant_Txt
+            // 
+            this.CharsetPlant_Txt.AutoSize = false;
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.DarkGray;
+            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
+            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
+            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
+            this.CharsetPlant_Txt.Text = "-charset UTF-8";
+            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6100,9 +6230,9 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
+            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
-            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_Frm";
@@ -6165,6 +6295,7 @@
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             this.Map_Tab.ResumeLayout(false);
+            this.MapMenu_Strip.ResumeLayout(false);
             this.Map_Cmd_Pnl.ResumeLayout(false);
             this.Map_Cmd_Pnl.PerformLayout();
             this.Json_Tab.ResumeLayout(false);
@@ -6664,6 +6795,18 @@
         private System.Windows.Forms.ToolStripMenuItem Highlit_Mnu;
         private System.Windows.Forms.ToolStripMenuItem HiglitAddWord_Btn;
         private System.Windows.Forms.ToolStripMenuItem HiglitInject_Btn;
+        private System.Windows.Forms.ToolStripStatusLabel TableVal_Lbl;
+        private System.Windows.Forms.ContextMenuStrip MapMenu_Strip;
+        private System.Windows.Forms.ToolStripMenuItem CopyGeoMap_Mnus;
+        private System.Windows.Forms.ToolStripMenuItem ClearMap_Mnus;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
+        private System.Windows.Forms.ToolStripMenuItem EgHelp_Tls;
+        private System.Windows.Forms.ToolStripMenuItem NmodeMap_Tls;
+        private System.Windows.Forms.ToolStripDropDownButton PlantUml_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem PlantUmlVersion_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem PlantUmlLicense_Mnu;
+        private System.Windows.Forms.CheckBox Limitsize_Chk;
+        private System.Windows.Forms.ToolStripTextBox CharsetPlant_Txt;
     }
 }
 

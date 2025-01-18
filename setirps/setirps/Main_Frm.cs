@@ -8,6 +8,7 @@ using Microsoft.VisualBasic;
 using System.Xml;
 using System.Diagnostics;
 using Errordll;
+using System.Threading;
 
 namespace setirps
 {
@@ -39,6 +40,10 @@ namespace setirps
         string ProjectOpn = "";
         string ProjectOutput = "";
         string OpnProject = "";
+
+        readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
+    "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
+        string FileDiag = "";
 
         #endregion
 
@@ -477,6 +482,35 @@ namespace setirps
             }
         }
 
+        void InsertValue_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ListSelectTxt_Txt.Text == "")
+                {
+                    ListSelectTxt_Txt.BackColor = Color.Red;
+                    MessageBox.Show("Insert all value!");
+                    ListSelectTxt_Txt.BackColor = Color.White;
+                    return;
+                }
+
+                if (CursorPosition_Chk.Checked)
+                {
+                    Out_Txt.Text = Out_Txt.Text.Insert(Out_Txt.SelectionStart, ListSelectTxt_Txt.Text);
+                }
+                else
+                {
+                    Out_Txt.AppendText(ListSelectTxt_Txt.Text + "\r\n");
+                }
+
+                ListSelectTxt_Txt.Text = "";
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! InsertValueAB_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
         void Finalise_Btn_Click(object sender, EventArgs e)
         {
             string finalise = @"footer %filename() rendered with PlantUML version %version()\nWith Ostium Osint Browser
@@ -681,6 +715,7 @@ namespace setirps
                 }
 
                 ProjectOutput = ProjectDir + FileName + ".txt";
+                FileDiag = ProjectDir + FileName + ".svg";
 
                 using (StreamWriter file_create = new StreamWriter(ProjectOutput))
                 {
@@ -716,6 +751,7 @@ namespace setirps
                         ProjectOpn = openFileDialog.FileName;
                         string strOutput = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                         ProjectOutput = ProjectDir + strOutput + ".txt";
+                        FileDiag = ProjectDir + strOutput + ".svg";
                         string strName = Path.GetFileName(openFileDialog.FileName);
                         ProjectOpn_Lbl.Text = "Project open: " + strName;
                     }
@@ -915,6 +951,9 @@ namespace setirps
                 return;
             }
 
+            MessageBox.Show(MessageStartDiagram);
+            Timo.Enabled = true;
+
             CreateDiagram_Thrd(ProjectOutput);
         }
 
@@ -922,7 +961,12 @@ namespace setirps
         {
             try
             {
-                string argumentsIs = "java -jar plantuml.jar " + fileselect + " -tsvg -charset UTF-8";
+                string limitsize = "";
+
+                if (Limitsize_Chk.Checked)
+                    limitsize = "-DPLANTUML_LIMIT_SIZE=8192";
+
+                string argumentsIs = "java " + limitsize + " -jar plantuml.jar " + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
 
                 using (Process proc = new Process())
                 {
@@ -943,21 +987,73 @@ namespace setirps
         void Out_Txt_TextChanged(object sender, EventArgs e)
         {
             if (OpnProject == "off")
-            {
                 SaveProject_Btn.ForeColor = Color.Red;
-            }
         }
 
         void Out_Txt_DoubleClicked(object sender, EventArgs e)
         {
             if (Out_Txt.ScrollBars == ScrollBars.None)
-            {
                 Out_Txt.ScrollBars = ScrollBars.Vertical;
-            }
+            else
+                Out_Txt.ScrollBars = ScrollBars.None;
+        }
+
+        private void Timo_Tick(object sender, EventArgs e)
+        {
+            Process[] localByName = Process.GetProcessesByName("javaw");
+            if (localByName.Length > 0)
+            { }  // Process True
             else
             {
-                Out_Txt.ScrollBars = ScrollBars.None;
-            }            
+                Timo.Enabled = false;
+                Thread.Sleep(1000);
+                CreateDiagram_Invk(FileDiag); // Process False
+            }
+        }
+
+        void CreateDiagram_Invk(string value)
+        {
+            Process.Start(value);
+        }
+
+        private void Site_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Site_Lst.SelectedIndex != -1)
+            {
+                ListSelectTxt_Txt.Text = Site_Lst.SelectedItem.ToString(); ;
+            }
+        }
+
+        private void User_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (User_Lst.SelectedIndex != -1)
+            {
+                ListSelectTxt_Txt.Text = User_Lst.SelectedItem.ToString(); ;
+            }
+        }
+
+        private void Hardware_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Hardware_Lst.SelectedIndex != -1)
+            {
+                ListSelectTxt_Txt.Text = Hardware_Lst.SelectedItem.ToString(); ;
+            }
+        }
+
+        private void Network_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Network_Lst.SelectedIndex != -1)
+            {
+                ListSelectTxt_Txt.Text = Network_Lst.SelectedItem.ToString(); ;
+            }
+        }
+
+        private void Server_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Server_Lst.SelectedIndex != -1)
+            {
+                ListSelectTxt_Txt.Text = Server_Lst.SelectedItem.ToString(); ;
+            }
         }
     }
 }

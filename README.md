@@ -24,3 +24,9 @@ https://youtube.com/playlist?list=PL2P_w0qK8vNugPLFuQ2ap_3Kvi00wrNBy&si=a3VF6P6s
 Ostium Osint Browser is powered by the Open Source Chromium project and other free software.
 
 https://github.com/icaza/Ostium-Osint-Browser/network/dependencies
+
+Ostium Osint Browser uses PlantUML, which is distributed under the LGPL license.
+
+https://plantuml.com/
+
+https://github.com/plantuml
