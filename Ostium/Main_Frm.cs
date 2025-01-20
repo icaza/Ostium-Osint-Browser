@@ -133,7 +133,6 @@ namespace Ostium
         string ThemeDiag;
         string FileDiag = "";
         string MinifyScr = "";
-        string MapXmlOpn = "";
         string CrossCenter = "on";
         int MapZoom = 1;
         ///
@@ -142,6 +141,9 @@ namespace Ostium
         /// </summary>
         /// 
         string VerifMapOpn = "off";
+        string MapXmlOpn = "";
+        string MapRouteOpn = "";
+        string LocatRoute = "";
         readonly GMapOverlay overlayOne = new GMapOverlay("OverlayOne");
         double LatT = 48.8589507;
         double LonGt = 2.2775175;
@@ -5553,6 +5555,7 @@ namespace Ostium
                 GMap_Ctrl.IgnoreMarkerOnMouseWheel = true;
                 GMap_Ctrl.Overlays.Add(overlayOne);
                 GMap_Ctrl.ShowCenter = true;
+                GMap_Ctrl.MouseClick += Gmap_MouseClick;
             }
             catch (Exception ex)
             {
@@ -5628,15 +5631,59 @@ namespace Ostium
                 {
                     inct += 1;
                     var line = reader.ReadLine();
-                    var values = line.Split(',');
-                    if (model == 0)
-                        AddNewLocPoints(values[0], values[1], values[2], values[3]);
-                    else
-                        AddNewLocPoints(Una + inct, values[0], values[1], Una + inct);
+                    string trimmedLine = line.Trim();
+                    if (!string.IsNullOrEmpty(trimmedLine))
+                    {
+                        var values = line.Split(',');
+                        if (model == 0)
+                            AddNewLocPoints(values[0], values[1], values[2], values[3]);
+                        else
+                            AddNewLocPoints(Una + inct, values[0], values[1], Una + inct);
+                    }
                 }
             }
 
             MessageBox.Show("Completed.");
+        }
+
+        private void NewRouteProject_Tls_Click(object sender, EventArgs e)
+        {
+            SelectName:
+
+            string message, title;
+            object NameInsert;
+
+            message = "Select Name Project.";
+            title = "Project Name";
+
+            NameInsert = Interaction.InputBox(message, title);
+            string ValName = Convert.ToString(NameInsert);
+
+            if (ValName != "")
+            {
+                if (File.Exists(MapDir + ValName + ".txt"))
+                {
+                    string avert = "The file already exists, delete?";
+                    string caption = "Ostium";
+                    var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                        File.Delete(MapDir + ValName + ".txt");
+                    else
+                    {
+                        goto SelectName;
+                    }
+                }
+
+                MapRouteOpn = MapDir + ValName + ".txt";
+                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".txt";
+
+                File.Create(MapDir + ValName + ".txt");
+            }
+            else
+            {
+                return;
+            }
         }
 
         void CreateProjectMap(int val)
@@ -5782,8 +5829,43 @@ namespace Ostium
 
         void OpnListLocation_Tls_Click(object sender, EventArgs e)
         {
-            Map_Cmd_Pnl.Visible = !Map_Cmd_Pnl.Visible;
-            loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route")
+            {
+                LocatRoute = "locat";
+                Map_Cmd_Pnl.Visible = true;
+                LocatRoute_Lbl.Text = "Location Points";
+                TxtMarker_Lbl.Text = "Text Marker";
+                TextMarker_Txt.Text = "";
+                TxtMarker_Chk.Enabled = true;
+                AddNewLoc_Btn.Visible = true;
+                SaveRoute_Btn.Visible = false;
+
+                loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+            }
+            else
+            {
+              Map_Cmd_Pnl.Visible = false;
+            }
+        }
+
+        private void OpnListRoute_Tls_Click(object sender, EventArgs e)
+        {
+            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat")
+            {
+                LocatRoute = "route";
+                Map_Cmd_Pnl.Visible = true;
+                LocatRoute_Lbl.Text = "Routes";
+                TxtMarker_Lbl.Text = "Distance (Km)";                
+                TxtMarker_Chk.Enabled = false;
+                AddNewLoc_Btn.Visible = false;
+                SaveRoute_Btn.Visible = true;
+
+                loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
+            }
+            else
+            {
+                Map_Cmd_Pnl.Visible = false;
+            }
         }
 
         void CrossCenter_Tls_Click(object sender, EventArgs e)
@@ -6015,6 +6097,20 @@ namespace Ostium
             doc.Save(MapXmlOpn);
         }
 
+        private void SaveRoute_Btn_Click(object sender, EventArgs e)
+        {
+            if (SaveRoute_Btn.Text == "Save route Off")
+            {
+                SaveRoute_Btn.Text = "Save route On";
+                SaveRoute_Btn.ForeColor = Color.Red;
+            }
+            else
+            {
+                SaveRoute_Btn.Text = "Save route Off";
+                SaveRoute_Btn.ForeColor = Color.White;
+            }
+        }
+
         void GmapProvider_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             GmapProviderSelect(GmapProvider_Cbx.SelectedIndex);
@@ -6186,22 +6282,41 @@ namespace Ostium
 
         void PointLoc_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GMap_Ctrl.Overlays.Clear();
+            overlayOne.Markers.Clear();
+
             if (PointLoc_Lst.SelectedIndex != -1)
             {
-                GMap_Ctrl.Overlays.Clear();
-                overlayOne.Markers.Clear();
-                Mkmarker = GMarkerGoogleType.blue;
-                MapXmlOpn = MapDir + PointLoc_Lst.SelectedItem.ToString();
-
-                if (!File.Exists(MapXmlOpn))
+                if (LocatRoute == "locat")
                 {
-                    MessageBox.Show("The project no longer exists! It will be removed from the list.", "Error file not exist!");
-                    loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+                    Mkmarker = GMarkerGoogleType.blue;
+                    MapXmlOpn = MapDir + PointLoc_Lst.SelectedItem.ToString();
+
+                    if (!File.Exists(MapXmlOpn))
+                    {
+                        MessageBox.Show("The project no longer exists! It will be removed from the list.", "Error file not exist!");
+                        loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+                    }
+                    else
+                    {
+                        ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
+                        OpnLocationPoints();
+                    }
                 }
                 else
                 {
-                    ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
-                    OpnLocationPoints();
+                    MapRouteOpn = MapDir + PointLoc_Lst.SelectedItem.ToString();
+
+                    if (!File.Exists(MapRouteOpn))
+                    {
+                        MessageBox.Show("The route project no longer exists! It will be removed from the list.", "Error file not exist!");
+                        loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
+                    }
+                    else
+                    {
+                        ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
+                        LoadRouteFromFile(MapRouteOpn);
+                    }
                 }
             }
         }
@@ -6314,7 +6429,65 @@ namespace Ostium
 
         void EgHelp_Tls_Click(object sender, EventArgs e)
         {
-            Open_Doc_Frm(FileDir + "map_points.txt");
+          Open_Doc_Frm(FileDir + "map_points.txt");
+        }
+
+        public void LoadRouteFromFile(string filePath)
+        {
+            GMapOverlay routes = new GMapOverlay("routes");
+            List<PointLatLng> points = new List<PointLatLng>();
+
+            try
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                foreach (string line in lines)
+                {
+                    string trimmedLine = line.Trim();
+
+                    if (!string.IsNullOrEmpty(trimmedLine))
+                    {
+                        string[] coordinates = line.Split(',');
+                        LatT = double.Parse(coordinates[0], CultureInfo.InvariantCulture);
+                        LonGt = double.Parse(coordinates[1], CultureInfo.InvariantCulture);
+                        points.Add(new PointLatLng(LatT, LonGt));
+                    }
+                }
+
+                GMapRoute route = new GMapRoute(points, "A walk")
+                {
+                    Stroke = new Pen(Color.Red, 3)
+                };
+                routes.Routes.Add(route);
+                GMap_Ctrl.Overlays.Add(routes);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
+
+                TextMarker_Txt.Text = Convert.ToString(route.Distance);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadRouteFromFile: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        private void Gmap_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (SaveRoute_Btn.Text == "Save route On")
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (MapRouteOpn == "")
+                    {
+                        MessageBox.Show("No route project selected! Select one or create one.");
+                        return;
+                    }
+
+                    PointLatLng point = GMap_Ctrl.FromLocalToLatLng(e.X, e.Y);
+                    using (StreamWriter file_create = File.AppendText(MapRouteOpn))
+                    {
+                        file_create.WriteLine($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
+                    }
+                }
+            }
         }
 
         #endregion

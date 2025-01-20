@@ -245,16 +245,13 @@
             this.Map_Tab = new System.Windows.Forms.TabPage();
             this.TempPointLoc_Lst = new System.Windows.Forms.ListBox();
             this.GMap_Ctrl = new GMap.NET.WindowsForms.GMapControl();
-            this.MapMenu_Strip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CopyGeoMap_Mnus = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClearMap_Mnus = new System.Windows.Forms.ToolStripMenuItem();
             this.Map_Cmd_Pnl = new System.Windows.Forms.Panel();
             this.PointLoc_Lst = new System.Windows.Forms.ListBox();
             this.TxtMarker_Chk = new System.Windows.Forms.CheckBox();
             this.AddNewLoc_Btn = new System.Windows.Forms.Button();
-            this.label26 = new System.Windows.Forms.Label();
+            this.LocatRoute_Lbl = new System.Windows.Forms.Label();
             this.TextMarker_Txt = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
+            this.TxtMarker_Lbl = new System.Windows.Forms.Label();
             this.LocationName_Txt = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.Json_Tab = new System.Windows.Forms.TabPage();
@@ -340,6 +337,7 @@
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
             this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
             this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -453,6 +451,7 @@
             this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.Timo = new System.Windows.Forms.Timer(this.components);
             this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
             this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
@@ -494,8 +493,10 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
-            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveRoute_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -538,7 +539,6 @@
             this.panel7.SuspendLayout();
             this.panel19.SuspendLayout();
             this.Map_Tab.SuspendLayout();
-            this.MapMenu_Strip.SuspendLayout();
             this.Map_Cmd_Pnl.SuspendLayout();
             this.Json_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WbOutB)).BeginInit();
@@ -1904,7 +1904,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 25);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 579);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -1925,7 +1925,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 529);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 560);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -2178,7 +2178,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 25);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 579);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2190,7 +2190,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 478);
+            this.panel1.Size = new System.Drawing.Size(1320, 509);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2203,7 +2203,7 @@
             this.DataValue_Lst.ItemHeight = 16;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 478);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 509);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2217,7 +2217,7 @@
             this.DataTable_Lst.ItemHeight = 16;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 478);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 509);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2232,7 +2232,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 478);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 509);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -2755,7 +2755,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
@@ -3040,7 +3040,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 14;
             this.AddItemswf_Txt.CharWidth = 8;
@@ -3197,7 +3197,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 25);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 579);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3215,7 +3215,6 @@
             // 
             this.GMap_Ctrl.Bearing = 0F;
             this.GMap_Ctrl.CanDragMap = true;
-            this.GMap_Ctrl.ContextMenuStrip = this.MapMenu_Strip;
             this.GMap_Ctrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GMap_Ctrl.EmptyTileColor = System.Drawing.Color.Navy;
             this.GMap_Ctrl.GrayScaleMode = false;
@@ -3235,51 +3234,26 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 579);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 610);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
-            // 
-            // MapMenu_Strip
-            // 
-            this.MapMenu_Strip.BackColor = System.Drawing.SystemColors.Control;
-            this.MapMenu_Strip.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapMenu_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CopyGeoMap_Mnus,
-            this.ClearMap_Mnus});
-            this.MapMenu_Strip.Name = "MapMenu_Strip";
-            this.MapMenu_Strip.Size = new System.Drawing.Size(185, 48);
-            // 
-            // CopyGeoMap_Mnus
-            // 
-            this.CopyGeoMap_Mnus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CopyGeoMap_Mnus.Name = "CopyGeoMap_Mnus";
-            this.CopyGeoMap_Mnus.Size = new System.Drawing.Size(184, 22);
-            this.CopyGeoMap_Mnus.Text = "Copy Geolocation";
-            this.CopyGeoMap_Mnus.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
-            // 
-            // ClearMap_Mnus
-            // 
-            this.ClearMap_Mnus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClearMap_Mnus.Name = "ClearMap_Mnus";
-            this.ClearMap_Mnus.Size = new System.Drawing.Size(184, 22);
-            this.ClearMap_Mnus.Text = "Clear Map";
-            this.ClearMap_Mnus.Click += new System.EventHandler(this.ClearMap_Tls_Click);
             // 
             // Map_Cmd_Pnl
             // 
             this.Map_Cmd_Pnl.BackColor = System.Drawing.Color.Black;
+            this.Map_Cmd_Pnl.Controls.Add(this.SaveRoute_Btn);
             this.Map_Cmd_Pnl.Controls.Add(this.PointLoc_Lst);
             this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Chk);
             this.Map_Cmd_Pnl.Controls.Add(this.AddNewLoc_Btn);
-            this.Map_Cmd_Pnl.Controls.Add(this.label26);
+            this.Map_Cmd_Pnl.Controls.Add(this.LocatRoute_Lbl);
             this.Map_Cmd_Pnl.Controls.Add(this.TextMarker_Txt);
-            this.Map_Cmd_Pnl.Controls.Add(this.label25);
+            this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Lbl);
             this.Map_Cmd_Pnl.Controls.Add(this.LocationName_Txt);
             this.Map_Cmd_Pnl.Controls.Add(this.label24);
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 579);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3294,7 +3268,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 143);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 406);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 437);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3326,7 +3300,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 549);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 580);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3334,18 +3308,18 @@
             this.AddNewLoc_Btn.UseVisualStyleBackColor = false;
             this.AddNewLoc_Btn.Click += new System.EventHandler(this.AddNewLoc_Btn_Click);
             // 
-            // label26
+            // LocatRoute_Lbl
             // 
-            this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.label26.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label26.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label26.Location = new System.Drawing.Point(0, 98);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(200, 28);
-            this.label26.TabIndex = 23;
-            this.label26.Text = "Location Points";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LocatRoute_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.LocatRoute_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LocatRoute_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocatRoute_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.LocatRoute_Lbl.Location = new System.Drawing.Point(0, 98);
+            this.LocatRoute_Lbl.Name = "LocatRoute_Lbl";
+            this.LocatRoute_Lbl.Size = new System.Drawing.Size(200, 28);
+            this.LocatRoute_Lbl.TabIndex = 23;
+            this.LocatRoute_Lbl.Text = "Location Points";
+            this.LocatRoute_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TextMarker_Txt
             // 
@@ -3359,18 +3333,18 @@
             this.TextMarker_Txt.Size = new System.Drawing.Size(200, 49);
             this.TextMarker_Txt.TabIndex = 22;
             // 
-            // label25
+            // TxtMarker_Lbl
             // 
-            this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.label25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label25.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label25.Location = new System.Drawing.Point(0, 21);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(200, 28);
-            this.label25.TabIndex = 21;
-            this.label25.Text = "Text Marker";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TxtMarker_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.TxtMarker_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtMarker_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMarker_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.TxtMarker_Lbl.Location = new System.Drawing.Point(0, 21);
+            this.TxtMarker_Lbl.Name = "TxtMarker_Lbl";
+            this.TxtMarker_Lbl.Size = new System.Drawing.Size(200, 28);
+            this.TxtMarker_Lbl.TabIndex = 21;
+            this.TxtMarker_Lbl.Text = "Text Marker";
+            this.TxtMarker_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LocationName_Txt
             // 
@@ -3414,7 +3388,7 @@
             this.Json_Tab.ForeColor = System.Drawing.Color.White;
             this.Json_Tab.Location = new System.Drawing.Point(4, 25);
             this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 579);
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 610);
             this.Json_Tab.TabIndex = 10;
             this.Json_Tab.Text = "JSON";
             // 
@@ -3427,7 +3401,7 @@
             this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbOutB.Location = new System.Drawing.Point(0, 320);
             this.WbOutB.Name = "WbOutB";
-            this.WbOutB.Size = new System.Drawing.Size(1126, 237);
+            this.WbOutB.Size = new System.Drawing.Size(1126, 268);
             this.WbOutB.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
@@ -3619,7 +3593,7 @@
             this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
             this.JsonList_Pnl.Name = "JsonList_Pnl";
-            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 451);
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 482);
             this.JsonList_Pnl.TabIndex = 8;
             this.JsonList_Pnl.Visible = false;
             // 
@@ -3634,7 +3608,7 @@
             this.TableJson_Lst.ItemHeight = 14;
             this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
             this.TableJson_Lst.Name = "TableJson_Lst";
-            this.TableJson_Lst.Size = new System.Drawing.Size(200, 419);
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 450);
             this.TableJson_Lst.TabIndex = 25;
             this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
             // 
@@ -3946,7 +3920,7 @@
             this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 557);
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 588);
             this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
             this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
             this.JsonUsrAgt_Txt.TabIndex = 0;
@@ -4561,6 +4535,20 @@
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
+            // 
+            // Limitsize_Chk
+            // 
+            this.Limitsize_Chk.AutoSize = true;
+            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
+            this.Limitsize_Chk.Location = new System.Drawing.Point(13, 80);
+            this.Limitsize_Chk.Name = "Limitsize_Chk";
+            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 36);
+            this.Limitsize_Chk.TabIndex = 2;
+            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\ndefault is 4096";
+            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Limitsize_Chk.UseVisualStyleBackColor = true;
             // 
             // ArchiveAdd_Lst
             // 
@@ -5806,16 +5794,29 @@
             // PlantUmlVersion_Mnu
             // 
             this.PlantUmlVersion_Mnu.Name = "PlantUmlVersion_Mnu";
-            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(121, 22);
             this.PlantUmlVersion_Mnu.Text = "Version";
             this.PlantUmlVersion_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
             // 
             // PlantUmlLicense_Mnu
             // 
             this.PlantUmlLicense_Mnu.Name = "PlantUmlLicense_Mnu";
-            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(121, 22);
             this.PlantUmlLicense_Mnu.Text = "License";
             this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
+            // 
+            // CharsetPlant_Txt
+            // 
+            this.CharsetPlant_Txt.AutoSize = false;
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.DarkGray;
+            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
+            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
+            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
+            this.CharsetPlant_Txt.Text = "-charset UTF-8";
+            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Timo
             // 
@@ -5860,6 +5861,7 @@
             this.NewProjectMap_Tls,
             this.NewProjectMapList_Tls,
             this.NewProjectMapLatLon_Tls,
+            this.NewRouteProject_Tls,
             this.toolStripSeparator29,
             this.EgHelp_Tls});
             this.MapProject_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
@@ -5957,6 +5959,8 @@
             this.ToolsMap_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ToolsMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpnListLocation_Tls,
+            this.OpnListRoute_Tls,
+            this.toolStripSeparator30,
             this.CrossCenter_Tls,
             this.ScreenShotGmap_Tls,
             this.toolStripSeparator24,
@@ -6196,32 +6200,44 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Limitsize_Chk
+            // NewRouteProject_Tls
             // 
-            this.Limitsize_Chk.AutoSize = true;
-            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
-            this.Limitsize_Chk.Location = new System.Drawing.Point(13, 80);
-            this.Limitsize_Chk.Name = "Limitsize_Chk";
-            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 36);
-            this.Limitsize_Chk.TabIndex = 2;
-            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\ndefault is 4096";
-            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Limitsize_Chk.UseVisualStyleBackColor = true;
+            this.NewRouteProject_Tls.Name = "NewRouteProject_Tls";
+            this.NewRouteProject_Tls.Size = new System.Drawing.Size(455, 22);
+            this.NewRouteProject_Tls.Text = "New Route Project";
+            this.NewRouteProject_Tls.Click += new System.EventHandler(this.NewRouteProject_Tls_Click);
             // 
-            // CharsetPlant_Txt
+            // OpnListRoute_Tls
             // 
-            this.CharsetPlant_Txt.AutoSize = false;
-            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.DarkGray;
-            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
-            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
-            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
-            this.CharsetPlant_Txt.Text = "-charset UTF-8";
-            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
+            this.OpnListRoute_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnListRoute_Tls.Text = "Open Routes";
+            this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
+            // 
+            // toolStripSeparator30
+            // 
+            this.toolStripSeparator30.Name = "toolStripSeparator30";
+            this.toolStripSeparator30.Size = new System.Drawing.Size(230, 6);
+            // 
+            // SaveRoute_Btn
+            // 
+            this.SaveRoute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SaveRoute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveRoute_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveRoute_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveRoute_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.SaveRoute_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 550);
+            this.SaveRoute_Btn.Name = "SaveRoute_Btn";
+            this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
+            this.SaveRoute_Btn.TabIndex = 25;
+            this.SaveRoute_Btn.Text = "Save route Off";
+            this.SaveRoute_Btn.UseVisualStyleBackColor = false;
+            this.SaveRoute_Btn.Visible = false;
+            this.SaveRoute_Btn.Click += new System.EventHandler(this.SaveRoute_Btn_Click);
             // 
             // Main_Frm
             // 
@@ -6295,7 +6311,6 @@
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             this.Map_Tab.ResumeLayout(false);
-            this.MapMenu_Strip.ResumeLayout(false);
             this.Map_Cmd_Pnl.ResumeLayout(false);
             this.Map_Cmd_Pnl.PerformLayout();
             this.Json_Tab.ResumeLayout(false);
@@ -6699,9 +6714,9 @@
         private System.Windows.Forms.ListBox PointLoc_Lst;
         private System.Windows.Forms.TextBox LocationName_Txt;
         private System.Windows.Forms.TextBox TextMarker_Txt;
-        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label TxtMarker_Lbl;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label LocatRoute_Lbl;
         private System.Windows.Forms.CheckBox TxtMarker_Chk;
         private System.Windows.Forms.ToolStripMenuItem OpnBingMap_Tls;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator24;
@@ -6796,9 +6811,6 @@
         private System.Windows.Forms.ToolStripMenuItem HiglitAddWord_Btn;
         private System.Windows.Forms.ToolStripMenuItem HiglitInject_Btn;
         private System.Windows.Forms.ToolStripStatusLabel TableVal_Lbl;
-        private System.Windows.Forms.ContextMenuStrip MapMenu_Strip;
-        private System.Windows.Forms.ToolStripMenuItem CopyGeoMap_Mnus;
-        private System.Windows.Forms.ToolStripMenuItem ClearMap_Mnus;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
         private System.Windows.Forms.ToolStripMenuItem EgHelp_Tls;
         private System.Windows.Forms.ToolStripMenuItem NmodeMap_Tls;
@@ -6807,6 +6819,10 @@
         private System.Windows.Forms.ToolStripMenuItem PlantUmlLicense_Mnu;
         private System.Windows.Forms.CheckBox Limitsize_Chk;
         private System.Windows.Forms.ToolStripTextBox CharsetPlant_Txt;
+        private System.Windows.Forms.ToolStripMenuItem NewRouteProject_Tls;
+        private System.Windows.Forms.ToolStripMenuItem OpnListRoute_Tls;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator30;
+        private System.Windows.Forms.Button SaveRoute_Btn;
     }
 }
 
