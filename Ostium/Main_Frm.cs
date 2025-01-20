@@ -6102,7 +6102,7 @@ namespace Ostium
             doc.Save(MapXmlOpn);
         }
 
-        private void SaveRoute_Btn_Click(object sender, EventArgs e)
+        void SaveRoute_Btn_Click(object sender, EventArgs e)
         {
             if (SaveRoute_Btn.Text == "Save route Off")
             {
@@ -6437,7 +6437,7 @@ namespace Ostium
           Open_Doc_Frm(FileDir + "map_points.txt");
         }
 
-        public void LoadRouteFromFile(string filePath)
+        void LoadRouteFromFile(string filePath)
         {
             GMapOverlay routes = new GMapOverlay("routes");
             List<PointLatLng> points = new List<PointLatLng>();
@@ -6474,7 +6474,7 @@ namespace Ostium
             }
         }
 
-        private void Gmap_MouseClick(object sender, MouseEventArgs e)
+        void Gmap_MouseClick(object sender, MouseEventArgs e)
         {
             if (SaveRoute_Btn.Text == "Save route On")
             {

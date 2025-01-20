@@ -246,6 +246,7 @@
             this.TempPointLoc_Lst = new System.Windows.Forms.ListBox();
             this.GMap_Ctrl = new GMap.NET.WindowsForms.GMapControl();
             this.Map_Cmd_Pnl = new System.Windows.Forms.Panel();
+            this.SaveRoute_Btn = new System.Windows.Forms.Button();
             this.PointLoc_Lst = new System.Windows.Forms.ListBox();
             this.TxtMarker_Chk = new System.Windows.Forms.CheckBox();
             this.AddNewLoc_Btn = new System.Windows.Forms.Button();
@@ -458,6 +459,7 @@
             this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
             this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
@@ -468,6 +470,8 @@
             this.DelProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolsMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.OpnListLocation_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
             this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
@@ -493,10 +497,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaveRoute_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2762,6 +2762,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -3047,6 +3048,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3256,6 +3258,26 @@
             this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
+            // 
+            // SaveRoute_Btn
+            // 
+            this.SaveRoute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SaveRoute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveRoute_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveRoute_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveRoute_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.SaveRoute_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 550);
+            this.SaveRoute_Btn.Name = "SaveRoute_Btn";
+            this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
+            this.SaveRoute_Btn.TabIndex = 25;
+            this.SaveRoute_Btn.Text = "Save route Off";
+            this.SaveRoute_Btn.UseVisualStyleBackColor = false;
+            this.SaveRoute_Btn.Visible = false;
+            this.SaveRoute_Btn.Click += new System.EventHandler(this.SaveRoute_Btn_Click);
             // 
             // PointLoc_Lst
             // 
@@ -4546,7 +4568,7 @@
             this.Limitsize_Chk.Name = "Limitsize_Chk";
             this.Limitsize_Chk.Size = new System.Drawing.Size(218, 36);
             this.Limitsize_Chk.TabIndex = 2;
-            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\ndefault is 4096";
+            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\n(default is 4096)";
             this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Limitsize_Chk.UseVisualStyleBackColor = true;
             // 
@@ -5893,6 +5915,13 @@
             this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
             this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
             // 
+            // NewRouteProject_Tls
+            // 
+            this.NewRouteProject_Tls.Name = "NewRouteProject_Tls";
+            this.NewRouteProject_Tls.Size = new System.Drawing.Size(455, 22);
+            this.NewRouteProject_Tls.Text = "New Route Project";
+            this.NewRouteProject_Tls.Click += new System.EventHandler(this.NewRouteProject_Tls_Click);
+            // 
             // toolStripSeparator29
             // 
             this.toolStripSeparator29.Name = "toolStripSeparator29";
@@ -5986,6 +6015,18 @@
             this.OpnListLocation_Tls.Size = new System.Drawing.Size(233, 22);
             this.OpnListLocation_Tls.Text = "Open Locations";
             this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
+            // 
+            // OpnListRoute_Tls
+            // 
+            this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
+            this.OpnListRoute_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnListRoute_Tls.Text = "Open Routes";
+            this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
+            // 
+            // toolStripSeparator30
+            // 
+            this.toolStripSeparator30.Name = "toolStripSeparator30";
+            this.toolStripSeparator30.Size = new System.Drawing.Size(230, 6);
             // 
             // CrossCenter_Tls
             // 
@@ -6199,45 +6240,6 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // NewRouteProject_Tls
-            // 
-            this.NewRouteProject_Tls.Name = "NewRouteProject_Tls";
-            this.NewRouteProject_Tls.Size = new System.Drawing.Size(455, 22);
-            this.NewRouteProject_Tls.Text = "New Route Project";
-            this.NewRouteProject_Tls.Click += new System.EventHandler(this.NewRouteProject_Tls_Click);
-            // 
-            // OpnListRoute_Tls
-            // 
-            this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
-            this.OpnListRoute_Tls.Size = new System.Drawing.Size(233, 22);
-            this.OpnListRoute_Tls.Text = "Open Routes";
-            this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
-            // 
-            // toolStripSeparator30
-            // 
-            this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(230, 6);
-            // 
-            // SaveRoute_Btn
-            // 
-            this.SaveRoute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveRoute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveRoute_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SaveRoute_Btn.FlatAppearance.BorderSize = 0;
-            this.SaveRoute_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SaveRoute_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 550);
-            this.SaveRoute_Btn.Name = "SaveRoute_Btn";
-            this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
-            this.SaveRoute_Btn.TabIndex = 25;
-            this.SaveRoute_Btn.Text = "Save route Off";
-            this.SaveRoute_Btn.UseVisualStyleBackColor = false;
-            this.SaveRoute_Btn.Visible = false;
-            this.SaveRoute_Btn.Click += new System.EventHandler(this.SaveRoute_Btn_Click);
             // 
             // Main_Frm
             // 
