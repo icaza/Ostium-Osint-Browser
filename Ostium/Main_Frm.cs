@@ -5646,7 +5646,7 @@ namespace Ostium
             MessageBox.Show("Completed.");
         }
 
-        private void NewRouteProject_Tls_Click(object sender, EventArgs e)
+        void NewRouteProject_Tls_Click(object sender, EventArgs e)
         {
             SelectName:
 
@@ -5675,10 +5675,15 @@ namespace Ostium
                     }
                 }
 
+                GMap_Ctrl.Overlays.Clear();
+                overlayOne.Markers.Clear();
+
                 MapRouteOpn = MapDir + ValName + ".txt";
                 ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".txt";
 
                 File.Create(MapDir + ValName + ".txt");
+
+                loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
             }
             else
             {
@@ -5848,7 +5853,7 @@ namespace Ostium
             }
         }
 
-        private void OpnListRoute_Tls_Click(object sender, EventArgs e)
+        void OpnListRoute_Tls_Click(object sender, EventArgs e)
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat")
             {
