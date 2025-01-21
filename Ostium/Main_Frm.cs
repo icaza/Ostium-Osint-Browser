@@ -5796,7 +5796,7 @@ namespace Ostium
         {
             try
             {
-                if (MapXmlOpn == "")
+                if (MapXmlOpn == "" && MapRouteOpn == "")
                 {
                     MessageBox.Show("No project selected! Select one.");
                     return;
@@ -5813,7 +5813,10 @@ namespace Ostium
                         if (File.Exists(MapDir + PointLoc_Lst.SelectedItem.ToString()))
                             File.Delete(MapDir + PointLoc_Lst.SelectedItem.ToString());
 
-                        loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+                        if (LocatRoute == "locat")
+                            loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
+                        else
+                            loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
 
                         ProjectMapOpn_Lbl.Text = "";
 
