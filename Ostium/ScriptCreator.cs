@@ -158,6 +158,9 @@ namespace Ostium
                 string ScriptSelect = SiteUrl_Txt.Text;
                 ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
 
+                if (ScriptSelect.Length > 100)
+                    ScriptSelect += ScriptSelect.Substring(0, 100);
+
                 if (!File.Exists(Dirscript + ScriptSelect + ".js"))
                 {
                     using (StreamWriter fc = File.AppendText(Scripts + FileUrl))

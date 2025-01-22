@@ -497,6 +497,10 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.RepairKML_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveGPX_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2762,7 +2766,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -3048,7 +3051,6 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3243,6 +3245,7 @@
             // Map_Cmd_Pnl
             // 
             this.Map_Cmd_Pnl.BackColor = System.Drawing.Color.Black;
+            this.Map_Cmd_Pnl.Controls.Add(this.SaveGPX_Btn);
             this.Map_Cmd_Pnl.Controls.Add(this.SaveRoute_Btn);
             this.Map_Cmd_Pnl.Controls.Add(this.PointLoc_Lst);
             this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Chk);
@@ -5953,33 +5956,33 @@
             // EditXMLMap_Tls
             // 
             this.EditXMLMap_Tls.Name = "EditXMLMap_Tls";
-            this.EditXMLMap_Tls.Size = new System.Drawing.Size(168, 22);
-            this.EditXMLMap_Tls.Text = "Edit XML File";
+            this.EditXMLMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.EditXMLMap_Tls.Text = "Edit Project File";
             this.EditXMLMap_Tls.Click += new System.EventHandler(this.EditXMLMap_Tls_Click);
             // 
             // ShowXMLMap_Tls
             // 
             this.ShowXMLMap_Tls.Name = "ShowXMLMap_Tls";
-            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(168, 22);
-            this.ShowXMLMap_Tls.Text = "Show XML";
+            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.ShowXMLMap_Tls.Text = "Show Project";
             this.ShowXMLMap_Tls.Click += new System.EventHandler(this.ShowXMLMap_Tls_Click);
             // 
             // OpnDirMap_Tls
             // 
             this.OpnDirMap_Tls.Name = "OpnDirMap_Tls";
-            this.OpnDirMap_Tls.Size = new System.Drawing.Size(168, 22);
+            this.OpnDirMap_Tls.Size = new System.Drawing.Size(180, 22);
             this.OpnDirMap_Tls.Text = "Open Directory";
             this.OpnDirMap_Tls.Click += new System.EventHandler(this.OpnDirMap_Tls_Click);
             // 
             // toolStripSeparator25
             // 
             this.toolStripSeparator25.Name = "toolStripSeparator25";
-            this.toolStripSeparator25.Size = new System.Drawing.Size(165, 6);
+            this.toolStripSeparator25.Size = new System.Drawing.Size(177, 6);
             // 
             // DelProjectMap_Tls
             // 
             this.DelProjectMap_Tls.Name = "DelProjectMap_Tls";
-            this.DelProjectMap_Tls.Size = new System.Drawing.Size(168, 22);
+            this.DelProjectMap_Tls.Size = new System.Drawing.Size(180, 22);
             this.DelProjectMap_Tls.Text = "Delete Project";
             this.DelProjectMap_Tls.Click += new System.EventHandler(this.DelProjectMap_Tls_Click);
             // 
@@ -5989,6 +5992,7 @@
             this.ToolsMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpnListLocation_Tls,
             this.OpnListRoute_Tls,
+            this.OpnGPXRoute_Tls,
             this.toolStripSeparator30,
             this.CrossCenter_Tls,
             this.ScreenShotGmap_Tls,
@@ -6001,7 +6005,9 @@
             this.CopyGeoMap_Tls,
             this.toolStripSeparator28,
             this.NmodeMap_Tls,
-            this.ClearMap_Tls});
+            this.ClearMap_Tls,
+            this.toolStripSeparator31,
+            this.RepairKML_Tls});
             this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.White;
             this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
             this.ToolsMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -6240,6 +6246,46 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // OpnGPXRoute_Tls
+            // 
+            this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
+            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGPXRoute_Tls.Text = "Open GPX/KML Routes";
+            this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
+            // 
+            // RepairKML_Tls
+            // 
+            this.RepairKML_Tls.ForeColor = System.Drawing.Color.Red;
+            this.RepairKML_Tls.Name = "RepairKML_Tls";
+            this.RepairKML_Tls.Size = new System.Drawing.Size(233, 22);
+            this.RepairKML_Tls.Text = "Repair KML file";
+            this.RepairKML_Tls.Click += new System.EventHandler(this.RepairKML_Tls_Click);
+            // 
+            // toolStripSeparator31
+            // 
+            this.toolStripSeparator31.Name = "toolStripSeparator31";
+            this.toolStripSeparator31.Size = new System.Drawing.Size(230, 6);
+            // 
+            // SaveGPX_Btn
+            // 
+            this.SaveGPX_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SaveGPX_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveGPX_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveGPX_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveGPX_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.SaveGPX_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 520);
+            this.SaveGPX_Btn.Name = "SaveGPX_Btn";
+            this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
+            this.SaveGPX_Btn.TabIndex = 26;
+            this.SaveGPX_Btn.Text = "Save KML or GPX";
+            this.SaveGPX_Btn.UseVisualStyleBackColor = false;
+            this.SaveGPX_Btn.Visible = false;
+            this.SaveGPX_Btn.Click += new System.EventHandler(this.SaveGPX_Btn_Click);
             // 
             // Main_Frm
             // 
@@ -6825,6 +6871,10 @@
         private System.Windows.Forms.ToolStripMenuItem OpnListRoute_Tls;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator30;
         private System.Windows.Forms.Button SaveRoute_Btn;
+        private System.Windows.Forms.ToolStripMenuItem OpnGPXRoute_Tls;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator31;
+        private System.Windows.Forms.ToolStripMenuItem RepairKML_Tls;
+        private System.Windows.Forms.Button SaveGPX_Btn;
     }
 }
 

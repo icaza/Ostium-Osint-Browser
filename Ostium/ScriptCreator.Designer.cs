@@ -361,6 +361,7 @@
             this.ScriptTxt_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ScriptTxt_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ScriptTxt_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScriptTxt_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ScriptTxt_Txt.ForeColor = System.Drawing.Color.Lime;
             this.ScriptTxt_Txt.IndentBackColor = System.Drawing.Color.Black;
             this.ScriptTxt_Txt.IsReplaceMode = false;
