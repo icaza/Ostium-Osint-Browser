@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Icaza;
+using System;
+using System.IO;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -6,8 +8,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
-using Icaza;
-using System.IO;
 
 namespace Ostium
 {
@@ -133,7 +133,7 @@ namespace Ostium
         }
 
         void CreateNameAleat()
-        {            
+        {
             Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
         }
 

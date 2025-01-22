@@ -1,13 +1,13 @@
-﻿using System;
-using System.Text;
-using System.Xml;
-using System.Windows.Forms;
+﻿using Icaza;
 using LoadDirectory;
-using System.IO;
-using System.Text.RegularExpressions;
-using Icaza;
 using Microsoft.Ajax.Utilities;
+using System;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace Ostium
 {
@@ -17,7 +17,7 @@ namespace Ostium
 
         [DllImport("kernel32.dll")]
         static extern bool Beep(int freq, int duration);
-        
+
         readonly string AppStart = Application.StartupPath + @"\";
         readonly string Scripts = Application.StartupPath + @"\scripts\bookmarklet\";
 

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Icaza;
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Icaza;
 
 namespace Ostium
 {
@@ -96,7 +96,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-               senderror.ErrorLog("Error! SaveData_Btn_Click: ", ex.Message, "OpenSource_Frm", AppStart);
+                senderror.ErrorLog("Error! SaveData_Btn_Click: ", ex.Message, "OpenSource_Frm", AppStart);
             }
         }
 

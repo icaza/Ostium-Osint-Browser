@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Icaza;
+using LoadDirectory;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using Icaza;
-using LoadDirectory;
 
 namespace Ostium
 {
