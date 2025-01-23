@@ -5845,6 +5845,10 @@ namespace Ostium
                     return;
                 }
 
+                string strExt = Path.GetExtension(MapRouteOpn);
+                if (strExt == ".kml")
+                    return;
+
                 if (LocatRoute == "locat")
                 {
                     if (File.Exists(MapXmlOpn))
@@ -5876,7 +5880,9 @@ namespace Ostium
 
         void ExportGPX_Tls_Click(object sender, EventArgs e)
         {
-            string inputFile = MapRouteOpn;
+            string strExt = Path.GetExtension(MapRouteOpn);
+            if (strExt != ".txt")
+                return;
 
             string dirselect = selectdir.Dirselect();
             if (dirselect != "")
@@ -5895,7 +5901,7 @@ namespace Ostium
                         return;
                 }
 
-                CreateGpxFromCoordinates(inputFile, outputFile);
+                CreateGpxFromCoordinates(MapRouteOpn, outputFile);
             }
         }
 
@@ -5917,13 +5923,23 @@ namespace Ostium
 
                     if (result == DialogResult.Yes)
                     {
-                        if (File.Exists(MapDir + PointLoc_Lst.SelectedItem.ToString()))
-                            File.Delete(MapDir + PointLoc_Lst.SelectedItem.ToString());
+                        if (LocatRoute == "routegpx")
+                        {
+                            if (File.Exists(MapDirGpx + PointLoc_Lst.SelectedItem.ToString()))
+                                File.Delete(MapDirGpx + PointLoc_Lst.SelectedItem.ToString());
+                        }
+                        else
+                        {
+                            if (File.Exists(MapDir + PointLoc_Lst.SelectedItem.ToString()))
+                                File.Delete(MapDir + PointLoc_Lst.SelectedItem.ToString());
+                        }
 
                         if (LocatRoute == "locat")
                             loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
-                        else
+                        else if (LocatRoute == "route")
                             loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
+                        else if (LocatRoute == "routegpx")
+                            loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
 
                         ProjectMapOpn_Lbl.Text = "";
 
@@ -6247,6 +6263,7 @@ namespace Ostium
 
             GMap_Ctrl.Overlays.Clear();
             overlayOne.Markers.Clear();
+
             OpenMaps(KeywordMap_Txt.Text, 12); // Adresse, Provider
         }
 
@@ -6532,6 +6549,7 @@ namespace Ostium
             {
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
+
                 string msg = "The project no longer exists! It will be removed from the list.";
 
                 if (LocatRoute == "locat")
@@ -6809,6 +6827,8 @@ namespace Ostium
                                 Stroke = new Pen(Color.Red, 3)
                             };
                             overlay.Routes.Add(route);
+
+                            TextMarker_Txt.Text = Convert.ToString(route.Distance);
                         }
                         else if (points.Count == 1)
                         {
@@ -6856,6 +6876,8 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Add(overlay);
 
                 GMap_Ctrl.ZoomAndCenterRoutes("gpx_overlay");
+
+                TextMarker_Txt.Text = Convert.ToString(route.Distance);
             }
             catch (FormatException)
             {
@@ -6922,6 +6944,8 @@ namespace Ostium
             double lat = coordinates[1].Value<double>();
             GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lon), GMarkerGoogleType.red_dot);
             overlay.Markers.Add(marker);
+
+            TextMarker_Txt.Text = "";
         }
 
         void AddLineString(GMapOverlay overlay, JToken geometry)
@@ -6939,6 +6963,8 @@ namespace Ostium
                 Stroke = new Pen(Color.Red, 2)
             };
             overlay.Routes.Add(route);
+
+            TextMarker_Txt.Text = Convert.ToString(route.Distance);
         }
 
         void AddPolygon(GMapOverlay overlay, JToken geometry)
@@ -6957,6 +6983,8 @@ namespace Ostium
                 Stroke = new Pen(Color.Red, 1)
             };
             overlay.Polygons.Add(polygon);
+
+            TextMarker_Txt.Text = "";
         }
 
         void AddMultiPolygon(GMapOverlay overlay, JToken geometry)
@@ -6978,6 +7006,8 @@ namespace Ostium
                     Stroke = new Pen(Color.Blue, 1)
                 };
                 overlay.Polygons.Add(polygon);
+
+                TextMarker_Txt.Text = "";
             }
         }
 
