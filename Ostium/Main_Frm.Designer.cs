@@ -502,6 +502,8 @@
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.ExportGPX_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnListRouteGpx_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnScriptl_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -883,7 +885,9 @@
             // 
             this.Bkmkl_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpnBokmark_Btn,
-            this.CreateBokmark_Btn});
+            this.CreateBokmark_Btn,
+            this.toolStripSeparator32,
+            this.OpnScriptl_Btn});
             this.Bkmkl_Mnu.Name = "Bkmkl_Mnu";
             this.Bkmkl_Mnu.Size = new System.Drawing.Size(212, 22);
             this.Bkmkl_Mnu.Text = "Bookmarklet";
@@ -891,14 +895,14 @@
             // OpnBokmark_Btn
             // 
             this.OpnBokmark_Btn.Name = "OpnBokmark_Btn";
-            this.OpnBokmark_Btn.Size = new System.Drawing.Size(117, 22);
+            this.OpnBokmark_Btn.Size = new System.Drawing.Size(180, 22);
             this.OpnBokmark_Btn.Text = "Open";
             this.OpnBokmark_Btn.Click += new System.EventHandler(this.OpnBokmark_Btn_Click);
             // 
             // CreateBokmark_Btn
             // 
             this.CreateBokmark_Btn.Name = "CreateBokmark_Btn";
-            this.CreateBokmark_Btn.Size = new System.Drawing.Size(117, 22);
+            this.CreateBokmark_Btn.Size = new System.Drawing.Size(180, 22);
             this.CreateBokmark_Btn.Text = "Create";
             this.CreateBokmark_Btn.Click += new System.EventHandler(this.CreateBokmark_Btn_Click);
             // 
@@ -935,14 +939,14 @@
             // HiglitAddWord_Btn
             // 
             this.HiglitAddWord_Btn.Name = "HiglitAddWord_Btn";
-            this.HiglitAddWord_Btn.Size = new System.Drawing.Size(147, 22);
+            this.HiglitAddWord_Btn.Size = new System.Drawing.Size(180, 22);
             this.HiglitAddWord_Btn.Text = "Word";
             this.HiglitAddWord_Btn.Click += new System.EventHandler(this.HiglitAddWord_Btn_Click);
             // 
             // HiglitInject_Btn
             // 
             this.HiglitInject_Btn.Name = "HiglitInject_Btn";
-            this.HiglitInject_Btn.Size = new System.Drawing.Size(147, 22);
+            this.HiglitInject_Btn.Size = new System.Drawing.Size(180, 22);
             this.HiglitInject_Btn.Text = "Inject Color";
             this.HiglitInject_Btn.Click += new System.EventHandler(this.HiglitInject_Btn_Click);
             // 
@@ -1160,10 +1164,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 28);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 611);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1183,7 +1187,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 25);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 610);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 582);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1196,7 +1200,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 459);
+            this.WBrowse.Size = new System.Drawing.Size(920, 431);
             this.WBrowse.Source = new System.Uri("https://icaza.github.io/", System.UriKind.Absolute);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
@@ -1217,7 +1221,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 489);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 461);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
@@ -1342,7 +1346,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 554);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 526);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1351,7 +1355,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 526);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 498);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -1405,7 +1409,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 450);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 422);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -1785,7 +1789,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 581);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 553);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -1799,7 +1803,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 237);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 209);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -1809,7 +1813,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 264);
+            this.label5.Location = new System.Drawing.Point(0, 236);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -1821,7 +1825,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 288);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 260);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1843,7 +1847,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 390);
+            this.label1.Location = new System.Drawing.Point(0, 362);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -1855,7 +1859,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 414);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 386);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1866,7 +1870,7 @@
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 516);
+            this.label23.Location = new System.Drawing.Point(0, 488);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -1878,7 +1882,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 540);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 512);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -1892,7 +1896,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 584);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 556);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
@@ -3280,7 +3284,7 @@
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
-            this.SaveGPX_Btn.Text = "Save KML or GPX";
+            this.SaveGPX_Btn.Text = "Save to List";
             this.SaveGPX_Btn.UseVisualStyleBackColor = false;
             this.SaveGPX_Btn.Visible = false;
             this.SaveGPX_Btn.Click += new System.EventHandler(this.SaveGPX_Btn_Click);
@@ -6043,111 +6047,111 @@
             // OpnListLocation_Tls
             // 
             this.OpnListLocation_Tls.Name = "OpnListLocation_Tls";
-            this.OpnListLocation_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnListLocation_Tls.Size = new System.Drawing.Size(339, 22);
             this.OpnListLocation_Tls.Text = "Open Locations List";
             this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
             // 
             // OpnListRoute_Tls
             // 
             this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
-            this.OpnListRoute_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnListRoute_Tls.Size = new System.Drawing.Size(339, 22);
             this.OpnListRoute_Tls.Text = "Open Routes List";
             this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
             // 
             // OpnGPXRoute_Tls
             // 
             this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
-            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(342, 22);
-            this.OpnGPXRoute_Tls.Text = "Open File GPX/KML/GEOJSON/JSON";
+            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(339, 22);
+            this.OpnGPXRoute_Tls.Text = "Open File GPX KML GEOJSON JSON";
             this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
             // 
             // toolStripSeparator30
             // 
             this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(339, 6);
+            this.toolStripSeparator30.Size = new System.Drawing.Size(336, 6);
             // 
             // CrossCenter_Tls
             // 
             this.CrossCenter_Tls.Name = "CrossCenter_Tls";
-            this.CrossCenter_Tls.Size = new System.Drawing.Size(342, 22);
+            this.CrossCenter_Tls.Size = new System.Drawing.Size(339, 22);
             this.CrossCenter_Tls.Text = "Cross Center";
             this.CrossCenter_Tls.Click += new System.EventHandler(this.CrossCenter_Tls_Click);
             // 
             // ScreenShotGmap_Tls
             // 
             this.ScreenShotGmap_Tls.Name = "ScreenShotGmap_Tls";
-            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(342, 22);
+            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(339, 22);
             this.ScreenShotGmap_Tls.Text = "ScreenShot";
             this.ScreenShotGmap_Tls.Click += new System.EventHandler(this.ScreenShotGmap_Tls_Click);
             // 
             // toolStripSeparator24
             // 
             this.toolStripSeparator24.Name = "toolStripSeparator24";
-            this.toolStripSeparator24.Size = new System.Drawing.Size(339, 6);
+            this.toolStripSeparator24.Size = new System.Drawing.Size(336, 6);
             // 
             // OpnGoogleMaps_Tls
             // 
             this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
-            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(339, 22);
             this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
             this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
             // 
             // OpnGoogleStreet_Tls
             // 
             this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
-            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(339, 22);
             this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
             this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
             // 
             // OpnBingMap_Tls
             // 
             this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
-            this.OpnBingMap_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnBingMap_Tls.Size = new System.Drawing.Size(339, 22);
             this.OpnBingMap_Tls.Text = "Open BingMap";
             this.OpnBingMap_Tls.Click += new System.EventHandler(this.OpnBingMap_Tls_Click);
             // 
             // OpenGoogleEarth_Tls
             // 
             this.OpenGoogleEarth_Tls.Name = "OpenGoogleEarth_Tls";
-            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(339, 22);
             this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
             this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
             // 
             // toolStripSeparator26
             // 
             this.toolStripSeparator26.Name = "toolStripSeparator26";
-            this.toolStripSeparator26.Size = new System.Drawing.Size(339, 6);
+            this.toolStripSeparator26.Size = new System.Drawing.Size(336, 6);
             // 
             // CopyGeoMap_Tls
             // 
             this.CopyGeoMap_Tls.Name = "CopyGeoMap_Tls";
-            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(342, 22);
+            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(339, 22);
             this.CopyGeoMap_Tls.Text = "Copy Geolocation";
             this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
             // 
             // toolStripSeparator28
             // 
             this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(339, 6);
+            this.toolStripSeparator28.Size = new System.Drawing.Size(336, 6);
             // 
             // NmodeMap_Tls
             // 
             this.NmodeMap_Tls.Name = "NmodeMap_Tls";
-            this.NmodeMap_Tls.Size = new System.Drawing.Size(342, 22);
+            this.NmodeMap_Tls.Size = new System.Drawing.Size(339, 22);
             this.NmodeMap_Tls.Text = "Negative Mode";
             this.NmodeMap_Tls.Click += new System.EventHandler(this.NmodeMap_Tls_Click);
             // 
             // ClearMap_Tls
             // 
             this.ClearMap_Tls.Name = "ClearMap_Tls";
-            this.ClearMap_Tls.Size = new System.Drawing.Size(342, 22);
+            this.ClearMap_Tls.Size = new System.Drawing.Size(339, 22);
             this.ClearMap_Tls.Text = "Clear Map";
             this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
             // 
             // toolStripSeparator31
             // 
             this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(339, 6);
+            this.toolStripSeparator31.Size = new System.Drawing.Size(336, 6);
             // 
             // GmapProvider_Cbx
             // 
@@ -6294,9 +6298,21 @@
             // OpnListRouteGpx_Tls
             // 
             this.OpnListRouteGpx_Tls.Name = "OpnListRouteGpx_Tls";
-            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(342, 22);
-            this.OpnListRouteGpx_Tls.Text = "Open Routes GPX/KML/GEOJSON/JSON List";
+            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(339, 22);
+            this.OpnListRouteGpx_Tls.Text = "Open Routes GPX KML GEOJSON JSON List";
             this.OpnListRouteGpx_Tls.Click += new System.EventHandler(this.OpnListRouteGpx_Tls_Click);
+            // 
+            // toolStripSeparator32
+            // 
+            this.toolStripSeparator32.Name = "toolStripSeparator32";
+            this.toolStripSeparator32.Size = new System.Drawing.Size(177, 6);
+            // 
+            // OpnScriptl_Btn
+            // 
+            this.OpnScriptl_Btn.Name = "OpnScriptl_Btn";
+            this.OpnScriptl_Btn.Size = new System.Drawing.Size(180, 22);
+            this.OpnScriptl_Btn.Text = "File Script JS";
+            this.OpnScriptl_Btn.Click += new System.EventHandler(this.OpnScriptl_Btn_Click);
             // 
             // Main_Frm
             // 
@@ -6305,8 +6321,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_3);
+            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -6887,6 +6903,8 @@
         private System.Windows.Forms.Button SaveGPX_Btn;
         private System.Windows.Forms.ToolStripMenuItem ExportGPX_Tls;
         private System.Windows.Forms.ToolStripMenuItem OpnListRouteGpx_Tls;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator32;
+        private System.Windows.Forms.ToolStripMenuItem OpnScriptl_Btn;
     }
 }
 

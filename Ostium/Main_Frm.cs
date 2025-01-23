@@ -137,6 +137,7 @@ namespace Ostium
         string MinifyScr = "";
         string CrossCenter = "on";
         int MapZoom = 1;
+        string Scriptl = "off";
         ///
         /// <summary>
         /// Map variables
@@ -377,7 +378,7 @@ namespace Ostium
                         FileDir + "url-constructor",
                         FileDir + "grp-frm",
                         Pictures,
-                        Scripts,
+                        //Scripts + "scriptsl",
                         Workflow,
                         Workflow + "model",
                         DiagramDir,
@@ -5482,6 +5483,8 @@ namespace Ostium
         {
             try
             {
+                Scriptl = "off";
+
                 if (!PanelBkmklt_Pnl.Visible)
                     loadfiledir.LoadFileDirectory(BkmkltDir, "xml", "lst", Bookmarklet_Lst);
 
@@ -5493,10 +5496,23 @@ namespace Ostium
             }
         }
 
+        private void OpnScriptl_Btn_Click(object sender, EventArgs e)
+        {
+            Scriptl = "on";
+
+            if (!PanelBkmklt_Pnl.Visible)
+                loadfiledir.LoadFileDirectory(Scripts + "scriptsl", "js", "lst", Bookmarklet_Lst);
+
+            PanelBkmklt_Pnl.Visible = !PanelBkmklt_Pnl.Visible;
+        }
+
         void Bookmarklet_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string BkmScr = Regex.Replace(Bookmarklet_Lst.Text, @".xml", "");
-            OpnBookmark(BkmScr);
+            if (Scriptl == "off")
+            {
+                string BkmScr = Regex.Replace(Bookmarklet_Lst.Text, @".xml", "");
+                OpnBookmark(BkmScr);
+            }
         }
 
         void OpnBookmark(string strAttrib)
@@ -5528,7 +5544,12 @@ namespace Ostium
         void InjectBkmklt_Btn_Click(object sender, EventArgs e)
         {
             if (Bookmarklet_Lst.SelectedIndex != -1)
-                InjectBkmklt(MinifyScr);
+            {
+                if (Scriptl == "off")
+                    InjectBkmklt(MinifyScr);
+                else
+                    InjectScriptl(Scripts + @"scriptsl\" + Bookmarklet_Lst.SelectedItem.ToString());
+            }
         }
 
         async void InjectBkmklt(string Bkmklt)
@@ -5536,6 +5557,19 @@ namespace Ostium
             try
             {
                 await WBrowse.ExecuteScriptAsync(Bkmklt);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message, "Execute Script Fails!");
+            }
+        }
+
+        async void InjectScriptl(string Scriptpath)
+        {
+            try
+            {
+                string scrl = File.ReadAllText(Scriptpath);
+                await WBrowse.ExecuteScriptAsync(scrl);
             }
             catch (InvalidOperationException ex)
             {
@@ -6835,39 +6869,50 @@ namespace Ostium
 
         void LoadGeoJsonFile(string filePath)
         {
-            string jsonContent = File.ReadAllText(filePath);
-            JObject geoJson = JObject.Parse(jsonContent);
-
-            if (geoJson["features"] is JArray features)
+            try
             {
-                GMapOverlay overlay = new GMapOverlay("geojson");
+                string jsonContent = File.ReadAllText(filePath);
+                JObject geoJson = JObject.Parse(jsonContent);
 
-                foreach (var feature in features)
+                if (geoJson["features"] is JArray features)
                 {
-                    var geometry = feature["geometry"];
-                    string geometryType = geometry["type"].ToString();
+                    GMapOverlay overlay = new GMapOverlay("geojson");
 
-                    switch (geometryType)
+                    foreach (var feature in features)
                     {
-                        case "Point":
-                            AddPoint(overlay, geometry);
-                            break;
-                        case "LineString":
-                            AddLineString(overlay, geometry);
-                            break;
-                        case "Polygon":
-                            AddPolygon(overlay, geometry);
-                            break;
-                        case "MultiPolygon":
-                            AddMultiPolygon(overlay, geometry);
-                            break;
+                        var geometry = feature["geometry"];
+                        string geometryType = geometry["type"].ToString();
+
+                        switch (geometryType)
+                        {
+                            case "Point":
+                                AddPoint(overlay, geometry);
+                                break;
+                            case "LineString":
+                                AddLineString(overlay, geometry);
+                                break;
+                            case "Polygon":
+                                AddPolygon(overlay, geometry);
+                                break;
+                            case "MultiPolygon":
+                                AddMultiPolygon(overlay, geometry);
+                                break;
+                        }
                     }
+
+                    GMap_Ctrl.Overlays.Add(overlay);
                 }
 
-                GMap_Ctrl.Overlays.Add(overlay);
+                GMap_Ctrl.ZoomAndCenterMarkers("geojson");
             }
-
-            GMap_Ctrl.ZoomAndCenterMarkers("geojson");
+            catch (FormatException)
+            {
+                MessageBox.Show("Format exception!");
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadGeoJsonFile: ", ex.Message, "Main_Frm", AppStart);
+            }
         }
 
         void AddPoint(GMapOverlay overlay, JToken geometry)
