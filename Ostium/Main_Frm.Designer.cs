@@ -487,7 +487,6 @@
             this.NmodeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
-            this.RepairKML_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
@@ -6033,8 +6032,7 @@
             this.toolStripSeparator28,
             this.NmodeMap_Tls,
             this.ClearMap_Tls,
-            this.toolStripSeparator31,
-            this.RepairKML_Tls});
+            this.toolStripSeparator31});
             this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.White;
             this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
             this.ToolsMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -6150,14 +6148,6 @@
             // 
             this.toolStripSeparator31.Name = "toolStripSeparator31";
             this.toolStripSeparator31.Size = new System.Drawing.Size(339, 6);
-            // 
-            // RepairKML_Tls
-            // 
-            this.RepairKML_Tls.ForeColor = System.Drawing.Color.Red;
-            this.RepairKML_Tls.Name = "RepairKML_Tls";
-            this.RepairKML_Tls.Size = new System.Drawing.Size(342, 22);
-            this.RepairKML_Tls.Text = "Repair KML file";
-            this.RepairKML_Tls.Click += new System.EventHandler(this.RepairKML_Tls_Click);
             // 
             // GmapProvider_Cbx
             // 
@@ -6894,7 +6884,6 @@
         private System.Windows.Forms.Button SaveRoute_Btn;
         private System.Windows.Forms.ToolStripMenuItem OpnGPXRoute_Tls;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator31;
-        private System.Windows.Forms.ToolStripMenuItem RepairKML_Tls;
         private System.Windows.Forms.Button SaveGPX_Btn;
         private System.Windows.Forms.ToolStripMenuItem ExportGPX_Tls;
         private System.Windows.Forms.ToolStripMenuItem OpnListRouteGpx_Tls;

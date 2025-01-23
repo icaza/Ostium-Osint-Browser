@@ -5962,6 +5962,9 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "route")
             {
+                if (!Directory.Exists(MapDirGpx))
+                    Directory.CreateDirectory(MapDirGpx);
+
                 LocatRoute = "routegpx";
                 Map_Cmd_Pnl.Visible = true;
                 LocatRoute_Lbl.Text = "Routes";
@@ -6151,37 +6154,6 @@ namespace Ostium
         {
             GMap_Ctrl.Overlays.Clear();
             overlayOne.Markers.Clear();
-        }
-
-        void RepairKML_Tls_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string message = "Please note that the KML file will be modified, so be sure to make a backup copy before continuing!";
-                string caption = "Repair KML";
-                var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    string filePath = openfile.Fileselect(AppStart, "kml gpx files (*.gpx;*.kml)|*.gpx;*.kml", 2);
-                    string content = File.ReadAllText(filePath);
-
-                    string pathkml = @"<coordinates>\s*([\s\S]*?)\s*</coordinates>";
-                    string replkml = "<coordinates>$1</coordinates>";
-
-                    string repairKml = Regex.Replace(content, pathkml, replkml, RegexOptions.Singleline);
-
-                    repairKml = Regex.Replace(repairKml, @"\s+", " ");
-
-                    File.WriteAllText(filePath, repairKml);
-
-                    MessageBox.Show("The file has been successfully modified.");
-                }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! RepairKML_Tls_Click: ", ex.Message, "Main_Frm", AppStart);
-            }
         }
 
         void GoLatLong_Tls_Click(object sender, EventArgs e)
@@ -6863,63 +6835,104 @@ namespace Ostium
 
         void LoadGeoJsonFile(string filePath)
         {
-            try
+            string jsonContent = File.ReadAllText(filePath);
+            JObject geoJson = JObject.Parse(jsonContent);
+
+            if (geoJson["features"] is JArray features)
             {
-                string jsonContent = File.ReadAllText(filePath);
-                JObject geoJson = JObject.Parse(jsonContent);
+                GMapOverlay overlay = new GMapOverlay("geojson");
 
-                if (geoJson["features"] is JArray features)
+                foreach (var feature in features)
                 {
-                    GMapOverlay polygonsOverlay = new GMapOverlay("polygons");
+                    var geometry = feature["geometry"];
+                    string geometryType = geometry["type"].ToString();
 
-                    foreach (var feature in features)
+                    switch (geometryType)
                     {
-                        var geometry = feature["geometry"];
-                        if (geometry["type"].ToString() == "Polygon")
-                        {
-                            var coordinates = geometry["coordinates"];
-                            if (coordinates.Type == JTokenType.Array)
-                            {
-                                var outerRing = coordinates[0];
-                                if (outerRing.Type == JTokenType.Array)
-                                {
-                                    var points = new List<PointLatLng>();
-                                    foreach (var coord in outerRing)
-                                    {
-                                        if (coord.Type == JTokenType.Array && coord.Count() >= 2)
-                                        {
-                                            double lon = coord[0].Value<double>();
-                                            double lat = coord[1].Value<double>();
-                                            points.Add(new PointLatLng(lat, lon));
-                                        }
-                                    }
-
-                                    if (points.Count > 2)
-                                    {
-                                        GMapPolygon polygon = new GMapPolygon(points, "Polygon")
-                                        {
-                                            Fill = new SolidBrush(Color.FromArgb(50, Color.Red)),
-                                            Stroke = new Pen(Color.Red, 1)
-                                        };
-                                        polygonsOverlay.Polygons.Add(polygon);
-                                    }
-                                }
-                            }
-                        }
+                        case "Point":
+                            AddPoint(overlay, geometry);
+                            break;
+                        case "LineString":
+                            AddLineString(overlay, geometry);
+                            break;
+                        case "Polygon":
+                            AddPolygon(overlay, geometry);
+                            break;
+                        case "MultiPolygon":
+                            AddMultiPolygon(overlay, geometry);
+                            break;
                     }
-
-                    GMap_Ctrl.Overlays.Add(polygonsOverlay);
                 }
 
-                GMap_Ctrl.ZoomAndCenterMarkers("polygons");
+                GMap_Ctrl.Overlays.Add(overlay);
             }
-            catch (FormatException)
+
+            GMap_Ctrl.ZoomAndCenterMarkers("geojson");
+        }
+
+        void AddPoint(GMapOverlay overlay, JToken geometry)
+        {
+            var coordinates = geometry["coordinates"];
+            double lon = coordinates[0].Value<double>();
+            double lat = coordinates[1].Value<double>();
+            GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lon), GMarkerGoogleType.red_dot);
+            overlay.Markers.Add(marker);
+        }
+
+        void AddLineString(GMapOverlay overlay, JToken geometry)
+        {
+            var coordinates = geometry["coordinates"] as JArray;
+            List<PointLatLng> points = new List<PointLatLng>();
+            foreach (var coord in coordinates)
             {
-                MessageBox.Show("Format exception!");
+                double lon = coord[0].Value<double>();
+                double lat = coord[1].Value<double>();
+                points.Add(new PointLatLng(lat, lon));
             }
-            catch (Exception ex)
+            GMapRoute route = new GMapRoute(points, "LineString")
             {
-                senderror.ErrorLog("Error! LoadGeoJsonFile: ", ex.Message, "Main_Frm", AppStart);
+                Stroke = new Pen(Color.Red, 2)
+            };
+            overlay.Routes.Add(route);
+        }
+
+        void AddPolygon(GMapOverlay overlay, JToken geometry)
+        {
+            var coordinates = geometry["coordinates"][0] as JArray;
+            List<PointLatLng> points = new List<PointLatLng>();
+            foreach (var coord in coordinates)
+            {
+                double lon = coord[0].Value<double>();
+                double lat = coord[1].Value<double>();
+                points.Add(new PointLatLng(lat, lon));
+            }
+            GMapPolygon polygon = new GMapPolygon(points, "Polygon")
+            {
+                Fill = new SolidBrush(Color.FromArgb(50, Color.Red)),
+                Stroke = new Pen(Color.Red, 1)
+            };
+            overlay.Polygons.Add(polygon);
+        }
+
+        void AddMultiPolygon(GMapOverlay overlay, JToken geometry)
+        {
+            var polygons = geometry["coordinates"] as JArray;
+            foreach (var polygonCoords in polygons)
+            {
+                var coordinates = polygonCoords[0] as JArray;
+                List<PointLatLng> points = new List<PointLatLng>();
+                foreach (var coord in coordinates)
+                {
+                    double lon = coord[0].Value<double>();
+                    double lat = coord[1].Value<double>();
+                    points.Add(new PointLatLng(lat, lon));
+                }
+                GMapPolygon polygon = new GMapPolygon(points, "MultiPolygon")
+                {
+                    Fill = new SolidBrush(Color.FromArgb(50, Color.Blue)),
+                    Stroke = new Pen(Color.Blue, 1)
+                };
+                overlay.Polygons.Add(polygon);
             }
         }
 
