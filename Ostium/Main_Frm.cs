@@ -32,6 +32,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Ostium
 {
@@ -80,6 +81,7 @@ namespace Ostium
         readonly string Setirps = Application.StartupPath + @"\setirps\";
         readonly string BkmkltDir = Application.StartupPath + @"\scripts\bookmarklet\";
         readonly string MapDir = Application.StartupPath + @"\map\";
+        readonly string MapDirGpx = Application.StartupPath + @"\map\gpx\";
         readonly string JsonDir = Application.StartupPath + @"\json-files\";
         readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
         string D4ta = "default_database_name";
@@ -5689,10 +5691,6 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
 
-                MapRouteOpn = MapDir + ValName + ".txt";
-                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".txt";
-                LocatRoute = "route";
-
                 SaveRoute_Btn.Visible = true;
                 AddNewLoc_Btn.Visible = false;
                 SaveGPX_Btn.Visible = false;
@@ -5703,6 +5701,9 @@ namespace Ostium
                 File.Create(MapDir + ValName + ".txt");
 
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
+
+                MapRouteOpn = MapDir + ValName + ".txt";
+                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".txt";
             }
             else
             {
@@ -5771,7 +5772,6 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
                 ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".xml";
-
                 MapXmlOpn = MapDir + ValName + ".xml";
             }
             else
@@ -5840,6 +5840,31 @@ namespace Ostium
             }
         }
 
+        void ExportGPX_Tls_Click(object sender, EventArgs e)
+        {
+            string inputFile = MapRouteOpn;
+
+            string dirselect = selectdir.Dirselect();
+            if (dirselect != "")
+            {
+                string outputFile = dirselect + @"\" + Path.GetFileNameWithoutExtension(MapRouteOpn) + ".gpx";
+
+                if (File.Exists(outputFile))
+                {
+                    string avert = "The file already exists, delete?";
+                    string caption = "Ostium";
+                    var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                        File.Delete(outputFile);
+                    else
+                        return;
+                }
+
+                CreateGpxFromCoordinates(inputFile, outputFile);
+            }
+        }
+
         void DelProjectMap_Tls_Click(object sender, EventArgs e)
         {
             try
@@ -5885,7 +5910,7 @@ namespace Ostium
 
         void OpnListLocation_Tls_Click(object sender, EventArgs e)
         {
-            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route")
+            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
                 MapRouteOpn = "";
                 LocatRoute = "locat";
@@ -5910,7 +5935,7 @@ namespace Ostium
 
         void OpnListRoute_Tls_Click(object sender, EventArgs e)
         {
-            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat")
+            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
                 LocatRoute = "route";
                 Map_Cmd_Pnl.Visible = true;
@@ -5933,11 +5958,36 @@ namespace Ostium
             }
         }
 
+        void OpnListRouteGpx_Tls_Click(object sender, EventArgs e)
+        {
+            if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "route")
+            {
+                LocatRoute = "routegpx";
+                Map_Cmd_Pnl.Visible = true;
+                LocatRoute_Lbl.Text = "Routes";
+                TxtMarker_Lbl.Text = "Distance (Km)";
+                TxtMarker_Chk.Enabled = false;
+                AddNewLoc_Btn.Visible = false;
+                SaveRoute_Btn.Visible = false;
+                if (KmlGpxOpn == "on")
+                {
+                    SaveRoute_Btn.Visible = false;
+                    SaveGPX_Btn.Visible = true;
+                }
+
+                loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
+            }
+            else
+            {
+                Map_Cmd_Pnl.Visible = false;
+            }
+        }
+
         void OpnGPXRoute_Tls_Click(object sender, EventArgs e)
         {
             try
             {
-                string fileopen = openfile.Fileselect(AppStart, "kml gpx files (*.gpx;*.kml)|*.gpx;*.kml", 2);
+                string fileopen = openfile.Fileselect(AppStart, "kml gpx files (*.gpx;*.kml;*geojson;*json)|*.gpx;*.kml;*geojson;*json", 2);
                 string strname = "";
 
                 if (fileopen != "")
@@ -5950,88 +6000,28 @@ namespace Ostium
 
                     if (strExt == ".kml")
                     {
-                        if (File.Exists(MapDir + "tmpkml.txt"))
-                            File.Delete(MapDir + "tmpkml.txt");
-
-                        using (XmlReader reader = XmlReader.Create(fileopen))
-                        {
-                            reader.MoveToContent();
-                            reader.ReadStartElement("kml");
-
-                            while (reader.Read())
-                            {
-                                if (reader.NodeType == XmlNodeType.Element && reader.Name == "Placemark")
-                                {
-                                    string coordinates = "";
-
-                                    while (reader.Read() && !(reader.NodeType == XmlNodeType.EndElement && reader.Name == "Placemark"))
-                                    {
-                                        if (reader.NodeType == XmlNodeType.Element)
-                                        {
-                                            switch (reader.Name)
-                                            {
-                                                case "coordinates":
-                                                    coordinates = reader.ReadElementContentAsString();
-                                                    break;
-                                            }
-                                        }
-                                    }
-
-                                    string[] coord = coordinates.Split(' ');
-
-                                    foreach (string coordinate in coord)
-                                    {
-                                        string[] parts = coordinate.Split(',');
-                                        if (parts.Length >= 2)
-                                        {
-                                            string lon = parts[0];
-                                            string lat = parts[1];
-
-                                            using (StreamWriter fc = File.AppendText(MapDir + "tmpkml.txt"))
-                                            {
-                                                fc.WriteLine($"{lat}, {lon}");
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        MapRouteOpn = MapDir + "tmpkml.txt";
+                        LoadKmlFile(fileopen);
                     }
                     else if (strExt == ".gpx")
                     {
-                        if (File.Exists(MapDir + "tmpgpx.txt"))
-                            File.Delete(MapDir + "tmpgpx.txt");
-
-                        using (XmlReader reader = XmlReader.Create(fileopen))
-                        {
-                            while (reader.Read())
-                            {
-                                if (reader.NodeType == XmlNodeType.Element && reader.Name == "trkpt")
-                                {
-                                    string lat = reader.GetAttribute("lat");
-                                    string lon = reader.GetAttribute("lon");
-
-                                    using (StreamWriter fc = File.AppendText(MapDir + "tmpgpx.txt"))
-                                    {
-                                        fc.WriteLine($"{lat}, {lon}");
-                                    }
-                                }
-                            }
-                        }
-                        MapRouteOpn = MapDir + "tmpgpx.txt";
+                        LoadGpxFile(fileopen);
                     }
+                    else if (strExt == ".geojson" || strExt == ".json")
+                    {
+                        LoadGeoJsonFile(fileopen);
+                    }
+
+                    KmlGpxOpn = "on";
+                    SaveRoute_Btn.Visible = false;
+                    AddNewLoc_Btn.Visible = false;
+                    SaveGPX_Btn.Visible = true;
+                    SaveRoute_Btn.Text = "Save route Off";
+                    SaveRoute_Btn.ForeColor = Color.White;
+
+                    MapRouteOpn = fileopen;
+
+                    ProjectMapOpn_Lbl.Text = "File open: " + strname;
                 }
-
-                KmlGpxOpn = "on";
-                SaveRoute_Btn.Visible = false;
-                AddNewLoc_Btn.Visible = false;
-                SaveGPX_Btn.Visible = true;
-                SaveRoute_Btn.Text = "Save route Off";
-                SaveRoute_Btn.ForeColor = Color.White;
-                ProjectMapOpn_Lbl.Text = "File open: " + strname;
-
-                LoadRouteFromFile(MapRouteOpn);
             }
             catch (Exception ex)
             {
@@ -6313,43 +6303,47 @@ namespace Ostium
             }
         }
 
-        private void SaveGPX_Btn_Click(object sender, EventArgs e)
+        void SaveGPX_Btn_Click(object sender, EventArgs e)
         {
         SelectName:
+
+            if (!Directory.Exists(MapDirGpx))
+                Directory.CreateDirectory(MapDirGpx);
+
+            string strExt = Path.GetExtension(MapRouteOpn);
 
             string message, title;
             object NameInsert;
 
-            message = "Select Name Project.";
-            title = "Project Name";
+            message = "Select Name File.";
+            title = "File Name";
 
             NameInsert = Interaction.InputBox(message, title);
             string ValName = Convert.ToString(NameInsert);
 
             if (ValName != "")
             {
-                if (File.Exists(MapDir + ValName + ".txt"))
+                if (File.Exists(MapDirGpx + ValName + strExt))
                 {
                     string avert = "The file already exists, delete?";
                     string caption = "Ostium";
                     var result = MessageBox.Show(avert, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                        File.Delete(MapDir + ValName + ".txt");
+                        File.Delete(MapDirGpx + ValName + strExt);
                     else
-                    {
                         goto SelectName;
-                    }
                 }
 
-                File.Copy(MapRouteOpn, MapDir + ValName + ".txt");
+                File.Copy(MapRouteOpn, MapDirGpx + ValName + strExt);
 
                 SaveRoute_Btn.Visible = false;
-                SaveGPX_Btn.Visible = true;
+                SaveGPX_Btn.Visible = false;
                 AddNewLoc_Btn.Visible = false;
-                LocatRoute = "route";
 
-                loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
+                LocatRoute = "routegpx";
+
+                loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
             }
             else
             {
@@ -6550,11 +6544,10 @@ namespace Ostium
                         SaveRoute_Btn.Visible = false;
                         SaveGPX_Btn.Visible = false;
 
-                        ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
                         OpnLocationPoints();
                     }
                 }
-                else
+                else if (LocatRoute == "route")
                 {
                     MapRouteOpn = MapDir + PointLoc_Lst.SelectedItem.ToString();
 
@@ -6570,11 +6563,37 @@ namespace Ostium
                         SaveGPX_Btn.Visible = false;
                         AddNewLoc_Btn.Visible = false;
 
-                        ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
-
                         LoadRouteFromFile(MapRouteOpn);
                     }
                 }
+                else if (LocatRoute == "routegpx")
+                {
+                    MapRouteOpn = MapDirGpx + PointLoc_Lst.SelectedItem.ToString();
+
+                    string strExt = Path.GetExtension(MapRouteOpn);
+
+                    if (!File.Exists(MapRouteOpn))
+                    {
+                        MessageBox.Show(msg);
+                        loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
+                    }
+                    else
+                    {
+                        KmlGpxOpn = "off";
+                        SaveRoute_Btn.Visible = false;
+                        SaveGPX_Btn.Visible = false;
+                        AddNewLoc_Btn.Visible = false;
+
+                        if (strExt == ".gpx")
+                            LoadGpxFile(MapRouteOpn);
+                        else if (strExt == ".kml")
+                            LoadKmlFile(MapRouteOpn);
+                        else if (strExt == ".geojson" || strExt == "json")
+                            LoadGeoJsonFile(MapRouteOpn);
+                    }
+                }
+
+                ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
             }
         }
 
@@ -6693,6 +6712,27 @@ namespace Ostium
             Open_Doc_Frm(FileDir + "map_points.txt");
         }
 
+        void Gmap_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (SaveRoute_Btn.Text == "Save route On")
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (MapRouteOpn == "")
+                    {
+                        MessageBox.Show("No route project selected! Select one or create one.");
+                        return;
+                    }
+
+                    PointLatLng point = GMap_Ctrl.FromLocalToLatLng(e.X, e.Y);
+                    using (StreamWriter fc = File.AppendText(MapRouteOpn))
+                    {
+                        fc.WriteLine($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
+                    }
+                }
+            }
+        }
+
         void LoadRouteFromFile(string filePath)
         {
             GMapOverlay routes = new GMapOverlay("routes");
@@ -6726,7 +6766,7 @@ namespace Ostium
             }
             catch (FormatException)
             {
-                MessageBox.Show("Format exception! Try repairing the KML file by clicking on the Repair KML button.");
+                MessageBox.Show("Format exception!");
             }
             catch (Exception ex)
             {
@@ -6734,24 +6774,200 @@ namespace Ostium
             }
         }
 
-        void Gmap_MouseClick(object sender, MouseEventArgs e)
+        void LoadKmlFile(string filePath)
         {
-            if (SaveRoute_Btn.Text == "Save route On")
+            try
             {
-                if (e.Button == MouseButtons.Left)
-                {
-                    if (MapRouteOpn == "")
-                    {
-                        MessageBox.Show("No route project selected! Select one or create one.");
-                        return;
-                    }
+                XDocument kml = XDocument.Load(filePath);
+                XNamespace ns = kml.Root.GetDefaultNamespace();
 
-                    PointLatLng point = GMap_Ctrl.FromLocalToLatLng(e.X, e.Y);
-                    using (StreamWriter file_create = File.AppendText(MapRouteOpn))
+                var overlay = new GMapOverlay("kml_overlay");
+
+                foreach (var placemark in kml.Descendants(ns + "Placemark"))
+                {
+                    var name = placemark.Element(ns + "name")?.Value;
+                    var coordinates = placemark.Descendants(ns + "coordinates").FirstOrDefault()?.Value;
+
+                    if (coordinates != null)
                     {
-                        file_create.WriteLine($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
+                        var points = coordinates.Split(' ')
+                            .Select(c => c.Split(','))
+                            .Where(c => c.Length >= 2)
+                            .Select(c => new PointLatLng(double.Parse(c[1], CultureInfo.InvariantCulture), double.Parse(c[0], CultureInfo.InvariantCulture)))
+                            .ToList();
+
+                        if (points.Count > 1)
+                        {
+                            var route = new GMapRoute(points, name)
+                            {
+                                Stroke = new Pen(Color.Red, 3)
+                            };
+                            overlay.Routes.Add(route);
+                        }
+                        else if (points.Count == 1)
+                        {
+                            var marker = new GMarkerGoogle(points[0], GMarkerGoogleType.red_dot)
+                            {
+                                ToolTipText = name
+                            };
+                            overlay.Markers.Add(marker);
+                        }
                     }
                 }
+
+                GMap_Ctrl.Overlays.Add(overlay);
+                GMap_Ctrl.ZoomAndCenterRoutes("kml_overlay");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Format exception!");
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadKmlFile: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        void LoadGpxFile(string filePath)
+        {
+            try
+            {
+                XDocument gpx = XDocument.Load(filePath);
+                XNamespace ns = gpx.Root.GetDefaultNamespace();
+
+                var route = new GMapRoute("gpx_route");
+                var overlay = new GMapOverlay("gpx_overlay");
+
+                foreach (var trkpt in gpx.Descendants(ns + "trkpt"))
+                {
+                    double lat = double.Parse(trkpt.Attribute("lat").Value, CultureInfo.InvariantCulture);
+                    double lon = double.Parse(trkpt.Attribute("lon").Value, CultureInfo.InvariantCulture);
+                    route.Points.Add(new PointLatLng(lat, lon));
+                }
+
+                route.Stroke = new Pen(Color.Red, 3);
+                overlay.Routes.Add(route);
+                GMap_Ctrl.Overlays.Add(overlay);
+
+                GMap_Ctrl.ZoomAndCenterRoutes("gpx_overlay");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Format exception!");
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadGpxFile: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        void LoadGeoJsonFile(string filePath)
+        {
+            try
+            {
+                string jsonContent = File.ReadAllText(filePath);
+                JObject geoJson = JObject.Parse(jsonContent);
+
+                if (geoJson["features"] is JArray features)
+                {
+                    GMapOverlay polygonsOverlay = new GMapOverlay("polygons");
+
+                    foreach (var feature in features)
+                    {
+                        var geometry = feature["geometry"];
+                        if (geometry["type"].ToString() == "Polygon")
+                        {
+                            var coordinates = geometry["coordinates"];
+                            if (coordinates.Type == JTokenType.Array)
+                            {
+                                var outerRing = coordinates[0];
+                                if (outerRing.Type == JTokenType.Array)
+                                {
+                                    var points = new List<PointLatLng>();
+                                    foreach (var coord in outerRing)
+                                    {
+                                        if (coord.Type == JTokenType.Array && coord.Count() >= 2)
+                                        {
+                                            double lon = coord[0].Value<double>();
+                                            double lat = coord[1].Value<double>();
+                                            points.Add(new PointLatLng(lat, lon));
+                                        }
+                                    }
+
+                                    if (points.Count > 2)
+                                    {
+                                        GMapPolygon polygon = new GMapPolygon(points, "Polygon")
+                                        {
+                                            Fill = new SolidBrush(Color.FromArgb(50, Color.Red)),
+                                            Stroke = new Pen(Color.Red, 1)
+                                        };
+                                        polygonsOverlay.Polygons.Add(polygon);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    GMap_Ctrl.Overlays.Add(polygonsOverlay);
+                }
+
+                GMap_Ctrl.ZoomAndCenterMarkers("polygons");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Format exception!");
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LoadGeoJsonFile: ", ex.Message, "Main_Frm", AppStart);
+            }
+        }
+
+        void CreateGpxFromCoordinates(string inputFile, string outputFile)
+        {
+            try
+            {
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true
+                };
+
+                using (XmlWriter writer = XmlWriter.Create(outputFile, settings))
+                {
+                    writer.WriteStartDocument();
+                    writer.WriteStartElement("gpx", "http://www.topografix.com/GPX/1/1");
+                    writer.WriteAttributeString("version", "1.1");
+                    writer.WriteAttributeString("creator", "Ostium Osint Browser GPX Generator");
+
+                    writer.WriteStartElement("trk");
+                    writer.WriteElementString("name", "Generated Track");
+
+                    writer.WriteStartElement("trkseg");
+
+                    string[] lines = File.ReadAllLines(inputFile);
+                    foreach (string line in lines)
+                    {
+                        string[] coordinates = line.Split(',');
+                        if (coordinates.Length == 2)
+                        {
+                            writer.WriteStartElement("trkpt");
+                            writer.WriteAttributeString("lat", coordinates[0].ToString());
+                            writer.WriteAttributeString("lon", coordinates[1].ToString());
+                            writer.WriteEndElement(); // trkpt
+                        }
+                    }
+
+                    writer.WriteEndElement(); // trkseg
+                    writer.WriteEndElement(); // trk
+                    writer.WriteEndElement(); // gpx
+                    writer.WriteEndDocument();
+                }
+
+                MessageBox.Show("GPX file created successfully.");
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! CreateGpxFromCoordinates: ", ex.Message, "Main_Frm", AppStart);
             }
         }
 

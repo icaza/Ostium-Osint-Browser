@@ -246,6 +246,7 @@
             this.TempPointLoc_Lst = new System.Windows.Forms.ListBox();
             this.GMap_Ctrl = new GMap.NET.WindowsForms.GMapControl();
             this.Map_Cmd_Pnl = new System.Windows.Forms.Panel();
+            this.SaveGPX_Btn = new System.Windows.Forms.Button();
             this.SaveRoute_Btn = new System.Windows.Forms.Button();
             this.PointLoc_Lst = new System.Windows.Forms.ListBox();
             this.TxtMarker_Chk = new System.Windows.Forms.CheckBox();
@@ -471,6 +472,7 @@
             this.ToolsMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.OpnListLocation_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
             this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
@@ -484,6 +486,8 @@
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.NmodeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
+            this.RepairKML_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
@@ -497,10 +501,8 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.RepairKML_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaveGPX_Btn = new System.Windows.Forms.Button();
+            this.ExportGPX_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRouteGpx_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -2766,6 +2768,7 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 80);
@@ -3051,6 +3054,7 @@
             this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
             this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 252);
@@ -3261,6 +3265,26 @@
             this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 610);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
+            // 
+            // SaveGPX_Btn
+            // 
+            this.SaveGPX_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SaveGPX_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveGPX_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveGPX_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveGPX_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.SaveGPX_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 520);
+            this.SaveGPX_Btn.Name = "SaveGPX_Btn";
+            this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
+            this.SaveGPX_Btn.TabIndex = 26;
+            this.SaveGPX_Btn.Text = "Save KML or GPX";
+            this.SaveGPX_Btn.UseVisualStyleBackColor = false;
+            this.SaveGPX_Btn.Visible = false;
+            this.SaveGPX_Btn.Click += new System.EventHandler(this.SaveGPX_Btn_Click);
             // 
             // SaveRoute_Btn
             // 
@@ -5943,6 +5967,7 @@
             this.FilesMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.EditXMLMap_Tls,
             this.ShowXMLMap_Tls,
+            this.ExportGPX_Tls,
             this.OpnDirMap_Tls,
             this.toolStripSeparator25,
             this.DelProjectMap_Tls});
@@ -5956,33 +5981,34 @@
             // EditXMLMap_Tls
             // 
             this.EditXMLMap_Tls.Name = "EditXMLMap_Tls";
-            this.EditXMLMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.EditXMLMap_Tls.Size = new System.Drawing.Size(250, 22);
             this.EditXMLMap_Tls.Text = "Edit Project File";
             this.EditXMLMap_Tls.Click += new System.EventHandler(this.EditXMLMap_Tls_Click);
             // 
             // ShowXMLMap_Tls
             // 
             this.ShowXMLMap_Tls.Name = "ShowXMLMap_Tls";
-            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(250, 22);
             this.ShowXMLMap_Tls.Text = "Show Project";
             this.ShowXMLMap_Tls.Click += new System.EventHandler(this.ShowXMLMap_Tls_Click);
             // 
             // OpnDirMap_Tls
             // 
             this.OpnDirMap_Tls.Name = "OpnDirMap_Tls";
-            this.OpnDirMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.OpnDirMap_Tls.Size = new System.Drawing.Size(250, 22);
             this.OpnDirMap_Tls.Text = "Open Directory";
             this.OpnDirMap_Tls.Click += new System.EventHandler(this.OpnDirMap_Tls_Click);
             // 
             // toolStripSeparator25
             // 
             this.toolStripSeparator25.Name = "toolStripSeparator25";
-            this.toolStripSeparator25.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator25.Size = new System.Drawing.Size(247, 6);
             // 
             // DelProjectMap_Tls
             // 
+            this.DelProjectMap_Tls.ForeColor = System.Drawing.Color.Red;
             this.DelProjectMap_Tls.Name = "DelProjectMap_Tls";
-            this.DelProjectMap_Tls.Size = new System.Drawing.Size(180, 22);
+            this.DelProjectMap_Tls.Size = new System.Drawing.Size(250, 22);
             this.DelProjectMap_Tls.Text = "Delete Project";
             this.DelProjectMap_Tls.Click += new System.EventHandler(this.DelProjectMap_Tls_Click);
             // 
@@ -5992,6 +6018,7 @@
             this.ToolsMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpnListLocation_Tls,
             this.OpnListRoute_Tls,
+            this.OpnListRouteGpx_Tls,
             this.OpnGPXRoute_Tls,
             this.toolStripSeparator30,
             this.CrossCenter_Tls,
@@ -6018,99 +6045,119 @@
             // OpnListLocation_Tls
             // 
             this.OpnListLocation_Tls.Name = "OpnListLocation_Tls";
-            this.OpnListLocation_Tls.Size = new System.Drawing.Size(233, 22);
-            this.OpnListLocation_Tls.Text = "Open Locations";
+            this.OpnListLocation_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnListLocation_Tls.Text = "Open Locations List";
             this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
             // 
             // OpnListRoute_Tls
             // 
             this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
-            this.OpnListRoute_Tls.Size = new System.Drawing.Size(233, 22);
-            this.OpnListRoute_Tls.Text = "Open Routes";
+            this.OpnListRoute_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnListRoute_Tls.Text = "Open Routes List";
             this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
+            // 
+            // OpnGPXRoute_Tls
+            // 
+            this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
+            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnGPXRoute_Tls.Text = "Open File GPX/KML/GEOJSON/JSON";
+            this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
             // 
             // toolStripSeparator30
             // 
             this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(230, 6);
+            this.toolStripSeparator30.Size = new System.Drawing.Size(339, 6);
             // 
             // CrossCenter_Tls
             // 
             this.CrossCenter_Tls.Name = "CrossCenter_Tls";
-            this.CrossCenter_Tls.Size = new System.Drawing.Size(233, 22);
+            this.CrossCenter_Tls.Size = new System.Drawing.Size(342, 22);
             this.CrossCenter_Tls.Text = "Cross Center";
             this.CrossCenter_Tls.Click += new System.EventHandler(this.CrossCenter_Tls_Click);
             // 
             // ScreenShotGmap_Tls
             // 
             this.ScreenShotGmap_Tls.Name = "ScreenShotGmap_Tls";
-            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(342, 22);
             this.ScreenShotGmap_Tls.Text = "ScreenShot";
             this.ScreenShotGmap_Tls.Click += new System.EventHandler(this.ScreenShotGmap_Tls_Click);
             // 
             // toolStripSeparator24
             // 
             this.toolStripSeparator24.Name = "toolStripSeparator24";
-            this.toolStripSeparator24.Size = new System.Drawing.Size(230, 6);
+            this.toolStripSeparator24.Size = new System.Drawing.Size(339, 6);
             // 
             // OpnGoogleMaps_Tls
             // 
             this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
-            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(342, 22);
             this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
             this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
             // 
             // OpnGoogleStreet_Tls
             // 
             this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
-            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(342, 22);
             this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
             this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
             // 
             // OpnBingMap_Tls
             // 
             this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
-            this.OpnBingMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpnBingMap_Tls.Size = new System.Drawing.Size(342, 22);
             this.OpnBingMap_Tls.Text = "Open BingMap";
             this.OpnBingMap_Tls.Click += new System.EventHandler(this.OpnBingMap_Tls_Click);
             // 
             // OpenGoogleEarth_Tls
             // 
             this.OpenGoogleEarth_Tls.Name = "OpenGoogleEarth_Tls";
-            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(233, 22);
+            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(342, 22);
             this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
             this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
             // 
             // toolStripSeparator26
             // 
             this.toolStripSeparator26.Name = "toolStripSeparator26";
-            this.toolStripSeparator26.Size = new System.Drawing.Size(230, 6);
+            this.toolStripSeparator26.Size = new System.Drawing.Size(339, 6);
             // 
             // CopyGeoMap_Tls
             // 
             this.CopyGeoMap_Tls.Name = "CopyGeoMap_Tls";
-            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(342, 22);
             this.CopyGeoMap_Tls.Text = "Copy Geolocation";
             this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
             // 
             // toolStripSeparator28
             // 
             this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(230, 6);
+            this.toolStripSeparator28.Size = new System.Drawing.Size(339, 6);
             // 
             // NmodeMap_Tls
             // 
             this.NmodeMap_Tls.Name = "NmodeMap_Tls";
-            this.NmodeMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.NmodeMap_Tls.Size = new System.Drawing.Size(342, 22);
             this.NmodeMap_Tls.Text = "Negative Mode";
             this.NmodeMap_Tls.Click += new System.EventHandler(this.NmodeMap_Tls_Click);
             // 
             // ClearMap_Tls
             // 
             this.ClearMap_Tls.Name = "ClearMap_Tls";
-            this.ClearMap_Tls.Size = new System.Drawing.Size(233, 22);
+            this.ClearMap_Tls.Size = new System.Drawing.Size(342, 22);
             this.ClearMap_Tls.Text = "Clear Map";
             this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
+            // 
+            // toolStripSeparator31
+            // 
+            this.toolStripSeparator31.Name = "toolStripSeparator31";
+            this.toolStripSeparator31.Size = new System.Drawing.Size(339, 6);
+            // 
+            // RepairKML_Tls
+            // 
+            this.RepairKML_Tls.ForeColor = System.Drawing.Color.Red;
+            this.RepairKML_Tls.Name = "RepairKML_Tls";
+            this.RepairKML_Tls.Size = new System.Drawing.Size(342, 22);
+            this.RepairKML_Tls.Text = "Repair KML file";
+            this.RepairKML_Tls.Click += new System.EventHandler(this.RepairKML_Tls_Click);
             // 
             // GmapProvider_Cbx
             // 
@@ -6247,45 +6294,19 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // OpnGPXRoute_Tls
+            // ExportGPX_Tls
             // 
-            this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
-            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(233, 22);
-            this.OpnGPXRoute_Tls.Text = "Open GPX/KML Routes";
-            this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
+            this.ExportGPX_Tls.Name = "ExportGPX_Tls";
+            this.ExportGPX_Tls.Size = new System.Drawing.Size(250, 22);
+            this.ExportGPX_Tls.Text = "Export project in gpx format";
+            this.ExportGPX_Tls.Click += new System.EventHandler(this.ExportGPX_Tls_Click);
             // 
-            // RepairKML_Tls
+            // OpnListRouteGpx_Tls
             // 
-            this.RepairKML_Tls.ForeColor = System.Drawing.Color.Red;
-            this.RepairKML_Tls.Name = "RepairKML_Tls";
-            this.RepairKML_Tls.Size = new System.Drawing.Size(233, 22);
-            this.RepairKML_Tls.Text = "Repair KML file";
-            this.RepairKML_Tls.Click += new System.EventHandler(this.RepairKML_Tls_Click);
-            // 
-            // toolStripSeparator31
-            // 
-            this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(230, 6);
-            // 
-            // SaveGPX_Btn
-            // 
-            this.SaveGPX_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveGPX_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveGPX_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SaveGPX_Btn.FlatAppearance.BorderSize = 0;
-            this.SaveGPX_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SaveGPX_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 520);
-            this.SaveGPX_Btn.Name = "SaveGPX_Btn";
-            this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
-            this.SaveGPX_Btn.TabIndex = 26;
-            this.SaveGPX_Btn.Text = "Save KML or GPX";
-            this.SaveGPX_Btn.UseVisualStyleBackColor = false;
-            this.SaveGPX_Btn.Visible = false;
-            this.SaveGPX_Btn.Click += new System.EventHandler(this.SaveGPX_Btn_Click);
+            this.OpnListRouteGpx_Tls.Name = "OpnListRouteGpx_Tls";
+            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(342, 22);
+            this.OpnListRouteGpx_Tls.Text = "Open Routes GPX/KML/GEOJSON/JSON List";
+            this.OpnListRouteGpx_Tls.Click += new System.EventHandler(this.OpnListRouteGpx_Tls_Click);
             // 
             // Main_Frm
             // 
@@ -6875,6 +6896,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator31;
         private System.Windows.Forms.ToolStripMenuItem RepairKML_Tls;
         private System.Windows.Forms.Button SaveGPX_Btn;
+        private System.Windows.Forms.ToolStripMenuItem ExportGPX_Tls;
+        private System.Windows.Forms.ToolStripMenuItem OpnListRouteGpx_Tls;
     }
 }
 
