@@ -10,6 +10,8 @@ namespace Ostium
 {
     public partial class Aes_Frm : Form
     {
+        #region Var_
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -17,6 +19,8 @@ namespace Ostium
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
+
+        #endregion
 
         public Aes_Frm()
         {
@@ -32,7 +36,7 @@ namespace Ostium
             Pwd_Txt.DoubleClick += new EventHandler(Pwd_Txt_DoubleClicked);
         }
 
-        private void Main_Frm_MouseDown(object sender, MouseEventArgs e)
+        void Main_Frm_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -84,6 +88,7 @@ namespace Ostium
             catch (Exception ex)
             {
                 MessageBox.Show($"Error encrypting {inputFile}: {ex.Message}");
+                Encrypt_Pnl.BackColor = Color.FromArgb(41, 44, 51);
             }
         }
 
@@ -142,6 +147,7 @@ namespace Ostium
             catch (Exception ex)
             {
                 MessageBox.Show($"Error when decrypting {inputFile}: {ex.Message}");
+                Decrypt_Pnl.BackColor = Color.FromArgb(41, 44, 51);
             }
         }
 
@@ -184,9 +190,21 @@ namespace Ostium
             Pwd_Txt.UseSystemPasswordChar = !Pwd_Txt.UseSystemPasswordChar;
         }
 
-        private void Close_Btn_Click(object sender, EventArgs e)
+        void Close_Btn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void Detail_Lbl_Click(object sender, EventArgs e)
+        {
+            string message = "Security Characteristics:\n\n" +
+                             "• Use of the AES (Advanced Encryption Standard) algorithm with a 256-bit key.\n" +
+                             "• Generation of a random salt for each encrypted file.\n" +
+                             "• Key derivation from the password and salt using PBKDF2\n  (Password-Based Key Derivation Function 2) with 100,000 iterations.\n" +
+                             "• Generation of a random initialization vector (IV) for each encryption operation.\n" +
+                             "• Use of CryptoStream to perform block encryption.";
+
+            MessageBox.Show(message, "Security Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

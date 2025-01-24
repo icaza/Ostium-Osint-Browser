@@ -1,4 +1,3 @@
-// JS script to reformat a web page with classified tables Icaza Media OOB
 (function () {
     const container = document.createElement('div');
     container.style.cssText = `
@@ -19,21 +18,28 @@
     const tableStyle = `
         width: 100%;
         margin-bottom: 20px;
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0;
         background: white;
         color: black;
+        border-radius: 8px;
+        overflow: hidden;
     `;
 
     const thStyle = `
         background-color: #f4f4f4;
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 12px;
         text-align: left;
+        font-weight: bold;
     `;
 
     const tdStyle = `
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 12px;
+        word-break: break-word;
+        max-width: 300px;
+        vertical-align: top;
     `;
 
     const sectionColors = {
@@ -53,59 +59,52 @@
     function createSection(title, color) {
         const section = document.createElement('div');
         section.style.marginBottom = '40px';
-
         const header = document.createElement('h2');
         header.textContent = title;
         header.style.cssText = `
             background: ${color};
-            padding: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            border-radius: 8px;
             color: #333;
+            margin-bottom: 10px;
         `;
-
         const table = document.createElement('table');
         table.style.cssText = tableStyle;
-
         section.appendChild(header);
         section.appendChild(table);
         container.appendChild(section);
-
         return table;
     }
 
     const textTable = createSection('Texts', sectionColors.text);
     const imagesTable = createSection('Images', sectionColors.images);
-    const videosTable = createSection('Videoss', sectionColors.videos);
+    const videosTable = createSection('Videos', sectionColors.videos);
     const linksTable = createSection('Links', sectionColors.links);
 
     function addTableHeaders(table, headers) {
         const thead = document.createElement('thead');
         const row = document.createElement('tr');
-
         headers.forEach(headerText => {
             const th = document.createElement('th');
             th.textContent = headerText;
             th.style.cssText = thStyle;
             row.appendChild(th);
         });
-
         thead.appendChild(row);
         table.appendChild(thead);
     }
 
     addTableHeaders(textTable, ['Title', 'Tag', 'Text']);
-    addTableHeaders(imagesTable, ['Overview', 'URL']);
-    addTableHeaders(videosTable, ['Overview', 'URL']);
+    addTableHeaders(imagesTable, ['Preview', 'URL']);
+    addTableHeaders(videosTable, ['Preview', 'URL']);
     addTableHeaders(linksTable, ['Text', 'URL']);
 
     function addTableRow(table, cells, dataCategory) {
         const row = document.createElement('tr');
         const rowData = {};
-
         cells.forEach((cellData, index) => {
             const td = document.createElement('td');
             td.style.cssText = tdStyle;
-
             if (cellData instanceof HTMLElement) {
                 td.appendChild(cellData);
                 if (cellData.tagName === 'IMG' || cellData.tagName === 'VIDEO') {
@@ -116,6 +115,7 @@
                 link.href = cellData;
                 link.target = '_blank';
                 link.textContent = cellData;
+                link.style.wordBreak = 'break-all';
                 td.appendChild(link);
                 rowData['url'] = cellData;
                 rowData['text'] = link.textContent;
@@ -123,10 +123,8 @@
                 td.textContent = cellData;
                 rowData[index === 0 ? 'title' : index === 1 ? 'tag' : 'text'] = cellData;
             }
-
             row.appendChild(td);
         });
-
         table.appendChild(row);
         collectedData[dataCategory].push(rowData);
     }
@@ -190,7 +188,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'collected_data.json';
+            a.download = `${window.location.host}_collected_data.json`;
             a.click();
             URL.revokeObjectURL(url);
         });
@@ -221,7 +219,7 @@
             pdfWindow.document.write(`
                     <html>
                         <head>
-                            <title>Données collectées</title>
+                            <title>Collected data ${window.location.host}</title>
                         </head>
                         <body>
                             ${pdfContent}

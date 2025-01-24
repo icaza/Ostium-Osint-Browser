@@ -37,6 +37,7 @@
             this.Decrypt_Pnl = new System.Windows.Forms.Panel();
             this.DeleteFile_Chk = new System.Windows.Forms.CheckBox();
             this.Close_Btn = new System.Windows.Forms.Button();
+            this.Detail_Lbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -131,12 +132,26 @@
             this.Close_Btn.UseVisualStyleBackColor = false;
             this.Close_Btn.Click += new System.EventHandler(this.Close_Btn_Click);
             // 
+            // Detail_Lbl
+            // 
+            this.Detail_Lbl.AutoSize = true;
+            this.Detail_Lbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Detail_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Detail_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.Detail_Lbl.Location = new System.Drawing.Point(267, 16);
+            this.Detail_Lbl.Name = "Detail_Lbl";
+            this.Detail_Lbl.Size = new System.Drawing.Size(50, 14);
+            this.Detail_Lbl.TabIndex = 7;
+            this.Detail_Lbl.Text = "Details";
+            this.Detail_Lbl.Click += new System.EventHandler(this.Detail_Lbl_Click);
+            // 
             // Aes_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ClientSize = new System.Drawing.Size(476, 271);
+            this.Controls.Add(this.Detail_Lbl);
             this.Controls.Add(this.Close_Btn);
             this.Controls.Add(this.DeleteFile_Chk);
             this.Controls.Add(this.Decrypt_Pnl);
@@ -167,5 +182,6 @@
         private System.Windows.Forms.Panel Decrypt_Pnl;
         private System.Windows.Forms.CheckBox DeleteFile_Chk;
         private System.Windows.Forms.Button Close_Btn;
+        private System.Windows.Forms.Label Detail_Lbl;
     }
 }

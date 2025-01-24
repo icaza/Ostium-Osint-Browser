@@ -290,6 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ostiumico.ico" />
+    <Content Include="scripts\scriptsl\domain_infos.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="scripts\scriptsl\format_web_page.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
