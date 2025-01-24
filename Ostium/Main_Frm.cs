@@ -97,6 +97,7 @@ namespace Ostium
         OpenSource_Frm openSourceForm;
         ScriptCreator scriptCreatorFrm;
         Bookmarklets_Frm bookmarkletsFrm;
+        Aes_Frm AesFrm;
         ListBox List_Object;
         ToolStripComboBox Cbx_Object;
         ListBox List_Wf;
@@ -4845,6 +4846,12 @@ namespace Ostium
                 else
                     MessageBox.Show("Open Workflow project first!");
             }
+        }
+
+        private void OpnEncFrm_Click(object sender, EventArgs e)
+        {
+            AesFrm = new Aes_Frm();
+            AesFrm.Show();
         }
         ///
         /// <summary>
