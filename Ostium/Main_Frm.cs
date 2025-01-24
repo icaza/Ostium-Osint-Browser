@@ -294,6 +294,8 @@ namespace Ostium
             GMap_Ctrl.KeyDown += new KeyEventHandler(Main_Frm_KeyUp);
             OutJsonA_Chk.Click += new EventHandler(OutJsonA_Chk_Click);
             OutJsonB_Chk.Click += new EventHandler(OutJsonB_Chk_Click);
+            TtsButton_Sts.ButtonClick += new EventHandler(TtsButton_Sts_ButtonClick);
+            TtsButton_Sts.DropDownItemClicked += TtsButton_Sts_DropDownItemClicked;
         }
         ///
         /// <summary>
@@ -568,6 +570,7 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
                 loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
                 loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
+                loadfiledir.LoadFileDirectory(Scripts + "scriptsl", "js", "splitb", TtsButton_Sts);
 
                 Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
                 Class_Var.SCRIPTCREATOR = "off";
@@ -6035,7 +6038,7 @@ namespace Ostium
                     SaveGPX_Btn.Visible = true;
                 }
 
-                loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
+                loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
             }
             else
             {
@@ -7068,9 +7071,15 @@ namespace Ostium
 
         #endregion
 
-        void OpnURL_TlsTools_Click(object sender, EventArgs e)
+        private void TtsButton_Sts_ButtonClick(object sender, EventArgs e)
         {
             GoBrowser(URLtxt_txt.Text, 1);
+        }
+
+        private void TtsButton_Sts_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            string scriptEx = e.ClickedItem.Text;
+            InjectScriptl(Scripts + @"scriptsl\" + scriptEx);
         }
 
         #region Json_

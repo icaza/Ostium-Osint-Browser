@@ -9,6 +9,7 @@ namespace LoadDirectory
         public ToolStripComboBox ComboBoxTs_Obj;
         public ComboBox ComboBox_Obj;
         public ListBox ListBox_Obj;
+        public ToolStripSplitButton SplitButton_Obj;
 
         public void LoadFileDirectory(string dirDirectory, string extExtension, string objectype, object objectsend)
         {
@@ -28,6 +29,12 @@ namespace LoadDirectory
             {
                 ComboBox_Obj = (ComboBox)objectsend;
                 ComboBox_Obj.Items.Clear();
+            }
+
+            if (objectype == "splitb")
+            {
+                SplitButton_Obj = (ToolStripSplitButton)objectsend;
+                SplitButton_Obj.DropDownItems.Clear();
             }
 
             var files = from file in Directory.EnumerateFiles(dirDirectory, "*." + extExtension, SearchOption.AllDirectories)
@@ -54,6 +61,11 @@ namespace LoadDirectory
                 if (objectype == "cbx")
                 {
                     ComboBox_Obj.Items.Add($"{strExt}");
+                }
+
+                if (objectype == "splitb")
+                {
+                    SplitButton_Obj.DropDownItems.Add($"{strExt}");
                 }
             }
         }
