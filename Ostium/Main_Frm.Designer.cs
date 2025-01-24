@@ -6011,8 +6011,8 @@
             // ExportGPX_Tls
             // 
             this.ExportGPX_Tls.Name = "ExportGPX_Tls";
-            this.ExportGPX_Tls.Size = new System.Drawing.Size(250, 22);
-            this.ExportGPX_Tls.Text = "Export project in gpx format";
+            this.ExportGPX_Tls.Size = new System.Drawing.Size(252, 22);
+            this.ExportGPX_Tls.Text = "Export project in GPX format";
             this.ExportGPX_Tls.Click += new System.EventHandler(this.ExportGPX_Tls_Click);
             // 
             // OpnDirMap_Tls
@@ -6169,6 +6169,7 @@
             // 
             // ClearMap_Tls
             // 
+            this.ClearMap_Tls.ForeColor = System.Drawing.Color.Red;
             this.ClearMap_Tls.Name = "ClearMap_Tls";
             this.ClearMap_Tls.Size = new System.Drawing.Size(339, 22);
             this.ClearMap_Tls.Text = "Clear Map";
