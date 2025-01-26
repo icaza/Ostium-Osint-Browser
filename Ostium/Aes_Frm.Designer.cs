@@ -43,11 +43,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(14, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 14);
+            this.label1.Size = new System.Drawing.Size(36, 14);
             this.label1.TabIndex = 0;
             this.label1.Text = "Pwd";
             // 
@@ -75,7 +75,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(14, 71);
             this.label2.Name = "label2";
@@ -86,7 +86,7 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(244, 71);
             this.label3.Name = "label3";
@@ -109,11 +109,11 @@
             // 
             this.DeleteFile_Chk.AutoSize = true;
             this.DeleteFile_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeleteFile_Chk.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteFile_Chk.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteFile_Chk.ForeColor = System.Drawing.Color.Red;
             this.DeleteFile_Chk.Location = new System.Drawing.Point(80, 14);
             this.DeleteFile_Chk.Name = "DeleteFile_Chk";
-            this.DeleteFile_Chk.Size = new System.Drawing.Size(181, 18);
+            this.DeleteFile_Chk.Size = new System.Drawing.Size(190, 18);
             this.DeleteFile_Chk.TabIndex = 5;
             this.DeleteFile_Chk.Text = "Delete original file at end";
             this.DeleteFile_Chk.UseVisualStyleBackColor = true;
@@ -136,11 +136,11 @@
             // 
             this.Detail_Lbl.AutoSize = true;
             this.Detail_Lbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Detail_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Detail_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Detail_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.Detail_Lbl.Location = new System.Drawing.Point(267, 16);
+            this.Detail_Lbl.Location = new System.Drawing.Point(290, 16);
             this.Detail_Lbl.Name = "Detail_Lbl";
-            this.Detail_Lbl.Size = new System.Drawing.Size(50, 14);
+            this.Detail_Lbl.Size = new System.Drawing.Size(53, 14);
             this.Detail_Lbl.TabIndex = 7;
             this.Detail_Lbl.Text = "Details";
             this.Detail_Lbl.Click += new System.EventHandler(this.Detail_Lbl_Click);

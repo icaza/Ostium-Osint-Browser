@@ -35,10 +35,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TopNo_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.Status_Bar = new System.Windows.Forms.StatusStrip();
-            this.Count_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Sorted_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.Status_Bar = new System.Windows.Forms.StatusStrip();
+            this.Count_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_Bar.SuspendLayout();
             this.Status_Bar.SuspendLayout();
             this.SuspendLayout();
@@ -78,12 +78,12 @@
             // SaveData_Btn
             // 
             this.SaveData_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SaveData_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveData_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveData_Btn.ForeColor = System.Drawing.Color.White;
             this.SaveData_Btn.Image = ((System.Drawing.Image)(resources.GetObject("SaveData_Btn.Image")));
             this.SaveData_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveData_Btn.Name = "SaveData_Btn";
-            this.SaveData_Btn.Size = new System.Drawing.Size(42, 22);
+            this.SaveData_Btn.Size = new System.Drawing.Size(44, 22);
             this.SaveData_Btn.Text = "Save";
             this.SaveData_Btn.Click += new System.EventHandler(this.SaveData_Btn_Click);
             // 
@@ -95,12 +95,12 @@
             // TopNo_Btn
             // 
             this.TopNo_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.TopNo_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TopNo_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TopNo_Btn.ForeColor = System.Drawing.Color.White;
             this.TopNo_Btn.Image = ((System.Drawing.Image)(resources.GetObject("TopNo_Btn.Image")));
             this.TopNo_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TopNo_Btn.Name = "TopNo_Btn";
-            this.TopNo_Btn.Size = new System.Drawing.Size(33, 22);
+            this.TopNo_Btn.Size = new System.Drawing.Size(35, 22);
             this.TopNo_Btn.Text = "Top";
             this.TopNo_Btn.Click += new System.EventHandler(this.TopNo_Btn_Click);
             // 
@@ -108,6 +108,23 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // Sorted_Btn
+            // 
+            this.Sorted_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Sorted_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sorted_Btn.ForeColor = System.Drawing.Color.White;
+            this.Sorted_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Sorted_Btn.Image")));
+            this.Sorted_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Sorted_Btn.Name = "Sorted_Btn";
+            this.Sorted_Btn.Size = new System.Drawing.Size(55, 22);
+            this.Sorted_Btn.Text = "Sorted";
+            this.Sorted_Btn.Click += new System.EventHandler(this.Sorted_Btn_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // Status_Bar
             // 
@@ -127,23 +144,6 @@
             this.Count_Lbl.Name = "Count_Lbl";
             this.Count_Lbl.Size = new System.Drawing.Size(19, 17);
             this.Count_Lbl.Text = "...";
-            // 
-            // Sorted_Btn
-            // 
-            this.Sorted_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Sorted_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Sorted_Btn.ForeColor = System.Drawing.Color.White;
-            this.Sorted_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Sorted_Btn.Image")));
-            this.Sorted_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Sorted_Btn.Name = "Sorted_Btn";
-            this.Sorted_Btn.Size = new System.Drawing.Size(53, 22);
-            this.Sorted_Btn.Text = "Sorted";
-            this.Sorted_Btn.Click += new System.EventHandler(this.Sorted_Btn_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // OpenSource_Frm
             // 

@@ -102,7 +102,7 @@
             this.CopyURL_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.CopyURL_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.CopyURL_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyURL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyURL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyURL_Btn.ForeColor = System.Drawing.Color.White;
             this.CopyURL_Btn.Location = new System.Drawing.Point(259, 0);
             this.CopyURL_Btn.Name = "CopyURL_Btn";
@@ -122,7 +122,7 @@
             this.Trad_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Trad_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Trad_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Trad_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Trad_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Trad_Btn.ForeColor = System.Drawing.Color.White;
             this.Trad_Btn.Location = new System.Drawing.Point(212, 0);
             this.Trad_Btn.Name = "Trad_Btn";
@@ -142,7 +142,7 @@
             this.Home_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Home_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Home_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Home_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Home_Btn.ForeColor = System.Drawing.Color.White;
             this.Home_Btn.Location = new System.Drawing.Point(159, 0);
             this.Home_Btn.Name = "Home_Btn";
@@ -162,7 +162,7 @@
             this.Refresh_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Refresh_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Refresh_Btn.ForeColor = System.Drawing.Color.White;
             this.Refresh_Btn.Location = new System.Drawing.Point(106, 0);
             this.Refresh_Btn.Name = "Refresh_Btn";
@@ -182,7 +182,7 @@
             this.Forward_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Forward_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Forward_Btn.ForeColor = System.Drawing.Color.White;
             this.Forward_Btn.Location = new System.Drawing.Point(53, 0);
             this.Forward_Btn.Name = "Forward_Btn";
@@ -202,7 +202,7 @@
             this.Back_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Back_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Back_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Back_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Back_Btn.ForeColor = System.Drawing.Color.White;
             this.Back_Btn.Location = new System.Drawing.Point(0, 0);
             this.Back_Btn.Name = "Back_Btn";
@@ -221,7 +221,7 @@
             this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Go_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Go_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Go_Btn.ForeColor = System.Drawing.Color.White;
             this.Go_Btn.Location = new System.Drawing.Point(742, 0);
             this.Go_Btn.Name = "Go_Btn";
@@ -248,6 +248,7 @@
             // 
             // JavaEnableDisable_Btn
             // 
+            this.JavaEnableDisable_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JavaEnableDisable_Btn.ForeColor = System.Drawing.Color.Lime;
             this.JavaEnableDisable_Btn.Name = "JavaEnableDisable_Btn";
             this.JavaEnableDisable_Btn.Size = new System.Drawing.Size(122, 17);
