@@ -1977,6 +1977,7 @@
             this.Title_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Title_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Title_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Title_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title_Lst.ForeColor = System.Drawing.Color.White;
             this.Title_Lst.FormattingEnabled = true;
             this.Title_Lst.ItemHeight = 14;
@@ -2616,9 +2617,9 @@
             this.Db_Delete_Table_AllValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Db_Delete_Table_AllValue_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Db_Delete_Table_AllValue_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_Delete_Table_AllValue_Btn.Location = new System.Drawing.Point(127, 0);
+            this.Db_Delete_Table_AllValue_Btn.Location = new System.Drawing.Point(143, 0);
             this.Db_Delete_Table_AllValue_Btn.Name = "Db_Delete_Table_AllValue_Btn";
-            this.Db_Delete_Table_AllValue_Btn.Size = new System.Drawing.Size(207, 24);
+            this.Db_Delete_Table_AllValue_Btn.Size = new System.Drawing.Size(191, 24);
             this.Db_Delete_Table_AllValue_Btn.TabIndex = 5;
             this.Db_Delete_Table_AllValue_Btn.Text = "Delete all Table  Value";
             this.Db_Delete_Table_AllValue_Btn.UseVisualStyleBackColor = false;
@@ -2637,7 +2638,7 @@
             this.Db_Delete_Table_Value_Btn.ForeColor = System.Drawing.Color.White;
             this.Db_Delete_Table_Value_Btn.Location = new System.Drawing.Point(0, 0);
             this.Db_Delete_Table_Value_Btn.Name = "Db_Delete_Table_Value_Btn";
-            this.Db_Delete_Table_Value_Btn.Size = new System.Drawing.Size(127, 24);
+            this.Db_Delete_Table_Value_Btn.Size = new System.Drawing.Size(143, 24);
             this.Db_Delete_Table_Value_Btn.TabIndex = 4;
             this.Db_Delete_Table_Value_Btn.Text = "Delete Table Value";
             this.Db_Delete_Table_Value_Btn.UseVisualStyleBackColor = false;
