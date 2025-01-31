@@ -4,6 +4,8 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -19,6 +21,8 @@ namespace Ostium
 
         readonly IcazaClass senderror = new IcazaClass();
         readonly IcazaClass openfile = new IcazaClass();
+
+        readonly string AppStart = Application.StartupPath + @"\";
 
         #endregion
 
@@ -55,13 +59,13 @@ namespace Ostium
 
         void NewScript_Btn_Click(object sender, EventArgs e)
         {
-            SiteUrl_Txt.Text = "";
-            ScriptTxt_Txt.Text = "";
-            ScriptMinify_Txt.Text = "";
+            SiteUrl_Txt.Text = string.Empty;
+            ScriptTxt_Txt.Text = string.Empty;
+            ScriptMinify_Txt.Text = string.Empty;
             ScriptUrl_Lst.ClearSelected();
             ScriptUrlp_Lst.ClearSelected();
 
-            if (@Class_Var.URL_URI != "")
+            if (@Class_Var.URL_URI != string.Empty)
                 SiteUrl_Txt.Text = @Class_Var.URL_URI;
         }
 
@@ -90,7 +94,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnScript_Btn_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! OpnScript_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -100,24 +104,24 @@ namespace Ostium
             {
                 SiteUrl_Txt.Text = List_Object.SelectedItem.ToString();
                 string ScriptSelect = List_Object.SelectedItem.ToString();
+                string scriptName = GenerateFileName(ScriptSelect);
+                string filePath = Path.Combine(Dirscript, scriptName + ".js");
 
-                ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
-
-                if (File.Exists(Dirscript + ScriptSelect + ".js"))
+                if (File.Exists(filePath))
                 {
-                    ScriptTxt_Txt.Text = "";
+                    ScriptTxt_Txt.Text = string.Empty;
 
-                    using (StreamReader sr = new StreamReader(Dirscript + ScriptSelect + ".js"))
+                    using (StreamReader sr = new StreamReader(filePath))
                     {
                         ScriptTxt_Txt.Text = sr.ReadToEnd();
                     }
                 }
 
-                ScriptMinify_Txt.Text = "";
+                ScriptMinify_Txt.Text = string.Empty;
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenScript: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! OpenScript: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -125,7 +129,7 @@ namespace Ostium
         {
             try
             {
-                if (SiteUrl_Txt.Text != "")
+                if (SiteUrl_Txt.Text != string.Empty)
                 {
                     if (ScriptUrlp_Lst.SelectedIndex != -1)
                     {
@@ -147,7 +151,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! SaveScript_Btn_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! SaveScript_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -156,12 +160,10 @@ namespace Ostium
             try
             {
                 string ScriptSelect = SiteUrl_Txt.Text;
-                ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
+                string scriptName = GenerateFileName(ScriptSelect);
+                string filePath = Path.Combine(Dirscript, scriptName + ".js");
 
-                if (ScriptSelect.Length > 100)
-                    ScriptSelect += ScriptSelect.Substring(0, 100);
-
-                if (!File.Exists(Dirscript + ScriptSelect + ".js"))
+                if (!File.Exists(filePath))
                 {
                     using (StreamWriter fc = File.AppendText(Scripts + FileUrl))
                     {
@@ -169,7 +171,7 @@ namespace Ostium
                     }
                 }
 
-                using (StreamWriter fc = new StreamWriter(Dirscript + ScriptSelect + ".js"))
+                using (StreamWriter fc = new StreamWriter(filePath))
                 {
                     fc.Write(ScriptTxt_Txt.Text);
                 }
@@ -181,7 +183,16 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! SaveScript: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! SaveScript: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        string GenerateFileName(string url)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             }
         }
 
@@ -211,7 +222,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! PauseScript_Btn_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! PauseScript_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -221,11 +232,10 @@ namespace Ostium
             {
                 string tmpSiteUrl = List_Object.SelectedItem.ToString();
                 string ScriptSelect = List_Object.SelectedItem.ToString();
+                string scriptName = GenerateFileName(ScriptSelect);
 
-                ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
-
-                File.Copy(DirscriptA + ScriptSelect + ".js", DirscriptB + ScriptSelect + ".js");
-                File.Delete(DirscriptA + ScriptSelect + ".js");
+                File.Copy(DirscriptA + scriptName + ".js", DirscriptB + scriptName + ".js");
+                File.Delete(DirscriptA + scriptName + ".js");
 
                 List_Object.Items.Remove(List_Object.SelectedItem);
 
@@ -241,12 +251,12 @@ namespace Ostium
                     file_create.WriteLine(tmpSiteUrl);
                 }
 
-                SiteUrl_Txt.Text = "";
-                ScriptTxt_Txt.Text = "";
+                SiteUrl_Txt.Text = string.Empty;
+                ScriptTxt_Txt.Text = string.Empty;
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! PauseScript: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! PauseScript: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -275,7 +285,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DelScript_Btn_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! DelScript_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -284,17 +294,17 @@ namespace Ostium
             try
             {
                 string message = "Delete script: " + List_Object.SelectedItem.ToString() + " ? ";
-                string caption = "";
+                string caption = string.Empty;
                 var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     string ScriptSelect = List_Object.SelectedItem.ToString();
+                    string scriptName = GenerateFileName(ScriptSelect);
+                    string filePath = Path.Combine(Dirscript, scriptName + ".js");
 
-                    ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
-
-                    if (File.Exists(Dirscript + ScriptSelect + ".js"))
-                        File.Delete(Dirscript + ScriptSelect + ".js");
+                    if (File.Exists(filePath))
+                        File.Delete(filePath);
 
                     List_Object.Items.Remove(List_Object.SelectedItem);
 
@@ -305,13 +315,13 @@ namespace Ostium
                             SW.WriteLine(itm);
                     }
 
-                    SiteUrl_Txt.Text = "";
-                    ScriptTxt_Txt.Text = "";
+                    SiteUrl_Txt.Text = string.Empty;
+                    ScriptTxt_Txt.Text = string.Empty;
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DeleteScript: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! DeleteScript: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -331,7 +341,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnJSfile_Btn_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! OpnJSfile_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -339,7 +349,7 @@ namespace Ostium
         {
             try
             {
-                if (ScriptTxt_Txt.Text != "")
+                if (ScriptTxt_Txt.Text != string.Empty)
                 {
                     var minifer = new Minifier();
 
@@ -361,17 +371,17 @@ namespace Ostium
             }
             catch (IOException)
             {
-                senderror.ErrorLog("Error! MinifyScript_Btn_Click IO: the script could not be minified.", "", "ScriptCreator", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! MinifyScript_Btn_Click IO: the script could not be minified.", string.Empty, "ScriptCreator", AppStart);
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! MinifyScript_Btn_Click: ", ex.Message, "ScriptCreator", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! MinifyScript_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void CopyScriptMini_Btn_Click(object sender, EventArgs e)
         {
-            if (ScriptMinify_Txt.Text != "")
+            if (ScriptMinify_Txt.Text != string.Empty)
             {
                 Clipboard.SetData(DataFormats.Text, ScriptMinify_Txt.Text);
                 Beep(300, 200);

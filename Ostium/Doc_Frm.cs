@@ -47,7 +47,7 @@ namespace Ostium
             catch (Exception ex)
             {
                 IcazaClass senderror = new IcazaClass();
-                senderror.ErrorLog("Error! Doc_Frm_Load: ", ex.Message, "Doc_Frm", AppStart);
+                senderror.ErrorLog("Error! Doc_Frm_Load: ", ex.ToString(), "Doc_Frm", AppStart);
             }
         }
 

@@ -46,7 +46,7 @@ namespace Ostium
 
         void NewFrm_Mnu_Click(object sender, EventArgs e)
         {
-            if (@Class_Var.URL_HOME == "")
+            if (@Class_Var.URL_HOME == string.Empty)
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
 
             OpnNewForm(@Class_Var.URL_HOME);
@@ -63,13 +63,13 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! URLlist_Cbx_SelectedIndexChanged: ", ex.Message, "Mdi_Frm", AppStart);
+                senderror.ErrorLog("Error! URLlist_Cbx_SelectedIndexChanged: ", ex.ToString(), "Mdi_Frm", AppStart);
             }
         }
 
         void AddUrlGrp_Btn_Click(object sender, EventArgs e)
         {
-            if (URLlist_Cbx.Text != "")
+            if (URLlist_Cbx.Text != string.Empty)
                 OpnFileOpt(FileDirAll + URLlist_Cbx.Text);
         }
 
@@ -87,13 +87,13 @@ namespace Ostium
                 {
                     using (StreamWriter file_create = new StreamWriter(fileselect))
                     {
-                        file_create.Write("");
+                        file_create.Write(string.Empty);
                     }
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ChargeListURL: ", ex.Message, "Mdi_Frm", AppStart);
+                senderror.ErrorLog("Error! ChargeListURL: ", ex.ToString(), "Mdi_Frm", AppStart);
             }
         }
 
@@ -113,7 +113,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnNewForm: ", ex.Message, "Mdi_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnNewForm: ", ex.ToString(), "Mdi_Frm", AppStart);
             }
         }
 
@@ -128,13 +128,13 @@ namespace Ostium
                 }
 
                 if (!File.Exists(dir_dir))
-                    File_Write(dir_dir, "");
+                    File_Write(dir_dir, string.Empty);
 
                 OpenFile_Editor(dir_dir);
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnFileOpt: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnFileOpt: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! File_Write: ", ex.Message, "Mdi_Frm", AppStart);
+                senderror.ErrorLog("Error! File_Write: ", ex.ToString(), "Mdi_Frm", AppStart);
             }
         }
 
@@ -163,7 +163,7 @@ namespace Ostium
                     return;
                 }
 
-                string aArg = "";
+                string aArg = string.Empty;
                 string strName = Path.GetFileName(Class_Var.DEFAULT_EDITOR);
                 if (strName == "OstiumE.exe")
                     aArg = "/input=\"" + FileSelect + "\"";
@@ -171,7 +171,7 @@ namespace Ostium
                     aArg = FileSelect;
 
 
-                if (FileSelect != "")
+                if (FileSelect != string.Empty)
                 {
                     if (File.Exists(FileSelect))
                     {
@@ -187,7 +187,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenFile_Editor: ", ex.Message, "Mdi_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenFile_Editor: ", ex.ToString(), "Mdi_Frm", AppStart);
             }
         }
 

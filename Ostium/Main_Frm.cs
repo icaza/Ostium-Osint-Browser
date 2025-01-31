@@ -23,6 +23,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
 using System.Speech.Synthesis;
 using System.Text;
@@ -114,28 +115,28 @@ namespace Ostium
         /// Variables
         /// </summary>
         /// 
-        readonly string SoftVersion = "";
+        readonly string SoftVersion = string.Empty;
         string ClearOnOff = "on";
-        string NameUriDB = "";
-        string UnshortURLval = "";
-        string Una = "";
-        string TableOpen = "";
+        string NameUriDB = string.Empty;
+        string UnshortURLval = string.Empty;
+        string Una = string.Empty;
+        string TableOpen = string.Empty;
         string Tables_Lst_Opt = "add";
-        string DataAddSelectUri = "";
-        string tlsi = ""; // Table List selected Item
+        string DataAddSelectUri = string.Empty;
+        string tlsi = string.Empty; // Table List selected Item
         string DBadmin = "off";
         string ManageFeed = "off";
-        string TmpTitleWBrowse = "";
-        string TmpTitleWBrowsefeed = "";
+        string TmpTitleWBrowse = string.Empty;
+        string TmpTitleWBrowsefeed = string.Empty;
         int VerifLangOpn = 0;
         string TitleFeed;
         string AddTitleItem;
         string AddLinkItem;
         string UserAgentOnOff = "off";
-        string UserAgentSelect = "";
+        string UserAgentSelect = string.Empty;
         string ThemeDiag;
-        string FileDiag = "";
-        string MinifyScr = "";
+        string FileDiag = string.Empty;
+        string MinifyScr = string.Empty;
         string CrossCenter = "on";
         int MapZoom = 1;
         string Scriptl = "off";
@@ -145,9 +146,9 @@ namespace Ostium
         /// </summary>
         /// 
         string VerifMapOpn = "off";
-        string MapXmlOpn = "";
-        string MapRouteOpn = "";
-        string LocatRoute = "";
+        string MapXmlOpn = string.Empty;
+        string MapRouteOpn = string.Empty;
+        string LocatRoute = string.Empty;
         string KmlGpxOpn = "off";
         readonly GMapOverlay overlayOne = new GMapOverlay("OverlayOne");
         double LatT = 48.8589507;
@@ -184,8 +185,11 @@ namespace Ostium
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
-        string FileOpnJson = "";
+        string FileOpnJson = string.Empty;
         readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
+
+        static readonly HttpClient client = new HttpClient();
+        private const int TimeoutInSeconds = 10;
 
         #endregion
 
@@ -253,7 +257,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Main_Frm_Load: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Main_Frm_Load: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -270,7 +274,9 @@ namespace Ostium
             {
                 if (ClearOnOff == "on")
                 {
-                    var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, for complete deletion of the WebView2 usage directory)", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, " +
+                        "for complete deletion of the WebView2 usage directory)", "Delete all history", 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                         ClearData(1);
@@ -381,7 +387,6 @@ namespace Ostium
                         FileDir + "url-constructor",
                         FileDir + "grp-frm",
                         Pictures,
-                        //Scripts + "scriptsl",
                         Workflow,
                         Workflow + "model",
                         DiagramDir,
@@ -399,7 +404,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreateDirectory: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreateDirectory: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -509,7 +514,7 @@ namespace Ostium
 
                     ValueInput = Interaction.InputBox(message, title);
                     string ValueOutput = Convert.ToString(ValueInput);
-                    ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", "");
+                    ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", string.Empty);
                     ValueOutput += ".db";
 
                     if (ValueOutput != string.Empty && ValueOutput != ".db")
@@ -577,7 +582,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Config_Ini: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Config_Ini: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -594,7 +599,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DireSizeCalc: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DireSizeCalc: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -611,7 +616,7 @@ namespace Ostium
         /// 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
         {
-            string UriYoutube = "";
+            string UriYoutube = string.Empty;
             string C = WBrowse.Source.AbsoluteUri;
             if (C.Length > 32)
                 UriYoutube += C.Substring(0, 32);
@@ -731,8 +736,21 @@ namespace Ostium
 
             WBrowse_UpdtTitleEvent("Navigation Completed");
 
-            ScriptInject();
+            ScripInj();
         }
+
+        async void ScripInj()
+        {
+            try
+            {
+                await ScriptInject();
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ScripInj: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         ///
         /// <summary>
         /// Checks if cookie injection is enabled
@@ -880,36 +898,42 @@ namespace Ostium
         ///  from the URL and adding the ".js" extension to check if a ".js" script name of the same name exists, if true injecting the script contained 
         ///  in the file on the current web page</param>
         /// 
-        async void ScriptInject()
+        async Task ScriptInject()
         {
             try
             {
                 if (ScriptUrl_Lst.Items.Count > 0)
                 {
-                    string ScriptSelect = WBrowse.Source.AbsoluteUri;
+                    string currentUrl = WBrowse.Source.AbsoluteUri;
 
-                    for (int i = 0; i < ScriptUrl_Lst.Items.Count; i++)
+                    foreach (var item in ScriptUrl_Lst.Items)
                     {
-                        if (WBrowse.Source.AbsoluteUri.Contains(ScriptUrl_Lst.Items[i].ToString()))
+                        if (currentUrl.Contains(item.ToString()))
                         {
-                            ScriptSelect = Regex.Replace(ScriptSelect, "[^a-zA-Z]", "");
+                            string scriptName = GenerateFileName(currentUrl);
+                            string filePath = Path.Combine(Scripts, scriptName + ".js");
 
-                            if (ScriptSelect.Length > 100)
-                                ScriptSelect += ScriptSelect.Substring(0, 100);
-
-                            if (File.Exists(Scripts + ScriptSelect + ".js"))
+                            if (File.Exists(filePath))
                             {
-                                string text = File.ReadAllText(Scripts + ScriptSelect + ".js");
-                                await WBrowse.CoreWebView2.ExecuteScriptAsync(text);
+                                string scriptContent = File.ReadAllText(filePath);
+                                await WBrowse.CoreWebView2.ExecuteScriptAsync(scriptContent);
                             }
-                            return;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ScriptInject: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ScriptInject: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        string GenerateFileName(string url)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             }
         }
         ///
@@ -1025,7 +1049,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! GoBrowser: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! GoBrowser: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1042,7 +1066,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! GoNewtab: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! GoNewtab: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1107,14 +1131,14 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! URL_URL_Cbx_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! URL_URL_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void CleanSearch_Btn_Click(object sender, EventArgs e)
         {
             URLbrowse_Cbx.Items.Clear();
-            URLbrowse_Cbx.Text = "";
+            URLbrowse_Cbx.Text = string.Empty;
         }
 
         #endregion
@@ -1200,7 +1224,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Word_Construct_URL_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Word_Construct_URL_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1228,7 +1252,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Mute_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Mute_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1242,7 +1266,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CopyURL_Mnu_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CopyURL_Mnu_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1264,7 +1288,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! TraductPage_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! TraductPage_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1303,11 +1327,11 @@ namespace Ostium
             }
             catch (WebException ex)
             {
-                senderror.ErrorLog("Error! => UnshortUrl() WebException: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! => UnshortUrl() WebException: ", ex.ToString(), "Main_Frm", AppStart);
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! => UnshortUrl() Exception: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! => UnshortUrl() Exception: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1323,7 +1347,7 @@ namespace Ostium
                 using (Process proc = new Process())
                 {
                     proc.StartInfo.FileName = Plugins + AddOn_Cbx.Text;
-                    proc.StartInfo.Arguments = "";
+                    proc.StartInfo.Arguments = string.Empty;
                     proc.StartInfo.UseShellExecute = true;
                     proc.StartInfo.WorkingDirectory = Plugins;
                     proc.StartInfo.RedirectStandardOutput = false;
@@ -1332,7 +1356,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! AddOn_Cbx_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! AddOn_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1350,7 +1374,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Construct_URL_Cbx_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Construct_URL_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1377,7 +1401,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! WebpageToPng_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! WebpageToPng_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1461,7 +1485,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnFilOnEditor_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnFilOnEditor_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1476,7 +1500,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenListLink_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenListLink_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1527,7 +1551,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! InjectScript_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! InjectScript_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1539,7 +1563,7 @@ namespace Ostium
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(this, ex.Message, "Execute Script Fails!");
+                MessageBox.Show(this, ex.ToString(), "Execute Script Fails!");
             }
         }
 
@@ -1574,7 +1598,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! RegexCmd_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! RegexCmd_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1607,7 +1631,7 @@ namespace Ostium
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(this, ex.Message, "Execute ColorWord Script Fails!");
+                MessageBox.Show(this, ex.ToString(), "Execute ColorWord Script Fails!");
             }
         }
 
@@ -1688,7 +1712,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ArchiveDirectory_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ArchiveDirectory_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1852,7 +1876,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ExportXml_Tls_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ExportXml_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1885,7 +1909,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ExportJson_Tls_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ExportJson_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1954,7 +1978,7 @@ namespace Ostium
 
                 string json = JsonConvert.SerializeXmlNode(doc, Newtonsoft.Json.Formatting.Indented);
 
-                json = json.Replace("@", "");
+                json = json.Replace("@", string.Empty);
                 json = Regex.Replace(json, @"/\*.+?\*/", string.Empty);
 
                 using (StreamWriter fc = new StreamWriter(dirFileConvert))
@@ -1973,7 +1997,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ConvertJson: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ConvertJson: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -1989,8 +2013,8 @@ namespace Ostium
         {
             try
             {
-                string limitsize = "";
-                string argumentsIs = "";
+                string limitsize = string.Empty;
+                string argumentsIs = string.Empty;
 
                 if (Limitsize_Chk.Checked)
                     limitsize = "-DPLANTUML_LIMIT_SIZE=8192";
@@ -2012,7 +2036,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreateDiagram_Thrd: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreateDiagram_Thrd: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -2181,7 +2205,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreateDiagramMinMapFile: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreateDiagramMinMapFile: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -2206,7 +2230,7 @@ namespace Ostium
                     return;
                 }
 
-                TmpFile_Txt.Text = "";
+                TmpFile_Txt.Text = string.Empty;
 
                 ThemeDiag = ThemDiag_Cbx.Text;
                 if (ThemeDiag == string.Empty)
@@ -2247,7 +2271,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnJsonFile_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnJsonFile_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -2299,7 +2323,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnXMLFile_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnXMLFile_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -2402,7 +2426,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ExportDiag_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ExportDiag_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -2472,7 +2496,7 @@ namespace Ostium
                         Tools_TAB_1.Visible = false;
                         Tools_TAB_3.Visible = false;
                         Tools_TAB_4.Visible = false;
-                        URLtxt_txt.Text = "";
+                        URLtxt_txt.Text = string.Empty;
                         Text = "DataBase Url";
                         TableOpn_Lbl.Visible = false;
                         CountFeed_Lbl.Visible = false;
@@ -2502,7 +2526,7 @@ namespace Ostium
                         Tools_TAB_1.Visible = false;
                         Tools_TAB_3.Visible = true;
                         Tools_TAB_4.Visible = false;
-                        URLtxt_txt.Text = "";
+                        URLtxt_txt.Text = string.Empty;
                         Text = "Workflow";
                         TableOpn_Lbl.Visible = false;
                         CountFeed_Lbl.Visible = false;
@@ -2526,7 +2550,7 @@ namespace Ostium
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = true;
-                    URLtxt_txt.Text = "";
+                    URLtxt_txt.Text = string.Empty;
                     Text = "Map";
                     TableOpn_Lbl.Visible = false;
                     CountFeed_Lbl.Visible = false;
@@ -2557,7 +2581,7 @@ namespace Ostium
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
-                    URLtxt_txt.Text = "";
+                    URLtxt_txt.Text = string.Empty;
                     Text = "Json";
                     TableOpn_Lbl.Visible = false;
                     CountFeed_Lbl.Visible = false;
@@ -2580,7 +2604,7 @@ namespace Ostium
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
-                    URLtxt_txt.Text = "";
+                    URLtxt_txt.Text = string.Empty;
                     Text = "Options";
                     TableOpn_Lbl.Visible = false;
                     CountFeed_Lbl.Visible = false;
@@ -2673,7 +2697,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Construct_URL: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Construct_URL: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -2682,27 +2706,41 @@ namespace Ostium
         /// carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
         /// </summary>
         /// 
+
         async void Download_Source_Page()
         {
             try
             {
-                if (Class_Var.URL_USER_AGENT_SRC_PAGE == string.Empty)
-                    Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
+                if (string.IsNullOrWhiteSpace(Class_Var.URL_USER_AGENT_SRC_PAGE))
+                    Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5]?.ToString() ?? "Mozilla/5.0";
 
-                HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.UserAgent.ParseAdd(Class_Var.URL_USER_AGENT_SRC_PAGE);
-                var response = await client.GetAsync(WBrowse.Source.AbsoluteUri);
+
+                if (WBrowse?.Source == null)
+                {
+                    return;
+                }
+
+                HttpResponseMessage response = await client.GetAsync(WBrowse.Source.AbsoluteUri);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return;
+                }
+
                 string pageContents = await response.Content.ReadAsStringAsync();
 
                 File_Write(AppStart + "sourcepage", pageContents);
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception : {ex.ToString()}");
+            }
         }
 
         void CreateNameAleat()
         {
-            Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
+            Una = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + "_" + Guid.NewGuid().ToString("N");
         }
 
         #region Prompt_
@@ -2712,7 +2750,7 @@ namespace Ostium
             if (e.KeyChar == (char)Keys.Enter)
             {
                 CMD_Console(Console_Cmd_Txt.Text);
-                Console_Cmd_Txt.Text = "";
+                Console_Cmd_Txt.Text = string.Empty;
                 Console_Cmd_Txt.Text = "> ";
                 Console_Cmd_Txt.Select(Console_Cmd_Txt.Text.Length, 0);
             }
@@ -2731,10 +2769,10 @@ namespace Ostium
         {
             int yn = 0;
             int cmdSwitch = 0;
-            string regxCmd = "";
+            string regxCmd = string.Empty;
 
             string s = Cmd;
-            s = s.Replace(">", ""); s = s.Replace(" ", "");
+            s = s.Replace(">", string.Empty); s = s.Replace(" ", string.Empty);
 
             switch (s)
             {
@@ -2903,7 +2941,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! File_Write: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! File_Write: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -2937,7 +2975,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! List_Create: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! List_Create: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -2952,7 +2990,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreateData: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreateData: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -2965,7 +3003,7 @@ namespace Ostium
             }
 
             if (!File.Exists(dir_dir))
-                File_Write(dir_dir, "");
+                File_Write(dir_dir, string.Empty);
 
             OpenFile_Editor(dir_dir);
         }
@@ -2982,7 +3020,7 @@ namespace Ostium
                     return;
                 }
 
-                string aArg = "";
+                string aArg = string.Empty;
                 string strName = Path.GetFileName(Class_Var.DEFAULT_EDITOR);
                 if (strName == "OstiumE.exe")
                     aArg = "/input=\"" + fileSelect + "\"";
@@ -3006,7 +3044,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenFile_Editor: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenFile_Editor: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3044,7 +3082,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! URL_SAVE_Cbx_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! URL_SAVE_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -3117,22 +3155,22 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DatabasePnl: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DatabasePnl: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void AddTable_Btn_Click(object sender, EventArgs e)
         {
-            TableName_Txt.Text = Regex.Replace(TableName_Txt.Text, "[^a-zA-Z]", "");
+            TableName_Txt.Text = Regex.Replace(TableName_Txt.Text, "[^a-zA-Z]", string.Empty);
 
             if (TableName_Txt.Text != string.Empty)
             {
                 Sqlite_Cmd("CREATE TABLE IF NOT EXISTS " + TableName_Txt.Text + " (url_date TEXT, url_name TEXT, url_adress TEXT)");
-                TableName_Txt.Text = "";
+                TableName_Txt.Text = string.Empty;
             }
             else
             {
-                MessageBox.Show("Insert name Table first!", "");
+                MessageBox.Show("Insert name Table first!", string.Empty);
             }
         }
         ///
@@ -3151,16 +3189,16 @@ namespace Ostium
                 tlsi = Tables_Lst.SelectedItem.ToString();
 
                 Cbx_Object = URL_SAVE_Cbx;
-                Cbx_Object.Text = "";
+                Cbx_Object.Text = string.Empty;
                 Cbx_Object.Items.Clear();
 
                 if (Tables_Lst_Opt == "add")
                 {
-                    UrlName_Txt.Text = Regex.Replace(UrlName_Txt.Text, "[^\\w\\\x20_-]", "");
+                    UrlName_Txt.Text = Regex.Replace(UrlName_Txt.Text, "[^\\w\\\x20_-]", string.Empty);
 
                     if (UrlName_Txt.Text != string.Empty)
                     {
-                        Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "cbx");
+                        Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "cbx");
 
                         int x;
                         x = Cbx_Object.FindStringExact(UrlName_Txt.Text);
@@ -3168,11 +3206,11 @@ namespace Ostium
                         {
                             Sqlite_Cmd("INSERT INTO " + tlsi + " (url_date, url_name, url_adress) VALUES ('" + DateTime.Now.ToString("d") + "', '" + UrlName_Txt.Text + "', '" + DataAddSelectUri + "')");
 
-                            UrlName_Txt.Text = "";
-                            Cbx_Object.Text = "";
+                            UrlName_Txt.Text = string.Empty;
+                            Cbx_Object.Text = string.Empty;
                             Cbx_Object.Items.Clear();
 
-                            Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "cbx");
+                            Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "cbx");
 
                             DB_Pnl.Visible = false;
                         }
@@ -3185,12 +3223,12 @@ namespace Ostium
                     }
                     else
                     {
-                        MessageBox.Show("Insert name URi first!", "");
+                        MessageBox.Show("Insert name URi first!", string.Empty);
                     }
                 }
                 else
                 {
-                    Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "cbx");
+                    Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "cbx");
                     DB_Pnl.Visible = false;
                 }
 
@@ -3243,7 +3281,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Sqlite_Cmd: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Sqlite_Cmd: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -3287,7 +3325,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Sqlite_Read: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Sqlite_Read: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -3325,7 +3363,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Sqlite_ReadUri: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Sqlite_ReadUri: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3365,7 +3403,7 @@ namespace Ostium
 
                         if (result == DialogResult.Yes)
                         {
-                            DataBaze_Opn.Text = Regex.Replace(DataBaze_Opn.Text, "[^a-zA-Z0-9]", "");
+                            DataBaze_Opn.Text = Regex.Replace(DataBaze_Opn.Text, "[^a-zA-Z0-9]", string.Empty);
                             DataBaze_Opn.Text += ".db";
 
                             SQLiteConnection.CreateFile(DBdirectory + DataBaze_Opn.Text);
@@ -3386,7 +3424,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ChangeDefDB_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ChangeDefDB_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3422,7 +3460,7 @@ namespace Ostium
 
                         Sqlite_Read("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1", "name", "lst");
 
-                        DataTable_Opn.Text = "";
+                        DataTable_Opn.Text = string.Empty;
                     }
                 }
                 else
@@ -3432,7 +3470,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Db_Delete_Table_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Db_Delete_Table_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3459,9 +3497,9 @@ namespace Ostium
                         List_Object = DataValue_Lst;
                         tlsi = DataTable_Opn.Text;
 
-                        Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "lst");
+                        Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
 
-                        DataValue_Opn.Text = "";
+                        DataValue_Opn.Text = string.Empty;
                     }
                 }
                 else
@@ -3471,7 +3509,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Db_Delete_Table_Value_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Db_Delete_Table_Value_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3494,7 +3532,7 @@ namespace Ostium
                         Sqlite_Cmd("DELETE FROM [" + tlsi + "];");
 
                         DataValue_Lst.Items.Clear();
-                        DataValue_Opn.Text = "";
+                        DataValue_Opn.Text = string.Empty;
                     }
                 }
                 else
@@ -3504,7 +3542,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Db_Delete_Table_AllValue_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Db_Delete_Table_AllValue_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3512,7 +3550,7 @@ namespace Ostium
         {
             try
             {
-                ValueChange_Txt.Text = Regex.Replace(ValueChange_Txt.Text, "[^\\w\\\x20_-]", "");
+                ValueChange_Txt.Text = Regex.Replace(ValueChange_Txt.Text, "[^\\w\\\x20_-]", string.Empty);
 
                 if (DataValue_Lst.SelectedIndex != -1)
                 {
@@ -3541,7 +3579,7 @@ namespace Ostium
 
                                 DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
 
-                                Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "lst");
+                                Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
 
                                 ValueChange_Txt.ForeColor = Color.DimGray;
                                 ValueChange_Txt.Text = "update URL and Name here";
@@ -3568,7 +3606,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Db_Update_Name_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Db_Update_Name_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3611,7 +3649,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Db_Update_Value_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! Db_Update_Value_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3623,9 +3661,9 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    DataTable_Opn.Text = "";
-                    DataValue_Name.Text = "";
-                    DataValue_Opn.Text = "";
+                    DataTable_Opn.Text = string.Empty;
+                    DataValue_Name.Text = string.Empty;
+                    DataValue_Opn.Text = string.Empty;
                     ValueChange_Txt.ForeColor = Color.DimGray;
                     ValueChange_Txt.Text = "update URL and Name here";
 
@@ -3635,8 +3673,8 @@ namespace Ostium
 
                     DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
                     DBSelectOpen_Lbl.Text = "DB open: " + DataBaze_Opn.Text;
-                    TableOpen_Lbl.Text = "";
-                    RecordsCount_Lbl.Text = "";
+                    TableOpen_Lbl.Text = string.Empty;
+                    RecordsCount_Lbl.Text = string.Empty;
 
                     D4ta = DBdirectory + DataBaze_Opn.Text;
 
@@ -3645,7 +3683,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DataBaze_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DataBaze_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3657,8 +3695,8 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    DataValue_Name.Text = "";
-                    DataValue_Opn.Text = "";
+                    DataValue_Name.Text = string.Empty;
+                    DataValue_Opn.Text = string.Empty;
                     ValueChange_Txt.ForeColor = Color.DimGray;
                     ValueChange_Txt.Text = "update URL and Name here";
 
@@ -3669,12 +3707,12 @@ namespace Ostium
                     DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
                     TableOpen_Lbl.Text = "Table open: " + DataTable_Opn.Text;
 
-                    Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "lst");
+                    Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DataTable_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DataTable_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3695,7 +3733,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DataValue_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DataValue_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3715,14 +3753,14 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ChangeDBdefault: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ChangeDBdefault: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void ValueChange_Txt_Click(object sender, EventArgs e)
         {
             ValueChange_Txt.ForeColor = Color.White;
-            ValueChange_Txt.Text = "";
+            ValueChange_Txt.Text = string.Empty;
         }
 
         void Db_OpnLink_Btn_Click(object sender, EventArgs e)
@@ -3826,48 +3864,93 @@ namespace Ostium
         /// <param name="CountFeed">Display of the number of titles in "Title_Lst"</param>
         /// <param name="AllTrue">Enable elements</param>
         /// <param name="Msleave">Overlaying the RSS feed site window on top</param>
-        ///
-        void LoadFeed(int value)
+        ///       
+        async void LoadFeed(int startIndex)
         {
-            string URL = "";
-            int i = value;
-
-            if (i == 0)
+            if (startIndex == 0)
                 Invoke(new Action<string>(CountBlockSite_Invk), "Clear");
 
             try
             {
                 Invoke(new Action<string>(CountBlockSite_Invk), "Disable");
 
-                for (i = value; i < ListFeed_Lst.Items.Count; i++)
+                for (int i = startIndex; i < ListFeed_Lst.Items.Count; i++)
                 {
-                    URL = ListFeed_Lst.Items[i].ToString();
-                    using (XmlReader reader = XmlReader.Create(ListFeed_Lst.Items[i].ToString()))
+                    if (ListFeed_Lst.Items[i] == null) continue;
+
+                    string url = ListFeed_Lst.Items[i].ToString();
+                    if (string.IsNullOrWhiteSpace(url)) continue;
+
+                    try
                     {
-                        SyndicationFeed feed = SyndicationFeed.Load(reader);
-
-                        TitleFeed = feed.Title.Text;
-                        Invoke(new Action<string>(CountBlockSite_Invk), "FeedTitle");
-                        Invoke(new Action<string>(CountBlockSite_Invk), "ListCount");
-
-                        foreach (SyndicationItem item in feed.Items)
-                        {
-                            AddTitleItem = item.Title.Text;
-                            Invoke(new Action<string>(CountBlockSite_Invk), "ItemTitleAdd");
-                            AddLinkItem = Convert.ToString(item.Links[0].Uri);
-                            Invoke(new Action<string>(CountBlockSite_Invk), "ItemLinkAdd");
-                        }
+                        await Task.Run(() => ProcessFeed(url));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: {ex.ToString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
-                Invoke(new Action<string>(CountBlockSite_Invk), "CountFeed");
-                Invoke(new Action<string>(CountBlockSite_Invk), "AllTrue");
-                Invoke(new Action<string>(CountBlockSite_Invk), "Msleave");
+                Invoke(new Action(() =>
+                {
+                    CountBlockSite_Invk("CountFeed");
+                    CountBlockSite_Invk("AllTrue");
+                    CountBlockSite_Invk("Msleave");
+                }));
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Feed error loading! " + URL);
-                LoadFeed(i += 1);
+                MessageBox.Show($"General error: {ex.ToString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void ProcessFeed(string url)
+        {
+            XmlReaderSettings settings = new XmlReaderSettings
+            {
+                Async = true,
+                XmlResolver = null,
+                DtdProcessing = DtdProcessing.Ignore
+            };
+
+            using (XmlReader reader = XmlReader.Create(url, settings))
+            {
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+
+                var uiUpdates = new List<Action>
+                {
+                    () =>
+                {
+                    TitleFeed = feed.Title?.Text ?? "Untitled Feed";
+                    CountBlockSite_Invk("FeedTitle");
+                    CountBlockSite_Invk("ListCount");
+                }
+                };
+
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    string title = item.Title?.Text ?? "Untitled Item";
+                    string link = item.Links.FirstOrDefault()?.Uri?.ToString() ?? string.Empty;
+
+                    uiUpdates.Add(() =>
+                    {
+                        AddTitleItem = title;
+                        CountBlockSite_Invk("ItemTitleAdd");
+                        if (!string.IsNullOrEmpty(link))
+                        {
+                            AddLinkItem = link;
+                            CountBlockSite_Invk("ItemLinkAdd");
+                        }
+                    });
+                }
+
+                Invoke(new Action(() =>
+                {
+                    foreach (var update in uiUpdates)
+                    {
+                        update();
+                    }
+                }));
             }
         }
 
@@ -3879,12 +3962,12 @@ namespace Ostium
                 {
                     if (!File.Exists(FeedDir + NewCategory_Txt.Text))
                     {
-                        File_Write(FeedDir + NewCategory_Txt.Text, "");
+                        File_Write(FeedDir + NewCategory_Txt.Text, string.Empty);
 
                         CategorieFeed_Cbx.Items.Clear();
                         loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
 
-                        CategorieFeed_Cbx.Text = "";
+                        CategorieFeed_Cbx.Text = string.Empty;
                         NewCategory_Txt.ForeColor = Color.DimGray;
                         NewCategory_Txt.Text = "new category";
 
@@ -3904,20 +3987,20 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreatCategorie_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreatCategorie_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void NewCategory_Txt_Click(object sender, EventArgs e)
         {
             NewCategory_Txt.ForeColor = Color.White;
-            NewCategory_Txt.Text = "";
+            NewCategory_Txt.Text = string.Empty;
         }
 
         void NewFeed_Txt_Click(object sender, EventArgs e)
         {
             NewFeed_Txt.ForeColor = Color.White;
-            NewFeed_Txt.Text = "";
+            NewFeed_Txt.Text = string.Empty;
         }
 
         void AddFeed_Btn_Click(object sender, EventArgs e)
@@ -3931,7 +4014,7 @@ namespace Ostium
                     CategorieFeed_Cbx.Items.Clear();
                     loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
 
-                    CategorieFeed_Cbx.Text = "";
+                    CategorieFeed_Cbx.Text = string.Empty;
                     NewFeed_Txt.ForeColor = Color.DimGray;
                     NewFeed_Txt.Text = "new feed";
                     MessageBox.Show("Feed create.");
@@ -4013,7 +4096,7 @@ namespace Ostium
                         {
                             File.Delete(FeedDir + CategorieFeed_Cbx.Text);
 
-                            CategorieFeed_Cbx.Text = "";
+                            CategorieFeed_Cbx.Text = string.Empty;
                             CategorieFeed_Cbx.Items.Clear();
                             loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
                         }
@@ -4028,7 +4111,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DeleteCatfeed_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DeleteCatfeed_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4065,7 +4148,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DeleteURLfeed_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DeleteURLfeed_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4098,19 +4181,19 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! GoFeed_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! GoFeed_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void GoFeed_Txt_Click(object sender, EventArgs e)
         {
-            GoFeed_Txt.Text = "";
+            GoFeed_Txt.Text = string.Empty;
         }
 
         void HomeFeed_Btn_Click(object sender, EventArgs e)
         {
             WBrowsefeed.Source = new Uri(HomeUrlRSS);
-            CountFeed_Lbl.Text = "";
+            CountFeed_Lbl.Text = string.Empty;
         }
 
         #endregion
@@ -4133,7 +4216,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadLang: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadLang: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4240,7 +4323,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! SaveVolumeRate: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! SaveVolumeRate: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4359,13 +4442,16 @@ namespace Ostium
         ///
         void SetCookie_Chk_CheckedChanged(object sender, EventArgs e)
         {
-            if (SetCookie_Chk.Checked)
+            if (!SetCookie_Chk.Checked) return;
+
+            if (string.IsNullOrWhiteSpace(CookieName_Txt.Text) ||
+                string.IsNullOrWhiteSpace(CookieValue_Txt.Text) ||
+                string.IsNullOrWhiteSpace(CookieDomain_Txt.Text))
             {
-                if (CookieName_Txt.Text == string.Empty || CookieValue_Txt.Text == string.Empty || CookieDomain_Txt.Text == string.Empty)
-                {
-                    SetCookie_Chk.Checked = false;
-                    MessageBox.Show("Enter all values!");
-                }
+                MessageBox.Show("Enter all values!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                SetCookie_Chk.CheckedChanged -= SetCookie_Chk_CheckedChanged;
+                SetCookie_Chk.Checked = false;
+                SetCookie_Chk.CheckedChanged += SetCookie_Chk_CheckedChanged;
             }
         }
 
@@ -4430,9 +4516,9 @@ namespace Ostium
                 ///
                 /// Adding items and Formatting => removing spaces and line breaks
                 /// 
-                AddItemswf_Txt.Text = Regex.Replace(AddItemswf_Txt.Text, @" ", "");
+                AddItemswf_Txt.Text = Regex.Replace(AddItemswf_Txt.Text, @" ", string.Empty);
                 string[] str = AddItemswf_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                AddItemswf_Txt.Text = "";
+                AddItemswf_Txt.Text = string.Empty;
                 foreach (string s in str)
                 {
                     if (s.Trim().Length > 0)
@@ -4473,8 +4559,8 @@ namespace Ostium
                 writer.Close();
 
                 loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
-                AddItemswf_Txt.Text = "";
-                NameProjectwf_Txt.Text = "";
+                AddItemswf_Txt.Text = string.Empty;
+                NameProjectwf_Txt.Text = string.Empty;
 
                 if (File.Exists(AppStart + "tempItemAdd.txt"))
                     File.Delete(AppStart + "tempItemAdd.txt");
@@ -4488,7 +4574,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreateXMLwf_btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreateXMLwf_btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4543,7 +4629,7 @@ namespace Ostium
 
                 Itemwf_Cbx.Items.Clear();
                 WorkflowItem_Lst.Items.Clear();
-                AddItemswf_Txt.Text = "";
+                AddItemswf_Txt.Text = string.Empty;
 
                 Workflow_Cbx = Itemwf_Cbx;
                 Workflow_Lst = WorkflowItem_Lst;
@@ -4551,12 +4637,12 @@ namespace Ostium
                 Thread LoadAllXML = new Thread(() => LoadItemKeyword_Thr("KeywordItemCollect", "Item", "y"));
                 LoadAllXML.Start();
 
-                AddSingleItemswf_Txt.Text = "";
+                AddSingleItemswf_Txt.Text = string.Empty;
                 Beep(1000, 400);
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! AddItemwf_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! AddItemwf_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4571,11 +4657,11 @@ namespace Ostium
 
             CreateXMLwf_btn.Enabled = true;
             AddItemswf_Txt.Enabled = true;
-            AddItemswf_Txt.Text = "";
+            AddItemswf_Txt.Text = string.Empty;
             AddSingleItemswf_Txt.Enabled = false;
             AddItemwf_Btn.Enabled = false;
             NameProjectwf_Txt.Enabled = true;
-            NameProjectwf_Txt.Text = "";
+            NameProjectwf_Txt.Text = string.Empty;
             ModelList_Lst.Enabled = true;
             ModelDelete_Btn.Enabled = true;
             ModelEdit_Btn.Enabled = true;
@@ -4604,7 +4690,7 @@ namespace Ostium
                     {
                         Itemwf_Cbx.Items.Clear();
                         WorkflowItem_Lst.Items.Clear();
-                        AddItemswf_Txt.Text = "";
+                        AddItemswf_Txt.Text = string.Empty;
                         CreateXMLwf_btn.Enabled = false;
                         AddSingleItemswf_Txt.Enabled = true;
                         AddItemwf_Btn.Enabled = true;
@@ -4613,7 +4699,7 @@ namespace Ostium
                         ModelEdit_Btn.Enabled = false;
                         ModelList_Lst.ClearSelected();
 
-                        string s = ProjectOpn_Lst.SelectedItem.ToString().Replace(".xml", "");
+                        string s = ProjectOpn_Lst.SelectedItem.ToString().Replace(".xml", string.Empty);
                         NameProjectwf_Txt.Text = s;
                         NameProjectwf_Txt.Enabled = false;
                         WFProjectOpn_Lbl.Text = s;
@@ -4628,7 +4714,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ProjectOpn_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ProjectOpn_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -4641,7 +4727,9 @@ namespace Ostium
         {
             if (WorkflowItem_Lst.SelectedIndex != -1)
             {
-                if (AddTextWorkflow_Txt.Text != string.Empty || AddTNoteWorkflow_Txt.Text != string.Empty || AddUrlWorkflow_Txt.Text != string.Empty)
+                if (AddTextWorkflow_Txt.Text != string.Empty ||
+                    AddTNoteWorkflow_Txt.Text != string.Empty ||
+                    AddUrlWorkflow_Txt.Text != string.Empty)
                 {
                     if (AddTextWorkflow_Txt.Text == string.Empty)
                         AddTextWorkflow_Txt.Text = "None";
@@ -4658,19 +4746,6 @@ namespace Ostium
                 {
                     WorkflowItem_Lst.ClearSelected();
                 }
-                //else
-                //{
-                //    string verifClip = Clipboard.GetText(TextDataFormat.Text);
-                //    if (verifClip != "")
-                //    {
-                //        AddTextWorkflow_Txt.Text = verifClip;
-                //        FormatValue();
-                //    }
-                //    else
-                //    {
-                //        WorkflowItem_Lst.ClearSelected();
-                //    }
-                //}
             }
         }
         ///
@@ -4692,7 +4767,7 @@ namespace Ostium
                 /// Formatting => removing spaces and line breaks
                 /// 
                 string[] str = AddTextWorkflow_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                AddTextWorkflow_Txt.Text = "";
+                AddTextWorkflow_Txt.Text = string.Empty;
                 foreach (string s in str)
                 {
                     if (s.Trim().Length > 0)
@@ -4707,7 +4782,7 @@ namespace Ostium
                 string valTimeline = AddTextWorkflow_Txt.Text + " -- " + AddTNoteWorkflow_Txt.Text + " -- " + AddUrlWorkflow_Txt.Text + " -- ";
 
                 string message = "Add => \r\n" + valMessage + " => in " + WorkflowItem_Lst.SelectedItem.ToString() + " ?";
-                string caption = "";
+                string caption = string.Empty;
                 var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
@@ -4728,14 +4803,14 @@ namespace Ostium
                 else
                 {
                     WorkflowItem_Lst.ClearSelected();
-                    AddTextWorkflow_Txt.Text = "";
-                    AddTNoteWorkflow_Txt.Text = "";
-                    AddUrlWorkflow_Txt.Text = "";
+                    AddTextWorkflow_Txt.Text = string.Empty;
+                    AddTNoteWorkflow_Txt.Text = string.Empty;
+                    AddUrlWorkflow_Txt.Text = string.Empty;
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! FormatValue: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! FormatValue: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -4769,7 +4844,7 @@ namespace Ostium
                             /// Formatting => removing spaces and line breaks
                             ///
                             string[] str = AddTNoteWorkflow_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                            AddTNoteWorkflow_Txt.Text = "";
+                            AddTNoteWorkflow_Txt.Text = string.Empty;
                             foreach (string s in str)
                             {
                                 if (s.Trim().Length > 0)
@@ -4786,7 +4861,7 @@ namespace Ostium
                             /// Formatting => removing spaces and line breaks
                             ///
                             string[] str = AddUrlWorkflow_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                            AddUrlWorkflow_Txt.Text = "";
+                            AddUrlWorkflow_Txt.Text = string.Empty;
                             foreach (string s in str)
                             {
                                 if (s.Trim().Length > 0)
@@ -4819,16 +4894,16 @@ namespace Ostium
                 xmlReader.Close();
                 doc.Save(Workflow + NameProjectwf_Txt.Text + ".xml");
 
-                AddTextWorkflow_Txt.Text = "";
-                AddTNoteWorkflow_Txt.Text = "";
-                AddUrlWorkflow_Txt.Text = "";
+                AddTextWorkflow_Txt.Text = string.Empty;
+                AddTNoteWorkflow_Txt.Text = string.Empty;
+                AddUrlWorkflow_Txt.Text = string.Empty;
                 WorkflowItem_Lst.ClearSelected();
 
                 LoadStatWorkflow();
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! AddDataWorkflow: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! AddDataWorkflow: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -4885,7 +4960,7 @@ namespace Ostium
             //}
             //catch (Exception ex)
             //{
-            //    senderror.ErrorLog("Error! StatWorkflow_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+            //    senderror.ErrorLog("Error! StatWorkflow_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             //}
         }
         ///
@@ -4927,7 +5002,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadItemKeyword_Thr: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadItemKeyword_Thr: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -4969,7 +5044,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadStatWorkflow: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadStatWorkflow: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -4986,9 +5061,9 @@ namespace Ostium
                     ///
                     /// Formatting => removing spaces and line breaks
                     ///
-                    ModelItem_Txt.Text = Regex.Replace(ModelItem_Txt.Text, @" ", "");
+                    ModelItem_Txt.Text = Regex.Replace(ModelItem_Txt.Text, @" ", string.Empty);
                     string[] str = ModelItem_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                    ModelItem_Txt.Text = "";
+                    ModelItem_Txt.Text = string.Empty;
                     foreach (string s in str)
                     {
                         if (s.Trim().Length > 0)
@@ -5007,8 +5082,8 @@ namespace Ostium
 
                     File_Write(WorkflowModel + ModelName_Txt.Text + ".txt", ModelItem_Txt.Text);
 
-                    ModelItem_Txt.Text = "";
-                    ModelName_Txt.Text = "";
+                    ModelItem_Txt.Text = string.Empty;
+                    ModelName_Txt.Text = string.Empty;
 
                     loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
 
@@ -5025,7 +5100,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ModelCreate_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ModelCreate_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5037,7 +5112,7 @@ namespace Ostium
                 {
                     if (File.Exists(WorkflowModel + ModelList_Lst.SelectedItem.ToString()))
                     {
-                        AddItemswf_Txt.Text = "";
+                        AddItemswf_Txt.Text = string.Empty;
 
                         using (StreamReader sr = new StreamReader(WorkflowModel + ModelList_Lst.SelectedItem.ToString()))
                         {
@@ -5048,7 +5123,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ModelList_Lst_SelectedIndexChanged: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ModelList_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5067,7 +5142,7 @@ namespace Ostium
                         if (File.Exists(WorkflowModel + ModelList_Lst.SelectedItem.ToString()))
                         {
                             File.Delete(WorkflowModel + ModelList_Lst.SelectedItem.ToString());
-                            AddItemswf_Txt.Text = "";
+                            AddItemswf_Txt.Text = string.Empty;
 
                             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
                             Beep(1000, 400);
@@ -5081,7 +5156,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ModelDelete_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ModelDelete_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5305,7 +5380,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! VerifyProcess: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! VerifyProcess: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5324,7 +5399,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! KillProcessJAVAW: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! KillProcessJAVAW: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5502,7 +5577,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnBokmark_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnBokmark_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5520,7 +5595,7 @@ namespace Ostium
         {
             if (Scriptl == "off")
             {
-                string BkmScr = Regex.Replace(Bookmarklet_Lst.Text, @".xml", "");
+                string BkmScr = Regex.Replace(Bookmarklet_Lst.Text, @".xml", string.Empty);
                 OpnBookmark(BkmScr);
             }
         }
@@ -5547,7 +5622,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnBookmark: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnBookmark: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5570,7 +5645,7 @@ namespace Ostium
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(this, ex.Message, "Execute Script Fails!");
+                MessageBox.Show(this, ex.ToString(), "Execute Script Fails!");
             }
         }
 
@@ -5583,7 +5658,7 @@ namespace Ostium
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(this, ex.Message, "Execute Script Fails!");
+                MessageBox.Show(this, ex.ToString(), "Execute Script Fails!");
             }
         }
 
@@ -5616,7 +5691,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenMaps: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenMaps: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5628,7 +5703,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
         ///
@@ -5811,7 +5886,7 @@ namespace Ostium
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
                 LocatRoute = "locat";
-                MapRouteOpn = "";
+                MapRouteOpn = string.Empty;
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
@@ -5884,7 +5959,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ShowXMLMap_Tls_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ShowXMLMap_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5951,7 +6026,7 @@ namespace Ostium
                         else if (LocatRoute == "routegpx")
                             loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
 
-                        ProjectMapOpn_Lbl.Text = "";
+                        ProjectMapOpn_Lbl.Text = string.Empty;
 
                         GMap_Ctrl.Overlays.Clear();
                         overlayOne.Markers.Clear();
@@ -5964,7 +6039,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DeleteProjectMap_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DeleteProjectMap_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5972,12 +6047,12 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
-                MapRouteOpn = "";
+                MapRouteOpn = string.Empty;
                 LocatRoute = "locat";
                 Map_Cmd_Pnl.Visible = true;
                 LocatRoute_Lbl.Text = "Location Points";
                 TxtMarker_Lbl.Text = "Text Marker";
-                TextMarker_Txt.Text = "";
+                TextMarker_Txt.Text = string.Empty;
                 TxtMarker_Chk.Enabled = true;
                 AddNewLoc_Btn.Visible = true;
                 SaveRoute_Btn.Visible = false;
@@ -6051,7 +6126,7 @@ namespace Ostium
             try
             {
                 string fileopen = openfile.Fileselect(AppStart, "kml gpx files (*.gpx;*.kml;*geojson;*json)|*.gpx;*.kml;*geojson;*json", 2);
-                string strname = "";
+                string strname = string.Empty;
 
                 if (fileopen != string.Empty)
                 {
@@ -6088,7 +6163,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnGPXRoute_Tls_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnGPXRoute_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6131,7 +6206,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! ScreenShotGmap_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! ScreenShotGmap_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6144,11 +6219,12 @@ namespace Ostium
                 string TiltMapsValue = "100";
                 string Direction = "North";
 
-                Process.Start("bingmaps:?cp=" + LatTCurrent_Lbl.Text + "~" + LonGtCurrent_Lbl.Text + "&lvl=" + ZommValueMaps + "&sty=" + VerifyStyle + "&pit=" + TiltMapsValue + "&hdg=" + Direction + "");
+                Process.Start("bingmaps:?cp=" + LatTCurrent_Lbl.Text + "~" + LonGtCurrent_Lbl.Text + "&lvl=" +
+                    ZommValueMaps + "&sty=" + VerifyStyle + "&pit=" + TiltMapsValue + "&hdg=" + Direction + string.Empty);
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnBingMap_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnBingMap_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6195,7 +6271,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenGoogleEarth_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenGoogleEarth_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6257,7 +6333,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! GoLatLong_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! GoLatLong_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6292,7 +6368,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! AddNewLoc_Btn_Click: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! AddNewLoc_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6535,7 +6611,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! GoLatLong: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! GoLatLong: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6632,9 +6708,9 @@ namespace Ostium
         {
             try
             {
-                string lat = "";
-                string lon = "";
-                string txtmarker = "";
+                string lat = string.Empty;
+                string lon = string.Empty;
+                string txtmarker = string.Empty;
 
                 using (XmlReader reader = XmlReader.Create(MapXmlOpn))
                 {
@@ -6657,7 +6733,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpnLocationPoints: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! OpnLocationPoints: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6801,7 +6877,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadRouteFromFile: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadRouteFromFile: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6857,7 +6933,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadKmlFile: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadKmlFile: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6892,7 +6968,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadGpxFile: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadGpxFile: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6940,7 +7016,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! LoadGeoJsonFile: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! LoadGeoJsonFile: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6952,7 +7028,7 @@ namespace Ostium
             GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lon), GMarkerGoogleType.red_dot);
             overlay.Markers.Add(marker);
 
-            TextMarker_Txt.Text = "";
+            TextMarker_Txt.Text = string.Empty;
         }
 
         void AddLineString(GMapOverlay overlay, JToken geometry)
@@ -6991,7 +7067,7 @@ namespace Ostium
             };
             overlay.Polygons.Add(polygon);
 
-            TextMarker_Txt.Text = "";
+            TextMarker_Txt.Text = string.Empty;
         }
 
         void AddMultiPolygon(GMapOverlay overlay, JToken geometry)
@@ -7014,7 +7090,7 @@ namespace Ostium
                 };
                 overlay.Polygons.Add(polygon);
 
-                TextMarker_Txt.Text = "";
+                TextMarker_Txt.Text = string.Empty;
             }
         }
 
@@ -7062,7 +7138,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CreateGpxFromCoordinates: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CreateGpxFromCoordinates: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -7295,7 +7371,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error!");
+                MessageBox.Show(ex.ToString(), "Error!");
             }
         }
 
@@ -7304,11 +7380,11 @@ namespace Ostium
             try
             {
                 string xT = value;
-                string xO = "";
+                string xO = string.Empty;
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
-                string sendval = "";
-                string OutJs = "";
+                string sendval = string.Empty;
+                string OutJs = string.Empty;
 
                 using (StreamReader sr = new StreamReader(jsonout))
                 {
@@ -7331,14 +7407,14 @@ namespace Ostium
                     }
 
                     sendval += xO + "\r\n";
-                    xO = "";
+                    xO = string.Empty;
                 }
 
                 Invoke(new Action<string>(ValAdd_Invk), sendval);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error!");
+                MessageBox.Show(ex.ToString(), "Error!");
             }
         }
 
@@ -7350,10 +7426,10 @@ namespace Ostium
                 StreamWriter fw = new StreamWriter(JsonDirTable + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
-                string xO = "";
+                string xO = string.Empty;
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
-                string OutJs = "";
+                string OutJs = string.Empty;
 
                 string Jselect;
                 if (OutJsonA_Chk.Checked)
@@ -7392,7 +7468,7 @@ namespace Ostium
 
                 fw.WriteLine(t);
 
-                xO = "";
+                xO = string.Empty;
 
                 foreach (dynamic val in valjson)
                 {
@@ -7405,7 +7481,7 @@ namespace Ostium
                     }
 
                     fw.WriteLine(xO);
-                    xO = "";
+                    xO = string.Empty;
                     fw.WriteLine("</tr><tr class=\"py-5\">");
                 }
 
@@ -7416,7 +7492,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error!");
+                MessageBox.Show(ex.ToString(), "Error!");
             }
         }
 
@@ -7425,11 +7501,11 @@ namespace Ostium
             try
             {
                 string xT = value;
-                string xO = "";
+                string xO = string.Empty;
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
-                string sendval = "";
-                string OutJs = "";
+                string sendval = string.Empty;
+                string OutJs = string.Empty;
 
                 using (StreamReader sr = new StreamReader(jsonout))
                 {
@@ -7459,14 +7535,14 @@ namespace Ostium
                         }
 
                         sendval += xO + "\r\n";
-                        xO = "";
+                        xO = string.Empty;
                     }
                 }
                 Invoke(new Action<string>(ValAdd_Invk), sendval);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error!");
+                MessageBox.Show(ex.ToString(), "Error!");
             }
         }
 
@@ -7478,10 +7554,10 @@ namespace Ostium
                 StreamWriter fw = new StreamWriter(JsonDirTable + Una + "_table.html");
 
                 string xT = JsonVal_Txt.Text;
-                string xO = "";
+                string xO = string.Empty;
                 char[] charsToTrim = { ',' };
                 string[] words = xT.Split();
-                string OutJs = "";
+                string OutJs = string.Empty;
 
                 string Jselect;
                 if (OutJsonA_Chk.Checked)
@@ -7521,7 +7597,7 @@ namespace Ostium
 
                 fw.WriteLine(t);
 
-                xO = "";
+                xO = string.Empty;
 
                 for (int i = 0; i < CntEnd; i++)
                 {
@@ -7540,7 +7616,7 @@ namespace Ostium
                         }
 
                         fw.WriteLine(xO);
-                        xO = "";
+                        xO = string.Empty;
                         fw.WriteLine("</tr><tr class=\"py-5\">");
                     }
                 }
@@ -7552,7 +7628,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error!");
+                MessageBox.Show(ex.ToString(), "Error!");
             }
         }
 
@@ -7711,7 +7787,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! VerifyUPDT: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! VerifyUPDT: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -7726,7 +7802,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! AnnonceUpdate: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! AnnonceUpdate: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

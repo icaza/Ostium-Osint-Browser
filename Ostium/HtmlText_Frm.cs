@@ -1,6 +1,7 @@
 ﻿using Icaza;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -22,8 +23,10 @@ namespace Ostium
         readonly IcazaClass selectdir = new IcazaClass();
 
         readonly string AppStart = Application.StartupPath + @"\";
-        string UriTxt = "";
-        string Una = "";
+        string UriTxt = string.Empty;
+        string Una = string.Empty;
+
+        private static readonly HttpClient client = new HttpClient();
 
         #endregion
 
@@ -50,7 +53,7 @@ namespace Ostium
         {
             try
             {
-                if (URLbrowse_Cbx.Text != "")
+                if (URLbrowse_Cbx.Text != string.Empty)
                 {
                     var rawUrl = URLbrowse_Cbx.Text;
                     Uri uri;
@@ -71,7 +74,7 @@ namespace Ostium
 
                     URLbrowse_Cbx.Text = Convert.ToString(uri);
 
-                    WbrowseTxt.Text = "";
+                    WbrowseTxt.Text = string.Empty;
                     ListLinks_Lst.Items.Clear();
 
                     int x;
@@ -90,7 +93,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! StartOpenWebPageTxt: ", ex.Message, "HtmlText_Frm", AppStart);
+                senderror.ErrorLog("Error! StartOpenWebPageTxt: ", ex.ToString(), "HtmlText_Frm", AppStart);
             }
         }
 
@@ -98,43 +101,69 @@ namespace Ostium
         {
             try
             {
-                HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent_Txt.Text);
-                var response = await client.GetAsync(UriTxt);
+                if (string.IsNullOrWhiteSpace(UriTxt))
+                {
+                    senderror.ErrorLog("Error! OpenWebPageTxt: ", "URL is empty or null", "HtmlText_Frm", AppStart);
+                    return;
+                }
+
+                if (!Uri.IsWellFormedUriString(UriTxt, UriKind.Absolute))
+                {
+                    senderror.ErrorLog("Error! OpenWebPageTxt: ", "Invalid URL format", "HtmlText_Frm", AppStart);
+                    return;
+                }
+
+                string userAgent = string.IsNullOrWhiteSpace(UserAgent_Txt.Text) ? "Mozilla/5.0" : UserAgent_Txt.Text;
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+
+                HttpResponseMessage response = await client.GetAsync(UriTxt);
+                if (!response.IsSuccessStatusCode)
+                {
+                    senderror.ErrorLog("Error! OpenWebPageTxt: ", $"HTTP Error {response.StatusCode}", "HtmlText_Frm", AppStart);
+                    return;
+                }
+
                 string pageContents = await response.Content.ReadAsStringAsync();
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(pageContents);
 
-                var root = doc.DocumentNode;
                 var sb = new StringBuilder();
-
-                foreach (var node in root.DescendantsAndSelf())
+                foreach (var node in doc.DocumentNode.DescendantsAndSelf())
                 {
-                    if (!node.HasChildNodes && node.ParentNode.Name != "script" && node.ParentNode.Name != "style")
+                    if (!node.HasChildNodes && node.ParentNode != null &&
+                        node.ParentNode.Name != "script" && node.ParentNode.Name != "style")
                     {
-                        string text = node.InnerText;
+                        string text = node.InnerText.Trim();
                         if (!string.IsNullOrEmpty(text))
-                            sb.AppendLine(text.Trim());
+                        {
+                            sb.AppendLine(text);
+                        }
                     }
                 }
 
-                foreach (Match match in Regex.Matches(pageContents, @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*"))
-                {
-                    Invoke(new Action<string>(AddLinkList), match.Value);
-                }
+                var links = Regex.Matches(pageContents, @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*")
+                                 .Cast<Match>()
+                                 .Select(m => m.Value)
+                                 .ToList();
 
-                string Txts = Regex.Replace(Convert.ToString(sb), @"(&.+?;)|\n\r", string.Empty);
-                Invoke(new Action<string>(RegReplaceTxt), Txts);
+                Invoke(new Action(() =>
+                {
+                    foreach (string link in links)
+                        AddLinkList(link);
+
+                    string cleanText = Regex.Replace(sb.ToString(), @"(&.+?;)|\n\r", string.Empty);
+                    RegReplaceTxt(cleanText);
+                }));
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenWebPageTxt: ", ex.Message, "HtmlText_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenWebPageTxt: ", ex.ToString(), "HtmlText_Frm", AppStart);
             }
         }
 
         void CreateNameAleat()
         {
-            Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
+            Una = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + "_" + Guid.NewGuid().ToString("N");
         }
 
         #region Invoke_
@@ -166,7 +195,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! RTFLink_Clicked: ", ex.Message, "HtmlText_Frm", AppStart);
+                senderror.ErrorLog("Error! RTFLink_Clicked: ", ex.ToString(), "HtmlText_Frm", AppStart);
             }
         }
 
@@ -187,7 +216,7 @@ namespace Ostium
 
         void CopyUrl_Btn_Click(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text != "")
+            if (URLbrowse_Cbx.Text != string.Empty)
             {
                 string textData = URLbrowse_Cbx.Text;
                 Clipboard.SetData(DataFormats.Text, textData);
@@ -197,15 +226,15 @@ namespace Ostium
 
         void SavePageTxt_Btn_Click(object sender, EventArgs e)
         {
-            if (WbrowseTxt.Text != "")
+            if (WbrowseTxt.Text != string.Empty)
             {
                 string dirselect = selectdir.Dirselect();
 
                 string namef = UriTxt;
-                namef = Regex.Replace(namef, @"[^a-zA-Z0-9]", "_").Replace("https", "");
+                namef = Regex.Replace(namef, @"[^a-zA-Z0-9]", "_").Replace("https", string.Empty);
 
                 string C = namef;
-                string D = "";
+                string D = string.Empty;
 
                 if (C.Length > 50)
                     D += C.Substring(0, 50);
@@ -216,7 +245,7 @@ namespace Ostium
 
                 try
                 {
-                    if (dirselect != "")
+                    if (dirselect != string.Empty)
                     {
                         using (StreamWriter fc = File.AppendText(dirselect + @"\" + Una + "_" + D + ".txt"))
                         {
@@ -227,7 +256,7 @@ namespace Ostium
                 }
                 catch (Exception ex)
                 {
-                    senderror.ErrorLog("Error! SavePageTxt_Btn_Click: ", ex.Message, "HtmlText_Frm", AppStart);
+                    senderror.ErrorLog("Error! SavePageTxt_Btn_Click: ", ex.ToString(), "HtmlText_Frm", AppStart);
                 }
             }
         }

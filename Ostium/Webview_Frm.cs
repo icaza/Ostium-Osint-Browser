@@ -45,7 +45,7 @@ namespace Ostium
 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
         {
-            string UriYoutube = "";
+            string UriYoutube = string.Empty;
             string C = WBrowse.Source.AbsoluteUri;
             if (C.Length > 32)
                 UriYoutube += C.Substring(0, 32);
@@ -190,7 +190,7 @@ namespace Ostium
                     }
                     else
                     {
-                        if (Class_Var.URL_DEFAUT_WSEARCH == "")
+                        if (Class_Var.URL_DEFAUT_WSEARCH == string.Empty)
                             Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
 
                         uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
@@ -221,7 +221,7 @@ namespace Ostium
 
         void Home_Btn_Click(object sender, EventArgs e)
         {
-            if (@Class_Var.URL_HOME == "")
+            if (@Class_Var.URL_HOME == string.Empty)
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
 
             WBrowse.Source = new Uri(@Class_Var.URL_HOME);
@@ -229,7 +229,7 @@ namespace Ostium
 
         void Trad_Btn_Click(object sender, EventArgs e)
         {
-            if (Class_Var.URL_TRAD_WEBPAGE == "")
+            if (Class_Var.URL_TRAD_WEBPAGE == string.Empty)
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);

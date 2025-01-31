@@ -49,7 +49,7 @@ namespace Ostium
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                if (Pwd_Txt.Text == "")
+                if (Pwd_Txt.Text == string.Empty)
                 {
                     Pwd_Txt.BackColor = Color.Red;
                     MessageBox.Show("A password is always better :)");
@@ -87,7 +87,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error encrypting {inputFile}: {ex.Message}");
+                MessageBox.Show($"Error encrypting {inputFile}: {ex.ToString()}");
                 Encrypt_Pnl.BackColor = Color.FromArgb(41, 44, 51);
             }
         }
@@ -108,7 +108,7 @@ namespace Ostium
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                if (Pwd_Txt.Text == "")
+                if (Pwd_Txt.Text == string.Empty)
                 {
                     Pwd_Txt.BackColor = Color.Red;
                     MessageBox.Show("A password is always better :)");
@@ -146,7 +146,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error when decrypting {inputFile}: {ex.Message}");
+                MessageBox.Show($"Error when decrypting {inputFile}: {ex.ToString()}");
                 Decrypt_Pnl.BackColor = Color.FromArgb(41, 44, 51);
             }
         }
@@ -195,7 +195,7 @@ namespace Ostium
             Close();
         }
 
-        private void Detail_Lbl_Click(object sender, EventArgs e)
+        void Detail_Lbl_Click(object sender, EventArgs e)
         {
             string message = "Security Characteristics:\n\n" +
                              "• Use of the AES (Advanced Encryption Standard) algorithm with a 256-bit key.\n" +

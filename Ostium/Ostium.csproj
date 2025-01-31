@@ -232,12 +232,15 @@
     </Compile>
     <EmbeddedResource Include="Aes_Frm.resx">
       <DependentUpon>Aes_Frm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Bookmarklets_Frm.resx">
       <DependentUpon>Bookmarklets_Frm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Doc_Frm.resx">
       <DependentUpon>Doc_Frm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="HtmlText_Frm.resx">
       <DependentUpon>HtmlText_Frm.cs</DependentUpon>
