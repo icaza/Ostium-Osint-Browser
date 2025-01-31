@@ -233,7 +233,7 @@ namespace Ostium
                     /// Web URL Home page wBrowser Tab => index and wBrowser Tab => feed
                     /// If empty loading from default URL file
                     ///
-                    if (@Class_Var.URL_HOME == "")
+                    if (@Class_Var.URL_HOME == string.Empty)
                         @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
 
                     WBrowse.Source = new Uri(@Class_Var.URL_HOME);
@@ -357,7 +357,7 @@ namespace Ostium
             /// Loading the configuration from the "config.xml" file
             /// 
 
-            if (ArchiveAdd_Txt.Text != "")
+            if (ArchiveAdd_Txt.Text != string.Empty)
             {
                 using (StreamWriter fc = new StreamWriter(AppStart + "archiveAdd.txt"))
                 {
@@ -512,7 +512,7 @@ namespace Ostium
                     ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", "");
                     ValueOutput += ".db";
 
-                    if (ValueOutput != "" && ValueOutput != ".db")
+                    if (ValueOutput != string.Empty && ValueOutput != ".db")
                     {
                         if (!File.Exists(DBdirectory + ValueOutput))
                             SQLiteConnection.CreateFile(DBdirectory + ValueOutput);
@@ -1005,7 +1005,7 @@ namespace Ostium
                     }
                     else
                     {
-                        if (Class_Var.URL_DEFAUT_WSEARCH == "")
+                        if (Class_Var.URL_DEFAUT_WSEARCH == string.Empty)
                             Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
 
                         uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
@@ -1067,7 +1067,7 @@ namespace Ostium
         /// 
         void Home_Btn_Click(object sender, EventArgs e)
         {
-            if (@Class_Var.URL_HOME == "")
+            if (@Class_Var.URL_HOME == string.Empty)
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
 
             WBrowse.Source = new Uri(@Class_Var.URL_HOME);
@@ -1131,7 +1131,7 @@ namespace Ostium
         /// 
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
         {
-            if (Class_Var.URL_USER_AGENT == "")
+            if (Class_Var.URL_USER_AGENT == string.Empty)
                 Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
 
             if (UserAgentChange_Btn.Text == "Change User Agent Off")
@@ -1158,7 +1158,7 @@ namespace Ostium
         /// 
         void Googlebot_Btn_Click(object sender, EventArgs e)
         {
-            if (Class_Var.URL_GOOGLEBOT == "")
+            if (Class_Var.URL_GOOGLEBOT == string.Empty)
                 Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
 
             if (Googlebot_Btn.Text == "Googlebot Off")
@@ -1184,7 +1184,7 @@ namespace Ostium
         {
             try
             {
-                if (Word_Construct_URL_Txt.Text != "")
+                if (Word_Construct_URL_Txt.Text != string.Empty)
                 {
                     Word_Construct_URL_Txt.Text = Word_Construct_URL_Txt.Text.Replace(" ", "%20");
                     Construct_URL(Word_Construct_URL_Txt.Text);
@@ -1256,7 +1256,7 @@ namespace Ostium
         {
             try
             {
-                if (Class_Var.URL_TRAD_WEBPAGE == "")
+                if (Class_Var.URL_TRAD_WEBPAGE == string.Empty)
                     Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
 
                 string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
@@ -1270,7 +1270,7 @@ namespace Ostium
 
         void UnshortUrl_Btn_Click(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text != "")
+            if (URLbrowse_Cbx.Text != string.Empty)
             {
                 StartUnshortUrl(URLbrowse_Cbx.Text);
             }
@@ -1456,7 +1456,7 @@ namespace Ostium
 
                 string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
-                if (fileopen != "")
+                if (fileopen != string.Empty)
                     OpenFile_Editor(fileopen);
             }
             catch (Exception ex)
@@ -1471,7 +1471,7 @@ namespace Ostium
             {
                 string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
-                if (fileopen != "")
+                if (fileopen != string.Empty)
                     Open_Source_Frm(fileopen);
             }
             catch (Exception ex)
@@ -1522,7 +1522,7 @@ namespace Ostium
                 ScriptSelect = Interaction.InputBox(message, title);
                 string ScriptInject = Convert.ToString(ScriptSelect);
 
-                if (ScriptInject != "")
+                if (ScriptInject != string.Empty)
                     InjectScript(ScriptInject);
             }
             catch (Exception ex)
@@ -1566,7 +1566,7 @@ namespace Ostium
                 RegexSelect = Interaction.InputBox(message, title);
                 string ScriptInject = Convert.ToString(RegexSelect);
 
-                if (ScriptInject != "")
+                if (ScriptInject != string.Empty)
                 {
                     Thread Thr_CMDConsoleExec = new Thread(() => CMD_Console_Exec(4, ScriptInject));
                     Thr_CMDConsoleExec.Start();
@@ -1728,7 +1728,7 @@ namespace Ostium
 
         void OpnFileCategory_Btn_Click(object sender, EventArgs e)
         {
-            if (CategorieFeed_Cbx.Text != "")
+            if (CategorieFeed_Cbx.Text != string.Empty)
             {
                 OpenFile_Editor(FeedDir + CategorieFeed_Cbx.Text);
             }
@@ -1749,7 +1749,7 @@ namespace Ostium
 
         void TraductPageFeed_Btn_Click(object sender, EventArgs e)
         {
-            if (Class_Var.URL_TRAD_WEBPAGE == "")
+            if (Class_Var.URL_TRAD_WEBPAGE == string.Empty)
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsefeed.Source.AbsoluteUri);
@@ -1779,7 +1779,7 @@ namespace Ostium
 
         void DeleteProject_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text == "")
+            if (NameProjectwf_Txt.Text == string.Empty)
                 return;
 
             string message = "Do you want to delete the project? " + NameProjectwf_Txt.Text;
@@ -1802,7 +1802,7 @@ namespace Ostium
 
         void ViewXml_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text == "")
+            if (NameProjectwf_Txt.Text == string.Empty)
                 return;
 
             if (File.Exists(Workflow + NameProjectwf_Txt.Text + ".xml"))
@@ -1816,7 +1816,7 @@ namespace Ostium
 
         void EditXml_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text == "")
+            if (NameProjectwf_Txt.Text == string.Empty)
                 return;
 
             if (File.Exists(Workflow + NameProjectwf_Txt.Text + ".xml"))
@@ -1827,12 +1827,12 @@ namespace Ostium
         {
             try
             {
-                if (NameProjectwf_Txt.Text == "")
+                if (NameProjectwf_Txt.Text == string.Empty)
                     return;
 
                 string dirselect = selectdir.Dirselect();
 
-                if (dirselect != "")
+                if (dirselect != string.Empty)
                 {
                     if (File.Exists(dirselect + @"\" + NameProjectwf_Txt.Text + ".xml"))
                     {
@@ -1860,12 +1860,12 @@ namespace Ostium
         {
             try
             {
-                if (NameProjectwf_Txt.Text == "")
+                if (NameProjectwf_Txt.Text == string.Empty)
                     return;
 
                 string dirselect = selectdir.Dirselect();
 
-                if (dirselect != "")
+                if (dirselect != string.Empty)
                 {
                     if (File.Exists(dirselect + @"\" + NameProjectwf_Txt.Text + ".json"))
                     {
@@ -1904,7 +1904,7 @@ namespace Ostium
         ///
         void Diagram_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text == "")
+            if (NameProjectwf_Txt.Text == string.Empty)
                 return;
 
             if (!File.Exists(DiagramDir + "plantuml.jar"))
@@ -1945,7 +1945,7 @@ namespace Ostium
             try
             {
                 ThemeDiag = ThemDiag_Cbx.Text;
-                if (ThemeDiag == "")
+                if (ThemeDiag == string.Empty)
                     ThemeDiag = "cloudscape-design";
 
                 var xmlFile = xmlFileConvert;
@@ -2025,7 +2025,7 @@ namespace Ostium
         /// 
         void DiagramMindMap_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text == "")
+            if (NameProjectwf_Txt.Text == string.Empty)
                 return;
 
             if (!File.Exists(DiagramDir + "plantuml.jar"))
@@ -2038,7 +2038,7 @@ namespace Ostium
             Timo.Enabled = true;
 
             ThemeDiag = ThemDiag_Cbx.Text;
-            if (ThemeDiag == "")
+            if (ThemeDiag == string.Empty)
                 ThemeDiag = "cloudscape-design";
 
             Thread CreateDiagramMinMapFile = new Thread(() => CreateDiagramMinMapFile_Thrd(1));
@@ -2054,7 +2054,7 @@ namespace Ostium
         ///
         void DiagramMindMap2_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text == "")
+            if (NameProjectwf_Txt.Text == string.Empty)
                 return;
 
             if (!File.Exists(DiagramDir + "plantuml.jar"))
@@ -2067,7 +2067,7 @@ namespace Ostium
             Timo.Enabled = true;
 
             ThemeDiag = ThemDiag_Cbx.Text;
-            if (ThemeDiag == "")
+            if (ThemeDiag == string.Empty)
                 ThemeDiag = "cloudscape-design";
 
             Thread CreateDiagramMinMapFile = new Thread(() => CreateDiagramMinMapFile_Thrd(0));
@@ -2122,7 +2122,7 @@ namespace Ostium
 
                 for (int i = 0; i < WorkflowItem_Lst.Items.Count; i++)
                 {
-                    if (WorkflowItem_Lst.Items[i].ToString() != "")
+                    if (WorkflowItem_Lst.Items[i].ToString() != string.Empty)
                     {
                         element = WorkflowItem_Lst.Items[i].ToString();
                         element += "_" + element;
@@ -2209,12 +2209,12 @@ namespace Ostium
                 TmpFile_Txt.Text = "";
 
                 ThemeDiag = ThemDiag_Cbx.Text;
-                if (ThemeDiag == "")
+                if (ThemeDiag == string.Empty)
                     ThemeDiag = "cloudscape-design";
 
                 string fileopen = openfile.Fileselect(AppStart, "json files (*.json)|*.json", 2);
 
-                if (fileopen != "")
+                if (fileopen != string.Empty)
                 {
                     MessageBox.Show(MessageStartDiagram);
                     Timo.Enabled = true;
@@ -2277,7 +2277,7 @@ namespace Ostium
 
                 string fileopen = openfile.Fileselect(AppStart, "xml files (*.xml)|*.xml", 2);
 
-                if (fileopen != "")
+                if (fileopen != string.Empty)
                 {
                     MessageBox.Show(MessageStartDiagram);
                     Timo.Enabled = true;
@@ -2323,7 +2323,7 @@ namespace Ostium
 
             string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt", 2);
 
-            if (fileopen != "")
+            if (fileopen != string.Empty)
             {
                 MessageBox.Show(MessageStartDiagram);
                 Timo.Enabled = true;
@@ -2376,7 +2376,7 @@ namespace Ostium
         {
             try
             {
-                if (FileDiag == "")
+                if (FileDiag == string.Empty)
                 {
                     MessageBox.Show("SVG file not exist!");
                     return;
@@ -2686,7 +2686,7 @@ namespace Ostium
         {
             try
             {
-                if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
+                if (Class_Var.URL_USER_AGENT_SRC_PAGE == string.Empty)
                     Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
 
                 HttpClient client = new HttpClient();
@@ -2990,7 +2990,7 @@ namespace Ostium
                     aArg = fileSelect;
 
 
-                if (fileSelect != "")
+                if (fileSelect != string.Empty)
                 {
                     if (File.Exists(fileSelect))
                     {
@@ -3125,7 +3125,7 @@ namespace Ostium
         {
             TableName_Txt.Text = Regex.Replace(TableName_Txt.Text, "[^a-zA-Z]", "");
 
-            if (TableName_Txt.Text != "")
+            if (TableName_Txt.Text != string.Empty)
             {
                 Sqlite_Cmd("CREATE TABLE IF NOT EXISTS " + TableName_Txt.Text + " (url_date TEXT, url_name TEXT, url_adress TEXT)");
                 TableName_Txt.Text = "";
@@ -3158,7 +3158,7 @@ namespace Ostium
                 {
                     UrlName_Txt.Text = Regex.Replace(UrlName_Txt.Text, "[^\\w\\\x20_-]", "");
 
-                    if (UrlName_Txt.Text != "")
+                    if (UrlName_Txt.Text != string.Empty)
                     {
                         Sqlite_Read("SELECT * FROM " + tlsi + "", "url_name", "cbx");
 
@@ -3342,7 +3342,7 @@ namespace Ostium
         {
             try
             {
-                if (DataBaze_Opn.Text != "")
+                if (DataBaze_Opn.Text != string.Empty)
                 {
                     if (File.Exists(DBdirectory + DataBaze_Opn.Text))
                     {
@@ -3516,7 +3516,7 @@ namespace Ostium
 
                 if (DataValue_Lst.SelectedIndex != -1)
                 {
-                    if (ValueChange_Txt.Text != "" && ValueChange_Txt.Text != "update URL and Name here")
+                    if (ValueChange_Txt.Text != string.Empty && ValueChange_Txt.Text != "update URL and Name here")
                     {
                         DBadmin = "on";
 
@@ -3578,7 +3578,7 @@ namespace Ostium
             {
                 if (DataValue_Lst.SelectedIndex != -1)
                 {
-                    if (ValueChange_Txt.Text != "" && ValueChange_Txt.Text != "update URL and Name here")
+                    if (ValueChange_Txt.Text != string.Empty && ValueChange_Txt.Text != "update URL and Name here")
                     {
                         DBadmin = "on";
 
@@ -3875,7 +3875,7 @@ namespace Ostium
         {
             try
             {
-                if (NewCategory_Txt.Text != "" && NewCategory_Txt.Text != "new category")
+                if (NewCategory_Txt.Text != string.Empty && NewCategory_Txt.Text != "new category")
                 {
                     if (!File.Exists(FeedDir + NewCategory_Txt.Text))
                     {
@@ -3922,9 +3922,9 @@ namespace Ostium
 
         void AddFeed_Btn_Click(object sender, EventArgs e)
         {
-            if (NewFeed_Txt.Text != "" && NewFeed_Txt.Text != "new feed")
+            if (NewFeed_Txt.Text != string.Empty && NewFeed_Txt.Text != "new feed")
             {
-                if (CategorieFeed_Cbx.Text != "")
+                if (CategorieFeed_Cbx.Text != string.Empty)
                 {
                     CreateData(FeedDir + CategorieFeed_Cbx.Text, NewFeed_Txt.Text);
 
@@ -4001,7 +4001,7 @@ namespace Ostium
         {
             try
             {
-                if (CategorieFeed_Cbx.Text != "")
+                if (CategorieFeed_Cbx.Text != string.Empty)
                 {
                     string message = "Are you sure that you would like to delete the category and all content? " + CategorieFeed_Cbx.Text;
                     const string caption = "Delete Category";
@@ -4085,7 +4085,7 @@ namespace Ostium
             {
                 if (Title_Lst.Items.Count > 0)
                 {
-                    if (GoFeed_Txt.Text != "" && GoFeed_Txt.Text != "0")
+                    if (GoFeed_Txt.Text != string.Empty && GoFeed_Txt.Text != "0")
                     {
                         int icr = Convert.ToInt32(GoFeed_Txt.Text);
 
@@ -4153,7 +4153,7 @@ namespace Ostium
 
         void ReadTitle_Btn_Click(object sender, EventArgs e)
         {
-            if (CategorieFeed_Cbx.Text != "")
+            if (CategorieFeed_Cbx.Text != string.Empty)
             {
                 synth.Volume = Class_Var.VOLUME_TRACK;
                 synth.Rate = Class_Var.RATE_TRACK;
@@ -4168,7 +4168,7 @@ namespace Ostium
 
         void ReadClipB_Btn_Click(object sender, EventArgs e)
         {
-            if (CategorieFeed_Cbx.Text != "")
+            if (CategorieFeed_Cbx.Text != string.Empty)
                 Speak_Clipboard_Text();
         }
 
@@ -4361,7 +4361,7 @@ namespace Ostium
         {
             if (SetCookie_Chk.Checked)
             {
-                if (CookieName_Txt.Text == "" || CookieValue_Txt.Text == "" || CookieDomain_Txt.Text == "")
+                if (CookieName_Txt.Text == string.Empty || CookieValue_Txt.Text == string.Empty || CookieDomain_Txt.Text == string.Empty)
                 {
                     SetCookie_Chk.Checked = false;
                     MessageBox.Show("Enter all values!");
@@ -4389,10 +4389,10 @@ namespace Ostium
         {
             try
             {
-                if (AddItemswf_Txt.Text == "")
+                if (AddItemswf_Txt.Text == string.Empty)
                     return;
 
-                if (NameProjectwf_Txt.Text == "")
+                if (NameProjectwf_Txt.Text == string.Empty)
                 {
                     NameProjectwf_Txt.BackColor = Color.Red;
                     MessageBox.Show("Select Project name first!");
@@ -4453,7 +4453,7 @@ namespace Ostium
 
                 for (int i = 0; i < List_Wf.Items.Count; i++)
                 {
-                    if (List_Wf.Items[i].ToString() != "")
+                    if (List_Wf.Items[i].ToString() != string.Empty)
                         writer.WriteElementString("Item", List_Wf.Items[i].ToString());
                 }
 
@@ -4461,7 +4461,7 @@ namespace Ostium
 
                 for (int i = 0; i < List_Wf.Items.Count; i++)
                 {
-                    if (List_Wf.Items[i].ToString() != "")
+                    if (List_Wf.Items[i].ToString() != string.Empty)
                     {
                         writer.WriteStartElement(List_Wf.Items[i].ToString());
                         CreateNode(List_Wf.Items[i].ToString(), writer); // Markup
@@ -4512,7 +4512,7 @@ namespace Ostium
         {
             try
             {
-                if (AddSingleItemswf_Txt.Text == "")
+                if (AddSingleItemswf_Txt.Text == string.Empty)
                     return;
 
                 XmlDocument doc = new XmlDocument();
@@ -4641,15 +4641,15 @@ namespace Ostium
         {
             if (WorkflowItem_Lst.SelectedIndex != -1)
             {
-                if (AddTextWorkflow_Txt.Text != "" || AddTNoteWorkflow_Txt.Text != "" || AddUrlWorkflow_Txt.Text != "")
+                if (AddTextWorkflow_Txt.Text != string.Empty || AddTNoteWorkflow_Txt.Text != string.Empty || AddUrlWorkflow_Txt.Text != string.Empty)
                 {
-                    if (AddTextWorkflow_Txt.Text == "")
+                    if (AddTextWorkflow_Txt.Text == string.Empty)
                         AddTextWorkflow_Txt.Text = "None";
 
-                    if (AddTNoteWorkflow_Txt.Text == "")
+                    if (AddTNoteWorkflow_Txt.Text == string.Empty)
                         AddTNoteWorkflow_Txt.Text = "None";
 
-                    if (AddUrlWorkflow_Txt.Text == "")
+                    if (AddUrlWorkflow_Txt.Text == string.Empty)
                         AddUrlWorkflow_Txt.Text = "None";
 
                     FormatValue();
@@ -4763,7 +4763,7 @@ namespace Ostium
 
                     if (attrib != "no")
                     {
-                        if (AddTNoteWorkflow_Txt.Text != "")
+                        if (AddTNoteWorkflow_Txt.Text != string.Empty)
                         {
                             ///
                             /// Formatting => removing spaces and line breaks
@@ -4780,7 +4780,7 @@ namespace Ostium
                             AddTNoteWorkflow_Txt.Text = header.Trim(new char[] { ' ' });
                         }
 
-                        if (AddUrlWorkflow_Txt.Text != "")
+                        if (AddUrlWorkflow_Txt.Text != string.Empty)
                         {
                             ///
                             /// Formatting => removing spaces and line breaks
@@ -4838,7 +4838,7 @@ namespace Ostium
         ///
         void OpnWorkflowTools_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text != "")
+            if (NameProjectwf_Txt.Text != string.Empty)
             {
                 Panel_Workflow.Visible = !Panel_Workflow.Visible;
             }
@@ -4949,7 +4949,7 @@ namespace Ostium
 
                 for (int i = 0; i < WorkflowItem_Lst.Items.Count; i++)
                 {
-                    if (WorkflowItem_Lst.Items[i].ToString() != "")
+                    if (WorkflowItem_Lst.Items[i].ToString() != string.Empty)
                     {
                         element = WorkflowItem_Lst.Items[i].ToString();
                         element += "_" + element;
@@ -4981,7 +4981,7 @@ namespace Ostium
         {
             try
             {
-                if (ModelName_Txt.Text != "" && ModelItem_Txt.Text != "")
+                if (ModelName_Txt.Text != string.Empty && ModelItem_Txt.Text != string.Empty)
                 {
                     ///
                     /// Formatting => removing spaces and line breaks
@@ -5600,7 +5600,7 @@ namespace Ostium
         {
             try
             {
-                if (KeywordMap_Txt.Text == "")
+                if (KeywordMap_Txt.Text == string.Empty)
                     KeywordMap_Txt.Text = "Here";
 
                 VerifySizeZoom();
@@ -5657,7 +5657,7 @@ namespace Ostium
 
             string fileopen = openfile.Fileselect(AppStart, "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
 
-            if (fileopen == "")
+            if (fileopen == string.Empty)
                 return;
 
             MessageBox.Show(MessageStartGeoloc);
@@ -5716,7 +5716,7 @@ namespace Ostium
             NameInsert = Interaction.InputBox(message, title);
             string ValName = Convert.ToString(NameInsert);
 
-            if (ValName != "")
+            if (ValName != string.Empty)
             {
                 if (File.Exists(MapDir + ValName + ".txt"))
                 {
@@ -5768,7 +5768,7 @@ namespace Ostium
             NameInsert = Interaction.InputBox(message, title);
             string ValName = Convert.ToString(NameInsert);
 
-            if (ValName != "")
+            if (ValName != string.Empty)
             {
                 if (File.Exists(MapDir + ValName + ".xml"))
                 {
@@ -5832,7 +5832,7 @@ namespace Ostium
 
         void EditXMLMap_Tls_Click(object sender, EventArgs e)
         {
-            if (MapXmlOpn == "" && MapRouteOpn == "")
+            if (MapXmlOpn == string.Empty && MapRouteOpn == string.Empty)
             {
                 MessageBox.Show("No project selected! Select one.");
                 return;
@@ -5849,7 +5849,7 @@ namespace Ostium
             try
             {
                 int vrfy = 0;
-                if (MapXmlOpn == "" && MapRouteOpn == "")
+                if (MapXmlOpn == string.Empty && MapRouteOpn == string.Empty)
                 {
                     MessageBox.Show("No project selected! Select one.");
                     return;
@@ -5895,7 +5895,7 @@ namespace Ostium
                 return;
 
             string dirselect = selectdir.Dirselect();
-            if (dirselect != "")
+            if (dirselect != string.Empty)
             {
                 string outputFile = dirselect + @"\" + Path.GetFileNameWithoutExtension(MapRouteOpn) + ".gpx";
 
@@ -5919,7 +5919,7 @@ namespace Ostium
         {
             try
             {
-                if (MapXmlOpn == "" && MapRouteOpn == "")
+                if (MapXmlOpn == string.Empty && MapRouteOpn == string.Empty)
                 {
                     MessageBox.Show("No project selected! Select one.");
                     return;
@@ -6053,7 +6053,7 @@ namespace Ostium
                 string fileopen = openfile.Fileselect(AppStart, "kml gpx files (*.gpx;*.kml;*geojson;*json)|*.gpx;*.kml;*geojson;*json", 2);
                 string strname = "";
 
-                if (fileopen != "")
+                if (fileopen != string.Empty)
                 {
                     GMap_Ctrl.Overlays.Clear();
                     overlayOne.Markers.Clear();
@@ -6220,7 +6220,7 @@ namespace Ostium
         {
             try
             {
-                if (LatLon_Txt.Text == "")
+                if (LatLon_Txt.Text == string.Empty)
                 {
                     LatLon_Txt.BackColor = Color.Red;
                     MessageBox.Show("False coordinates!");
@@ -6228,8 +6228,8 @@ namespace Ostium
                     return;
                 }
 
-                string LaT = "";
-                string LoN = "";
+                string LaT = string.Empty;
+                string LoN = string.Empty;
                 string stn = LatLon_Txt.Text;
 
                 char[] charsToTrim = { ' ' };
@@ -6263,16 +6263,13 @@ namespace Ostium
 
         void GoWord_Tls_Click(object sender, EventArgs e)
         {
-            if (KeywordMap_Txt.Text == "")
+            if (KeywordMap_Txt.Text == string.Empty)
             {
                 KeywordMap_Txt.BackColor = Color.Red;
                 MessageBox.Show("Insert keyword!");
                 KeywordMap_Txt.BackColor = Color.FromArgb(28, 28, 28);
                 return;
             }
-
-            GMap_Ctrl.Overlays.Clear();
-            overlayOne.Markers.Clear();
 
             OpenMaps(KeywordMap_Txt.Text, 12); // Adresse, Provider
         }
@@ -6281,7 +6278,7 @@ namespace Ostium
         {
             try
             {
-                if (MapXmlOpn == "")
+                if (MapXmlOpn == string.Empty)
                 {
                     MessageBox.Show("No project selected! Select one or create one.");
                     return;
@@ -6301,7 +6298,7 @@ namespace Ostium
 
         void AddNewLocPoints(string locationname, string lat, string lon, string txtmarker)
         {
-            if (lat == "" || lon == "")
+            if (lat == string.Empty || lon == string.Empty)
                 return;
 
             XmlDocument doc = new XmlDocument();
@@ -6354,7 +6351,7 @@ namespace Ostium
             NameInsert = Interaction.InputBox(message, title);
             string ValName = Convert.ToString(NameInsert);
 
-            if (ValName != "")
+            if (ValName != string.Empty)
             {
                 if (File.Exists(MapDirGpx + ValName + strExt))
                 {
@@ -6511,7 +6508,7 @@ namespace Ostium
         {
             try
             {
-                if (txtmarker == "")
+                if (txtmarker == string.Empty)
                     txtmarker = "Here";
 
                 VerifySizeZoom();
@@ -6752,7 +6749,7 @@ namespace Ostium
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    if (MapRouteOpn == "")
+                    if (MapRouteOpn == string.Empty)
                     {
                         MessageBox.Show("No route project selected! Select one or create one.");
                         return;
@@ -7089,7 +7086,7 @@ namespace Ostium
             string fileopen = openfile.Fileselect(AppStart, "json files (*.json)|*.json|All files (*.*)|*.*", 2);
             FileOpnJson = fileopen;
 
-            if (fileopen != "")
+            if (fileopen != string.Empty)
             {
                 FileOpnJson_Lbl.Text = "File open: " + Path.GetFileName(fileopen);
 
@@ -7122,7 +7119,7 @@ namespace Ostium
 
         void JsonSaveUri_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonUri_Txt.Text != "")
+            if (JsonUri_Txt.Text != string.Empty)
             {
                 CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
                 Beep(1200, 200);
@@ -7148,7 +7145,7 @@ namespace Ostium
 
         void GetJson_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonUri_Txt.Text == "")
+            if (JsonUri_Txt.Text == string.Empty)
             {
                 JsonUri_Txt.BackColor = Color.Red;
                 MessageBox.Show("Insert valid URL!");
@@ -7156,7 +7153,7 @@ namespace Ostium
                 return;
             }
 
-            if (Class_Var.URL_USER_AGENT_SRC_PAGE == "")
+            if (Class_Var.URL_USER_AGENT_SRC_PAGE == string.Empty)
                 Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
 
             GetAsync(JsonUri_Txt.Text);
@@ -7164,7 +7161,7 @@ namespace Ostium
 
         void ParseJson_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonVal_Txt.Text == "")
+            if (JsonVal_Txt.Text == string.Empty)
             {
                 JsonVal_Txt.BackColor = Color.Red;
                 MessageBox.Show("Insert keyword!");
@@ -7184,7 +7181,7 @@ namespace Ostium
 
         void ParseNodeJson_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonVal_Txt.Text == "" || JsonNode_Txt.Text == "")
+            if (JsonVal_Txt.Text == string.Empty || JsonNode_Txt.Text == string.Empty)
             {
                 JsonVal_Txt.BackColor = Color.Red;
                 JsonNode_Txt.BackColor = Color.Red;
@@ -7206,7 +7203,7 @@ namespace Ostium
 
         void TableParse_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonVal_Txt.Text == "")
+            if (JsonVal_Txt.Text == string.Empty)
             {
                 JsonVal_Txt.BackColor = Color.Red;
                 MessageBox.Show("Insert keyword!");
@@ -7220,7 +7217,7 @@ namespace Ostium
 
         void TableNode_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonVal_Txt.Text == "" || JsonNode_Txt.Text == "")
+            if (JsonVal_Txt.Text == string.Empty || JsonNode_Txt.Text == string.Empty)
             {
                 JsonVal_Txt.BackColor = Color.Red;
                 JsonNode_Txt.BackColor = Color.Red;

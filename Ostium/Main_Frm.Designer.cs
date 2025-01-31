@@ -2816,7 +2816,6 @@
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 79);
@@ -6400,8 +6399,8 @@
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
             this.Controls.Add(this.Tools_TAB_3);
-            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_4);
+            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
