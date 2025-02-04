@@ -1,13 +1,14 @@
-﻿using System;
-using System.Text;
-using System.Xml;
-using System.Windows.Forms;
+﻿using Icaza;
 using LoadDirectory;
-using System.IO;
-using System.Text.RegularExpressions;
-using Icaza;
 using Microsoft.Ajax.Utilities;
+using System;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace Ostium
 {
@@ -17,7 +18,7 @@ namespace Ostium
 
         [DllImport("kernel32.dll")]
         static extern bool Beep(int freq, int duration);
-        
+
         readonly string AppStart = Application.StartupPath + @"\";
         readonly string Scripts = Application.StartupPath + @"\scripts\bookmarklet\";
 
@@ -48,10 +49,10 @@ namespace Ostium
 
         void EraseItem()
         {
-            NameBkmklt_Txt.Text = "";
-            Description_Txt.Text = "";
-            ScriptTxt_Txt.Text = "";
-            ScriptMinify_Txt.Text = "";
+            NameBkmklt_Txt.Text = string.Empty;
+            Description_Txt.Text = string.Empty;
+            ScriptTxt_Txt.Text = string.Empty;
+            ScriptMinify_Txt.Text = string.Empty;
         }
 
         void OpnScript_Btn_Click(object sender, EventArgs e)
@@ -60,7 +61,7 @@ namespace Ostium
             {
                 if (Bookmarklet_Lst.SelectedIndex != -1)
                 {
-                    string strName = Regex.Replace(Bookmarklet_Lst.Text, ".xml", "");
+                    string strName = Regex.Replace(Bookmarklet_Lst.Text, ".xml", string.Empty);
                     string strFile = Scripts + Bookmarklet_Lst.Text;
 
                     XmlDocument xmlDoc = new XmlDocument();
@@ -161,6 +162,12 @@ namespace Ostium
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(ScriptTxt_Txt.Text))
+                {
+                    MessageBox.Show("The script is empty. Please enter a valid JavaScript script.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var minifer = new Minifier();
 
                 CodeSettings settings = new CodeSettings
@@ -211,7 +218,7 @@ namespace Ostium
 
         void CopyScriptMini_Btn_Click(object sender, EventArgs e)
         {
-            if (ScriptMinify_Txt.Text != "")
+            if (ScriptMinify_Txt.Text != string.Empty)
             {
                 Clipboard.SetData(DataFormats.Text, ScriptMinify_Txt.Text);
                 Beep(300, 200);

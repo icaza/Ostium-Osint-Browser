@@ -40,11 +40,11 @@
             this.Cascade_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Vertical_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Horizontal_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.CloseAllForm_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ReplaceChild_Btn = new System.Windows.Forms.ToolStripButton();
             this.UrlOpn_Lst = new System.Windows.Forms.ListBox();
-            this.CloseAllForm_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_Tls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,12 +73,12 @@
             // NewFrm_Mnu
             // 
             this.NewFrm_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.NewFrm_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewFrm_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewFrm_Mnu.ForeColor = System.Drawing.Color.Gainsboro;
             this.NewFrm_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("NewFrm_Mnu.Image")));
             this.NewFrm_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NewFrm_Mnu.Name = "NewFrm_Mnu";
-            this.NewFrm_Mnu.Size = new System.Drawing.Size(74, 27);
+            this.NewFrm_Mnu.Size = new System.Drawing.Size(79, 27);
             this.NewFrm_Mnu.Text = "New Form";
             this.NewFrm_Mnu.Click += new System.EventHandler(this.NewFrm_Mnu_Click);
             // 
@@ -89,9 +89,10 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.ForeColor = System.Drawing.Color.Gray;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(116, 27);
+            this.toolStripLabel1.Size = new System.Drawing.Size(122, 27);
             this.toolStripLabel1.Text = "Open URL Group:";
             // 
             // URLlist_Cbx
@@ -107,11 +108,12 @@
             // AddUrlGrp_Btn
             // 
             this.AddUrlGrp_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AddUrlGrp_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddUrlGrp_Btn.ForeColor = System.Drawing.Color.Lime;
             this.AddUrlGrp_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddUrlGrp_Btn.Image")));
             this.AddUrlGrp_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddUrlGrp_Btn.Name = "AddUrlGrp_Btn";
-            this.AddUrlGrp_Btn.Size = new System.Drawing.Size(63, 27);
+            this.AddUrlGrp_Btn.Size = new System.Drawing.Size(67, 27);
             this.AddUrlGrp_Btn.Text = "Add URL";
             this.AddUrlGrp_Btn.Click += new System.EventHandler(this.AddUrlGrp_Btn_Click);
             // 
@@ -129,34 +131,46 @@
             this.Horizontal_Btn,
             this.toolStripSeparator4,
             this.CloseAllForm_Btn});
-            this.toolStripDropDownButton1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripDropDownButton1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButton1.ForeColor = System.Drawing.Color.Gainsboro;
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(71, 27);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(74, 27);
             this.toolStripDropDownButton1.Text = "Window";
             // 
             // Cascade_Btn
             // 
             this.Cascade_Btn.Name = "Cascade_Btn";
-            this.Cascade_Btn.Size = new System.Drawing.Size(180, 22);
+            this.Cascade_Btn.Size = new System.Drawing.Size(169, 22);
             this.Cascade_Btn.Text = "Cascade";
             this.Cascade_Btn.Click += new System.EventHandler(this.Cascade_Btn_Click);
             // 
             // Vertical_Btn
             // 
             this.Vertical_Btn.Name = "Vertical_Btn";
-            this.Vertical_Btn.Size = new System.Drawing.Size(180, 22);
+            this.Vertical_Btn.Size = new System.Drawing.Size(169, 22);
             this.Vertical_Btn.Text = "Vertical";
             this.Vertical_Btn.Click += new System.EventHandler(this.Vertical_Btn_Click);
             // 
             // Horizontal_Btn
             // 
             this.Horizontal_Btn.Name = "Horizontal_Btn";
-            this.Horizontal_Btn.Size = new System.Drawing.Size(180, 22);
+            this.Horizontal_Btn.Size = new System.Drawing.Size(169, 22);
             this.Horizontal_Btn.Text = "Horizontal";
             this.Horizontal_Btn.Click += new System.EventHandler(this.Horizontal_Btn_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(166, 6);
+            // 
+            // CloseAllForm_Btn
+            // 
+            this.CloseAllForm_Btn.Name = "CloseAllForm_Btn";
+            this.CloseAllForm_Btn.Size = new System.Drawing.Size(169, 22);
+            this.CloseAllForm_Btn.Text = "Close All Form";
+            this.CloseAllForm_Btn.Click += new System.EventHandler(this.CloseAllForm_Btn_Click);
             // 
             // toolStripSeparator3
             // 
@@ -166,12 +180,12 @@
             // ReplaceChild_Btn
             // 
             this.ReplaceChild_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReplaceChild_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReplaceChild_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReplaceChild_Btn.ForeColor = System.Drawing.Color.Gainsboro;
             this.ReplaceChild_Btn.Image = ((System.Drawing.Image)(resources.GetObject("ReplaceChild_Btn.Image")));
             this.ReplaceChild_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ReplaceChild_Btn.Name = "ReplaceChild_Btn";
-            this.ReplaceChild_Btn.Size = new System.Drawing.Size(60, 27);
+            this.ReplaceChild_Btn.Size = new System.Drawing.Size(63, 27);
             this.ReplaceChild_Btn.Text = "Replace";
             this.ReplaceChild_Btn.Click += new System.EventHandler(this.ReplaceChild_Btn_Click);
             // 
@@ -183,18 +197,6 @@
             this.UrlOpn_Lst.Size = new System.Drawing.Size(19, 17);
             this.UrlOpn_Lst.TabIndex = 5;
             this.UrlOpn_Lst.Visible = false;
-            // 
-            // CloseAllForm_Btn
-            // 
-            this.CloseAllForm_Btn.Name = "CloseAllForm_Btn";
-            this.CloseAllForm_Btn.Size = new System.Drawing.Size(180, 22);
-            this.CloseAllForm_Btn.Text = "Close All Form";
-            this.CloseAllForm_Btn.Click += new System.EventHandler(this.CloseAllForm_Btn_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // Mdi_Frm
             // 

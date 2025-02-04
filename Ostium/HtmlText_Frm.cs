@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Icaza;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -6,8 +10,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
-using Icaza;
-using System.IO;
 
 namespace Ostium
 {
@@ -22,8 +24,10 @@ namespace Ostium
         readonly IcazaClass selectdir = new IcazaClass();
 
         readonly string AppStart = Application.StartupPath + @"\";
-        string UriTxt = "";
-        string Una = "";
+        string UriTxt = string.Empty;
+        string Una = string.Empty;
+
+        private static readonly HttpClient client = new HttpClient();
 
         #endregion
 
@@ -50,36 +54,53 @@ namespace Ostium
         {
             try
             {
-                if (URLbrowse_Cbx.Text != "")
+                if (!string.IsNullOrEmpty(URLbrowse_Cbx.Text))
                 {
-                    var rawUrl = URLbrowse_Cbx.Text;
+                    var inputUrl = URLbrowse_Cbx.Text;
                     Uri uri;
 
-                    if (Uri.IsWellFormedUriString(rawUrl, UriKind.Absolute))
+                    if (Uri.IsWellFormedUriString(inputUrl, UriKind.Absolute))
                     {
-                        uri = new Uri(rawUrl);
+                        uri = new Uri(inputUrl);
                     }
-                    else if (!rawUrl.Contains(" ") && rawUrl.Contains("."))
+                    else if (!inputUrl.Contains(" ") && inputUrl.Contains("."))
                     {
-                        uri = new Uri("https://" + rawUrl);
+                        uri = new Uri("https://" + inputUrl);
                     }
                     else
                     {
-                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
-                            string.Join("+", Uri.EscapeDataString(rawUrl).Split(new string[] { "%20" }, StringSplitOptions.RemoveEmptyEntries)));
+                        if (string.IsNullOrEmpty(Class_Var.URL_DEFAUT_WSEARCH))
+                        {
+                            Class_Var.URL_DEFAUT_WSEARCH = "https://www.google.com/search?q=";
+                        }
+
+                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                     }
 
                     URLbrowse_Cbx.Text = Convert.ToString(uri);
 
-                    WbrowseTxt.Text = "";
+                    WbrowseTxt.Text = string.Empty;
                     ListLinks_Lst.Items.Clear();
 
-                    int x;
-                    x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
-                    if (x == -1)
-                        URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                    HashSet<string> Urls = new HashSet<string>();
+
+                    if (URLbrowse_Cbx != null && !string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+                    {
+                        try
+                        {
+                            if (Urls.Add(URLbrowse_Cbx.Text))
+                            {
+                                URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error in URLbrowse_Cbx operation: {ex.Message}");
+                        }
+                    }
 
                     UriTxt = URLbrowse_Cbx.Text;
+
                     Thread Thr_OpenWebPageTxt = new Thread(new ThreadStart(OpenWebPageTxt));
                     Thr_OpenWebPageTxt.Start();
                 }
@@ -90,7 +111,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! StartOpenWebPageTxt: ", ex.Message, "HtmlText_Frm", AppStart);
+                senderror.ErrorLog("Error! StartOpenWebPageTxt: ", ex.ToString(), "HtmlText_Frm", AppStart);
             }
         }
 
@@ -98,43 +119,69 @@ namespace Ostium
         {
             try
             {
-                HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent_Txt.Text);
-                var response = await client.GetAsync(UriTxt);
+                if (string.IsNullOrWhiteSpace(UriTxt))
+                {
+                    senderror.ErrorLog("Error! OpenWebPageTxt: ", "URL is empty or null", "HtmlText_Frm", AppStart);
+                    return;
+                }
+
+                if (!Uri.IsWellFormedUriString(UriTxt, UriKind.Absolute))
+                {
+                    senderror.ErrorLog("Error! OpenWebPageTxt: ", "Invalid URL format", "HtmlText_Frm", AppStart);
+                    return;
+                }
+
+                string userAgent = string.IsNullOrWhiteSpace(UserAgent_Txt.Text) ? "Mozilla/5.0" : UserAgent_Txt.Text;
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+
+                HttpResponseMessage response = await client.GetAsync(UriTxt);
+                if (!response.IsSuccessStatusCode)
+                {
+                    senderror.ErrorLog("Error! OpenWebPageTxt: ", $"HTTP Error {response.StatusCode}", "HtmlText_Frm", AppStart);
+                    return;
+                }
+
                 string pageContents = await response.Content.ReadAsStringAsync();
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(pageContents);
 
-                var root = doc.DocumentNode;
                 var sb = new StringBuilder();
-
-                foreach (var node in root.DescendantsAndSelf())
+                foreach (var node in doc.DocumentNode.DescendantsAndSelf())
                 {
-                    if (!node.HasChildNodes && node.ParentNode.Name != "script" && node.ParentNode.Name != "style")
+                    if (!node.HasChildNodes && node.ParentNode != null &&
+                        node.ParentNode.Name != "script" && node.ParentNode.Name != "style")
                     {
-                        string text = node.InnerText;
+                        string text = node.InnerText.Trim();
                         if (!string.IsNullOrEmpty(text))
-                            sb.AppendLine(text.Trim());
+                        {
+                            sb.AppendLine(text);
+                        }
                     }
                 }
 
-                foreach (Match match in Regex.Matches(pageContents, @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*"))
-                {
-                    Invoke(new Action<string>(AddLinkList), match.Value);
-                }
+                var links = Regex.Matches(pageContents, @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*")
+                                 .Cast<Match>()
+                                 .Select(m => m.Value)
+                                 .ToList();
 
-                string Txts = Regex.Replace(Convert.ToString(sb), @"(&.+?;)|\n\r", string.Empty);
-                Invoke(new Action<string>(RegReplaceTxt), Txts);
+                Invoke(new Action(() =>
+                {
+                    foreach (string link in links)
+                        AddLinkList(link);
+
+                    string cleanText = Regex.Replace(sb.ToString(), @"(&.+?;)|\n\r", string.Empty);
+                    RegReplaceTxt(cleanText);
+                }));
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenWebPageTxt: ", ex.Message, "HtmlText_Frm", AppStart);
+                senderror.ErrorLog("Error! OpenWebPageTxt: ", ex.ToString(), "HtmlText_Frm", AppStart);
             }
         }
 
         void CreateNameAleat()
-        {            
-            Una = DateTime.Now.ToString("d").Replace("/", "_") + "_" + DateTime.Now.ToString("HH:mm:ss").Replace(":", "_");
+        {
+            Una = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + "_" + Guid.NewGuid().ToString("N");
         }
 
         #region Invoke_
@@ -166,7 +213,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! RTFLink_Clicked: ", ex.Message, "HtmlText_Frm", AppStart);
+                senderror.ErrorLog("Error! RTFLink_Clicked: ", ex.ToString(), "HtmlText_Frm", AppStart);
             }
         }
 
@@ -187,7 +234,7 @@ namespace Ostium
 
         void CopyUrl_Btn_Click(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text != "")
+            if (!string.IsNullOrEmpty(URLbrowse_Cbx.Text))
             {
                 string textData = URLbrowse_Cbx.Text;
                 Clipboard.SetData(DataFormats.Text, textData);
@@ -197,15 +244,15 @@ namespace Ostium
 
         void SavePageTxt_Btn_Click(object sender, EventArgs e)
         {
-            if (WbrowseTxt.Text != "")
+            if (!string.IsNullOrEmpty(WbrowseTxt.Text))
             {
                 string dirselect = selectdir.Dirselect();
 
                 string namef = UriTxt;
-                namef = Regex.Replace(namef, @"[^a-zA-Z0-9]", "_").Replace("https", "");
+                namef = Regex.Replace(namef, @"[^a-zA-Z0-9]", "_").Replace("https", string.Empty);
 
                 string C = namef;
-                string D = "";
+                string D = string.Empty;
 
                 if (C.Length > 50)
                     D += C.Substring(0, 50);
@@ -216,7 +263,7 @@ namespace Ostium
 
                 try
                 {
-                    if (dirselect != "")
+                    if (!string.IsNullOrEmpty(dirselect))
                     {
                         using (StreamWriter fc = File.AppendText(dirselect + @"\" + Una + "_" + D + ".txt"))
                         {
@@ -227,7 +274,7 @@ namespace Ostium
                 }
                 catch (Exception ex)
                 {
-                    senderror.ErrorLog("Error! SavePageTxt_Btn_Click: ", ex.Message, "HtmlText_Frm", AppStart);
+                    senderror.ErrorLog("Error! SavePageTxt_Btn_Click: ", ex.ToString(), "HtmlText_Frm", AppStart);
                 }
             }
         }

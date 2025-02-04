@@ -104,6 +104,7 @@
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(197, 0);
             this.label3.Name = "label3";
@@ -127,6 +128,7 @@
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
@@ -160,7 +162,6 @@
             this.ScriptTxt_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ScriptTxt_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ScriptTxt_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ScriptTxt_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ScriptTxt_Txt.ForeColor = System.Drawing.Color.Lime;
             this.ScriptTxt_Txt.IndentBackColor = System.Drawing.Color.Black;
             this.ScriptTxt_Txt.IsReplaceMode = false;
@@ -279,6 +280,7 @@
             this.CopyScriptMini_Btn.FlatAppearance.BorderSize = 0;
             this.CopyScriptMini_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.CopyScriptMini_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CopyScriptMini_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyScriptMini_Btn.ForeColor = System.Drawing.Color.White;
             this.CopyScriptMini_Btn.Location = new System.Drawing.Point(0, 0);
             this.CopyScriptMini_Btn.Name = "CopyScriptMini_Btn";
@@ -357,11 +359,12 @@
             // NewScript_Btn
             // 
             this.NewScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.NewScript_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewScript_Btn.ForeColor = System.Drawing.Color.White;
             this.NewScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("NewScript_Btn.Image")));
             this.NewScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NewScript_Btn.Name = "NewScript_Btn";
-            this.NewScript_Btn.Size = new System.Drawing.Size(39, 22);
+            this.NewScript_Btn.Size = new System.Drawing.Size(38, 22);
             this.NewScript_Btn.Text = "New";
             this.NewScript_Btn.Click += new System.EventHandler(this.NewScript_Btn_Click);
             // 
@@ -373,11 +376,12 @@
             // OpnScript_Btn
             // 
             this.OpnScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnScript_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnScript_Btn.ForeColor = System.Drawing.Color.White;
             this.OpnScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnScript_Btn.Image")));
             this.OpnScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnScript_Btn.Name = "OpnScript_Btn";
-            this.OpnScript_Btn.Size = new System.Drawing.Size(45, 22);
+            this.OpnScript_Btn.Size = new System.Drawing.Size(44, 22);
             this.OpnScript_Btn.Text = "Open";
             this.OpnScript_Btn.Click += new System.EventHandler(this.OpnScript_Btn_Click);
             // 
@@ -389,11 +393,12 @@
             // SaveScript_Btn
             // 
             this.SaveScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SaveScript_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveScript_Btn.ForeColor = System.Drawing.Color.White;
             this.SaveScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("SaveScript_Btn.Image")));
             this.SaveScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveScript_Btn.Name = "SaveScript_Btn";
-            this.SaveScript_Btn.Size = new System.Drawing.Size(42, 22);
+            this.SaveScript_Btn.Size = new System.Drawing.Size(43, 22);
             this.SaveScript_Btn.Text = "Save";
             this.SaveScript_Btn.Click += new System.EventHandler(this.SaveScript_Btn_Click);
             // 
@@ -405,11 +410,12 @@
             // DelScript_Btn
             // 
             this.DelScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DelScript_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DelScript_Btn.ForeColor = System.Drawing.Color.Red;
             this.DelScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DelScript_Btn.Image")));
             this.DelScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DelScript_Btn.Name = "DelScript_Btn";
-            this.DelScript_Btn.Size = new System.Drawing.Size(52, 22);
+            this.DelScript_Btn.Size = new System.Drawing.Size(53, 22);
             this.DelScript_Btn.Text = "Delete";
             this.DelScript_Btn.Click += new System.EventHandler(this.DelScript_Btn_Click);
             // 
@@ -421,11 +427,12 @@
             // OpnJSfile_Btn
             // 
             this.OpnJSfile_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnJSfile_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnJSfile_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.OpnJSfile_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnJSfile_Btn.Image")));
             this.OpnJSfile_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnJSfile_Btn.Name = "OpnJSfile_Btn";
-            this.OpnJSfile_Btn.Size = new System.Drawing.Size(84, 22);
+            this.OpnJSfile_Btn.Size = new System.Drawing.Size(87, 22);
             this.OpnJSfile_Btn.Text = "Open JS file";
             this.OpnJSfile_Btn.Click += new System.EventHandler(this.OpnJSfile_Btn_Click);
             // 
@@ -437,11 +444,12 @@
             // MinifyScript_Btn
             // 
             this.MinifyScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.MinifyScript_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinifyScript_Btn.ForeColor = System.Drawing.Color.Lime;
             this.MinifyScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("MinifyScript_Btn.Image")));
             this.MinifyScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MinifyScript_Btn.Name = "MinifyScript_Btn";
-            this.MinifyScript_Btn.Size = new System.Drawing.Size(46, 22);
+            this.MinifyScript_Btn.Size = new System.Drawing.Size(50, 22);
             this.MinifyScript_Btn.Text = "Minify";
             this.MinifyScript_Btn.Click += new System.EventHandler(this.MinifyScript_Btn_Click);
             // 

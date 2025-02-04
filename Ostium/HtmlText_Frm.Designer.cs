@@ -33,6 +33,7 @@
             this.URLbrowse_Cbx = new System.Windows.Forms.ComboBox();
             this.EmptyCbx_Btn = new System.Windows.Forms.Button();
             this.Go_Btn = new System.Windows.Forms.Button();
+            this.SavePageTxt_Btn = new System.Windows.Forms.Button();
             this.CopyUrl_Btn = new System.Windows.Forms.Button();
             this.WbrowseTxt = new System.Windows.Forms.RichTextBox();
             this.ListLinks_Lst = new System.Windows.Forms.ListBox();
@@ -40,7 +41,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.UserAgent_Txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.SavePageTxt_Btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -86,7 +86,7 @@
             this.EmptyCbx_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.EmptyCbx_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.EmptyCbx_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EmptyCbx_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmptyCbx_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmptyCbx_Btn.ForeColor = System.Drawing.Color.White;
             this.EmptyCbx_Btn.Location = new System.Drawing.Point(106, 0);
             this.EmptyCbx_Btn.Name = "EmptyCbx_Btn";
@@ -105,7 +105,7 @@
             this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Go_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Go_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Go_Btn.ForeColor = System.Drawing.Color.White;
             this.Go_Btn.Location = new System.Drawing.Point(740, 0);
             this.Go_Btn.Name = "Go_Btn";
@@ -114,6 +114,26 @@
             this.Go_Btn.Text = "Go";
             this.Go_Btn.UseVisualStyleBackColor = false;
             this.Go_Btn.Click += new System.EventHandler(this.Go_Btn_Click);
+            // 
+            // SavePageTxt_Btn
+            // 
+            this.SavePageTxt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.SavePageTxt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SavePageTxt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SavePageTxt_Btn.FlatAppearance.BorderSize = 0;
+            this.SavePageTxt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.SavePageTxt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.SavePageTxt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
+            this.SavePageTxt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SavePageTxt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SavePageTxt_Btn.ForeColor = System.Drawing.Color.White;
+            this.SavePageTxt_Btn.Location = new System.Drawing.Point(53, 0);
+            this.SavePageTxt_Btn.Name = "SavePageTxt_Btn";
+            this.SavePageTxt_Btn.Size = new System.Drawing.Size(53, 22);
+            this.SavePageTxt_Btn.TabIndex = 12;
+            this.SavePageTxt_Btn.Text = "Save";
+            this.SavePageTxt_Btn.UseVisualStyleBackColor = false;
+            this.SavePageTxt_Btn.Click += new System.EventHandler(this.SavePageTxt_Btn_Click);
             // 
             // CopyUrl_Btn
             // 
@@ -125,7 +145,7 @@
             this.CopyUrl_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
             this.CopyUrl_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.CopyUrl_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyUrl_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyUrl_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyUrl_Btn.ForeColor = System.Drawing.Color.White;
             this.CopyUrl_Btn.Location = new System.Drawing.Point(0, 0);
             this.CopyUrl_Btn.Name = "CopyUrl_Btn";
@@ -200,9 +220,9 @@
             this.UserAgent_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserAgent_Txt.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserAgent_Txt.ForeColor = System.Drawing.SystemColors.Info;
-            this.UserAgent_Txt.Location = new System.Drawing.Point(76, 0);
+            this.UserAgent_Txt.Location = new System.Drawing.Point(85, 0);
             this.UserAgent_Txt.Name = "UserAgent_Txt";
-            this.UserAgent_Txt.Size = new System.Drawing.Size(724, 13);
+            this.UserAgent_Txt.Size = new System.Drawing.Size(715, 13);
             this.UserAgent_Txt.TabIndex = 0;
             this.UserAgent_Txt.Text = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
     "Chrome/125.0.0.0 Safari/537.36";
@@ -211,33 +231,13 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "User-Agent:";
-            // 
-            // SavePageTxt_Btn
-            // 
-            this.SavePageTxt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.SavePageTxt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SavePageTxt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SavePageTxt_Btn.FlatAppearance.BorderSize = 0;
-            this.SavePageTxt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.SavePageTxt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SavePageTxt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
-            this.SavePageTxt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SavePageTxt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SavePageTxt_Btn.ForeColor = System.Drawing.Color.White;
-            this.SavePageTxt_Btn.Location = new System.Drawing.Point(53, 0);
-            this.SavePageTxt_Btn.Name = "SavePageTxt_Btn";
-            this.SavePageTxt_Btn.Size = new System.Drawing.Size(53, 22);
-            this.SavePageTxt_Btn.TabIndex = 12;
-            this.SavePageTxt_Btn.Text = "Save";
-            this.SavePageTxt_Btn.UseVisualStyleBackColor = false;
-            this.SavePageTxt_Btn.Click += new System.EventHandler(this.SavePageTxt_Btn_Click);
             // 
             // HtmlText_Frm
             // 
