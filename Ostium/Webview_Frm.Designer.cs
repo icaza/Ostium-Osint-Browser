@@ -40,7 +40,7 @@
             this.Back_Btn = new System.Windows.Forms.Button();
             this.Go_Btn = new System.Windows.Forms.Button();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
-            this.JavaEnableDisable_Btn = new System.Windows.Forms.ToolStripStatusLabel();
+            this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.WBrowse)).BeginInit();
@@ -236,7 +236,7 @@
             this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
             this.Status_Strip.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.JavaEnableDisable_Btn,
+            this.JavaScriptToggle_Btn,
             this.toolStripStatusLabel2,
             this.URLtxt_txt});
             this.Status_Strip.Location = new System.Drawing.Point(0, 428);
@@ -246,14 +246,14 @@
             this.Status_Strip.TabIndex = 17;
             this.Status_Strip.Text = "statusStrip1";
             // 
-            // JavaEnableDisable_Btn
+            // JavaScriptToggle_Btn
             // 
-            this.JavaEnableDisable_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaEnableDisable_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JavaEnableDisable_Btn.Name = "JavaEnableDisable_Btn";
-            this.JavaEnableDisable_Btn.Size = new System.Drawing.Size(122, 17);
-            this.JavaEnableDisable_Btn.Text = "Javascript Enable";
-            this.JavaEnableDisable_Btn.Click += new System.EventHandler(this.JavaEnableDisable_Btn_Click);
+            this.JavaScriptToggle_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaScriptToggle_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
+            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(123, 17);
+            this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
+            this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
             // 
             // toolStripStatusLabel2
             // 
@@ -306,7 +306,7 @@
         private System.Windows.Forms.Button Go_Btn;
         private System.Windows.Forms.StatusStrip Status_Strip;
         private System.Windows.Forms.ToolStripStatusLabel URLtxt_txt;
-        private System.Windows.Forms.ToolStripStatusLabel JavaEnableDisable_Btn;
+        private System.Windows.Forms.ToolStripStatusLabel JavaScriptToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }

@@ -37,8 +37,8 @@ namespace Ostium
             ///
             /// Loading default configuration URLs into a List
             /// 
-            if (File.Exists(AppStart + "url_dflt_cnf.ost"))
-                lstUrlDfltCnf.AddRange(File.ReadAllLines(AppStart + "url_dflt_cnf.ost"));
+            if (File.Exists(Path.Combine(AppStart, "url_dflt_cnf.ost")))
+                lstUrlDfltCnf.AddRange(File.ReadAllLines(Path.Combine(AppStart, "url_dflt_cnf.ost")));
         }
 
         #region Browser_Event Handler
@@ -167,41 +167,48 @@ namespace Ostium
             GoBrowser(URLbrowse_Cbx.Text);
         }
 
-        void GoBrowser(string URIopn)
+        void GoBrowser(string inputUrl)
         {
             try
             {
-                var rawUrl = URIopn;
                 Uri uri;
 
-                if (rawUrl.Contains("file:///"))
+                if (inputUrl.Contains("file:///"))
                 {
-                    uri = new Uri(rawUrl);
-                }
-                else
-                {
-                    if (Uri.IsWellFormedUriString(rawUrl, UriKind.Absolute))
+                    string filePath = inputUrl.Replace("file:///", string.Empty);
+                    if (File.Exists(filePath))
                     {
-                        uri = new Uri(rawUrl);
-                    }
-                    else if (!rawUrl.Contains(" ") && rawUrl.Contains("."))
-                    {
-                        uri = new Uri("https://" + rawUrl);
+                        uri = new Uri(inputUrl);
                     }
                     else
                     {
-                        if (Class_Var.URL_DEFAUT_WSEARCH == string.Empty)
-                            Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
-
-                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
-                            string.Join("+", Uri.EscapeDataString(rawUrl).Split(new string[] { "%20" }, StringSplitOptions.RemoveEmptyEntries)));
+                        throw new FileNotFoundException($"File not found: {filePath}");
                     }
+                }
+                else if (Uri.IsWellFormedUriString(inputUrl, UriKind.Absolute))
+                {
+                    uri = new Uri(inputUrl);
+                }
+                else if (!inputUrl.Contains(" ") && inputUrl.Contains("."))
+                {
+                    uri = new Uri("https://" + inputUrl);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(Class_Var.URL_DEFAUT_WSEARCH))
+                    {
+                        Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
+                    }
+
+                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                 }
 
                 WBrowse.Source = uri;
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GoBrowser: {ex.Message}");
+            }
         }
 
         void Back_Btn_Click(object sender, EventArgs e)
@@ -229,7 +236,7 @@ namespace Ostium
 
         void Trad_Btn_Click(object sender, EventArgs e)
         {
-            if (Class_Var.URL_TRAD_WEBPAGE == string.Empty)
+            if (string.IsNullOrEmpty(Class_Var.URL_TRAD_WEBPAGE))
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
@@ -245,20 +252,39 @@ namespace Ostium
 
         #endregion
 
-        void JavaEnableDisable_Btn_Click(object sender, EventArgs e)
+        void JavaScriptToggle_Btn_Click(object sender, EventArgs e)
         {
-            var settings = WBrowse.CoreWebView2.Settings;
-            settings.IsScriptEnabled = !settings.IsScriptEnabled;
-
-            if (JavaEnableDisable_Btn.Text == "Javascript Enable")
+            try
             {
-                JavaEnableDisable_Btn.Text = "Javascript Disable";
-                JavaEnableDisable_Btn.ForeColor = Color.Red;
+                if (WBrowse?.CoreWebView2?.Settings != null)
+                {
+                    var settings = WBrowse.CoreWebView2.Settings;
+                    settings.IsScriptEnabled = !settings.IsScriptEnabled;
+
+                    UpdateButtonState(settings.IsScriptEnabled);
+                }
+                else
+                {
+                    MessageBox.Show("WebView2 is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void UpdateButtonState(bool isScriptEnabled)
+        {
+            if (isScriptEnabled)
+            {
+                JavaScriptToggle_Btn.Text = "JavaScript Enabled";
+                JavaScriptToggle_Btn.ForeColor = Color.Lime;
             }
             else
             {
-                JavaEnableDisable_Btn.Text = "Javascript Enable";
-                JavaEnableDisable_Btn.ForeColor = Color.Lime;
+                JavaScriptToggle_Btn.Text = "JavaScript Disabled";
+                JavaScriptToggle_Btn.ForeColor = Color.Red;
             }
         }
 

@@ -62,7 +62,7 @@
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.JavaEnableDisable_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Bkmkl_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnBokmark_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateBokmark_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -427,7 +427,7 @@
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.JavaEnableDisableFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.JavaScriptFeedToggle_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
             this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
             this.ViewXml_Tls = new System.Windows.Forms.ToolStripButton();
@@ -723,7 +723,7 @@
             this.OpnDirectory_Btn,
             this.IndexDir_Btn,
             this.toolStripSeparator10,
-            this.JavaEnableDisable_Btn,
+            this.JavaScriptToggle_Btn,
             this.Bkmkl_Mnu,
             this.InjectScript_Btn,
             this.OpenScriptEdit_Btn,
@@ -874,12 +874,12 @@
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(214, 6);
             // 
-            // JavaEnableDisable_Btn
+            // JavaScriptToggle_Btn
             // 
-            this.JavaEnableDisable_Btn.Name = "JavaEnableDisable_Btn";
-            this.JavaEnableDisable_Btn.Size = new System.Drawing.Size(217, 22);
-            this.JavaEnableDisable_Btn.Text = "Javascript Enable";
-            this.JavaEnableDisable_Btn.Click += new System.EventHandler(this.JavaEnableDisable_Btn_Click);
+            this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
+            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(217, 22);
+            this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
+            this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
             // 
             // Bkmkl_Mnu
             // 
@@ -5595,7 +5595,7 @@
             this.toolStripSeparator19,
             this.SpeakOpenPnl_Btn,
             this.toolStripSeparator4,
-            this.JavaEnableDisableFeed_Btn});
+            this.JavaScriptFeedToggle_Btn});
             this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.White;
             this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
@@ -5643,12 +5643,12 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(195, 6);
             // 
-            // JavaEnableDisableFeed_Btn
+            // JavaScriptFeedToggle_Btn
             // 
-            this.JavaEnableDisableFeed_Btn.Name = "JavaEnableDisableFeed_Btn";
-            this.JavaEnableDisableFeed_Btn.Size = new System.Drawing.Size(198, 22);
-            this.JavaEnableDisableFeed_Btn.Text = "Javascript Enable";
-            this.JavaEnableDisableFeed_Btn.Click += new System.EventHandler(this.JavaEnableDisableFeed_Btn_Click);
+            this.JavaScriptFeedToggle_Btn.Name = "JavaScriptFeedToggle_Btn";
+            this.JavaScriptFeedToggle_Btn.Size = new System.Drawing.Size(198, 22);
+            this.JavaScriptFeedToggle_Btn.Text = "JavaScript Enable";
+            this.JavaScriptFeedToggle_Btn.Click += new System.EventHandler(this.JavaScriptFeedToggle_Btn_Click);
             // 
             // Tools_TAB_3
             // 
@@ -6398,8 +6398,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
+            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -6624,9 +6624,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton DeleteCatfeed_Btn;
         private System.Windows.Forms.ToolStripSeparator Separator5;
-        private System.Windows.Forms.ToolStripMenuItem JavaEnableDisable_Btn;
+        private System.Windows.Forms.ToolStripMenuItem JavaScriptToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel JavaDisable_Lbl;
-        private System.Windows.Forms.ToolStripMenuItem JavaEnableDisableFeed_Btn;
+        private System.Windows.Forms.ToolStripMenuItem JavaScriptFeedToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel JavaDisableFeed_Lbl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton Mute_Btn;

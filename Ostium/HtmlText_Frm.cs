@@ -1,5 +1,6 @@
 ﻿using Icaza;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -53,23 +54,27 @@ namespace Ostium
         {
             try
             {
-                if (URLbrowse_Cbx.Text != string.Empty)
+                if (!string.IsNullOrEmpty(URLbrowse_Cbx.Text))
                 {
-                    var rawUrl = URLbrowse_Cbx.Text;
+                    var inputUrl = URLbrowse_Cbx.Text;
                     Uri uri;
 
-                    if (Uri.IsWellFormedUriString(rawUrl, UriKind.Absolute))
+                    if (Uri.IsWellFormedUriString(inputUrl, UriKind.Absolute))
                     {
-                        uri = new Uri(rawUrl);
+                        uri = new Uri(inputUrl);
                     }
-                    else if (!rawUrl.Contains(" ") && rawUrl.Contains("."))
+                    else if (!inputUrl.Contains(" ") && inputUrl.Contains("."))
                     {
-                        uri = new Uri("https://" + rawUrl);
+                        uri = new Uri("https://" + inputUrl);
                     }
                     else
                     {
-                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH +
-                            string.Join("+", Uri.EscapeDataString(rawUrl).Split(new string[] { "%20" }, StringSplitOptions.RemoveEmptyEntries)));
+                        if (string.IsNullOrEmpty(Class_Var.URL_DEFAUT_WSEARCH))
+                        {
+                            Class_Var.URL_DEFAUT_WSEARCH = "https://www.google.com/search?q=";
+                        }
+
+                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                     }
 
                     URLbrowse_Cbx.Text = Convert.ToString(uri);
@@ -77,12 +82,25 @@ namespace Ostium
                     WbrowseTxt.Text = string.Empty;
                     ListLinks_Lst.Items.Clear();
 
-                    int x;
-                    x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
-                    if (x == -1)
-                        URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                    HashSet<string> Urls = new HashSet<string>();
+
+                    if (URLbrowse_Cbx != null && !string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+                    {
+                        try
+                        {
+                            if (Urls.Add(URLbrowse_Cbx.Text))
+                            {
+                                URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error in URLbrowse_Cbx operation: {ex.Message}");
+                        }
+                    }
 
                     UriTxt = URLbrowse_Cbx.Text;
+
                     Thread Thr_OpenWebPageTxt = new Thread(new ThreadStart(OpenWebPageTxt));
                     Thr_OpenWebPageTxt.Start();
                 }
@@ -216,7 +234,7 @@ namespace Ostium
 
         void CopyUrl_Btn_Click(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text != string.Empty)
+            if (!string.IsNullOrEmpty(URLbrowse_Cbx.Text))
             {
                 string textData = URLbrowse_Cbx.Text;
                 Clipboard.SetData(DataFormats.Text, textData);
@@ -226,7 +244,7 @@ namespace Ostium
 
         void SavePageTxt_Btn_Click(object sender, EventArgs e)
         {
-            if (WbrowseTxt.Text != string.Empty)
+            if (!string.IsNullOrEmpty(WbrowseTxt.Text))
             {
                 string dirselect = selectdir.Dirselect();
 
@@ -245,7 +263,7 @@ namespace Ostium
 
                 try
                 {
-                    if (dirselect != string.Empty)
+                    if (!string.IsNullOrEmpty(dirselect))
                     {
                         using (StreamWriter fc = File.AppendText(dirselect + @"\" + Una + "_" + D + ".txt"))
                         {

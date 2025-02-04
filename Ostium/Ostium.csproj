@@ -293,10 +293,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ostiumico.ico" />
-    <Content Include="scripts\scriptsl\domain_infos.js">
+    <Content Include="scripts\scriptsl\Domain_Infos.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="scripts\scriptsl\format_web_page.js">
+    <Content Include="scripts\scriptsl\Extract_Article_and_Link.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Extract_Data.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Extract_Images.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Top.png" />

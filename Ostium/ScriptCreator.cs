@@ -1,12 +1,12 @@
 ﻿using Icaza;
 using Microsoft.Ajax.Utilities;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -37,16 +37,16 @@ namespace Ostium
 
         void ScriptCreator_Load(object sender, EventArgs e)
         {
-            if (File.Exists(Scripts + "scripturl.ost"))
+            if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
             {
                 ScriptUrl_Lst.Items.Clear();
-                ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
+                ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(Scripts, "scripturl.ost")));
             }
 
-            if (File.Exists(Scripts + "scripturlp.ost"))
+            if (File.Exists(Path.Combine(Scripts, "scripturlp.ost")))
             {
                 ScriptUrlp_Lst.Items.Clear();
-                ScriptUrlp_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturlp.ost"));
+                ScriptUrlp_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(Scripts, "scripturlp.ost")));
             }
         }
 
@@ -165,7 +165,7 @@ namespace Ostium
 
                 if (!File.Exists(filePath))
                 {
-                    using (StreamWriter fc = File.AppendText(Scripts + FileUrl))
+                    using (StreamWriter fc = File.AppendText(Path.Combine(Scripts, FileUrl)))
                     {
                         fc.WriteLine(SiteUrl_Txt.Text);
                     }
@@ -177,7 +177,7 @@ namespace Ostium
                 }
 
                 List_Object.Items.Clear();
-                List_Object.Items.AddRange(File.ReadAllLines(Scripts + FileUrl));
+                List_Object.Items.AddRange(File.ReadAllLines(Path.Combine(Scripts, FileUrl)));
 
                 MessageBox.Show("Script save.");
             }
@@ -386,6 +386,14 @@ namespace Ostium
                 Clipboard.SetData(DataFormats.Text, ScriptMinify_Txt.Text);
                 Beep(300, 200);
             }
+        }
+
+        void OpnDirScript_Btn_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(Scripts))
+                Process.Start(Scripts);
+            else
+                MessageBox.Show("The directory does not exist!", "Ostium", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion

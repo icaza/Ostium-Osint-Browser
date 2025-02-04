@@ -37,16 +37,16 @@ namespace Ostium
             ///
             /// Loading default URLs into a List
             ///
-            if (File.Exists(AppStart + "url_dflt_cnf.ost"))
+            if (File.Exists(Path.Combine(AppStart, "url_dflt_cnf.ost")))
             {
                 lstUrlDfltCnf.Clear();
-                lstUrlDfltCnf.AddRange(File.ReadAllLines(AppStart + "url_dflt_cnf.ost"));
+                lstUrlDfltCnf.AddRange(File.ReadAllLines(Path.Combine(AppStart, "url_dflt_cnf.ost")));
             }
         }
 
         void NewFrm_Mnu_Click(object sender, EventArgs e)
         {
-            if (@Class_Var.URL_HOME == string.Empty)
+            if (string.IsNullOrEmpty(@Class_Var.URL_HOME)) 
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
 
             OpnNewForm(@Class_Var.URL_HOME);
@@ -56,10 +56,29 @@ namespace Ostium
         {
             try
             {
-                ChargeListURL(FileDirAll + URLlist_Cbx.Text);
+                if (string.IsNullOrEmpty(URLlist_Cbx.Text))
+                {
+                    throw new ArgumentException("No item selected in URLlist_Cbx.");
+                }
 
-                for (int i = 0; i < UrlOpn_Lst.Items.Count; i++)
-                    OpnNewForm(UrlOpn_Lst.Items[i].ToString());
+                string filePath = Path.Combine(FileDirAll, URLlist_Cbx.Text);
+
+                ChargeListURL(filePath);
+
+                foreach (var url in UrlOpn_Lst.Items)
+                {
+                    if (!string.IsNullOrEmpty(url?.ToString()))
+                    {
+                        try
+                        {
+                            OpnNewForm(url.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+                            senderror.ErrorLog($"Error opening URL: {url}", ex.ToString(), "Mdi_Frm", AppStart);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -69,8 +88,18 @@ namespace Ostium
 
         void AddUrlGrp_Btn_Click(object sender, EventArgs e)
         {
-            if (URLlist_Cbx.Text != string.Empty)
-                OpnFileOpt(FileDirAll + URLlist_Cbx.Text);
+            if (!string.IsNullOrEmpty(URLlist_Cbx.Text))
+            {
+                var filePath = Path.Combine(FileDirAll, URLlist_Cbx.Text);
+                try
+                {
+                    OpnFileOpt(filePath);
+                }
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("Error! AddUrlGrp_Btn_Click: ", ex.ToString(), "Mdi_Frm", AppStart);
+                }
+            }
         }
 
         void ChargeListURL(string fileselect)
@@ -79,7 +108,7 @@ namespace Ostium
 
             try
             {
-                if (File.Exists(fileselect) == true)
+                if (File.Exists(fileselect))
                 {
                     UrlOpn_Lst.Items.AddRange(File.ReadAllLines(fileselect));
                 }
@@ -171,7 +200,7 @@ namespace Ostium
                     aArg = FileSelect;
 
 
-                if (FileSelect != string.Empty)
+                if (!string.IsNullOrEmpty(FileSelect))
                 {
                     if (File.Exists(FileSelect))
                     {

@@ -45,6 +45,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.MinifyScript_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnDirScript_Btn = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ScriptUrl_Lst = new System.Windows.Forms.ListBox();
             this.Script_Pnl = new System.Windows.Forms.Panel();
@@ -97,7 +98,8 @@
             this.OpnJSfile_Btn,
             this.toolStripSeparator7,
             this.MinifyScript_Btn,
-            this.toolStripSeparator8});
+            this.toolStripSeparator8,
+            this.OpnDirScript_Btn});
             this.Tls_Tls.Location = new System.Drawing.Point(0, 0);
             this.Tls_Tls.Name = "Tls_Tls";
             this.Tls_Tls.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -222,6 +224,18 @@
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+            // 
+            // OpnDirScript_Btn
+            // 
+            this.OpnDirScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnDirScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnDirScript_Btn.ForeColor = System.Drawing.Color.Gray;
+            this.OpnDirScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnDirScript_Btn.Image")));
+            this.OpnDirScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnDirScript_Btn.Name = "OpnDirScript_Btn";
+            this.OpnDirScript_Btn.Size = new System.Drawing.Size(155, 22);
+            this.OpnDirScript_Btn.Text = "Open Script Directory";
+            this.OpnDirScript_Btn.Click += new System.EventHandler(this.OpnDirScript_Btn_Click);
             // 
             // panel1
             // 
@@ -585,5 +599,6 @@
         private System.Windows.Forms.ToolStripButton OpnJSfile_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripButton OpnDirScript_Btn;
     }
 }
