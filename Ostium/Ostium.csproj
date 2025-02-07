@@ -293,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ostiumico.ico" />
+    <None Include="Resources\Viewxml.png" />
     <Content Include="scripts\scriptsl\Domain_Infos.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

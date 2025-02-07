@@ -264,11 +264,11 @@
             };
 
             statsContainer.innerHTML = `
-                <strong>Statistiques :</strong><br>
-                Textes: ${stats.texts}<br>
+                <strong>Statistics :</strong><br>
+                Texts: ${stats.texts}<br>
                 Images: ${stats.images}<br>
-                Vidéos: ${stats.videos}<br>
-                Liens: ${stats.links}
+                Videos: ${stats.videos}<br>
+                Links: ${stats.links}
             `;
 
             container.appendChild(statsContainer);

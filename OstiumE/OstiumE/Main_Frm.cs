@@ -18,33 +18,12 @@ namespace OstiumE
         string FileOpen = "";
         string lang = "XML";
         readonly string AppStart = Application.StartupPath + @"\";
-        //readonly string SetcolorFile = Application.StartupPath + @"\setcolor.txt";
-        //string FirstOpen = "on";
-
-        //styles
-        //readonly TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
-        //readonly TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
-        //readonly TextStyle MagentaStyle = new TextStyle(Brushes.Magenta, null, FontStyle.Regular);
-        //readonly TextStyle GreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
-        //readonly TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
-        //readonly TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
-        //readonly TextStyle RedStyle = new TextStyle(Brushes.Red, null, FontStyle.Regular);
-        //readonly TextStyle BurlyWoodStyle = new TextStyle(Brushes.BurlyWood, null, FontStyle.Regular);
-        //readonly TextStyle CoralStyle = new TextStyle(Brushes.Coral, null, FontStyle.Regular);
-        //readonly TextStyle DarkRedStyle = new TextStyle(Brushes.Aquamarine, null, FontStyle.Regular);
-        //readonly TextStyle YellowStyle = new TextStyle(Brushes.Yellow, null, FontStyle.Regular);
-        //readonly TextStyle LimeStyle = new TextStyle(Brushes.Lime, null, FontStyle.Regular);
-        //readonly TextStyle MediumTurquoiseStyle = new TextStyle(Brushes.MediumTurquoise, null, FontStyle.Regular);
-        //readonly TextStyle OrangeStyle = new TextStyle(Brushes.Orange, null, FontStyle.Regular);
-        //readonly TextStyle FuchsiaStyle = new TextStyle(Brushes.Fuchsia, null, FontStyle.Regular);
-        //readonly TextStyle DodgerBlueStyle = new TextStyle(Brushes.DodgerBlue, null, FontStyle.Regular);
 
         #endregion
 
         public Main_Frm()
         {
             InitializeComponent();
-            //Output_Txt.TextChanged += new EventHandler<TextChangedEventArgs>(Output_Txt_TextChanged);
         }
 
         void Main_Frm_Load(object sender, EventArgs e)
@@ -85,7 +64,7 @@ namespace OstiumE
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Main_Frm_Load: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! Main_Frm_Load: ", ex.ToString(), "Main_Frm", Application.StartupPath + @"\");
             }
         }
 
@@ -160,7 +139,7 @@ namespace OstiumE
 
                 if (result == DialogResult.Yes)
                 {
-                    Process.Start(Application.StartupPath + @"\OstiumE.exe");
+                    Process.Start(Path.Combine(AppStart, "OstiumE.exe"));
                 }
                 else
                 {
@@ -177,7 +156,7 @@ namespace OstiumE
 
         void NewWindow_Tools_Click(object sender, EventArgs e)
         {
-            Process.Start(Application.StartupPath + @"\OstiumE.exe");
+            Process.Start(Path.Combine(AppStart, "OstiumE.exe"));
         }
 
         void OpenFile_Tools_Click(object sender, EventArgs e)
@@ -218,7 +197,7 @@ namespace OstiumE
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenFile_Tools_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! OpenFile_Tools_Click: ", ex.ToString(), "Main_Frm", Application.StartupPath + @"\");
             }
         }
 
@@ -240,12 +219,11 @@ namespace OstiumE
                     Output_Txt.Selection.Start = Place.Empty;
 
                     FileDir_Sts.ForeColor = Color.DimGray;
-                    //FirstOpen = "off";
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! FileOPN: ", ex.Message, "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! FileOPN: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -254,7 +232,6 @@ namespace OstiumE
             Output_Txt.Clear();
             FileOpen = "";
             FileDir_Sts.Text = "";
-            //FirstOpen = "on";
         }
 
         void Save_Tools_Click(object sender, EventArgs e)
@@ -270,7 +247,6 @@ namespace OstiumE
                             file_create.Write(Output_Txt.Text);
                         }
                         FileDir_Sts.ForeColor = Color.DimGray;
-                        //FirstOpen = "off";
                     }
                     else
                     {
@@ -284,7 +260,7 @@ namespace OstiumE
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Save_Tools_Click: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! Save_Tools_Click: ", ex.ToString(), "Main_Frm", Application.StartupPath + @"\");
             }
         }
 
@@ -315,12 +291,11 @@ namespace OstiumE
                     FileDir_Sts.Text = savefile;
 
                     FileDir_Sts.ForeColor = Color.DimGray;
-                    //FirstOpen = "off";
                 }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! SavFileDialog: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! SavFileDialog: ", ex.ToString(), "Main_Frm", Application.StartupPath + @"\");
             }
         }
 
@@ -335,8 +310,7 @@ namespace OstiumE
 
         void Copy_Mnu_Click(object sender, EventArgs e)
         {
-            if (Output_Txt.SelectedText != "")
-                Clipboard.SetDataObject(Output_Txt.SelectedText);
+            SendKeys.Send("^" + "c");
         }
 
         void Paste_Mnu_Click(object sender, EventArgs e)
@@ -360,10 +334,16 @@ namespace OstiumE
         {
             TopMost = !TopMost;
 
-            if (TopNo_Tools.Text == "Top")
+            bool isTopNo = TopNo_Tools.Text == "Top";
+
+            if (isTopNo)
+            {
                 TopNo_Tools.Text = "No Top";
+            }
             else
+            {
                 TopNo_Tools.Text = "Top";
+            }
         }
 
         void About_Tools_Click(object sender, EventArgs e)
@@ -386,11 +366,10 @@ namespace OstiumE
                 Invoke(new Action<string>(Filopentxt), xtext);
 
                 FileDir_Sts.ForeColor = Color.DimGray;
-                //FirstOpen = "off";
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! OpenFile_Thr: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
+                senderror.ErrorLog("Error! OpenFile_Thr: ", ex.ToString(), "Main_Frm", Application.StartupPath + @"\");
             }
         }
 
