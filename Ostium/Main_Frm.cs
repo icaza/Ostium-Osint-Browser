@@ -1876,7 +1876,7 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(SVGviewerdir, "SVGviewer.exe")))
             {
-                MessageBox.Show("SVGviewer are not exist in directory, reinstal this for use!", "Error!");
+                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!");
                 return;
             }
 

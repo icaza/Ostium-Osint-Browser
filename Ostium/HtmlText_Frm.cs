@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace Ostium
@@ -59,7 +61,12 @@ namespace Ostium
                     var inputUrl = URLbrowse_Cbx.Text;
                     Uri uri;
 
-                    if (Uri.IsWellFormedUriString(inputUrl, UriKind.Absolute))
+                    if (inputUrl.Contains("file:///"))
+                    {
+                        MessageBox.Show("HTML Text does not support locale files!", "WEB only", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else if (Uri.IsWellFormedUriString(inputUrl, UriKind.Absolute))
                     {
                         uri = new Uri(inputUrl);
                     }
@@ -193,7 +200,12 @@ namespace Ostium
 
         void AddLinkList(string value)
         {
-            ListLinks_Lst.Items.Add(value);
+            int URLs;
+            URLs = ListLinks_Lst.FindStringExact(value);
+            if (URLs == -1)
+            {
+                ListLinks_Lst.Items.Add(value);
+            }
         }
 
         #endregion
@@ -247,17 +259,8 @@ namespace Ostium
             if (!string.IsNullOrEmpty(WbrowseTxt.Text))
             {
                 string dirselect = selectdir.Dirselect();
-
                 string namef = UriTxt;
-                namef = Regex.Replace(namef, @"[^a-zA-Z0-9]", "_").Replace("https", string.Empty);
-
-                string C = namef;
-                string D = string.Empty;
-
-                if (C.Length > 50)
-                    D += C.Substring(0, 50);
-                else
-                    D = C;
+                string urlName = GenerateFileName(namef);
 
                 CreateNameAleat();
 
@@ -265,7 +268,7 @@ namespace Ostium
                 {
                     if (!string.IsNullOrEmpty(dirselect))
                     {
-                        using (StreamWriter fc = File.AppendText(dirselect + @"\" + Una + "_" + D + ".txt"))
+                        using (StreamWriter fc = File.AppendText(dirselect + @"\" + Una + "_" + urlName + ".txt"))
                         {
                             fc.WriteLine(WbrowseTxt.Text);
                         }
@@ -282,6 +285,15 @@ namespace Ostium
         void EmptyCbx_Btn_Click(object sender, EventArgs e)
         {
             URLbrowse_Cbx.Items.Clear();
+        }
+
+        string GenerateFileName(string url)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
+                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+            }
         }
     }
 }
