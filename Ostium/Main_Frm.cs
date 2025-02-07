@@ -2815,7 +2815,7 @@ namespace Ostium
 
                 string pageContents = await response.Content.ReadAsStringAsync();
 
-                File_Write(AppStart + "sourcepage", pageContents);
+                File_Write(Path.Combine(AppStart, "sourcepage"), pageContents);
             }
             catch (Exception ex)
             {

@@ -10,7 +10,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using static GMap.NET.Entity.OpenStreetMapGraphHopperRouteEntity;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace Ostium
