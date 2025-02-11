@@ -1199,6 +1199,11 @@ namespace Ostium
         /// 
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
         {
+            ChangeUserAgent();
+        }
+
+        void ChangeUserAgent()
+        {
             if (Class_Var.URL_USER_AGENT == string.Empty)
                 Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
 
@@ -1228,6 +1233,11 @@ namespace Ostium
         /// <param value="off">No notification of cleaning request when auto restart of the application to return the default user-agent</param>
         /// 
         void Googlebot_Btn_Click(object sender, EventArgs e)
+        {
+            GoogleBot();
+        }
+
+        void GoogleBot()
         {
             if (Class_Var.URL_GOOGLEBOT == string.Empty)
                 Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
@@ -1429,25 +1439,37 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Opening in the "OpenSource_Frm" window of the file "filesdir/gh.txt" (Google Dork) if file exists True
+        /// Opening in the "OpenSource_Frm" window of the file "filesdir/gdork.txt" (Google Dork) if file exists True
         ///
         void GoogleDork_Btn_Click(object sender, EventArgs e)
+        {
+            GoogleDork();
+        }
+
+        void GoogleDork()
         {
             if (File.Exists(Path.Combine(FileDir, "gdork.txt")))
                 Open_Source_Frm(Path.Combine(FileDir, "gdork.txt"));
         }
 
-        async void WebpageToPng_Btn_Click(object sender, EventArgs e)
+        void WebpageToPng_Btn_Click(object sender, EventArgs e)
+        {
+            WebpageCapture();
+        }
+
+        async void WebpageCapture()
         {
             try
             {
                 string Domain = WBrowse.Source.IdnHost;
                 var img = await TakeWebScreenshot();
                 CreateNameAleat();
-                img.Save(Pictures + Una + "_" + Domain + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                string filePath = Path.Combine(Pictures, $"{Una}_{Domain}.png");
+
+                img.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
                 Beep(800, 200);
 
-                Process.Start(Pictures + Una + "_" + Domain + ".png");
+                Process.Start(filePath);
             }
             catch (Exception ex)
             {
@@ -1457,19 +1479,37 @@ namespace Ostium
 
         async Task<Image> TakeWebScreenshot(bool currentControlClipOnly = false)
         {
-            dynamic scl = null;
+            JObject scl = null;
             Size siz;
 
             if (!currentControlClipOnly)
             {
-                var res = await WBrowse.CoreWebView2.ExecuteScriptAsync(@"var v = {""w"":document.body.scrollWidth, ""h"":document.body.scrollHeight}; v;");
-                try { scl = JObject.Parse(res); } catch { }
+                await Task.Delay(500);
+
+                var res = await WBrowse.CoreWebView2.ExecuteScriptAsync(@"
+                JSON.stringify({
+                    w: document.documentElement.scrollWidth, 
+                    h: document.documentElement.scrollHeight
+                });
+            ");
+
+                try
+                {
+                    scl = JObject.Parse(res.Trim('"').Replace("\\", ""));
+                }
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("JSON Parse Error in TakeWebScreenshot: ", ex.ToString(), "Main_Frm", AppStart);
+                    scl = null;
+                }
             }
-            siz = scl != null ?
-                        new Size((int)scl.w > WBrowse.Width ? (int)scl.w : WBrowse.Width,
-                                    (int)scl.h > WBrowse.Height ? (int)scl.h : WBrowse.Height)
-                        :
-                        WBrowse.Size;
+
+            siz = scl != null && scl["w"] != null && scl["h"] != null
+                ? new Size(
+                    Math.Max((int)scl["w"], WBrowse.Width),
+                    Math.Max((int)scl["h"], WBrowse.Height)
+                  )
+                : WBrowse.Size;
 
             var img = await GetWebBrowserBitmap(siz);
             return img;
@@ -1477,25 +1517,38 @@ namespace Ostium
 
         async Task<Bitmap> GetWebBrowserBitmap(Size clipSize)
         {
-            dynamic clip = new JObject();
-            clip.x = 0;
-            clip.y = 0;
-            clip.width = clipSize.Width;
-            clip.height = clipSize.Height;
-            clip.scale = 1;
+            JObject clip = new JObject
+            {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["width"] = clipSize.Width,
+                ["height"] = clipSize.Height,
+                ["scale"] = 1
+            };
 
-            dynamic settings = new JObject();
-            settings.format = "png";
-            settings.clip = clip;
-            settings.fromSurface = true;
-            settings.captureBeyondViewport = true;
+            JObject settings = new JObject
+            {
+                ["format"] = "png",
+                ["clip"] = clip,
+                ["fromSurface"] = true,
+                ["captureBeyondViewport"] = true
+            };
 
-            var p = settings.ToString(Newtonsoft.Json.Formatting.None);
+            string p = settings.ToString(Newtonsoft.Json.Formatting.None);
 
             var devData = await WBrowse.CoreWebView2.CallDevToolsProtocolMethodAsync("Page.captureScreenshot", p);
-            var imgData = (string)JObject.Parse(devData).data;
-            var ms = new MemoryStream(Convert.FromBase64String(imgData));
-            return (Bitmap)Image.FromStream(ms);
+
+            var parsedData = JObject.Parse(devData);
+            if (parsedData.ContainsKey("data"))
+            {
+                var imgData = (string)parsedData["data"];
+                var ms = new MemoryStream(Convert.FromBase64String(imgData));
+                return (Bitmap)Image.FromStream(ms);
+            }
+            else
+            {
+                throw new Exception("Error: 'data' field is missing in devData response.");
+            }
         }
 
         void HTMLtxt_Btn_Click(object sender, EventArgs e)
@@ -1505,6 +1558,11 @@ namespace Ostium
         }
 
         void Cookie_Btn_Click(object sender, EventArgs e)
+        {
+            CookieLoad();
+        }
+
+        void CookieLoad()
         {
             if (!SaveCookies_Chk.Checked)
                 MessageBox.Show("Saving cookies in a text file is not enabled in the options.");
@@ -1567,6 +1625,11 @@ namespace Ostium
 
         void Editor_Btn_Click(object sender, EventArgs e)
         {
+            OpenEdit();
+        }
+
+        void OpenEdit()
+        {
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
                 Process.Start(Class_Var.DEFAULT_EDITOR);
             else
@@ -1584,6 +1647,11 @@ namespace Ostium
         }
 
         void InjectScript_Btn_Click(object sender, EventArgs e)
+        {
+            InjectScript();
+        }
+
+        void InjectScript()
         {
             try
             {
@@ -1628,6 +1696,11 @@ namespace Ostium
         }
 
         void RegexCmd_Btn_Click(object sender, EventArgs e)
+        {
+            RegexInject();
+        }
+
+        void RegexInject()
         {
             try
             {
@@ -1713,6 +1786,11 @@ namespace Ostium
 
         void JavaScriptToggle_Btn_Click(object sender, EventArgs e)
         {
+            JavaScript();
+        }
+
+        void JavaScript()
+        {
             try
             {
                 if (WBrowse?.CoreWebView2?.Settings != null)
@@ -1748,6 +1826,11 @@ namespace Ostium
         }
 
         void ArchiveDirectory_Btn_Click(object sender, EventArgs e)
+        {
+            ArchiveData();
+        }
+
+        void ArchiveData()
         {
             try
             {
@@ -1826,13 +1909,18 @@ namespace Ostium
             bookmarkletsFrm.Show();
         }
 
-        private void OpnEncFrm_Click(object sender, EventArgs e)
+        void OpnEncFrm_Click(object sender, EventArgs e)
         {
             AesFrm = new Aes_Frm();
             AesFrm.Show();
         }
 
-        private void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
+        void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
+        {
+            OpenKeepTrack();
+        }
+
+        void OpenKeepTrack()
         {
             if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
             {
@@ -3031,7 +3119,7 @@ namespace Ostium
                     yn = 1;
                     break;
                 case "help":
-                    Open_Doc_Frm(FileDir + "cmdc.txt");
+                    Open_Doc_Frm(Path.Combine(FileDir, "cmdc.txt"));
                     break;
                 case "textlink":
                     Console_Cmd_Txt.Enabled = false;
@@ -3044,6 +3132,67 @@ namespace Ostium
                 case "id":
                     var browserInfo = WBrowse.CoreWebView2.BrowserProcessId;
                     MessageBox.Show(this, "Browser ID: " + browserInfo.ToString(), "Process ID");
+                    break;
+                case "gdork":
+                    GoogleDork();
+                    break;
+                case "capture":
+                    WebpageCapture();
+                    break;
+                case "htmltext":
+                    HtmlTextFrm = new HtmlText_Frm();
+                    HtmlTextFrm.Show();
+                    break;
+                case "multi":
+                    mdiFrm = new Mdi_Frm();
+                    mdiFrm.Show();
+                    break;
+                case "cookie":
+                    CookieLoad();
+                    break;
+                case "addcookie":
+                    Cookie_Pnl.Visible = !Cookie_Pnl.Visible;
+                    break;
+                case "editor":
+                    OpenEdit();
+                    break;
+                case "index":
+                    WBrowse.Source = new Uri(@AppStart);
+                    break;
+                case "dns":
+                    deserializeForm = new DeserializeJson_Frm();
+                    deserializeForm.Show();
+                    break;
+                case "javascript":
+                    JavaScript();
+                    break;
+                case "bookmark":
+                    BookMarklet();
+                    break;
+                case "inject":
+                    InjectScript();
+                    break;
+                case "regex":
+                    RegexInject();
+                    break;
+                case "backup":
+                    ArchiveData();
+                    break;
+                case "encrypt":
+                    AesFrm = new Aes_Frm();
+                    AesFrm.Show();
+                    break;
+                case "track":
+                    OpenKeepTrack();
+                    break;
+                case "history-clear":
+                    ClearData(0);
+                    break;
+                case "useragent":
+                    ChangeUserAgent();
+                    break;
+                case "googlebot":
+                    GoogleBot();
                     break;
                 case "exit":
                     Console_Cmd_Txt.Visible = false;
@@ -5771,7 +5920,12 @@ namespace Ostium
 
         #region Bkmklt
 
-        void OpnBokmark_Btn_Click(object sender, EventArgs e)
+        void OpnBookmark_Btn_Click(object sender, EventArgs e)
+        {
+            BookMarklet();
+        }
+
+        void BookMarklet()
         {
             try
             {
