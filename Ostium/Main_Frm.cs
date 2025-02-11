@@ -200,6 +200,7 @@ namespace Ostium
         const int TimeoutInSeconds = 10;
 
         bool IsTimelineEnabled = false;
+        bool IsParentLinkEnabled = false;
         string FileTimeLineName = "visit";
 
         int _historyIndex = -1;
@@ -596,6 +597,7 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
+
         ///
         /// <summary>
         /// Adding an item to the wBrowse Context Menu
@@ -811,6 +813,12 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Source Changed");
         }
 
+        void NewWindow_Requested(object sender, CoreWebView2SourceChangedEventArgs e)
+        {
+            URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
+            WBrowse_UpdtTitleEvent("Source Changed");
+        }
+
         void WBrowse_HistoryChanged(object sender, object e)
         {
             Back_Btn.Enabled = WBrowse.CoreWebView2.CanGoBack;
@@ -830,6 +838,15 @@ namespace Ostium
             Download_Source_Page();
         }
 
+        void NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+        {
+            if (IsTimelineEnabled || IsParentLinkEnabled)
+            {
+                e.Handled = true; // Force _parent Links
+                WBrowse.CoreWebView2.Navigate(e.Uri);
+            }
+        }
+
         void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (!e.IsSuccess)
@@ -845,6 +862,7 @@ namespace Ostium
             WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
             WBrowse.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
             WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested; // ContextMenu
+            WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
 
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
@@ -965,11 +983,11 @@ namespace Ostium
             }
         }
 
-        string GenerateFileName(string url)
+        string GenerateFileName(string sdata)
         {
             using (var sha256 = SHA256.Create())
             {
-                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(sdata));
                 return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             }
         }
@@ -1778,7 +1796,7 @@ namespace Ostium
             CreateConfigFile(0);
         }
 
-        private void FetchDomainInfo_Btn_Click(object sender, EventArgs e)
+        void FetchDomainInfo_Btn_Click(object sender, EventArgs e)
         {
             deserializeForm = new DeserializeJson_Frm();
             deserializeForm.Show();
@@ -3013,7 +3031,7 @@ namespace Ostium
 
         #region Prompt_
 
-        private void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
+        void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Console_Cmd_Txt.SelectionStart < 2 && e.KeyChar != (char)Keys.Enter)
             {
@@ -3028,7 +3046,7 @@ namespace Ostium
             }
         }
 
-        private void Console_Cmd_Txt_KeyDown(object sender, KeyEventArgs e)
+        void Console_Cmd_Txt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
             {
@@ -3043,7 +3061,7 @@ namespace Ostium
             }
         }
 
-        private void ProcessCommand()
+        void ProcessCommand()
         {
             string input = Console_Cmd_Txt.Text.Trim();
 
@@ -3060,7 +3078,7 @@ namespace Ostium
             Console_Cmd_Txt.Select(Console_Cmd_Txt.Text.Length, 0);
         }
 
-        private void NavigateHistory(Keys key)
+        void NavigateHistory(Keys key)
         {
             if (_commandHistory.Count == 0) return;
 
@@ -4533,7 +4551,7 @@ namespace Ostium
         {
             splitContain_Rss.Panel1Collapsed = !splitContain_Rss.Panel1Collapsed;
 
-            if (splitContain_Rss.Panel1Collapsed == false)
+            if (!splitContain_Rss.Panel1Collapsed)
                 CollapseTitleFeed_Btn.Text = "Collapse Off";
             else
                 CollapseTitleFeed_Btn.Text = "Collapse On";
@@ -5290,6 +5308,16 @@ namespace Ostium
                 senderror.ErrorLog("Error! AddDataWorkflow: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
+        void ForceLinkParent_Btn_Click(object sender, EventArgs e)
+        {
+            IsParentLinkEnabled = !IsParentLinkEnabled;
+
+            if (IsParentLinkEnabled)
+                ForceLinkParent_Btn.ForeColor = Color.Red;
+            else
+                ForceLinkParent_Btn.ForeColor = Color.Black;
+        }
         ///
         /// <summary>
         /// Displaying the data addition section of WorkFlow projects in "TAB BROWSx"
@@ -5942,7 +5970,7 @@ namespace Ostium
             }
         }
 
-        private void OpnScriptl_Btn_Click(object sender, EventArgs e)
+        void OpnScriptl_Btn_Click(object sender, EventArgs e)
         {
             Scriptl = "on";
 

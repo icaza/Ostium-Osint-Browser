@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -19,6 +20,7 @@ namespace Ostium
         {
             InitializeComponent();
 
+            DomainURL_Txt.Text = new Uri(@Class_Var.URL_URI).Host;
             Output_Data.Font = new Font("Consolas", 10);
         }
 
