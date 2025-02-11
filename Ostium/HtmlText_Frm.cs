@@ -47,6 +47,8 @@ namespace Ostium
 
         void URLbrowseCbx_Keypress(object sender, KeyPressEventArgs e)
         {
+            e.Handled = true;
+
             if (e.KeyChar == (char)Keys.Enter)
                 StartOpenWebPageTxt();
         }
