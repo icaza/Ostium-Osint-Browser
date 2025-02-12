@@ -102,6 +102,7 @@ namespace Ostium
         HtmlText_Frm HtmlTextFrm;
         Mdi_Frm mdiFrm;
         Doc_Frm docForm;
+        Keeptrack_Frm keeptrackForm;
         DeserializeJson_Frm deserializeForm;
         OpenSource_Frm openSourceForm;
         ScriptCreator scriptCreatorFrm;
@@ -300,11 +301,24 @@ namespace Ostium
             catch { }
         }
 
+        private void Main_Frm_LocationChanged(object sender, EventArgs e)
+        {
+            Form secondForm = Application.OpenForms["Keeptrack_Frm"];
+
+            if (secondForm != null)
+            {
+                int x = Location.X + Width - secondForm.Width - 32;
+                int y = Location.Y + Height - secondForm.Height - 39;
+                secondForm.Location = new Point(x, y);
+            }
+        }
+
         #endregion
 
         void Form_EventHandler()
         {
             FormClosing += new FormClosingEventHandler(Main_Frm_FormClosed);
+            LocationChanged += Main_Frm_LocationChanged;
             CategorieFeed_Cbx.SelectedIndexChanged += new EventHandler(CategorieFeed_Cbx_SelectedIndexChanged);
             CountBlockSite_Lbl.MouseEnter += new EventHandler(CountBlockSite_Lbl_MouseEnter);
             CountBlockSite_Lbl.MouseLeave += new EventHandler(CountBlockSite_Lbl_Leave);
@@ -681,7 +695,7 @@ namespace Ostium
                 InjectScript("(function(){const n=document.createElement(\"div\");n.style.position=\"fixed\";n.style.top=\"10px\";n.style.left=\"10px\";n.style.width=\"15px\";n.style.height=\"15px\";n.style.borderRadius=\"50%\";n.style.backgroundColor=\"red\";n.style.zIndex=\"9999\";n.title=\"Automatic copy script is activated\";document.body.appendChild(n);document.addEventListener(\"mouseup\",()=>{const t=window.getSelection(),n=t.toString();n&&navigator.clipboard.writeText(n).then(()=>{console.log(\"Text: \",n)}).catch(n=>{console.error(\"Error: \",n)})})})()");
             };
 
-            CoreWebView2ContextMenuItem newItem5 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Keep track", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem5 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Keep Track", null, CoreWebView2ContextMenuItemKind.Command);
             newItem5.CustomItemSelected += delegate (object send, object ex)
             {
                 IsTimelineEnabled = !IsTimelineEnabled;
@@ -696,12 +710,20 @@ namespace Ostium
                     Browser_Tab.BackColor = Color.FromArgb(41, 44, 51);
             };
 
+            CoreWebView2ContextMenuItem newItem6 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Tracking tool", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem6.CustomItemSelected += delegate (object send, object ex)
+            {
+                keeptrackForm = new Keeptrack_Frm();
+                keeptrackForm.Show();
+            };
+
             menuList.Insert(menuList.Count, newItem0);
             menuList.Insert(menuList.Count, newItem1);
             menuList.Insert(menuList.Count, newItem2);
             menuList.Insert(menuList.Count, newItem3);
             menuList.Insert(menuList.Count, newItem4);
             menuList.Insert(menuList.Count, newItem5);
+            menuList.Insert(menuList.Count, newItem6);
         }
         ///
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
@@ -751,7 +773,7 @@ namespace Ostium
             if (IsTimelineEnabled)
             {
                 var logger = new VisitLogger(Path.Combine(Keeptrack, FileTimeLineName));
-                logger.LogVisit(WBrowse.Source.AbsoluteUri);
+                logger.LogVisit(WBrowse.Source.AbsoluteUri, "No tag");
 
                 FaviconLoad();
             }
@@ -1980,7 +2002,7 @@ namespace Ostium
             WBrowsefeed.Source = new Uri(@formatURI);
         }
 
-        void JavaScriptFeedToggle_Btn_Click(object sender, EventArgs e)
+        void JavaScriptFeed_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2006,13 +2028,15 @@ namespace Ostium
         {
             if (isScriptEnabled)
             {
-                JavaScriptFeedToggle_Btn.Text = "JavaScript Enabled";
-                JavaScriptFeedToggle_Btn.ForeColor = Color.Black;
+                JavaScriptFeed_Btn.Text = "JS Enabled";
+                JavaScriptFeed_Btn.ForeColor = Color.White;
+                JavaDisableFeed_Lbl.Visible = false;
             }
             else
             {
-                JavaScriptFeedToggle_Btn.Text = "JavaScript Disabled";
-                JavaScriptFeedToggle_Btn.ForeColor = Color.Red;
+                JavaScriptFeed_Btn.Text = "JS Disabled";
+                JavaScriptFeed_Btn.ForeColor = Color.Red;
+                JavaDisableFeed_Lbl.Visible = true;
             }
         }
 
@@ -2098,10 +2122,6 @@ namespace Ostium
 
             if (File.Exists(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml")))
                 OpenFile_Editor(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
-            else
-            {
-                MessageBox.Show(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
-            }
         }
 
         void ExportXml_Tls_Click(object sender, EventArgs e)
@@ -2733,7 +2753,7 @@ namespace Ostium
                     TtsButton_Sts.Visible = false;
                     FileOpnJson_Lbl.Visible = false;
 
-                    if (JavaScriptFeedToggle_Btn.Text == "Javascript Disable")
+                    if (JavaScriptFeed_Btn.Text == "JS Disabled")
                         JavaDisableFeed_Lbl.Visible = true;
 
                     JavaDisable_Lbl.Visible = false;

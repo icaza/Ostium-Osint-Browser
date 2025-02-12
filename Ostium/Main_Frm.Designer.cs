@@ -31,81 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Frm));
             this.Tools_TAB_0 = new System.Windows.Forms.ToolStrip();
-            this.Console_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Mute_Btn = new System.Windows.Forms.ToolStripButton();
             this.URL_URL_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.URL_SAVE_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.Construct_URL_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.Word_Construct_URL_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.Word_Construct_URL_Btn = new System.Windows.Forms.ToolStripButton();
             this.AddOn_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.Tools_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.CopyURL_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.TraductPage_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.UnshortUrl_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.WebpageToPng_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.HTMLtxt_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnGroupFrm_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.GoogleDork_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.Cookie_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.SetCookie_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnFilOnEditor_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenListLink_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Memo_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.FetchDomainInfo_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
-            this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Bkmkl_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnBokmark_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateBookmark_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnScriptl_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.InjectScript_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenScriptEdit_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.RegexCmd_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Highlit_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.HiglitAddWord_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.HiglitInject_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.ArchiveDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolsOp_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.OpnWorkflowTools_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnEncFrm = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
-            this.KeepTrackViewer_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
-            this.Download_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.History_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.SiteEngament_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClrHistory_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.UserAgentChange_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Googlebot_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.EdgeURL_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.AdvancedOption_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.DevTools_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.System_Param = new System.Windows.Forms.ToolStripMenuItem();
-            this.OstUpdt_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.HomePage_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
-            this.Credit_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.AddURL_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnURL_Btn = new System.Windows.Forms.ToolStripButton();
             this.Control_Tab = new System.Windows.Forms.TabControl();
             this.Browser_Tab = new System.Windows.Forms.TabPage();
             this.WBrowse = new Microsoft.Web.WebView2.WinForms.WebView2();
@@ -133,7 +66,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.URLbrowse_Cbx = new System.Windows.Forms.ComboBox();
             this.CleanSearch_Btn = new System.Windows.Forms.Button();
-            this.AddURLink_Btn = new System.Windows.Forms.Button();
             this.Go_Btn = new System.Windows.Forms.Button();
             this.GoWebwiev_Btn = new System.Windows.Forms.Button();
             this.Home_Btn = new System.Windows.Forms.Button();
@@ -391,7 +323,6 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
-            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableOpn_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableVal_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -408,33 +339,37 @@
             this.LonGtCurrent_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.FileOpnJson_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
-            this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.CategorieFeed_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.CreatCategorie_Btn = new System.Windows.Forms.ToolStripButton();
             this.NewCategory_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.AddFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.NewFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.ManageFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteCatfeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.Separator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteURLfeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.Separator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.CollapseTitleFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.GoFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
-            this.ToolsFeed_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.CopyURLfeed_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnFileCategory_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.TraductPageFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
-            this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.JavaScriptFeedToggle_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.ThemDiag_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.Timo = new System.Windows.Forms.Timer(this.components);
+            this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
+            this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.KeywordMap_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.AddURLink_Btn = new System.Windows.Forms.Button();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
             this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
             this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
             this.ViewXml_Tls = new System.Windows.Forms.ToolStripButton();
@@ -447,15 +382,11 @@
             this.DiagramMindMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.DiagramMindMap2_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ExportDiag_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnSprites_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.File_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.OpnJsonFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnXMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnPlantUMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.ThemDiag_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.DeleteProject_Tls = new System.Windows.Forms.ToolStripButton();
             this.Debug_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.VerifProcessRun_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -463,9 +394,6 @@
             this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.Timo = new System.Windows.Forms.Timer(this.components);
-            this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
             this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
             this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
@@ -498,21 +426,92 @@
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.NmodeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
             this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.KeywordMap_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.GoWord_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.Console_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Mute_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Word_Construct_URL_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Tools_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CopyURL_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.TraductPage_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.UnshortUrl_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.WebpageToPng_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.HTMLtxt_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGroupFrm_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.GoogleDork_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.Cookie_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.SetCookie_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnFilOnEditor_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenListLink_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Memo_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.FetchDomainInfo_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
+            this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Bkmkl_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnBokmark_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateBookmark_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnScriptl_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.InjectScript_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenScriptEdit_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegexCmd_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Highlit_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.HiglitAddWord_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.HiglitInject_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.ArchiveDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolsOp_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.ForceLinkParent_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator35 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnWorkflowTools_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnEncFrm = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
+            this.KeepTrackViewer_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
+            this.Download_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.History_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.SiteEngament_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClrHistory_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.UserAgentChange_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Googlebot_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.EdgeURL_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdvancedOption_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.DevTools_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.System_Param = new System.Windows.Forms.ToolStripMenuItem();
+            this.OstUpdt_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.HomePage_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
+            this.Credit_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddURL_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OpnURL_Btn = new System.Windows.Forms.ToolStripButton();
+            this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.CreatCategorie_Btn = new System.Windows.Forms.ToolStripButton();
+            this.AddFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.ManageFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.DeleteCatfeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.DeleteURLfeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.CollapseTitleFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.GoFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.ToolsFeed_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CopyURLfeed_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnFileCategory_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.TraductPageFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
+            this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -611,26 +610,6 @@
             this.Tools_TAB_0.TabIndex = 12;
             this.Tools_TAB_0.Visible = false;
             // 
-            // Console_Btn
-            // 
-            this.Console_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Console_Btn.Image = global::Ostium.Properties.Resources.cmdprompt;
-            this.Console_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Console_Btn.Name = "Console_Btn";
-            this.Console_Btn.Size = new System.Drawing.Size(23, 21);
-            this.Console_Btn.Text = "Prompt";
-            this.Console_Btn.Click += new System.EventHandler(this.Console_Btn_Click);
-            // 
-            // Mute_Btn
-            // 
-            this.Mute_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Mute_Btn.Image = global::Ostium.Properties.Resources.Unmute;
-            this.Mute_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Mute_Btn.Name = "Mute_Btn";
-            this.Mute_Btn.Size = new System.Drawing.Size(23, 21);
-            this.Mute_Btn.Text = "Mute/Unmute";
-            this.Mute_Btn.Click += new System.EventHandler(this.Mute_Btn_Click);
-            // 
             // URL_URL_Cbx
             // 
             this.URL_URL_Cbx.AutoSize = false;
@@ -683,19 +662,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 24);
             // 
-            // Word_Construct_URL_Btn
-            // 
-            this.Word_Construct_URL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Word_Construct_URL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Word_Construct_URL_Btn.ForeColor = System.Drawing.Color.White;
-            this.Word_Construct_URL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Word_Construct_URL_Btn.Image")));
-            this.Word_Construct_URL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Word_Construct_URL_Btn.Name = "Word_Construct_URL_Btn";
-            this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 21);
-            this.Word_Construct_URL_Btn.Text = "C";
-            this.Word_Construct_URL_Btn.ToolTipText = "Construct URL";
-            this.Word_Construct_URL_Btn.Click += new System.EventHandler(this.Word_Construct_URL_Btn_Click);
-            // 
             // AddOn_Cbx
             // 
             this.AddOn_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -706,518 +672,15 @@
             this.AddOn_Cbx.Size = new System.Drawing.Size(121, 24);
             this.AddOn_Cbx.SelectedIndexChanged += new System.EventHandler(this.AddOn_Cbx_SelectedIndexChanged);
             // 
-            // Tools_Mnu
-            // 
-            this.Tools_Mnu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tools_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Tools_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CopyURL_Mnu,
-            this.TraductPage_Btn,
-            this.UnshortUrl_Btn,
-            this.WebpageToPng_Btn,
-            this.toolStripSeparator8,
-            this.HTMLtxt_Btn,
-            this.OpnGroupFrm_Btn,
-            this.GoogleDork_Btn,
-            this.toolStripSeparator7,
-            this.Cookie_Btn,
-            this.SetCookie_Btn,
-            this.toolStripSeparator18,
-            this.OpnFilOnEditor_Btn,
-            this.OpenListLink_Btn,
-            this.Memo_Btn,
-            this.toolStripSeparator9,
-            this.Editor_Btn,
-            this.toolStripSeparator15,
-            this.OpnDirectory_Btn,
-            this.IndexDir_Btn,
-            this.toolStripSeparator10,
-            this.FetchDomainInfo_Btn,
-            this.toolStripSeparator33,
-            this.JavaScriptToggle_Btn,
-            this.Bkmkl_Mnu,
-            this.InjectScript_Btn,
-            this.OpenScriptEdit_Btn,
-            this.RegexCmd_Btn,
-            this.Highlit_Mnu,
-            this.toolStripSeparator11,
-            this.ArchiveDirectory_Btn});
-            this.Tools_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_Mnu.ForeColor = System.Drawing.Color.White;
-            this.Tools_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("Tools_Mnu.Image")));
-            this.Tools_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Tools_Mnu.Name = "Tools_Mnu";
-            this.Tools_Mnu.Size = new System.Drawing.Size(55, 21);
-            this.Tools_Mnu.Text = "Tools";
-            // 
-            // CopyURL_Mnu
-            // 
-            this.CopyURL_Mnu.Name = "CopyURL_Mnu";
-            this.CopyURL_Mnu.Size = new System.Drawing.Size(217, 22);
-            this.CopyURL_Mnu.Text = "Copy URL";
-            this.CopyURL_Mnu.Click += new System.EventHandler(this.CopyURL_Mnu_Click);
-            // 
-            // TraductPage_Btn
-            // 
-            this.TraductPage_Btn.Name = "TraductPage_Btn";
-            this.TraductPage_Btn.Size = new System.Drawing.Size(217, 22);
-            this.TraductPage_Btn.Text = "Traduct Page";
-            this.TraductPage_Btn.Click += new System.EventHandler(this.TraductPage_Btn_Click);
-            // 
-            // UnshortUrl_Btn
-            // 
-            this.UnshortUrl_Btn.Name = "UnshortUrl_Btn";
-            this.UnshortUrl_Btn.Size = new System.Drawing.Size(217, 22);
-            this.UnshortUrl_Btn.Text = "Unshorten URL";
-            this.UnshortUrl_Btn.Click += new System.EventHandler(this.UnshortUrl_Btn_Click);
-            // 
-            // WebpageToPng_Btn
-            // 
-            this.WebpageToPng_Btn.Name = "WebpageToPng_Btn";
-            this.WebpageToPng_Btn.Size = new System.Drawing.Size(217, 22);
-            this.WebpageToPng_Btn.Text = "Webpage to Png";
-            this.WebpageToPng_Btn.Click += new System.EventHandler(this.WebpageToPng_Btn_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(214, 6);
-            // 
-            // HTMLtxt_Btn
-            // 
-            this.HTMLtxt_Btn.Name = "HTMLtxt_Btn";
-            this.HTMLtxt_Btn.Size = new System.Drawing.Size(217, 22);
-            this.HTMLtxt_Btn.Text = "HTML Text";
-            this.HTMLtxt_Btn.Click += new System.EventHandler(this.HTMLtxt_Btn_Click);
-            // 
-            // OpnGroupFrm_Btn
-            // 
-            this.OpnGroupFrm_Btn.Name = "OpnGroupFrm_Btn";
-            this.OpnGroupFrm_Btn.Size = new System.Drawing.Size(217, 22);
-            this.OpnGroupFrm_Btn.Text = "Multiple Windows";
-            this.OpnGroupFrm_Btn.Click += new System.EventHandler(this.OpnGroupFrm_Btn_Click);
-            // 
-            // GoogleDork_Btn
-            // 
-            this.GoogleDork_Btn.Name = "GoogleDork_Btn";
-            this.GoogleDork_Btn.Size = new System.Drawing.Size(217, 22);
-            this.GoogleDork_Btn.Text = "Google Dork";
-            this.GoogleDork_Btn.Click += new System.EventHandler(this.GoogleDork_Btn_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(214, 6);
-            // 
-            // Cookie_Btn
-            // 
-            this.Cookie_Btn.Name = "Cookie_Btn";
-            this.Cookie_Btn.Size = new System.Drawing.Size(217, 22);
-            this.Cookie_Btn.Text = "Cookie";
-            this.Cookie_Btn.Click += new System.EventHandler(this.Cookie_Btn_Click);
-            // 
-            // SetCookie_Btn
-            // 
-            this.SetCookie_Btn.Name = "SetCookie_Btn";
-            this.SetCookie_Btn.Size = new System.Drawing.Size(217, 22);
-            this.SetCookie_Btn.Text = "Add or Update Cookie";
-            this.SetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
-            // 
-            // toolStripSeparator18
-            // 
-            this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(214, 6);
-            // 
-            // OpnFilOnEditor_Btn
-            // 
-            this.OpnFilOnEditor_Btn.Name = "OpnFilOnEditor_Btn";
-            this.OpnFilOnEditor_Btn.Size = new System.Drawing.Size(217, 22);
-            this.OpnFilOnEditor_Btn.Text = "Open File";
-            this.OpnFilOnEditor_Btn.Click += new System.EventHandler(this.OpnFilOnEditor_Btn_Click);
-            // 
-            // OpenListLink_Btn
-            // 
-            this.OpenListLink_Btn.Name = "OpenListLink_Btn";
-            this.OpenListLink_Btn.Size = new System.Drawing.Size(217, 22);
-            this.OpenListLink_Btn.Text = "Open Links List";
-            this.OpenListLink_Btn.Click += new System.EventHandler(this.OpenListLink_Btn_Click);
-            // 
-            // Memo_Btn
-            // 
-            this.Memo_Btn.Name = "Memo_Btn";
-            this.Memo_Btn.Size = new System.Drawing.Size(217, 22);
-            this.Memo_Btn.Text = "Memo";
-            this.Memo_Btn.Click += new System.EventHandler(this.Memo_Btn_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(214, 6);
-            // 
-            // Editor_Btn
-            // 
-            this.Editor_Btn.Name = "Editor_Btn";
-            this.Editor_Btn.Size = new System.Drawing.Size(217, 22);
-            this.Editor_Btn.Text = "Editor";
-            this.Editor_Btn.Click += new System.EventHandler(this.Editor_Btn_Click);
-            // 
-            // toolStripSeparator15
-            // 
-            this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(214, 6);
-            // 
-            // OpnDirectory_Btn
-            // 
-            this.OpnDirectory_Btn.Name = "OpnDirectory_Btn";
-            this.OpnDirectory_Btn.Size = new System.Drawing.Size(217, 22);
-            this.OpnDirectory_Btn.Text = "Open Directory";
-            this.OpnDirectory_Btn.Click += new System.EventHandler(this.OpnDirectory_Btn_Click);
-            // 
-            // IndexDir_Btn
-            // 
-            this.IndexDir_Btn.Name = "IndexDir_Btn";
-            this.IndexDir_Btn.Size = new System.Drawing.Size(217, 22);
-            this.IndexDir_Btn.Text = "Index";
-            this.IndexDir_Btn.Click += new System.EventHandler(this.IndexDir_Btn_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(214, 6);
-            // 
-            // FetchDomainInfo_Btn
-            // 
-            this.FetchDomainInfo_Btn.Name = "FetchDomainInfo_Btn";
-            this.FetchDomainInfo_Btn.Size = new System.Drawing.Size(217, 22);
-            this.FetchDomainInfo_Btn.Text = "TXT NS MX A";
-            this.FetchDomainInfo_Btn.Click += new System.EventHandler(this.FetchDomainInfo_Btn_Click);
-            // 
-            // toolStripSeparator33
-            // 
-            this.toolStripSeparator33.Name = "toolStripSeparator33";
-            this.toolStripSeparator33.Size = new System.Drawing.Size(214, 6);
-            // 
-            // JavaScriptToggle_Btn
-            // 
-            this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
-            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(217, 22);
-            this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
-            this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
-            // 
-            // Bkmkl_Mnu
-            // 
-            this.Bkmkl_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpnBokmark_Btn,
-            this.CreateBookmark_Btn,
-            this.toolStripSeparator32,
-            this.OpnScriptl_Btn});
-            this.Bkmkl_Mnu.Name = "Bkmkl_Mnu";
-            this.Bkmkl_Mnu.Size = new System.Drawing.Size(217, 22);
-            this.Bkmkl_Mnu.Text = "Bookmarklet";
-            // 
-            // OpnBokmark_Btn
-            // 
-            this.OpnBokmark_Btn.Name = "OpnBokmark_Btn";
-            this.OpnBokmark_Btn.Size = new System.Drawing.Size(161, 22);
-            this.OpnBokmark_Btn.Text = "Open";
-            this.OpnBokmark_Btn.Click += new System.EventHandler(this.OpnBookmark_Btn_Click);
-            // 
-            // CreateBookmark_Btn
-            // 
-            this.CreateBookmark_Btn.Name = "CreateBookmark_Btn";
-            this.CreateBookmark_Btn.Size = new System.Drawing.Size(161, 22);
-            this.CreateBookmark_Btn.Text = "Create";
-            this.CreateBookmark_Btn.Click += new System.EventHandler(this.CreateBokmark_Btn_Click);
-            // 
-            // toolStripSeparator32
-            // 
-            this.toolStripSeparator32.Name = "toolStripSeparator32";
-            this.toolStripSeparator32.Size = new System.Drawing.Size(158, 6);
-            // 
-            // OpnScriptl_Btn
-            // 
-            this.OpnScriptl_Btn.Name = "OpnScriptl_Btn";
-            this.OpnScriptl_Btn.Size = new System.Drawing.Size(161, 22);
-            this.OpnScriptl_Btn.Text = "File Script JS";
-            this.OpnScriptl_Btn.Click += new System.EventHandler(this.OpnScriptl_Btn_Click);
-            // 
-            // InjectScript_Btn
-            // 
-            this.InjectScript_Btn.Name = "InjectScript_Btn";
-            this.InjectScript_Btn.Size = new System.Drawing.Size(217, 22);
-            this.InjectScript_Btn.Text = "InjectScript";
-            this.InjectScript_Btn.Click += new System.EventHandler(this.InjectScript_Btn_Click);
-            // 
-            // OpenScriptEdit_Btn
-            // 
-            this.OpenScriptEdit_Btn.Name = "OpenScriptEdit_Btn";
-            this.OpenScriptEdit_Btn.Size = new System.Drawing.Size(217, 22);
-            this.OpenScriptEdit_Btn.Text = "JS Script edit";
-            this.OpenScriptEdit_Btn.Click += new System.EventHandler(this.OpenScriptEdit_Btn_Click);
-            // 
-            // RegexCmd_Btn
-            // 
-            this.RegexCmd_Btn.Name = "RegexCmd_Btn";
-            this.RegexCmd_Btn.Size = new System.Drawing.Size(217, 22);
-            this.RegexCmd_Btn.Text = "Regex";
-            this.RegexCmd_Btn.Click += new System.EventHandler(this.RegexCmd_Btn_Click);
-            // 
-            // Highlit_Mnu
-            // 
-            this.Highlit_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.HiglitAddWord_Btn,
-            this.HiglitInject_Btn});
-            this.Highlit_Mnu.Name = "Highlit_Mnu";
-            this.Highlit_Mnu.Size = new System.Drawing.Size(217, 22);
-            this.Highlit_Mnu.Text = "Highlight";
-            // 
-            // HiglitAddWord_Btn
-            // 
-            this.HiglitAddWord_Btn.Name = "HiglitAddWord_Btn";
-            this.HiglitAddWord_Btn.Size = new System.Drawing.Size(152, 22);
-            this.HiglitAddWord_Btn.Text = "Word";
-            this.HiglitAddWord_Btn.Click += new System.EventHandler(this.HiglitAddWord_Btn_Click);
-            // 
-            // HiglitInject_Btn
-            // 
-            this.HiglitInject_Btn.Name = "HiglitInject_Btn";
-            this.HiglitInject_Btn.Size = new System.Drawing.Size(152, 22);
-            this.HiglitInject_Btn.Text = "Inject Color";
-            this.HiglitInject_Btn.Click += new System.EventHandler(this.HiglitInject_Btn_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(214, 6);
-            // 
-            // ArchiveDirectory_Btn
-            // 
-            this.ArchiveDirectory_Btn.Name = "ArchiveDirectory_Btn";
-            this.ArchiveDirectory_Btn.Size = new System.Drawing.Size(217, 22);
-            this.ArchiveDirectory_Btn.Text = "Backup";
-            this.ArchiveDirectory_Btn.Click += new System.EventHandler(this.ArchiveDirectory_Btn_Click);
-            // 
-            // ToolsOp_Mnu
-            // 
-            this.ToolsOp_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToolsOp_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ForceLinkParent_Btn,
-            this.toolStripSeparator35,
-            this.OpnWorkflowTools_Tls,
-            this.toolStripSeparator17,
-            this.OpnEncFrm,
-            this.toolStripSeparator31,
-            this.KeepTrackViewer_Btn,
-            this.toolStripSeparator34,
-            this.Download_Param,
-            this.History_Param,
-            this.SiteEngament_Param,
-            this.ClrHistory_Param,
-            this.toolStripSeparator12,
-            this.UserAgentChange_Btn,
-            this.Googlebot_Btn,
-            this.toolStripSeparator13,
-            this.EdgeURL_Param,
-            this.AdvancedOption_Param,
-            this.DevTools_Param,
-            this.toolStripSeparator16,
-            this.System_Param,
-            this.OstUpdt_Btn,
-            this.HomePage_Btn,
-            this.toolStripSeparator22,
-            this.Credit_Btn});
-            this.ToolsOp_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsOp_Mnu.ForeColor = System.Drawing.Color.White;
-            this.ToolsOp_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsOp_Mnu.Image")));
-            this.ToolsOp_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolsOp_Mnu.Name = "ToolsOp_Mnu";
-            this.ToolsOp_Mnu.Size = new System.Drawing.Size(41, 21);
-            this.ToolsOp_Mnu.Text = "°°°";
-            // 
-            // OpnWorkflowTools_Tls
-            // 
-            this.OpnWorkflowTools_Tls.Name = "OpnWorkflowTools_Tls";
-            this.OpnWorkflowTools_Tls.Size = new System.Drawing.Size(253, 22);
-            this.OpnWorkflowTools_Tls.Text = "Open Workflow tools";
-            this.OpnWorkflowTools_Tls.Click += new System.EventHandler(this.OpnWorkflowTools_Tls_Click);
-            // 
-            // toolStripSeparator17
-            // 
-            this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(250, 6);
-            // 
-            // OpnEncFrm
-            // 
-            this.OpnEncFrm.Name = "OpnEncFrm";
-            this.OpnEncFrm.Size = new System.Drawing.Size(253, 22);
-            this.OpnEncFrm.Text = "Encryption";
-            this.OpnEncFrm.Click += new System.EventHandler(this.OpnEncFrm_Click);
-            // 
-            // toolStripSeparator31
-            // 
-            this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(250, 6);
-            // 
-            // KeepTrackViewer_Btn
-            // 
-            this.KeepTrackViewer_Btn.Name = "KeepTrackViewer_Btn";
-            this.KeepTrackViewer_Btn.Size = new System.Drawing.Size(253, 22);
-            this.KeepTrackViewer_Btn.Text = "Keep Track Viewer";
-            this.KeepTrackViewer_Btn.Click += new System.EventHandler(this.KeepTrackViewer_Btn_Click);
-            // 
-            // toolStripSeparator34
-            // 
-            this.toolStripSeparator34.Name = "toolStripSeparator34";
-            this.toolStripSeparator34.Size = new System.Drawing.Size(250, 6);
-            // 
-            // Download_Param
-            // 
-            this.Download_Param.Name = "Download_Param";
-            this.Download_Param.Size = new System.Drawing.Size(253, 22);
-            this.Download_Param.Text = "Download";
-            this.Download_Param.Click += new System.EventHandler(this.Download_Param_Click);
-            // 
-            // History_Param
-            // 
-            this.History_Param.Name = "History_Param";
-            this.History_Param.Size = new System.Drawing.Size(253, 22);
-            this.History_Param.Text = "History";
-            this.History_Param.Click += new System.EventHandler(this.History_Param_Click);
-            // 
-            // SiteEngament_Param
-            // 
-            this.SiteEngament_Param.Name = "SiteEngament_Param";
-            this.SiteEngament_Param.Size = new System.Drawing.Size(253, 22);
-            this.SiteEngament_Param.Text = "Site Engagement";
-            this.SiteEngament_Param.Click += new System.EventHandler(this.SiteEngament_Param_Click);
-            // 
-            // ClrHistory_Param
-            // 
-            this.ClrHistory_Param.Name = "ClrHistory_Param";
-            this.ClrHistory_Param.Size = new System.Drawing.Size(253, 22);
-            this.ClrHistory_Param.Text = "Clear History";
-            this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(250, 6);
-            // 
-            // UserAgentChange_Btn
-            // 
-            this.UserAgentChange_Btn.Name = "UserAgentChange_Btn";
-            this.UserAgentChange_Btn.Size = new System.Drawing.Size(253, 22);
-            this.UserAgentChange_Btn.Text = "Change User Agent Off";
-            this.UserAgentChange_Btn.Click += new System.EventHandler(this.UserAgentChange_Btn_Click);
-            // 
-            // Googlebot_Btn
-            // 
-            this.Googlebot_Btn.Name = "Googlebot_Btn";
-            this.Googlebot_Btn.Size = new System.Drawing.Size(253, 22);
-            this.Googlebot_Btn.Text = "Googlebot Off";
-            this.Googlebot_Btn.Click += new System.EventHandler(this.Googlebot_Btn_Click);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(250, 6);
-            // 
-            // EdgeURL_Param
-            // 
-            this.EdgeURL_Param.Name = "EdgeURL_Param";
-            this.EdgeURL_Param.Size = new System.Drawing.Size(253, 22);
-            this.EdgeURL_Param.Text = "Edge URLs";
-            this.EdgeURL_Param.Click += new System.EventHandler(this.EdgeURL_Param_Click);
-            // 
-            // AdvancedOption_Param
-            // 
-            this.AdvancedOption_Param.Name = "AdvancedOption_Param";
-            this.AdvancedOption_Param.Size = new System.Drawing.Size(253, 22);
-            this.AdvancedOption_Param.Text = "Advanced Options";
-            this.AdvancedOption_Param.Click += new System.EventHandler(this.AdvancedOption_Param_Click);
-            // 
-            // DevTools_Param
-            // 
-            this.DevTools_Param.Name = "DevTools_Param";
-            this.DevTools_Param.Size = new System.Drawing.Size(253, 22);
-            this.DevTools_Param.Text = "Dev Tools";
-            this.DevTools_Param.Click += new System.EventHandler(this.DevTools_Param_Click);
-            // 
-            // toolStripSeparator16
-            // 
-            this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(250, 6);
-            // 
-            // System_Param
-            // 
-            this.System_Param.Name = "System_Param";
-            this.System_Param.Size = new System.Drawing.Size(253, 22);
-            this.System_Param.Text = "System";
-            this.System_Param.Click += new System.EventHandler(this.System_Param_Click);
-            // 
-            // OstUpdt_Btn
-            // 
-            this.OstUpdt_Btn.Name = "OstUpdt_Btn";
-            this.OstUpdt_Btn.Size = new System.Drawing.Size(253, 22);
-            this.OstUpdt_Btn.Text = "Ostium Update";
-            this.OstUpdt_Btn.Click += new System.EventHandler(this.OstUpdt_Btn_Click);
-            // 
-            // HomePage_Btn
-            // 
-            this.HomePage_Btn.Name = "HomePage_Btn";
-            this.HomePage_Btn.Size = new System.Drawing.Size(253, 22);
-            this.HomePage_Btn.Text = "Home";
-            this.HomePage_Btn.Click += new System.EventHandler(this.HomePage_Btn_Click);
-            // 
-            // toolStripSeparator22
-            // 
-            this.toolStripSeparator22.Name = "toolStripSeparator22";
-            this.toolStripSeparator22.Size = new System.Drawing.Size(250, 6);
-            // 
-            // Credit_Btn
-            // 
-            this.Credit_Btn.Name = "Credit_Btn";
-            this.Credit_Btn.Size = new System.Drawing.Size(253, 22);
-            this.Credit_Btn.Text = "Credits";
-            this.Credit_Btn.Click += new System.EventHandler(this.Credit_Btn_Click);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 24);
             // 
-            // AddURL_Btn
-            // 
-            this.AddURL_Btn.AutoToolTip = false;
-            this.AddURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.AddURL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddURL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddURL_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddURL_Btn.Image")));
-            this.AddURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AddURL_Btn.Name = "AddURL_Btn";
-            this.AddURL_Btn.Size = new System.Drawing.Size(59, 21);
-            this.AddURL_Btn.Text = "Add DB";
-            this.AddURL_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
-            // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             this.toolStripSeparator14.Size = new System.Drawing.Size(6, 24);
-            // 
-            // OpnURL_Btn
-            // 
-            this.OpnURL_Btn.AutoToolTip = false;
-            this.OpnURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.OpnURL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnURL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnURL_Btn.ForeColor = System.Drawing.Color.White;
-            this.OpnURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnURL_Btn.Image")));
-            this.OpnURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpnURL_Btn.Name = "OpnURL_Btn";
-            this.OpnURL_Btn.Size = new System.Drawing.Size(69, 21);
-            this.OpnURL_Btn.Text = "Open DB";
-            this.OpnURL_Btn.Click += new System.EventHandler(this.OpnURL_Btn_Click);
             // 
             // Control_Tab
             // 
@@ -1230,10 +693,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 28);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 611);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1253,7 +716,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 23);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 584);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1266,7 +729,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 461);
+            this.WBrowse.Size = new System.Drawing.Size(920, 433);
             this.WBrowse.Source = new System.Uri("https://icaza.github.io/", System.UriKind.Absolute);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
@@ -1287,7 +750,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 491);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 463);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
@@ -1416,7 +879,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 556);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 528);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1425,7 +888,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 528);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 500);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -1479,7 +942,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 452);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 424);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -1575,26 +1038,6 @@
             this.CleanSearch_Btn.Text = "X";
             this.CleanSearch_Btn.UseVisualStyleBackColor = false;
             this.CleanSearch_Btn.Click += new System.EventHandler(this.CleanSearch_Btn_Click);
-            // 
-            // AddURLink_Btn
-            // 
-            this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
-            this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddURLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.AddURLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddURLink_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddURLink_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddURLink_Btn.Image = global::Ostium.Properties.Resources.BookmarkUp;
-            this.AddURLink_Btn.Location = new System.Drawing.Point(980, 0);
-            this.AddURLink_Btn.MaximumSize = new System.Drawing.Size(24, 24);
-            this.AddURLink_Btn.Name = "AddURLink_Btn";
-            this.AddURLink_Btn.Size = new System.Drawing.Size(24, 24);
-            this.AddURLink_Btn.TabIndex = 8;
-            this.AddURLink_Btn.UseVisualStyleBackColor = false;
-            this.AddURLink_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
             // 
             // Go_Btn
             // 
@@ -1859,7 +1302,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 583);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 555);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -1873,7 +1316,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 239);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 211);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -1884,7 +1327,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 266);
+            this.label5.Location = new System.Drawing.Point(0, 238);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -1896,7 +1339,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 290);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 262);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1919,7 +1362,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 392);
+            this.label1.Location = new System.Drawing.Point(0, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -1931,7 +1374,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 416);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 388);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1943,7 +1386,7 @@
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 518);
+            this.label23.Location = new System.Drawing.Point(0, 490);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -1955,7 +1398,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 542);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 514);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -1969,7 +1412,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 586);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 558);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
@@ -1987,7 +1430,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 23);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -2008,7 +1451,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 562);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 533);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -2062,7 +1505,7 @@
             this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
-            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 562);
+            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 533);
             this.WBrowsefeed.TabIndex = 4;
             this.WBrowsefeed.ZoomFactor = 1D;
             // 
@@ -2267,7 +1710,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 23);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2279,7 +1722,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 511);
+            this.panel1.Size = new System.Drawing.Size(1320, 482);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2293,7 +1736,7 @@
             this.DataValue_Lst.ItemHeight = 16;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 511);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 482);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2307,7 +1750,7 @@
             this.DataTable_Lst.ItemHeight = 14;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 511);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 482);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2322,7 +1765,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 511);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 482);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -2719,7 +2162,7 @@
             this.Workflow_Tab.ForeColor = System.Drawing.Color.White;
             this.Workflow_Tab.Location = new System.Drawing.Point(4, 23);
             this.Workflow_Tab.Name = "Workflow_Tab";
-            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Workflow_Tab.TabIndex = 7;
             this.Workflow_Tab.Text = "WORKFLOW";
             // 
@@ -2736,7 +2179,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 612);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 583);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // groupBox2
@@ -2746,9 +2189,9 @@
             this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 309);
+            this.groupBox2.Location = new System.Drawing.Point(3, 294);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(355, 300);
+            this.groupBox2.Size = new System.Drawing.Size(355, 286);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select model";
@@ -2764,7 +2207,7 @@
             this.ModelList_Lst.ItemHeight = 14;
             this.ModelList_Lst.Location = new System.Drawing.Point(3, 18);
             this.ModelList_Lst.Name = "ModelList_Lst";
-            this.ModelList_Lst.Size = new System.Drawing.Size(349, 249);
+            this.ModelList_Lst.Size = new System.Drawing.Size(349, 235);
             this.ModelList_Lst.TabIndex = 0;
             this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
             // 
@@ -2773,7 +2216,7 @@
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
             this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 267);
+            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 253);
             this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
             this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(349, 30);
             this.PanelWrkButtonModel_Pnl.TabIndex = 20;
@@ -2829,7 +2272,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 300);
+            this.groupBox1.Size = new System.Drawing.Size(355, 285);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create a model";
@@ -2850,14 +2293,13 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(27, 14);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 14;
             this.ModelItem_Txt.CharWidth = 8;
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 79);
@@ -2865,7 +2307,7 @@
             this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
-            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 188);
+            this.ModelItem_Txt.Size = new System.Drawing.Size(349, 173);
             this.ModelItem_Txt.TabIndex = 15;
             this.ModelItem_Txt.Zoom = 100;
             // 
@@ -2933,7 +2375,7 @@
             this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModelCreate_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModelCreate_Btn.ForeColor = System.Drawing.Color.White;
-            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 267);
+            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 252);
             this.ModelCreate_Btn.Name = "ModelCreate_Btn";
             this.ModelCreate_Btn.Size = new System.Drawing.Size(349, 30);
             this.ModelCreate_Btn.TabIndex = 18;
@@ -2947,7 +2389,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel13.Location = new System.Drawing.Point(1144, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(10, 612);
+            this.panel13.Size = new System.Drawing.Size(10, 583);
             this.panel13.TabIndex = 26;
             // 
             // panel12
@@ -2956,7 +2398,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(773, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 612);
+            this.panel12.Size = new System.Drawing.Size(10, 583);
             this.panel12.TabIndex = 24;
             // 
             // Itemwf_Cbx
@@ -2976,7 +2418,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel17.Location = new System.Drawing.Point(523, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(250, 612);
+            this.panel17.Size = new System.Drawing.Size(250, 583);
             this.panel17.TabIndex = 28;
             // 
             // StatWorkflow_Lst
@@ -2990,7 +2432,7 @@
             this.StatWorkflow_Lst.ItemHeight = 16;
             this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
             this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
-            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 602);
+            this.StatWorkflow_Lst.Size = new System.Drawing.Size(250, 573);
             this.StatWorkflow_Lst.TabIndex = 19;
             this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
             // 
@@ -3008,7 +2450,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(513, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 612);
+            this.panel16.Size = new System.Drawing.Size(10, 583);
             this.panel16.TabIndex = 27;
             // 
             // panel2
@@ -3023,7 +2465,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(10, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(503, 612);
+            this.panel2.Size = new System.Drawing.Size(503, 583);
             this.panel2.TabIndex = 15;
             // 
             // ProjectOpn_Lst
@@ -3036,7 +2478,7 @@
             this.ProjectOpn_Lst.ItemHeight = 14;
             this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 42);
             this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
-            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 179);
+            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 150);
             this.ProjectOpn_Lst.TabIndex = 2;
             this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
             // 
@@ -3112,7 +2554,7 @@
             // 
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 221);
+            this.panel4.Location = new System.Drawing.Point(0, 192);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(503, 33);
             this.panel4.TabIndex = 13;
@@ -3143,7 +2585,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -3153,7 +2595,7 @@
             this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
-            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 254);
+            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 225);
             this.AddItemswf_Txt.Name = "AddItemswf_Txt";
             this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -3173,7 +2615,7 @@
             this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateXMLwf_btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.White;
-            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 544);
+            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 515);
             this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
             this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
             this.CreateXMLwf_btn.TabIndex = 4;
@@ -3186,7 +2628,7 @@
             this.panel7.Controls.Add(this.AddItemwf_Btn);
             this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 575);
+            this.panel7.Location = new System.Drawing.Point(0, 546);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(503, 37);
             this.panel7.TabIndex = 16;
@@ -3227,7 +2669,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 612);
+            this.panel11.Size = new System.Drawing.Size(10, 583);
             this.panel11.TabIndex = 23;
             // 
             // panel19
@@ -3240,7 +2682,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel19.Location = new System.Drawing.Point(1154, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(172, 612);
+            this.panel19.Size = new System.Drawing.Size(172, 583);
             this.panel19.TabIndex = 29;
             // 
             // TmpFile_Txt
@@ -3262,7 +2704,7 @@
             this.Timeline_Lst.ItemHeight = 16;
             this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
             this.Timeline_Lst.Name = "Timeline_Lst";
-            this.Timeline_Lst.Size = new System.Drawing.Size(172, 579);
+            this.Timeline_Lst.Size = new System.Drawing.Size(172, 550);
             this.Timeline_Lst.TabIndex = 22;
             this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
             // 
@@ -3277,7 +2719,7 @@
             this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetTimeline_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 589);
+            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 560);
             this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
             this.ResetTimeline_Btn.Size = new System.Drawing.Size(172, 23);
             this.ResetTimeline_Btn.TabIndex = 24;
@@ -3303,7 +2745,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 23);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3340,7 +2782,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 583);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3360,7 +2802,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 583);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3375,7 +2817,7 @@
             this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 522);
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 493);
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
@@ -3395,7 +2837,7 @@
             this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 552);
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 523);
             this.SaveRoute_Btn.Name = "SaveRoute_Btn";
             this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveRoute_Btn.TabIndex = 25;
@@ -3415,7 +2857,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 143);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 439);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 410);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3447,7 +2889,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 582);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 553);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3537,7 +2979,7 @@
             this.Json_Tab.ForeColor = System.Drawing.Color.White;
             this.Json_Tab.Location = new System.Drawing.Point(4, 23);
             this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Json_Tab.TabIndex = 10;
             this.Json_Tab.Text = "JSON";
             // 
@@ -3550,7 +2992,7 @@
             this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbOutB.Location = new System.Drawing.Point(0, 320);
             this.WbOutB.Name = "WbOutB";
-            this.WbOutB.Size = new System.Drawing.Size(1126, 270);
+            this.WbOutB.Size = new System.Drawing.Size(1126, 241);
             this.WbOutB.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
@@ -3742,7 +3184,7 @@
             this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
             this.JsonList_Pnl.Name = "JsonList_Pnl";
-            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 484);
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 455);
             this.JsonList_Pnl.TabIndex = 8;
             this.JsonList_Pnl.Visible = false;
             // 
@@ -3757,7 +3199,7 @@
             this.TableJson_Lst.ItemHeight = 14;
             this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
             this.TableJson_Lst.Name = "TableJson_Lst";
-            this.TableJson_Lst.Size = new System.Drawing.Size(200, 452);
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 423);
             this.TableJson_Lst.TabIndex = 25;
             this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
             // 
@@ -4072,7 +3514,7 @@
             this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 590);
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 561);
             this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
             this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
             this.JsonUsrAgt_Txt.TabIndex = 0;
@@ -4268,7 +3710,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 23);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -4279,7 +3721,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 592);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 563);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -4290,7 +3732,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 592);
+            this.groupBox5.Size = new System.Drawing.Size(328, 563);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -4331,7 +3773,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 571);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 542);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -4700,7 +4142,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 592);
+            this.panel26.Size = new System.Drawing.Size(10, 563);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
@@ -4710,7 +4152,7 @@
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 592);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 563);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
             // groupBox6
@@ -4722,7 +4164,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox6.Location = new System.Drawing.Point(0, 393);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 199);
+            this.groupBox6.Size = new System.Drawing.Size(244, 170);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
@@ -4916,7 +4358,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 592);
+            this.panel25.Size = new System.Drawing.Size(10, 563);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -4926,7 +4368,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 592);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 563);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -4936,7 +4378,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 559);
+            this.groupBox3.Size = new System.Drawing.Size(714, 530);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -4966,7 +4408,7 @@
             this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 509);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
             // label32
@@ -5174,7 +4616,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 559);
+            this.panel27.Location = new System.Drawing.Point(0, 530);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -5221,7 +4663,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 602);
+            this.panel24.Location = new System.Drawing.Point(10, 573);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -5241,7 +4683,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 612);
+            this.panel22.Size = new System.Drawing.Size(10, 583);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -5250,7 +4692,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 612);
+            this.panel21.Size = new System.Drawing.Size(10, 583);
             this.panel21.TabIndex = 20;
             // 
             // Status_Strip
@@ -5280,16 +4722,6 @@
             this.Status_Strip.SizingGrip = false;
             this.Status_Strip.TabIndex = 14;
             this.Status_Strip.Text = "statusStrip1";
-            // 
-            // TtsButton_Sts
-            // 
-            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
-            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TtsButton_Sts.Name = "TtsButton_Sts";
-            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
-            this.TtsButton_Sts.Text = "Tools";
-            this.TtsButton_Sts.ToolTipText = "Choose an action";
             // 
             // URLtxt_txt
             // 
@@ -5452,7 +4884,8 @@
             this.GoFeed_Txt,
             this.GoFeed_Btn,
             this.toolStripSeparator20,
-            this.ToolsFeed_Mnu});
+            this.ToolsFeed_Mnu,
+            this.JavaScriptFeed_Btn});
             this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_1.Name = "Tools_TAB_1";
             this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
@@ -5460,19 +4893,6 @@
             this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 29);
             this.Tools_TAB_1.TabIndex = 14;
             this.Tools_TAB_1.Visible = false;
-            // 
-            // HomeFeed_Btn
-            // 
-            this.HomeFeed_Btn.AutoToolTip = false;
-            this.HomeFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.HomeFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeFeed_Btn.ForeColor = System.Drawing.Color.White;
-            this.HomeFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("HomeFeed_Btn.Image")));
-            this.HomeFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HomeFeed_Btn.Name = "HomeFeed_Btn";
-            this.HomeFeed_Btn.Size = new System.Drawing.Size(48, 22);
-            this.HomeFeed_Btn.Text = "Home";
-            this.HomeFeed_Btn.Click += new System.EventHandler(this.HomeFeed_Btn_Click);
             // 
             // toolStripSeparator5
             // 
@@ -5497,20 +4917,6 @@
             this.CategorieFeed_Cbx.Name = "CategorieFeed_Cbx";
             this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 24);
             // 
-            // CreatCategorie_Btn
-            // 
-            this.CreatCategorie_Btn.AutoToolTip = false;
-            this.CreatCategorie_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CreatCategorie_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatCategorie_Btn.ForeColor = System.Drawing.Color.White;
-            this.CreatCategorie_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreatCategorie_Btn.Image")));
-            this.CreatCategorie_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CreatCategorie_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.CreatCategorie_Btn.Name = "CreatCategorie_Btn";
-            this.CreatCategorie_Btn.Size = new System.Drawing.Size(54, 20);
-            this.CreatCategorie_Btn.Text = "Create";
-            this.CreatCategorie_Btn.Click += new System.EventHandler(this.CreatCategorie_Btn_Click);
-            // 
             // NewCategory_Txt
             // 
             this.NewCategory_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -5522,20 +4928,6 @@
             this.NewCategory_Txt.Text = "new category";
             this.NewCategory_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NewCategory_Txt.Click += new System.EventHandler(this.NewCategory_Txt_Click);
-            // 
-            // AddFeed_Btn
-            // 
-            this.AddFeed_Btn.AutoToolTip = false;
-            this.AddFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddFeed_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddFeed_Btn.Image")));
-            this.AddFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AddFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.AddFeed_Btn.Name = "AddFeed_Btn";
-            this.AddFeed_Btn.Size = new System.Drawing.Size(72, 20);
-            this.AddFeed_Btn.Text = "Add Feed";
-            this.AddFeed_Btn.Click += new System.EventHandler(this.AddFeed_Btn_Click);
             // 
             // NewFeed_Txt
             // 
@@ -5549,39 +4941,10 @@
             this.NewFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NewFeed_Txt.Click += new System.EventHandler(this.NewFeed_Txt_Click);
             // 
-            // ManageFeed_Btn
-            // 
-            this.ManageFeed_Btn.AutoToolTip = false;
-            this.ManageFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ManageFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManageFeed_Btn.ForeColor = System.Drawing.Color.White;
-            this.ManageFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("ManageFeed_Btn.Image")));
-            this.ManageFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ManageFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.ManageFeed_Btn.Name = "ManageFeed_Btn";
-            this.ManageFeed_Btn.Size = new System.Drawing.Size(94, 20);
-            this.ManageFeed_Btn.Text = "Manage feed";
-            this.ManageFeed_Btn.Click += new System.EventHandler(this.ManageFeed_Btn_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // DeleteCatfeed_Btn
-            // 
-            this.DeleteCatfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DeleteCatfeed_Btn.Enabled = false;
-            this.DeleteCatfeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteCatfeed_Btn.ForeColor = System.Drawing.Color.Red;
-            this.DeleteCatfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteCatfeed_Btn.Image")));
-            this.DeleteCatfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteCatfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.DeleteCatfeed_Btn.Name = "DeleteCatfeed_Btn";
-            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(95, 20);
-            this.DeleteCatfeed_Btn.Text = "Del Category";
-            this.DeleteCatfeed_Btn.Visible = false;
-            this.DeleteCatfeed_Btn.Click += new System.EventHandler(this.DeleteCatfeed_Btn_Click);
             // 
             // Separator5
             // 
@@ -5589,40 +4952,11 @@
             this.Separator5.Size = new System.Drawing.Size(6, 25);
             this.Separator5.Visible = false;
             // 
-            // DeleteURLfeed_Btn
-            // 
-            this.DeleteURLfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DeleteURLfeed_Btn.Enabled = false;
-            this.DeleteURLfeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteURLfeed_Btn.ForeColor = System.Drawing.Color.Red;
-            this.DeleteURLfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteURLfeed_Btn.Image")));
-            this.DeleteURLfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteURLfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.DeleteURLfeed_Btn.Name = "DeleteURLfeed_Btn";
-            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(60, 20);
-            this.DeleteURLfeed_Btn.Text = "Del URL";
-            this.DeleteURLfeed_Btn.Visible = false;
-            this.DeleteURLfeed_Btn.Click += new System.EventHandler(this.DeleteURLfeed_Btn_Click);
-            // 
             // Separator4
             // 
             this.Separator4.Name = "Separator4";
             this.Separator4.Size = new System.Drawing.Size(6, 25);
             this.Separator4.Visible = false;
-            // 
-            // CollapseTitleFeed_Btn
-            // 
-            this.CollapseTitleFeed_Btn.AutoToolTip = false;
-            this.CollapseTitleFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CollapseTitleFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CollapseTitleFeed_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.CollapseTitleFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CollapseTitleFeed_Btn.Image")));
-            this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
-            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(87, 20);
-            this.CollapseTitleFeed_Btn.Text = "Collapse On";
-            this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
             // 
             // GoFeed_Txt
             // 
@@ -5635,88 +4969,10 @@
             this.GoFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GoFeed_Txt.Click += new System.EventHandler(this.GoFeed_Txt_Click);
             // 
-            // GoFeed_Btn
-            // 
-            this.GoFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoFeed_Btn.ForeColor = System.Drawing.Color.White;
-            this.GoFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("GoFeed_Btn.Image")));
-            this.GoFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GoFeed_Btn.Name = "GoFeed_Btn";
-            this.GoFeed_Btn.Size = new System.Drawing.Size(28, 22);
-            this.GoFeed_Btn.Text = "Go";
-            this.GoFeed_Btn.Click += new System.EventHandler(this.GoFeed_Btn_Click);
-            // 
             // toolStripSeparator20
             // 
             this.toolStripSeparator20.Name = "toolStripSeparator20";
             this.toolStripSeparator20.Size = new System.Drawing.Size(6, 25);
-            // 
-            // ToolsFeed_Mnu
-            // 
-            this.ToolsFeed_Mnu.AutoToolTip = false;
-            this.ToolsFeed_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToolsFeed_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CopyURLfeed_Mnu,
-            this.OpnFileCategory_Btn,
-            this.TraductPageFeed_Btn,
-            this.toolStripSeparator19,
-            this.SpeakOpenPnl_Btn,
-            this.toolStripSeparator4,
-            this.JavaScriptFeedToggle_Btn});
-            this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.White;
-            this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
-            this.ToolsFeed_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolsFeed_Mnu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.ToolsFeed_Mnu.Name = "ToolsFeed_Mnu";
-            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(55, 20);
-            this.ToolsFeed_Mnu.Text = "Tools";
-            // 
-            // CopyURLfeed_Mnu
-            // 
-            this.CopyURLfeed_Mnu.Name = "CopyURLfeed_Mnu";
-            this.CopyURLfeed_Mnu.Size = new System.Drawing.Size(198, 22);
-            this.CopyURLfeed_Mnu.Text = "Copy URL";
-            this.CopyURLfeed_Mnu.Click += new System.EventHandler(this.CopyURLfeed_Mnu_Click);
-            // 
-            // OpnFileCategory_Btn
-            // 
-            this.OpnFileCategory_Btn.Name = "OpnFileCategory_Btn";
-            this.OpnFileCategory_Btn.Size = new System.Drawing.Size(198, 22);
-            this.OpnFileCategory_Btn.Text = "Open File Category";
-            this.OpnFileCategory_Btn.Click += new System.EventHandler(this.OpnFileCategory_Btn_Click);
-            // 
-            // TraductPageFeed_Btn
-            // 
-            this.TraductPageFeed_Btn.Name = "TraductPageFeed_Btn";
-            this.TraductPageFeed_Btn.Size = new System.Drawing.Size(198, 22);
-            this.TraductPageFeed_Btn.Text = "Traduct Page";
-            this.TraductPageFeed_Btn.Click += new System.EventHandler(this.TraductPageFeed_Btn_Click);
-            // 
-            // toolStripSeparator19
-            // 
-            this.toolStripSeparator19.Name = "toolStripSeparator19";
-            this.toolStripSeparator19.Size = new System.Drawing.Size(195, 6);
-            // 
-            // SpeakOpenPnl_Btn
-            // 
-            this.SpeakOpenPnl_Btn.Name = "SpeakOpenPnl_Btn";
-            this.SpeakOpenPnl_Btn.Size = new System.Drawing.Size(198, 22);
-            this.SpeakOpenPnl_Btn.Text = "Speak";
-            this.SpeakOpenPnl_Btn.Click += new System.EventHandler(this.SpeakOpenPnl_Btn_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(195, 6);
-            // 
-            // JavaScriptFeedToggle_Btn
-            // 
-            this.JavaScriptFeedToggle_Btn.Name = "JavaScriptFeedToggle_Btn";
-            this.JavaScriptFeedToggle_Btn.Size = new System.Drawing.Size(198, 22);
-            this.JavaScriptFeedToggle_Btn.Text = "JavaScript Enable";
-            this.JavaScriptFeedToggle_Btn.Click += new System.EventHandler(this.JavaScriptFeedToggle_Btn_Click);
             // 
             // Tools_TAB_3
             // 
@@ -5749,6 +5005,245 @@
             this.Tools_TAB_3.Size = new System.Drawing.Size(1334, 31);
             this.Tools_TAB_3.TabIndex = 15;
             this.Tools_TAB_3.Visible = false;
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripSeparator21
+            // 
+            this.toolStripSeparator21.Name = "toolStripSeparator21";
+            this.toolStripSeparator21.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(161, 28);
+            this.toolStripLabel2.Text = "Diagram Theme Select:";
+            // 
+            // ThemDiag_Cbx
+            // 
+            this.ThemDiag_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ThemDiag_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ThemDiag_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ThemDiag_Cbx.ForeColor = System.Drawing.Color.Lime;
+            this.ThemDiag_Cbx.Items.AddRange(new object[] {
+            "amiga",
+            "hacker",
+            "crt-green",
+            "crt-amber",
+            "cloudscape-design",
+            "cyborg",
+            "materia",
+            "materia-outline",
+            "minty",
+            "reddress-darkblue",
+            "reddress-lightred",
+            "sandstone",
+            "spacelab",
+            "superhero",
+            "superhero-outline",
+            "united"});
+            this.ThemDiag_Cbx.Margin = new System.Windows.Forms.Padding(0, 3, 1, 5);
+            this.ThemDiag_Cbx.Name = "ThemDiag_Cbx";
+            this.ThemDiag_Cbx.Size = new System.Drawing.Size(150, 23);
+            // 
+            // CharsetPlant_Txt
+            // 
+            this.CharsetPlant_Txt.AutoSize = false;
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.DarkGray;
+            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
+            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
+            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
+            this.CharsetPlant_Txt.Text = "-charset UTF-8";
+            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Timo
+            // 
+            this.Timo.Interval = 5000;
+            this.Timo.Tick += new System.EventHandler(this.Timo_Tick);
+            // 
+            // Tools_TAB_4
+            // 
+            this.Tools_TAB_4.AutoSize = false;
+            this.Tools_TAB_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Tools_TAB_4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.Tools_TAB_4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MapProject_Tls,
+            this.FilesMap_Mnu,
+            this.ToolsMap_Mnu,
+            this.GmapProvider_Cbx,
+            this.toolStripLabel3,
+            this.LatLon_Txt,
+            this.toolStripLabel5,
+            this.OrderLL_txt,
+            this.GoLatLong_Tls,
+            this.toolStripSeparator23,
+            this.toolStripLabel4,
+            this.KeywordMap_Txt,
+            this.GoWord_Tls,
+            this.toolStripSeparator27,
+            this.toolStripLabel6,
+            this.ZoomValMap_Lbl});
+            this.Tools_TAB_4.Location = new System.Drawing.Point(0, 0);
+            this.Tools_TAB_4.Name = "Tools_TAB_4";
+            this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
+            this.Tools_TAB_4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.Tools_TAB_4.Size = new System.Drawing.Size(1334, 29);
+            this.Tools_TAB_4.TabIndex = 16;
+            this.Tools_TAB_4.Visible = false;
+            // 
+            // GmapProvider_Cbx
+            // 
+            this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.GmapProvider_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GmapProvider_Cbx.ForeColor = System.Drawing.Color.White;
+            this.GmapProvider_Cbx.Items.AddRange(new object[] {
+            "BingHybridMap",
+            "BingMap",
+            "BingOSMap",
+            "BingSatelliteMap",
+            "GoogleMap",
+            "GoogleSatelliteMap",
+            "GoogleTerrainMap",
+            "OpenCycleLandscapeMap",
+            "OpenCycleMap",
+            "OpenCycleTransportMap",
+            "OpenSeaMapHybrid",
+            "OpenStreet4UMap",
+            "OpenStreetMap",
+            "WikiMapiaMap",
+            "CzechGeographicMap",
+            "ArcGIS_Imagery_World_2D",
+            "ArcGIS_StreetMap_World_2D",
+            "ArcGIS_World_Physical",
+            "ArcGIS_World_Shaded_Relief",
+            "ArcGIS_World_Street",
+            "ArcGIS_World_Terrain_Base",
+            "ArcGIS_World_Topo"});
+            this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
+            this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 25);
+            this.GmapProvider_Cbx.Text = "OpenStreetMap";
+            this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel3.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(56, 22);
+            this.toolStripLabel3.Text = "lat/Lon";
+            // 
+            // LatLon_Txt
+            // 
+            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.LatLon_Txt.Name = "LatLon_Txt";
+            this.LatLon_Txt.Size = new System.Drawing.Size(200, 25);
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel5.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(46, 22);
+            this.toolStripLabel5.Text = "Order";
+            // 
+            // OrderLL_txt
+            // 
+            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.OrderLL_txt.Name = "OrderLL_txt";
+            this.OrderLL_txt.Size = new System.Drawing.Size(45, 25);
+            this.OrderLL_txt.Text = "lalo";
+            this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // toolStripSeparator23
+            // 
+            this.toolStripSeparator23.Name = "toolStripSeparator23";
+            this.toolStripSeparator23.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel4.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(41, 22);
+            this.toolStripLabel4.Text = "word";
+            // 
+            // KeywordMap_Txt
+            // 
+            this.KeywordMap_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.KeywordMap_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.KeywordMap_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.KeywordMap_Txt.Name = "KeywordMap_Txt";
+            this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripSeparator27
+            // 
+            this.toolStripSeparator27.Name = "toolStripSeparator27";
+            this.toolStripSeparator27.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel6.Text = "Zoom";
+            // 
+            // ZoomValMap_Lbl
+            // 
+            this.ZoomValMap_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ZoomValMap_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ZoomValMap_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomValMap_Lbl.ForeColor = System.Drawing.Color.Fuchsia;
+            this.ZoomValMap_Lbl.Name = "ZoomValMap_Lbl";
+            this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
+            this.ZoomValMap_Lbl.Text = "3";
+            this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AddURLink_Btn
+            // 
+            this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
+            this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.AddURLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.AddURLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddURLink_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddURLink_Btn.ForeColor = System.Drawing.Color.White;
+            this.AddURLink_Btn.Image = global::Ostium.Properties.Resources.BookmarkUp;
+            this.AddURLink_Btn.Location = new System.Drawing.Point(980, 0);
+            this.AddURLink_Btn.MaximumSize = new System.Drawing.Size(24, 24);
+            this.AddURLink_Btn.Name = "AddURLink_Btn";
+            this.AddURLink_Btn.Size = new System.Drawing.Size(24, 24);
+            this.AddURLink_Btn.TabIndex = 8;
+            this.AddURLink_Btn.UseVisualStyleBackColor = false;
+            this.AddURLink_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
+            // 
+            // TtsButton_Sts
+            // 
+            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
+            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TtsButton_Sts.Name = "TtsButton_Sts";
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
+            this.TtsButton_Sts.Text = "Tools";
+            this.TtsButton_Sts.ToolTipText = "Choose an action";
             // 
             // NewProject_Tls
             // 
@@ -5866,11 +5361,6 @@
             this.ExportDiag_Btn.Text = "Export Diagram";
             this.ExportDiag_Btn.Click += new System.EventHandler(this.ExportDiag_Btn_Click);
             // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
-            // 
             // OpnSprites_Btn
             // 
             this.OpnSprites_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -5880,11 +5370,6 @@
             this.OpnSprites_Btn.Size = new System.Drawing.Size(28, 28);
             this.OpnSprites_Btn.Text = "Sprites";
             this.OpnSprites_Btn.Click += new System.EventHandler(this.OpnSprites_Btn_Click);
-            // 
-            // toolStripSeparator21
-            // 
-            this.toolStripSeparator21.Name = "toolStripSeparator21";
-            this.toolStripSeparator21.Size = new System.Drawing.Size(6, 31);
             // 
             // File_Tls
             // 
@@ -5919,41 +5404,6 @@
             this.OpnPlantUMLFile_Btn.Size = new System.Drawing.Size(192, 22);
             this.OpnPlantUMLFile_Btn.Text = "Open PlantUML file";
             this.OpnPlantUMLFile_Btn.Click += new System.EventHandler(this.OpnPlantUMLFile_Btn_Click);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel2.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(161, 28);
-            this.toolStripLabel2.Text = "Diagram Theme Select:";
-            // 
-            // ThemDiag_Cbx
-            // 
-            this.ThemDiag_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ThemDiag_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ThemDiag_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ThemDiag_Cbx.ForeColor = System.Drawing.Color.Lime;
-            this.ThemDiag_Cbx.Items.AddRange(new object[] {
-            "amiga",
-            "hacker",
-            "crt-green",
-            "crt-amber",
-            "cloudscape-design",
-            "cyborg",
-            "materia",
-            "materia-outline",
-            "minty",
-            "reddress-darkblue",
-            "reddress-lightred",
-            "sandstone",
-            "spacelab",
-            "superhero",
-            "superhero-outline",
-            "united"});
-            this.ThemDiag_Cbx.Margin = new System.Windows.Forms.Padding(0, 3, 1, 5);
-            this.ThemDiag_Cbx.Name = "ThemDiag_Cbx";
-            this.ThemDiag_Cbx.Size = new System.Drawing.Size(150, 23);
             // 
             // DeleteProject_Tls
             // 
@@ -6020,55 +5470,6 @@
             this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(124, 22);
             this.PlantUmlLicense_Mnu.Text = "License";
             this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
-            // 
-            // CharsetPlant_Txt
-            // 
-            this.CharsetPlant_Txt.AutoSize = false;
-            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.DarkGray;
-            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
-            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
-            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
-            this.CharsetPlant_Txt.Text = "-charset UTF-8";
-            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // Timo
-            // 
-            this.Timo.Interval = 5000;
-            this.Timo.Tick += new System.EventHandler(this.Timo_Tick);
-            // 
-            // Tools_TAB_4
-            // 
-            this.Tools_TAB_4.AutoSize = false;
-            this.Tools_TAB_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tools_TAB_4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_TAB_4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Tools_TAB_4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MapProject_Tls,
-            this.FilesMap_Mnu,
-            this.ToolsMap_Mnu,
-            this.GmapProvider_Cbx,
-            this.toolStripLabel3,
-            this.LatLon_Txt,
-            this.toolStripLabel5,
-            this.OrderLL_txt,
-            this.GoLatLong_Tls,
-            this.toolStripSeparator23,
-            this.toolStripLabel4,
-            this.KeywordMap_Txt,
-            this.GoWord_Tls,
-            this.toolStripSeparator27,
-            this.toolStripLabel6,
-            this.ZoomValMap_Lbl});
-            this.Tools_TAB_4.Location = new System.Drawing.Point(0, 0);
-            this.Tools_TAB_4.Name = "Tools_TAB_4";
-            this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
-            this.Tools_TAB_4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.Tools_TAB_4.Size = new System.Drawing.Size(1334, 29);
-            this.Tools_TAB_4.TabIndex = 16;
-            this.Tools_TAB_4.Visible = false;
             // 
             // MapProject_Tls
             // 
@@ -6329,75 +5730,6 @@
             this.ClearMap_Tls.Text = "Clear Map";
             this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
             // 
-            // GmapProvider_Cbx
-            // 
-            this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GmapProvider_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GmapProvider_Cbx.ForeColor = System.Drawing.Color.White;
-            this.GmapProvider_Cbx.Items.AddRange(new object[] {
-            "BingHybridMap",
-            "BingMap",
-            "BingOSMap",
-            "BingSatelliteMap",
-            "GoogleMap",
-            "GoogleSatelliteMap",
-            "GoogleTerrainMap",
-            "OpenCycleLandscapeMap",
-            "OpenCycleMap",
-            "OpenCycleTransportMap",
-            "OpenSeaMapHybrid",
-            "OpenStreet4UMap",
-            "OpenStreetMap",
-            "WikiMapiaMap",
-            "CzechGeographicMap",
-            "ArcGIS_Imagery_World_2D",
-            "ArcGIS_StreetMap_World_2D",
-            "ArcGIS_World_Physical",
-            "ArcGIS_World_Shaded_Relief",
-            "ArcGIS_World_Street",
-            "ArcGIS_World_Terrain_Base",
-            "ArcGIS_World_Topo"});
-            this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
-            this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 25);
-            this.GmapProvider_Cbx.Text = "OpenStreetMap";
-            this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel3.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(56, 22);
-            this.toolStripLabel3.Text = "lat/Lon";
-            // 
-            // LatLon_Txt
-            // 
-            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LatLon_Txt.Name = "LatLon_Txt";
-            this.LatLon_Txt.Size = new System.Drawing.Size(200, 25);
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel5.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(46, 22);
-            this.toolStripLabel5.Text = "Order";
-            // 
-            // OrderLL_txt
-            // 
-            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.OrderLL_txt.Name = "OrderLL_txt";
-            this.OrderLL_txt.Size = new System.Drawing.Size(45, 25);
-            this.OrderLL_txt.Text = "lalo";
-            this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // GoLatLong_Tls
             // 
             this.GoLatLong_Tls.AutoSize = false;
@@ -6410,28 +5742,6 @@
             this.GoLatLong_Tls.Size = new System.Drawing.Size(50, 22);
             this.GoLatLong_Tls.Text = "go";
             this.GoLatLong_Tls.Click += new System.EventHandler(this.GoLatLong_Tls_Click);
-            // 
-            // toolStripSeparator23
-            // 
-            this.toolStripSeparator23.Name = "toolStripSeparator23";
-            this.toolStripSeparator23.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel4.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(41, 22);
-            this.toolStripLabel4.Text = "word";
-            // 
-            // KeywordMap_Txt
-            // 
-            this.KeywordMap_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.KeywordMap_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.KeywordMap_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.KeywordMap_Txt.Name = "KeywordMap_Txt";
-            this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 25);
             // 
             // GoWord_Tls
             // 
@@ -6446,29 +5756,366 @@
             this.GoWord_Tls.Text = "go";
             this.GoWord_Tls.Click += new System.EventHandler(this.GoWord_Tls_Click);
             // 
-            // toolStripSeparator27
+            // Console_Btn
             // 
-            this.toolStripSeparator27.Name = "toolStripSeparator27";
-            this.toolStripSeparator27.Size = new System.Drawing.Size(6, 25);
+            this.Console_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Console_Btn.Image = global::Ostium.Properties.Resources.cmdprompt;
+            this.Console_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Console_Btn.Name = "Console_Btn";
+            this.Console_Btn.Size = new System.Drawing.Size(23, 21);
+            this.Console_Btn.Text = "Prompt";
+            this.Console_Btn.Click += new System.EventHandler(this.Console_Btn_Click);
             // 
-            // toolStripLabel6
+            // Mute_Btn
             // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel6.Text = "Zoom";
+            this.Mute_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Mute_Btn.Image = global::Ostium.Properties.Resources.Unmute;
+            this.Mute_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Mute_Btn.Name = "Mute_Btn";
+            this.Mute_Btn.Size = new System.Drawing.Size(23, 21);
+            this.Mute_Btn.Text = "Mute/Unmute";
+            this.Mute_Btn.Click += new System.EventHandler(this.Mute_Btn_Click);
             // 
-            // ZoomValMap_Lbl
+            // Word_Construct_URL_Btn
             // 
-            this.ZoomValMap_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ZoomValMap_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ZoomValMap_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZoomValMap_Lbl.ForeColor = System.Drawing.Color.Fuchsia;
-            this.ZoomValMap_Lbl.Name = "ZoomValMap_Lbl";
-            this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
-            this.ZoomValMap_Lbl.Text = "3";
-            this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Word_Construct_URL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Word_Construct_URL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Word_Construct_URL_Btn.ForeColor = System.Drawing.Color.White;
+            this.Word_Construct_URL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Word_Construct_URL_Btn.Image")));
+            this.Word_Construct_URL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Word_Construct_URL_Btn.Name = "Word_Construct_URL_Btn";
+            this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 21);
+            this.Word_Construct_URL_Btn.Text = "C";
+            this.Word_Construct_URL_Btn.ToolTipText = "Construct URL";
+            this.Word_Construct_URL_Btn.Click += new System.EventHandler(this.Word_Construct_URL_Btn_Click);
+            // 
+            // Tools_Mnu
+            // 
+            this.Tools_Mnu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Tools_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Tools_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyURL_Mnu,
+            this.TraductPage_Btn,
+            this.UnshortUrl_Btn,
+            this.WebpageToPng_Btn,
+            this.toolStripSeparator8,
+            this.HTMLtxt_Btn,
+            this.OpnGroupFrm_Btn,
+            this.GoogleDork_Btn,
+            this.toolStripSeparator7,
+            this.Cookie_Btn,
+            this.SetCookie_Btn,
+            this.toolStripSeparator18,
+            this.OpnFilOnEditor_Btn,
+            this.OpenListLink_Btn,
+            this.Memo_Btn,
+            this.toolStripSeparator9,
+            this.Editor_Btn,
+            this.toolStripSeparator15,
+            this.OpnDirectory_Btn,
+            this.IndexDir_Btn,
+            this.toolStripSeparator10,
+            this.FetchDomainInfo_Btn,
+            this.toolStripSeparator33,
+            this.JavaScriptToggle_Btn,
+            this.Bkmkl_Mnu,
+            this.InjectScript_Btn,
+            this.OpenScriptEdit_Btn,
+            this.RegexCmd_Btn,
+            this.Highlit_Mnu,
+            this.toolStripSeparator11,
+            this.ArchiveDirectory_Btn});
+            this.Tools_Mnu.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_Mnu.ForeColor = System.Drawing.Color.White;
+            this.Tools_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("Tools_Mnu.Image")));
+            this.Tools_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Tools_Mnu.Name = "Tools_Mnu";
+            this.Tools_Mnu.Size = new System.Drawing.Size(55, 21);
+            this.Tools_Mnu.Text = "Tools";
+            // 
+            // CopyURL_Mnu
+            // 
+            this.CopyURL_Mnu.Name = "CopyURL_Mnu";
+            this.CopyURL_Mnu.Size = new System.Drawing.Size(215, 22);
+            this.CopyURL_Mnu.Text = "Copy URL";
+            this.CopyURL_Mnu.Click += new System.EventHandler(this.CopyURL_Mnu_Click);
+            // 
+            // TraductPage_Btn
+            // 
+            this.TraductPage_Btn.Name = "TraductPage_Btn";
+            this.TraductPage_Btn.Size = new System.Drawing.Size(215, 22);
+            this.TraductPage_Btn.Text = "Traduct Page";
+            this.TraductPage_Btn.Click += new System.EventHandler(this.TraductPage_Btn_Click);
+            // 
+            // UnshortUrl_Btn
+            // 
+            this.UnshortUrl_Btn.Name = "UnshortUrl_Btn";
+            this.UnshortUrl_Btn.Size = new System.Drawing.Size(215, 22);
+            this.UnshortUrl_Btn.Text = "Unshorten URL";
+            this.UnshortUrl_Btn.Click += new System.EventHandler(this.UnshortUrl_Btn_Click);
+            // 
+            // WebpageToPng_Btn
+            // 
+            this.WebpageToPng_Btn.Name = "WebpageToPng_Btn";
+            this.WebpageToPng_Btn.Size = new System.Drawing.Size(215, 22);
+            this.WebpageToPng_Btn.Text = "Webpage to Png";
+            this.WebpageToPng_Btn.Click += new System.EventHandler(this.WebpageToPng_Btn_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(212, 6);
+            // 
+            // HTMLtxt_Btn
+            // 
+            this.HTMLtxt_Btn.Name = "HTMLtxt_Btn";
+            this.HTMLtxt_Btn.Size = new System.Drawing.Size(215, 22);
+            this.HTMLtxt_Btn.Text = "HTML Text";
+            this.HTMLtxt_Btn.Click += new System.EventHandler(this.HTMLtxt_Btn_Click);
+            // 
+            // OpnGroupFrm_Btn
+            // 
+            this.OpnGroupFrm_Btn.Name = "OpnGroupFrm_Btn";
+            this.OpnGroupFrm_Btn.Size = new System.Drawing.Size(215, 22);
+            this.OpnGroupFrm_Btn.Text = "Multiple Windows";
+            this.OpnGroupFrm_Btn.Click += new System.EventHandler(this.OpnGroupFrm_Btn_Click);
+            // 
+            // GoogleDork_Btn
+            // 
+            this.GoogleDork_Btn.Name = "GoogleDork_Btn";
+            this.GoogleDork_Btn.Size = new System.Drawing.Size(215, 22);
+            this.GoogleDork_Btn.Text = "Google Dork";
+            this.GoogleDork_Btn.Click += new System.EventHandler(this.GoogleDork_Btn_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(212, 6);
+            // 
+            // Cookie_Btn
+            // 
+            this.Cookie_Btn.Name = "Cookie_Btn";
+            this.Cookie_Btn.Size = new System.Drawing.Size(215, 22);
+            this.Cookie_Btn.Text = "Cookie";
+            this.Cookie_Btn.Click += new System.EventHandler(this.Cookie_Btn_Click);
+            // 
+            // SetCookie_Btn
+            // 
+            this.SetCookie_Btn.Name = "SetCookie_Btn";
+            this.SetCookie_Btn.Size = new System.Drawing.Size(215, 22);
+            this.SetCookie_Btn.Text = "Add or Update Cookie";
+            this.SetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            this.toolStripSeparator18.Size = new System.Drawing.Size(212, 6);
+            // 
+            // OpnFilOnEditor_Btn
+            // 
+            this.OpnFilOnEditor_Btn.Name = "OpnFilOnEditor_Btn";
+            this.OpnFilOnEditor_Btn.Size = new System.Drawing.Size(215, 22);
+            this.OpnFilOnEditor_Btn.Text = "Open File";
+            this.OpnFilOnEditor_Btn.Click += new System.EventHandler(this.OpnFilOnEditor_Btn_Click);
+            // 
+            // OpenListLink_Btn
+            // 
+            this.OpenListLink_Btn.Name = "OpenListLink_Btn";
+            this.OpenListLink_Btn.Size = new System.Drawing.Size(215, 22);
+            this.OpenListLink_Btn.Text = "Open Links List";
+            this.OpenListLink_Btn.Click += new System.EventHandler(this.OpenListLink_Btn_Click);
+            // 
+            // Memo_Btn
+            // 
+            this.Memo_Btn.Name = "Memo_Btn";
+            this.Memo_Btn.Size = new System.Drawing.Size(215, 22);
+            this.Memo_Btn.Text = "Memo";
+            this.Memo_Btn.Click += new System.EventHandler(this.Memo_Btn_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(212, 6);
+            // 
+            // Editor_Btn
+            // 
+            this.Editor_Btn.Name = "Editor_Btn";
+            this.Editor_Btn.Size = new System.Drawing.Size(215, 22);
+            this.Editor_Btn.Text = "Editor";
+            this.Editor_Btn.Click += new System.EventHandler(this.Editor_Btn_Click);
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(212, 6);
+            // 
+            // OpnDirectory_Btn
+            // 
+            this.OpnDirectory_Btn.Name = "OpnDirectory_Btn";
+            this.OpnDirectory_Btn.Size = new System.Drawing.Size(215, 22);
+            this.OpnDirectory_Btn.Text = "Open Directory";
+            this.OpnDirectory_Btn.Click += new System.EventHandler(this.OpnDirectory_Btn_Click);
+            // 
+            // IndexDir_Btn
+            // 
+            this.IndexDir_Btn.Name = "IndexDir_Btn";
+            this.IndexDir_Btn.Size = new System.Drawing.Size(215, 22);
+            this.IndexDir_Btn.Text = "Index";
+            this.IndexDir_Btn.Click += new System.EventHandler(this.IndexDir_Btn_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(212, 6);
+            // 
+            // FetchDomainInfo_Btn
+            // 
+            this.FetchDomainInfo_Btn.Name = "FetchDomainInfo_Btn";
+            this.FetchDomainInfo_Btn.Size = new System.Drawing.Size(215, 22);
+            this.FetchDomainInfo_Btn.Text = "TXT NS MX A";
+            this.FetchDomainInfo_Btn.Click += new System.EventHandler(this.FetchDomainInfo_Btn_Click);
+            // 
+            // toolStripSeparator33
+            // 
+            this.toolStripSeparator33.Name = "toolStripSeparator33";
+            this.toolStripSeparator33.Size = new System.Drawing.Size(212, 6);
+            // 
+            // JavaScriptToggle_Btn
+            // 
+            this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
+            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(215, 22);
+            this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
+            this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
+            // 
+            // Bkmkl_Mnu
+            // 
+            this.Bkmkl_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnBokmark_Btn,
+            this.CreateBookmark_Btn,
+            this.toolStripSeparator32,
+            this.OpnScriptl_Btn});
+            this.Bkmkl_Mnu.Name = "Bkmkl_Mnu";
+            this.Bkmkl_Mnu.Size = new System.Drawing.Size(215, 22);
+            this.Bkmkl_Mnu.Text = "Bookmarklet";
+            // 
+            // OpnBokmark_Btn
+            // 
+            this.OpnBokmark_Btn.Name = "OpnBokmark_Btn";
+            this.OpnBokmark_Btn.Size = new System.Drawing.Size(158, 22);
+            this.OpnBokmark_Btn.Text = "Open";
+            this.OpnBokmark_Btn.Click += new System.EventHandler(this.OpnBookmark_Btn_Click);
+            // 
+            // CreateBookmark_Btn
+            // 
+            this.CreateBookmark_Btn.Name = "CreateBookmark_Btn";
+            this.CreateBookmark_Btn.Size = new System.Drawing.Size(158, 22);
+            this.CreateBookmark_Btn.Text = "Create";
+            this.CreateBookmark_Btn.Click += new System.EventHandler(this.CreateBokmark_Btn_Click);
+            // 
+            // toolStripSeparator32
+            // 
+            this.toolStripSeparator32.Name = "toolStripSeparator32";
+            this.toolStripSeparator32.Size = new System.Drawing.Size(155, 6);
+            // 
+            // OpnScriptl_Btn
+            // 
+            this.OpnScriptl_Btn.Name = "OpnScriptl_Btn";
+            this.OpnScriptl_Btn.Size = new System.Drawing.Size(158, 22);
+            this.OpnScriptl_Btn.Text = "File Script JS";
+            this.OpnScriptl_Btn.Click += new System.EventHandler(this.OpnScriptl_Btn_Click);
+            // 
+            // InjectScript_Btn
+            // 
+            this.InjectScript_Btn.Name = "InjectScript_Btn";
+            this.InjectScript_Btn.Size = new System.Drawing.Size(215, 22);
+            this.InjectScript_Btn.Text = "InjectScript";
+            this.InjectScript_Btn.Click += new System.EventHandler(this.InjectScript_Btn_Click);
+            // 
+            // OpenScriptEdit_Btn
+            // 
+            this.OpenScriptEdit_Btn.Name = "OpenScriptEdit_Btn";
+            this.OpenScriptEdit_Btn.Size = new System.Drawing.Size(215, 22);
+            this.OpenScriptEdit_Btn.Text = "JS Script edit";
+            this.OpenScriptEdit_Btn.Click += new System.EventHandler(this.OpenScriptEdit_Btn_Click);
+            // 
+            // RegexCmd_Btn
+            // 
+            this.RegexCmd_Btn.Name = "RegexCmd_Btn";
+            this.RegexCmd_Btn.Size = new System.Drawing.Size(215, 22);
+            this.RegexCmd_Btn.Text = "Regex";
+            this.RegexCmd_Btn.Click += new System.EventHandler(this.RegexCmd_Btn_Click);
+            // 
+            // Highlit_Mnu
+            // 
+            this.Highlit_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HiglitAddWord_Btn,
+            this.HiglitInject_Btn});
+            this.Highlit_Mnu.Name = "Highlit_Mnu";
+            this.Highlit_Mnu.Size = new System.Drawing.Size(215, 22);
+            this.Highlit_Mnu.Text = "Highlight";
+            // 
+            // HiglitAddWord_Btn
+            // 
+            this.HiglitAddWord_Btn.Name = "HiglitAddWord_Btn";
+            this.HiglitAddWord_Btn.Size = new System.Drawing.Size(151, 22);
+            this.HiglitAddWord_Btn.Text = "Word";
+            this.HiglitAddWord_Btn.Click += new System.EventHandler(this.HiglitAddWord_Btn_Click);
+            // 
+            // HiglitInject_Btn
+            // 
+            this.HiglitInject_Btn.Name = "HiglitInject_Btn";
+            this.HiglitInject_Btn.Size = new System.Drawing.Size(151, 22);
+            this.HiglitInject_Btn.Text = "Inject Color";
+            this.HiglitInject_Btn.Click += new System.EventHandler(this.HiglitInject_Btn_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(212, 6);
+            // 
+            // ArchiveDirectory_Btn
+            // 
+            this.ArchiveDirectory_Btn.Name = "ArchiveDirectory_Btn";
+            this.ArchiveDirectory_Btn.Size = new System.Drawing.Size(215, 22);
+            this.ArchiveDirectory_Btn.Text = "Backup";
+            this.ArchiveDirectory_Btn.Click += new System.EventHandler(this.ArchiveDirectory_Btn_Click);
+            // 
+            // ToolsOp_Mnu
+            // 
+            this.ToolsOp_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToolsOp_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ForceLinkParent_Btn,
+            this.toolStripSeparator35,
+            this.OpnWorkflowTools_Tls,
+            this.toolStripSeparator17,
+            this.OpnEncFrm,
+            this.toolStripSeparator31,
+            this.KeepTrackViewer_Btn,
+            this.toolStripSeparator34,
+            this.Download_Param,
+            this.History_Param,
+            this.SiteEngament_Param,
+            this.ClrHistory_Param,
+            this.toolStripSeparator12,
+            this.UserAgentChange_Btn,
+            this.Googlebot_Btn,
+            this.toolStripSeparator13,
+            this.EdgeURL_Param,
+            this.AdvancedOption_Param,
+            this.DevTools_Param,
+            this.toolStripSeparator16,
+            this.System_Param,
+            this.OstUpdt_Btn,
+            this.HomePage_Btn,
+            this.toolStripSeparator22,
+            this.Credit_Btn});
+            this.ToolsOp_Mnu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsOp_Mnu.ForeColor = System.Drawing.Color.White;
+            this.ToolsOp_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsOp_Mnu.Image")));
+            this.ToolsOp_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolsOp_Mnu.Name = "ToolsOp_Mnu";
+            this.ToolsOp_Mnu.Size = new System.Drawing.Size(41, 21);
+            this.ToolsOp_Mnu.Text = "°°°";
             // 
             // ForceLinkParent_Btn
             // 
@@ -6481,6 +6128,355 @@
             // 
             this.toolStripSeparator35.Name = "toolStripSeparator35";
             this.toolStripSeparator35.Size = new System.Drawing.Size(250, 6);
+            // 
+            // OpnWorkflowTools_Tls
+            // 
+            this.OpnWorkflowTools_Tls.Name = "OpnWorkflowTools_Tls";
+            this.OpnWorkflowTools_Tls.Size = new System.Drawing.Size(253, 22);
+            this.OpnWorkflowTools_Tls.Text = "Open Workflow tools";
+            this.OpnWorkflowTools_Tls.Click += new System.EventHandler(this.OpnWorkflowTools_Tls_Click);
+            // 
+            // toolStripSeparator17
+            // 
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            this.toolStripSeparator17.Size = new System.Drawing.Size(250, 6);
+            // 
+            // OpnEncFrm
+            // 
+            this.OpnEncFrm.Name = "OpnEncFrm";
+            this.OpnEncFrm.Size = new System.Drawing.Size(253, 22);
+            this.OpnEncFrm.Text = "Encryption";
+            this.OpnEncFrm.Click += new System.EventHandler(this.OpnEncFrm_Click);
+            // 
+            // toolStripSeparator31
+            // 
+            this.toolStripSeparator31.Name = "toolStripSeparator31";
+            this.toolStripSeparator31.Size = new System.Drawing.Size(250, 6);
+            // 
+            // KeepTrackViewer_Btn
+            // 
+            this.KeepTrackViewer_Btn.Name = "KeepTrackViewer_Btn";
+            this.KeepTrackViewer_Btn.Size = new System.Drawing.Size(253, 22);
+            this.KeepTrackViewer_Btn.Text = "Keep Track Viewer";
+            this.KeepTrackViewer_Btn.Click += new System.EventHandler(this.KeepTrackViewer_Btn_Click);
+            // 
+            // toolStripSeparator34
+            // 
+            this.toolStripSeparator34.Name = "toolStripSeparator34";
+            this.toolStripSeparator34.Size = new System.Drawing.Size(250, 6);
+            // 
+            // Download_Param
+            // 
+            this.Download_Param.Name = "Download_Param";
+            this.Download_Param.Size = new System.Drawing.Size(253, 22);
+            this.Download_Param.Text = "Download";
+            this.Download_Param.Click += new System.EventHandler(this.Download_Param_Click);
+            // 
+            // History_Param
+            // 
+            this.History_Param.Name = "History_Param";
+            this.History_Param.Size = new System.Drawing.Size(253, 22);
+            this.History_Param.Text = "History";
+            this.History_Param.Click += new System.EventHandler(this.History_Param_Click);
+            // 
+            // SiteEngament_Param
+            // 
+            this.SiteEngament_Param.Name = "SiteEngament_Param";
+            this.SiteEngament_Param.Size = new System.Drawing.Size(253, 22);
+            this.SiteEngament_Param.Text = "Site Engagement";
+            this.SiteEngament_Param.Click += new System.EventHandler(this.SiteEngament_Param_Click);
+            // 
+            // ClrHistory_Param
+            // 
+            this.ClrHistory_Param.Name = "ClrHistory_Param";
+            this.ClrHistory_Param.Size = new System.Drawing.Size(253, 22);
+            this.ClrHistory_Param.Text = "Clear History";
+            this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(250, 6);
+            // 
+            // UserAgentChange_Btn
+            // 
+            this.UserAgentChange_Btn.Name = "UserAgentChange_Btn";
+            this.UserAgentChange_Btn.Size = new System.Drawing.Size(253, 22);
+            this.UserAgentChange_Btn.Text = "Change User Agent Off";
+            this.UserAgentChange_Btn.Click += new System.EventHandler(this.UserAgentChange_Btn_Click);
+            // 
+            // Googlebot_Btn
+            // 
+            this.Googlebot_Btn.Name = "Googlebot_Btn";
+            this.Googlebot_Btn.Size = new System.Drawing.Size(253, 22);
+            this.Googlebot_Btn.Text = "Googlebot Off";
+            this.Googlebot_Btn.Click += new System.EventHandler(this.Googlebot_Btn_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(250, 6);
+            // 
+            // EdgeURL_Param
+            // 
+            this.EdgeURL_Param.Name = "EdgeURL_Param";
+            this.EdgeURL_Param.Size = new System.Drawing.Size(253, 22);
+            this.EdgeURL_Param.Text = "Edge URLs";
+            this.EdgeURL_Param.Click += new System.EventHandler(this.EdgeURL_Param_Click);
+            // 
+            // AdvancedOption_Param
+            // 
+            this.AdvancedOption_Param.Name = "AdvancedOption_Param";
+            this.AdvancedOption_Param.Size = new System.Drawing.Size(253, 22);
+            this.AdvancedOption_Param.Text = "Advanced Options";
+            this.AdvancedOption_Param.Click += new System.EventHandler(this.AdvancedOption_Param_Click);
+            // 
+            // DevTools_Param
+            // 
+            this.DevTools_Param.Name = "DevTools_Param";
+            this.DevTools_Param.Size = new System.Drawing.Size(253, 22);
+            this.DevTools_Param.Text = "Dev Tools";
+            this.DevTools_Param.Click += new System.EventHandler(this.DevTools_Param_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(250, 6);
+            // 
+            // System_Param
+            // 
+            this.System_Param.Name = "System_Param";
+            this.System_Param.Size = new System.Drawing.Size(253, 22);
+            this.System_Param.Text = "System";
+            this.System_Param.Click += new System.EventHandler(this.System_Param_Click);
+            // 
+            // OstUpdt_Btn
+            // 
+            this.OstUpdt_Btn.Name = "OstUpdt_Btn";
+            this.OstUpdt_Btn.Size = new System.Drawing.Size(253, 22);
+            this.OstUpdt_Btn.Text = "Ostium Update";
+            this.OstUpdt_Btn.Click += new System.EventHandler(this.OstUpdt_Btn_Click);
+            // 
+            // HomePage_Btn
+            // 
+            this.HomePage_Btn.Name = "HomePage_Btn";
+            this.HomePage_Btn.Size = new System.Drawing.Size(253, 22);
+            this.HomePage_Btn.Text = "Home";
+            this.HomePage_Btn.Click += new System.EventHandler(this.HomePage_Btn_Click);
+            // 
+            // toolStripSeparator22
+            // 
+            this.toolStripSeparator22.Name = "toolStripSeparator22";
+            this.toolStripSeparator22.Size = new System.Drawing.Size(250, 6);
+            // 
+            // Credit_Btn
+            // 
+            this.Credit_Btn.Name = "Credit_Btn";
+            this.Credit_Btn.Size = new System.Drawing.Size(253, 22);
+            this.Credit_Btn.Text = "Credits";
+            this.Credit_Btn.Click += new System.EventHandler(this.Credit_Btn_Click);
+            // 
+            // AddURL_Btn
+            // 
+            this.AddURL_Btn.AutoToolTip = false;
+            this.AddURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.AddURL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AddURL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddURL_Btn.ForeColor = System.Drawing.Color.White;
+            this.AddURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddURL_Btn.Image")));
+            this.AddURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AddURL_Btn.Name = "AddURL_Btn";
+            this.AddURL_Btn.Size = new System.Drawing.Size(57, 21);
+            this.AddURL_Btn.Text = "Add DB";
+            this.AddURL_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
+            // 
+            // OpnURL_Btn
+            // 
+            this.OpnURL_Btn.AutoToolTip = false;
+            this.OpnURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.OpnURL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnURL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnURL_Btn.ForeColor = System.Drawing.Color.White;
+            this.OpnURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnURL_Btn.Image")));
+            this.OpnURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnURL_Btn.Name = "OpnURL_Btn";
+            this.OpnURL_Btn.Size = new System.Drawing.Size(65, 21);
+            this.OpnURL_Btn.Text = "Open DB";
+            this.OpnURL_Btn.Click += new System.EventHandler(this.OpnURL_Btn_Click);
+            // 
+            // HomeFeed_Btn
+            // 
+            this.HomeFeed_Btn.AutoToolTip = false;
+            this.HomeFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.HomeFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.HomeFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("HomeFeed_Btn.Image")));
+            this.HomeFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HomeFeed_Btn.Name = "HomeFeed_Btn";
+            this.HomeFeed_Btn.Size = new System.Drawing.Size(48, 22);
+            this.HomeFeed_Btn.Text = "Home";
+            this.HomeFeed_Btn.Click += new System.EventHandler(this.HomeFeed_Btn_Click);
+            // 
+            // CreatCategorie_Btn
+            // 
+            this.CreatCategorie_Btn.AutoToolTip = false;
+            this.CreatCategorie_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CreatCategorie_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatCategorie_Btn.ForeColor = System.Drawing.Color.White;
+            this.CreatCategorie_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreatCategorie_Btn.Image")));
+            this.CreatCategorie_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CreatCategorie_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.CreatCategorie_Btn.Name = "CreatCategorie_Btn";
+            this.CreatCategorie_Btn.Size = new System.Drawing.Size(54, 20);
+            this.CreatCategorie_Btn.Text = "Create";
+            this.CreatCategorie_Btn.Click += new System.EventHandler(this.CreatCategorie_Btn_Click);
+            // 
+            // AddFeed_Btn
+            // 
+            this.AddFeed_Btn.AutoToolTip = false;
+            this.AddFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AddFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.AddFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddFeed_Btn.Image")));
+            this.AddFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AddFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.AddFeed_Btn.Name = "AddFeed_Btn";
+            this.AddFeed_Btn.Size = new System.Drawing.Size(72, 20);
+            this.AddFeed_Btn.Text = "Add Feed";
+            this.AddFeed_Btn.Click += new System.EventHandler(this.AddFeed_Btn_Click);
+            // 
+            // ManageFeed_Btn
+            // 
+            this.ManageFeed_Btn.AutoToolTip = false;
+            this.ManageFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ManageFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManageFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.ManageFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("ManageFeed_Btn.Image")));
+            this.ManageFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ManageFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.ManageFeed_Btn.Name = "ManageFeed_Btn";
+            this.ManageFeed_Btn.Size = new System.Drawing.Size(94, 20);
+            this.ManageFeed_Btn.Text = "Manage feed";
+            this.ManageFeed_Btn.Click += new System.EventHandler(this.ManageFeed_Btn_Click);
+            // 
+            // DeleteCatfeed_Btn
+            // 
+            this.DeleteCatfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteCatfeed_Btn.Enabled = false;
+            this.DeleteCatfeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteCatfeed_Btn.ForeColor = System.Drawing.Color.Red;
+            this.DeleteCatfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteCatfeed_Btn.Image")));
+            this.DeleteCatfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteCatfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.DeleteCatfeed_Btn.Name = "DeleteCatfeed_Btn";
+            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(95, 20);
+            this.DeleteCatfeed_Btn.Text = "Del Category";
+            this.DeleteCatfeed_Btn.Visible = false;
+            this.DeleteCatfeed_Btn.Click += new System.EventHandler(this.DeleteCatfeed_Btn_Click);
+            // 
+            // DeleteURLfeed_Btn
+            // 
+            this.DeleteURLfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteURLfeed_Btn.Enabled = false;
+            this.DeleteURLfeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteURLfeed_Btn.ForeColor = System.Drawing.Color.Red;
+            this.DeleteURLfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteURLfeed_Btn.Image")));
+            this.DeleteURLfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteURLfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.DeleteURLfeed_Btn.Name = "DeleteURLfeed_Btn";
+            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(60, 20);
+            this.DeleteURLfeed_Btn.Text = "Del URL";
+            this.DeleteURLfeed_Btn.Visible = false;
+            this.DeleteURLfeed_Btn.Click += new System.EventHandler(this.DeleteURLfeed_Btn_Click);
+            // 
+            // CollapseTitleFeed_Btn
+            // 
+            this.CollapseTitleFeed_Btn.AutoToolTip = false;
+            this.CollapseTitleFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CollapseTitleFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CollapseTitleFeed_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.CollapseTitleFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CollapseTitleFeed_Btn.Image")));
+            this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
+            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(87, 20);
+            this.CollapseTitleFeed_Btn.Text = "Collapse On";
+            this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
+            // 
+            // GoFeed_Btn
+            // 
+            this.GoFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.GoFeed_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.GoFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("GoFeed_Btn.Image")));
+            this.GoFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GoFeed_Btn.Name = "GoFeed_Btn";
+            this.GoFeed_Btn.Size = new System.Drawing.Size(28, 22);
+            this.GoFeed_Btn.Text = "Go";
+            this.GoFeed_Btn.Click += new System.EventHandler(this.GoFeed_Btn_Click);
+            // 
+            // ToolsFeed_Mnu
+            // 
+            this.ToolsFeed_Mnu.AutoToolTip = false;
+            this.ToolsFeed_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToolsFeed_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyURLfeed_Mnu,
+            this.OpnFileCategory_Btn,
+            this.TraductPageFeed_Btn,
+            this.toolStripSeparator19,
+            this.SpeakOpenPnl_Btn});
+            this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.White;
+            this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
+            this.ToolsFeed_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolsFeed_Mnu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.ToolsFeed_Mnu.Name = "ToolsFeed_Mnu";
+            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(55, 20);
+            this.ToolsFeed_Mnu.Text = "Tools";
+            // 
+            // CopyURLfeed_Mnu
+            // 
+            this.CopyURLfeed_Mnu.Name = "CopyURLfeed_Mnu";
+            this.CopyURLfeed_Mnu.Size = new System.Drawing.Size(198, 22);
+            this.CopyURLfeed_Mnu.Text = "Copy URL";
+            this.CopyURLfeed_Mnu.Click += new System.EventHandler(this.CopyURLfeed_Mnu_Click);
+            // 
+            // OpnFileCategory_Btn
+            // 
+            this.OpnFileCategory_Btn.Name = "OpnFileCategory_Btn";
+            this.OpnFileCategory_Btn.Size = new System.Drawing.Size(198, 22);
+            this.OpnFileCategory_Btn.Text = "Open File Category";
+            this.OpnFileCategory_Btn.Click += new System.EventHandler(this.OpnFileCategory_Btn_Click);
+            // 
+            // TraductPageFeed_Btn
+            // 
+            this.TraductPageFeed_Btn.Name = "TraductPageFeed_Btn";
+            this.TraductPageFeed_Btn.Size = new System.Drawing.Size(198, 22);
+            this.TraductPageFeed_Btn.Text = "Traduct Page";
+            this.TraductPageFeed_Btn.Click += new System.EventHandler(this.TraductPageFeed_Btn_Click);
+            // 
+            // toolStripSeparator19
+            // 
+            this.toolStripSeparator19.Name = "toolStripSeparator19";
+            this.toolStripSeparator19.Size = new System.Drawing.Size(195, 6);
+            // 
+            // SpeakOpenPnl_Btn
+            // 
+            this.SpeakOpenPnl_Btn.Name = "SpeakOpenPnl_Btn";
+            this.SpeakOpenPnl_Btn.Size = new System.Drawing.Size(198, 22);
+            this.SpeakOpenPnl_Btn.Text = "Speak";
+            this.SpeakOpenPnl_Btn.Click += new System.EventHandler(this.SpeakOpenPnl_Btn_Click);
+            // 
+            // JavaScriptFeed_Btn
+            // 
+            this.JavaScriptFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.JavaScriptFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.JavaScriptFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("JavaScriptFeed_Btn.Image")));
+            this.JavaScriptFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.JavaScriptFeed_Btn.Name = "JavaScriptFeed_Btn";
+            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(74, 22);
+            this.JavaScriptFeed_Btn.Text = "JS Enable";
+            this.JavaScriptFeed_Btn.Click += new System.EventHandler(this.JavaScriptFeed_Btn_Click);
             // 
             // Main_Frm
             // 
@@ -6717,9 +6713,7 @@
         private System.Windows.Forms.ToolStripSeparator Separator5;
         private System.Windows.Forms.ToolStripMenuItem JavaScriptToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel JavaDisable_Lbl;
-        private System.Windows.Forms.ToolStripMenuItem JavaScriptFeedToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel JavaDisableFeed_Lbl;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton Mute_Btn;
         private System.Windows.Forms.ToolStripMenuItem ArchiveDirectory_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
@@ -7083,6 +7077,7 @@
         private System.Windows.Forms.Label KeepTrackDir_Opn;
         private System.Windows.Forms.ToolStripMenuItem ForceLinkParent_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator35;
+        private System.Windows.Forms.ToolStripButton JavaScriptFeed_Btn;
     }
 }
 

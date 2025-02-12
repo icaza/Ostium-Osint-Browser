@@ -203,6 +203,12 @@
     <Compile Include="HtmlText_Frm.Designer.cs">
       <DependentUpon>HtmlText_Frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Keeptrack_Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keeptrack_Frm.Designer.cs">
+      <DependentUpon>Keeptrack_Frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HtmlText_Frm.resx">
       <DependentUpon>HtmlText_Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Keeptrack_Frm.resx">
+      <DependentUpon>Keeptrack_Frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Frm.resx">
       <DependentUpon>Main_Frm.cs</DependentUpon>

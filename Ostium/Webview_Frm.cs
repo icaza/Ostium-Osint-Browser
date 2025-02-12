@@ -290,10 +290,11 @@ namespace Ostium
 
         void OnKey_URLbrowse(object sender, KeyPressEventArgs e)
         {
-            e.Handled = true;
-
             if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
                 GoBrowser(URLbrowse_Cbx.Text);
+            }               
         }
         ///
         /// <summary>

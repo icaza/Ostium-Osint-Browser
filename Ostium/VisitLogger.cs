@@ -21,15 +21,14 @@ public class VisitLogger
         }
     }
 
-    public void LogVisit(string url)
+    public void LogVisit(string url, string tags)
     {
         var date = DateTime.Now.ToString("yyyy-MM-dd");
         var time = DateTime.Now.ToString("HH:mm:ss");
         var domain = new Uri(url).Host;
         string mini = GenerateFileName(domain);
-        string Tags = "test";
 
-        File.AppendAllText(_csvFilePath, $"{date},{time},{url},{mini}.ico,{Tags}\n");
+        File.AppendAllText(_csvFilePath, $"{date},{time},{url},{mini}.ico,{tags}\n");
     }
 
     string GenerateFileName(string url)
