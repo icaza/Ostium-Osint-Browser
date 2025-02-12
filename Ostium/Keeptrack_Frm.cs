@@ -13,6 +13,9 @@ namespace Ostium
     {
         #region Var_
 
+        [DllImport("kernel32.dll")]
+        static extern bool Beep(int freq, int duration);
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -29,13 +32,21 @@ namespace Ostium
         {
             InitializeComponent();
 
-            MouseDown += new MouseEventHandler(Main_Frm_MouseDown);
-            MouseEnter += new EventHandler(Main_Frm_MouseEnter);
-            MouseLeave += new EventHandler(Main_Frm_Leave);
-            TrackRecord_Cbx.MouseEnter += new EventHandler(Main_Frm_MouseEnter);
-            TrackRecord_Cbx.MouseLeave += new EventHandler(Main_Frm_Leave);
-            Tags_Txt.MouseEnter += new EventHandler(Main_Frm_MouseEnter);
-            Tags_Txt.MouseLeave += new EventHandler(Main_Frm_Leave);
+            MouseDown += new MouseEventHandler(Keeptrack_Frm_MouseDown);
+            MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
+            TrackRecord_Cbx.MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            TrackRecord_Cbx.MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
+            Tags_Txt.MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            Tags_Txt.MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
+            Close_Btn.MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            Close_Btn.MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
+            AddTrack_Btn.MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            AddTrack_Btn.MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
+            label1.MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            label1.MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
+            label2.MouseEnter += new EventHandler(Keeptrack_Frm_MouseEnter);
+            label2.MouseLeave += new EventHandler(Keeptrack_Frm_Leave);
         }
 
         void Keeptrack_Frm_Load(object sender, EventArgs e)
@@ -51,7 +62,7 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(Keeptrack, "csv", "cbx", TrackRecord_Cbx);
         }
 
-        void Main_Frm_MouseDown(object sender, MouseEventArgs e)
+        void Keeptrack_Frm_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -60,18 +71,21 @@ namespace Ostium
             }
         }
 
-        void Main_Frm_MouseEnter(object sender, EventArgs e)
+        void Keeptrack_Frm_MouseEnter(object sender, EventArgs e)
         {
             Opacity = 1;
         }
 
-        void Main_Frm_Leave(object sender, EventArgs e)
+        void Keeptrack_Frm_Leave(object sender, EventArgs e)
         {
             Opacity = 0.3;
         }
 
         void AddTrack_Btn_Click(object sender, EventArgs e)
         {
+            if (TrackRecord_Cbx.Text == string.Empty)
+                return;
+
             if (!IsCsvFile(TrackRecord_Cbx.Text))
                 TrackRecord_Cbx.Text += ".csv";
 
@@ -82,6 +96,8 @@ namespace Ostium
             logger.LogVisit(@Class_Var.URL_URI, Tags_Txt.Text);
 
             FaviconLoad();
+
+            Beep(800, 200);
         }
 
         static bool IsCsvFile(string filePath)
@@ -120,8 +136,18 @@ namespace Ostium
             }
         }
 
+        private void TrackRecord_Cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label2.Focus();
+        }        
+        
         void Close_Btn_Click(object sender, EventArgs e)
         {
+            MouseEnter -= Keeptrack_Frm_MouseEnter;
+            MouseLeave -= Keeptrack_Frm_Leave;
+            Close_Btn.MouseEnter -= Keeptrack_Frm_MouseEnter;
+            Close_Btn.MouseLeave -= Keeptrack_Frm_Leave;
+
             Close();
         }
     }

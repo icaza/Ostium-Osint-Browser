@@ -305,7 +305,7 @@ namespace Ostium
         {
             Form secondForm = Application.OpenForms["Keeptrack_Frm"];
 
-            if (secondForm != null)
+            if (secondForm != null && !secondForm.IsDisposed)
             {
                 int x = Location.X + Width - secondForm.Width - 32;
                 int y = Location.Y + Height - secondForm.Height - 39;
@@ -318,7 +318,7 @@ namespace Ostium
         void Form_EventHandler()
         {
             FormClosing += new FormClosingEventHandler(Main_Frm_FormClosed);
-            LocationChanged += Main_Frm_LocationChanged;
+            LocationChanged += new EventHandler(Main_Frm_LocationChanged);
             CategorieFeed_Cbx.SelectedIndexChanged += new EventHandler(CategorieFeed_Cbx_SelectedIndexChanged);
             CountBlockSite_Lbl.MouseEnter += new EventHandler(CountBlockSite_Lbl_MouseEnter);
             CountBlockSite_Lbl.MouseLeave += new EventHandler(CountBlockSite_Lbl_Leave);

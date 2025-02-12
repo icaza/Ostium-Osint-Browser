@@ -82,6 +82,7 @@
             this.TrackRecord_Cbx.Name = "TrackRecord_Cbx";
             this.TrackRecord_Cbx.Size = new System.Drawing.Size(294, 22);
             this.TrackRecord_Cbx.TabIndex = 3;
+            this.TrackRecord_Cbx.SelectedIndexChanged += new System.EventHandler(this.TrackRecord_Cbx_SelectedIndexChanged);
             // 
             // label2
             // 
