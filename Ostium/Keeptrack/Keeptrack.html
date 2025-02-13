@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Keep Track Viewer</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --tag-color: #e67e22;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .file-upload {
+            margin: 20px 0;
+            position: relative;
+        }
+
+            .file-upload input {
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+
+            .file-upload label {
+                display: block;
+                padding: 15px;
+                background: #3498db;
+                color: white;
+                border-radius: 8px;
+                text-align: center;
+                transition: background 0.3s;
+            }
+
+                .file-upload label:hover {
+                    background: #2980b9;
+                }
+
+        .advanced-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        #searchInput {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content {
+            padding: 18px;
+        }
+
+        .tags-container {
+            margin: 10px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--tag-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            margin: 2px;
+            font-size: 0.8em;
+        }
+
+        .export-buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .error {
+            color: #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #e74c3c;
+            border-radius: 8px;
+            background: #fdedec;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>KEEP TRACK VIEWER</h3>
+
+        <div class="file-upload">
+            <input type="file" id="csvInput" accept=".csv">
+            <label for="csvInput">📁 Choose a CSV file</label>
+        </div>
+
+        <div class="advanced-filters">
+            <div class="filter-group">
+                <label>Date range :</label>
+                <input type="date" id="startDate" class="date-filter">
+                <input type="date" id="endDate" class="date-filter">
+            </div>
+
+            <div class="filter-group">
+                <label>Tags :</label>
+                <input type="text" id="tagsInput" placeholder="ex: social, work">
+            </div>
+
+            <div class="filter-group">
+                <label>
+                    <input type="checkbox" id="httpsFilter"> HTTPS only
+                </label>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <select id="sortSelect">
+                <option value="date_desc">Date ▼</option>
+                <option value="date_asc">Date ▲</option>
+                <option value="domain_asc">Domain A-Z</option>
+                <option value="domain_desc">Domain Z-A</option>
+            </select>
+        </div>
+
+        <div class="export-buttons">
+            <button onclick="exportData('csv')">Export CSV</button>
+            <button onclick="exportData('json')">Export JSON</button>
+        </div>
+
+        <div id="timeline" class="grid"></div>
+        <div id="errorMessage" class="error" style="display: none;"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script>
+        let allData = [];
+        let currentData = [];
+
+        document.getElementById('csvInput').addEventListener('change', handleFileUpload);
+        document.getElementById('searchInput').addEventListener('input', debounce(filterData, 300));
+        document.getElementById('sortSelect').addEventListener('change', () => sortData(currentData));
+        document.querySelectorAll('.date-filter, #tagsInput, #httpsFilter').forEach(el => {
+            el.addEventListener('change', applyAdvancedFilters);
+        });
+
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (!file) return;
+
+            errorMessage.style.display = 'none';
+            document.getElementById('timeline').innerHTML = '';
+
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    if (results.errors.length > 0) {
+                        showError(`CSV parsing errors: ${results.errors.map(e => e.message).join(', ')}`);
+                        return;
+                    }
+
+                    if (!validateCSV(results.meta.fields)) {
+                        showError('Invalid CSV format. Required columns : Date, Heure, URL, Miniature, Tags');
+                        return;
+                    }
+
+                    allData = results.data.map(item => ({
+                        ...item,
+                        domain: extractDomain(item.URL),
+                        timestamp: parseDate(item.Date, item.Heure),
+                        tags: item.Tags ? item.Tags.split(',').map(t => t.trim().toLowerCase()) : []
+                    }));
+
+                    currentData = [...allData];
+                    sortData(currentData);
+                },
+                error: function(error) {
+                    showError(`Reading error : ${error.message}`);
+                }
+            });
+        }
+
+        function extractDomain(url) {
+            try {
+                return new URL(url).hostname.replace(/^www\./i, '');
+            } catch {
+                return 'Unknown';
+            }
+        }
+
+        function parseDate(dateString, timeString) {
+            const [year, month, day] = dateString.split('-');
+            const [hours, minutes] = timeString.split(':');
+            return new Date(year, month-1, day, hours, minutes);
+        }
+
+        function validateCSV(fields) {
+            const requiredFields = ['Date', 'Heure', 'URL', 'Miniature', 'Tags'];
+            return requiredFields.every(f => fields.includes(f));
+        }
+
+        function applyAdvancedFilters() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const tags = document.getElementById('tagsInput').value.split(',').map(t => t.trim().toLowerCase());
+            const httpsOnly = document.getElementById('httpsFilter').checked;
+
+            currentData = allData.filter(item => {
+                if (httpsOnly && !item.URL.startsWith('https://')) return false;
+
+                const itemDate = new Date(item.timestamp);
+                if (startDate && new Date(startDate) > itemDate) return false;
+                if (endDate && new Date(endDate + 'T23:59:59') < itemDate) return false;
+
+                if (tags.length > 0 && tags[0] !== '') {
+                    return tags.some(t => item.tags.includes(t.toLowerCase()));
+                }
+
+                return true;
+            });
+
+            filterData();
+        }
+
+        function filterData() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            if (!searchTerm) {
+                renderCards(currentData);
+                return;
+            }
+
+            const filtered = currentData.filter(item => {
+                return [
+                    item.domain,
+                    item.URL,
+                    item.Date,
+                    item.Heure,
+                    item.tags.join(' ')
+                ].some(value => value.toLowerCase().includes(searchTerm));
+            });
+
+            renderCards(filtered);
+        }
+
+        function sortData(data) {
+            const sortMethod = document.getElementById('sortSelect').value;
+
+            const sorted = [...data].sort((a, b) => {
+                switch(sortMethod) {
+                    case 'date_desc': return b.timestamp - a.timestamp;
+                    case 'date_asc': return a.timestamp - b.timestamp;
+                    case 'domain_asc': return a.domain.localeCompare(b.domain);
+                    case 'domain_desc': return b.domain.localeCompare(a.domain);
+                    default: return 0;
+                }
+            });
+
+            renderCards(sorted);
+        }
+
+        function renderCards(data) {
+            const container = document.getElementById('timeline');
+            container.innerHTML = data.length === 0
+                ? '<div class="error">No results found</div>'
+                : '';
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+            const getThumbnailPath = (fileName) => {
+            const safeName = fileName.replace(/[^a-z0-9_.-]/gi, '');
+                return `thumbnails/${safeName}`;
+        };
+            const thumbnail = item.Miniature ?
+            getThumbnailPath(item.Miniature) :
+                'https://veydunet.com/favicon.ico';
+
+                card.innerHTML = `
+                    <a href="${item.URL}" target="_blank" rel="noopener">
+                        <img src="${thumbnail}" class="thumbnail"
+                            onerror="this.src='https://veydunet.com/favicon.ico'">
+                    </a>
+                    <div class="content">
+                        <div class="domain">${item.domain}</div>
+                        <div class="tags-container">
+                            ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                        </div>
+                        <div class="time">${item.Date} • ${item.Heure}</div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function exportData(format) {
+            const data = currentData.map(item => ({
+                Date: item.Date,
+                Heure: item.Heure,
+                URL: item.URL,
+                Miniature: item.Miniature,
+                Tags: item.tags.join(', ')
+            }));
+
+            if (format === 'csv') {
+                const csv = Papa.unparse(data);
+                downloadFile(csv, 'export.csv', 'text/csv');
+            } else {
+                const json = JSON.stringify(data, null, 2);
+                downloadFile(json, 'export.json', 'application/json');
+            }
+        }
+
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function debounce(func, timeout = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => func.apply(this, args), timeout);
+            };
+        }
+
+        function isValidHttpUrl(string) {
+            try {
+                const url = new URL(string);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch {
+                return false;
+            }
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

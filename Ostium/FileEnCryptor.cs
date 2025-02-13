@@ -3,11 +3,11 @@ using System.Security.Cryptography;
 
 public class FileEnCryptor
 {
-    private const int KeySize = 256;
-    private const int BlockSize = 128;
-    private const int SaltSize = 32;
-    private const int IvSize = 16;
-    private const int Iterations = 100000;
+    const int KeySize = 256;
+    const int BlockSize = 128;
+    const int SaltSize = 32;
+    const int IvSize = 16;
+    const int Iterations = 100000;
 
     public static void EncryptFile(string inputFile, string outputFile, string password)
     {
@@ -80,7 +80,7 @@ public class FileEnCryptor
         }
     }
 
-    private static byte[] GenerateRandomBytes(int length)
+    static byte[] GenerateRandomBytes(int length)
     {
         using (var rng = new RNGCryptoServiceProvider())
         {
@@ -90,7 +90,7 @@ public class FileEnCryptor
         }
     }
 
-    private static byte[] DeriveKey(string password, byte[] salt)
+    static byte[] DeriveKey(string password, byte[] salt)
     {
         using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, Iterations))
         {

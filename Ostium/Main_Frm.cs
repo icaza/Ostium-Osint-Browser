@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -88,6 +89,9 @@ namespace Ostium
         readonly string MapDirGpx = Application.StartupPath + @"\map\gpx\";
         readonly string JsonDir = Application.StartupPath + @"\json-files\";
         readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
+        readonly string SVGviewerdir = Application.StartupPath + @"\SVGviewer\";
+        readonly string Keeptrack = Application.StartupPath + @"\KeepTrack\";
+
         string D4ta = "default_database_name";
         ///
         /// <summary>
@@ -98,6 +102,8 @@ namespace Ostium
         HtmlText_Frm HtmlTextFrm;
         Mdi_Frm mdiFrm;
         Doc_Frm docForm;
+        Keeptrack_Frm keeptrackForm;
+        DeserializeJson_Frm deserializeForm;
         OpenSource_Frm openSourceForm;
         ScriptCreator scriptCreatorFrm;
         Bookmarklets_Frm bookmarkletsFrm;
@@ -184,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "21";
+        readonly string versionNow = "22";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -192,7 +198,14 @@ namespace Ostium
         readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
 
         static readonly HttpClient client = new HttpClient();
-        private const int TimeoutInSeconds = 10;
+        const int TimeoutInSeconds = 10;
+
+        bool IsTimelineEnabled = false;
+        bool IsParentLinkEnabled = false;
+        string FileTimeLineName = "visit";
+
+        int _historyIndex = -1;
+        readonly List<string> _commandHistory = new List<string>();
 
         #endregion
 
@@ -288,11 +301,24 @@ namespace Ostium
             catch { }
         }
 
+        private void Main_Frm_LocationChanged(object sender, EventArgs e)
+        {
+            Form secondForm = Application.OpenForms["Keeptrack_Frm"];
+
+            if (secondForm != null && !secondForm.IsDisposed)
+            {
+                int x = Location.X + Width - secondForm.Width - 32;
+                int y = Location.Y + Height - secondForm.Height - 39;
+                secondForm.Location = new Point(x, y);
+            }
+        }
+
         #endregion
 
         void Form_EventHandler()
         {
             FormClosing += new FormClosingEventHandler(Main_Frm_FormClosed);
+            LocationChanged += new EventHandler(Main_Frm_LocationChanged);
             CategorieFeed_Cbx.SelectedIndexChanged += new EventHandler(CategorieFeed_Cbx_SelectedIndexChanged);
             CountBlockSite_Lbl.MouseEnter += new EventHandler(CountBlockSite_Lbl_MouseEnter);
             CountBlockSite_Lbl.MouseLeave += new EventHandler(CountBlockSite_Lbl_Leave);
@@ -333,7 +359,7 @@ namespace Ostium
                 UsrAgt = lstUrlDfltCnf[4].ToString();
                 UsrHtt = lstUrlDfltCnf[5].ToString();
                 GoogBo = lstUrlDfltCnf[6].ToString();
-                DefaultEditor_Opt_Txt.Text = AppStart + "OstiumE.exe";
+                DefaultEditor_Opt_Txt.Text = Path.Combine(AppStart, "OstiumE.exe");
             }
             ///
             /// Create XML file "config.xml"
@@ -344,7 +370,7 @@ namespace Ostium
                 CheckCharacters = true
             };
 
-            using (XmlWriter writer = XmlWriter.Create(AppStart + "config.xml", settings))
+            using (XmlWriter writer = XmlWriter.Create(Path.Combine(AppStart, "config.xml"), settings))
             {
                 writer.WriteStartElement("Xwparsingxml");
                 writer.WriteStartElement("Xwparsingnode");
@@ -362,19 +388,18 @@ namespace Ostium
                 writer.WriteEndElement();
                 writer.Flush();
             }
-            ///
-            /// Loading the configuration from the "config.xml" file
-            /// 
 
             if (ArchiveAdd_Txt.Text != string.Empty)
             {
-                using (StreamWriter fc = new StreamWriter(AppStart + "archiveAdd.txt"))
+                using (StreamWriter fc = new StreamWriter(Path.Combine(AppStart, "archiveAdd.txt")))
                 {
                     fc.Write(ArchiveAdd_Txt.Text);
                 }
             }
-
-            Config_Ini(AppStart + "config.xml");
+            ///
+            /// Loading the configuration from the "config.xml" file
+            ///
+            Config_Ini(Path.Combine(AppStart, "config.xml"));
         }
 
         void CreateDirectory()
@@ -397,7 +422,8 @@ namespace Ostium
                         Setirps,
                         MapDir,
                         JsonDir,
-                        JsonDir + "table"
+                        JsonDir + "table",
+                        Keeptrack + "thumbnails"
                     };
 
                 for (int i = 0; i < CreateDir.Count; i++)
@@ -528,10 +554,10 @@ namespace Ostium
                     URL_URL_Cbx.Items.AddRange(File.ReadAllLines(FileDir + "url.txt"));
                 }
 
-                if (File.Exists(Path.Combine(FileDir, @"url-constructor\construct_url.txt")))
+                if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
                 {
                     ConstructURL_Lst.Items.Clear();
-                    ConstructURL_Lst.Items.AddRange(File.ReadAllLines(FileDir + @"url-constructor\construct_url.txt"));
+                    ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
                 }
                 ///
                 /// Loading JS scripts from "script url.ost" file for injection.
@@ -552,11 +578,11 @@ namespace Ostium
                 }
 
                 loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
-                loadfiledir.LoadFileDirectory(FileDir + "url-constructor", "txt", "cbxts", Construct_URL_Cbx);
+                loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
                 loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
                 loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
                 loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
-                loadfiledir.LoadFileDirectory(Scripts + "scriptsl", "js", "splitb", TtsButton_Sts);
+                loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
 
                 Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
                 Class_Var.SCRIPTCREATOR = "off";
@@ -585,6 +611,7 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
+
         ///
         /// <summary>
         /// Adding an item to the wBrowse Context Menu
@@ -668,11 +695,35 @@ namespace Ostium
                 InjectScript("(function(){const n=document.createElement(\"div\");n.style.position=\"fixed\";n.style.top=\"10px\";n.style.left=\"10px\";n.style.width=\"15px\";n.style.height=\"15px\";n.style.borderRadius=\"50%\";n.style.backgroundColor=\"red\";n.style.zIndex=\"9999\";n.title=\"Automatic copy script is activated\";document.body.appendChild(n);document.addEventListener(\"mouseup\",()=>{const t=window.getSelection(),n=t.toString();n&&navigator.clipboard.writeText(n).then(()=>{console.log(\"Text: \",n)}).catch(n=>{console.error(\"Error: \",n)})})})()");
             };
 
+            CoreWebView2ContextMenuItem newItem5 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Keep Track", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem5.CustomItemSelected += delegate (object send, object ex)
+            {
+                IsTimelineEnabled = !IsTimelineEnabled;
+
+                if (IsTimelineEnabled)
+                {
+                    Browser_Tab.BackColor = Color.Red;
+                    CreateNameAleat();
+                    FileTimeLineName = Una + ".csv";
+                }
+                else
+                    Browser_Tab.BackColor = Color.FromArgb(41, 44, 51);
+            };
+
+            CoreWebView2ContextMenuItem newItem6 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Tracking tool", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem6.CustomItemSelected += delegate (object send, object ex)
+            {
+                keeptrackForm = new Keeptrack_Frm();
+                keeptrackForm.Show();
+            };
+
             menuList.Insert(menuList.Count, newItem0);
             menuList.Insert(menuList.Count, newItem1);
             menuList.Insert(menuList.Count, newItem2);
             menuList.Insert(menuList.Count, newItem3);
             menuList.Insert(menuList.Count, newItem4);
+            menuList.Insert(menuList.Count, newItem5);
+            menuList.Insert(menuList.Count, newItem6);
         }
         ///
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
@@ -718,6 +769,14 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Navigation Completed");
 
             ScripInj();
+
+            if (IsTimelineEnabled)
+            {
+                var logger = new VisitLogger(Path.Combine(Keeptrack, FileTimeLineName));
+                logger.LogVisit(WBrowse.Source.AbsoluteUri, "No tag");
+
+                FaviconLoad();
+            }
         }
 
         async void ScripInj()
@@ -729,6 +788,27 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! ScripInj: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        async void FaviconLoad()
+        {
+            var downloader = new FaviconDownloader();
+
+            try
+            {
+                string icoName = GenerateFileName(WBrowse.Source.IdnHost);
+
+                if (!File.Exists(Path.Combine(Keeptrack, "thumbnails", icoName + ".ico")))
+                {
+                    var favicon = await downloader.GetFaviconAsync(WBrowse.Source.AbsoluteUri);
+                    File.WriteAllBytes(Path.Combine(Keeptrack, "thumbnails", icoName + ".ico"), favicon);
+                    Console.WriteLine("Favicon sucess download !");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erreur : {ex.Message}");
             }
         }
 
@@ -755,6 +835,12 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Source Changed");
         }
 
+        void NewWindow_Requested(object sender, CoreWebView2SourceChangedEventArgs e)
+        {
+            URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
+            WBrowse_UpdtTitleEvent("Source Changed");
+        }
+
         void WBrowse_HistoryChanged(object sender, object e)
         {
             Back_Btn.Enabled = WBrowse.CoreWebView2.CanGoBack;
@@ -774,6 +860,15 @@ namespace Ostium
             Download_Source_Page();
         }
 
+        void NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+        {
+            if (IsTimelineEnabled || IsParentLinkEnabled)
+            {
+                e.Handled = true; // Force _parent Links
+                WBrowse.CoreWebView2.Navigate(e.Uri);
+            }
+        }
+
         void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (!e.IsSuccess)
@@ -789,6 +884,7 @@ namespace Ostium
             WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
             WBrowse.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
             WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested; // ContextMenu
+            WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
 
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
@@ -909,11 +1005,11 @@ namespace Ostium
             }
         }
 
-        string GenerateFileName(string url)
+        string GenerateFileName(string sdata)
         {
             using (var sha256 = SHA256.Create())
             {
-                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(url));
+                var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(sdata));
                 return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             }
         }
@@ -1087,6 +1183,8 @@ namespace Ostium
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
+
                 int x;
                 x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
                 if (x == -1)
@@ -1141,6 +1239,11 @@ namespace Ostium
         /// 
         void UserAgentChange_Btn_Click(object sender, EventArgs e)
         {
+            ChangeUserAgent();
+        }
+
+        void ChangeUserAgent()
+        {
             if (Class_Var.URL_USER_AGENT == string.Empty)
                 Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
 
@@ -1171,6 +1274,11 @@ namespace Ostium
         /// 
         void Googlebot_Btn_Click(object sender, EventArgs e)
         {
+            GoogleBot();
+        }
+
+        void GoogleBot()
+        {
             if (Class_Var.URL_GOOGLEBOT == string.Empty)
                 Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
 
@@ -1186,7 +1294,7 @@ namespace Ostium
             else
             {
                 ClearOnOff = "off";
-                Process.Start(AppStart + "Ostium.exe");
+                Process.Start(Path.Combine(AppStart, "Ostium.exe"));
                 Close();
             }
         }
@@ -1371,25 +1479,37 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Opening in the "OpenSource_Frm" window of the file "filesdir/gh.txt" (Google Dork) if file exists True
+        /// Opening in the "OpenSource_Frm" window of the file "filesdir/gdork.txt" (Google Dork) if file exists True
         ///
         void GoogleDork_Btn_Click(object sender, EventArgs e)
+        {
+            GoogleDork();
+        }
+
+        void GoogleDork()
         {
             if (File.Exists(Path.Combine(FileDir, "gdork.txt")))
                 Open_Source_Frm(Path.Combine(FileDir, "gdork.txt"));
         }
 
-        async void WebpageToPng_Btn_Click(object sender, EventArgs e)
+        void WebpageToPng_Btn_Click(object sender, EventArgs e)
+        {
+            WebpageCapture();
+        }
+
+        async void WebpageCapture()
         {
             try
             {
                 string Domain = WBrowse.Source.IdnHost;
                 var img = await TakeWebScreenshot();
                 CreateNameAleat();
-                img.Save(Pictures + Una + "_" + Domain + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                string filePath = Path.Combine(Pictures, $"{Una}_{Domain}.png");
+
+                img.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
                 Beep(800, 200);
 
-                Process.Start(Pictures + Una + "_" + Domain + ".png");
+                Process.Start(filePath);
             }
             catch (Exception ex)
             {
@@ -1399,19 +1519,37 @@ namespace Ostium
 
         async Task<Image> TakeWebScreenshot(bool currentControlClipOnly = false)
         {
-            dynamic scl = null;
+            JObject scl = null;
             Size siz;
 
             if (!currentControlClipOnly)
             {
-                var res = await WBrowse.CoreWebView2.ExecuteScriptAsync(@"var v = {""w"":document.body.scrollWidth, ""h"":document.body.scrollHeight}; v;");
-                try { scl = JObject.Parse(res); } catch { }
+                await Task.Delay(500);
+
+                var res = await WBrowse.CoreWebView2.ExecuteScriptAsync(@"
+                JSON.stringify({
+                    w: document.documentElement.scrollWidth, 
+                    h: document.documentElement.scrollHeight
+                });
+            ");
+
+                try
+                {
+                    scl = JObject.Parse(res.Trim('"').Replace("\\", ""));
+                }
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("JSON Parse Error in TakeWebScreenshot: ", ex.ToString(), "Main_Frm", AppStart);
+                    scl = null;
+                }
             }
-            siz = scl != null ?
-                        new Size((int)scl.w > WBrowse.Width ? (int)scl.w : WBrowse.Width,
-                                    (int)scl.h > WBrowse.Height ? (int)scl.h : WBrowse.Height)
-                        :
-                        WBrowse.Size;
+
+            siz = scl != null && scl["w"] != null && scl["h"] != null
+                ? new Size(
+                    Math.Max((int)scl["w"], WBrowse.Width),
+                    Math.Max((int)scl["h"], WBrowse.Height)
+                  )
+                : WBrowse.Size;
 
             var img = await GetWebBrowserBitmap(siz);
             return img;
@@ -1419,25 +1557,38 @@ namespace Ostium
 
         async Task<Bitmap> GetWebBrowserBitmap(Size clipSize)
         {
-            dynamic clip = new JObject();
-            clip.x = 0;
-            clip.y = 0;
-            clip.width = clipSize.Width;
-            clip.height = clipSize.Height;
-            clip.scale = 1;
+            JObject clip = new JObject
+            {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["width"] = clipSize.Width,
+                ["height"] = clipSize.Height,
+                ["scale"] = 1
+            };
 
-            dynamic settings = new JObject();
-            settings.format = "png";
-            settings.clip = clip;
-            settings.fromSurface = true;
-            settings.captureBeyondViewport = true;
+            JObject settings = new JObject
+            {
+                ["format"] = "png",
+                ["clip"] = clip,
+                ["fromSurface"] = true,
+                ["captureBeyondViewport"] = true
+            };
 
-            var p = settings.ToString(Newtonsoft.Json.Formatting.None);
+            string p = settings.ToString(Newtonsoft.Json.Formatting.None);
 
             var devData = await WBrowse.CoreWebView2.CallDevToolsProtocolMethodAsync("Page.captureScreenshot", p);
-            var imgData = (string)JObject.Parse(devData).data;
-            var ms = new MemoryStream(Convert.FromBase64String(imgData));
-            return (Bitmap)Image.FromStream(ms);
+
+            var parsedData = JObject.Parse(devData);
+            if (parsedData.ContainsKey("data"))
+            {
+                var imgData = (string)parsedData["data"];
+                var ms = new MemoryStream(Convert.FromBase64String(imgData));
+                return (Bitmap)Image.FromStream(ms);
+            }
+            else
+            {
+                throw new Exception("Error: 'data' field is missing in devData response.");
+            }
         }
 
         void HTMLtxt_Btn_Click(object sender, EventArgs e)
@@ -1447,6 +1598,11 @@ namespace Ostium
         }
 
         void Cookie_Btn_Click(object sender, EventArgs e)
+        {
+            CookieLoad();
+        }
+
+        void CookieLoad()
         {
             if (!SaveCookies_Chk.Checked)
                 MessageBox.Show("Saving cookies in a text file is not enabled in the options.");
@@ -1509,6 +1665,11 @@ namespace Ostium
 
         void Editor_Btn_Click(object sender, EventArgs e)
         {
+            OpenEdit();
+        }
+
+        void OpenEdit()
+        {
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
                 Process.Start(Class_Var.DEFAULT_EDITOR);
             else
@@ -1526,6 +1687,11 @@ namespace Ostium
         }
 
         void InjectScript_Btn_Click(object sender, EventArgs e)
+        {
+            InjectScript();
+        }
+
+        void InjectScript()
         {
             try
             {
@@ -1570,6 +1736,11 @@ namespace Ostium
         }
 
         void RegexCmd_Btn_Click(object sender, EventArgs e)
+        {
+            RegexInject();
+        }
+
+        void RegexInject()
         {
             try
             {
@@ -1647,7 +1818,18 @@ namespace Ostium
             CreateConfigFile(0);
         }
 
+        void FetchDomainInfo_Btn_Click(object sender, EventArgs e)
+        {
+            deserializeForm = new DeserializeJson_Frm();
+            deserializeForm.Show();
+        }
+
         void JavaScriptToggle_Btn_Click(object sender, EventArgs e)
+        {
+            JavaScript();
+        }
+
+        void JavaScript()
         {
             try
             {
@@ -1674,7 +1856,7 @@ namespace Ostium
             if (isScriptEnabled)
             {
                 JavaScriptToggle_Btn.Text = "JavaScript Enabled";
-                JavaScriptToggle_Btn.ForeColor = Color.Lime;
+                JavaScriptToggle_Btn.ForeColor = Color.Black;
             }
             else
             {
@@ -1684,6 +1866,11 @@ namespace Ostium
         }
 
         void ArchiveDirectory_Btn_Click(object sender, EventArgs e)
+        {
+            ArchiveData();
+        }
+
+        void ArchiveData()
         {
             try
             {
@@ -1762,10 +1949,23 @@ namespace Ostium
             bookmarkletsFrm.Show();
         }
 
-        private void OpnEncFrm_Click(object sender, EventArgs e)
+        void OpnEncFrm_Click(object sender, EventArgs e)
         {
             AesFrm = new Aes_Frm();
             AesFrm.Show();
+        }
+
+        void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
+        {
+            OpenKeepTrack();
+        }
+
+        void OpenKeepTrack()
+        {
+            if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
+            {
+                GoBrowser("file:///" + Keeptrack + "Keeptrack.html", 0);
+            }
         }
 
         #endregion
@@ -1802,7 +2002,7 @@ namespace Ostium
             WBrowsefeed.Source = new Uri(@formatURI);
         }
 
-        void JavaScriptFeedToggle_Btn_Click(object sender, EventArgs e)
+        void JavaScriptFeed_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1828,13 +2028,15 @@ namespace Ostium
         {
             if (isScriptEnabled)
             {
-                JavaScriptFeedToggle_Btn.Text = "JavaScript Enabled";
-                JavaScriptFeedToggle_Btn.ForeColor = Color.Lime;
+                JavaScriptFeed_Btn.Text = "JS Enabled";
+                JavaScriptFeed_Btn.ForeColor = Color.White;
+                JavaDisableFeed_Lbl.Visible = false;
             }
             else
             {
-                JavaScriptFeedToggle_Btn.Text = "JavaScript Disabled";
-                JavaScriptFeedToggle_Btn.ForeColor = Color.Red;
+                JavaScriptFeed_Btn.Text = "JS Disabled";
+                JavaScriptFeed_Btn.ForeColor = Color.Red;
+                JavaDisableFeed_Lbl.Visible = true;
             }
         }
 
@@ -1870,6 +2072,36 @@ namespace Ostium
             }
         }
 
+        void SVGviewer_Tls_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(Path.Combine(SVGviewerdir, "SVGviewer.exe")))
+            {
+                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!");
+                return;
+            }
+
+            try
+            {
+                string fileopen = openfile.Fileselect(AppStart, "svg files (*.svg)|*.svg", 2);
+                if (!string.IsNullOrEmpty(fileopen))
+                {
+                    using (Process proc = new Process())
+                    {
+                        proc.StartInfo.FileName = SVGviewerdir + "SVGviewer.exe";
+                        proc.StartInfo.Arguments = fileopen;
+                        proc.StartInfo.UseShellExecute = true;
+                        proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        proc.Start();
+                        proc.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! SVGviewer_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void ViewXml_Tls_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
@@ -1877,8 +2109,7 @@ namespace Ostium
 
             if (File.Exists(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml")))
             {
-                WBrowse.Source = new Uri(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
-
+                GoBrowser("file:///" + Workflow + NameProjectwf_Txt.Text + ".xml", 0);
                 CtrlTabBrowsx();
                 Control_Tab.SelectedIndex = 0;
             }
@@ -1891,10 +2122,6 @@ namespace Ostium
 
             if (File.Exists(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml")))
                 OpenFile_Editor(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
-            else
-            {
-                MessageBox.Show(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
-            }
         }
 
         void ExportXml_Tls_Click(object sender, EventArgs e)
@@ -1908,7 +2135,7 @@ namespace Ostium
 
                 if (!string.IsNullOrEmpty(dirselect))
                 {
-                    if (File.Exists(Path.Combine(dirselect, @"\", NameProjectwf_Txt.Text + ".xml")))
+                    if (File.Exists(Path.Combine(dirselect, NameProjectwf_Txt.Text + ".xml")))
                     {
                         string message = "File exist continue?";
                         string caption = "File exist";
@@ -1941,7 +2168,7 @@ namespace Ostium
 
                 if (!string.IsNullOrEmpty(dirselect))
                 {
-                    if (File.Exists(Path.Combine(dirselect, @"\", NameProjectwf_Txt.Text + ".json")))
+                    if (File.Exists(Path.Combine(dirselect, NameProjectwf_Txt.Text + ".json")))
                     {
                         string message = "File exist continue?";
                         string caption = "File exist";
@@ -2412,7 +2639,7 @@ namespace Ostium
             }
         }
 
-        private void PlantUmlVersion_Mnu_Click(object sender, EventArgs e) // version or license
+        void PlantUmlVersion_Mnu_Click(object sender, EventArgs e) // version or license
         {
             string Btn = (sender as ToolStripMenuItem).Text;
 
@@ -2459,12 +2686,13 @@ namespace Ostium
                 string nameSVG = Una + "_" + FileDiag;
                 string nameSVGb = Una;
 
-                IcazaClass selectdir = new IcazaClass();
                 string dirselect = selectdir.Dirselect();
+                if (string.IsNullOrEmpty(dirselect))
+                    return;
 
                 if (Commut == 0)
                 {
-                    File.Copy(DiagramDir + FileDiag, dirselect + @"\" + nameSVG);
+                    File.Copy(Path.Combine(DiagramDir, FileDiag), Path.Combine(dirselect, nameSVG));
                     MessageBox.Show("File [" + nameSVG + "] export.");
                 }
                 else if (Commut == 1)
@@ -2492,7 +2720,7 @@ namespace Ostium
                 return;
             }
 
-            Process.Start(AppStart + "setirps.exe");
+            Process.Start(Path.Combine(AppStart, "setirps.exe"));
         }
 
         #endregion
@@ -2525,7 +2753,7 @@ namespace Ostium
                     TtsButton_Sts.Visible = false;
                     FileOpnJson_Lbl.Visible = false;
 
-                    if (JavaScriptFeedToggle_Btn.Text == "Javascript Disable")
+                    if (JavaScriptFeed_Btn.Text == "JS Disabled")
                         JavaDisableFeed_Lbl.Visible = true;
 
                     JavaDisable_Lbl.Visible = false;
@@ -2677,6 +2905,7 @@ namespace Ostium
                     DireSizeCalc(BkmkltDir, BkmkltDir_Lbl);
                     DireSizeCalc(MapDir, MapDir_Lbl);
                     DireSizeCalc(JsonDir, JsonDir_Lbl);
+                    DireSizeCalc(Keeptrack, KeepTrackDir_Lbl);
                     break;
             }
         }
@@ -2756,11 +2985,13 @@ namespace Ostium
         /// carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
         /// </summary>
         /// 
-
         async void Download_Source_Page()
         {
             try
             {
+                if (WBrowse.Source?.AbsoluteUri.Contains("file:///") == true || WBrowse.Source?.AbsoluteUri.Contains("edge://") == true)
+                    return;
+
                 if (string.IsNullOrWhiteSpace(Class_Var.URL_USER_AGENT_SRC_PAGE))
                     Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5]?.ToString() ?? "Mozilla/5.0";
 
@@ -2778,13 +3009,38 @@ namespace Ostium
                     return;
                 }
 
-                string pageContents = await response.Content.ReadAsStringAsync();
+                byte[] contentBytes = await response.Content.ReadAsByteArrayAsync();
 
-                File_Write(AppStart + "sourcepage", pageContents);
+                Encoding encoding = GetEncodingFromResponse(response) ?? Encoding.UTF8;
+
+                string pageContents = encoding.GetString(contentBytes);
+
+                File_Write(Path.Combine(AppStart, "sourcepage"), pageContents);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception : {ex}");
+            }
+        }
+
+        Encoding GetEncodingFromResponse(HttpResponseMessage response)
+        {
+            try
+            {
+                var charset = response.Content.Headers.ContentType?.CharSet;
+                if (string.IsNullOrEmpty(charset))
+                    return null;
+
+                charset = charset.Replace("\"", "").Trim();
+
+                if (charset.Equals("utf8", StringComparison.OrdinalIgnoreCase))
+                    charset = "utf-8";
+
+                return Encoding.GetEncoding(charset);
+            }
+            catch
+            {
+                return null;
             }
         }
 
@@ -2795,13 +3051,69 @@ namespace Ostium
 
         #region Prompt_
 
-        void OnKeyConsole_Cmd_Txt(object sender, KeyPressEventArgs e)
+        void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (Console_Cmd_Txt.SelectionStart < 2 && e.KeyChar != (char)Keys.Enter)
+            {
+                e.Handled = true;
+                return;
+            }
+
             if (e.KeyChar == (char)Keys.Enter)
             {
-                CMD_Console(Console_Cmd_Txt.Text);
-                Console_Cmd_Txt.Text = string.Empty;
-                Console_Cmd_Txt.Text = "> ";
+                e.Handled = true;
+                ProcessCommand();
+            }
+        }
+
+        void Console_Cmd_Txt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                e.Handled = true;
+                NavigateHistory(e.KeyCode);
+            }
+
+            if ((e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete) &&
+                Console_Cmd_Txt.SelectionStart < 2)
+            {
+                e.Handled = true;
+            }
+        }
+
+        void ProcessCommand()
+        {
+            string input = Console_Cmd_Txt.Text.Trim();
+
+            if (input.Length > 2)
+            {
+                string command = input.Substring(2);
+
+                CMD_Console(command);
+                _commandHistory.Add(command);
+                _historyIndex = _commandHistory.Count;
+            }
+
+            Console_Cmd_Txt.Text = "> ";
+            Console_Cmd_Txt.Select(Console_Cmd_Txt.Text.Length, 0);
+        }
+
+        void NavigateHistory(Keys key)
+        {
+            if (_commandHistory.Count == 0) return;
+
+            if (key == Keys.Up && _historyIndex > 0)
+            {
+                _historyIndex--;
+            }
+            else if (key == Keys.Down && _historyIndex < _commandHistory.Count - 1)
+            {
+                _historyIndex++;
+            }
+
+            if (_historyIndex >= 0 && _historyIndex < _commandHistory.Count)
+            {
+                Console_Cmd_Txt.Text = $"> {_commandHistory[_historyIndex]}";
                 Console_Cmd_Txt.Select(Console_Cmd_Txt.Text.Length, 0);
             }
         }
@@ -2845,7 +3157,7 @@ namespace Ostium
                     yn = 1;
                     break;
                 case "help":
-                    Open_Doc_Frm(FileDir + "cmdc.txt");
+                    Open_Doc_Frm(Path.Combine(FileDir, "cmdc.txt"));
                     break;
                 case "textlink":
                     Console_Cmd_Txt.Enabled = false;
@@ -2858,6 +3170,67 @@ namespace Ostium
                 case "id":
                     var browserInfo = WBrowse.CoreWebView2.BrowserProcessId;
                     MessageBox.Show(this, "Browser ID: " + browserInfo.ToString(), "Process ID");
+                    break;
+                case "gdork":
+                    GoogleDork();
+                    break;
+                case "capture":
+                    WebpageCapture();
+                    break;
+                case "htmltext":
+                    HtmlTextFrm = new HtmlText_Frm();
+                    HtmlTextFrm.Show();
+                    break;
+                case "multi":
+                    mdiFrm = new Mdi_Frm();
+                    mdiFrm.Show();
+                    break;
+                case "cookie":
+                    CookieLoad();
+                    break;
+                case "addcookie":
+                    Cookie_Pnl.Visible = !Cookie_Pnl.Visible;
+                    break;
+                case "editor":
+                    OpenEdit();
+                    break;
+                case "index":
+                    WBrowse.Source = new Uri(@AppStart);
+                    break;
+                case "dns":
+                    deserializeForm = new DeserializeJson_Frm();
+                    deserializeForm.Show();
+                    break;
+                case "javascript":
+                    JavaScript();
+                    break;
+                case "bookmark":
+                    BookMarklet();
+                    break;
+                case "inject":
+                    InjectScript();
+                    break;
+                case "regex":
+                    RegexInject();
+                    break;
+                case "backup":
+                    ArchiveData();
+                    break;
+                case "encrypt":
+                    AesFrm = new Aes_Frm();
+                    AesFrm.Show();
+                    break;
+                case "track":
+                    OpenKeepTrack();
+                    break;
+                case "history-clear":
+                    ClearData(0);
+                    break;
+                case "useragent":
+                    ChangeUserAgent();
+                    break;
+                case "googlebot":
+                    GoogleBot();
                     break;
                 case "exit":
                     Console_Cmd_Txt.Visible = false;
@@ -3927,7 +4300,7 @@ namespace Ostium
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -4049,7 +4422,7 @@ namespace Ostium
             {
                 if (CategorieFeed_Cbx.Text != string.Empty)
                 {
-                    CreateData(FeedDir + CategorieFeed_Cbx.Text, NewFeed_Txt.Text);
+                    CreateData(Path.Combine(FeedDir, CategorieFeed_Cbx.Text), NewFeed_Txt.Text);
 
                     CategorieFeed_Cbx.Items.Clear();
                     loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
@@ -4076,7 +4449,9 @@ namespace Ostium
 
         void ManageFeed_Btn_Click(object sender, EventArgs e)
         {
-            if (ManageFeed == "off")
+            bool isManageFeed = ManageFeed_Btn.Text == "Manage feed";
+
+            if (isManageFeed)
             {
                 ManageFeed = "on";
                 ManageFeed_Btn.Text = "Manage end";
@@ -4196,7 +4571,7 @@ namespace Ostium
         {
             splitContain_Rss.Panel1Collapsed = !splitContain_Rss.Panel1Collapsed;
 
-            if (splitContain_Rss.Panel1Collapsed == false)
+            if (!splitContain_Rss.Panel1Collapsed)
                 CollapseTitleFeed_Btn.Text = "Collapse Off";
             else
                 CollapseTitleFeed_Btn.Text = "Collapse On";
@@ -4299,7 +4674,9 @@ namespace Ostium
         {
             try
             {
-                if (PauseSpeak_Btn.Text == "Pause")
+                bool isPauseOn = PauseSpeak_Btn.Text == "Pause";
+
+                if (isPauseOn)
                 {
                     PauseSpeak_Btn.Text = "Resume";
                     synth.Pause();
@@ -4352,14 +4729,14 @@ namespace Ostium
             try
             {
                 XmlDocument doc = new XmlDocument();
-                XmlTextReader xmlReader = new XmlTextReader(AppStart + "config.xml");
+                XmlTextReader xmlReader = new XmlTextReader(Path.Combine(AppStart, "config.xml"));
                 doc.Load(xmlReader);
 
                 if (doc.SelectSingleNode("/Xwparsingxml/Xwparsingnode/" + nodeselect) is XmlElement nod)
                     nod.InnerText = Convert.ToString(value);
 
                 xmlReader.Close();
-                doc.Save(AppStart + "config.xml");
+                doc.Save(Path.Combine(AppStart, "config.xml"));
             }
             catch (Exception ex)
             {
@@ -4649,6 +5026,18 @@ namespace Ostium
                 doc.Load(xmlReader);
 
                 string Markup = "<!--" + AddSingleItemswf_Txt.Text + "-->";
+                ///
+                /// removing spaces and line breaks
+                ///
+                string[] str = AddSingleItemswf_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                AddSingleItemswf_Txt.Text = string.Empty;
+                foreach (string s in str)
+                {
+                    if (s.Trim().Length > 0)
+                        AddSingleItemswf_Txt.Text += s + " ";
+                }
+                string header = AddSingleItemswf_Txt.Text;
+                AddSingleItemswf_Txt.Text = header.Trim(new char[] { ' ' });
 
                 if (doc.SelectSingleNode("/Table") is XmlElement nod)
                 {
@@ -4826,7 +5215,7 @@ namespace Ostium
 
                 string value = AddTextWorkflow_Txt.Text;
                 string valMessage = AddTextWorkflow_Txt.Text + "\r\n" + AddTNoteWorkflow_Txt.Text + "\r\n" + AddUrlWorkflow_Txt.Text + "\r\n";
-                
+
                 string message = "Add => \r\n" + valMessage + " => in " + WorkflowItem_Lst.SelectedItem.ToString() + " ?";
                 string caption = string.Empty;
                 var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -4916,12 +5305,15 @@ namespace Ostium
                 xmlReader.Close();
                 doc.Save(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
 
-                string valTimeline = AddTextWorkflow_Txt.Text + " -- " + AddTNoteWorkflow_Txt.Text + " -- " + AddUrlWorkflow_Txt.Text + " -- ";
-                Timeline_Lst.Items.Add(WorkflowItem_Lst.SelectedItem.ToString() + ": " + valTimeline);
-                using (StreamWriter SW = new StreamWriter(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".ost"), false))
+                if (WorkflowItem_Lst.SelectedIndex != -1)
                 {
-                    foreach (string itm in Timeline_Lst.Items)
-                        SW.WriteLine(itm);
+                    string valTimeline = AddTextWorkflow_Txt.Text + " -- " + AddTNoteWorkflow_Txt.Text + " -- " + AddUrlWorkflow_Txt.Text + " -- ";
+                    Timeline_Lst.Items.Add(WorkflowItem_Lst.SelectedItem.ToString() + ": " + valTimeline);
+                    using (StreamWriter SW = new StreamWriter(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".ost"), false))
+                    {
+                        foreach (string itm in Timeline_Lst.Items)
+                            SW.WriteLine(itm);
+                    }
                 }
 
                 AddTextWorkflow_Txt.Text = string.Empty;
@@ -4935,6 +5327,16 @@ namespace Ostium
             {
                 senderror.ErrorLog("Error! AddDataWorkflow: ", ex.ToString(), "Main_Frm", AppStart);
             }
+        }
+
+        void ForceLinkParent_Btn_Click(object sender, EventArgs e)
+        {
+            IsParentLinkEnabled = !IsParentLinkEnabled;
+
+            if (IsParentLinkEnabled)
+                ForceLinkParent_Btn.ForeColor = Color.Red;
+            else
+                ForceLinkParent_Btn.ForeColor = Color.Black;
         }
         ///
         /// <summary>
@@ -5063,9 +5465,10 @@ namespace Ostium
             {
                 if (!string.IsNullOrEmpty(ModelName_Txt.Text) && !string.IsNullOrEmpty(ModelItem_Txt.Text))
                 {
-                    ///
-                    /// Formatting => removing spaces and line breaks
-                    ///
+                    string header = ModelName_Txt.Text;
+                    ModelName_Txt.Text = header.Trim(new char[] { ' ' });
+                    ModelName_Txt.Text = ModelName_Txt.Text.Replace(" ", "_");
+
                     ModelItem_Txt.Text = Regex.Replace(ModelItem_Txt.Text, @" ", string.Empty);
                     string[] str = ModelItem_Txt.Text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     ModelItem_Txt.Text = string.Empty;
@@ -5222,18 +5625,18 @@ namespace Ostium
 
         void Furldir_Opt_Click(object sender, EventArgs e)
         {
-            OpnFileOpt(FileDir + "url.txt");
+            OpnFileOpt(Path.Combine(FileDir, "url.txt"));
         }
 
         void Furlconst_Opt_Click(object sender, EventArgs e)
         {
-            OpnFileOpt(FileDir + @"url-constructor\construct_url.txt");
+            OpnFileOpt(Path.Combine(FileDir, "url-constructor", "construct_url.txt"));
         }
 
         void Furlconstdir_Opt_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(FileDir + "url-constructor"))
-                Process.Start(FileDir + "url-constructor");
+            if (Directory.Exists(Path.Combine(FileDir, "url-constructor")))
+                Process.Start(Path.Combine(FileDir, "url-constructor"));
         }
 
         void AddOntools_Opt_Click(object sender, EventArgs e)
@@ -5244,18 +5647,18 @@ namespace Ostium
 
         void Fmultiplewin_Opt_Click(object sender, EventArgs e)
         {
-            OpnFileOpt(FileDir + @"grp-frm\grp_frm_url_opn.txt");
+            OpnFileOpt(Path.Combine(FileDir, "grp-frm", "grp_frm_url_opn.txt"));
         }
 
         void MultipleDir_Opt_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(FileDir + "grp-frm"))
-                Process.Start(FileDir + "grp-frm");
+            if (Directory.Exists(Path.Combine(FileDir, "grp-frm")))
+                Process.Start(Path.Combine(FileDir, "grp-frm"));
         }
 
         void Fgdork_Opt_Click(object sender, EventArgs e)
         {
-            OpnFileOpt(FileDir + "gdork.txt");
+            OpnFileOpt(Path.Combine(FileDir, "gdork.txt"));
         }
 
         void OstiumDir_Opn_Click(object sender, EventArgs e)
@@ -5342,6 +5745,12 @@ namespace Ostium
                 Process.Start(JsonDir);
         }
 
+        void KeepTrackDir_Opn_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(Keeptrack))
+                Process.Start(Keeptrack);
+        }
+
         #endregion
 
         #region Process_
@@ -5362,15 +5771,24 @@ namespace Ostium
 
                 if (result == DialogResult.Yes)
                 {
-                    KillProcessJAVAW("javaw");
-                    MessageBox.Show("The Process: javaw was successfully stopped!", "Kill process");
+                    try
+                    {
+                        foreach (var process in localByName)
+                        {
+                            process.Kill();
+                        }
+                        MessageBox.Show("The Process: javaw was successfully stopped!", "Kill process");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Failed to kill process: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Process not running.", "Process");
             }
-
         }
 
         void VerifyProcess(string ProcessVerif)
@@ -5386,25 +5804,6 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! VerifyProcess: ", ex.ToString(), "Main_Frm", AppStart);
-            }
-        }
-
-        void KillProcessJAVAW(string ProcessKill)
-        {
-            try
-            {
-                Process[] sProcess;
-                Process[] localByName = Process.GetProcessesByName(ProcessKill);
-                if (localByName.Length > 0)
-                {
-                    sProcess = Process.GetProcessesByName(ProcessKill);
-                    for (var i = 0; i <= sProcess.Length - 1; i++)
-                        sProcess[i].Kill();
-                }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! KillProcessJAVAW: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5569,7 +5968,12 @@ namespace Ostium
 
         #region Bkmklt
 
-        void OpnBokmark_Btn_Click(object sender, EventArgs e)
+        void OpnBookmark_Btn_Click(object sender, EventArgs e)
+        {
+            BookMarklet();
+        }
+
+        void BookMarklet()
         {
             try
             {
@@ -5586,7 +5990,7 @@ namespace Ostium
             }
         }
 
-        private void OpnScriptl_Btn_Click(object sender, EventArgs e)
+        void OpnScriptl_Btn_Click(object sender, EventArgs e)
         {
             Scriptl = "on";
 
@@ -7114,7 +7518,7 @@ namespace Ostium
         void TtsButton_Sts_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string scriptEx = e.ClickedItem.Text;
-            InjectScriptl(Scripts + @"scriptsl\" + scriptEx);
+            InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
         }
 
         #region Json_
@@ -7733,18 +8137,22 @@ namespace Ostium
         {
             try
             {
-                HttpClient client = new HttpClient();
-                var response = await client.GetAsync(updtOnlineFile);
-                string updtValue = await response.Content.ReadAsStringAsync();
+                bool isConnected = await CheckInternetConnectionAsync();
+                if (isConnected)
+                {
+                    HttpClient client = new HttpClient();
+                    var response = await client.GetAsync(updtOnlineFile);
+                    string updtValue = await response.Content.ReadAsStringAsync();
 
-                if (versionNow != updtValue)
-                {
-                    AnnonceUpdate(softName);
-                }
-                else
-                {
-                    if (annoncE == 1)
-                        MessageBox.Show("No update available.", softName);
+                    if (versionNow != updtValue)
+                    {
+                        AnnonceUpdate(softName);
+                    }
+                    else
+                    {
+                        if (annoncE == 1)
+                            MessageBox.Show("No update available.", softName);
+                    }
                 }
             }
             catch (Exception ex)
@@ -7765,6 +8173,24 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! AnnonceUpdate: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        static async Task<bool> CheckInternetConnectionAsync()
+        {
+            try
+            {
+                string host = "8.8.8.8";
+                int timeout = 1000;
+
+                Ping ping = new Ping();
+                PingReply reply = await ping.SendPingAsync(host, timeout);
+
+                return reply.Status == IPStatus.Success;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
