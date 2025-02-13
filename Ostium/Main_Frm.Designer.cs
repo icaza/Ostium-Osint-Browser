@@ -2861,14 +2861,14 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
             this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9F);
             this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
             this.ModelItem_Txt.IsReplaceMode = false;
             this.ModelItem_Txt.Location = new System.Drawing.Point(3, 79);
@@ -3154,7 +3154,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -4123,7 +4123,7 @@
             this.OpnTableList_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpnTableList_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnTableList_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.OpnTableList_Btn.Location = new System.Drawing.Point(630, 0);
+            this.OpnTableList_Btn.Location = new System.Drawing.Point(646, 0);
             this.OpnTableList_Btn.Name = "OpnTableList_Btn";
             this.OpnTableList_Btn.Size = new System.Drawing.Size(129, 32);
             this.OpnTableList_Btn.TabIndex = 24;
@@ -4142,7 +4142,7 @@
             this.TableNode_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TableNode_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableNode_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableNode_Btn.Location = new System.Drawing.Point(529, 0);
+            this.TableNode_Btn.Location = new System.Drawing.Point(545, 0);
             this.TableNode_Btn.Name = "TableNode_Btn";
             this.TableNode_Btn.Size = new System.Drawing.Size(101, 32);
             this.TableNode_Btn.TabIndex = 23;
@@ -4161,7 +4161,7 @@
             this.TableParse_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TableParse_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableParse_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableParse_Btn.Location = new System.Drawing.Point(477, 0);
+            this.TableParse_Btn.Location = new System.Drawing.Point(493, 0);
             this.TableParse_Btn.Name = "TableParse_Btn";
             this.TableParse_Btn.Size = new System.Drawing.Size(52, 32);
             this.TableParse_Btn.TabIndex = 22;
@@ -4180,7 +4180,7 @@
             this.JsonSaveData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveData_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JsonSaveData_Btn.Location = new System.Drawing.Point(377, 0);
+            this.JsonSaveData_Btn.Location = new System.Drawing.Point(393, 0);
             this.JsonSaveData_Btn.Name = "JsonSaveData_Btn";
             this.JsonSaveData_Btn.Size = new System.Drawing.Size(100, 32);
             this.JsonSaveData_Btn.TabIndex = 20;
@@ -4199,7 +4199,7 @@
             this.JsonOpnListUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonOpnListUri_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(275, 0);
+            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(291, 0);
             this.JsonOpnListUri_Btn.Name = "JsonOpnListUri_Btn";
             this.JsonOpnListUri_Btn.Size = new System.Drawing.Size(102, 32);
             this.JsonOpnListUri_Btn.TabIndex = 19;
@@ -4218,7 +4218,7 @@
             this.JsonSaveUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveUri_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonSaveUri_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JsonSaveUri_Btn.Location = new System.Drawing.Point(164, 0);
+            this.JsonSaveUri_Btn.Location = new System.Drawing.Point(180, 0);
             this.JsonSaveUri_Btn.Name = "JsonSaveUri_Btn";
             this.JsonSaveUri_Btn.Size = new System.Drawing.Size(111, 32);
             this.JsonSaveUri_Btn.TabIndex = 18;
@@ -4237,7 +4237,7 @@
             this.JsonSaveFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JsonSaveFile_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(82, 0);
+            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(98, 0);
             this.JsonSaveFile_Btn.Name = "JsonSaveFile_Btn";
             this.JsonSaveFile_Btn.Size = new System.Drawing.Size(82, 32);
             this.JsonSaveFile_Btn.TabIndex = 17;
@@ -4258,7 +4258,7 @@
             this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.JsonOpnFile_Btn.Location = new System.Drawing.Point(0, 0);
             this.JsonOpnFile_Btn.Name = "JsonOpnFile_Btn";
-            this.JsonOpnFile_Btn.Size = new System.Drawing.Size(82, 32);
+            this.JsonOpnFile_Btn.Size = new System.Drawing.Size(98, 32);
             this.JsonOpnFile_Btn.TabIndex = 16;
             this.JsonOpnFile_Btn.Text = "Open Json";
             this.JsonOpnFile_Btn.UseVisualStyleBackColor = false;
@@ -5821,14 +5821,14 @@
             // 
             this.ExportXml_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExportXml_Tls.Name = "ExportXml_Tls";
-            this.ExportXml_Tls.Size = new System.Drawing.Size(180, 22);
+            this.ExportXml_Tls.Size = new System.Drawing.Size(151, 22);
             this.ExportXml_Tls.Text = "Export XML";
             this.ExportXml_Tls.Click += new System.EventHandler(this.ExportXml_Tls_Click);
             // 
             // ExportJson_Tls
             // 
             this.ExportJson_Tls.Name = "ExportJson_Tls";
-            this.ExportJson_Tls.Size = new System.Drawing.Size(180, 22);
+            this.ExportJson_Tls.Size = new System.Drawing.Size(151, 22);
             this.ExportJson_Tls.Text = "Export Json";
             this.ExportJson_Tls.Click += new System.EventHandler(this.ExportJson_Tls_Click);
             // 
@@ -6024,14 +6024,14 @@
             // PlantUmlVersion_Mnu
             // 
             this.PlantUmlVersion_Mnu.Name = "PlantUmlVersion_Mnu";
-            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(124, 22);
             this.PlantUmlVersion_Mnu.Text = "Version";
             this.PlantUmlVersion_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
             // 
             // PlantUmlLicense_Mnu
             // 
             this.PlantUmlLicense_Mnu.Name = "PlantUmlLicense_Mnu";
-            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(124, 22);
             this.PlantUmlLicense_Mnu.Text = "License";
             this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
             // 
