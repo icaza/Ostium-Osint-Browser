@@ -3709,30 +3709,27 @@ namespace Ostium
         {
             try
             {
-                SQLiteConnection myDB;
-                myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;");
-                myDB.Open();
-
-                string sql = execSql;
-                SQLiteCommand commande = new SQLiteCommand(sql, myDB);
-
-                SQLiteDataReader reader = commande.ExecuteReader();
-
-                while (reader.Read())
+                using (SQLiteConnection myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;"))
                 {
-                    if (ObjLstCbx == "lst")
-                        List_Object.Items.Add(reader[valueDB]);
-                    else
-                        Cbx_Object.Items.Add(reader[valueDB]);
+                    myDB.Open();
+                    using (SQLiteCommand commande = new SQLiteCommand(execSql, myDB))
+                    using (SQLiteDataReader reader = commande.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (ObjLstCbx == "lst")
+                                List_Object.Items.Add(reader[valueDB]);
+                            else
+                                Cbx_Object.Items.Add(reader[valueDB]);
+                        }
+                    }
                 }
 
-                myDB.Close();
-
                 if (List_Object == DataTable_Lst)
-                    TableCount_Lbl.Text = "table " + Convert.ToString(List_Object.Items.Count);
+                    TableCount_Lbl.Text = "table " + List_Object.Items.Count;
 
                 if (List_Object == DataValue_Lst)
-                    RecordsCount_Lbl.Text = "records " + Convert.ToString(List_Object.Items.Count);
+                    RecordsCount_Lbl.Text = "records " + List_Object.Items.Count;
 
                 DBadmin = "off";
             }
@@ -3741,6 +3738,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Sqlite_Read: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Loading database URL in wBrowser or in the "DataValue_Opn" Textbox of the "TAB Data" section
