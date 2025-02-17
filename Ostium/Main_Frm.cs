@@ -207,6 +207,8 @@ namespace Ostium
         int _historyIndex = -1;
         readonly List<string> _commandHistory = new List<string>();
 
+        FloodTracking TrackingFlood;
+
         #endregion
 
         #region Frm_
@@ -622,7 +624,7 @@ namespace Ostium
         /// <param name="newItem1">Search for video on Youtube</param>
         /// <param name="newItem2">Embed Youtube video</param>
         /// 
-        void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
+        void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
             string UriYoutube = string.Empty;
             string C = WBrowse.Source.AbsoluteUri;
@@ -778,11 +780,14 @@ namespace Ostium
                 FaviconLoad();
             }
         }
-
+        
         async void ScripInj()
         {
             try
             {
+                TrackingFlood = new FloodTracking(WBrowse.CoreWebView2);
+                await TrackingFlood.FloodTrackingAsync();
+
                 await ScriptInject();
             }
             catch (Exception ex)
@@ -878,13 +883,15 @@ namespace Ostium
                 return;
             }
 
-            WBrowse.CoreWebView2.SourceChanged += WBrowse_SourceChanged;
             WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
             WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
-            WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
-            WBrowse.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
-            WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested; // ContextMenu
+            WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
             WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
+
+            WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+            WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
+            WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
+            WBrowse.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
 
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
@@ -950,10 +957,12 @@ namespace Ostium
                 return;
             }
 
-            WBrowsefeed.CoreWebView2.SourceChanged += WBrowsefeed_SourceChanged;
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
-            WBrowsefeed.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
+
+            WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+            WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
+            WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
 
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }

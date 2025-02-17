@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Webview_Frm));
-            this.WBrowse = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.WBrowsew = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel3 = new System.Windows.Forms.Panel();
             this.URLbrowse_Cbx = new System.Windows.Forms.ComboBox();
             this.CopyURL_Btn = new System.Windows.Forms.Button();
@@ -43,24 +43,24 @@
             this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.WBrowse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WBrowsew)).BeginInit();
             this.panel3.SuspendLayout();
             this.Status_Strip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // WBrowse
+            // WBrowsew
             // 
-            this.WBrowse.AllowExternalDrop = true;
-            this.WBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
-            this.WBrowse.CreationProperties = null;
-            this.WBrowse.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WBrowse.Location = new System.Drawing.Point(0, 24);
-            this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(800, 404);
-            this.WBrowse.Source = new System.Uri("http://192.168.1.36/", System.UriKind.Absolute);
-            this.WBrowse.TabIndex = 16;
-            this.WBrowse.ZoomFactor = 1D;
+            this.WBrowsew.AllowExternalDrop = true;
+            this.WBrowsew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.WBrowsew.CreationProperties = null;
+            this.WBrowsew.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WBrowsew.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBrowsew.Location = new System.Drawing.Point(0, 24);
+            this.WBrowsew.Name = "WBrowsew";
+            this.WBrowsew.Size = new System.Drawing.Size(800, 404);
+            this.WBrowsew.Source = new System.Uri("http://192.168.1.36/", System.UriKind.Absolute);
+            this.WBrowsew.TabIndex = 16;
+            this.WBrowsew.ZoomFactor = 1D;
             // 
             // panel3
             // 
@@ -276,14 +276,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.WBrowse);
+            this.Controls.Add(this.WBrowsew);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.Status_Strip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Webview_Frm";
             this.Text = "Webview_Frm";
             this.Load += new System.EventHandler(this.Webview_Frm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.WBrowse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WBrowsew)).EndInit();
             this.panel3.ResumeLayout(false);
             this.Status_Strip.ResumeLayout(false);
             this.Status_Strip.PerformLayout();
@@ -294,7 +294,7 @@
 
         #endregion
 
-        private Microsoft.Web.WebView2.WinForms.WebView2 WBrowse;
+        private Microsoft.Web.WebView2.WinForms.WebView2 WBrowsew;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox URLbrowse_Cbx;
         private System.Windows.Forms.Button CopyURL_Btn;
