@@ -207,7 +207,7 @@ namespace Ostium
         int _historyIndex = -1;
         readonly List<string> _commandHistory = new List<string>();
 
-        FloodTracking TrackingFlood;
+        FloodHeader HeaderFlood;
 
         #endregion
 
@@ -780,13 +780,13 @@ namespace Ostium
                 FaviconLoad();
             }
         }
-        
+
         async void ScripInj()
         {
             try
             {
-                TrackingFlood = new FloodTracking(WBrowse.CoreWebView2);
-                await TrackingFlood.FloodTrackingAsync();
+                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                await HeaderFlood.FloodHeaderAsync();
 
                 await ScriptInject();
             }
@@ -874,6 +874,64 @@ namespace Ostium
             }
         }
 
+        //async void WBrowse_WebResourceResponseReceived(object sender, CoreWebView2WebResourceResponseReceivedEventArgs e)
+        //{
+        //    foreach (var current in e.Request.Headers)
+        //    {
+        //        Console.WriteLine("REQUEST=> " + current);
+        //    }
+
+        //    foreach (var current in e.Response.Headers)
+        //    {
+        //        Console.WriteLine("RESPONSE=> " + current);
+        //    }
+
+        //    int status = e.Response.StatusCode;
+        //    if (status == 200)
+        //    {
+        //        Console.WriteLine("Request succeeded!");
+
+        //        try
+        //        {
+        //            Stream content = await e.Response.GetContentAsync();
+        //            if (content != null)
+        //            {
+        //                DoSomethingWithResponseContent(content);
+        //            }
+        //        }
+        //        catch
+        //        { }
+        //    }
+        //}
+
+        //private void DoSomethingWithResponseContent(Stream content)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
+        //{
+        //    if (!e.IsSuccess)
+        //    {
+        //        MessageBox.Show($"WBrowse creation failed with exception = {e.InitializationException}");
+        //        WBrowse_UpdtTitleEvent("Initialization Completed failed");
+        //        return;
+        //    }
+
+        //    WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
+        //    WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
+        //    WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
+        //    WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
+        //    //WBrowse.CoreWebView2.WebResourceResponseReceived += WBrowse_WebResourceResponseReceived;
+
+        //    WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+        //    WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
+        //    WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
+        //    WBrowse.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
+
+        //    WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
+        //}
+
         void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (!e.IsSuccess)
@@ -960,9 +1018,9 @@ namespace Ostium
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
 
-            WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
-            WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
-            WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
+            WBrowsefeed.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+            WBrowsefeed.CoreWebView2.Settings.IsWebMessageEnabled = false;
+            WBrowsefeed.CoreWebView2.Settings.IsScriptEnabled = true;
 
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }

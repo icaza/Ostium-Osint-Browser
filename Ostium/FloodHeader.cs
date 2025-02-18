@@ -2,17 +2,17 @@
 using System.Threading.Tasks;
 using Microsoft.Web.WebView2.Core;
 
-public class FloodTracking
+public class FloodHeader
 {
     readonly Random random = new Random();
     readonly CoreWebView2 webView;
 
-    public FloodTracking(CoreWebView2 webView)
+    public FloodHeader(CoreWebView2 webView)
     {
         this.webView = webView ?? throw new ArgumentNullException(nameof(webView));
     }
 
-    public async Task FloodTrackingAsync()
+    public async Task FloodHeaderAsync()
     {
         string userAgent = GenerateRandomUserAgent();
         var (screenWidth, screenHeight) = GenerateRandomResolution();
@@ -21,23 +21,20 @@ public class FloodTracking
 
         webView.Settings.UserAgent = userAgent;
 
-        await InjectAntiTrackingScripts(screenWidth, screenHeight, platform, timezoneOffset);
+        await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset);
     }
 
-    async Task InjectAntiTrackingScripts(int width, int height, string platform, int timezoneOffset)
+    async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset)
     {
         string script = $@"
         (function() {{
-            // Fausser la résolution d'écran
             Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
             Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
             Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
             Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
 
-            // Changer OS et User-Agent
             Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
 
-            // Modifier le fuseau horaire
             Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
         }})();
         ";
@@ -49,10 +46,16 @@ public class FloodTracking
     {
         string[] userAgents =
         {
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.3",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.1",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:135.0) Gecko/20100101 Firefox/135.0",
             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+            "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0",
+            "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0"
         };
 
         return userAgents[random.Next(userAgents.Length)];
@@ -73,7 +76,7 @@ public class FloodTracking
     {
         string[] platforms =
         {
-            "Win32", "Linux x86_64", "MacIntel", "Android", "iPhone"
+            "Win32", "Linux x86_64", "MacIntel", "Android", "iPhone", "Linux i686", "Ubuntu"
         };
 
         return platforms[random.Next(platforms.Length)];

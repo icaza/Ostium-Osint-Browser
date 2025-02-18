@@ -1278,7 +1278,6 @@
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
             this.WBrowse.Size = new System.Drawing.Size(920, 461);
-            this.WBrowse.Source = new System.Uri("https://icaza.github.io/", System.UriKind.Absolute);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
             // 

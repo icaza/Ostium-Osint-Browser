@@ -21,7 +21,7 @@ namespace Ostium
         readonly string AppStart = Application.StartupPath + @"\";
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
-        FloodTracking TrackingFlood;
+        FloodHeader TrackingFlood;
 
         #endregion
 
@@ -121,8 +121,8 @@ namespace Ostium
         {
             try
             {
-                TrackingFlood = new FloodTracking(WBrowsew.CoreWebView2);
-                await TrackingFlood.FloodTrackingAsync();
+                TrackingFlood = new FloodHeader(WBrowsew.CoreWebView2);
+                await TrackingFlood.FloodHeaderAsync();
             }
             catch
             {}
