@@ -97,8 +97,17 @@ namespace Ostium
             Text = currentDocumentTitle + " [" + message + "]";
         }
 
-        void WBrowsew_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
+        async void WBrowsew_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            if (@Class_Var.FLOOD_HEADER == 1)
+            {
+                await WBrowsew.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowsew.CoreWebView2, "config.json");
+
+                TrackingFlood = new FloodHeader(WBrowsew.CoreWebView2);
+                await TrackingFlood.FloodHeaderAsync();
+            }
+
             WBrowsew_UpdtTitleEvent("Navigation Starting");
         }
         ///
@@ -112,20 +121,7 @@ namespace Ostium
             if (Class_Var.COOKIES_SAVE == 1)
                 GetCookie(WBrowsew.Source.AbsoluteUri);
 
-            ScripInj();
-
             WBrowsew_UpdtTitleEvent("Navigation Completed");
-        }
-
-        async void ScripInj()
-        {
-            try
-            {
-                TrackingFlood = new FloodHeader(WBrowsew.CoreWebView2);
-                await TrackingFlood.FloodHeaderAsync();
-            }
-            catch
-            {}
         }
 
         void WBrowsew_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)

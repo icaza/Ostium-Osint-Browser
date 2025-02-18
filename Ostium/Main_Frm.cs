@@ -743,13 +743,22 @@ namespace Ostium
         /// <param name="UserAgentOnOff"></param>
         /// <param value="on">If enabled user-agent modification</param>
         /// 
-        void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
+        async void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
             var settings = WBrowse.CoreWebView2.Settings;
 
             if (UserAgentOnOff == "on")
             {
                 settings.UserAgent = UserAgentSelect;
+            }
+
+            if (FloodHeader_Chk.Checked)
+            {
+                await WBrowse.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
+
+                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                await HeaderFlood.FloodHeaderAsync();
             }
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
@@ -783,17 +792,7 @@ namespace Ostium
 
         async void ScripInj()
         {
-            try
-            {
-                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
-                await HeaderFlood.FloodHeaderAsync();
-
-                await ScriptInject();
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! ScripInj: ", ex.ToString(), "Main_Frm", AppStart);
-            }
+            await ScriptInject();
         }
 
         async void FaviconLoad()
@@ -874,64 +873,6 @@ namespace Ostium
             }
         }
 
-        //async void WBrowse_WebResourceResponseReceived(object sender, CoreWebView2WebResourceResponseReceivedEventArgs e)
-        //{
-        //    foreach (var current in e.Request.Headers)
-        //    {
-        //        Console.WriteLine("REQUEST=> " + current);
-        //    }
-
-        //    foreach (var current in e.Response.Headers)
-        //    {
-        //        Console.WriteLine("RESPONSE=> " + current);
-        //    }
-
-        //    int status = e.Response.StatusCode;
-        //    if (status == 200)
-        //    {
-        //        Console.WriteLine("Request succeeded!");
-
-        //        try
-        //        {
-        //            Stream content = await e.Response.GetContentAsync();
-        //            if (content != null)
-        //            {
-        //                DoSomethingWithResponseContent(content);
-        //            }
-        //        }
-        //        catch
-        //        { }
-        //    }
-        //}
-
-        //private void DoSomethingWithResponseContent(Stream content)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
-        //{
-        //    if (!e.IsSuccess)
-        //    {
-        //        MessageBox.Show($"WBrowse creation failed with exception = {e.InitializationException}");
-        //        WBrowse_UpdtTitleEvent("Initialization Completed failed");
-        //        return;
-        //    }
-
-        //    WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
-        //    WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
-        //    WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
-        //    WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
-        //    //WBrowse.CoreWebView2.WebResourceResponseReceived += WBrowse_WebResourceResponseReceived;
-
-        //    WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
-        //    WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
-        //    WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
-        //    WBrowse.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
-
-        //    WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
-        //}
-
         void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (!e.IsSuccess)
@@ -971,8 +912,17 @@ namespace Ostium
             TmpTitleWBrowsefeed = Text;
         }
 
-        void WBrowsefeed_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
+        async void WBrowsefeed_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            if (FloodHeader_Chk.Checked)
+            {
+                await WBrowse.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
+
+                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                await HeaderFlood.FloodHeaderAsync();
+            }
+
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
         }
         ///
@@ -7584,6 +7534,14 @@ namespace Ostium
         {
             string scriptEx = e.ClickedItem.Text;
             InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
+        }
+
+        private void FloodHeader_Chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FloodHeader_Chk.Checked)
+                @Class_Var.FLOOD_HEADER = 1;
+            else
+                @Class_Var.FLOOD_HEADER = 0;
         }
 
         #region Json_

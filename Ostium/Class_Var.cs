@@ -19,6 +19,7 @@
         public static string BKMKLT_var;
         public static int COOKIES_SAVE_var;
         public static string SCRIPTCREATOR_var;
+        public static int FLOOD_HEADER_var;
 
         public static string File_Open
         {
@@ -221,6 +222,18 @@
             set
             {
                 SCRIPTCREATOR_var = value;
+            }
+        }
+
+        public static int FLOOD_HEADER
+        {
+            get
+            {
+                return FLOOD_HEADER_var;
+            }
+            set
+            {
+                FLOOD_HEADER_var = value;
             }
         }
     }

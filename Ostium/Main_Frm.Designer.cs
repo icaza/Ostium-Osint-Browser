@@ -512,6 +512,7 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.FloodHeader_Chk = new System.Windows.Forms.CheckBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -4725,6 +4726,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.FloodHeader_Chk);
             this.groupBox6.Controls.Add(this.Limitsize_Chk);
             this.groupBox6.Controls.Add(this.ArchiveAdd_Lst);
             this.groupBox6.Controls.Add(this.SaveCookies_Chk);
@@ -4743,7 +4745,7 @@
             this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
-            this.Limitsize_Chk.Location = new System.Drawing.Point(13, 80);
+            this.Limitsize_Chk.Location = new System.Drawing.Point(13, 93);
             this.Limitsize_Chk.Name = "Limitsize_Chk";
             this.Limitsize_Chk.Size = new System.Drawing.Size(218, 36);
             this.Limitsize_Chk.TabIndex = 2;
@@ -4755,7 +4757,7 @@
             // 
             this.ArchiveAdd_Lst.FormattingEnabled = true;
             this.ArchiveAdd_Lst.ItemHeight = 14;
-            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(14, 158);
+            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(2, 177);
             this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
             this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 18);
             this.ArchiveAdd_Lst.TabIndex = 1;
@@ -4767,7 +4769,7 @@
             this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SaveCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.SaveCookies_Chk.Location = new System.Drawing.Point(13, 30);
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(13, 40);
             this.SaveCookies_Chk.Name = "SaveCookies_Chk";
             this.SaveCookies_Chk.Size = new System.Drawing.Size(192, 36);
             this.SaveCookies_Chk.TabIndex = 0;
@@ -6483,6 +6485,21 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // FloodHeader_Chk
+            // 
+            this.FloodHeader_Chk.AutoSize = true;
+            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FloodHeader_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FloodHeader_Chk.ForeColor = System.Drawing.Color.White;
+            this.FloodHeader_Chk.Location = new System.Drawing.Point(13, 146);
+            this.FloodHeader_Chk.Name = "FloodHeader_Chk";
+            this.FloodHeader_Chk.Size = new System.Drawing.Size(110, 20);
+            this.FloodHeader_Chk.TabIndex = 3;
+            this.FloodHeader_Chk.Text = "Flood Header";
+            this.FloodHeader_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FloodHeader_Chk.UseVisualStyleBackColor = true;
+            this.FloodHeader_Chk.CheckedChanged += new System.EventHandler(this.FloodHeader_Chk_CheckedChanged);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7083,6 +7100,7 @@
         private System.Windows.Forms.ToolStripMenuItem ForceLinkParent_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator35;
         private System.Windows.Forms.ToolStripButton JavaScriptFeed_Btn;
+        private System.Windows.Forms.CheckBox FloodHeader_Chk;
     }
 }
 
