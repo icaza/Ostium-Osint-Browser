@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.Web.WebView2.Core;
+using System;
 using System.Threading.Tasks;
-using Microsoft.Web.WebView2.Core;
 
 public class FloodHeader
 {
@@ -18,25 +18,68 @@ public class FloodHeader
         var (screenWidth, screenHeight) = GenerateRandomResolution();
         string platform = GenerateRandomPlatform();
         int timezoneOffset = GenerateRandomTimezoneOffset();
+        string language = GenerateRandomLanguage();
+        int hardwareConcurrency = GenerateRandomHardwareConcurrency();
+        float deviceMemory = GenerateRandomDeviceMemory();
+        int maxTouchPoints = GenerateRandomMaxTouchPoints();
+        string webdriver = GenerateRandomWebdriver();
+        string connectionType = GenerateRandomConnectionType();
 
         webView.Settings.UserAgent = userAgent;
 
-        await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset);
+        await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset, language, hardwareConcurrency, deviceMemory, maxTouchPoints, webdriver, connectionType);
     }
 
-    async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset)
+    async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, string webdriver, string connectionType)
     {
         string script = $@"
         (function() {{
+            // Manipulating Screen and Window Properties
             Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
             Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
             Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
             Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
 
+            // Manipulate platform and time zone
             Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
-
+            Object.defineProperty(navigator, 'oscpu', {{ get: () => '{platform}' }});
             Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
-        }})();
+
+            // Manipulating languages
+            Object.defineProperty(navigator, 'language', {{ get: () => '{language}' }});
+            Object.defineProperty(navigator, 'languages', {{ get: () => ['{language}', 'en-US', 'en'] }});
+
+            // Manipulating material properties
+            Object.defineProperty(navigator, 'hardwareConcurrency', {{ get: () => {hardwareConcurrency} }});
+            Object.defineProperty(navigator, 'deviceMemory', {{ get: () => {deviceMemory} }});
+            Object.defineProperty(navigator, 'maxTouchPoints', {{ get: () => {maxTouchPoints} }});
+
+            // Manipulate Webdriver (to avoid automation detection)
+            Object.defineProperty(navigator, 'webdriver', {{ get: () => {webdriver.ToLower()} }});
+
+            // Manipulate login information
+            Object.defineProperty(navigator, 'connection', {{
+                get: () => ({{
+                    downlink: 10,
+                    effectiveType: '{connectionType}',
+                    rtt: 100,
+                    saveData: false,
+                    type: '{connectionType}'
+                }})
+            }});
+
+            // Manipulating the canvas to avoid fingerprinting
+            // const canvasPrototype = HTMLCanvasElement.prototype;
+            // const originalGetContext = canvasPrototype.getContext;
+            // canvasPrototype.getContext = function(contextType) {{
+            //     if (contextType === '2d') {{
+            //         const context = originalGetContext.apply(this, arguments);
+            //         context.fillText = () => {{}}; // Disable fillText
+            //         return context;
+            //     }}
+            //     return originalGetContext.apply(this, arguments);
+            // }};
+        // }})();
         ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
@@ -46,11 +89,11 @@ public class FloodHeader
     {
         string[] userAgents =
         {
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.3",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.3",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.1",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0",
+            "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:135.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.",
+            "Mozilla/5.0 (Windows NT 6.1; rv:109.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:135.0) Gecko/20100101 Firefox/134.0",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:135.0) Gecko/20100101 Firefox/135.0",
             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
@@ -76,7 +119,7 @@ public class FloodHeader
     {
         string[] platforms =
         {
-            "Win32", "Linux x86_64", "MacIntel", "Android", "iPhone", "Linux i686", "Ubuntu"
+            "Win32", "Linux x86_64", "MacIntel", "Android", "iPhone", "Linux i686", "Ubuntu", "Fedora"
         };
 
         return platforms[random.Next(platforms.Length)];
@@ -86,5 +129,38 @@ public class FloodHeader
     {
         int[] offsets = { -720, -480, -300, -240, -180, 0, 180, 300, 480, 720 };
         return offsets[random.Next(offsets.Length)];
+    }
+
+    string GenerateRandomLanguage()
+    {
+        string[] languages = { "en-US", "fr-FR", "es-ES", "de-DE", "ja-JP" };
+        return languages[random.Next(languages.Length)];
+    }
+
+    int GenerateRandomHardwareConcurrency()
+    {
+        return random.Next(2, 16); // Between 2 and 16 cores
+    }
+
+    float GenerateRandomDeviceMemory()
+    {
+        float[] memories = { 2, 4, 8, 16, 32 };
+        return memories[random.Next(memories.Length)];
+    }
+
+    int GenerateRandomMaxTouchPoints()
+    {
+        return random.Next(0, 10); // Between 0 and 10 touch points
+    }
+
+    string GenerateRandomWebdriver()
+    {
+        return random.Next(2) == 0 ? "false" : "true"; // Randomly true or false
+    }
+
+    string GenerateRandomConnectionType()
+    {
+        string[] types = { "wifi", "cellular", "ethernet", "none" };
+        return types[random.Next(types.Length)];
     }
 }

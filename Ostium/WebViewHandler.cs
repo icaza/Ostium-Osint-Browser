@@ -64,11 +64,11 @@ class WebViewHandler
             headersToModify["SEC-CH-PREFERS-COLOR-SCHEME"] = settings.TryGetProperty("FakeColorShem", out JsonElement color) ? color.GetString() : "light";
             headersToModify["SEC-CH-UA"] = settings.TryGetProperty("FakeBrowser", out JsonElement browser) ? browser.GetString() : "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"131\"";
             headersToModify["SEC-CH-UA-ARCH"] = settings.TryGetProperty("FakeArchitecture", out JsonElement arch) ? arch.GetString() : "x64";
-            headersToModify["SEC-CH-UA-FULL-VERSION"] = settings.TryGetProperty("FakeFullVersion", out JsonElement fullVersion) ? fullVersion.GetString() : "100.0.0.0";
+            headersToModify["SEC-CH-UA-FULL-VERSION"] = settings.TryGetProperty("FakeFullVersion", out JsonElement fullVersion) ? fullVersion.GetString() : "131.0.6778.140";
             headersToModify["SEC-CH-UA-FULL-VERSION-LIST"] = settings.TryGetProperty("FakeFullVersionList", out JsonElement fullVersionList) ? fullVersionList.GetString() : "";
-            headersToModify["SEC-CH-UA-PLATFORM"] = settings.TryGetProperty("FakeSystem", out JsonElement system) ? system.GetString() : "Windows";
-            headersToModify["SEC-CH-UA-PLATFORM-VERSION"] = settings.TryGetProperty("FakePlateform", out JsonElement platform) ? platform.GetString() : "10.0.0";
-            headersToModify["USER-AGENT"] = settings.TryGetProperty("FakeUserAgent", out JsonElement userAgent) ? userAgent.GetString() : "Mozilla/5.0";
+            headersToModify["SEC-CH-UA-PLATFORM"] = settings.TryGetProperty("FakeSystem", out JsonElement system) ? system.GetString() : "Linux x86_64";
+            headersToModify["SEC-CH-UA-PLATFORM-VERSION"] = settings.TryGetProperty("FakePlateform", out JsonElement platform) ? platform.GetString() : "23.10";
+            headersToModify["USER-AGENT"] = settings.TryGetProperty("FakeUserAgent", out JsonElement userAgent) ? userAgent.GetString() : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
             headersToModify["REFERER"] = settings.TryGetProperty("FakeReferer", out JsonElement referer) ? referer.GetString() : "https://www.unknow.com/";
             headersToModify["SEC-CH-VIEWPORT-WIDTH"] = settings.TryGetProperty("FakeWidth", out JsonElement width) ? width.GetString() : "1920";
             headersToModify["SEC-CH-VIEWPORT-HEIGHT"] = settings.TryGetProperty("FakeHeight", out JsonElement height) ? height.GetString() : "1080";

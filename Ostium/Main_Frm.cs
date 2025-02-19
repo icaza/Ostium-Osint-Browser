@@ -754,11 +754,11 @@ namespace Ostium
 
             if (FloodHeader_Chk.Checked)
             {
-                await WBrowse.EnsureCoreWebView2Async();
-                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
-
                 HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
                 await HeaderFlood.FloodHeaderAsync();
+
+                await WBrowse.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
             }
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
