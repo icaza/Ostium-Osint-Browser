@@ -33,54 +33,80 @@ public class FloodHeader
     async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, string webdriver, string connectionType)
     {
         string script = $@"
-        (function() {{
-            // Manipulating Screen and Window Properties
-            Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
-            Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
-            Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
-            Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
+    (function() {{
+        // Manipulating Screen and Window Properties
+        Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
+        Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
+        Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
+        Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
 
-            // Manipulate platform and time zone
-            Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
-            Object.defineProperty(navigator, 'oscpu', {{ get: () => '{platform}' }});
-            Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
+        // Manipulate platform and time zone
+        Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
+        Object.defineProperty(navigator, 'oscpu', {{ get: () => '{platform}' }});
+        Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
 
-            // Manipulating languages
-            Object.defineProperty(navigator, 'language', {{ get: () => '{language}' }});
-            Object.defineProperty(navigator, 'languages', {{ get: () => ['{language}', 'en-US', 'en'] }});
+        // Manipulating languages
+        Object.defineProperty(navigator, 'language', {{ get: () => '{language}' }});
+        Object.defineProperty(navigator, 'languages', {{ get: () => ['{language}', 'en-US', 'en'] }});
 
-            // Manipulating material properties
-            Object.defineProperty(navigator, 'hardwareConcurrency', {{ get: () => {hardwareConcurrency} }});
-            Object.defineProperty(navigator, 'deviceMemory', {{ get: () => {deviceMemory} }});
-            Object.defineProperty(navigator, 'maxTouchPoints', {{ get: () => {maxTouchPoints} }});
+        // Manipulating material properties
+        Object.defineProperty(navigator, 'hardwareConcurrency', {{ get: () => {hardwareConcurrency} }});
+        Object.defineProperty(navigator, 'deviceMemory', {{ get: () => {deviceMemory} }});
+        Object.defineProperty(navigator, 'maxTouchPoints', {{ get: () => {maxTouchPoints} }});
 
-            // Manipulate Webdriver (to avoid automation detection)
-            Object.defineProperty(navigator, 'webdriver', {{ get: () => {webdriver.ToLower()} }});
+        // Manipulating Webdriver (to avoid automation detection))
+        Object.defineProperty(navigator, 'webdriver', {{ get: () => {webdriver.ToLower()} }});
 
-            // Manipulate login information
-            Object.defineProperty(navigator, 'connection', {{
-                get: () => ({{
-                    downlink: 10,
-                    effectiveType: '{connectionType}',
-                    rtt: 100,
-                    saveData: false,
-                    type: '{connectionType}'
-                }})
-            }});
+        // Manipulate login information
+        Object.defineProperty(navigator, 'connection', {{
+            get: () => ({{
+                downlink: 10,
+                effectiveType: '{connectionType}',
+                rtt: 100,
+                saveData: false,
+                type: '{connectionType}'
+            }})
+        }});
 
-            // Manipulating the canvas to avoid fingerprinting
-            // const canvasPrototype = HTMLCanvasElement.prototype;
-            // const originalGetContext = canvasPrototype.getContext;
-            // canvasPrototype.getContext = function(contextType) {{
-            //     if (contextType === '2d') {{
-            //         const context = originalGetContext.apply(this, arguments);
-            //         context.fillText = () => {{}}; // Disable fillText
-            //         return context;
-            //     }}
-            //     return originalGetContext.apply(this, arguments);
-            // }};
-        // }})();
-        ";
+        // Manipulating the canvas to avoid fingerprinting
+        // const canvasPrototype = HTMLCanvasElement.prototype;
+        // const originalGetContext = canvasPrototype.getContext;
+        // canvasPrototype.getContext = function(contextType) {{
+        //     if (contextType === '2d') {{
+        //         const context = originalGetContext.apply(this, arguments);
+        //         context.fillText = () => {{}}; // Désactiver fillText
+        //         return context;
+        //     }}
+        //     return originalGetContext.apply(this, arguments);
+        // }};
+
+        // Disable or manipulate the Web Audio API
+        if (window.AudioContext || window.webkitAudioContext) {{
+            const OriginalAudioContext = window.AudioContext || window.webkitAudioContext;
+
+            window.AudioContext = function() {{
+                const audioContext = new OriginalAudioContext();
+
+                // Generate random values ​​for audio properties
+                const originalCreateAnalyser = audioContext.createAnalyser;
+                audioContext.createAnalyser = function() {{
+                    const analyser = originalCreateAnalyser.apply(audioContext, arguments);
+                    analyser.frequencyBinCount = Math.floor(Math.random() * 2048); // Random value
+                    return analyser;
+                }};
+
+                const originalCreateOscillator = audioContext.createOscillator;
+                audioContext.createOscillator = function() {{
+                    const oscillator = originalCreateOscillator.apply(audioContext, arguments);
+                    oscillator.frequency.value = Math.random() * 1000; // Random value
+                    return oscillator;
+                }};
+
+                return audioContext;
+            }};
+        }}
+    }})();
+    ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
