@@ -190,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "22";
+        readonly string versionNow = "23";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -853,7 +853,6 @@ namespace Ostium
         }
         ///
         /// <param name="NameUriDB">URL Title variable for addition to the DataBase</param>
-        /// <param name="Download_Source_Page()">Download and save the web page source to the sourcepage file for reuse</param>
         /// 
         void WBrowse_DocumentTitleChanged(object sender, object e)
         {
@@ -861,7 +860,6 @@ namespace Ostium
             NameUriDB = WBrowse.CoreWebView2.DocumentTitle;
 
             WBrowse_UpdtTitleEvent("DocumentTitleChanged");
-            Download_Source_Page();
         }
 
         void NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
@@ -1761,6 +1759,13 @@ namespace Ostium
         {
             try
             {
+                if (!File.Exists(Path.Combine(AppStart, "sourcepage")))
+                {
+                    MessageBox.Show("The source of the current WEB page not exist, start [sourcepage] command first!", "No source Page", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Console_Cmd_Txt.Enabled = true;
+                    return;
+                }
+
                 string message, title;
                 object RegexSelect;
 
@@ -3033,6 +3038,7 @@ namespace Ostium
                 string pageContents = encoding.GetString(contentBytes);
 
                 File_Write(Path.Combine(AppStart, "sourcepage"), pageContents);
+                Beep(300, 200);
             }
             catch (Exception ex)
             {
@@ -3158,6 +3164,9 @@ namespace Ostium
                 case "version":
                     MessageBox.Show(SoftVersion);
                     break;
+                case "sourcepage":
+                    Download_Source_Page();
+                    break;
                 case "links":
                     Console_Cmd_Txt.Enabled = false;
                     cmdSwitch = 0;
@@ -3272,7 +3281,14 @@ namespace Ostium
         ///
         void CMD_Console_Exec(int cmdSwitch, string regxCmd)
         {
-            StreamReader sr = new StreamReader(AppStart + "sourcepage");
+            if (!File.Exists(Path.Combine(AppStart, "sourcepage")))
+            {
+                MessageBox.Show("The source of the current WEB page not exist, start [sourcepage] command first!", "No source Page", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Console_Cmd_Txt.Enabled = true;
+                return;
+            }
+
+            StreamReader sr = new StreamReader(Path.Combine(AppStart, "sourcepage"));
             Invoke(new Action<string>(SRCpageAdd), "listclear");
             string line;
 
