@@ -92,7 +92,7 @@ namespace Ostium
         readonly string SVGviewerdir = Application.StartupPath + @"\SVGviewer\";
         readonly string Keeptrack = Application.StartupPath + @"\KeepTrack\";
 
-        string D4ta = "default_database_name";
+        string databasePath = "default_database_name";
         ///
         /// <summary>
         /// Objects
@@ -248,7 +248,7 @@ namespace Ostium
                     /// <param value="1">Save the chosen configuration and Reload</param>
                     /// 
                     if (File.Exists(Path.Combine(AppStart, "config.xml")))
-                        Config_Ini(Path.Combine(AppStart, "config.xml"));
+                        LoadConfiguration(Path.Combine(AppStart, "config.xml"));
                     else
                         CreateConfigFile(0);
                     ///
@@ -401,7 +401,7 @@ namespace Ostium
             ///
             /// Loading the configuration from the "config.xml" file
             ///
-            Config_Ini(Path.Combine(AppStart, "config.xml"));
+            LoadConfiguration(Path.Combine(AppStart, "config.xml"));
         }
 
         void CreateDirectory()
@@ -445,166 +445,320 @@ namespace Ostium
                 Directory.CreateDirectory(dir);
         }
 
-        void Config_Ini(string ConfigFile)
+        //void LoadConfiguration(string ConfigFile)
+        //{
+        //    try
+        //    {
+        //        using (XmlReader reader = XmlReader.Create(ConfigFile))
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                if (reader.IsStartElement())
+        //                {
+        //                    switch (reader.Name.ToString())
+        //                    {
+        //                        case "DB_USE_DEFAULT":
+        //                            DB_Default_Txt.Text = Convert.ToString(reader.ReadString());
+        //                            DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
+        //                            break;
+        //                        case "URL_HOME_VAR":
+        //                            Class_Var.URL_HOME = reader.ReadString();
+        //                            UrlHome_Opt_Txt.Text = Class_Var.URL_HOME;
+        //                            break;
+        //                        case "URL_TRAD_WEBPAGE_VAR":
+        //                            Class_Var.URL_TRAD_WEBPAGE = reader.ReadString();
+        //                            UrlTradWebPage_Opt_Txt.Text = Class_Var.URL_TRAD_WEBPAGE;
+        //                            break;
+        //                        case "URL_TRAD_WEBTXT_VAR":
+        //                            Class_Var.URL_TRAD_WEBTXT = reader.ReadString();
+        //                            break;
+        //                        case "URL_DEFAUT_WSEARCH_VAR":
+        //                            Class_Var.URL_DEFAUT_WSEARCH = reader.ReadString();
+        //                            SearchEngine_Opt_Txt.Text = Class_Var.URL_DEFAUT_WSEARCH;
+        //                            break;
+        //                        case "URL_USER_AGENT_VAR":
+        //                            Class_Var.URL_USER_AGENT = reader.ReadString();
+        //                            UserAgent_Opt_Txt.Text = Class_Var.URL_USER_AGENT;
+        //                            break;
+        //                        case "URL_USER_AGENT_SRC_PAGE_VAR":
+        //                            Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
+        //                            UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+        //                            JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+        //                            break;
+        //                        case "URL_GOOGLEBOT_VAR":
+        //                            Class_Var.URL_GOOGLEBOT = reader.ReadString();
+        //                            GoogBot_Opt_Txt.Text = Class_Var.URL_GOOGLEBOT;
+        //                            break;
+        //                        case "DEFAULT_EDITOR_VAR":
+        //                            Class_Var.DEFAULT_EDITOR = reader.ReadString();
+        //                            DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
+        //                            break;
+        //                        case "VOLUME_TRACK_VAR":
+        //                            Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
+        //                            VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
+        //                            break;
+        //                        case "RATE_TRACK_VAR":
+        //                            Class_Var.RATE_TRACK = Convert.ToInt32(reader.ReadString());
+        //                            RateVal_Track.Value = Class_Var.RATE_TRACK;
+        //                            break;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        ///
+        //        /// If DataBase exist True loading
+        //        /// If DataBase exist False create
+        //        /// 
+        //        if (DB_Default_Txt.Text != "0x0")
+        //        {
+        //            D4ta = DBdirectory + DB_Default_Txt.Text;
+        //        }
+        //        else
+        //        {
+        //            string message, title;
+        //            object ValueInput;
+
+        //            message = "First use. \n\nChoose a name for the database or leave empty.";
+        //            title = "Database default name";
+
+        //            ValueInput = Interaction.InputBox(message, title);
+        //            string ValueOutput = Convert.ToString(ValueInput);
+        //            ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", string.Empty);
+        //            ValueOutput += ".db";
+
+        //            if (ValueOutput != string.Empty && ValueOutput != ".db")
+        //            {
+        //                if (!File.Exists(Path.Combine(DBdirectory, ValueOutput)))
+        //                    SQLiteConnection.CreateFile(Path.Combine(DBdirectory, ValueOutput));
+
+        //                DB_Default_Txt.Text = ValueOutput;
+        //                D4ta = DBdirectory + DB_Default_Txt.Text;
+
+        //                ChangeDBdefault(DB_Default_Txt.Text);
+        //            }
+        //            else
+        //            {
+        //                DB_Default_Txt.Text = "D4taB.db";
+
+        //                if (!File.Exists(Path.Combine(DBdirectory, "D4taB.db")))
+        //                    SQLiteConnection.CreateFile(Path.Combine(DBdirectory, "D4taB.db"));
+
+        //                D4ta = DBdirectory + DB_Default_Txt.Text;
+
+        //                ChangeDBdefault(DB_Default_Txt.Text);
+        //            }
+        //            DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
+        //        }
+
+        //        if (File.Exists(Path.Combine(FileDir, "url.txt")))
+        //        {
+        //            URL_URL_Cbx.Items.Clear();
+        //            URL_URL_Cbx.Items.AddRange(File.ReadAllLines(FileDir + "url.txt"));
+        //        }
+
+        //        if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
+        //        {
+        //            ConstructURL_Lst.Items.Clear();
+        //            ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
+        //        }
+        //        ///
+        //        /// Loading JS scripts from "script url.ost" file for injection.
+        //        /// 
+        //        if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
+        //        {
+        //            ScriptUrl_Lst.Items.Clear();
+        //            ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
+        //        }
+
+        //        if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
+        //        {
+        //            using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
+        //            {
+        //                ArchiveAdd_Txt.Text = sr.ReadToEnd();
+        //            }
+        //            ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(AppStart + "archiveAdd.txt"));
+        //        }
+
+        //        loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
+        //        loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
+        //        loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
+        //        loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
+        //        loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
+        //        loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
+
+        //        Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
+        //        Class_Var.SCRIPTCREATOR = "off";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        senderror.ErrorLog("Error! Config_Ini: ", ex.ToString(), "Main_Frm", AppStart);
+        //    }
+        //}
+        void LoadConfiguration(string configFile)
         {
             try
             {
-                using (XmlReader reader = XmlReader.Create(ConfigFile))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.IsStartElement())
-                        {
-                            switch (reader.Name.ToString())
-                            {
-                                case "DB_USE_DEFAULT":
-                                    DB_Default_Txt.Text = Convert.ToString(reader.ReadString());
-                                    DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
-                                    break;
-                                case "URL_HOME_VAR":
-                                    Class_Var.URL_HOME = reader.ReadString();
-                                    UrlHome_Opt_Txt.Text = Class_Var.URL_HOME;
-                                    break;
-                                case "URL_TRAD_WEBPAGE_VAR":
-                                    Class_Var.URL_TRAD_WEBPAGE = reader.ReadString();
-                                    UrlTradWebPage_Opt_Txt.Text = Class_Var.URL_TRAD_WEBPAGE;
-                                    break;
-                                case "URL_TRAD_WEBTXT_VAR":
-                                    Class_Var.URL_TRAD_WEBTXT = reader.ReadString();
-                                    break;
-                                case "URL_DEFAUT_WSEARCH_VAR":
-                                    Class_Var.URL_DEFAUT_WSEARCH = reader.ReadString();
-                                    SearchEngine_Opt_Txt.Text = Class_Var.URL_DEFAUT_WSEARCH;
-                                    break;
-                                case "URL_USER_AGENT_VAR":
-                                    Class_Var.URL_USER_AGENT = reader.ReadString();
-                                    UserAgent_Opt_Txt.Text = Class_Var.URL_USER_AGENT;
-                                    break;
-                                case "URL_USER_AGENT_SRC_PAGE_VAR":
-                                    Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
-                                    UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
-                                    JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
-                                    break;
-                                case "URL_GOOGLEBOT_VAR":
-                                    Class_Var.URL_GOOGLEBOT = reader.ReadString();
-                                    GoogBot_Opt_Txt.Text = Class_Var.URL_GOOGLEBOT;
-                                    break;
-                                case "DEFAULT_EDITOR_VAR":
-                                    Class_Var.DEFAULT_EDITOR = reader.ReadString();
-                                    DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
-                                    break;
-                                case "VOLUME_TRACK_VAR":
-                                    Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
-                                    VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
-                                    break;
-                                case "RATE_TRACK_VAR":
-                                    Class_Var.RATE_TRACK = Convert.ToInt32(reader.ReadString());
-                                    RateVal_Track.Value = Class_Var.RATE_TRACK;
-                                    break;
-                            }
-                        }
-                    }
-                }
-                ///
-                /// If DataBase exist True loading
-                /// If DataBase exist False create
-                /// 
-                if (DB_Default_Txt.Text != "0x0")
-                {
-                    D4ta = DBdirectory + DB_Default_Txt.Text;
-                }
-                else
-                {
-                    string message, title;
-                    object ValueInput;
-
-                    message = "First use. \n\nChoose a name for the database or leave empty.";
-                    title = "Database default name";
-
-                    ValueInput = Interaction.InputBox(message, title);
-                    string ValueOutput = Convert.ToString(ValueInput);
-                    ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", string.Empty);
-                    ValueOutput += ".db";
-
-                    if (ValueOutput != string.Empty && ValueOutput != ".db")
-                    {
-                        if (!File.Exists(Path.Combine(DBdirectory, ValueOutput)))
-                            SQLiteConnection.CreateFile(Path.Combine(DBdirectory, ValueOutput));
-
-                        DB_Default_Txt.Text = ValueOutput;
-                        D4ta = DBdirectory + DB_Default_Txt.Text;
-
-                        ChangeDBdefault(DB_Default_Txt.Text);
-                    }
-                    else
-                    {
-                        DB_Default_Txt.Text = "D4taB.db";
-
-                        if (!File.Exists(Path.Combine(DBdirectory, "D4taB.db")))
-                            SQLiteConnection.CreateFile(Path.Combine(DBdirectory, "D4taB.db"));
-
-                        D4ta = DBdirectory + DB_Default_Txt.Text;
-
-                        ChangeDBdefault(DB_Default_Txt.Text);
-                    }
-                    DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
-                }
-
-                if (File.Exists(Path.Combine(FileDir, "url.txt")))
-                {
-                    URL_URL_Cbx.Items.Clear();
-                    URL_URL_Cbx.Items.AddRange(File.ReadAllLines(FileDir + "url.txt"));
-                }
-
-                if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
-                {
-                    ConstructURL_Lst.Items.Clear();
-                    ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
-                }
-                ///
-                /// Loading JS scripts from "script url.ost" file for injection.
-                /// 
-                if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
-                {
-                    ScriptUrl_Lst.Items.Clear();
-                    ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
-                }
-
-                if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
-                {
-                    using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
-                    {
-                        ArchiveAdd_Txt.Text = sr.ReadToEnd();
-                    }
-                    ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(AppStart + "archiveAdd.txt"));
-                }
-
-                loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
-                loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
-                loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
-                loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
-                loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
-                loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
-
-                Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
-                Class_Var.SCRIPTCREATOR = "off";
+                LoadConfigFromXml(configFile);
+                InitializeDatabase();
+                LoadAdditionalFiles();
+                InitializeClassVariables();
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Config_Ini: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error in LoadConfiguration: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
-        async void DireSizeCalc(string directoryname, object objectsend)
+        void LoadConfigFromXml(string configFile)
+        {
+            using (XmlReader reader = XmlReader.Create(configFile))
+            {
+                while (reader.Read())
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name)
+                        {
+                            case "DB_USE_DEFAULT":
+                                DB_Default_Txt.Text = Convert.ToString(reader.ReadString());
+                                DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
+                                break;
+                            case "URL_HOME_VAR":
+                                Class_Var.URL_HOME = reader.ReadString();
+                                UrlHome_Opt_Txt.Text = Class_Var.URL_HOME;
+                                break;
+                            case "URL_TRAD_WEBPAGE_VAR":
+                                Class_Var.URL_TRAD_WEBPAGE = reader.ReadString();
+                                UrlTradWebPage_Opt_Txt.Text = Class_Var.URL_TRAD_WEBPAGE;
+                                break;
+                            case "URL_TRAD_WEBTXT_VAR":
+                                Class_Var.URL_TRAD_WEBTXT = reader.ReadString();
+                                break;
+                            case "URL_DEFAUT_WSEARCH_VAR":
+                                Class_Var.URL_DEFAUT_WSEARCH = reader.ReadString();
+                                SearchEngine_Opt_Txt.Text = Class_Var.URL_DEFAUT_WSEARCH;
+                                break;
+                            case "URL_USER_AGENT_VAR":
+                                Class_Var.URL_USER_AGENT = reader.ReadString();
+                                UserAgent_Opt_Txt.Text = Class_Var.URL_USER_AGENT;
+                                break;
+                            case "URL_USER_AGENT_SRC_PAGE_VAR":
+                                Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
+                                UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+                                JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+                                break;
+                            case "URL_GOOGLEBOT_VAR":
+                                Class_Var.URL_GOOGLEBOT = reader.ReadString();
+                                GoogBot_Opt_Txt.Text = Class_Var.URL_GOOGLEBOT;
+                                break;
+                            case "DEFAULT_EDITOR_VAR":
+                                Class_Var.DEFAULT_EDITOR = reader.ReadString();
+                                DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
+                                break;
+                            case "VOLUME_TRACK_VAR":
+                                Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
+                                VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
+                                break;
+                            case "RATE_TRACK_VAR":
+                                Class_Var.RATE_TRACK = Convert.ToInt32(reader.ReadString());
+                                RateVal_Track.Value = Class_Var.RATE_TRACK;
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        void InitializeDatabase()
+        {
+            if (DB_Default_Txt.Text != "0x0")
+            {
+                databasePath = Path.Combine(DBdirectory, DB_Default_Txt.Text);
+            }
+            else
+            {
+                string message = "First use. \n\nChoose a name for the database or leave empty.";
+                string title = "Database default name";
+                string userInput = Interaction.InputBox(message, title);
+                string sanitizedInput = Regex.Replace(userInput, "[^a-zA-Z0-9]", string.Empty) + ".db";
+
+                if (!string.IsNullOrEmpty(sanitizedInput) && sanitizedInput != ".db")
+                {
+                    databasePath = Path.Combine(DBdirectory, sanitizedInput);
+                    if (!File.Exists(databasePath))
+                        SQLiteConnection.CreateFile(databasePath);
+
+                    DB_Default_Txt.Text = sanitizedInput;
+                    ChangeDBdefault(sanitizedInput);
+                }
+                else
+                {
+                    DB_Default_Txt.Text = "D4taB.db";
+                    databasePath = Path.Combine(DBdirectory, "D4taB.db");
+                    if (!File.Exists(databasePath))
+                        SQLiteConnection.CreateFile(databasePath);
+
+                    ChangeDBdefault("D4taB.db");
+                }
+                DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
+            }
+        }
+
+        void LoadAdditionalFiles()
+        {
+            if (File.Exists(Path.Combine(FileDir, "url.txt")))
+            {
+                URL_URL_Cbx.Items.Clear();
+                URL_URL_Cbx.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url.txt")));
+            }
+
+            if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
+            {
+                ConstructURL_Lst.Items.Clear();
+                ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
+            }
+            ///
+            /// Loading JS scripts from "script url.ost" file for injection.
+            /// 
+            if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
+            {
+                ScriptUrl_Lst.Items.Clear();
+                ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(Scripts, "scripturl.ost")));
+            }
+
+            if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
+            {
+                using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
+                {
+                    ArchiveAdd_Txt.Text = sr.ReadToEnd();
+                }
+                ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(AppStart, "archiveAdd.txt")));
+            }
+
+            loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
+            loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
+            loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
+            loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
+            loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
+            loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
+        }
+
+        void InitializeClassVariables()
+        {
+            Class_Var.COOKIES_SAVE = 0; // Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
+            Class_Var.SCRIPTCREATOR = "off";
+        }
+
+        async void UpdateDirectorySize(string directoryPath, object objectsend)
         {
             try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(directoryname);
+                DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
                 long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
-                var calcsize = sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize)));
+                string formattedSize = sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize)));
 
                 SizeAll_Lbl = (Label)objectsend;
-                SizeAll_Lbl.Text = calcsize;
+                SizeAll_Lbl.Text = formattedSize;
             }
             catch (Exception ex)
             {
@@ -2913,21 +3067,21 @@ namespace Ostium
                     TtsButton_Sts.Visible = false;
                     FileOpnJson_Lbl.Visible = false;
 
-                    DireSizeCalc(AppStart, OstiumDir_Lbl);
-                    DireSizeCalc(Plugins, AddOnDir_Lbl);
-                    DireSizeCalc(DBdirectory, DatabseDir_Lbl);
-                    DireSizeCalc(FeedDir, FeedDir_Lbl);
-                    DireSizeCalc(Scripts, ScriptDir_Lbl);
-                    DireSizeCalc(Workflow, WorkFlowDir_Lbl);
-                    DireSizeCalc(WorkflowModel, WorkFlowModelDir_Lbl);
-                    DireSizeCalc(Pictures, PictureDir_Lbl);
-                    DireSizeCalc(WebView2Dir, WebView2Dir_Lbl);
-                    DireSizeCalc(DiagramDir, DiagramDir_Lbl);
-                    DireSizeCalc(Setirps, SpritesDir_Lbl);
-                    DireSizeCalc(BkmkltDir, BkmkltDir_Lbl);
-                    DireSizeCalc(MapDir, MapDir_Lbl);
-                    DireSizeCalc(JsonDir, JsonDir_Lbl);
-                    DireSizeCalc(Keeptrack, KeepTrackDir_Lbl);
+                    UpdateDirectorySize(AppStart, OstiumDir_Lbl);
+                    UpdateDirectorySize(Plugins, AddOnDir_Lbl);
+                    UpdateDirectorySize(DBdirectory, DatabseDir_Lbl);
+                    UpdateDirectorySize(FeedDir, FeedDir_Lbl);
+                    UpdateDirectorySize(Scripts, ScriptDir_Lbl);
+                    UpdateDirectorySize(Workflow, WorkFlowDir_Lbl);
+                    UpdateDirectorySize(WorkflowModel, WorkFlowModelDir_Lbl);
+                    UpdateDirectorySize(Pictures, PictureDir_Lbl);
+                    UpdateDirectorySize(WebView2Dir, WebView2Dir_Lbl);
+                    UpdateDirectorySize(DiagramDir, DiagramDir_Lbl);
+                    UpdateDirectorySize(Setirps, SpritesDir_Lbl);
+                    UpdateDirectorySize(BkmkltDir, BkmkltDir_Lbl);
+                    UpdateDirectorySize(MapDir, MapDir_Lbl);
+                    UpdateDirectorySize(JsonDir, JsonDir_Lbl);
+                    UpdateDirectorySize(Keeptrack, KeepTrackDir_Lbl);
                     break;
             }
         }
@@ -3709,7 +3863,7 @@ namespace Ostium
             try
             {
                 SQLiteConnection myDB;
-                myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;");
+                myDB = new SQLiteConnection("Data Source=" + databasePath + ";Version=3;");
                 myDB.Open();
 
                 string sql = execSql;
@@ -3742,7 +3896,7 @@ namespace Ostium
         {
             try
             {
-                using (SQLiteConnection myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;"))
+                using (SQLiteConnection myDB = new SQLiteConnection("Data Source=" + databasePath + ";Version=3;"))
                 {
                     myDB.Open();
                     using (SQLiteCommand commande = new SQLiteCommand(execSql, myDB))
@@ -3785,7 +3939,7 @@ namespace Ostium
             try
             {
                 SQLiteConnection myDB;
-                myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;");
+                myDB = new SQLiteConnection("Data Source=" + databasePath + ";Version=3;");
                 myDB.Open();
 
                 string sql = execSql;
@@ -3835,7 +3989,7 @@ namespace Ostium
                         if (result == DialogResult.Yes)
                         {
                             ChangeDBdefault(DataBaze_Opn.Text);
-                            D4ta = DBdirectory + DataBaze_Opn.Text;
+                            databasePath = DBdirectory + DataBaze_Opn.Text;
                             DB_Default_Txt.Text = DataBaze_Opn.Text;
                         }
                     }
@@ -3852,7 +4006,7 @@ namespace Ostium
 
                             SQLiteConnection.CreateFile(DBdirectory + DataBaze_Opn.Text);
                             ChangeDBdefault(DataBaze_Opn.Text);
-                            D4ta = DBdirectory + DataBaze_Opn.Text;
+                            databasePath = DBdirectory + DataBaze_Opn.Text;
                             DB_Default_Txt.Text = DataBaze_Opn.Text;
 
                             loadfiledir.LoadFileDirectory(DBdirectory, "*", "lst", DataBaze_Lst);
@@ -4120,7 +4274,7 @@ namespace Ostium
                     TableOpen_Lbl.Text = string.Empty;
                     RecordsCount_Lbl.Text = string.Empty;
 
-                    D4ta = DBdirectory + DataBaze_Opn.Text;
+                    databasePath = DBdirectory + DataBaze_Opn.Text;
 
                     Sqlite_Read("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1", "name", "lst");
                 }
