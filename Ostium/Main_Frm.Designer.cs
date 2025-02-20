@@ -36,7 +36,7 @@
             this.URL_URL_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.URL_SAVE_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.Construct_URL_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.Word_Construct_URL_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.Word_URL_Builder_Txt = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Word_Construct_URL_Btn = new System.Windows.Forms.ToolStripButton();
             this.AddOn_Cbx = new System.Windows.Forms.ToolStripComboBox();
@@ -351,6 +351,7 @@
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.FloodHeader_Chk = new System.Windows.Forms.CheckBox();
             this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
             this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
             this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
@@ -512,7 +513,6 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.FloodHeader_Chk = new System.Windows.Forms.CheckBox();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -593,7 +593,7 @@
             this.URL_URL_Cbx,
             this.URL_SAVE_Cbx,
             this.Construct_URL_Cbx,
-            this.Word_Construct_URL_Txt,
+            this.Word_URL_Builder_Txt,
             this.toolStripSeparator1,
             this.Word_Construct_URL_Btn,
             this.AddOn_Cbx,
@@ -667,16 +667,16 @@
             this.Construct_URL_Cbx.Size = new System.Drawing.Size(121, 23);
             this.Construct_URL_Cbx.SelectedIndexChanged += new System.EventHandler(this.Construct_URL_Cbx_SelectedIndexChanged);
             // 
-            // Word_Construct_URL_Txt
+            // Word_URL_Builder_Txt
             // 
-            this.Word_Construct_URL_Txt.AutoSize = false;
-            this.Word_Construct_URL_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Word_Construct_URL_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Word_Construct_URL_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Word_Construct_URL_Txt.ForeColor = System.Drawing.Color.White;
-            this.Word_Construct_URL_Txt.Name = "Word_Construct_URL_Txt";
-            this.Word_Construct_URL_Txt.Size = new System.Drawing.Size(100, 15);
-            this.Word_Construct_URL_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Word_URL_Builder_Txt.AutoSize = false;
+            this.Word_URL_Builder_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Word_URL_Builder_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Word_URL_Builder_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Word_URL_Builder_Txt.ForeColor = System.Drawing.Color.White;
+            this.Word_URL_Builder_Txt.Name = "Word_URL_Builder_Txt";
+            this.Word_URL_Builder_Txt.Size = new System.Drawing.Size(100, 15);
+            this.Word_URL_Builder_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // toolStripSeparator1
             // 
@@ -692,9 +692,9 @@
             this.Word_Construct_URL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Word_Construct_URL_Btn.Name = "Word_Construct_URL_Btn";
             this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 20);
-            this.Word_Construct_URL_Btn.Text = "C";
-            this.Word_Construct_URL_Btn.ToolTipText = "Construct URL";
-            this.Word_Construct_URL_Btn.Click += new System.EventHandler(this.Word_Construct_URL_Btn_Click);
+            this.Word_Construct_URL_Btn.Text = "B";
+            this.Word_Construct_URL_Btn.ToolTipText = "URL Builder";
+            this.Word_Construct_URL_Btn.Click += new System.EventHandler(this.Word_URL_Builder_Btn_Click);
             // 
             // AddOn_Cbx
             // 
@@ -1242,10 +1242,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 27);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 612);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1265,7 +1265,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 23);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 585);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1278,7 +1278,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 461);
+            this.WBrowse.Size = new System.Drawing.Size(920, 434);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
             // 
@@ -1298,7 +1298,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 491);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 464);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
@@ -1427,7 +1427,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 556);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 529);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1436,7 +1436,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 528);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 501);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -1490,7 +1490,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 452);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 425);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -1870,7 +1870,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 583);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 556);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -1884,7 +1884,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 239);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 212);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -1895,7 +1895,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 266);
+            this.label5.Location = new System.Drawing.Point(0, 239);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -1907,7 +1907,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 290);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 263);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1930,7 +1930,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 392);
+            this.label1.Location = new System.Drawing.Point(0, 365);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -1942,7 +1942,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 416);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 389);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -1954,7 +1954,7 @@
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 518);
+            this.label23.Location = new System.Drawing.Point(0, 491);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -1966,7 +1966,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 542);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 515);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -1980,7 +1980,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 586);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 559);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
@@ -4739,6 +4739,21 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
             // 
+            // FloodHeader_Chk
+            // 
+            this.FloodHeader_Chk.AutoSize = true;
+            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FloodHeader_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FloodHeader_Chk.ForeColor = System.Drawing.Color.White;
+            this.FloodHeader_Chk.Location = new System.Drawing.Point(13, 146);
+            this.FloodHeader_Chk.Name = "FloodHeader_Chk";
+            this.FloodHeader_Chk.Size = new System.Drawing.Size(110, 20);
+            this.FloodHeader_Chk.TabIndex = 3;
+            this.FloodHeader_Chk.Text = "Flood Header";
+            this.FloodHeader_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FloodHeader_Chk.UseVisualStyleBackColor = true;
+            this.FloodHeader_Chk.CheckedChanged += new System.EventHandler(this.FloodHeader_Chk_CheckedChanged);
+            // 
             // Limitsize_Chk
             // 
             this.Limitsize_Chk.AutoSize = true;
@@ -4828,7 +4843,7 @@
             this.Furlconstdir_Opt.Name = "Furlconstdir_Opt";
             this.Furlconstdir_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furlconstdir_Opt.TabIndex = 22;
-            this.Furlconstdir_Opt.Text = "URL Construct Directory";
+            this.Furlconstdir_Opt.Text = "Build URL Directory";
             this.Furlconstdir_Opt.UseVisualStyleBackColor = false;
             this.Furlconstdir_Opt.Click += new System.EventHandler(this.Furlconstdir_Opt_Click);
             // 
@@ -4900,7 +4915,7 @@
             this.Furlconst_Opt.Name = "Furlconst_Opt";
             this.Furlconst_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furlconst_Opt.TabIndex = 18;
-            this.Furlconst_Opt.Text = "URL Construct File";
+            this.Furlconst_Opt.Text = "Build URL File";
             this.Furlconst_Opt.UseVisualStyleBackColor = false;
             this.Furlconst_Opt.Click += new System.EventHandler(this.Furlconst_Opt_Click);
             // 
@@ -6485,21 +6500,6 @@
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // FloodHeader_Chk
-            // 
-            this.FloodHeader_Chk.AutoSize = true;
-            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.FloodHeader_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FloodHeader_Chk.ForeColor = System.Drawing.Color.White;
-            this.FloodHeader_Chk.Location = new System.Drawing.Point(13, 146);
-            this.FloodHeader_Chk.Name = "FloodHeader_Chk";
-            this.FloodHeader_Chk.Size = new System.Drawing.Size(110, 20);
-            this.FloodHeader_Chk.TabIndex = 3;
-            this.FloodHeader_Chk.Text = "Flood Header";
-            this.FloodHeader_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.FloodHeader_Chk.UseVisualStyleBackColor = true;
-            this.FloodHeader_Chk.CheckedChanged += new System.EventHandler(this.FloodHeader_Chk_CheckedChanged);
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -6623,7 +6623,7 @@
         private System.Windows.Forms.ToolStripComboBox URL_URL_Cbx;
         private System.Windows.Forms.ToolStripComboBox URL_SAVE_Cbx;
         private System.Windows.Forms.ToolStripComboBox Construct_URL_Cbx;
-        private System.Windows.Forms.ToolStripTextBox Word_Construct_URL_Txt;
+        private System.Windows.Forms.ToolStripTextBox Word_URL_Builder_Txt;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton Word_Construct_URL_Btn;
         private System.Windows.Forms.ToolStripComboBox AddOn_Cbx;

@@ -445,155 +445,8 @@ namespace Ostium
                 Directory.CreateDirectory(dir);
         }
 
-        //void LoadConfiguration(string ConfigFile)
-        //{
-        //    try
-        //    {
-        //        using (XmlReader reader = XmlReader.Create(ConfigFile))
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                if (reader.IsStartElement())
-        //                {
-        //                    switch (reader.Name.ToString())
-        //                    {
-        //                        case "DB_USE_DEFAULT":
-        //                            DB_Default_Txt.Text = Convert.ToString(reader.ReadString());
-        //                            DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
-        //                            break;
-        //                        case "URL_HOME_VAR":
-        //                            Class_Var.URL_HOME = reader.ReadString();
-        //                            UrlHome_Opt_Txt.Text = Class_Var.URL_HOME;
-        //                            break;
-        //                        case "URL_TRAD_WEBPAGE_VAR":
-        //                            Class_Var.URL_TRAD_WEBPAGE = reader.ReadString();
-        //                            UrlTradWebPage_Opt_Txt.Text = Class_Var.URL_TRAD_WEBPAGE;
-        //                            break;
-        //                        case "URL_TRAD_WEBTXT_VAR":
-        //                            Class_Var.URL_TRAD_WEBTXT = reader.ReadString();
-        //                            break;
-        //                        case "URL_DEFAUT_WSEARCH_VAR":
-        //                            Class_Var.URL_DEFAUT_WSEARCH = reader.ReadString();
-        //                            SearchEngine_Opt_Txt.Text = Class_Var.URL_DEFAUT_WSEARCH;
-        //                            break;
-        //                        case "URL_USER_AGENT_VAR":
-        //                            Class_Var.URL_USER_AGENT = reader.ReadString();
-        //                            UserAgent_Opt_Txt.Text = Class_Var.URL_USER_AGENT;
-        //                            break;
-        //                        case "URL_USER_AGENT_SRC_PAGE_VAR":
-        //                            Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
-        //                            UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
-        //                            JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
-        //                            break;
-        //                        case "URL_GOOGLEBOT_VAR":
-        //                            Class_Var.URL_GOOGLEBOT = reader.ReadString();
-        //                            GoogBot_Opt_Txt.Text = Class_Var.URL_GOOGLEBOT;
-        //                            break;
-        //                        case "DEFAULT_EDITOR_VAR":
-        //                            Class_Var.DEFAULT_EDITOR = reader.ReadString();
-        //                            DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
-        //                            break;
-        //                        case "VOLUME_TRACK_VAR":
-        //                            Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
-        //                            VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
-        //                            break;
-        //                        case "RATE_TRACK_VAR":
-        //                            Class_Var.RATE_TRACK = Convert.ToInt32(reader.ReadString());
-        //                            RateVal_Track.Value = Class_Var.RATE_TRACK;
-        //                            break;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        ///
-        //        /// If DataBase exist True loading
-        //        /// If DataBase exist False create
-        //        /// 
-        //        if (DB_Default_Txt.Text != "0x0")
-        //        {
-        //            D4ta = DBdirectory + DB_Default_Txt.Text;
-        //        }
-        //        else
-        //        {
-        //            string message, title;
-        //            object ValueInput;
+        #region LoadConfiguration_
 
-        //            message = "First use. \n\nChoose a name for the database or leave empty.";
-        //            title = "Database default name";
-
-        //            ValueInput = Interaction.InputBox(message, title);
-        //            string ValueOutput = Convert.ToString(ValueInput);
-        //            ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", string.Empty);
-        //            ValueOutput += ".db";
-
-        //            if (ValueOutput != string.Empty && ValueOutput != ".db")
-        //            {
-        //                if (!File.Exists(Path.Combine(DBdirectory, ValueOutput)))
-        //                    SQLiteConnection.CreateFile(Path.Combine(DBdirectory, ValueOutput));
-
-        //                DB_Default_Txt.Text = ValueOutput;
-        //                D4ta = DBdirectory + DB_Default_Txt.Text;
-
-        //                ChangeDBdefault(DB_Default_Txt.Text);
-        //            }
-        //            else
-        //            {
-        //                DB_Default_Txt.Text = "D4taB.db";
-
-        //                if (!File.Exists(Path.Combine(DBdirectory, "D4taB.db")))
-        //                    SQLiteConnection.CreateFile(Path.Combine(DBdirectory, "D4taB.db"));
-
-        //                D4ta = DBdirectory + DB_Default_Txt.Text;
-
-        //                ChangeDBdefault(DB_Default_Txt.Text);
-        //            }
-        //            DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
-        //        }
-
-        //        if (File.Exists(Path.Combine(FileDir, "url.txt")))
-        //        {
-        //            URL_URL_Cbx.Items.Clear();
-        //            URL_URL_Cbx.Items.AddRange(File.ReadAllLines(FileDir + "url.txt"));
-        //        }
-
-        //        if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
-        //        {
-        //            ConstructURL_Lst.Items.Clear();
-        //            ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
-        //        }
-        //        ///
-        //        /// Loading JS scripts from "script url.ost" file for injection.
-        //        /// 
-        //        if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
-        //        {
-        //            ScriptUrl_Lst.Items.Clear();
-        //            ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
-        //        }
-
-        //        if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
-        //        {
-        //            using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
-        //            {
-        //                ArchiveAdd_Txt.Text = sr.ReadToEnd();
-        //            }
-        //            ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(AppStart + "archiveAdd.txt"));
-        //        }
-
-        //        loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
-        //        loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
-        //        loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
-        //        loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
-        //        loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
-        //        loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
-
-        //        Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
-        //        Class_Var.SCRIPTCREATOR = "off";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        senderror.ErrorLog("Error! Config_Ini: ", ex.ToString(), "Main_Frm", AppStart);
-        //    }
-        //}
         void LoadConfiguration(string configFile)
         {
             try
@@ -748,6 +601,8 @@ namespace Ostium
             Class_Var.COOKIES_SAVE = 0; // Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
             Class_Var.SCRIPTCREATOR = "off";
         }
+
+        #endregion
 
         async void UpdateDirectorySize(string directoryPath, object objectsend)
         {
@@ -1473,21 +1328,21 @@ namespace Ostium
         /// </summary>
         /// <param name="Construct_URL">Creation of URL with the nickname or search word</param>
         /// 
-        void Word_Construct_URL_Btn_Click(object sender, EventArgs e)
+        void Word_URL_Builder_Btn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Word_Construct_URL_Txt.Text != string.Empty)
+                if (Word_URL_Builder_Txt.Text != string.Empty)
                 {
-                    Word_Construct_URL_Txt.Text = Word_Construct_URL_Txt.Text.Replace(" ", "%20");
-                    Construct_URL(Word_Construct_URL_Txt.Text);
+                    Word_URL_Builder_Txt.Text = Word_URL_Builder_Txt.Text.Replace(" ", "%20");
+                    URL_Builder(Word_URL_Builder_Txt.Text);
                     Beep(800, 200);
                 }
                 else
                 {
-                    Word_Construct_URL_Txt.BackColor = Color.Red;
+                    Word_URL_Builder_Txt.BackColor = Color.Red;
                     MessageBox.Show("First insert Name, ID or Word!");
-                    Word_Construct_URL_Txt.BackColor = Color.FromArgb(41, 44, 51);
+                    Word_URL_Builder_Txt.BackColor = Color.FromArgb(41, 44, 51);
                     return;
                 }
             }
@@ -2152,7 +2007,7 @@ namespace Ostium
         {
             if (CategorieFeed_Cbx.Text != string.Empty)
             {
-                OpenFile_Editor(FeedDir + CategorieFeed_Cbx.Text);
+                OpenFile_Editor(Path.Combine(FeedDir, CategorieFeed_Cbx.Text));
             }
             else
             {
@@ -2230,7 +2085,7 @@ namespace Ostium
             if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
                 return;
 
-            string message = "Do you want to delete the project? " + NameProjectwf_Txt.Text;
+            string message = $"Do you want to delete the project? {NameProjectwf_Txt.Text}";
             string caption = "Delete Projet";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -2869,12 +2724,12 @@ namespace Ostium
                 if (Commut == 0)
                 {
                     File.Copy(Path.Combine(DiagramDir, FileDiag), Path.Combine(dirselect, nameSVG));
-                    MessageBox.Show("File [" + nameSVG + "] export.");
+                    MessageBox.Show($"File [{nameSVG}] export.");
                 }
                 else if (Commut == 1)
                 {
                     File.Copy(FileDiag, dirselect + @"\" + nameSVGb + ".svg");
-                    MessageBox.Show("File [" + nameSVGb + ".svg] export.");
+                    MessageBox.Show($"File [{nameSVG}.svg] export.");
                 }
             }
             catch (Exception ex)
@@ -3120,7 +2975,7 @@ namespace Ostium
         /// </summary>
         /// <param name="replace_query">Replacement value with the searched nickname/word</param>
         /// 
-        void Construct_URL(string searchQuery)
+        void URL_Builder(string searchQuery)
         {
             try
             {
@@ -3594,7 +3449,7 @@ namespace Ostium
             }
         }
 
-        void OpnFileOpt(string dir_dir)
+        void OpnFileOpt(string dirPath)
         {
             if (!File.Exists(Class_Var.DEFAULT_EDITOR))
             {
@@ -3602,10 +3457,10 @@ namespace Ostium
                 return;
             }
 
-            if (!File.Exists(dir_dir))
-                File_Write(dir_dir, string.Empty);
+            if (!File.Exists(dirPath))
+                File_Write(dirPath, string.Empty);
 
-            OpenFile_Editor(dir_dir);
+            OpenFile_Editor(dirPath);
         }
 
         #endregion
@@ -4044,7 +3899,7 @@ namespace Ostium
 
                     tlsi = DataTable_Opn.Text;
 
-                    string message = "Are you sure that you would like to delete the Database? " + tlsi;
+                    string message = $"Are you sure that you would like to delete the Database? {tlsi}";
                     const string caption = "Database delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4080,7 +3935,7 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    string message = "Are you sure that you would like to delete the entry? " + DataValue_Lst.Text;
+                    string message = $"Are you sure that you would like to delete the entry? {DataValue_Lst.Text}";
                     const string caption = "Database delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4121,7 +3976,7 @@ namespace Ostium
 
                     tlsi = DataTable_Opn.Text;
 
-                    string message = "Are you sure that you would like to delete all entry? " + tlsi;
+                    string message = $"Are you sure that you would like to delete all entry? {tlsi}";
                     const string caption = "Database delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4159,7 +4014,7 @@ namespace Ostium
                         string usct = DataValue_Lst.Text;
                         tlsi = DataTable_Opn.Text;
 
-                        string message = "Are you sure that you update entry? \r\n" + DataValue_Lst.Text + " <=> " + ValueChange_Txt.Text;
+                        string message = $"Are you sure that you update entry? \r\n {DataValue_Lst.Text} <=> {ValueChange_Txt.Text}";
                         const string caption = "Modify update";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4221,7 +4076,7 @@ namespace Ostium
                         string usct = DataValue_Opn.Text;
                         tlsi = DataTable_Opn.Text;
 
-                        string message = "Are you sure that you modify entry? \r\n" + DataValue_Opn.Text + " <=> " + ValueChange_Txt.Text;
+                        string message = $"Are you sure that you modify entry? \r\n {DataValue_Opn.Text} <=> {ValueChange_Txt.Text}";
                         const string caption = "Modify entry";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4270,7 +4125,7 @@ namespace Ostium
                     List_Object = DataTable_Lst;
 
                     DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
-                    DBSelectOpen_Lbl.Text = "DB open: " + DataBaze_Opn.Text;
+                    DBSelectOpen_Lbl.Text = $"DB open: {DataBaze_Opn.Text}";
                     TableOpen_Lbl.Text = string.Empty;
                     RecordsCount_Lbl.Text = string.Empty;
 
@@ -4303,7 +4158,7 @@ namespace Ostium
                     tlsi = DataTable_Lst.SelectedItem.ToString();
 
                     DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
-                    TableOpen_Lbl.Text = "Table open: " + DataTable_Opn.Text;
+                    TableOpen_Lbl.Text = $"Table open: {DataTable_Opn.Text}";
 
                     Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
                 }
@@ -4485,7 +4340,7 @@ namespace Ostium
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -4686,7 +4541,7 @@ namespace Ostium
             {
                 if (string.IsNullOrEmpty(CategorieFeed_Cbx.Text))
                 {
-                    string message = "Are you sure that you would like to delete the category and all content? " + CategorieFeed_Cbx.Text;
+                    string message = $"Are you sure that you would like to delete the category and all content? {CategorieFeed_Cbx.Text}";
                     const string caption = "Delete Category";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4721,16 +4576,16 @@ namespace Ostium
             {
                 if (ListFeed_Lst.SelectedIndex != -1)
                 {
-                    string message = "Are you sure that you would like to delete the URL? => " + ListFeed_Lst.SelectedItem.ToString();
+                    string message = $"Are you sure that you would like to delete the URL? => {ListFeed_Lst.SelectedItem}";
                     const string caption = "Suppress URL";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
                         ListFeed_Lst.Items.Remove(ListFeed_Lst.SelectedItem);
-                        File.Delete(FeedDir + CategorieFeed_Cbx.Text);
+                        File.Delete(Path.Combine(FeedDir, CategorieFeed_Cbx.Text));
 
-                        var CategoryFile = FeedDir + CategorieFeed_Cbx.Text;
+                        var CategoryFile = Path.Combine(FeedDir, CategorieFeed_Cbx.Text);
                         using (StreamWriter SW = new StreamWriter(CategoryFile, true))
                         {
                             foreach (string itm in ListFeed_Lst.Items)
@@ -4775,7 +4630,7 @@ namespace Ostium
                         if (icr <= Title_Lst.Items.Count)
                             Title_Lst.SetSelected(icr - 1, true);
                         else
-                            MessageBox.Show("Max count title = " + Title_Lst.Items.Count);
+                            MessageBox.Show($"Max count title = {Title_Lst.Items.Count}");
                     }
                 }
             }
@@ -5207,7 +5062,7 @@ namespace Ostium
                     return;
 
                 XmlDocument doc = new XmlDocument();
-                XmlTextReader xmlReader = new XmlTextReader(Workflow + NameProjectwf_Txt.Text + ".xml");
+                XmlTextReader xmlReader = new XmlTextReader(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
                 doc.Load(xmlReader);
 
                 string Markup = "<!--" + AddSingleItemswf_Txt.Text + "-->";
@@ -6023,7 +5878,7 @@ namespace Ostium
         void URLbrowseCbxText(string value)
         {
             URLbrowse_Cbx.Text = value;
-            URLtxt_txt.Text = string.Format("Unshorten URL => {0}", value);
+            URLtxt_txt.Text = $"Unshorten URL => {value}";
         }
         ///
         /// <summary>
@@ -6107,7 +5962,8 @@ namespace Ostium
                     break;
                 case "FeedTitle":
                     CountFeed_Lbl.Text = TitleFeed;
-                    CountBlockSite_Lbl.Items.Add(TitleFeed);
+                    string cleanedTitleFeed = Regex.Replace(TitleFeed, @"[^\w]", "");
+                    CountBlockSite_Lbl.Items.Add(cleanedTitleFeed);
                     break;
                 case "ListCount":
                     CountBlockFeed_Lbl.Items.Add(Title_Lst.Items.Count);
@@ -6416,7 +6272,7 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
 
                 MapRouteOpn = MapDir + ValName + ".txt";
-                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".txt";
+                ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.txt";
             }
             else
             {
@@ -6596,7 +6452,7 @@ namespace Ostium
 
                 if (PointLoc_Lst.SelectedIndex != -1)
                 {
-                    string message = "Do you want to delete the project? " + PointLoc_Lst.SelectedItem.ToString();
+                    string message = $"Do you want to delete the project? {PointLoc_Lst.SelectedItem}";
                     string caption = "Delete Projet";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -6752,7 +6608,7 @@ namespace Ostium
 
                     MapRouteOpn = fileopen;
 
-                    ProjectMapOpn_Lbl.Text = "File open: " + strname;
+                    ProjectMapOpn_Lbl.Text = $"File open: {strname}";
                 }
             }
             catch (Exception ex)
@@ -6764,6 +6620,7 @@ namespace Ostium
         void CrossCenter_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.ShowCenter = !GMap_Ctrl.ShowCenter;
+
             if (CrossCenter == "on")
                 CrossCenter = "off";
             else
@@ -7251,7 +7108,7 @@ namespace Ostium
                     }
                 }
 
-                ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
+                ProjectMapOpn_Lbl.Text = $"Project open: {PointLoc_Lst.SelectedItem}";
             }
         }
 
@@ -7367,7 +7224,7 @@ namespace Ostium
 
         void EgHelp_Tls_Click(object sender, EventArgs e)
         {
-            Open_Doc_Frm(FileDir + "map_points.txt");
+            Open_Doc_Frm(Path.Combine(FileDir, "map_points.txt"));
         }
 
         void Gmap_MouseClick(object sender, MouseEventArgs e)
@@ -8331,6 +8188,7 @@ namespace Ostium
             try
             {
                 bool isConnected = await CheckInternetConnectionAsync();
+
                 if (isConnected)
                 {
                     HttpClient client = new HttpClient();
@@ -8356,8 +8214,8 @@ namespace Ostium
 
         void AnnonceUpdate(string softName)
         {
-            var result = MessageBox.Show("An update is available for the " + softName +
-                " software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show($"An update is available for the {softName} " +
+                $"software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 if (result == DialogResult.Yes)
