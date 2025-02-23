@@ -32,10 +32,10 @@ namespace Ostium
                 if (File.Exists(Class_Var.File_Open))
                 {
                     Sortie_Lst.Items.AddRange(File.ReadAllLines(Class_Var.File_Open));
-                    Text = "File open: " + strName;
+                    Text = $"File open: {strName}";
                 }
 
-                Count_Lbl.Text = string.Format(" Items Count [ {0} ]", Sortie_Lst.Items.Count);
+                Count_Lbl.Text = $" Items Count [ {Sortie_Lst.Items.Count} ]";
             }
             catch (Exception ex)
             {

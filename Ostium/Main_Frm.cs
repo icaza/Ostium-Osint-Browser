@@ -4539,7 +4539,7 @@ namespace Ostium
         {
             try
             {
-                if (string.IsNullOrEmpty(CategorieFeed_Cbx.Text))
+                if (!string.IsNullOrEmpty(CategorieFeed_Cbx.Text))
                 {
                     string message = $"Are you sure that you would like to delete the category and all content? {CategorieFeed_Cbx.Text}";
                     const string caption = "Delete Category";
@@ -5962,8 +5962,8 @@ namespace Ostium
                     break;
                 case "FeedTitle":
                     CountFeed_Lbl.Text = TitleFeed;
-                    string cleanedTitleFeed = Regex.Replace(TitleFeed, @"[^\w]", "");
-                    CountBlockSite_Lbl.Items.Add(cleanedTitleFeed);
+                    string trimmedTitleFeed = TitleFeed.Trim();
+                    CountBlockSite_Lbl.Items.Add(trimmedTitleFeed);
                     break;
                 case "ListCount":
                     CountBlockFeed_Lbl.Items.Add(Title_Lst.Items.Count);
@@ -6267,7 +6267,10 @@ namespace Ostium
                 SaveRoute_Btn.ForeColor = Color.White;
                 LocatRoute = "route";
 
-                File.Create(Path.Combine(MapDir, ValName + ".txt"));
+                using (StreamWriter fc = new StreamWriter(Path.Combine(MapDir, ValName + ".txt")))
+                {
+                    fc.Write("");
+                }
 
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
 
@@ -6509,6 +6512,7 @@ namespace Ostium
                 SaveGPX_Btn.Visible = false;
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
+                PointRoute_Lst.Visible = false;
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
             }
@@ -6534,6 +6538,7 @@ namespace Ostium
                     SaveRoute_Btn.Visible = false;
                     SaveGPX_Btn.Visible = true;
                 }
+                PointRoute_Lst.Visible = true;
 
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
             }
@@ -6562,6 +6567,7 @@ namespace Ostium
                     SaveRoute_Btn.Visible = false;
                     SaveGPX_Btn.Visible = true;
                 }
+                PointRoute_Lst.Visible = false;
 
                 loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
             }
@@ -6760,7 +6766,6 @@ namespace Ostium
                 string LoN = string.Empty;
                 string stn = LatLon_Txt.Text;
 
-                char[] charsToTrim = { ' ' };
                 string[] words = stn.Split();
 
                 for (int i = 0; i < words.Length; i++)
@@ -6849,15 +6854,17 @@ namespace Ostium
 
         void SaveRoute_Btn_Click(object sender, EventArgs e)
         {
-            if (SaveRoute_Btn.Text == "Save route Off")
-            {
-                SaveRoute_Btn.Text = "Save route On";
-                SaveRoute_Btn.ForeColor = Color.Red;
-            }
-            else
+            bool isSaveRouteOn = SaveRoute_Btn.Text == "Save route Off";
+
+            if (!isSaveRouteOn)
             {
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
+            }
+            else
+            {
+                SaveRoute_Btn.Text = "Save route On";
+                SaveRoute_Btn.ForeColor = Color.Red;
             }
         }
 
@@ -7078,6 +7085,8 @@ namespace Ostium
                         SaveGPX_Btn.Visible = false;
                         AddNewLoc_Btn.Visible = false;
 
+                        PointRoute_Lst.Items.Clear();
+                        PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
                         LoadRouteFromFile(MapRouteOpn);
                     }
                 }
@@ -7109,6 +7118,28 @@ namespace Ostium
                 }
 
                 ProjectMapOpn_Lbl.Text = $"Project open: {PointLoc_Lst.SelectedItem}";
+            }
+        }
+
+        private void PointRoute_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PointRoute_Lst.SelectedIndex != -1)
+            {
+                string LaT = string.Empty;
+                string LoN = string.Empty;
+                string stn = PointRoute_Lst.SelectedItem.ToString();
+
+                char[] charsToTrim = { ',' };
+                string[] words = stn.Split();
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    LaT = words[0].TrimEnd(charsToTrim); LoN = words[1].TrimEnd(charsToTrim);
+                }
+
+                LatT = double.Parse(LaT, CultureInfo.InvariantCulture);
+                LonGt = double.Parse(LoN, CultureInfo.InvariantCulture);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
             }
         }
 
@@ -7244,6 +7275,9 @@ namespace Ostium
                     {
                         fc.WriteLine($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
                     }
+
+                    PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
+                    LoadRouteFromFile(MapRouteOpn);
                 }
             }
         }

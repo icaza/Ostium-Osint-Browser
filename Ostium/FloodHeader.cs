@@ -28,6 +28,8 @@ public class FloodHeader
         webView.Settings.UserAgent = userAgent;
 
         await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset, language, hardwareConcurrency, deviceMemory, maxTouchPoints, webdriver, connectionType);
+        await EnableAudioContextProtectionAsync();
+        await EnableCanvasAndWebGLProtectionAsync();
     }
 
     async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, string webdriver, string connectionType)
@@ -67,46 +69,160 @@ public class FloodHeader
                 type: '{connectionType}'
             }})
         }});
-
-        // Manipulating the canvas to avoid fingerprinting
-        // const canvasPrototype = HTMLCanvasElement.prototype;
-        // const originalGetContext = canvasPrototype.getContext;
-        // canvasPrototype.getContext = function(contextType) {{
-        //     if (contextType === '2d') {{
-        //         const context = originalGetContext.apply(this, arguments);
-        //         context.fillText = () => {{}}; // Désactiver fillText
-        //         return context;
-        //     }}
-        //     return originalGetContext.apply(this, arguments);
-        // }};
-
-        // Disable or manipulate the Web Audio API
-        if (window.AudioContext || window.webkitAudioContext) {{
-            const OriginalAudioContext = window.AudioContext || window.webkitAudioContext;
-
-            window.AudioContext = function() {{
-                const audioContext = new OriginalAudioContext();
-
-                // Generate random values ​​for audio properties
-                const originalCreateAnalyser = audioContext.createAnalyser;
-                audioContext.createAnalyser = function() {{
-                    const analyser = originalCreateAnalyser.apply(audioContext, arguments);
-                    analyser.frequencyBinCount = Math.floor(Math.random() * 2048); // Random value
-                    return analyser;
-                }};
-
-                const originalCreateOscillator = audioContext.createOscillator;
-                audioContext.createOscillator = function() {{
-                    const oscillator = originalCreateOscillator.apply(audioContext, arguments);
-                    oscillator.frequency.value = Math.random() * 1000; // Random value
-                    return oscillator;
-                }};
-
-                return audioContext;
-            }};
-        }}
     }})();
     ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableAudioContextProtectionAsync()
+    {
+        string script = $@"
+        (function() {{
+            console.log('[Fingerprint Defender] 🚀 AudioContext Protection Enabled');
+
+            // 🎵 Change the AudioContext footprint
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {{
+                const originalGetChannelData = AudioBuffer.prototype.getChannelData;
+                
+                AudioBuffer.prototype.getChannelData = function() {{
+                    const data = originalGetChannelData.apply(this, arguments);
+                    for (let i = 0; i < data.length; i += 100) {{ 
+                        data[i] += (Math.random() * 0.0001) - 0.00005; // Light disturbance
+                    }}
+                    return data;
+                }};
+        
+                const originalCreateAnalyser = AudioContext.prototype.createAnalyser;
+                AudioContext.prototype.createAnalyser = function() {{
+                    const analyser = originalCreateAnalyser.apply(this, arguments);
+                    const originalGetFloatFrequencyData = analyser.getFloatFrequencyData;
+        
+                    analyser.getFloatFrequencyData = function(array) {{
+                        originalGetFloatFrequencyData.apply(this, [array]);
+                        for (let i = 0; i < array.length; i++) {{
+                            array[i] += (Math.random() * 0.1) - 0.05; // Changing frequencies
+                        }}
+                    }};
+        
+                    return analyser;
+                }};
+            }}
+        
+            // 🔄 Refresh fingerprint on every load
+            function refreshFingerprint() {{
+                console.log('[Fingerprint Defender] 🎭 New audio hash generated !');
+                document.body.style.opacity = '0'; 
+                setTimeout(() => {{
+                    document.body.style.opacity = '1';
+                }}, 500);
+            }}
+        
+            window.onload = function() {{
+                refreshFingerprint();
+            }};
+        }})();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableCanvasAndWebGLProtectionAsync()
+    {
+        string script = @"
+        (function() {
+            console.log('[Fingerprint Defender] 🚀 Protection activated');
+
+            const getContext = HTMLCanvasElement.prototype.getContext;
+
+            HTMLCanvasElement.prototype.getContext = function(type, attrs) {
+                const ctx = getContext.apply(this, arguments);
+                if (type === '2d') {
+                    const originalToDataURL = ctx.toDataURL;
+                    const originalGetImageData = ctx.getImageData;
+                    const originalPutImageData = ctx.putImageData;
+                    const originalToBlob = ctx.toBlob;
+                    const originalFillText = ctx.fillText;
+                    const originalFillRect = ctx.fillRect;
+
+                    // 🔄 Function to add noise
+                    function addNoise(data) {
+                        const factor = 20; // Noise intensity
+                        for (let i = 0; i < data.length; i += 4) {
+                            data[i] += (Math.random() * factor) - (factor / 2);     // Red
+                            data[i + 1] += (Math.random() * factor) - (factor / 2); // Green
+                            data[i + 2] += (Math.random() * factor) - (factor / 2); // Blue
+                        }
+                    }
+
+                    // 🎨 Function to apply light distortions
+                    function distortCanvas(ctx) {
+                        const { width, height } = ctx.canvas;
+                        const imageData = ctx.getImageData(0, 0, width, height);
+                        addNoise(imageData.data);
+                        ctx.putImageData(imageData, 0, 0);
+                    }
+
+                    // 🖍️ Edit text and shapes to add noise
+                    ctx.fillText = function(text, x, y, maxWidth) {
+                        const offsetX = Math.random() * 2 - 1; 
+                        const offsetY = Math.random() * 2 - 1;
+                        originalFillText.apply(this, [text, x + offsetX, y + offsetY, maxWidth]);
+                    };
+
+                    ctx.fillRect = function(x, y, width, height) {
+                        const offsetX = Math.random() * 2 - 1;
+                        const offsetY = Math.random() * 2 - 1;
+                        originalFillRect.apply(this, [x + offsetX, y + offsetY, width, height]);
+                    };
+
+                    ctx.toDataURL = function() {
+                        distortCanvas(ctx);
+                        return originalToDataURL.apply(this, arguments);
+                    };
+
+                    ctx.getImageData = function(x, y, width, height) {
+                        const imageData = originalGetImageData.apply(this, arguments);
+                        addNoise(imageData.data);
+                        return imageData;
+                    };
+
+                    ctx.putImageData = function(imageData, x, y) {
+                        addNoise(imageData.data);
+                        originalPutImageData.apply(this, arguments);
+                    };
+
+                    ctx.toBlob = function() {
+                        distortCanvas(ctx);
+                        return originalToBlob.apply(this, arguments);
+                    };
+                }
+                return ctx;
+            };
+
+            // 🎭 Modify WebGL to change GPU fingerprint
+            const getParameter = WebGLRenderingContext.prototype.getParameter;
+            WebGLRenderingContext.prototype.getParameter = function(parameter) {
+                if (parameter === 0x1F00) return 'RandomVendor_' + Math.random().toString(36).substring(7);
+                if (parameter === 0x1F01) return 'RandomRenderer_' + Math.random().toString(36).substring(7);
+                return getParameter.apply(this, arguments);
+            };
+
+            // 🔄 Generate a new hash on each load
+            function refreshFingerprint() {
+                console.log('[Fingerprint Defender] 🎭 New hash generated !');
+                document.body.style.opacity = '0'; 
+                setTimeout(() => {
+                    document.body.style.opacity = '1';
+                }, 500);
+            }
+
+            window.onload = function() {
+                refreshFingerprint();
+            };
+        })();
+        ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
