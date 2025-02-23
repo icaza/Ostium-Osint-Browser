@@ -4915,9 +4915,15 @@ namespace Ostium
         void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (SaveCookies_Chk.Checked)
+            {
                 Class_Var.COOKIES_SAVE = 1; // Save
+                SaveCookies_Chk.ForeColor = Color.Yellow;
+            }
             else
+            {
                 Class_Var.COOKIES_SAVE = 0; // No save
+                SaveCookies_Chk.ForeColor = Color.White;
+            }
         }
 
         #region Workflow
@@ -6343,7 +6349,7 @@ namespace Ostium
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
-                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".xml";
+                ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.xml";
                 MapXmlOpn = MapDir + ValName + ".xml";
             }
             else
@@ -6500,6 +6506,7 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 MapRouteOpn = string.Empty;
                 LocatRoute = "locat";
                 Map_Cmd_Pnl.Visible = true;
@@ -6518,6 +6525,7 @@ namespace Ostium
             }
             else
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6526,6 +6534,7 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
+                DeleteRoutePoint_Btn.Visible = true;
                 LocatRoute = "route";
                 Map_Cmd_Pnl.Visible = true;
                 LocatRoute_Lbl.Text = "Routes";
@@ -6533,17 +6542,14 @@ namespace Ostium
                 TxtMarker_Chk.Enabled = false;
                 AddNewLoc_Btn.Visible = false;
                 SaveRoute_Btn.Visible = true;
-                if (KmlGpxOpn == "on")
-                {
-                    SaveRoute_Btn.Visible = false;
-                    SaveGPX_Btn.Visible = true;
-                }
+                SaveGPX_Btn.Visible = false;
                 PointRoute_Lst.Visible = true;
 
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
             }
             else
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6552,29 +6558,38 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "route")
             {
-                if (!Directory.Exists(MapDirGpx))
-                    Directory.CreateDirectory(MapDirGpx);
-
-                LocatRoute = "routegpx";
-                Map_Cmd_Pnl.Visible = true;
-                LocatRoute_Lbl.Text = "Routes";
-                TxtMarker_Lbl.Text = "Distance (Km)";
-                TxtMarker_Chk.Enabled = false;
-                AddNewLoc_Btn.Visible = false;
-                SaveRoute_Btn.Visible = false;
-                if (KmlGpxOpn == "on")
-                {
-                    SaveRoute_Btn.Visible = false;
-                    SaveGPX_Btn.Visible = true;
-                }
-                PointRoute_Lst.Visible = false;
-
-                loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
+                KmlGpxOpn = "off";
+                SaveGPX_Btn.Visible = false;
+                RouteListGPX();
             }
             else
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
+        }
+
+        void RouteListGPX()
+        {
+            if (!Directory.Exists(MapDirGpx))
+                Directory.CreateDirectory(MapDirGpx);
+
+            DeleteRoutePoint_Btn.Visible = false;
+            LocatRoute = "routegpx";
+            Map_Cmd_Pnl.Visible = true;
+            LocatRoute_Lbl.Text = "Routes";
+            TxtMarker_Lbl.Text = "Distance (Km)";
+            TxtMarker_Chk.Enabled = false;
+            AddNewLoc_Btn.Visible = false;
+            SaveRoute_Btn.Visible = false;
+            if (KmlGpxOpn == "on")
+            {
+                SaveGPX_Btn.Visible = true;
+            }
+
+            PointRoute_Lst.Visible = false;
+
+            loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
         }
 
         void OpnGPXRoute_Tls_Click(object sender, EventArgs e)
@@ -6605,6 +6620,8 @@ namespace Ostium
                         LoadGeoJsonFile(fileopen);
                     }
 
+                    DeleteRoutePoint_Btn.Visible = false;
+                    LocatRoute = "routegpx";
                     KmlGpxOpn = "on";
                     SaveRoute_Btn.Visible = false;
                     AddNewLoc_Btn.Visible = false;
@@ -6613,6 +6630,8 @@ namespace Ostium
                     SaveRoute_Btn.ForeColor = Color.White;
 
                     MapRouteOpn = fileopen;
+
+                    RouteListGPX();
 
                     ProjectMapOpn_Lbl.Text = $"File open: {strname}";
                 }
@@ -6738,7 +6757,7 @@ namespace Ostium
             Beep(1000, 400);
         }
 
-        void NmodeMap_Tls_Click(object sender, EventArgs e)
+        void NegativeModeMap_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.NegativeMode = !GMap_Ctrl.NegativeMode;
         }
@@ -7112,7 +7131,7 @@ namespace Ostium
                             LoadGpxFile(MapRouteOpn);
                         else if (strExt == ".kml")
                             LoadKmlFile(MapRouteOpn);
-                        else if (strExt == ".geojson" || strExt == "json")
+                        else if (strExt == ".geojson" || strExt == ".json")
                             LoadGeoJsonFile(MapRouteOpn);
                     }
                 }
@@ -7584,6 +7603,37 @@ namespace Ostium
             }
         }
 
+        void DeleteRoutePoint_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PointRoute_Lst.Items.Remove(PointRoute_Lst.SelectedItem);
+
+                using (StreamWriter SW = new StreamWriter(MapRouteOpn, false))
+                {
+                    foreach (string itm in PointRoute_Lst.Items)
+                    {
+                        if (!string.IsNullOrEmpty(itm?.ToString()))
+                        {
+                            SW.WriteLine(itm);
+                        }
+                    }
+                }
+
+                GMap_Ctrl.Overlays.Clear();
+                overlayOne.Markers.Clear();
+
+                PointRoute_Lst.Items.Clear();
+                PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
+
+                LoadRouteFromFile(MapRouteOpn);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! DeleteRoutePoint_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         #endregion
 
         void TtsButton_Sts_ButtonClick(object sender, EventArgs e)
@@ -7597,12 +7647,30 @@ namespace Ostium
             InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
         }
 
-        private void FloodHeader_Chk_CheckedChanged(object sender, EventArgs e)
+        void FloodHeader_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (FloodHeader_Chk.Checked)
+            {
                 @Class_Var.FLOOD_HEADER = 1;
+                FloodHeader_Chk.ForeColor = Color.Red;
+            }
             else
+            {
                 @Class_Var.FLOOD_HEADER = 0;
+                FloodHeader_Chk.ForeColor = Color.White;
+            }
+        }
+
+        private void Limitsize_Chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Limitsize_Chk.Checked)
+            {
+                Limitsize_Chk.ForeColor = Color.Yellow;
+            }
+            else
+            {
+                Limitsize_Chk.ForeColor = Color.White;
+            }
         }
 
         #region Json_

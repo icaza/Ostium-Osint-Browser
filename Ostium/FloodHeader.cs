@@ -27,9 +27,67 @@ public class FloodHeader
 
         webView.Settings.UserAgent = userAgent;
 
+        await EnableWebGLProtectionAsync();
         await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset, language, hardwareConcurrency, deviceMemory, maxTouchPoints, webdriver, connectionType);
         await EnableAudioContextProtectionAsync();
         await EnableCanvasAndWebGLProtectionAsync();
+        await EnableWebRTCAndBatteryAndSpeechProtectionAsync();
+    }
+
+    public async Task EnableWebGLProtectionAsync()
+    {
+        string script = @"
+        (function() {
+            console.log('[Fingerprint Defender] 🚀 Advanced WebGL Protection Enabled');
+
+            // 🎭 Fake GPU IDs
+            const fakeVendor = 'FakeVendor';
+            const fakeRenderer = 'FakeRenderer';
+
+            function spoofWebGL() {
+                const getParameterProxy = new Proxy(WebGLRenderingContext.prototype.getParameter, {
+                    apply: function(target, thisArg, args) {
+                        const param = args[0];
+
+                        if (param === 0x1F00 || param === 0x1F01) { 
+                            // VENDOR or RENDERER standard
+                            return fakeVendor;
+                        }
+                        if (param === 0x9245) { 
+                            // UNMASKED_VENDOR_WEBGL
+                            return fakeVendor;
+                        }
+                        if (param === 0x9246) { 
+                            // UNMASKED_RENDERER_WEBGL
+                            return fakeRenderer;
+                        }
+
+                        return Reflect.apply(target, thisArg, args);
+                    }
+                });
+
+                const getExtensionProxy = new Proxy(WebGLRenderingContext.prototype.getExtension, {
+                    apply: function(target, thisArg, args) {
+                        if (args[0] === 'WEBGL_debug_renderer_info') {
+                            return null; // Prevents access to the extension
+                        }
+                        return Reflect.apply(target, thisArg, args);
+                    }
+                });
+
+                WebGLRenderingContext.prototype.getParameter = getParameterProxy;
+                WebGL2RenderingContext.prototype.getParameter = getParameterProxy;
+                WebGLRenderingContext.prototype.getExtension = getExtensionProxy;
+                WebGL2RenderingContext.prototype.getExtension = getExtensionProxy;
+            }
+
+            // 🔄 Execute as soon as possible
+            spoofWebGL();
+            console.log('[Fingerprint Defender] 🎭 UNMASKED_VENDOR & UNMASKED_RENDERER modified !');
+        })();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
 
     async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, string webdriver, string connectionType)
@@ -132,7 +190,7 @@ public class FloodHeader
     {
         string script = @"
         (function() {
-            console.log('[Fingerprint Defender] 🚀 Protection activated');
+            console.log('[Fingerprint Defender] 🚀 Canvas Protection activated');
 
             const getContext = HTMLCanvasElement.prototype.getContext;
 
@@ -220,6 +278,39 @@ public class FloodHeader
 
             window.onload = function() {
                 refreshFingerprint();
+            };
+        })();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableWebRTCAndBatteryAndSpeechProtectionAsync()
+    {
+        string script = @"
+        (function() {
+            console.log('[Fingerprint Defender] 🚀 WebRTC, Battery API and Speech Synthesis protection enabled');
+
+            // 2️⃣ WebRTC Leak Protection
+            const originalRTCPeerConnection = window.RTCPeerConnection;
+            window.RTCPeerConnection = function() {
+                console.warn('[Fingerprint Defender] 🚨 WebRTC blocked !');
+                return null;
+            };
+
+            // 3️⃣ Battery API Protection
+            if (navigator.getBattery) {
+                navigator.getBattery = function() {
+                    console.warn('[Fingerprint Defender] 🚨 API Battery Blocked !');
+                    return new Promise(resolve => resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity }));
+                };
+            }
+
+            // 4️⃣ Speech Synthesis Protection
+            const originalGetVoices = window.speechSynthesis.getVoices;
+            window.speechSynthesis.getVoices = function() {
+                console.warn('[Fingerprint Defender] 🚨 Speech Synthesis blocked !');
+                return [{ name: 'FakeVoice', lang: 'en-US', localService: false, voiceURI: 'fake' }];
             };
         })();
         ";

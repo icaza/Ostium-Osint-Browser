@@ -499,7 +499,7 @@
             this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
-            this.NmodeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NegativeModeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
@@ -514,6 +514,7 @@
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.DeleteRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1243,10 +1244,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -3315,7 +3316,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 23);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3352,7 +3353,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 583);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3373,7 +3374,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 583);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3388,7 +3389,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 142);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 225);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 254);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3403,7 +3404,7 @@
             this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 367);
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 396);
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
@@ -3440,7 +3441,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 397);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 426);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -3521,7 +3522,7 @@
             this.PointRoute_Lst.ForeColor = System.Drawing.Color.DarkOrange;
             this.PointRoute_Lst.FormattingEnabled = true;
             this.PointRoute_Lst.ItemHeight = 14;
-            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 427);
+            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 456);
             this.PointRoute_Lst.Name = "PointRoute_Lst";
             this.PointRoute_Lst.Size = new System.Drawing.Size(200, 126);
             this.PointRoute_Lst.TabIndex = 27;
@@ -3539,7 +3540,7 @@
             this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 553);
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 582);
             this.SaveRoute_Btn.Name = "SaveRoute_Btn";
             this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveRoute_Btn.TabIndex = 25;
@@ -4297,7 +4298,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 23);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -4308,7 +4309,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 592);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 563);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -4319,7 +4320,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 592);
+            this.groupBox5.Size = new System.Drawing.Size(328, 563);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -4360,7 +4361,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 571);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 542);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -4729,7 +4730,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 592);
+            this.panel26.Size = new System.Drawing.Size(10, 563);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
@@ -4739,7 +4740,7 @@
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 592);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 563);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
             // groupBox6
@@ -4752,7 +4753,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox6.Location = new System.Drawing.Point(0, 393);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 199);
+            this.groupBox6.Size = new System.Drawing.Size(244, 170);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
@@ -4760,12 +4761,12 @@
             // FloodHeader_Chk
             // 
             this.FloodHeader_Chk.AutoSize = true;
-            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FloodHeader_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FloodHeader_Chk.ForeColor = System.Drawing.Color.White;
-            this.FloodHeader_Chk.Location = new System.Drawing.Point(13, 146);
+            this.FloodHeader_Chk.Location = new System.Drawing.Point(13, 40);
             this.FloodHeader_Chk.Name = "FloodHeader_Chk";
-            this.FloodHeader_Chk.Size = new System.Drawing.Size(158, 20);
+            this.FloodHeader_Chk.Size = new System.Drawing.Size(157, 20);
             this.FloodHeader_Chk.TabIndex = 3;
             this.FloodHeader_Chk.Text = "Fingerprint Defender";
             this.FloodHeader_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4775,16 +4776,17 @@
             // Limitsize_Chk
             // 
             this.Limitsize_Chk.AutoSize = true;
-            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
             this.Limitsize_Chk.Location = new System.Drawing.Point(13, 93);
             this.Limitsize_Chk.Name = "Limitsize_Chk";
-            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 36);
+            this.Limitsize_Chk.Size = new System.Drawing.Size(217, 36);
             this.Limitsize_Chk.TabIndex = 2;
             this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\n(default is 4096)";
             this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Limitsize_Chk.UseVisualStyleBackColor = true;
+            this.Limitsize_Chk.CheckedChanged += new System.EventHandler(this.Limitsize_Chk_CheckedChanged);
             // 
             // ArchiveAdd_Lst
             // 
@@ -4799,12 +4801,12 @@
             // SaveCookies_Chk
             // 
             this.SaveCookies_Chk.AutoSize = true;
-            this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.SaveCookies_Chk.Location = new System.Drawing.Point(13, 40);
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(13, 146);
             this.SaveCookies_Chk.Name = "SaveCookies_Chk";
-            this.SaveCookies_Chk.Size = new System.Drawing.Size(192, 36);
+            this.SaveCookies_Chk.Size = new System.Drawing.Size(191, 36);
             this.SaveCookies_Chk.TabIndex = 0;
             this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
             this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4951,7 +4953,7 @@
             this.Furldir_Opt.Name = "Furldir_Opt";
             this.Furldir_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furldir_Opt.TabIndex = 17;
-            this.Furldir_Opt.Text = "URL Direct";
+            this.Furldir_Opt.Text = "URL";
             this.Furldir_Opt.UseVisualStyleBackColor = false;
             this.Furldir_Opt.Click += new System.EventHandler(this.Furldir_Opt_Click);
             // 
@@ -4961,7 +4963,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 592);
+            this.panel25.Size = new System.Drawing.Size(10, 563);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -4971,7 +4973,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 592);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 563);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -4981,7 +4983,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 559);
+            this.groupBox3.Size = new System.Drawing.Size(714, 530);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -5011,7 +5013,7 @@
             this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 509);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
             // label32
@@ -5219,7 +5221,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 559);
+            this.panel27.Location = new System.Drawing.Point(0, 530);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -5266,7 +5268,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 602);
+            this.panel24.Location = new System.Drawing.Point(10, 573);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -5286,7 +5288,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 612);
+            this.panel22.Size = new System.Drawing.Size(10, 583);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -5295,7 +5297,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 612);
+            this.panel21.Size = new System.Drawing.Size(10, 583);
             this.panel21.TabIndex = 20;
             // 
             // Status_Strip
@@ -6109,7 +6111,8 @@
             this.GoWord_Tls,
             this.toolStripSeparator27,
             this.toolStripLabel6,
-            this.ZoomValMap_Lbl});
+            this.ZoomValMap_Lbl,
+            this.DeleteRoutePoint_Btn});
             this.Tools_TAB_4.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_4.Name = "Tools_TAB_4";
             this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
@@ -6255,7 +6258,7 @@
             this.toolStripSeparator26,
             this.CopyGeoMap_Tls,
             this.toolStripSeparator28,
-            this.NmodeMap_Tls,
+            this.NegativeModeMap_Tls,
             this.ClearMap_Tls});
             this.ToolsMap_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.White;
@@ -6362,12 +6365,12 @@
             this.toolStripSeparator28.Name = "toolStripSeparator28";
             this.toolStripSeparator28.Size = new System.Drawing.Size(358, 6);
             // 
-            // NmodeMap_Tls
+            // NegativeModeMap_Tls
             // 
-            this.NmodeMap_Tls.Name = "NmodeMap_Tls";
-            this.NmodeMap_Tls.Size = new System.Drawing.Size(361, 22);
-            this.NmodeMap_Tls.Text = "Negative Mode";
-            this.NmodeMap_Tls.Click += new System.EventHandler(this.NmodeMap_Tls_Click);
+            this.NegativeModeMap_Tls.Name = "NegativeModeMap_Tls";
+            this.NegativeModeMap_Tls.Size = new System.Drawing.Size(361, 22);
+            this.NegativeModeMap_Tls.Text = "Negative Mode";
+            this.NegativeModeMap_Tls.Click += new System.EventHandler(this.NegativeModeMap_Tls_Click);
             // 
             // ClearMap_Tls
             // 
@@ -6517,6 +6520,18 @@
             this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // DeleteRoutePoint_Btn
+            // 
+            this.DeleteRoutePoint_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteRoutePoint_Btn.ForeColor = System.Drawing.Color.Red;
+            this.DeleteRoutePoint_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteRoutePoint_Btn.Image")));
+            this.DeleteRoutePoint_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteRoutePoint_Btn.Name = "DeleteRoutePoint_Btn";
+            this.DeleteRoutePoint_Btn.Size = new System.Drawing.Size(129, 22);
+            this.DeleteRoutePoint_Btn.Text = "Delete Route Point";
+            this.DeleteRoutePoint_Btn.Visible = false;
+            this.DeleteRoutePoint_Btn.Click += new System.EventHandler(this.DeleteRoutePoint_Btn_Click);
             // 
             // Main_Frm
             // 
@@ -7090,7 +7105,7 @@
         private System.Windows.Forms.ToolStripStatusLabel TableVal_Lbl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
         private System.Windows.Forms.ToolStripMenuItem EgHelp_Tls;
-        private System.Windows.Forms.ToolStripMenuItem NmodeMap_Tls;
+        private System.Windows.Forms.ToolStripMenuItem NegativeModeMap_Tls;
         private System.Windows.Forms.ToolStripDropDownButton PlantUml_Mnu;
         private System.Windows.Forms.ToolStripMenuItem PlantUmlVersion_Mnu;
         private System.Windows.Forms.ToolStripMenuItem PlantUmlLicense_Mnu;
@@ -7120,6 +7135,7 @@
         private System.Windows.Forms.ToolStripButton JavaScriptFeed_Btn;
         private System.Windows.Forms.CheckBox FloodHeader_Chk;
         private System.Windows.Forms.ListBox PointRoute_Lst;
+        private System.Windows.Forms.ToolStripButton DeleteRoutePoint_Btn;
     }
 }
 
