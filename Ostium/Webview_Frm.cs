@@ -21,19 +21,21 @@ namespace Ostium
         readonly string AppStart = Application.StartupPath + @"\";
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
+        FloodHeader TrackingFlood;
+
         #endregion
 
         public Webview_Frm()
         {
             InitializeComponent();
-            WBrowse_EventHandlers(WBrowse);
+            WBrowsew_EventHandlers(WBrowsew);
 
             URLbrowse_Cbx.KeyPress += new KeyPressEventHandler(OnKey_URLbrowse);
         }
 
         void Webview_Frm_Load(object sender, EventArgs e)
         {
-            WBrowse.Source = new Uri(@Class_Var.URL_WEBVIEW);
+            WBrowsew.Source = new Uri(@Class_Var.URL_WEBVIEW);
             ///
             /// Loading default configuration URLs into a List
             /// 
@@ -43,16 +45,16 @@ namespace Ostium
 
         #region Browser_Event Handler
 
-        void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
+        void WBrowsew_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
             string UriYoutube = string.Empty;
-            string C = WBrowse.Source.AbsoluteUri;
+            string C = WBrowsew.Source.AbsoluteUri;
             if (C.Length > 32)
                 UriYoutube += C.Substring(0, 32);
 
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
-            CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem0 = WBrowsew.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
             newItem0.CustomItemSelected += delegate (object send, object ex)
             {
                 string pageUri = args.ContextMenuTarget.PageUri; ;
@@ -63,14 +65,14 @@ namespace Ostium
                 }, null);
             };
 
-            CoreWebView2ContextMenuItem newItem1 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
+            CoreWebView2ContextMenuItem newItem1 = WBrowsew.CoreWebView2.Environment.CreateContextMenuItem("Youtube embed", null, CoreWebView2ContextMenuItemKind.Command);
             newItem1.CustomItemSelected += delegate (object send, object ex)
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
                     if (UriYoutube == "https://www.youtube.com/watch?v=")
                     {
-                        string pageUri = WBrowse.Source.AbsoluteUri;
+                        string pageUri = WBrowsew.Source.AbsoluteUri;
                         pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
                         using (StreamWriter file_create = new StreamWriter(AppStart + "tmpytb.html"))
                         {
@@ -89,15 +91,24 @@ namespace Ostium
             menuList.Insert(menuList.Count, newItem1);
         }
 
-        void WBrowse_UpdtTitleEvent(string message)
+        void WBrowsew_UpdtTitleEvent(string message)
         {
-            string currentDocumentTitle = WBrowse?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
+            string currentDocumentTitle = WBrowsew?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
             Text = currentDocumentTitle + " [" + message + "]";
         }
 
-        void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
+        async void WBrowsew_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
-            WBrowse_UpdtTitleEvent("Navigation Starting");
+            if (@Class_Var.FLOOD_HEADER == 1)
+            {
+                await WBrowsew.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowsew.CoreWebView2, "config.json");
+
+                TrackingFlood = new FloodHeader(WBrowsew.CoreWebView2);
+                await TrackingFlood.FloodHeaderAsync();
+            }
+
+            WBrowsew_UpdtTitleEvent("Navigation Starting");
         }
         ///
         /// <summary>
@@ -105,57 +116,60 @@ namespace Ostium
         /// </summary>
         /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         /// 
-        void WBrowse_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        void WBrowsew_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             if (Class_Var.COOKIES_SAVE == 1)
-                GetCookie(WBrowse.Source.AbsoluteUri);
+                GetCookie(WBrowsew.Source.AbsoluteUri);
 
-            WBrowse_UpdtTitleEvent("Navigation Completed");
+            WBrowsew_UpdtTitleEvent("Navigation Completed");
         }
 
-        void WBrowse_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
+        void WBrowsew_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
-            URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
-            WBrowse_UpdtTitleEvent("Source Changed");
+            URLtxt_txt.Text = WBrowsew.Source.AbsoluteUri;
+            WBrowsew_UpdtTitleEvent("Source Changed");
         }
 
-        void WBrowse_HistoryChanged(object sender, object e)
+        void WBrowsew_HistoryChanged(object sender, object e)
         {
-            Back_Btn.Enabled = WBrowse.CoreWebView2.CanGoBack;
-            Forward_Btn.Enabled = WBrowse.CoreWebView2.CanGoForward;
-            WBrowse_UpdtTitleEvent("History Changed");
+            Back_Btn.Enabled = WBrowsew.CoreWebView2.CanGoBack;
+            Forward_Btn.Enabled = WBrowsew.CoreWebView2.CanGoForward;
+            WBrowsew_UpdtTitleEvent("History Changed");
         }
 
-        void WBrowse_DocumentTitleChanged(object sender, object e)
+        void WBrowsew_DocumentTitleChanged(object sender, object e)
         {
-            Text = WBrowse.CoreWebView2.DocumentTitle;
-            WBrowse_UpdtTitleEvent("DocumentTitleChanged");
+            Text = WBrowsew.CoreWebView2.DocumentTitle;
+            WBrowsew_UpdtTitleEvent("DocumentTitleChanged");
         }
 
-        void WBrowse_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
+        void WBrowsew_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (!e.IsSuccess)
             {
                 MessageBox.Show($"WBrowse creation failed with exception = {e.InitializationException}");
-                WBrowse_UpdtTitleEvent("Initialization Completed failed");
+                WBrowsew_UpdtTitleEvent("Initialization Completed failed");
                 return;
             }
 
-            WBrowse.CoreWebView2.SourceChanged += WBrowse_SourceChanged;
-            WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
-            WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
-            WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
-            WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested; // ContextMenu
+            WBrowsew.CoreWebView2.HistoryChanged += WBrowsew_HistoryChanged;
+            WBrowsew.CoreWebView2.DocumentTitleChanged += WBrowsew_DocumentTitleChanged;
+            WBrowsew.CoreWebView2.ContextMenuRequested += WBrowsew_ContextMenuRequested;
 
-            WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
+            WBrowsew.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+            WBrowsew.CoreWebView2.Settings.IsWebMessageEnabled = false;
+            WBrowsew.CoreWebView2.Settings.IsScriptEnabled = true;
+            WBrowsew.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
+
+            WBrowsew_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowsew_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
-            control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
-            control.NavigationStarting += WBrowse_NavigationStarting;
-            control.NavigationCompleted += WBrowse_NavigationCompleted;
-            control.SourceChanged += WBrowse_SourceChanged;
+            control.CoreWebView2InitializationCompleted += WBrowsew_InitializationCompleted;
+            control.NavigationStarting += WBrowsew_NavigationStarting;
+            control.NavigationCompleted += WBrowsew_NavigationCompleted;
+            control.SourceChanged += WBrowsew_SourceChanged;
         }
 
         #endregion
@@ -203,7 +217,7 @@ namespace Ostium
                     uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                 }
 
-                WBrowse.Source = uri;
+                WBrowsew.Source = uri;
             }
             catch (Exception ex)
             {
@@ -213,17 +227,17 @@ namespace Ostium
 
         void Back_Btn_Click(object sender, EventArgs e)
         {
-            WBrowse.GoBack();
+            WBrowsew.GoBack();
         }
 
         void Forward_Btn_Click(object sender, EventArgs e)
         {
-            WBrowse.GoForward();
+            WBrowsew.GoForward();
         }
 
         void Refresh_Btn_Click(object sender, EventArgs e)
         {
-            WBrowse.Reload();
+            WBrowsew.Reload();
         }
 
         void Home_Btn_Click(object sender, EventArgs e)
@@ -231,7 +245,7 @@ namespace Ostium
             if (@Class_Var.URL_HOME == string.Empty)
                 @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
 
-            WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+            WBrowsew.Source = new Uri(@Class_Var.URL_HOME);
         }
 
         void Trad_Btn_Click(object sender, EventArgs e)
@@ -239,13 +253,13 @@ namespace Ostium
             if (string.IsNullOrEmpty(Class_Var.URL_TRAD_WEBPAGE))
                 Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
 
-            string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
-            WBrowse.Source = new Uri(@formatURI);
+            string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsew.Source.AbsoluteUri);
+            WBrowsew.Source = new Uri(@formatURI);
         }
 
         void CopyURL_Btn_Click(object sender, EventArgs e)
         {
-            string textData = WBrowse.Source.AbsoluteUri;
+            string textData = WBrowsew.Source.AbsoluteUri;
             Clipboard.SetData(DataFormats.Text, textData);
             Beep(1500, 400);
         }
@@ -256,9 +270,9 @@ namespace Ostium
         {
             try
             {
-                if (WBrowse?.CoreWebView2?.Settings != null)
+                if (WBrowsew?.CoreWebView2?.Settings != null)
                 {
-                    var settings = WBrowse.CoreWebView2.Settings;
+                    var settings = WBrowsew.CoreWebView2.Settings;
                     settings.IsScriptEnabled = !settings.IsScriptEnabled;
 
                     UpdateButtonState(settings.IsScriptEnabled);
@@ -294,7 +308,7 @@ namespace Ostium
             {
                 e.Handled = true;
                 GoBrowser(URLbrowse_Cbx.Text);
-            }               
+            }
         }
         ///
         /// <summary>
@@ -306,12 +320,12 @@ namespace Ostium
         {
             try
             {
-                List<CoreWebView2Cookie> cookieList = await WBrowse.CoreWebView2.CookieManager.GetCookiesAsync(URLs);
+                List<CoreWebView2Cookie> cookieList = await WBrowsew.CoreWebView2.CookieManager.GetCookiesAsync(URLs);
                 StringBuilder cookieResult = new StringBuilder(cookieList.Count + " cookie(s) received from " + URLs + " [DATE] " + DateTime.Now.ToString("F"));
 
                 for (int i = 0; i < cookieList.Count; ++i)
                 {
-                    CoreWebView2Cookie cookie = WBrowse.CoreWebView2.CookieManager.CreateCookieWithSystemNetCookie(cookieList[i].ToSystemNetCookie());
+                    CoreWebView2Cookie cookie = WBrowsew.CoreWebView2.CookieManager.CreateCookieWithSystemNetCookie(cookieList[i].ToSystemNetCookie());
                     cookieResult.Append($"\n\r{cookie.Name} {cookie.Value} {(cookie.IsSession ? "[session cookie]" : cookie.Expires.ToString("G"))}");
                 }
 

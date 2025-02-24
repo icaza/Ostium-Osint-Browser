@@ -92,7 +92,7 @@ namespace Ostium
         readonly string SVGviewerdir = Application.StartupPath + @"\SVGviewer\";
         readonly string Keeptrack = Application.StartupPath + @"\KeepTrack\";
 
-        string D4ta = "default_database_name";
+        string databasePath = "default_database_name";
         ///
         /// <summary>
         /// Objects
@@ -190,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "22";
+        readonly string versionNow = "23";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -206,6 +206,8 @@ namespace Ostium
 
         int _historyIndex = -1;
         readonly List<string> _commandHistory = new List<string>();
+
+        FloodHeader HeaderFlood;
 
         #endregion
 
@@ -246,7 +248,7 @@ namespace Ostium
                     /// <param value="1">Save the chosen configuration and Reload</param>
                     /// 
                     if (File.Exists(Path.Combine(AppStart, "config.xml")))
-                        Config_Ini(Path.Combine(AppStart, "config.xml"));
+                        LoadConfiguration(Path.Combine(AppStart, "config.xml"));
                     else
                         CreateConfigFile(0);
                     ///
@@ -399,7 +401,7 @@ namespace Ostium
             ///
             /// Loading the configuration from the "config.xml" file
             ///
-            Config_Ini(Path.Combine(AppStart, "config.xml"));
+            LoadConfiguration(Path.Combine(AppStart, "config.xml"));
         }
 
         void CreateDirectory()
@@ -443,166 +445,175 @@ namespace Ostium
                 Directory.CreateDirectory(dir);
         }
 
-        void Config_Ini(string ConfigFile)
+        #region LoadConfiguration_
+
+        void LoadConfiguration(string configFile)
         {
             try
             {
-                using (XmlReader reader = XmlReader.Create(ConfigFile))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.IsStartElement())
-                        {
-                            switch (reader.Name.ToString())
-                            {
-                                case "DB_USE_DEFAULT":
-                                    DB_Default_Txt.Text = Convert.ToString(reader.ReadString());
-                                    DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
-                                    break;
-                                case "URL_HOME_VAR":
-                                    Class_Var.URL_HOME = reader.ReadString();
-                                    UrlHome_Opt_Txt.Text = Class_Var.URL_HOME;
-                                    break;
-                                case "URL_TRAD_WEBPAGE_VAR":
-                                    Class_Var.URL_TRAD_WEBPAGE = reader.ReadString();
-                                    UrlTradWebPage_Opt_Txt.Text = Class_Var.URL_TRAD_WEBPAGE;
-                                    break;
-                                case "URL_TRAD_WEBTXT_VAR":
-                                    Class_Var.URL_TRAD_WEBTXT = reader.ReadString();
-                                    break;
-                                case "URL_DEFAUT_WSEARCH_VAR":
-                                    Class_Var.URL_DEFAUT_WSEARCH = reader.ReadString();
-                                    SearchEngine_Opt_Txt.Text = Class_Var.URL_DEFAUT_WSEARCH;
-                                    break;
-                                case "URL_USER_AGENT_VAR":
-                                    Class_Var.URL_USER_AGENT = reader.ReadString();
-                                    UserAgent_Opt_Txt.Text = Class_Var.URL_USER_AGENT;
-                                    break;
-                                case "URL_USER_AGENT_SRC_PAGE_VAR":
-                                    Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
-                                    UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
-                                    JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
-                                    break;
-                                case "URL_GOOGLEBOT_VAR":
-                                    Class_Var.URL_GOOGLEBOT = reader.ReadString();
-                                    GoogBot_Opt_Txt.Text = Class_Var.URL_GOOGLEBOT;
-                                    break;
-                                case "DEFAULT_EDITOR_VAR":
-                                    Class_Var.DEFAULT_EDITOR = reader.ReadString();
-                                    DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
-                                    break;
-                                case "VOLUME_TRACK_VAR":
-                                    Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
-                                    VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
-                                    break;
-                                case "RATE_TRACK_VAR":
-                                    Class_Var.RATE_TRACK = Convert.ToInt32(reader.ReadString());
-                                    RateVal_Track.Value = Class_Var.RATE_TRACK;
-                                    break;
-                            }
-                        }
-                    }
-                }
-                ///
-                /// If DataBase exist True loading
-                /// If DataBase exist False create
-                /// 
-                if (DB_Default_Txt.Text != "0x0")
-                {
-                    D4ta = DBdirectory + DB_Default_Txt.Text;
-                }
-                else
-                {
-                    string message, title;
-                    object ValueInput;
-
-                    message = "First use. \n\nChoose a name for the database or leave empty.";
-                    title = "Database default name";
-
-                    ValueInput = Interaction.InputBox(message, title);
-                    string ValueOutput = Convert.ToString(ValueInput);
-                    ValueOutput = Regex.Replace(ValueOutput, "[^a-zA-Z0-9]", string.Empty);
-                    ValueOutput += ".db";
-
-                    if (ValueOutput != string.Empty && ValueOutput != ".db")
-                    {
-                        if (!File.Exists(Path.Combine(DBdirectory, ValueOutput)))
-                            SQLiteConnection.CreateFile(Path.Combine(DBdirectory, ValueOutput));
-
-                        DB_Default_Txt.Text = ValueOutput;
-                        D4ta = DBdirectory + DB_Default_Txt.Text;
-
-                        ChangeDBdefault(DB_Default_Txt.Text);
-                    }
-                    else
-                    {
-                        DB_Default_Txt.Text = "D4taB.db";
-
-                        if (!File.Exists(Path.Combine(DBdirectory, "D4taB.db")))
-                            SQLiteConnection.CreateFile(Path.Combine(DBdirectory, "D4taB.db"));
-
-                        D4ta = DBdirectory + DB_Default_Txt.Text;
-
-                        ChangeDBdefault(DB_Default_Txt.Text);
-                    }
-                    DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
-                }
-
-                if (File.Exists(Path.Combine(FileDir, "url.txt")))
-                {
-                    URL_URL_Cbx.Items.Clear();
-                    URL_URL_Cbx.Items.AddRange(File.ReadAllLines(FileDir + "url.txt"));
-                }
-
-                if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
-                {
-                    ConstructURL_Lst.Items.Clear();
-                    ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
-                }
-                ///
-                /// Loading JS scripts from "script url.ost" file for injection.
-                /// 
-                if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
-                {
-                    ScriptUrl_Lst.Items.Clear();
-                    ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Scripts + "scripturl.ost"));
-                }
-
-                if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
-                {
-                    using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
-                    {
-                        ArchiveAdd_Txt.Text = sr.ReadToEnd();
-                    }
-                    ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(AppStart + "archiveAdd.txt"));
-                }
-
-                loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
-                loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
-                loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
-                loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
-                loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
-                loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
-
-                Class_Var.COOKIES_SAVE = 0; /// Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
-                Class_Var.SCRIPTCREATOR = "off";
+                LoadConfigFromXml(configFile);
+                InitializeDatabase();
+                LoadAdditionalFiles();
+                InitializeClassVariables();
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! Config_Ini: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error in LoadConfiguration: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
-        async void DireSizeCalc(string directoryname, object objectsend)
+        void LoadConfigFromXml(string configFile)
+        {
+            using (XmlReader reader = XmlReader.Create(configFile))
+            {
+                while (reader.Read())
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name)
+                        {
+                            case "DB_USE_DEFAULT":
+                                DB_Default_Txt.Text = Convert.ToString(reader.ReadString());
+                                DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
+                                break;
+                            case "URL_HOME_VAR":
+                                Class_Var.URL_HOME = reader.ReadString();
+                                UrlHome_Opt_Txt.Text = Class_Var.URL_HOME;
+                                break;
+                            case "URL_TRAD_WEBPAGE_VAR":
+                                Class_Var.URL_TRAD_WEBPAGE = reader.ReadString();
+                                UrlTradWebPage_Opt_Txt.Text = Class_Var.URL_TRAD_WEBPAGE;
+                                break;
+                            case "URL_TRAD_WEBTXT_VAR":
+                                Class_Var.URL_TRAD_WEBTXT = reader.ReadString();
+                                break;
+                            case "URL_DEFAUT_WSEARCH_VAR":
+                                Class_Var.URL_DEFAUT_WSEARCH = reader.ReadString();
+                                SearchEngine_Opt_Txt.Text = Class_Var.URL_DEFAUT_WSEARCH;
+                                break;
+                            case "URL_USER_AGENT_VAR":
+                                Class_Var.URL_USER_AGENT = reader.ReadString();
+                                UserAgent_Opt_Txt.Text = Class_Var.URL_USER_AGENT;
+                                break;
+                            case "URL_USER_AGENT_SRC_PAGE_VAR":
+                                Class_Var.URL_USER_AGENT_SRC_PAGE = reader.ReadString();
+                                UserAgentHttp_Opt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+                                JsonUsrAgt_Txt.Text = Class_Var.URL_USER_AGENT_SRC_PAGE;
+                                break;
+                            case "URL_GOOGLEBOT_VAR":
+                                Class_Var.URL_GOOGLEBOT = reader.ReadString();
+                                GoogBot_Opt_Txt.Text = Class_Var.URL_GOOGLEBOT;
+                                break;
+                            case "DEFAULT_EDITOR_VAR":
+                                Class_Var.DEFAULT_EDITOR = reader.ReadString();
+                                DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
+                                break;
+                            case "VOLUME_TRACK_VAR":
+                                Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
+                                VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
+                                break;
+                            case "RATE_TRACK_VAR":
+                                Class_Var.RATE_TRACK = Convert.ToInt32(reader.ReadString());
+                                RateVal_Track.Value = Class_Var.RATE_TRACK;
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        void InitializeDatabase()
+        {
+            if (DB_Default_Txt.Text != "0x0")
+            {
+                databasePath = Path.Combine(DBdirectory, DB_Default_Txt.Text);
+            }
+            else
+            {
+                string message = "First use. \n\nChoose a name for the database or leave empty.";
+                string title = "Database default name";
+                string userInput = Interaction.InputBox(message, title);
+                string sanitizedInput = Regex.Replace(userInput, "[^a-zA-Z0-9]", string.Empty) + ".db";
+
+                if (!string.IsNullOrEmpty(sanitizedInput) && sanitizedInput != ".db")
+                {
+                    databasePath = Path.Combine(DBdirectory, sanitizedInput);
+                    if (!File.Exists(databasePath))
+                        SQLiteConnection.CreateFile(databasePath);
+
+                    DB_Default_Txt.Text = sanitizedInput;
+                    ChangeDBdefault(sanitizedInput);
+                }
+                else
+                {
+                    DB_Default_Txt.Text = "D4taB.db";
+                    databasePath = Path.Combine(DBdirectory, "D4taB.db");
+                    if (!File.Exists(databasePath))
+                        SQLiteConnection.CreateFile(databasePath);
+
+                    ChangeDBdefault("D4taB.db");
+                }
+                DB_Default_Opt_Txt.Text = DB_Default_Txt.Text;
+            }
+        }
+
+        void LoadAdditionalFiles()
+        {
+            if (File.Exists(Path.Combine(FileDir, "url.txt")))
+            {
+                URL_URL_Cbx.Items.Clear();
+                URL_URL_Cbx.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url.txt")));
+            }
+
+            if (File.Exists(Path.Combine(FileDir, "url-constructor", "construct_url.txt")))
+            {
+                ConstructURL_Lst.Items.Clear();
+                ConstructURL_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(FileDir, "url-constructor", "construct_url.txt")));
+            }
+            ///
+            /// Loading JS scripts from "script url.ost" file for injection.
+            /// 
+            if (File.Exists(Path.Combine(Scripts, "scripturl.ost")))
+            {
+                ScriptUrl_Lst.Items.Clear();
+                ScriptUrl_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(Scripts, "scripturl.ost")));
+            }
+
+            if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
+            {
+                using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
+                {
+                    ArchiveAdd_Txt.Text = sr.ReadToEnd();
+                }
+                ArchiveAdd_Lst.Items.AddRange(File.ReadAllLines(Path.Combine(AppStart, "archiveAdd.txt")));
+            }
+
+            loadfiledir.LoadFileDirectory(Plugins, "exe", "cbxts", AddOn_Cbx);
+            loadfiledir.LoadFileDirectory(Path.Combine(FileDir, "url-constructor"), "txt", "cbxts", Construct_URL_Cbx);
+            loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
+            loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
+            loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
+            loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
+        }
+
+        void InitializeClassVariables()
+        {
+            Class_Var.COOKIES_SAVE = 0; // Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True, default = False
+            Class_Var.SCRIPTCREATOR = "off";
+        }
+
+        #endregion
+
+        async void UpdateDirectorySize(string directoryPath, object objectsend)
         {
             try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(directoryname);
+                DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
                 long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
-                var calcsize = sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize)));
+                string formattedSize = sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize)));
 
                 SizeAll_Lbl = (Label)objectsend;
-                SizeAll_Lbl.Text = calcsize;
+                SizeAll_Lbl.Text = formattedSize;
             }
             catch (Exception ex)
             {
@@ -622,7 +633,7 @@ namespace Ostium
         /// <param name="newItem1">Search for video on Youtube</param>
         /// <param name="newItem2">Embed Youtube video</param>
         /// 
-        void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)  // ContextMenu
+        void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
             string UriYoutube = string.Empty;
             string C = WBrowse.Source.AbsoluteUri;
@@ -741,13 +752,22 @@ namespace Ostium
         /// <param name="UserAgentOnOff"></param>
         /// <param value="on">If enabled user-agent modification</param>
         /// 
-        void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
+        async void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
             var settings = WBrowse.CoreWebView2.Settings;
 
             if (UserAgentOnOff == "on")
             {
                 settings.UserAgent = UserAgentSelect;
+            }
+
+            if (FloodHeader_Chk.Checked)
+            {
+                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                await HeaderFlood.FloodHeaderAsync();
+
+                await WBrowse.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
             }
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
@@ -781,14 +801,7 @@ namespace Ostium
 
         async void ScripInj()
         {
-            try
-            {
-                await ScriptInject();
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! ScripInj: ", ex.ToString(), "Main_Frm", AppStart);
-            }
+            await ScriptInject();
         }
 
         async void FaviconLoad()
@@ -849,7 +862,6 @@ namespace Ostium
         }
         ///
         /// <param name="NameUriDB">URL Title variable for addition to the DataBase</param>
-        /// <param name="Download_Source_Page()">Download and save the web page source to the sourcepage file for reuse</param>
         /// 
         void WBrowse_DocumentTitleChanged(object sender, object e)
         {
@@ -857,7 +869,6 @@ namespace Ostium
             NameUriDB = WBrowse.CoreWebView2.DocumentTitle;
 
             WBrowse_UpdtTitleEvent("DocumentTitleChanged");
-            Download_Source_Page();
         }
 
         void NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
@@ -878,13 +889,15 @@ namespace Ostium
                 return;
             }
 
-            WBrowse.CoreWebView2.SourceChanged += WBrowse_SourceChanged;
             WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
             WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
-            WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
-            WBrowse.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
-            WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested; // ContextMenu
+            WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
             WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
+
+            WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+            WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
+            WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
+            WBrowse.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
 
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
@@ -906,8 +919,17 @@ namespace Ostium
             TmpTitleWBrowsefeed = Text;
         }
 
-        void WBrowsefeed_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
+        async void WBrowsefeed_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            if (FloodHeader_Chk.Checked)
+            {
+                await WBrowse.EnsureCoreWebView2Async();
+                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
+
+                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                await HeaderFlood.FloodHeaderAsync();
+            }
+
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
         }
         ///
@@ -950,10 +972,12 @@ namespace Ostium
                 return;
             }
 
-            WBrowsefeed.CoreWebView2.SourceChanged += WBrowsefeed_SourceChanged;
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
-            WBrowsefeed.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
+
+            WBrowsefeed.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+            WBrowsefeed.CoreWebView2.Settings.IsWebMessageEnabled = false;
+            WBrowsefeed.CoreWebView2.Settings.IsScriptEnabled = true;
 
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }
@@ -1304,21 +1328,21 @@ namespace Ostium
         /// </summary>
         /// <param name="Construct_URL">Creation of URL with the nickname or search word</param>
         /// 
-        void Word_Construct_URL_Btn_Click(object sender, EventArgs e)
+        void Word_URL_Builder_Btn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Word_Construct_URL_Txt.Text != string.Empty)
+                if (Word_URL_Builder_Txt.Text != string.Empty)
                 {
-                    Word_Construct_URL_Txt.Text = Word_Construct_URL_Txt.Text.Replace(" ", "%20");
-                    Construct_URL(Word_Construct_URL_Txt.Text);
+                    Word_URL_Builder_Txt.Text = Word_URL_Builder_Txt.Text.Replace(" ", "%20");
+                    URL_Builder(Word_URL_Builder_Txt.Text);
                     Beep(800, 200);
                 }
                 else
                 {
-                    Word_Construct_URL_Txt.BackColor = Color.Red;
+                    Word_URL_Builder_Txt.BackColor = Color.Red;
                     MessageBox.Show("First insert Name, ID or Word!");
-                    Word_Construct_URL_Txt.BackColor = Color.FromArgb(41, 44, 51);
+                    Word_URL_Builder_Txt.BackColor = Color.FromArgb(41, 44, 51);
                     return;
                 }
             }
@@ -1744,6 +1768,13 @@ namespace Ostium
         {
             try
             {
+                if (!File.Exists(Path.Combine(AppStart, "sourcepage")))
+                {
+                    MessageBox.Show("The source of the current WEB page not exist, start [sourcepage] command first!", "No source Page", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Console_Cmd_Txt.Enabled = true;
+                    return;
+                }
+
                 string message, title;
                 object RegexSelect;
 
@@ -1976,7 +2007,7 @@ namespace Ostium
         {
             if (CategorieFeed_Cbx.Text != string.Empty)
             {
-                OpenFile_Editor(FeedDir + CategorieFeed_Cbx.Text);
+                OpenFile_Editor(Path.Combine(FeedDir, CategorieFeed_Cbx.Text));
             }
             else
             {
@@ -2054,7 +2085,7 @@ namespace Ostium
             if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
                 return;
 
-            string message = "Do you want to delete the project? " + NameProjectwf_Txt.Text;
+            string message = $"Do you want to delete the project? {NameProjectwf_Txt.Text}";
             string caption = "Delete Projet";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -2693,12 +2724,12 @@ namespace Ostium
                 if (Commut == 0)
                 {
                     File.Copy(Path.Combine(DiagramDir, FileDiag), Path.Combine(dirselect, nameSVG));
-                    MessageBox.Show("File [" + nameSVG + "] export.");
+                    MessageBox.Show($"File [{nameSVG}] export.");
                 }
                 else if (Commut == 1)
                 {
                     File.Copy(FileDiag, dirselect + @"\" + nameSVGb + ".svg");
-                    MessageBox.Show("File [" + nameSVGb + ".svg] export.");
+                    MessageBox.Show($"File [{nameSVG}.svg] export.");
                 }
             }
             catch (Exception ex)
@@ -2891,21 +2922,21 @@ namespace Ostium
                     TtsButton_Sts.Visible = false;
                     FileOpnJson_Lbl.Visible = false;
 
-                    DireSizeCalc(AppStart, OstiumDir_Lbl);
-                    DireSizeCalc(Plugins, AddOnDir_Lbl);
-                    DireSizeCalc(DBdirectory, DatabseDir_Lbl);
-                    DireSizeCalc(FeedDir, FeedDir_Lbl);
-                    DireSizeCalc(Scripts, ScriptDir_Lbl);
-                    DireSizeCalc(Workflow, WorkFlowDir_Lbl);
-                    DireSizeCalc(WorkflowModel, WorkFlowModelDir_Lbl);
-                    DireSizeCalc(Pictures, PictureDir_Lbl);
-                    DireSizeCalc(WebView2Dir, WebView2Dir_Lbl);
-                    DireSizeCalc(DiagramDir, DiagramDir_Lbl);
-                    DireSizeCalc(Setirps, SpritesDir_Lbl);
-                    DireSizeCalc(BkmkltDir, BkmkltDir_Lbl);
-                    DireSizeCalc(MapDir, MapDir_Lbl);
-                    DireSizeCalc(JsonDir, JsonDir_Lbl);
-                    DireSizeCalc(Keeptrack, KeepTrackDir_Lbl);
+                    UpdateDirectorySize(AppStart, OstiumDir_Lbl);
+                    UpdateDirectorySize(Plugins, AddOnDir_Lbl);
+                    UpdateDirectorySize(DBdirectory, DatabseDir_Lbl);
+                    UpdateDirectorySize(FeedDir, FeedDir_Lbl);
+                    UpdateDirectorySize(Scripts, ScriptDir_Lbl);
+                    UpdateDirectorySize(Workflow, WorkFlowDir_Lbl);
+                    UpdateDirectorySize(WorkflowModel, WorkFlowModelDir_Lbl);
+                    UpdateDirectorySize(Pictures, PictureDir_Lbl);
+                    UpdateDirectorySize(WebView2Dir, WebView2Dir_Lbl);
+                    UpdateDirectorySize(DiagramDir, DiagramDir_Lbl);
+                    UpdateDirectorySize(Setirps, SpritesDir_Lbl);
+                    UpdateDirectorySize(BkmkltDir, BkmkltDir_Lbl);
+                    UpdateDirectorySize(MapDir, MapDir_Lbl);
+                    UpdateDirectorySize(JsonDir, JsonDir_Lbl);
+                    UpdateDirectorySize(Keeptrack, KeepTrackDir_Lbl);
                     break;
             }
         }
@@ -2944,7 +2975,7 @@ namespace Ostium
         /// </summary>
         /// <param name="replace_query">Replacement value with the searched nickname/word</param>
         /// 
-        void Construct_URL(string searchQuery)
+        void URL_Builder(string searchQuery)
         {
             try
             {
@@ -3016,6 +3047,7 @@ namespace Ostium
                 string pageContents = encoding.GetString(contentBytes);
 
                 File_Write(Path.Combine(AppStart, "sourcepage"), pageContents);
+                Beep(300, 200);
             }
             catch (Exception ex)
             {
@@ -3141,6 +3173,9 @@ namespace Ostium
                 case "version":
                     MessageBox.Show(SoftVersion);
                     break;
+                case "sourcepage":
+                    Download_Source_Page();
+                    break;
                 case "links":
                     Console_Cmd_Txt.Enabled = false;
                     cmdSwitch = 0;
@@ -3255,7 +3290,14 @@ namespace Ostium
         ///
         void CMD_Console_Exec(int cmdSwitch, string regxCmd)
         {
-            StreamReader sr = new StreamReader(AppStart + "sourcepage");
+            if (!File.Exists(Path.Combine(AppStart, "sourcepage")))
+            {
+                MessageBox.Show("The source of the current WEB page not exist, start [sourcepage] command first!", "No source Page", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Console_Cmd_Txt.Enabled = true;
+                return;
+            }
+
+            StreamReader sr = new StreamReader(Path.Combine(AppStart, "sourcepage"));
             Invoke(new Action<string>(SRCpageAdd), "listclear");
             string line;
 
@@ -3407,7 +3449,7 @@ namespace Ostium
             }
         }
 
-        void OpnFileOpt(string dir_dir)
+        void OpnFileOpt(string dirPath)
         {
             if (!File.Exists(Class_Var.DEFAULT_EDITOR))
             {
@@ -3415,10 +3457,10 @@ namespace Ostium
                 return;
             }
 
-            if (!File.Exists(dir_dir))
-                File_Write(dir_dir, string.Empty);
+            if (!File.Exists(dirPath))
+                File_Write(dirPath, string.Empty);
 
-            OpenFile_Editor(dir_dir);
+            OpenFile_Editor(dirPath);
         }
 
         #endregion
@@ -3676,7 +3718,7 @@ namespace Ostium
             try
             {
                 SQLiteConnection myDB;
-                myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;");
+                myDB = new SQLiteConnection("Data Source=" + databasePath + ";Version=3;");
                 myDB.Open();
 
                 string sql = execSql;
@@ -3709,30 +3751,27 @@ namespace Ostium
         {
             try
             {
-                SQLiteConnection myDB;
-                myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;");
-                myDB.Open();
-
-                string sql = execSql;
-                SQLiteCommand commande = new SQLiteCommand(sql, myDB);
-
-                SQLiteDataReader reader = commande.ExecuteReader();
-
-                while (reader.Read())
+                using (SQLiteConnection myDB = new SQLiteConnection("Data Source=" + databasePath + ";Version=3;"))
                 {
-                    if (ObjLstCbx == "lst")
-                        List_Object.Items.Add(reader[valueDB]);
-                    else
-                        Cbx_Object.Items.Add(reader[valueDB]);
+                    myDB.Open();
+                    using (SQLiteCommand commande = new SQLiteCommand(execSql, myDB))
+                    using (SQLiteDataReader reader = commande.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (ObjLstCbx == "lst")
+                                List_Object.Items.Add(reader[valueDB]);
+                            else
+                                Cbx_Object.Items.Add(reader[valueDB]);
+                        }
+                    }
                 }
 
-                myDB.Close();
-
                 if (List_Object == DataTable_Lst)
-                    TableCount_Lbl.Text = "table " + Convert.ToString(List_Object.Items.Count);
+                    TableCount_Lbl.Text = "table " + List_Object.Items.Count;
 
                 if (List_Object == DataValue_Lst)
-                    RecordsCount_Lbl.Text = "records " + Convert.ToString(List_Object.Items.Count);
+                    RecordsCount_Lbl.Text = "records " + List_Object.Items.Count;
 
                 DBadmin = "off";
             }
@@ -3741,6 +3780,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Sqlite_Read: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Loading database URL in wBrowser or in the "DataValue_Opn" Textbox of the "TAB Data" section
@@ -3754,7 +3794,7 @@ namespace Ostium
             try
             {
                 SQLiteConnection myDB;
-                myDB = new SQLiteConnection("Data Source=" + D4ta + ";Version=3;");
+                myDB = new SQLiteConnection("Data Source=" + databasePath + ";Version=3;");
                 myDB.Open();
 
                 string sql = execSql;
@@ -3804,7 +3844,7 @@ namespace Ostium
                         if (result == DialogResult.Yes)
                         {
                             ChangeDBdefault(DataBaze_Opn.Text);
-                            D4ta = DBdirectory + DataBaze_Opn.Text;
+                            databasePath = DBdirectory + DataBaze_Opn.Text;
                             DB_Default_Txt.Text = DataBaze_Opn.Text;
                         }
                     }
@@ -3821,7 +3861,7 @@ namespace Ostium
 
                             SQLiteConnection.CreateFile(DBdirectory + DataBaze_Opn.Text);
                             ChangeDBdefault(DataBaze_Opn.Text);
-                            D4ta = DBdirectory + DataBaze_Opn.Text;
+                            databasePath = DBdirectory + DataBaze_Opn.Text;
                             DB_Default_Txt.Text = DataBaze_Opn.Text;
 
                             loadfiledir.LoadFileDirectory(DBdirectory, "*", "lst", DataBaze_Lst);
@@ -3859,7 +3899,7 @@ namespace Ostium
 
                     tlsi = DataTable_Opn.Text;
 
-                    string message = "Are you sure that you would like to delete the Database? " + tlsi;
+                    string message = $"Are you sure that you would like to delete the Database? {tlsi}";
                     const string caption = "Database delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -3895,7 +3935,7 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    string message = "Are you sure that you would like to delete the entry? " + DataValue_Lst.Text;
+                    string message = $"Are you sure that you would like to delete the entry? {DataValue_Lst.Text}";
                     const string caption = "Database delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -3936,7 +3976,7 @@ namespace Ostium
 
                     tlsi = DataTable_Opn.Text;
 
-                    string message = "Are you sure that you would like to delete all entry? " + tlsi;
+                    string message = $"Are you sure that you would like to delete all entry? {tlsi}";
                     const string caption = "Database delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -3974,7 +4014,7 @@ namespace Ostium
                         string usct = DataValue_Lst.Text;
                         tlsi = DataTable_Opn.Text;
 
-                        string message = "Are you sure that you update entry? \r\n" + DataValue_Lst.Text + " <=> " + ValueChange_Txt.Text;
+                        string message = $"Are you sure that you update entry? \r\n {DataValue_Lst.Text} <=> {ValueChange_Txt.Text}";
                         const string caption = "Modify update";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4036,7 +4076,7 @@ namespace Ostium
                         string usct = DataValue_Opn.Text;
                         tlsi = DataTable_Opn.Text;
 
-                        string message = "Are you sure that you modify entry? \r\n" + DataValue_Opn.Text + " <=> " + ValueChange_Txt.Text;
+                        string message = $"Are you sure that you modify entry? \r\n {DataValue_Opn.Text} <=> {ValueChange_Txt.Text}";
                         const string caption = "Modify entry";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4085,11 +4125,11 @@ namespace Ostium
                     List_Object = DataTable_Lst;
 
                     DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
-                    DBSelectOpen_Lbl.Text = "DB open: " + DataBaze_Opn.Text;
+                    DBSelectOpen_Lbl.Text = $"DB open: {DataBaze_Opn.Text}";
                     TableOpen_Lbl.Text = string.Empty;
                     RecordsCount_Lbl.Text = string.Empty;
 
-                    D4ta = DBdirectory + DataBaze_Opn.Text;
+                    databasePath = DBdirectory + DataBaze_Opn.Text;
 
                     Sqlite_Read("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1", "name", "lst");
                 }
@@ -4118,7 +4158,7 @@ namespace Ostium
                     tlsi = DataTable_Lst.SelectedItem.ToString();
 
                     DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
-                    TableOpen_Lbl.Text = "Table open: " + DataTable_Opn.Text;
+                    TableOpen_Lbl.Text = $"Table open: {DataTable_Opn.Text}";
 
                     Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
                 }
@@ -4300,7 +4340,7 @@ namespace Ostium
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Error loading RSS feed: {url}\nDetails: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -4499,9 +4539,9 @@ namespace Ostium
         {
             try
             {
-                if (string.IsNullOrEmpty(CategorieFeed_Cbx.Text))
+                if (!string.IsNullOrEmpty(CategorieFeed_Cbx.Text))
                 {
-                    string message = "Are you sure that you would like to delete the category and all content? " + CategorieFeed_Cbx.Text;
+                    string message = $"Are you sure that you would like to delete the category and all content? {CategorieFeed_Cbx.Text}";
                     const string caption = "Delete Category";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -4536,16 +4576,16 @@ namespace Ostium
             {
                 if (ListFeed_Lst.SelectedIndex != -1)
                 {
-                    string message = "Are you sure that you would like to delete the URL? => " + ListFeed_Lst.SelectedItem.ToString();
+                    string message = $"Are you sure that you would like to delete the URL? => {ListFeed_Lst.SelectedItem}";
                     const string caption = "Suppress URL";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
                         ListFeed_Lst.Items.Remove(ListFeed_Lst.SelectedItem);
-                        File.Delete(FeedDir + CategorieFeed_Cbx.Text);
+                        File.Delete(Path.Combine(FeedDir, CategorieFeed_Cbx.Text));
 
-                        var CategoryFile = FeedDir + CategorieFeed_Cbx.Text;
+                        var CategoryFile = Path.Combine(FeedDir, CategorieFeed_Cbx.Text);
                         using (StreamWriter SW = new StreamWriter(CategoryFile, true))
                         {
                             foreach (string itm in ListFeed_Lst.Items)
@@ -4590,7 +4630,7 @@ namespace Ostium
                         if (icr <= Title_Lst.Items.Count)
                             Title_Lst.SetSelected(icr - 1, true);
                         else
-                            MessageBox.Show("Max count title = " + Title_Lst.Items.Count);
+                            MessageBox.Show($"Max count title = {Title_Lst.Items.Count}");
                     }
                 }
             }
@@ -4875,9 +4915,15 @@ namespace Ostium
         void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (SaveCookies_Chk.Checked)
+            {
                 Class_Var.COOKIES_SAVE = 1; // Save
+                SaveCookies_Chk.ForeColor = Color.Yellow;
+            }
             else
+            {
                 Class_Var.COOKIES_SAVE = 0; // No save
+                SaveCookies_Chk.ForeColor = Color.White;
+            }
         }
 
         #region Workflow
@@ -5022,7 +5068,7 @@ namespace Ostium
                     return;
 
                 XmlDocument doc = new XmlDocument();
-                XmlTextReader xmlReader = new XmlTextReader(Workflow + NameProjectwf_Txt.Text + ".xml");
+                XmlTextReader xmlReader = new XmlTextReader(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
                 doc.Load(xmlReader);
 
                 string Markup = "<!--" + AddSingleItemswf_Txt.Text + "-->";
@@ -5838,7 +5884,7 @@ namespace Ostium
         void URLbrowseCbxText(string value)
         {
             URLbrowse_Cbx.Text = value;
-            URLtxt_txt.Text = string.Format("Unshorten URL => {0}", value);
+            URLtxt_txt.Text = $"Unshorten URL => {value}";
         }
         ///
         /// <summary>
@@ -5922,7 +5968,8 @@ namespace Ostium
                     break;
                 case "FeedTitle":
                     CountFeed_Lbl.Text = TitleFeed;
-                    CountBlockSite_Lbl.Items.Add(TitleFeed);
+                    string trimmedTitleFeed = TitleFeed.Trim();
+                    CountBlockSite_Lbl.Items.Add(trimmedTitleFeed);
                     break;
                 case "ListCount":
                     CountBlockFeed_Lbl.Items.Add(Title_Lst.Items.Count);
@@ -6226,12 +6273,15 @@ namespace Ostium
                 SaveRoute_Btn.ForeColor = Color.White;
                 LocatRoute = "route";
 
-                File.Create(Path.Combine(MapDir, ValName + ".txt"));
+                using (StreamWriter fc = new StreamWriter(Path.Combine(MapDir, ValName + ".txt")))
+                {
+                    fc.Write("");
+                }
 
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
 
                 MapRouteOpn = MapDir + ValName + ".txt";
-                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".txt";
+                ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.txt";
             }
             else
             {
@@ -6299,7 +6349,7 @@ namespace Ostium
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
-                ProjectMapOpn_Lbl.Text = "Project open: " + ValName + ".xml";
+                ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.xml";
                 MapXmlOpn = MapDir + ValName + ".xml";
             }
             else
@@ -6411,7 +6461,7 @@ namespace Ostium
 
                 if (PointLoc_Lst.SelectedIndex != -1)
                 {
-                    string message = "Do you want to delete the project? " + PointLoc_Lst.SelectedItem.ToString();
+                    string message = $"Do you want to delete the project? {PointLoc_Lst.SelectedItem}";
                     string caption = "Delete Projet";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -6456,6 +6506,7 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 MapRouteOpn = string.Empty;
                 LocatRoute = "locat";
                 Map_Cmd_Pnl.Visible = true;
@@ -6468,11 +6519,13 @@ namespace Ostium
                 SaveGPX_Btn.Visible = false;
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
+                PointRoute_Lst.Visible = false;
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
             }
             else
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6481,6 +6534,7 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
+                DeleteRoutePoint_Btn.Visible = true;
                 LocatRoute = "route";
                 Map_Cmd_Pnl.Visible = true;
                 LocatRoute_Lbl.Text = "Routes";
@@ -6488,16 +6542,14 @@ namespace Ostium
                 TxtMarker_Chk.Enabled = false;
                 AddNewLoc_Btn.Visible = false;
                 SaveRoute_Btn.Visible = true;
-                if (KmlGpxOpn == "on")
-                {
-                    SaveRoute_Btn.Visible = false;
-                    SaveGPX_Btn.Visible = true;
-                }
+                SaveGPX_Btn.Visible = false;
+                PointRoute_Lst.Visible = true;
 
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
             }
             else
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6506,28 +6558,38 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "route")
             {
-                if (!Directory.Exists(MapDirGpx))
-                    Directory.CreateDirectory(MapDirGpx);
-
-                LocatRoute = "routegpx";
-                Map_Cmd_Pnl.Visible = true;
-                LocatRoute_Lbl.Text = "Routes";
-                TxtMarker_Lbl.Text = "Distance (Km)";
-                TxtMarker_Chk.Enabled = false;
-                AddNewLoc_Btn.Visible = false;
-                SaveRoute_Btn.Visible = false;
-                if (KmlGpxOpn == "on")
-                {
-                    SaveRoute_Btn.Visible = false;
-                    SaveGPX_Btn.Visible = true;
-                }
-
-                loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
+                KmlGpxOpn = "off";
+                SaveGPX_Btn.Visible = false;
+                RouteListGPX();
             }
             else
             {
+                DeleteRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
+        }
+
+        void RouteListGPX()
+        {
+            if (!Directory.Exists(MapDirGpx))
+                Directory.CreateDirectory(MapDirGpx);
+
+            DeleteRoutePoint_Btn.Visible = false;
+            LocatRoute = "routegpx";
+            Map_Cmd_Pnl.Visible = true;
+            LocatRoute_Lbl.Text = "Routes";
+            TxtMarker_Lbl.Text = "Distance (Km)";
+            TxtMarker_Chk.Enabled = false;
+            AddNewLoc_Btn.Visible = false;
+            SaveRoute_Btn.Visible = false;
+            if (KmlGpxOpn == "on")
+            {
+                SaveGPX_Btn.Visible = true;
+            }
+
+            PointRoute_Lst.Visible = false;
+
+            loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
         }
 
         void OpnGPXRoute_Tls_Click(object sender, EventArgs e)
@@ -6558,6 +6620,8 @@ namespace Ostium
                         LoadGeoJsonFile(fileopen);
                     }
 
+                    DeleteRoutePoint_Btn.Visible = false;
+                    LocatRoute = "routegpx";
                     KmlGpxOpn = "on";
                     SaveRoute_Btn.Visible = false;
                     AddNewLoc_Btn.Visible = false;
@@ -6567,7 +6631,9 @@ namespace Ostium
 
                     MapRouteOpn = fileopen;
 
-                    ProjectMapOpn_Lbl.Text = "File open: " + strname;
+                    RouteListGPX();
+
+                    ProjectMapOpn_Lbl.Text = $"File open: {strname}";
                 }
             }
             catch (Exception ex)
@@ -6579,6 +6645,7 @@ namespace Ostium
         void CrossCenter_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.ShowCenter = !GMap_Ctrl.ShowCenter;
+
             if (CrossCenter == "on")
                 CrossCenter = "off";
             else
@@ -6690,7 +6757,7 @@ namespace Ostium
             Beep(1000, 400);
         }
 
-        void NmodeMap_Tls_Click(object sender, EventArgs e)
+        void NegativeModeMap_Tls_Click(object sender, EventArgs e)
         {
             GMap_Ctrl.NegativeMode = !GMap_Ctrl.NegativeMode;
         }
@@ -6718,7 +6785,6 @@ namespace Ostium
                 string LoN = string.Empty;
                 string stn = LatLon_Txt.Text;
 
-                char[] charsToTrim = { ' ' };
                 string[] words = stn.Split();
 
                 for (int i = 0; i < words.Length; i++)
@@ -6807,15 +6873,17 @@ namespace Ostium
 
         void SaveRoute_Btn_Click(object sender, EventArgs e)
         {
-            if (SaveRoute_Btn.Text == "Save route Off")
-            {
-                SaveRoute_Btn.Text = "Save route On";
-                SaveRoute_Btn.ForeColor = Color.Red;
-            }
-            else
+            bool isSaveRouteOn = SaveRoute_Btn.Text == "Save route Off";
+
+            if (!isSaveRouteOn)
             {
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
+            }
+            else
+            {
+                SaveRoute_Btn.Text = "Save route On";
+                SaveRoute_Btn.ForeColor = Color.Red;
             }
         }
 
@@ -7036,6 +7104,8 @@ namespace Ostium
                         SaveGPX_Btn.Visible = false;
                         AddNewLoc_Btn.Visible = false;
 
+                        PointRoute_Lst.Items.Clear();
+                        PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
                         LoadRouteFromFile(MapRouteOpn);
                     }
                 }
@@ -7061,12 +7131,34 @@ namespace Ostium
                             LoadGpxFile(MapRouteOpn);
                         else if (strExt == ".kml")
                             LoadKmlFile(MapRouteOpn);
-                        else if (strExt == ".geojson" || strExt == "json")
+                        else if (strExt == ".geojson" || strExt == ".json")
                             LoadGeoJsonFile(MapRouteOpn);
                     }
                 }
 
-                ProjectMapOpn_Lbl.Text = "Project open: " + PointLoc_Lst.SelectedItem.ToString();
+                ProjectMapOpn_Lbl.Text = $"Project open: {PointLoc_Lst.SelectedItem}";
+            }
+        }
+
+        private void PointRoute_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PointRoute_Lst.SelectedIndex != -1)
+            {
+                string LaT = string.Empty;
+                string LoN = string.Empty;
+                string stn = PointRoute_Lst.SelectedItem.ToString();
+
+                char[] charsToTrim = { ',' };
+                string[] words = stn.Split();
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    LaT = words[0].TrimEnd(charsToTrim); LoN = words[1].TrimEnd(charsToTrim);
+                }
+
+                LatT = double.Parse(LaT, CultureInfo.InvariantCulture);
+                LonGt = double.Parse(LoN, CultureInfo.InvariantCulture);
+                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
             }
         }
 
@@ -7182,7 +7274,7 @@ namespace Ostium
 
         void EgHelp_Tls_Click(object sender, EventArgs e)
         {
-            Open_Doc_Frm(FileDir + "map_points.txt");
+            Open_Doc_Frm(Path.Combine(FileDir, "map_points.txt"));
         }
 
         void Gmap_MouseClick(object sender, MouseEventArgs e)
@@ -7202,6 +7294,9 @@ namespace Ostium
                     {
                         fc.WriteLine($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
                     }
+
+                    PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
+                    LoadRouteFromFile(MapRouteOpn);
                 }
             }
         }
@@ -7508,6 +7603,37 @@ namespace Ostium
             }
         }
 
+        void DeleteRoutePoint_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PointRoute_Lst.Items.Remove(PointRoute_Lst.SelectedItem);
+
+                using (StreamWriter SW = new StreamWriter(MapRouteOpn, false))
+                {
+                    foreach (string itm in PointRoute_Lst.Items)
+                    {
+                        if (!string.IsNullOrEmpty(itm?.ToString()))
+                        {
+                            SW.WriteLine(itm);
+                        }
+                    }
+                }
+
+                GMap_Ctrl.Overlays.Clear();
+                overlayOne.Markers.Clear();
+
+                PointRoute_Lst.Items.Clear();
+                PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
+
+                LoadRouteFromFile(MapRouteOpn);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! DeleteRoutePoint_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         #endregion
 
         void TtsButton_Sts_ButtonClick(object sender, EventArgs e)
@@ -7519,6 +7645,32 @@ namespace Ostium
         {
             string scriptEx = e.ClickedItem.Text;
             InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
+        }
+
+        void FloodHeader_Chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FloodHeader_Chk.Checked)
+            {
+                @Class_Var.FLOOD_HEADER = 1;
+                FloodHeader_Chk.ForeColor = Color.Red;
+            }
+            else
+            {
+                @Class_Var.FLOOD_HEADER = 0;
+                FloodHeader_Chk.ForeColor = Color.White;
+            }
+        }
+
+        private void Limitsize_Chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Limitsize_Chk.Checked)
+            {
+                Limitsize_Chk.ForeColor = Color.Yellow;
+            }
+            else
+            {
+                Limitsize_Chk.ForeColor = Color.White;
+            }
         }
 
         #region Json_
@@ -8138,6 +8290,7 @@ namespace Ostium
             try
             {
                 bool isConnected = await CheckInternetConnectionAsync();
+
                 if (isConnected)
                 {
                     HttpClient client = new HttpClient();
@@ -8163,8 +8316,8 @@ namespace Ostium
 
         void AnnonceUpdate(string softName)
         {
-            var result = MessageBox.Show("An update is available for the " + softName +
-                " software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show($"An update is available for the {softName} " +
+                $"software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 if (result == DialogResult.Yes)

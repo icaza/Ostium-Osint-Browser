@@ -1,0 +1,22 @@
+{
+  "FloodSetting": {
+    "FakeUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+    "FakeBrowser": "\"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\", \"Not_A Brand\";v=\"24\"",
+    "FakeSystem": "Linux x86_64",
+    "FakeLang": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "FakeCookie": "null",
+    "FakeColorShem": "dark",
+    "FakeArchitecture": "x32",
+    "FakeFullVersion": "133.0.6778.140",
+    "FakeFullVersionList": "",
+    "FakePlateform": "23.10",
+    "FakeReferer": "https://www.unknow.com/",
+    "FakeWidth": "1920",
+    "FakeHeight": "1080",
+    "BlockedDomains": [ "example.com", "malicious-site.com" ],
+    "RedirectRules": {
+      "icaza": "veydunet.com"
+    },
+    "ContentTypeFilters": [ "" ]
+  }
+}

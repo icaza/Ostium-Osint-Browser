@@ -238,6 +238,8 @@
     </Compile>
     <Compile Include="TextInputDialog.cs" />
     <Compile Include="VisitLogger.cs" />
+    <Compile Include="FloodHeader.cs" />
+    <Compile Include="WebViewHandler.cs" />
     <Compile Include="Webview_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,6 +292,9 @@
     <EmbeddedResource Include="Webview_Frm.resx">
       <DependentUpon>Webview_Frm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="content\net40\App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
