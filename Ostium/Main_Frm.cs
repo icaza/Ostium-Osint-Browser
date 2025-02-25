@@ -208,6 +208,7 @@ namespace Ostium
         readonly List<string> _commandHistory = new List<string>();
 
         FloodHeader HeaderFlood;
+        readonly DirectoryTreeExporter exporter = new DirectoryTreeExporter();
 
         #endregion
 
@@ -1999,6 +2000,37 @@ namespace Ostium
             }
         }
 
+        void TreeExport_Btn_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem objBtn;
+            objBtn = (sender as ToolStripMenuItem);
+
+            try
+            {
+                string dirselect = selectdir.Dirselect();
+                if (!string.IsNullOrEmpty(dirselect))
+                {
+                    switch (objBtn.Text)
+                    {
+                        case "TXT export":
+                            exporter.ExportDirectoryTree(dirselect, @"Treeview.txt");
+                            break;
+                        case "XML export":
+                            exporter.ExportDirectoryTreeAsJson(dirselect, @"Treeview.json");
+                            break;
+                        case "JSON export":
+                            exporter.ExportDirectoryTreeAsXml(dirselect, @"Treeview.xml");
+                            break;
+                    }
+                    MessageBox.Show("Operation completed!", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! TreeExport_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         #endregion
 
         #region Tools_Tab_1
@@ -2163,7 +2195,6 @@ namespace Ostium
                     return;
 
                 string dirselect = selectdir.Dirselect();
-
                 if (!string.IsNullOrEmpty(dirselect))
                 {
                     if (File.Exists(Path.Combine(dirselect, NameProjectwf_Txt.Text + ".xml")))
@@ -6258,20 +6289,22 @@ namespace Ostium
                     if (result == DialogResult.Yes)
                         File.Delete(Path.Combine(MapDir, ValName + ".txt"));
                     else
-                    {
                         goto SelectName;
-                    }
                 }
 
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
 
-                SaveRoute_Btn.Visible = true;
-                AddNewLoc_Btn.Visible = false;
-                SaveGPX_Btn.Visible = false;
-                SaveRoute_Btn.Text = "Save route Off";
-                SaveRoute_Btn.ForeColor = Color.White;
+                DeleteRoutePoint_Btn.Visible = true;
                 LocatRoute = "route";
+                Map_Cmd_Pnl.Visible = true;
+                LocatRoute_Lbl.Text = "Routes";
+                TxtMarker_Lbl.Text = "Distance (Km)";
+                TxtMarker_Chk.Enabled = false;
+                AddNewLoc_Btn.Visible = false;
+                SaveRoute_Btn.Visible = true;
+                SaveGPX_Btn.Visible = false;
+                PointRoute_Lst.Visible = true;
 
                 using (StreamWriter fc = new StreamWriter(Path.Combine(MapDir, ValName + ".txt")))
                 {
@@ -6281,6 +6314,10 @@ namespace Ostium
                 loadfiledir.LoadFileDirectory(MapDir, "txt", "lst", PointLoc_Lst);
 
                 MapRouteOpn = MapDir + ValName + ".txt";
+
+                PointRoute_Lst.Items.Clear();
+                PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
+
                 ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.txt";
             }
             else
@@ -6339,13 +6376,20 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
 
-                SaveRoute_Btn.Visible = false;
+                DeleteRoutePoint_Btn.Visible = false;
+                MapRouteOpn = string.Empty;
+                LocatRoute = "locat";
+                Map_Cmd_Pnl.Visible = true;
+                LocatRoute_Lbl.Text = "Location Points";
+                TxtMarker_Lbl.Text = "Text Marker";
+                TextMarker_Txt.Text = string.Empty;
+                TxtMarker_Chk.Enabled = true;
                 AddNewLoc_Btn.Visible = true;
+                SaveRoute_Btn.Visible = false;
                 SaveGPX_Btn.Visible = false;
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
-                LocatRoute = "locat";
-                MapRouteOpn = string.Empty;
+                PointRoute_Lst.Visible = false;
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
@@ -7185,9 +7229,16 @@ namespace Ostium
                     }
                 }
 
-                LatT = double.Parse(lat, CultureInfo.InvariantCulture);
-                LonGt = double.Parse(lon, CultureInfo.InvariantCulture);
-                GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
+                if (!string.IsNullOrEmpty(lat) && !string.IsNullOrEmpty(lon))
+                {
+                    if (double.TryParse(lat, NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedLat) &&
+                        double.TryParse(lon, NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedLon))
+                    {
+                        LatT = parsedLat;
+                        LonGt = parsedLon;
+                        GMap_Ctrl.Position = new PointLatLng(LatT, LonGt);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -7664,13 +7715,9 @@ namespace Ostium
         private void Limitsize_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (Limitsize_Chk.Checked)
-            {
                 Limitsize_Chk.ForeColor = Color.Yellow;
-            }
             else
-            {
                 Limitsize_Chk.ForeColor = Color.White;
-            }
         }
 
         #region Json_

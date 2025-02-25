@@ -167,19 +167,19 @@ public class FloodHeader
                     return analyser;
                 }};
             }}
+
+            //// 🔄 Refresh fingerprint on every load
+            //function refreshFingerprint() {{
+            //    console.log('[Fingerprint Defender] 🎭 New audio hash generated !');
+            //    document.body.style.opacity = '0'; 
+            //    setTimeout(() => {{
+            //        document.body.style.opacity = '1';
+            //    }}, 500);
+            //}}
         
-            // 🔄 Refresh fingerprint on every load
-            function refreshFingerprint() {{
-                console.log('[Fingerprint Defender] 🎭 New audio hash generated !');
-                document.body.style.opacity = '0'; 
-                setTimeout(() => {{
-                    document.body.style.opacity = '1';
-                }}, 500);
-            }}
-        
-            window.onload = function() {{
-                refreshFingerprint();
-            }};
+            //window.onload = function() {{
+            //    refreshFingerprint();
+            //}};
         }})();
         ";
 
@@ -267,18 +267,18 @@ public class FloodHeader
                 return getParameter.apply(this, arguments);
             };
 
-            // 🔄 Generate a new hash on each load
-            function refreshFingerprint() {
-                console.log('[Fingerprint Defender] 🎭 New hash generated !');
-                document.body.style.opacity = '0'; 
-                setTimeout(() => {
-                    document.body.style.opacity = '1';
-                }, 500);
-            }
+            //// 🔄 Generate a new hash on each load
+            //function refreshFingerprint() {
+            //    console.log('[Fingerprint Defender] 🎭 New hash generated !');
+            //    document.body.style.opacity = '0'; 
+            //    setTimeout(() => {
+            //        document.body.style.opacity = '1';
+            //    }, 500);
+            //}
 
-            window.onload = function() {
-                refreshFingerprint();
-            };
+            //window.onload = function() {
+            //    refreshFingerprint();
+            //};
         })();
         ";
 

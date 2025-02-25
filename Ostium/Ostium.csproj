@@ -189,6 +189,7 @@
     <Compile Include="DeserializeJson_Frm.Designer.cs">
       <DependentUpon>DeserializeJson_Frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DirectoryTreeExporter.cs" />
     <Compile Include="Doc_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
