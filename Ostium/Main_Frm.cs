@@ -209,6 +209,7 @@ namespace Ostium
 
         FloodHeader HeaderFlood;
         readonly DirectoryTreeExporter exporter = new DirectoryTreeExporter();
+        readonly Stack<string> history = new Stack<string>();
 
         #endregion
 
@@ -6295,7 +6296,7 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
 
-                DeleteRoutePoint_Btn.Visible = true;
+                UndoRoutePoint_Btn.Visible = true;
                 LocatRoute = "route";
                 Map_Cmd_Pnl.Visible = true;
                 LocatRoute_Lbl.Text = "Routes";
@@ -6376,7 +6377,7 @@ namespace Ostium
                 GMap_Ctrl.Overlays.Clear();
                 overlayOne.Markers.Clear();
 
-                DeleteRoutePoint_Btn.Visible = false;
+                UndoRoutePoint_Btn.Visible = false;
                 MapRouteOpn = string.Empty;
                 LocatRoute = "locat";
                 Map_Cmd_Pnl.Visible = true;
@@ -6550,7 +6551,7 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "route" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
-                DeleteRoutePoint_Btn.Visible = false;
+                UndoRoutePoint_Btn.Visible = false;
                 MapRouteOpn = string.Empty;
                 LocatRoute = "locat";
                 Map_Cmd_Pnl.Visible = true;
@@ -6569,7 +6570,7 @@ namespace Ostium
             }
             else
             {
-                DeleteRoutePoint_Btn.Visible = false;
+                UndoRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6578,7 +6579,7 @@ namespace Ostium
         {
             if (!Map_Cmd_Pnl.Visible || Map_Cmd_Pnl.Visible && LocatRoute == "locat" || Map_Cmd_Pnl.Visible && LocatRoute == "routegpx")
             {
-                DeleteRoutePoint_Btn.Visible = true;
+                UndoRoutePoint_Btn.Visible = true;
                 LocatRoute = "route";
                 Map_Cmd_Pnl.Visible = true;
                 LocatRoute_Lbl.Text = "Routes";
@@ -6593,7 +6594,7 @@ namespace Ostium
             }
             else
             {
-                DeleteRoutePoint_Btn.Visible = false;
+                UndoRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6608,7 +6609,7 @@ namespace Ostium
             }
             else
             {
-                DeleteRoutePoint_Btn.Visible = false;
+                UndoRoutePoint_Btn.Visible = false;
                 Map_Cmd_Pnl.Visible = false;
             }
         }
@@ -6618,7 +6619,7 @@ namespace Ostium
             if (!Directory.Exists(MapDirGpx))
                 Directory.CreateDirectory(MapDirGpx);
 
-            DeleteRoutePoint_Btn.Visible = false;
+            UndoRoutePoint_Btn.Visible = false;
             LocatRoute = "routegpx";
             Map_Cmd_Pnl.Visible = true;
             LocatRoute_Lbl.Text = "Routes";
@@ -6664,7 +6665,7 @@ namespace Ostium
                         LoadGeoJsonFile(fileopen);
                     }
 
-                    DeleteRoutePoint_Btn.Visible = false;
+                    UndoRoutePoint_Btn.Visible = false;
                     LocatRoute = "routegpx";
                     KmlGpxOpn = "on";
                     SaveRoute_Btn.Visible = false;
@@ -7148,6 +7149,7 @@ namespace Ostium
                         SaveGPX_Btn.Visible = false;
                         AddNewLoc_Btn.Visible = false;
 
+                        history.Clear();
                         PointRoute_Lst.Items.Clear();
                         PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
                         LoadRouteFromFile(MapRouteOpn);
@@ -7184,7 +7186,7 @@ namespace Ostium
             }
         }
 
-        private void PointRoute_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        void PointRoute_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PointRoute_Lst.SelectedIndex != -1)
             {
@@ -7345,7 +7347,9 @@ namespace Ostium
                     {
                         fc.WriteLine($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
                     }
+                    history.Push($"{point.Lat.ToString(CultureInfo.InvariantCulture)}, {point.Lng.ToString(CultureInfo.InvariantCulture)}");
 
+                    PointRoute_Lst.Items.Clear();
                     PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
                     LoadRouteFromFile(MapRouteOpn);
                 }
@@ -7654,11 +7658,15 @@ namespace Ostium
             }
         }
 
-        void DeleteRoutePoint_Btn_Click(object sender, EventArgs e)
+        void UndoRoutePoint_Btn_Click(object sender, EventArgs e)
         {
-            try
+            if (history.Count > 0)
             {
-                PointRoute_Lst.Items.Remove(PointRoute_Lst.SelectedItem);
+                string lastItem = history.Pop();
+                PointRoute_Lst.Items.Remove(lastItem);
+
+                GMap_Ctrl.Overlays.Clear();
+                overlayOne.Markers.Clear();
 
                 using (StreamWriter SW = new StreamWriter(MapRouteOpn, false))
                 {
@@ -7671,17 +7679,10 @@ namespace Ostium
                     }
                 }
 
-                GMap_Ctrl.Overlays.Clear();
-                overlayOne.Markers.Clear();
-
                 PointRoute_Lst.Items.Clear();
                 PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
 
                 LoadRouteFromFile(MapRouteOpn);
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! DeleteRoutePoint_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -7712,7 +7713,7 @@ namespace Ostium
             }
         }
 
-        private void Limitsize_Chk_CheckedChanged(object sender, EventArgs e)
+        void Limitsize_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (Limitsize_Chk.Checked)
                 Limitsize_Chk.ForeColor = Color.Yellow;
