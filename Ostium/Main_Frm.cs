@@ -2008,22 +2008,29 @@ namespace Ostium
 
             try
             {
+                MessageBox.Show("1- select the directory whose tree you want to create.\r\n2- select the directory where " +
+                    "the tree file of the chosen directory will be saved.", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 string dirselect = selectdir.Dirselect();
                 if (!string.IsNullOrEmpty(dirselect))
                 {
-                    switch (objBtn.Text)
+                    string dirFilesave = selectdir.Dirselect();
+                    if (!string.IsNullOrEmpty(dirFilesave))
                     {
-                        case "TXT export":
-                            exporter.ExportDirectoryTree(dirselect, @"Treeview.txt");
-                            break;
-                        case "XML export":
-                            exporter.ExportDirectoryTreeAsJson(dirselect, @"Treeview.json");
-                            break;
-                        case "JSON export":
-                            exporter.ExportDirectoryTreeAsXml(dirselect, @"Treeview.xml");
-                            break;
+                        switch (objBtn.Text)
+                        {
+                            case "TXT export":
+                                exporter.ExportDirectoryTree(dirselect, Path.Combine(dirFilesave, "Treeview.txt"));
+                                break;
+                            case "XML export":
+                                exporter.ExportDirectoryTreeAsJson(dirselect, Path.Combine(dirFilesave, "Treeview.json"));
+                                break;
+                            case "JSON export":
+                                exporter.ExportDirectoryTreeAsXml(dirselect, Path.Combine(dirFilesave, "Treeview.xml"));
+                                break;
+                        }
+                        MessageBox.Show("Operation completed!", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    MessageBox.Show("Operation completed!", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -6560,8 +6567,8 @@ namespace Ostium
                 TextMarker_Txt.Text = string.Empty;
                 TxtMarker_Chk.Enabled = true;
                 AddNewLoc_Btn.Visible = true;
-                SaveRoute_Btn.Visible = false;
                 SaveGPX_Btn.Visible = false;
+                SaveRoute_Btn.Visible = false;
                 SaveRoute_Btn.Text = "Save route Off";
                 SaveRoute_Btn.ForeColor = Color.White;
                 PointRoute_Lst.Visible = false;
@@ -6627,6 +6634,7 @@ namespace Ostium
             TxtMarker_Chk.Enabled = false;
             AddNewLoc_Btn.Visible = false;
             SaveRoute_Btn.Visible = false;
+            SaveRoute_Btn.Text = "Save route Off";
             if (KmlGpxOpn == "on")
             {
                 SaveGPX_Btn.Visible = true;
