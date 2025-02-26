@@ -3872,7 +3872,7 @@ namespace Ostium
         {
             try
             {
-                if (string.IsNullOrEmpty(DataBaze_Opn.Text))
+                if (!string.IsNullOrEmpty(DataBaze_Opn.Text))
                 {
                     if (File.Exists(Path.Combine(DBdirectory, DataBaze_Opn.Text)))
                     {
