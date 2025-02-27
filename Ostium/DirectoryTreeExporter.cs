@@ -24,7 +24,7 @@ namespace Ostium
 
         public void ExportDirectoryTreeAsJson(string directoryPath, string outputJsonPath)
         {
-            if (!Directory.Exists(directoryPath))
+            if (Directory.Exists(directoryPath))
             {
                 var directoryStructure = BuildJsonTree(directoryPath);
                 string json = JsonConvert.SerializeObject(directoryStructure, Formatting.Indented);
@@ -34,7 +34,7 @@ namespace Ostium
 
         public void ExportDirectoryTreeAsXml(string directoryPath, string outputXmlPath)
         {
-            if (!Directory.Exists(directoryPath))
+            if (Directory.Exists(directoryPath))
             {
                 XElement xmlTree = BuildXmlTree(directoryPath);
                 xmlTree.Save(outputXmlPath);

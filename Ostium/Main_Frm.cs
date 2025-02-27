@@ -2023,10 +2023,10 @@ namespace Ostium
                                 exporter.ExportDirectoryTree(dirselect, Path.Combine(dirFilesave, "Treeview.txt"));
                                 break;
                             case "XML export":
-                                exporter.ExportDirectoryTreeAsJson(dirselect, Path.Combine(dirFilesave, "Treeview.json"));
+                                exporter.ExportDirectoryTreeAsXml(dirselect, Path.Combine(dirFilesave, "Treeview.xml"));
                                 break;
                             case "JSON export":
-                                exporter.ExportDirectoryTreeAsXml(dirselect, Path.Combine(dirFilesave, "Treeview.xml"));
+                                exporter.ExportDirectoryTreeAsJson(dirselect, Path.Combine(dirFilesave, "Treeview.json"));
                                 break;
                         }
                         MessageBox.Show("Operation completed!", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
