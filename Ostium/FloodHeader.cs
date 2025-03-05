@@ -31,7 +31,7 @@ public class FloodHeader
         await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset, language, hardwareConcurrency, deviceMemory, maxTouchPoints, webdriver, connectionType);
         await EnableAudioContextProtectionAsync();
         await EnableCanvasAndWebGLProtectionAsync();
-        await EnableWebRTCAndBatteryAndSpeechProtectionAsync();        
+        await EnableWebRTCAndBatteryAndSpeechProtectionAsync();
     }
 
     public async Task EnableWebGLProtectionAsync()

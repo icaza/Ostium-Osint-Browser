@@ -3216,17 +3216,14 @@ namespace Ostium
                     Download_Source_Page();
                     break;
                 case "links":
-                    Console_Cmd_Txt.Enabled = false;
                     cmdSwitch = 0;
                     yn = 1;
                     break;
                 case "word":
-                    Console_Cmd_Txt.Enabled = false;
                     cmdSwitch = 1;
                     yn = 1;
                     break;
                 case "wordwd":
-                    Console_Cmd_Txt.Enabled = false;
                     cmdSwitch = 3;
                     yn = 1;
                     break;
@@ -3234,7 +3231,6 @@ namespace Ostium
                     Open_Doc_Frm(Path.Combine(FileDir, "cmdc.txt"));
                     break;
                 case "textlink":
-                    Console_Cmd_Txt.Enabled = false;
                     cmdSwitch = 2;
                     yn = 1;
                     break;
@@ -3307,7 +3303,7 @@ namespace Ostium
                     GoogleBot();
                     break;
                 case "exit":
-                    Console_Cmd_Txt.Visible = false;
+                    Console_Cmd_Txt.Visible = !Console_Cmd_Txt.Visible;
                     break;
                 default:
                     MessageBox.Show("Command not recognized! Type help for more information.", "Error!");
@@ -5936,6 +5932,7 @@ namespace Ostium
             if (value == "listclear")
             {
                 Source_Page_Lst.Items.Clear();
+                Console_Cmd_Txt.Enabled = false;
             }
             else if (value == "listcreate")
             {
