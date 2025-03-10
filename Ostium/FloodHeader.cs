@@ -93,42 +93,42 @@ public class FloodHeader
     async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, string webdriver, string connectionType)
     {
         string script = $@"
-    (function() {{
-        // Manipulating Screen and Window Properties
-        Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
-        Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
-        Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
-        Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
+        (function() {{
+            // Manipulating Screen and Window Properties
+            Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
+            Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
+            Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
+            Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
 
-        // Manipulate platform and time zone
-        Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
-        Object.defineProperty(navigator, 'oscpu', {{ get: () => '{platform}' }});
-        Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
+            // Manipulate platform and time zone
+            Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
+            Object.defineProperty(navigator, 'oscpu', {{ get: () => '{platform}' }});
+            Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
 
-        // Manipulating languages
-        Object.defineProperty(navigator, 'language', {{ get: () => '{language}' }});
-        Object.defineProperty(navigator, 'languages', {{ get: () => ['{language}', 'en-US', 'en'] }});
+            // Manipulating languages
+            Object.defineProperty(navigator, 'language', {{ get: () => '{language}' }});
+            Object.defineProperty(navigator, 'languages', {{ get: () => ['{language}', 'en-US', 'en'] }});
 
-        // Manipulating material properties
-        Object.defineProperty(navigator, 'hardwareConcurrency', {{ get: () => {hardwareConcurrency} }});
-        Object.defineProperty(navigator, 'deviceMemory', {{ get: () => {deviceMemory} }});
-        Object.defineProperty(navigator, 'maxTouchPoints', {{ get: () => {maxTouchPoints} }});
+            // Manipulating material properties
+            Object.defineProperty(navigator, 'hardwareConcurrency', {{ get: () => {hardwareConcurrency} }});
+            Object.defineProperty(navigator, 'deviceMemory', {{ get: () => {deviceMemory} }});
+            Object.defineProperty(navigator, 'maxTouchPoints', {{ get: () => {maxTouchPoints} }});
 
-        // Manipulating Webdriver (to avoid automation detection))
-        Object.defineProperty(navigator, 'webdriver', {{ get: () => {webdriver.ToLower()} }});
+            // Manipulating Webdriver (to avoid automation detection))
+            Object.defineProperty(navigator, 'webdriver', {{ get: () => {webdriver.ToLower()} }});
 
-        // Manipulate login information
-        Object.defineProperty(navigator, 'connection', {{
-            get: () => ({{
-                downlink: 10,
-                effectiveType: '{connectionType}',
-                rtt: 100,
-                saveData: false,
-                type: '{connectionType}'
-            }})
-        }});
-    }})();
-    ";
+            // Manipulate login information
+            Object.defineProperty(navigator, 'connection', {{
+                get: () => ({{
+                    downlink: 10,
+                    effectiveType: '{connectionType}',
+                    rtt: 100,
+                    saveData: false,
+                    type: '{connectionType}'
+                }})
+            }});
+        }})();
+        ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
@@ -167,19 +167,19 @@ public class FloodHeader
                     return analyser;
                 }};
             }}
+
+            //// 🔄 Refresh fingerprint on every load
+            //function refreshFingerprint() {{
+            //    console.log('[Fingerprint Defender] 🎭 New audio hash generated !');
+            //    document.body.style.opacity = '0'; 
+            //    setTimeout(() => {{
+            //        document.body.style.opacity = '1';
+            //    }}, 500);
+            //}}
         
-            // 🔄 Refresh fingerprint on every load
-            function refreshFingerprint() {{
-                console.log('[Fingerprint Defender] 🎭 New audio hash generated !');
-                document.body.style.opacity = '0'; 
-                setTimeout(() => {{
-                    document.body.style.opacity = '1';
-                }}, 500);
-            }}
-        
-            window.onload = function() {{
-                refreshFingerprint();
-            }};
+            //window.onload = function() {{
+            //    refreshFingerprint();
+            //}};
         }})();
         ";
 
@@ -267,18 +267,18 @@ public class FloodHeader
                 return getParameter.apply(this, arguments);
             };
 
-            // 🔄 Generate a new hash on each load
-            function refreshFingerprint() {
-                console.log('[Fingerprint Defender] 🎭 New hash generated !');
-                document.body.style.opacity = '0'; 
-                setTimeout(() => {
-                    document.body.style.opacity = '1';
-                }, 500);
-            }
+            //// 🔄 Generate a new hash on each load
+            //function refreshFingerprint() {
+            //    console.log('[Fingerprint Defender] 🎭 New hash generated !');
+            //    document.body.style.opacity = '0'; 
+            //    setTimeout(() => {
+            //        document.body.style.opacity = '1';
+            //    }, 500);
+            //}
 
-            window.onload = function() {
-                refreshFingerprint();
-            };
+            //window.onload = function() {
+            //    refreshFingerprint();
+            //};
         })();
         ";
 

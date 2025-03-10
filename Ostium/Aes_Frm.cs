@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace Ostium
 {
@@ -87,7 +87,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error encrypting {inputFile}: {ex.ToString()}");
+                MessageBox.Show($"Error encrypting {inputFile}: {ex}");
                 Encrypt_Pnl.BackColor = Color.FromArgb(41, 44, 51);
             }
         }
@@ -95,13 +95,9 @@ namespace Ostium
         void Encrypt_Pnl_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
                 e.Effect = DragDropEffects.Copy;
-            }
             else
-            {
                 e.Effect = DragDropEffects.None;
-            }
         }
 
         void Decrypt_Pnl_DragDrop(object sender, DragEventArgs e)
@@ -154,13 +150,9 @@ namespace Ostium
         void Decrypt_Pnl_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
                 e.Effect = DragDropEffects.Copy;
-            }
             else
-            {
                 e.Effect = DragDropEffects.None;
-            }
         }
 
         async void DeleteFile(string inputFile)
@@ -180,7 +172,7 @@ namespace Ostium
                     return;
                 }
                 catch (IOException)
-                {}
+                { }
             }
             throw new TimeoutException($"Unable to delete file {filename} after {maxAttempts} attempts.");
         }

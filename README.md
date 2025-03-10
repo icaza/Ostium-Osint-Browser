@@ -3,7 +3,7 @@
 
 # Introduction
 
-Ostium Osint Browser is an OSINT oriented Web Browser. More info https://veydunet.com/product/ostium-osint-browser/
+The Ostium OSINT Browser software is designed for open-source intelligence (OSINT) research. More info https://veydunet.com/product/ostium-osint-browser/
 
 # Required
 
