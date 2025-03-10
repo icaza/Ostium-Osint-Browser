@@ -520,6 +520,10 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -730,6 +734,8 @@
             this.Memo_Btn,
             this.toolStripSeparator9,
             this.Editor_Btn,
+            this.toolStripSeparator3,
+            this.CyberChef_Btn,
             this.toolStripSeparator15,
             this.OpnDirectory_Btn,
             this.IndexDir_Btn,
@@ -5033,6 +5039,8 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label25);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
             this.PanelGrpOpt_Pnl.Controls.Add(this.ArchiveAdd_Txt);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label31);
@@ -5073,7 +5081,7 @@
             this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 533);
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 596);
             this.ArchiveAdd_Txt.Multiline = true;
             this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
             this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
@@ -5083,7 +5091,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 511);
+            this.label31.Location = new System.Drawing.Point(4, 574);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(307, 14);
             this.label31.TabIndex = 16;
@@ -5105,7 +5113,7 @@
             this.DefaultEditor_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DefaultEditor_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DefaultEditor_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.DefaultEditor_Opt_Txt.Location = new System.Drawing.Point(7, 470);
+            this.DefaultEditor_Opt_Txt.Location = new System.Drawing.Point(7, 471);
             this.DefaultEditor_Opt_Txt.Name = "DefaultEditor_Opt_Txt";
             this.DefaultEditor_Opt_Txt.Size = new System.Drawing.Size(675, 22);
             this.DefaultEditor_Opt_Txt.TabIndex = 15;
@@ -5126,7 +5134,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(4, 449);
+            this.label22.Location = new System.Drawing.Point(4, 450);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(98, 14);
             this.label22.TabIndex = 14;
@@ -6575,6 +6583,40 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // CyberChef_Opt_Txt
+            // 
+            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 532);
+            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
+            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
+            this.CyberChef_Opt_Txt.TabIndex = 20;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(6, 511);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(180, 14);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "CyberChef directory index";
+            // 
+            // CyberChef_Btn
+            // 
+            this.CyberChef_Btn.Enabled = false;
+            this.CyberChef_Btn.Name = "CyberChef_Btn";
+            this.CyberChef_Btn.Size = new System.Drawing.Size(217, 22);
+            this.CyberChef_Btn.Text = "CyberChef";
+            this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7183,6 +7225,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator36;
         private System.Windows.Forms.ToolStripButton UndoRoutePoint_Btn;
+        private System.Windows.Forms.TextBox CyberChef_Opt_Txt;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem CyberChef_Btn;
     }
 }
 

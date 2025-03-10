@@ -364,6 +364,7 @@ namespace Ostium
                 UsrHtt = lstUrlDfltCnf[5].ToString();
                 GoogBo = lstUrlDfltCnf[6].ToString();
                 DefaultEditor_Opt_Txt.Text = Path.Combine(AppStart, "OstiumE.exe");
+                CyberChef_Opt_Txt.Text = "";
             }
             ///
             /// Create XML file "config.xml"
@@ -387,6 +388,7 @@ namespace Ostium
                 writer.WriteElementString("URL_USER_AGENT_SRC_PAGE_VAR", UsrHtt);
                 writer.WriteElementString("URL_GOOGLEBOT_VAR", GoogBo);
                 writer.WriteElementString("DEFAULT_EDITOR_VAR", DefaultEditor_Opt_Txt.Text);
+                writer.WriteElementString("CYBERCHEF_VAR", CyberChef_Opt_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
                 writer.WriteEndElement();
@@ -509,6 +511,13 @@ namespace Ostium
                             case "DEFAULT_EDITOR_VAR":
                                 Class_Var.DEFAULT_EDITOR = reader.ReadString();
                                 DefaultEditor_Opt_Txt.Text = Class_Var.DEFAULT_EDITOR;
+                                break;
+                            case "CYBERCHEF_VAR":
+                                CyberChef_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                if (!string.IsNullOrEmpty(CyberChef_Opt_Txt.Text))
+                                    CyberChef_Btn.Enabled = true;
+                                else
+                                    CyberChef_Btn.Enabled = false;
                                 break;
                             case "VOLUME_TRACK_VAR":
                                 Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
@@ -1692,6 +1701,20 @@ namespace Ostium
         void Editor_Btn_Click(object sender, EventArgs e)
         {
             OpenEdit();
+        }
+
+        private void CyberChef_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(CyberChef_Opt_Txt.Text))
+                    if (File.Exists(CyberChef_Opt_Txt.Text))
+                        GoBrowser("file:///" + CyberChef_Opt_Txt.Text, 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! CyberChef_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void OpenEdit()
