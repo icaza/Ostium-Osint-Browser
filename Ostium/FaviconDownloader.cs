@@ -60,12 +60,9 @@ public class FaviconDownloader
 
         var links = htmlDoc.DocumentNode.SelectNodes("//link[@rel='icon' or @rel='shortcut icon']");
 
-        var faviconLink = links?
+        var faviconLink = (links?
             .Select(link => link.GetAttributeValue("href", null))
-            .FirstOrDefault(href => !string.IsNullOrEmpty(href));
-
-        if (faviconLink == null) throw new FileNotFoundException();
-
+            .FirstOrDefault(href => !string.IsNullOrEmpty(href))) ?? throw new FileNotFoundException();
         var faviconUri = new Uri(uri, faviconLink);
         return await DownloadIconAsync(faviconUri);
     }
