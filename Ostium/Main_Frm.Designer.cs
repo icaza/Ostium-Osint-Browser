@@ -58,6 +58,8 @@
             this.Memo_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -373,6 +375,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.ArchiveAdd_Txt = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
@@ -520,10 +524,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -868,6 +868,19 @@
             this.Editor_Btn.Size = new System.Drawing.Size(217, 22);
             this.Editor_Btn.Text = "Editor";
             this.Editor_Btn.Click += new System.EventHandler(this.Editor_Btn_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
+            // 
+            // CyberChef_Btn
+            // 
+            this.CyberChef_Btn.Enabled = false;
+            this.CyberChef_Btn.Name = "CyberChef_Btn";
+            this.CyberChef_Btn.Size = new System.Drawing.Size(217, 22);
+            this.CyberChef_Btn.Text = "CyberChef";
+            this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
             // 
             // toolStripSeparator15
             // 
@@ -1293,10 +1306,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 27);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 612);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -2912,7 +2925,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3205,7 +3218,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -3919,7 +3932,6 @@
             this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
             this.BrcktB_Txt.Location = new System.Drawing.Point(1008, 0);
-            this.BrcktB_Txt.Multiline = true;
             this.BrcktB_Txt.Name = "BrcktB_Txt";
             this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktB_Txt.TabIndex = 29;
@@ -3945,7 +3957,6 @@
             this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
             this.BrcktA_Txt.Location = new System.Drawing.Point(937, 0);
-            this.BrcktA_Txt.Multiline = true;
             this.BrcktA_Txt.Name = "BrcktA_Txt";
             this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktA_Txt.TabIndex = 27;
@@ -4346,7 +4357,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 23);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 585);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -4357,7 +4368,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 592);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 565);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -4368,7 +4379,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 592);
+            this.groupBox5.Size = new System.Drawing.Size(328, 565);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -4409,7 +4420,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 571);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 544);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -4778,7 +4789,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 592);
+            this.panel26.Size = new System.Drawing.Size(10, 565);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
@@ -4788,7 +4799,7 @@
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 592);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 565);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
             // groupBox6
@@ -4801,7 +4812,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox6.Location = new System.Drawing.Point(0, 393);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 199);
+            this.groupBox6.Size = new System.Drawing.Size(244, 172);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
@@ -5011,7 +5022,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 592);
+            this.panel25.Size = new System.Drawing.Size(10, 565);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -5021,7 +5032,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 592);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 565);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -5031,7 +5042,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 559);
+            this.groupBox3.Size = new System.Drawing.Size(714, 532);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -5063,8 +5074,29 @@
             this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 511);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // CyberChef_Opt_Txt
+            // 
+            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 532);
+            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
+            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
+            this.CyberChef_Opt_Txt.TabIndex = 20;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(6, 511);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(180, 14);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "CyberChef directory index";
             // 
             // label32
             // 
@@ -5271,7 +5303,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 559);
+            this.panel27.Location = new System.Drawing.Point(0, 532);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -5318,7 +5350,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 602);
+            this.panel24.Location = new System.Drawing.Point(10, 575);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -5338,7 +5370,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 612);
+            this.panel22.Size = new System.Drawing.Size(10, 585);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -5347,7 +5379,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 612);
+            this.panel21.Size = new System.Drawing.Size(10, 585);
             this.panel21.TabIndex = 20;
             // 
             // Status_Strip
@@ -6582,40 +6614,6 @@
             this.UndoRoutePoint_Btn.Text = "Undo Route Point";
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
-            // 
-            // CyberChef_Opt_Txt
-            // 
-            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 532);
-            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
-            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.CyberChef_Opt_Txt.TabIndex = 20;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(6, 511);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(180, 14);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "CyberChef directory index";
-            // 
-            // CyberChef_Btn
-            // 
-            this.CyberChef_Btn.Enabled = false;
-            this.CyberChef_Btn.Name = "CyberChef_Btn";
-            this.CyberChef_Btn.Size = new System.Drawing.Size(217, 22);
-            this.CyberChef_Btn.Text = "CyberChef";
-            this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
             // 
             // Main_Frm
             // 
