@@ -1,7 +1,7 @@
 (function () {
-    // Extract_Data_v3
+    // Extract_Data_v4_icaza
     const domPurifyScript = document.createElement('script');
-    domPurifyScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js';
+    domPurifyScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js';
     domPurifyScript.onload = initScript;
     document.head.appendChild(domPurifyScript);
 
