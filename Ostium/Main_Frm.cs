@@ -146,14 +146,14 @@ namespace Ostium
         string ThemeDiag;
         string FileDiag = string.Empty;
         string MinifyScr = string.Empty;
-        string CrossCenter = "on";
-        int MapZoom = 1;
         string Scriptl = "off";
         ///
         /// <summary>
         /// Map variables
         /// </summary>
         /// 
+        int MapZoom = 1;
+        string CrossCenter = "on";
         string VerifMapOpn = "off";
         string MapXmlOpn = string.Empty;
         string MapRouteOpn = string.Empty;
