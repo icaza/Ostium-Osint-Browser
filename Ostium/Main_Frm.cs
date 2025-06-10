@@ -190,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "24";
+        readonly string versionNow = "25";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -676,16 +676,19 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
-
         ///
         /// <summary>
         /// Adding an item to the wBrowse Context Menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        /// <param name="newItem0">Search on the WayBackMachine</param>
-        /// <param name="newItem1">Search for video on Youtube</param>
+        /// <param name="newItem0">Speech</param>
+        /// <param name="newItem1">Search on the WayBackMachine</param>
         /// <param name="newItem2">Embed Youtube video</param>
+        /// <param name="newItem3">Embed Youtube video in new Tab</param>
+        /// <param name="newItem4">Text select Auto Clipboard</param>
+        /// <param name="newItem5">Keep Track</param>
+        /// <param name="newItem6">Tracking tool</param>
         /// 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
