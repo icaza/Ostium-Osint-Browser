@@ -146,14 +146,14 @@ namespace Ostium
         string ThemeDiag;
         string FileDiag = string.Empty;
         string MinifyScr = string.Empty;
-        string CrossCenter = "on";
-        int MapZoom = 1;
         string Scriptl = "off";
         ///
         /// <summary>
         /// Map variables
         /// </summary>
         /// 
+        int MapZoom = 1;
+        string CrossCenter = "on";
         string VerifMapOpn = "off";
         string MapXmlOpn = string.Empty;
         string MapRouteOpn = string.Empty;
@@ -190,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "23";
+        readonly string versionNow = "25";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -335,6 +335,49 @@ namespace Ostium
             OutJsonB_Chk.Click += new EventHandler(OutJsonB_Chk_Click);
             TtsButton_Sts.ButtonClick += new EventHandler(TtsButton_Sts_ButtonClick);
             TtsButton_Sts.DropDownItemClicked += TtsButton_Sts_DropDownItemClicked;
+
+            JsonUri_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            JsonVal_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            JsonNode_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            JsonCnt_txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            CharSpace_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            BrcktA_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            BrcktB_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            NameProjectwf_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            Author_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            ModelName_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            AddSingleItemswf_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            DataBaze_Opn.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            DataTable_Opn.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            DataValue_Name.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            DataValue_Opn.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            ValueChange_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            DB_Default_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            ExecuteCMDsql_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            ValueCMDsql_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            ThemDiag_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            CategorieFeed_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            NewCategory_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            NewFeed_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            GoFeed_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            GmapProvider_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            LatLon_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            KeywordMap_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            ZoomValMap_Lbl.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            OrderLL_txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            UrlHome_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            UrlTradWebPage_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            SearchEngine_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            UserAgent_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            UserAgentHttp_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            GoogBot_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            DefaultEditor_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            URL_URL_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            Word_URL_Builder_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            AddOn_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
         }
         ///
         /// <summary>
@@ -633,16 +676,19 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
-
         ///
         /// <summary>
         /// Adding an item to the wBrowse Context Menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        /// <param name="newItem0">Search on the WayBackMachine</param>
-        /// <param name="newItem1">Search for video on Youtube</param>
+        /// <param name="newItem0">Speech</param>
+        /// <param name="newItem1">Search on the WayBackMachine</param>
         /// <param name="newItem2">Embed Youtube video</param>
+        /// <param name="newItem3">Embed Youtube video in new Tab</param>
+        /// <param name="newItem4">Text select Auto Clipboard</param>
+        /// <param name="newItem5">Keep Track</param>
+        /// <param name="newItem6">Tracking tool</param>
         /// 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
@@ -2032,7 +2078,7 @@ namespace Ostium
             try
             {
                 MessageBox.Show("1- select the directory whose tree you want to create.\r\n2- select the directory where " +
-                    "the tree file of the chosen directory will be saved.", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "the tree file of the chosen directory will be saved.", "OOB", MessageBoxButtons.OK, MessageBoxIcon.None);
 
                 string dirselect = selectdir.Dirselect();
                 if (!string.IsNullOrEmpty(dirselect))
@@ -8320,6 +8366,14 @@ namespace Ostium
 
                 PanelBjson_Pnl.Visible = true;
                 WbOutB.Visible = true;
+            }
+        }
+
+        void JsonUri_Txt_Keypress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
             }
         }
 

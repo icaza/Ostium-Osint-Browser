@@ -58,6 +58,8 @@
             this.Memo_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -373,6 +375,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.ArchiveAdd_Txt = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
@@ -520,10 +524,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -868,6 +868,19 @@
             this.Editor_Btn.Size = new System.Drawing.Size(217, 22);
             this.Editor_Btn.Text = "Editor";
             this.Editor_Btn.Click += new System.EventHandler(this.Editor_Btn_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
+            // 
+            // CyberChef_Btn
+            // 
+            this.CyberChef_Btn.Enabled = false;
+            this.CyberChef_Btn.Name = "CyberChef_Btn";
+            this.CyberChef_Btn.Size = new System.Drawing.Size(217, 22);
+            this.CyberChef_Btn.Text = "CyberChef";
+            this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
             // 
             // toolStripSeparator15
             // 
@@ -3919,7 +3932,6 @@
             this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
             this.BrcktB_Txt.Location = new System.Drawing.Point(1008, 0);
-            this.BrcktB_Txt.Multiline = true;
             this.BrcktB_Txt.Name = "BrcktB_Txt";
             this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktB_Txt.TabIndex = 29;
@@ -3945,7 +3957,6 @@
             this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
             this.BrcktA_Txt.Location = new System.Drawing.Point(937, 0);
-            this.BrcktA_Txt.Multiline = true;
             this.BrcktA_Txt.Name = "BrcktA_Txt";
             this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktA_Txt.TabIndex = 27;
@@ -5065,6 +5076,27 @@
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // CyberChef_Opt_Txt
+            // 
+            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 532);
+            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
+            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
+            this.CyberChef_Opt_Txt.TabIndex = 20;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(6, 511);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(180, 14);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "CyberChef directory index";
             // 
             // label32
             // 
@@ -6582,40 +6614,6 @@
             this.UndoRoutePoint_Btn.Text = "Undo Route Point";
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
-            // 
-            // CyberChef_Opt_Txt
-            // 
-            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 532);
-            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
-            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.CyberChef_Opt_Txt.TabIndex = 20;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(6, 511);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(180, 14);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "CyberChef directory index";
-            // 
-            // CyberChef_Btn
-            // 
-            this.CyberChef_Btn.Enabled = false;
-            this.CyberChef_Btn.Name = "CyberChef_Btn";
-            this.CyberChef_Btn.Size = new System.Drawing.Size(217, 22);
-            this.CyberChef_Btn.Text = "CyberChef";
-            this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
             // 
             // Main_Frm
             // 
