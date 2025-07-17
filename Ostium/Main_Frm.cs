@@ -2803,6 +2803,13 @@ namespace Ostium
             Thread CreateDiagram = new Thread(() => CreateDiagram_Thrd(Btn + "_plantuml.txt", 0));
             CreateDiagram.Start();
         }
+
+        void PlantUmlLUpdate_Mnu_Click(object sender, EventArgs e)
+        {
+            GoBrowser("https://plantuml.com/download", 0);
+            CtrlTabBrowsx();
+            Control_Tab.SelectedIndex = 0;
+        }
         ///
         /// <summary>
         /// Export of the created diagram
