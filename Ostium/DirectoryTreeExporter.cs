@@ -41,7 +41,7 @@ namespace Ostium
             }
         }
 
-        private void BuildTree(string directoryPath, StringBuilder tree, string indent)
+        void BuildTree(string directoryPath, StringBuilder tree, string indent)
         {
             string[] directories = Directory.GetDirectories(directoryPath);
             string[] files = Directory.GetFiles(directoryPath);
@@ -60,7 +60,7 @@ namespace Ostium
             }
         }
 
-        private object BuildJsonTree(string directoryPath)
+        object BuildJsonTree(string directoryPath)
         {
             var directoryInfo = new DirectoryInfo(directoryPath);
             return new
@@ -82,7 +82,7 @@ namespace Ostium
             };
         }
 
-        private XElement BuildXmlTree(string directoryPath)
+        XElement BuildXmlTree(string directoryPath)
         {
             var directoryInfo = new DirectoryInfo(directoryPath);
             return new XElement("Directory",

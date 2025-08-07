@@ -1749,7 +1749,7 @@ namespace Ostium
             OpenEdit();
         }
 
-        private void CyberChef_Btn_Click(object sender, EventArgs e)
+        void CyberChef_Btn_Click(object sender, EventArgs e)
         {
             try
             {
