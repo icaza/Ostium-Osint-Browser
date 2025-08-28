@@ -2013,6 +2013,7 @@ namespace Ostium
 
                     addtxt.WriteLine("pause");
                 }
+
                 Process.Start(AppStart + "Archive-DB-FILES-FEED.bat");
             }
             catch (Exception ex)
@@ -2081,6 +2082,8 @@ namespace Ostium
                     "the tree file of the chosen directory will be saved.", "OOB", MessageBoxButtons.OK, MessageBoxIcon.None);
 
                 string dirselect = selectdir.Dirselect();
+                CreateNameAleat();
+
                 if (!string.IsNullOrEmpty(dirselect))
                 {
                     string dirFilesave = selectdir.Dirselect();
@@ -2089,13 +2092,13 @@ namespace Ostium
                         switch (objBtn.Text)
                         {
                             case "TXT export":
-                                exporter.ExportDirectoryTree(dirselect, Path.Combine(dirFilesave, "Treeview.txt"));
+                                exporter.ExportDirectoryTree(dirselect, Path.Combine(dirFilesave, $"Treeview_{Una}.txt"));
                                 break;
                             case "XML export":
-                                exporter.ExportDirectoryTreeAsXml(dirselect, Path.Combine(dirFilesave, "Treeview.xml"));
+                                exporter.ExportDirectoryTreeAsXml(dirselect, Path.Combine(dirFilesave, $"Treeview_{Una}.xml"));
                                 break;
                             case "JSON export":
-                                exporter.ExportDirectoryTreeAsJson(dirselect, Path.Combine(dirFilesave, "Treeview.json"));
+                                exporter.ExportDirectoryTreeAsJson(dirselect, Path.Combine(dirFilesave, $"Treeview_{Una}.json"));
                                 break;
                         }
                         MessageBox.Show("Operation completed!", "OOB", MessageBoxButtons.OK, MessageBoxIcon.Information);
