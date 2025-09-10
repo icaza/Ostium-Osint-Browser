@@ -174,12 +174,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aes_Frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aes_Frm.Designer.cs">
-      <DependentUpon>Aes_Frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Bookmarklets_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,7 +195,6 @@
       <DependentUpon>Doc_Frm.cs</DependentUpon>
     </Compile>
     <Compile Include="FaviconDownloader.cs" />
-    <Compile Include="FileEnCryptor.cs" />
     <Compile Include="HtmlText_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,10 +244,6 @@
     <Compile Include="Webview_Frm.Designer.cs">
       <DependentUpon>Webview_Frm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Aes_Frm.resx">
-      <DependentUpon>Aes_Frm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Bookmarklets_Frm.resx">
       <DependentUpon>Bookmarklets_Frm.cs</DependentUpon>
       <SubType>Designer</SubType>

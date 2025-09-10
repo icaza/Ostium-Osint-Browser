@@ -107,7 +107,6 @@ namespace Ostium
         OpenSource_Frm openSourceForm;
         ScriptCreator scriptCreatorFrm;
         Bookmarklets_Frm bookmarkletsFrm;
-        Aes_Frm AesFrm;
         ListBox List_Object;
         ToolStripComboBox Cbx_Object;
         ListBox List_Wf;
@@ -2054,8 +2053,14 @@ namespace Ostium
 
         void OpnEncFrm_Click(object sender, EventArgs e)
         {
-            AesFrm = new Aes_Frm();
-            AesFrm.Show();
+            if (!File.Exists(Path.Combine(AppStart, "RW5jcnlwdA", "RW5jcnlwdA.exe")))
+            {
+                MessageBox.Show("RW5jcnlwdA are not exist in directory, verify your config file!", "Error!");
+            }
+            else
+            {
+                Process.Start(Path.Combine(AppStart, "RW5jcnlwdA", "RW5jcnlwdA.exe"));
+            }
         }
 
         void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
@@ -3366,8 +3371,14 @@ namespace Ostium
                     ArchiveData();
                     break;
                 case "encrypt":
-                    AesFrm = new Aes_Frm();
-                    AesFrm.Show();
+                    if (!File.Exists(Path.Combine(AppStart, "RW5jcnlwdA", "RW5jcnlwdA.exe")))
+                    {
+                        MessageBox.Show("RW5jcnlwdA are not exist in directory, verify your config file!", "Error!");
+                    }
+                    else
+                    {
+                        Process.Start(Path.Combine(AppStart, "RW5jcnlwdA", "RW5jcnlwdA.exe"));
+                    }
                     break;
                 case "track":
                     OpenKeepTrack();
