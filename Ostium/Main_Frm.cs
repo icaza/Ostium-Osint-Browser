@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using Ostium.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
@@ -828,6 +829,7 @@ namespace Ostium
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
         }
+
         ///
         /// <summary>
         /// Script injection and cookie registration and Title update
@@ -882,29 +884,9 @@ namespace Ostium
         }
 
         ///
-        /// <summary>
-        /// Checks if cookie injection is enabled
-        /// </summary>
-        /// <param name="SetCookie_Chk.Checked">If True creation of the configured cookie</param>
-        /// 
-        void WBrowse_WebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
-        {
-            if (SetCookie_Chk.Checked)
-            {
-                CoreWebView2Cookie cookie = WBrowse.CoreWebView2.CookieManager.CreateCookie(CookieName_Txt.Text, CookieValue_Txt.Text, CookieDomain_Txt.Text, "/");
-                WBrowse.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
-            }
-        }
-        ///
         /// <param name="URLtxt_txt">Saving current URL in Textbox for reuse</param>
         ///
         void WBrowse_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
-        {
-            URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
-            WBrowse_UpdtTitleEvent("Source Changed");
-        }
-
-        void NewWindow_Requested(object sender, CoreWebView2SourceChangedEventArgs e)
         {
             URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
             WBrowse_UpdtTitleEvent("Source Changed");
@@ -1691,6 +1673,22 @@ namespace Ostium
                 OpenFile_Editor(Path.Combine(AppStart, "cookie.txt"));
         }
 
+        private void CookiesAdd_Btn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CookieName_Txt.Text) || 
+                string.IsNullOrWhiteSpace(CookieValue_Txt.Text) || 
+                string.IsNullOrWhiteSpace(CookieDomain_Txt.Text))
+            {
+                MessageBox.Show("Enter all values!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            CoreWebView2Cookie cookie = WBrowse.CoreWebView2.CookieManager.CreateCookie(CookieName_Txt.Text, CookieValue_Txt.Text, CookieDomain_Txt.Text, "/");
+            WBrowse.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
+
+            Beep(800, 200);
+        }
+
         void SetCookie_Btn_Click(object sender, EventArgs e)
         {
             Cookie_Pnl.Visible = !Cookie_Pnl.Visible;
@@ -1740,7 +1738,7 @@ namespace Ostium
 
         void Memo_Btn_Click(object sender, EventArgs e)
         {
-            OpnFileOpt(AppStart + "memo.txt");
+            OpnFileOpt(Path.Combine(AppStart, "memo.txt"));
         }
 
         void Editor_Btn_Click(object sender, EventArgs e)
@@ -5015,26 +5013,6 @@ namespace Ostium
             }
             catch
             { }
-        }
-        ///
-        /// <summary>
-        /// Cookie injection if True
-        /// </summary>
-        /// CookieName_Txt | CookieValue_Txt | CookieValue_Txt
-        ///
-        void SetCookie_Chk_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!SetCookie_Chk.Checked) return;
-
-            if (string.IsNullOrWhiteSpace(CookieName_Txt.Text) ||
-                string.IsNullOrWhiteSpace(CookieValue_Txt.Text) ||
-                string.IsNullOrWhiteSpace(CookieDomain_Txt.Text))
-            {
-                MessageBox.Show("Enter all values!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                SetCookie_Chk.CheckedChanged -= SetCookie_Chk_CheckedChanged;
-                SetCookie_Chk.Checked = false;
-                SetCookie_Chk.CheckedChanged += SetCookie_Chk_CheckedChanged;
-            }
         }
 
         void SaveCookies_Chk_CheckedChanged(object sender, EventArgs e)

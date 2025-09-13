@@ -119,6 +119,7 @@
             this.Browser_Tab = new System.Windows.Forms.TabPage();
             this.WBrowse = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.Cookie_Pnl = new System.Windows.Forms.Panel();
+            this.CookiesAdd_Btn = new System.Windows.Forms.Button();
             this.ScriptUrl_Lst = new System.Windows.Forms.ListBox();
             this.SourcePage_Txt = new System.Windows.Forms.TextBox();
             this.ConstructURL_Lst = new System.Windows.Forms.ListBox();
@@ -126,7 +127,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.SetCookie_Chk = new System.Windows.Forms.CheckBox();
             this.CookieDomain_Txt = new System.Windows.Forms.TextBox();
             this.CookieValue_Txt = new System.Windows.Forms.TextBox();
             this.CookieName_Txt = new System.Windows.Forms.TextBox();
@@ -1351,6 +1351,7 @@
             // 
             this.Cookie_Pnl.AutoSize = true;
             this.Cookie_Pnl.BackColor = System.Drawing.Color.White;
+            this.Cookie_Pnl.Controls.Add(this.CookiesAdd_Btn);
             this.Cookie_Pnl.Controls.Add(this.ScriptUrl_Lst);
             this.Cookie_Pnl.Controls.Add(this.SourcePage_Txt);
             this.Cookie_Pnl.Controls.Add(this.ConstructURL_Lst);
@@ -1358,7 +1359,6 @@
             this.Cookie_Pnl.Controls.Add(this.label16);
             this.Cookie_Pnl.Controls.Add(this.label15);
             this.Cookie_Pnl.Controls.Add(this.label14);
-            this.Cookie_Pnl.Controls.Add(this.SetCookie_Chk);
             this.Cookie_Pnl.Controls.Add(this.CookieDomain_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
@@ -1369,6 +1369,22 @@
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
             this.Cookie_Pnl.TabIndex = 9;
             this.Cookie_Pnl.Visible = false;
+            // 
+            // CookiesAdd_Btn
+            // 
+            this.CookiesAdd_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CookiesAdd_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CookiesAdd_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.CookiesAdd_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.CookiesAdd_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CookiesAdd_Btn.ForeColor = System.Drawing.Color.White;
+            this.CookiesAdd_Btn.Location = new System.Drawing.Point(556, 25);
+            this.CookiesAdd_Btn.Name = "CookiesAdd_Btn";
+            this.CookiesAdd_Btn.Size = new System.Drawing.Size(106, 27);
+            this.CookiesAdd_Btn.TabIndex = 13;
+            this.CookiesAdd_Btn.Text = "Set Cookie";
+            this.CookiesAdd_Btn.UseVisualStyleBackColor = false;
+            this.CookiesAdd_Btn.Click += new System.EventHandler(this.CookiesAdd_Btn_Click);
             // 
             // ScriptUrl_Lst
             // 
@@ -1403,6 +1419,7 @@
             // CloseSetCookie_Btn
             // 
             this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
             this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1445,18 +1462,6 @@
             this.label14.Size = new System.Drawing.Size(94, 14);
             this.label14.TabIndex = 4;
             this.label14.Text = "Cookie Name";
-            // 
-            // SetCookie_Chk
-            // 
-            this.SetCookie_Chk.AutoSize = true;
-            this.SetCookie_Chk.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetCookie_Chk.Location = new System.Drawing.Point(556, 28);
-            this.SetCookie_Chk.Name = "SetCookie_Chk";
-            this.SetCookie_Chk.Size = new System.Drawing.Size(97, 18);
-            this.SetCookie_Chk.TabIndex = 3;
-            this.SetCookie_Chk.Text = "Set Cookie";
-            this.SetCookie_Chk.UseVisualStyleBackColor = true;
-            this.SetCookie_Chk.CheckedChanged += new System.EventHandler(this.SetCookie_Chk_CheckedChanged);
             // 
             // CookieDomain_Txt
             // 
@@ -6916,7 +6921,6 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Button ModelDelete_Btn;
         private System.Windows.Forms.Panel Cookie_Pnl;
-        private System.Windows.Forms.CheckBox SetCookie_Chk;
         private System.Windows.Forms.TextBox CookieDomain_Txt;
         private System.Windows.Forms.TextBox CookieValue_Txt;
         private System.Windows.Forms.TextBox CookieName_Txt;
@@ -7237,6 +7241,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem CyberChef_Btn;
         private System.Windows.Forms.ToolStripMenuItem PlantUmlLUpdate_Mnu;
+        private System.Windows.Forms.Button CookiesAdd_Btn;
     }
 }
 

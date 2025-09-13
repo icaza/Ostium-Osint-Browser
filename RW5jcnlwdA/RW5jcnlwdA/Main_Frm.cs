@@ -50,18 +50,15 @@ namespace RW5jcnlwdA
 
         void InitializeEventHandlers()
         {
-            // Mouse handling for window dragging
             MouseDown += Main_Frm_MouseDown;
             Encrypt_Pnl.MouseDown += Main_Frm_MouseDown;
             Decrypt_Pnl.MouseDown += Main_Frm_MouseDown;
 
-            // Drag and drop events
             Encrypt_Pnl.DragDrop += Encrypt_Pnl_DragDrop;
             Encrypt_Pnl.DragEnter += Encrypt_Pnl_DragEnter;
             Decrypt_Pnl.DragDrop += Decrypt_Pnl_DragDrop;
             Decrypt_Pnl.DragEnter += Decrypt_Pnl_DragEnter;
 
-            // Password field events
             Pwd_Txt.DoubleClick += Pwd_Txt_DoubleClicked;
             Pwd_Txt.KeyPress += Pwd_Txt_KeyPress;
         }
@@ -98,10 +95,8 @@ namespace RW5jcnlwdA
                 }
             }
 
-            // Cancel all ongoing operations
             _cancellationTokenSource.Cancel();
 
-            // Wait a reasonable time for operations to complete
             try
             {
                 await Task.Delay(2000, CancellationToken.None); // Don't use cancelled token here
@@ -126,7 +121,6 @@ namespace RW5jcnlwdA
 
         void Pwd_Txt_KeyPress(object? sender, KeyPressEventArgs e)
         {
-            // Reset background color when user starts typing
             if (Pwd_Txt.BackColor == ErrorColor)
             {
                 Pwd_Txt.BackColor = DefaultPanelColor;
@@ -155,7 +149,6 @@ namespace RW5jcnlwdA
             Pwd_Txt.BackColor = ErrorColor;
             MessageBox.Show(message, "Password Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            // Restore color after a delay
             _ = Task.Delay(2000).ContinueWith(_ =>
             {
                 if (InvokeRequired)
@@ -333,7 +326,7 @@ namespace RW5jcnlwdA
             finally
             {
                 // Reset panel color
-                _ = Task.Delay(3000).ContinueWith(_ =>
+                _ = Task.Delay(1000).ContinueWith(_ =>
                 {
                     if (!IsDisposed && !_cancellationTokenSource.Token.IsCancellationRequested)
                     {
@@ -415,7 +408,6 @@ namespace RW5jcnlwdA
             }
             else
             {
-                // For decryption, try to remove "Encrypted_" prefix if present
                 if (fileName.StartsWith("Encrypted_"))
                 {
                     fileName = fileName["Encrypted_".Length..];
@@ -428,7 +420,6 @@ namespace RW5jcnlwdA
         {
             try
             {
-                // Basic check - see if file has our magic bytes
                 using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 if (fs.Length < 4) return false;
 
@@ -449,11 +440,9 @@ namespace RW5jcnlwdA
             {
                 try
                 {
-                    // Wait a bit to ensure file handles are released
                     if (attempt > 0)
                         await Task.Delay(500 * attempt); // Exponential backoff
 
-                    // Overwrite file content before deletion for better security
                     if (File.Exists(filename))
                     {
                         var fileInfo = new FileInfo(filename);
@@ -480,17 +469,14 @@ namespace RW5jcnlwdA
                 }
                 catch (IOException) when (attempt < maxAttempts - 1)
                 {
-                    // File might be locked, try again
                     continue;
                 }
                 catch (UnauthorizedAccessException) when (attempt < maxAttempts - 1)
                 {
-                    // Permission issue, try again
                     continue;
                 }
             }
 
-            // If we get here, all attempts failed
             throw new InvalidOperationException($"Unable to delete file {filename} after {maxAttempts} attempts.");
         }
 
