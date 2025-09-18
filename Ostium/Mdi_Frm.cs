@@ -25,9 +25,13 @@ namespace Ostium
 
         #endregion
 
+        #region Form_
+
         public Mdi_Frm()
         {
             InitializeComponent();
+
+            SizeChanged += new EventHandler(Main_Frm_SizeChange);
             URLlist_Cbx.SelectedIndexChanged += new EventHandler(URLlist_Cbx_SelectedIndexChanged);
         }
 
@@ -44,6 +48,11 @@ namespace Ostium
             }
         }
 
+        void Main_Frm_SizeChange(object sender, EventArgs e)
+        {
+            ReplaceChild();
+        }
+
         void NewFrm_Mnu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(@Class_Var.URL_HOME)) 
@@ -51,6 +60,8 @@ namespace Ostium
 
             OpnNewForm(@Class_Var.URL_HOME);
         }
+
+        #endregion
 
         void URLlist_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -225,19 +236,19 @@ namespace Ostium
         void Cascade_Btn_Click(object sender, EventArgs e)
         {
             VerifPosChild = 1;
-            LayoutMdi(MdiLayout.Cascade);
+            ReplaceChild();
         }
 
         void Vertical_Btn_Click(object sender, EventArgs e)
         {
             VerifPosChild = 2;
-            LayoutMdi(MdiLayout.TileVertical);
+            ReplaceChild();
         }
 
         void Horizontal_Btn_Click(object sender, EventArgs e)
         {
             VerifPosChild = 3;
-            LayoutMdi(MdiLayout.TileHorizontal);
+            ReplaceChild();
         }
 
         void ReplaceChild_Btn_Click(object sender, EventArgs e)

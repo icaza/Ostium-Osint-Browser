@@ -13,9 +13,9 @@
     "FakeReferer": "https://www.unknow.com/",
     "FakeWidth": "1920",
     "FakeHeight": "1080",
-    "BlockedDomains": [ "example.com", "malicious-site.com" ],
+    "BlockedDomains": [ "example.com", "" ],
     "RedirectRules": {
-      "icaza": "veydunet.com"
+      "ostium": "veydunet.com"
     },
     "ContentTypeFilters": [ "" ]
   }
