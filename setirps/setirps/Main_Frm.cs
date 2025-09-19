@@ -998,7 +998,7 @@ namespace setirps
                 Out_Txt.ScrollBars = ScrollBars.None;
         }
 
-        private void Timo_Tick(object sender, EventArgs e)
+        void Timo_Tick(object sender, EventArgs e)
         {
             Process[] localByName = Process.GetProcessesByName("javaw");
             if (localByName.Length > 0)
@@ -1016,7 +1016,7 @@ namespace setirps
             Process.Start(value);
         }
 
-        private void Site_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        void Site_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Site_Lst.SelectedIndex != -1)
             {
@@ -1024,7 +1024,7 @@ namespace setirps
             }
         }
 
-        private void User_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        void User_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (User_Lst.SelectedIndex != -1)
             {
@@ -1032,7 +1032,7 @@ namespace setirps
             }
         }
 
-        private void Hardware_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        void Hardware_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Hardware_Lst.SelectedIndex != -1)
             {
@@ -1040,15 +1040,15 @@ namespace setirps
             }
         }
 
-        private void Network_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        void Network_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Network_Lst.SelectedIndex != -1)
             {
                 ListSelectTxt_Txt.Text = Network_Lst.SelectedItem.ToString(); ;
             }
         }
-
-        private void Server_Lst_SelectedIndexChanged(object sender, EventArgs e)
+            
+        void Server_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Server_Lst.SelectedIndex != -1)
             {
