@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <Company>ICAZA MEDIA</Company>
+    <Authors>ICAZA MEDIA</Authors>
+    <Description>Import your favorite links Edge, Chrome, firefox to Ostium database.</Description>
+    <Copyright>ICAZA MEDIA</Copyright>
+    <PackageProjectUrl>https://veydunet.com</PackageProjectUrl>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+    <PackageIcon>favoriteico.png</PackageIcon>
+    <ApplicationIcon>favoriteico.ico</ApplicationIcon>
+    <StartupObject>Program</StartupObject>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="favoriteico.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\ico\favoriteico.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.3" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.11" />
+    <PackageReference Include="System.Data.SQLite" Version="2.0.2" />
+  </ItemGroup>
+
+</Project>

@@ -105,7 +105,7 @@ namespace Ostium
                 SiteUrl_Txt.Text = List_Object.SelectedItem.ToString();
                 string ScriptSelect = List_Object.SelectedItem.ToString();
                 string scriptName = GenerateFileName(ScriptSelect);
-                string filePath = Path.Combine(Dirscript, scriptName + ".js");
+                string filePath = Path.Combine(Dirscript, scriptName, ".js");
 
                 if (File.Exists(filePath))
                 {
@@ -161,7 +161,7 @@ namespace Ostium
             {
                 string ScriptSelect = SiteUrl_Txt.Text;
                 string scriptName = GenerateFileName(ScriptSelect);
-                string filePath = Path.Combine(Dirscript, scriptName + ".js");
+                string filePath = Path.Combine(Dirscript, scriptName, ".js");
 
                 if (!File.Exists(filePath))
                 {
@@ -301,7 +301,7 @@ namespace Ostium
                 {
                     string ScriptSelect = List_Object.SelectedItem.ToString();
                     string scriptName = GenerateFileName(ScriptSelect);
-                    string filePath = Path.Combine(Dirscript, scriptName + ".js");
+                    string filePath = Path.Combine(Dirscript, scriptName, ".js");
 
                     if (File.Exists(filePath))
                         File.Delete(filePath);

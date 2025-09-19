@@ -26,7 +26,7 @@ class WebViewHandler
     {
         if (!File.Exists(jsonFilePath))
         {
-            Console.WriteLine("⚠ File JSON not found !");
+            Console.WriteLine("File JSON not found !");
             return;
         }
 
@@ -37,7 +37,7 @@ class WebViewHandler
         {
             if (!doc.RootElement.TryGetProperty("FloodSetting", out JsonElement settings))
             {
-                Console.WriteLine("⚠ Key 'FloodSetting' empty !");
+                Console.WriteLine("Key 'FloodSetting' empty !");
                 return;
             }
 
@@ -87,7 +87,7 @@ class WebViewHandler
 
         if (blockedDomains.Contains(uri.Host))
         {
-            Console.WriteLine($"🚫 Blocked request to : {uri.Host}");
+            Console.WriteLine($"Blocked request to : {uri.Host}");
             e.Response = webView.Environment.CreateWebResourceResponse(null, 403, "Forbidden", "Content-Type: text/plain");
             return;
         }
@@ -95,7 +95,7 @@ class WebViewHandler
         if (redirectRules.TryGetValue(uri.Host, out string newDomain))
         {
             string newUrl = uri.Scheme + "://" + newDomain + uri.PathAndQuery;
-            Console.WriteLine($"🔀 Redirection : {uri.Host} → {newDomain}");
+            Console.WriteLine($"Redirection : {uri.Host} → {newDomain}");
             request.Uri = newUrl;
         }
 

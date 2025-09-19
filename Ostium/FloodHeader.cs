@@ -38,9 +38,9 @@ public class FloodHeader
     {
         string script = @"
         (function() {
-            console.log('[Fingerprint Defender] 🚀 Advanced WebGL Protection Enabled');
+            console.log('[Fingerprint Defender] Advanced WebGL Protection Enabled');
 
-            // 🎭 Fake GPU IDs
+            // Fake GPU IDs
             const fakeVendor = 'FakeVendor';
             const fakeRenderer = 'FakeRenderer';
 
@@ -81,9 +81,9 @@ public class FloodHeader
                 WebGL2RenderingContext.prototype.getExtension = getExtensionProxy;
             }
 
-            // 🔄 Execute as soon as possible
+            // Execute as soon as possible
             spoofWebGL();
-            console.log('[Fingerprint Defender] 🎭 UNMASKED_VENDOR & UNMASKED_RENDERER modified !');
+            console.log('[Fingerprint Defender] UNMASKED_VENDOR & UNMASKED_RENDERER modified !');
         })();
         ";
 
@@ -137,9 +137,9 @@ public class FloodHeader
     {
         string script = $@"
         (function() {{
-            console.log('[Fingerprint Defender] 🚀 AudioContext Protection Enabled');
+            console.log('[Fingerprint Defender] AudioContext Protection Enabled');
 
-            // 🎵 Change the AudioContext footprint
+            // Change the AudioContext footprint
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             if (AudioContext) {{
                 const originalGetChannelData = AudioBuffer.prototype.getChannelData;
@@ -168,9 +168,9 @@ public class FloodHeader
                 }};
             }}
 
-            //// 🔄 Refresh fingerprint on every load
+            //// Refresh fingerprint on every load
             //function refreshFingerprint() {{
-            //    console.log('[Fingerprint Defender] 🎭 New audio hash generated !');
+            //    console.log('[Fingerprint Defender] New audio hash generated !');
             //    document.body.style.opacity = '0'; 
             //    setTimeout(() => {{
             //        document.body.style.opacity = '1';
@@ -190,7 +190,7 @@ public class FloodHeader
     {
         string script = @"
         (function() {
-            console.log('[Fingerprint Defender] 🚀 Canvas Protection activated');
+            console.log('[Fingerprint Defender] Canvas Protection activated');
 
             const getContext = HTMLCanvasElement.prototype.getContext;
 
@@ -204,7 +204,7 @@ public class FloodHeader
                     const originalFillText = ctx.fillText;
                     const originalFillRect = ctx.fillRect;
 
-                    // 🔄 Function to add noise
+                    // Function to add noise
                     function addNoise(data) {
                         const factor = 20; // Noise intensity
                         for (let i = 0; i < data.length; i += 4) {
@@ -214,7 +214,7 @@ public class FloodHeader
                         }
                     }
 
-                    // 🎨 Function to apply light distortions
+                    // Function to apply light distortions
                     function distortCanvas(ctx) {
                         const { width, height } = ctx.canvas;
                         const imageData = ctx.getImageData(0, 0, width, height);
@@ -222,7 +222,7 @@ public class FloodHeader
                         ctx.putImageData(imageData, 0, 0);
                     }
 
-                    // 🖍️ Edit text and shapes to add noise
+                    // Edit text and shapes to add noise
                     ctx.fillText = function(text, x, y, maxWidth) {
                         const offsetX = Math.random() * 2 - 1; 
                         const offsetY = Math.random() * 2 - 1;
@@ -259,7 +259,7 @@ public class FloodHeader
                 return ctx;
             };
 
-            // 🎭 Modify WebGL to change GPU fingerprint
+            // Modify WebGL to change GPU fingerprint
             const getParameter = WebGLRenderingContext.prototype.getParameter;
             WebGLRenderingContext.prototype.getParameter = function(parameter) {
                 if (parameter === 0x1F00) return 'RandomVendor_' + Math.random().toString(36).substring(7);
@@ -267,9 +267,9 @@ public class FloodHeader
                 return getParameter.apply(this, arguments);
             };
 
-            //// 🔄 Generate a new hash on each load
+            //// Generate a new hash on each load
             //function refreshFingerprint() {
-            //    console.log('[Fingerprint Defender] 🎭 New hash generated !');
+            //    console.log('[Fingerprint Defender] New hash generated !');
             //    document.body.style.opacity = '0'; 
             //    setTimeout(() => {
             //        document.body.style.opacity = '1';
@@ -289,27 +289,27 @@ public class FloodHeader
     {
         string script = @"
         (function() {
-            console.log('[Fingerprint Defender] 🚀 WebRTC, Battery API and Speech Synthesis protection enabled');
+            console.log('[Fingerprint Defender] WebRTC, Battery API and Speech Synthesis protection enabled');
 
-            // 2️⃣ WebRTC Leak Protection
+            // WebRTC Leak Protection
             const originalRTCPeerConnection = window.RTCPeerConnection;
             window.RTCPeerConnection = function() {
-                console.warn('[Fingerprint Defender] 🚨 WebRTC blocked !');
+                console.warn('[Fingerprint Defender] WebRTC blocked !');
                 return null;
             };
 
-            // 3️⃣ Battery API Protection
+            // Battery API Protection
             if (navigator.getBattery) {
                 navigator.getBattery = function() {
-                    console.warn('[Fingerprint Defender] 🚨 API Battery Blocked !');
+                    console.warn('[Fingerprint Defender] API Battery Blocked !');
                     return new Promise(resolve => resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity }));
                 };
             }
 
-            // 4️⃣ Speech Synthesis Protection
+            // Speech Synthesis Protection
             const originalGetVoices = window.speechSynthesis.getVoices;
             window.speechSynthesis.getVoices = function() {
-                console.warn('[Fingerprint Defender] 🚨 Speech Synthesis blocked !');
+                console.warn('[Fingerprint Defender] Speech Synthesis blocked !');
                 return [{ name: 'FakeVoice', lang: 'en-US', localService: false, voiceURI: 'fake' }];
             };
         })();

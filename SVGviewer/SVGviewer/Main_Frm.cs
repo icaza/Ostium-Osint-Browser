@@ -8,7 +8,19 @@ namespace SVGviewer
 {
     public partial class Main_Frm : Form
     {
-        #region
+        #region Constants
+
+        private const float MIN_ZOOM_SCALE = 0.1f;
+        private const float MAX_ZOOM_SCALE = 10.0f;
+        private const float ZOOM_INCREMENT = 0.1f;
+        private const int CACHE_UPDATE_TIMER_INTERVAL = 300;
+        private const float SCALE_COMPARISON_THRESHOLD = 0.15f;
+        private const int MAX_BITMAP_WIDTH = 8192;
+        private const int MAX_BITMAP_HEIGHT = 8192;
+
+        #endregion
+
+        #region Fields
 
         public string SvgFileName { get; set; } = @"svg.svg";
 
@@ -36,7 +48,7 @@ namespace SVGviewer
 
             cacheUpdateTimer = new Timer
             {
-                Interval = 100
+                Interval = CACHE_UPDATE_TIMER_INTERVAL
             };
             cacheUpdateTimer.Tick += CacheUpdateTimer_Tick;
 
@@ -66,20 +78,42 @@ namespace SVGviewer
             if (svgDoc == null)
                 return;
 
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-            g.ResetTransform();
-            g.TranslateTransform(offsetX, offsetY);
-
-            if (cachedBitmap != null)
+            try
             {
-                float scaleFactor = currentScale / cachedScale;
-                g.ScaleTransform(scaleFactor, scaleFactor);
-                g.DrawImage(cachedBitmap, 0, 0);
+                Graphics g = e.Graphics;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+                g.ResetTransform();
+                g.TranslateTransform(offsetX, offsetY);
+
+                if (cachedBitmap == null || Math.Abs(currentScale - cachedScale) > SCALE_COMPARISON_THRESHOLD)
+                {
+                    g.ScaleTransform(currentScale, currentScale);
+                    svgDoc.Draw(g);
+                }
+                else
+                {
+                    float scaleFactor = currentScale / cachedScale;
+                    g.ScaleTransform(scaleFactor, scaleFactor);
+                    g.DrawImage(cachedBitmap, 0, 0);
+                }
             }
+            catch (Exception ex)
+            {
+                using (var brush = new SolidBrush(Color.Red))
+                {
+                    e.Graphics.DrawString("Rendering error: " + ex.Message, Font, brush, 10, 10);
+                }
+            }
+        }
+
+        bool ValidateBitmapDimensions(int width, int height)
+        {
+            return width > 0 && height > 0 &&
+                   width <= MAX_BITMAP_WIDTH && height <= MAX_BITMAP_HEIGHT;
         }
 
         void UpdateCache()
@@ -87,37 +121,49 @@ namespace SVGviewer
             if (svgDoc == null)
                 return;
 
-            float docWidth = svgDoc.Width != 0 ? svgDoc.Width : ClientSize.Width;
-            float docHeight = svgDoc.Height != 0 ? svgDoc.Height : ClientSize.Height;
-
-            int bmpWidth = (int)(docWidth * currentScale);
-            int bmpHeight = (int)(docHeight * currentScale);
-
-            if (bmpWidth <= 0 || bmpHeight <= 0)
-                return;
-
-            cachedBitmap?.Dispose();
-            cachedBitmap = new Bitmap(bmpWidth, bmpHeight);
-
-            using (Graphics g = Graphics.FromImage(cachedBitmap))
+            try
             {
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                float docWidth = svgDoc.Width != 0 ? svgDoc.Width : ClientSize.Width;
+                float docHeight = svgDoc.Height != 0 ? svgDoc.Height : ClientSize.Height;
 
-                Matrix m = new Matrix();
-                m.Scale(currentScale, currentScale);
-                g.Transform = m;
+                if (docWidth <= 0) docWidth = ClientSize.Width;
+                if (docHeight <= 0) docHeight = ClientSize.Height;
 
-                svgDoc.Draw(g);
+                int bmpWidth = (int)(docWidth * currentScale);
+                int bmpHeight = (int)(docHeight * currentScale);
+
+                if (!ValidateBitmapDimensions(bmpWidth, bmpHeight))
+                    return;
+
+                cachedBitmap?.Dispose();
+                cachedBitmap = new Bitmap(bmpWidth, bmpHeight);
+
+                using (Graphics g = Graphics.FromImage(cachedBitmap))
+                {
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                    Matrix m = new Matrix();
+                    m.Scale(currentScale, currentScale);
+                    g.Transform = m;
+
+                    svgDoc.Draw(g);
+                }
+                cachedScale = currentScale;
             }
-            cachedScale = currentScale;
+            catch (Exception ex)
+            {
+                cachedBitmap?.Dispose();
+                cachedBitmap = null;
+                MessageBox.Show("Error updating cache: " + ex.Message);
+            }
         }
 
         void CacheUpdateTimer_Tick(object sender, EventArgs e)
         {
             cacheUpdateTimer.Stop();
-            if (Math.Abs(currentScale - cachedScale) > 0.001f)
+            if (Math.Abs(currentScale - cachedScale) > SCALE_COMPARISON_THRESHOLD)
             {
                 UpdateCache();
                 Invalidate();
@@ -159,9 +205,12 @@ namespace SVGviewer
         void Main_Frm_MouseWheel(object sender, MouseEventArgs e)
         {
             float oldScale = currentScale;
-            currentScale += e.Delta > 0 ? 0.1f : -0.1f;
-            if (currentScale < 0.1f)
-                currentScale = 0.1f;
+            currentScale += e.Delta > 0 ? ZOOM_INCREMENT : -ZOOM_INCREMENT;
+
+            if (currentScale < MIN_ZOOM_SCALE)
+                currentScale = MIN_ZOOM_SCALE;
+            if (currentScale > MAX_ZOOM_SCALE)
+                currentScale = MAX_ZOOM_SCALE;
 
             float scaleChange = currentScale / oldScale;
             offsetX = e.X - scaleChange * (e.X - offsetX);
@@ -185,6 +234,7 @@ namespace SVGviewer
             base.OnFormClosing(e);
             cachedBitmap?.Dispose();
             cachedBitmap = null;
+            svgDoc = null;
         }
 
         [STAThread]
