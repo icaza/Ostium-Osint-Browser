@@ -13,7 +13,7 @@ public class FaviconDownloader
     public FaviconDownloader()
     {
         if (string.IsNullOrWhiteSpace(Class_Var.URL_USER_AGENT_SRC_PAGE))
-            Class_Var.URL_USER_AGENT_SRC_PAGE = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36";
+            Class_Var.URL_USER_AGENT_SRC_PAGE = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36";
 
         _httpClient = new HttpClient(new HttpClientHandler
         {

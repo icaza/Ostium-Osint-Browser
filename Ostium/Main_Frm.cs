@@ -190,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "26";
+        readonly string versionNow = "27";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -378,6 +378,27 @@ namespace Ostium
             Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             Word_URL_Builder_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             AddOn_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+
+            UrlHome_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            UrlTradWebPage_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            SearchEngine_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            UserAgent_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            UserAgentHttp_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            GoogBot_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            DefaultEditor_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            CyberChef_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ArchiveAdd_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonUri_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonVal_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonNode_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonUsrAgt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            TextMarker_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            NameProjectwf_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            Author_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ModelName_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            AddSingleItemswf_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ExecuteCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ValueCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
         }
         ///
         /// <summary>
@@ -8378,6 +8399,13 @@ namespace Ostium
         }
 
         #endregion
+
+        void ClearObject_Keypress(object sender, EventArgs e)
+        {
+            TextBox objTxt;
+            objTxt = (sender as TextBox);
+            objTxt.Text = "";
+        }
 
         #region Invoke_Json
 
