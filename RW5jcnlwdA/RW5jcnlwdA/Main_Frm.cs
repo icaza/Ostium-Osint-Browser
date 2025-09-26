@@ -121,6 +121,11 @@ namespace RW5jcnlwdA
 
         void Pwd_Txt_KeyPress(object? sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+            }
+
             if (Pwd_Txt.BackColor == ErrorColor)
             {
                 Pwd_Txt.BackColor = DefaultPanelColor;

@@ -190,7 +190,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "26";
+        readonly string versionNow = "27";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -336,48 +336,69 @@ namespace Ostium
             TtsButton_Sts.ButtonClick += new EventHandler(TtsButton_Sts_ButtonClick);
             TtsButton_Sts.DropDownItemClicked += TtsButton_Sts_DropDownItemClicked;
 
-            JsonUri_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            JsonVal_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            JsonNode_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            JsonCnt_txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            CharSpace_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            BrcktA_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            BrcktB_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            NameProjectwf_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            Author_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            ModelName_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            AddSingleItemswf_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            DataBaze_Opn.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            DataTable_Opn.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            DataValue_Name.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            DataValue_Opn.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            ValueChange_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            DB_Default_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            ExecuteCMDsql_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            ValueCMDsql_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            ThemDiag_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            CategorieFeed_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            NewCategory_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            NewFeed_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            GoFeed_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            GmapProvider_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            LatLon_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            KeywordMap_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            ZoomValMap_Lbl.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            OrderLL_txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            UrlHome_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            UrlTradWebPage_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            SearchEngine_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            UserAgent_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            UserAgentHttp_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            GoogBot_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            DefaultEditor_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            URL_URL_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            Word_URL_Builder_Txt.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
-            AddOn_Cbx.KeyPress += new KeyPressEventHandler(JsonUri_Txt_Keypress);
+            JsonUri_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            JsonVal_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            JsonNode_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            JsonCnt_txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            CharSpace_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            BrcktA_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            BrcktB_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            NameProjectwf_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            Author_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ModelName_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            AddSingleItemswf_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DataBaze_Opn.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DataTable_Opn.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DataValue_Name.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DataValue_Opn.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ValueChange_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DB_Default_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ExecuteCMDsql_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ValueCMDsql_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ThemDiag_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            CategorieFeed_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            NewCategory_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            NewFeed_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            GoFeed_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            GmapProvider_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            LatLon_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            KeywordMap_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ZoomValMap_Lbl.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            OrderLL_txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            UrlHome_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            UrlTradWebPage_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            SearchEngine_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            UserAgent_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            UserAgentHttp_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            GoogBot_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DefaultEditor_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            URL_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            Word_URL_Builder_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            AddOn_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
+
+            UrlHome_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            UrlTradWebPage_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            SearchEngine_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            UserAgent_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            UserAgentHttp_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            GoogBot_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            DefaultEditor_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            CyberChef_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ArchiveAdd_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonUri_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonVal_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonNode_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            JsonUsrAgt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            TextMarker_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            NameProjectwf_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            Author_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ModelName_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            AddSingleItemswf_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ExecuteCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            ValueCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
         }
         ///
         /// <summary>
@@ -425,7 +446,7 @@ namespace Ostium
                 writer.WriteElementString("DB_USE_DEFAULT", dbDflt);
                 writer.WriteElementString("URL_HOME_VAR", urlHom);
                 writer.WriteElementString("URL_TRAD_WEBPAGE_VAR", urlTra);
-                writer.WriteElementString("URL_TRAD_WEBTXT_VAR", "https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=replace_query&op=translate"); // Not implemented
+                //writer.WriteElementString("URL_TRAD_WEBTXT_VAR", "https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=replace_query&op=translate"); // Not implemented
                 writer.WriteElementString("URL_DEFAUT_WSEARCH_VAR", Search);
                 writer.WriteElementString("URL_USER_AGENT_VAR", UsrAgt);
                 writer.WriteElementString("URL_USER_AGENT_SRC_PAGE_VAR", UsrHtt);
@@ -1673,7 +1694,7 @@ namespace Ostium
                 OpenFile_Editor(Path.Combine(AppStart, "cookie.txt"));
         }
 
-        private void CookiesAdd_Btn_Click(object sender, EventArgs e)
+        void CookiesAdd_Btn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(CookieName_Txt.Text) || 
                 string.IsNullOrWhiteSpace(CookieValue_Txt.Text) || 
@@ -3124,7 +3145,8 @@ namespace Ostium
                         SW.WriteLine(itm);
                 }
 
-                URLbrowse_Cbx.SelectedIndex = 0;
+                if (URLbrowse_Cbx.Items.Count != 0)
+                    URLbrowse_Cbx.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -8368,7 +8390,7 @@ namespace Ostium
             }
         }
 
-        void JsonUri_Txt_Keypress(object sender, KeyPressEventArgs e)
+        void Object_Keypress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -8377,6 +8399,13 @@ namespace Ostium
         }
 
         #endregion
+
+        void ClearObject_Keypress(object sender, EventArgs e)
+        {
+            TextBox objTxt;
+            objTxt = (sender as TextBox);
+            objTxt.Text = "";
+        }
 
         #region Invoke_Json
 

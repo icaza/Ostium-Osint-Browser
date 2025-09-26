@@ -17,4 +17,4 @@ Script to uninstall registry keys.
 
 v2.05 (September 29, 2023)
 Securely overwrite your sensitive files and cleanse your free space of previously deleted files using this DoD-compliant secure delete program. 
-[text](https://learn.microsoft.com/en-us/sysinternals/downloads/)
+[Sysinternals Utilities Index](https://learn.microsoft.com/en-us/sysinternals/downloads/)
