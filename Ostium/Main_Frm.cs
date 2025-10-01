@@ -13,7 +13,6 @@ using Newtonsoft.Json.Linq;
 using Ostium.Properties;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
@@ -114,6 +113,7 @@ namespace Ostium
         ComboBox Workflow_Cbx;
         ListBox Workflow_Lst;
         Label SizeAll_Lbl;
+
         // Json
         WebView2 WbOutJson;
         WebView2 WbOutParse;
@@ -211,6 +211,23 @@ namespace Ostium
         readonly DirectoryTreeExporter exporter = new DirectoryTreeExporter();
         readonly Stack<string> history = new Stack<string>();
 
+        bool IsAdsTrackersBlocked = false;
+        // redlist
+        HashSet<string> _blockedFullUrls;
+        HashSet<string> _blockedHosts;
+        HashSet<string> _blockedPatterns;
+        readonly Dictionary<string, bool> _urlCache;
+        const int MAX_CACHE_SIZE = 10000;
+        // Whitelist - priority over blocklist
+        HashSet<string> _allowedFullUrls;
+        HashSet<string> _allowedHosts;
+        HashSet<string> _allowedPatterns;
+        List<Regex> _compiledAllowedPatterns;
+        // Pre-compiling regexes for patterns
+        List<Regex> _compiledPatterns;
+        string BlockedUrl = "blocked_min.txt";
+        readonly string AllowUrl = "allowed.txt";
+        int urlBlocked = 0;
         #endregion
 
         #region Frm_
@@ -218,8 +235,12 @@ namespace Ostium
         public Main_Frm()
         {
             InitializeComponent();
+
+            _urlCache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+
             WBrowse_EventHandlers(WBrowse);
             WBrowsefeed_EventHandlers(WBrowsefeed);
+
             Form_EventHandler();
 
             Assembly thisAssem = typeof(Program).Assembly;
@@ -305,7 +326,7 @@ namespace Ostium
             catch { }
         }
 
-        private void Main_Frm_LocationChanged(object sender, EventArgs e)
+        void Main_Frm_LocationChanged(object sender, EventArgs e)
         {
             Form secondForm = Application.OpenForms["Keeptrack_Frm"];
 
@@ -427,7 +448,9 @@ namespace Ostium
                 UsrAgt = lstUrlDfltCnf[4].ToString();
                 UsrHtt = lstUrlDfltCnf[5].ToString();
                 GoogBo = lstUrlDfltCnf[6].ToString();
+
                 DefaultEditor_Opt_Txt.Text = Path.Combine(AppStart, "OstiumE.exe");
+                Redlist_Txt.Text = Path.Combine(AppStart, "data", BlockedUrl);
                 CyberChef_Opt_Txt.Text = "";
             }
             ///
@@ -453,6 +476,7 @@ namespace Ostium
                 writer.WriteElementString("URL_GOOGLEBOT_VAR", GoogBo);
                 writer.WriteElementString("DEFAULT_EDITOR_VAR", DefaultEditor_Opt_Txt.Text);
                 writer.WriteElementString("CYBERCHEF_VAR", CyberChef_Opt_Txt.Text);
+                writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
                 writer.WriteEndElement();
@@ -583,6 +607,11 @@ namespace Ostium
                                 else
                                     CyberChef_Btn.Enabled = false;
                                 break;
+                            case "REDLIST_VAR":
+                                Redlist_Txt.Text = Convert.ToString(reader.ReadString());
+                                BlockedUrl = Redlist_Txt.Text;
+                                LoadBlockList();
+                                break;
                             case "VOLUME_TRACK_VAR":
                                 Class_Var.VOLUME_TRACK = Convert.ToInt32(reader.ReadString());
                                 VolumeVal_Track.Value = Class_Var.VOLUME_TRACK;
@@ -697,6 +726,415 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
+        /// <summary>
+        /// Block Ads/Trackers
+        /// </summary>
+        void WBrowse_WebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
+        {
+            try
+            {
+                if (IsAdsTrackersBlocked)
+                {
+                    string requestUri = e.Request.Uri;
+
+                    if (ShouldBlockUrlFast(requestUri))
+                    {
+                        try
+                        {
+                            var emptyStream = new MemoryStream();
+
+                            e.Response = WBrowse.CoreWebView2.Environment.CreateWebResourceResponse(
+                                emptyStream,
+                                204,
+                                "No Content",
+                                "Content-Type: text/plain");
+
+                            urlBlocked += 1;
+                            Count_urlCache.Text = $"Blocked {urlBlocked}";
+                            //Task.Run(() => Console.WriteLine($"[BLOCKED RESOURCE] {requestUri}"));
+                        }
+                        catch
+                        {
+                            senderror.ErrorLog("Error! WBrowse_WebResourceRequested: ", $"[BLOCKED - Fallback] {requestUri}", "Main_Frm", AppStart);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WBrowse_WebResourceRequested: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        bool ShouldBlockUrlFast(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return false;
+
+            if (_urlCache.TryGetValue(url, out bool cachedResult))
+            {
+                return cachedResult;
+            }
+
+            bool shouldBlock = false;
+
+            try
+            {
+                // WHITELIST verify
+                if (IsUrlAllowed(url))
+                {
+                    shouldBlock = false;
+                    // Caching
+                    if (_urlCache.Count < MAX_CACHE_SIZE)
+                        _urlCache[url] = false;
+                    return false;
+                }
+
+                // Host
+                string host = ExtractHostFast(url);
+
+                // Verify Host (HashSet = O(1))
+                if (!string.IsNullOrEmpty(host) && _blockedHosts.Contains(host))
+                {
+                    shouldBlock = true;
+                }
+                else if (!string.IsNullOrEmpty(host))
+                {
+                    // Subdomains
+                    foreach (var blockedHost in _blockedHosts)
+                    {
+                        if (host.EndsWith("." + blockedHost, StringComparison.OrdinalIgnoreCase))
+                        {
+                            shouldBlock = true;
+                            break;
+                        }
+                    }
+                }
+
+                // URLs complete
+                if (!shouldBlock)
+                {
+                    string normalizedUrl = NormalizeUrlFast(url);
+
+                    if (_blockedFullUrls.Contains(normalizedUrl))
+                    {
+                        shouldBlock = true;
+                    }
+                    else
+                    {
+                        // Prefixes
+                        foreach (var blockedUrl in _blockedFullUrls)
+                        {
+                            if (normalizedUrl.StartsWith(blockedUrl, StringComparison.OrdinalIgnoreCase))
+                            {
+                                shouldBlock = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // Patterns
+                if (!shouldBlock && _compiledPatterns.Count > 0)
+                {
+                    foreach (var regex in _compiledPatterns)
+                    {
+                        if (regex.IsMatch(url))
+                        {
+                            shouldBlock = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                shouldBlock = false;
+            }
+
+            // Caching
+            if (_urlCache.Count < MAX_CACHE_SIZE)
+            {
+                _urlCache[url] = shouldBlock;
+            }
+            else if (_urlCache.Count >= MAX_CACHE_SIZE)
+            {
+                // Clear cache
+                _urlCache.Clear();
+            }
+
+            return shouldBlock;
+        }
+        /// <summary>
+        /// whitelist
+        /// </summary>
+        bool IsUrlAllowed(string url)
+        {
+            try
+            {
+                // Authorized host
+                string host = ExtractHostFast(url);
+                if (!string.IsNullOrEmpty(host))
+                {
+                    if (_allowedHosts.Contains(host))
+                        return true;
+
+                    // Allowed subdomains
+                    foreach (var allowedHost in _allowedHosts)
+                    {
+                        if (host.EndsWith("." + allowedHost, StringComparison.OrdinalIgnoreCase))
+                            return true;
+                    }
+                }
+
+                // URLs complete
+                string normalizedUrl = NormalizeUrlFast(url);
+                if (_allowedFullUrls.Contains(normalizedUrl))
+                    return true;
+
+                // Prefixe
+                foreach (var allowedUrl in _allowedFullUrls)
+                {
+                    if (normalizedUrl.StartsWith(allowedUrl, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                }
+
+                // Patterns
+                if (_compiledAllowedPatterns.Count > 0)
+                {
+                    foreach (var regex in _compiledAllowedPatterns)
+                    {
+                        if (regex.IsMatch(url))
+                            return true;
+                    }
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        string ExtractHostFast(string url)
+        {
+            try
+            {
+                // http:// ou https://
+                int schemeEnd = url.IndexOf("://");
+                if (schemeEnd < 0) return null;
+
+                int hostStart = schemeEnd + 3;
+                int hostEnd = url.IndexOf('/', hostStart);
+                if (hostEnd < 0) hostEnd = url.IndexOf('?', hostStart);
+                if (hostEnd < 0) hostEnd = url.IndexOf('#', hostStart);
+                if (hostEnd < 0) hostEnd = url.Length;
+
+                string host = url.Substring(hostStart, hostEnd - hostStart);
+
+                // Remove the port if present
+                int portIndex = host.IndexOf(':');
+                if (portIndex > 0)
+                {
+                    host = host.Substring(0, portIndex);
+                }
+
+                return host.ToLowerInvariant();
+            }
+            catch
+            {
+                // Fallback on Uri.TryCreate
+                if (Uri.TryCreate(url, UriKind.Absolute, out var uri))
+                {
+                    return uri.Host;
+                }
+                return null;
+            }
+        }
+
+        void LoadBlockedHosts(string filePath)
+        {
+            try
+            {
+                _blockedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _blockedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _blockedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _compiledPatterns = new List<Regex>();
+
+                if (!File.Exists(filePath))
+                {
+                    File.WriteAllText(filePath,
+                        "# Add here the domains or URLs to block\n" +
+                        "# Examples:\n" +
+                        "# ads.example.com\n" +
+                        "# *ads*\n" +
+                        "# https://tracking.example.com/track.js\n");
+                    return;
+                }
+
+                var lines = File.ReadAllLines(filePath)
+                    .Select(line => line.Trim())
+                    .Where(line => !string.IsNullOrEmpty(line) && !line.StartsWith("#"));
+
+                foreach (var line in lines)
+                {
+                    if (line.Contains("*"))
+                    {
+                        // Pattern with wildcards - PRE-COMPILE regexes
+                        _blockedPatterns.Add(line);
+                        try
+                        {
+                            string regexPattern = "^" + Regex.Escape(line)
+                                .Replace("\\*", ".*")
+                                .Replace("\\?", ".") + "$";
+
+                            var regex = new Regex(
+                                regexPattern,
+                                RegexOptions.IgnoreCase |
+                                RegexOptions.Compiled);
+
+                            _compiledPatterns.Add(regex);
+                        }
+                        catch { }
+                    }
+                    else if (line.StartsWith("http://") || line.StartsWith("https://"))
+                    {
+                        // Full URL - normalize
+                        string normalized = NormalizeUrlFast(line);
+                        _blockedFullUrls.Add(normalized);
+
+                        // Extract host
+                        if (Uri.TryCreate(line, UriKind.Absolute, out var uri))
+                        {
+                            _blockedHosts.Add(uri.Host);
+                        }
+                    }
+                    else
+                    {
+                        // Domaine/host
+                        _blockedHosts.Add(line);
+                    }
+                }
+
+                // Clear cache after reload
+                _urlCache.Clear();
+
+                Console.WriteLine($"[CHARGED BLOCKLIST] {_blockedFullUrls.Count} URLs, {_blockedHosts.Count} hosts, {_blockedPatterns.Count} patterns");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading redlist : {ex.Message}");
+                _blockedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _blockedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _blockedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _compiledPatterns = new List<Regex>();
+            }
+        }
+
+        void LoadAllowedHosts(string filePath)
+        {
+            try
+            {
+                _allowedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _allowedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _allowedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _compiledAllowedPatterns = new List<Regex>();
+
+                if (!File.Exists(filePath))
+                {
+                    File.WriteAllText(filePath,
+                        "# Authorized URLs and domains (takes priority over blocked.txt)\n" +
+                        "# Examples:\n" +
+                        "# cdn.example.com\n" +
+                        "# https://static.facebook.com/specific-needed-script.js\n" +
+                        "# *important*\n");
+                    return;
+                }
+
+                var lines = File.ReadAllLines(filePath)
+                    .Select(line => line.Trim())
+                    .Where(line => !string.IsNullOrEmpty(line) && !line.StartsWith("#"));
+
+                foreach (var line in lines)
+                {
+                    if (line.Contains("*"))
+                    {
+                        // Pattern with wildcards
+                        _allowedPatterns.Add(line);
+                        try
+                        {
+                            string regexPattern = "^" + Regex.Escape(line)
+                                .Replace("\\*", ".*")
+                                .Replace("\\?", ".") + "$";
+
+                            var regex = new Regex(
+                                regexPattern,
+                                RegexOptions.IgnoreCase |
+                                RegexOptions.Compiled);
+
+                            _compiledAllowedPatterns.Add(regex);
+                        }
+                        catch { }
+                    }
+                    else if (line.StartsWith("http://") || line.StartsWith("https://"))
+                    {
+                        // URLs complete
+                        string normalized = NormalizeUrlFast(line);
+                        _allowedFullUrls.Add(normalized);
+
+                        // Extract host
+                        if (Uri.TryCreate(line, UriKind.Absolute, out var uri))
+                        {
+                            _allowedHosts.Add(uri.Host);
+                        }
+                    }
+                    else
+                    {
+                        // Domaine/host
+                        _allowedHosts.Add(line);
+                    }
+                }
+
+                // Clear cache after reload
+                _urlCache.Clear();
+
+                Console.WriteLine($"[CHARGED WHITELIST] {_allowedFullUrls.Count} URLs, {_allowedHosts.Count} hosts, {_allowedPatterns.Count} patterns");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading whitelist : {ex.Message}");
+                _allowedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _allowedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _allowedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                _compiledAllowedPatterns = new List<Regex>();
+            }
+        }
+
+        string NormalizeUrlFast(string url)
+        {
+            try
+            {
+                int fragmentIndex = url.IndexOf('#');
+                if (fragmentIndex > 0)
+                {
+                    url = url.Substring(0, fragmentIndex);
+                }
+                return url.ToLowerInvariant();
+            }
+            catch
+            {
+                return url.ToLowerInvariant();
+            }
+        }
+
+        public void LoadBlockList()
+        {
+            LoadBlockedHosts(Path.Combine(AppStart, "data", BlockedUrl));
+            LoadAllowedHosts(Path.Combine(AppStart, "data", AllowUrl));
+        }
+        /// \\\
+
         ///
         /// <summary>
         /// Adding an item to the wBrowse Context Menu
@@ -833,7 +1271,29 @@ namespace Ostium
         async void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
             var settings = WBrowse.CoreWebView2.Settings;
+            /// Block Ads/Trackers
+            if (IsAdsTrackersBlocked)
+            {
+                try
+                {
+                    urlBlocked = 0;
+                    Count_urlCache.Text = $"Blocked {urlBlocked}";
 
+                    if (ShouldBlockUrlFast(e.Uri))
+                    {
+                        e.Cancel = true;
+
+                        urlBlocked += 1;
+                        Count_urlCache.Text = $"Blocked {urlBlocked}";
+                        //_ = Task.Run(() => Console.WriteLine($"[NAVIGATION BLOCKED] {e.Uri}"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("Error! WBrowse_NavigationStarting: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
+            /// \\\
             if (UserAgentOnOff == "on")
             {
                 settings.UserAgent = UserAgentSelect;
@@ -895,7 +1355,7 @@ namespace Ostium
                 {
                     var favicon = await downloader.GetFaviconAsync(WBrowse.Source.AbsoluteUri);
                     File.WriteAllBytes(Path.Combine(Keeptrack, "thumbnails", icoName + ".ico"), favicon);
-                    Console.WriteLine("Favicon sucess download !");
+                    //Console.WriteLine("Favicon sucess download !");
                 }
             }
             catch (Exception ex)
@@ -953,6 +1413,9 @@ namespace Ostium
             WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
             WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
 
+            WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
+            WBrowse.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
+
             WBrowse.CoreWebView2.Settings.AreHostObjectsAllowed = false;
             WBrowse.CoreWebView2.Settings.IsWebMessageEnabled = false;
             WBrowse.CoreWebView2.Settings.IsScriptEnabled = true;
@@ -971,6 +1434,43 @@ namespace Ostium
 
         // Wbrowsefeed
 
+        void WBrowsefeed_WebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
+        {
+            try
+            {
+                if (IsAdsTrackersBlocked)
+                {
+                    string requestUri = e.Request.Uri;
+
+                    if (ShouldBlockUrlFast(requestUri))
+                    {
+                        try
+                        {
+                            var emptyStream = new MemoryStream();
+
+                            e.Response = WBrowsefeed.CoreWebView2.Environment.CreateWebResourceResponse(
+                                emptyStream,
+                                204,
+                                "No Content",
+                                "Content-Type: text/plain");
+
+                            urlBlocked += 1;
+                            Count_urlCache.Text = $"Blocked {urlBlocked}";
+                            //Task.Run(() => Console.WriteLine($"[BLOCKED RESOURCE] {requestUri}"));
+                        }
+                        catch
+                        {
+                            senderror.ErrorLog("Error! WBrowsefeed_WebResourceRequested: ", $"[BLOCKED - Fallback] {requestUri}", "Main_Frm", AppStart);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WBrowsefeed_WebResourceRequested: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void WBrowsefeed_UpdtTitleEvent(string message)
         {
             string currentDocumentTitle = WBrowsefeed?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
@@ -980,6 +1480,30 @@ namespace Ostium
 
         async void WBrowsefeed_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            /// Block Ads/Trackers
+            if (IsAdsTrackersBlocked)
+            {
+                try
+                {
+                    urlBlocked = 0;
+                    Count_urlCache.Text = $"Blocked {urlBlocked}";
+
+                    if (ShouldBlockUrlFast(e.Uri))
+                    {
+                        e.Cancel = true;
+
+                        urlBlocked += 1;
+                        Count_urlCache.Text = $"Blocked {urlBlocked}";
+                        //_ = Task.Run(() => Console.WriteLine($"[NAVIGATION BLOCKED] {e.Uri}"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("Error! WBrowsefeed_NavigationStarting: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
+            /// \\\
+
             if (FloodHeader_Chk.Checked)
             {
                 await WBrowse.EnsureCoreWebView2Async();
@@ -1034,6 +1558,9 @@ namespace Ostium
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
 
+            WBrowsefeed.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
+            WBrowsefeed.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
+
             WBrowsefeed.CoreWebView2.Settings.AreHostObjectsAllowed = false;
             WBrowsefeed.CoreWebView2.Settings.IsWebMessageEnabled = false;
             WBrowsefeed.CoreWebView2.Settings.IsScriptEnabled = true;
@@ -1050,6 +1577,7 @@ namespace Ostium
         }
 
         #endregion
+
         ///
         /// <summary>
         /// Script injection
@@ -1696,8 +2224,8 @@ namespace Ostium
 
         void CookiesAdd_Btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(CookieName_Txt.Text) || 
-                string.IsNullOrWhiteSpace(CookieValue_Txt.Text) || 
+            if (string.IsNullOrWhiteSpace(CookieName_Txt.Text) ||
+                string.IsNullOrWhiteSpace(CookieValue_Txt.Text) ||
                 string.IsNullOrWhiteSpace(CookieDomain_Txt.Text))
             {
                 MessageBox.Show("Enter all values!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -3194,7 +3722,8 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception : {ex}");
+                //Console.WriteLine($"Exception : {ex}");
+                senderror.ErrorLog("Error! Download_Source_Page: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5778,6 +6307,53 @@ namespace Ostium
         }
 
         #endregion
+
+        void BlockAds_Mnu_Click(object sender, EventArgs e)
+        {
+            IsAdsTrackersBlocked = !IsAdsTrackersBlocked;
+
+            if (IsAdsTrackersBlocked)
+            {
+                BlockAdmenu_Mnu.ForeColor = Color.Red;
+                BlockAds_Mnu.ForeColor = Color.Black;
+                BlockAdFeed_Btn.ForeColor = Color.Red;
+            }
+            else
+            {
+                BlockAdmenu_Mnu.ForeColor = Color.Lime;
+                BlockAds_Mnu.ForeColor = Color.Lime;
+                BlockAdFeed_Btn.ForeColor = Color.Lime;
+            }
+        }
+
+        void ReloadListAds_Mnu_Click(object sender, EventArgs e)
+        {
+            LoadBlockList();
+        }
+
+        void AllowUrlAds_Mnu_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+            {
+                URLbrowse_Cbx.BackColor = Color.Red;
+                MessageBox.Show("Add a URL to get started!", "Empty URL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                URLbrowse_Cbx.BackColor = Color.FromArgb(41, 44, 51);
+                return;
+            }
+
+            string message = "Are you sure you want to add this URL to the whitelist?";
+            string caption = "Whitelist Add";
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (StreamWriter add_url = File.AppendText(Path.Combine(AppStart, "data", AllowUrl)))
+                {
+                    add_url.WriteLine(URLbrowse_Cbx.Text);
+                }
+                LoadBlockList();
+            }
+        }
 
         #region Options_
         ///
@@ -8506,5 +9082,6 @@ namespace Ostium
         }
 
         #endregion
+
     }
 }

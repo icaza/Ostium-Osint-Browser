@@ -112,6 +112,13 @@
             this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
             this.Credit_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.AddOn_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.BlockAdmenu_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BlockAds_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator37 = new System.Windows.Forms.ToolStripSeparator();
+            this.AllowUrlAds_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReloadListAds_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator38 = new System.Windows.Forms.ToolStripSeparator();
+            this.Count_urlCache = new System.Windows.Forms.ToolStripMenuItem();
             this.AddURL_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnURL_Btn = new System.Windows.Forms.ToolStripButton();
@@ -375,6 +382,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.Redlist_Txt = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
@@ -446,6 +455,7 @@
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
             this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
             this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
@@ -612,6 +622,7 @@
             this.Tools_Mnu,
             this.ToolsOp_Mnu,
             this.AddOn_Cbx,
+            this.BlockAdmenu_Mnu,
             this.AddURL_Btn,
             this.toolStripSeparator14,
             this.OpnURL_Btn});
@@ -619,7 +630,7 @@
             this.Tools_TAB_0.Name = "Tools_TAB_0";
             this.Tools_TAB_0.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
             this.Tools_TAB_0.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.Tools_TAB_0.Size = new System.Drawing.Size(1334, 27);
+            this.Tools_TAB_0.Size = new System.Drawing.Size(1334, 29);
             this.Tools_TAB_0.TabIndex = 12;
             this.Tools_TAB_0.Visible = false;
             // 
@@ -629,7 +640,7 @@
             this.Console_Btn.Image = global::Ostium.Properties.Resources.cmdprompt;
             this.Console_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Console_Btn.Name = "Console_Btn";
-            this.Console_Btn.Size = new System.Drawing.Size(23, 20);
+            this.Console_Btn.Size = new System.Drawing.Size(23, 22);
             this.Console_Btn.Text = "Prompt";
             this.Console_Btn.Click += new System.EventHandler(this.Console_Btn_Click);
             // 
@@ -639,7 +650,7 @@
             this.Mute_Btn.Image = global::Ostium.Properties.Resources.Unmute;
             this.Mute_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Mute_Btn.Name = "Mute_Btn";
-            this.Mute_Btn.Size = new System.Drawing.Size(23, 20);
+            this.Mute_Btn.Size = new System.Drawing.Size(23, 22);
             this.Mute_Btn.Text = "Mute/Unmute";
             this.Mute_Btn.Click += new System.EventHandler(this.Mute_Btn_Click);
             // 
@@ -676,7 +687,7 @@
             this.Construct_URL_Cbx.ForeColor = System.Drawing.Color.White;
             this.Construct_URL_Cbx.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Construct_URL_Cbx.Name = "Construct_URL_Cbx";
-            this.Construct_URL_Cbx.Size = new System.Drawing.Size(121, 23);
+            this.Construct_URL_Cbx.Size = new System.Drawing.Size(121, 25);
             this.Construct_URL_Cbx.SelectedIndexChanged += new System.EventHandler(this.Construct_URL_Cbx_SelectedIndexChanged);
             // 
             // Word_URL_Builder_Txt
@@ -693,7 +704,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // Word_Construct_URL_Btn
             // 
@@ -703,7 +714,7 @@
             this.Word_Construct_URL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Word_Construct_URL_Btn.Image")));
             this.Word_Construct_URL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Word_Construct_URL_Btn.Name = "Word_Construct_URL_Btn";
-            this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 20);
+            this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 22);
             this.Word_Construct_URL_Btn.Text = "B";
             this.Word_Construct_URL_Btn.ToolTipText = "URL Builder";
             this.Word_Construct_URL_Btn.Click += new System.EventHandler(this.Word_URL_Builder_Btn_Click);
@@ -711,7 +722,7 @@
             // toolStripSeparator36
             // 
             this.toolStripSeparator36.Name = "toolStripSeparator36";
-            this.toolStripSeparator36.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator36.Size = new System.Drawing.Size(6, 25);
             // 
             // Tools_Mnu
             // 
@@ -756,7 +767,7 @@
             this.Tools_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("Tools_Mnu.Image")));
             this.Tools_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tools_Mnu.Name = "Tools_Mnu";
-            this.Tools_Mnu.Size = new System.Drawing.Size(55, 20);
+            this.Tools_Mnu.Size = new System.Drawing.Size(55, 22);
             this.Tools_Mnu.Text = "Tools";
             // 
             // CopyURL_Mnu
@@ -1055,7 +1066,7 @@
             this.ToolsOp_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsOp_Mnu.Image")));
             this.ToolsOp_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolsOp_Mnu.Name = "ToolsOp_Mnu";
-            this.ToolsOp_Mnu.Size = new System.Drawing.Size(41, 20);
+            this.ToolsOp_Mnu.Size = new System.Drawing.Size(41, 22);
             this.ToolsOp_Mnu.Text = "°°°";
             // 
             // ForceLinkParent_Btn
@@ -1260,8 +1271,68 @@
             this.AddOn_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddOn_Cbx.ForeColor = System.Drawing.Color.White;
             this.AddOn_Cbx.Name = "AddOn_Cbx";
-            this.AddOn_Cbx.Size = new System.Drawing.Size(121, 23);
+            this.AddOn_Cbx.Size = new System.Drawing.Size(121, 25);
             this.AddOn_Cbx.SelectedIndexChanged += new System.EventHandler(this.AddOn_Cbx_SelectedIndexChanged);
+            // 
+            // BlockAdmenu_Mnu
+            // 
+            this.BlockAdmenu_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BlockAdmenu_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BlockAds_Mnu,
+            this.toolStripSeparator37,
+            this.AllowUrlAds_Mnu,
+            this.ReloadListAds_Mnu,
+            this.toolStripSeparator38,
+            this.Count_urlCache});
+            this.BlockAdmenu_Mnu.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAdmenu_Mnu.ForeColor = System.Drawing.Color.Lime;
+            this.BlockAdmenu_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("BlockAdmenu_Mnu.Image")));
+            this.BlockAdmenu_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BlockAdmenu_Mnu.Name = "BlockAdmenu_Mnu";
+            this.BlockAdmenu_Mnu.Size = new System.Drawing.Size(39, 22);
+            this.BlockAdmenu_Mnu.Text = "🚫";
+            this.BlockAdmenu_Mnu.ToolTipText = "Block Ads";
+            // 
+            // BlockAds_Mnu
+            // 
+            this.BlockAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAds_Mnu.Name = "BlockAds_Mnu";
+            this.BlockAds_Mnu.Size = new System.Drawing.Size(179, 22);
+            this.BlockAds_Mnu.Text = "Block/Unblock";
+            this.BlockAds_Mnu.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
+            // 
+            // toolStripSeparator37
+            // 
+            this.toolStripSeparator37.Name = "toolStripSeparator37";
+            this.toolStripSeparator37.Size = new System.Drawing.Size(176, 6);
+            // 
+            // AllowUrlAds_Mnu
+            // 
+            this.AllowUrlAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllowUrlAds_Mnu.Name = "AllowUrlAds_Mnu";
+            this.AllowUrlAds_Mnu.Size = new System.Drawing.Size(179, 22);
+            this.AllowUrlAds_Mnu.Text = "Allow open URL";
+            this.AllowUrlAds_Mnu.Click += new System.EventHandler(this.AllowUrlAds_Mnu_Click);
+            // 
+            // ReloadListAds_Mnu
+            // 
+            this.ReloadListAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReloadListAds_Mnu.Name = "ReloadListAds_Mnu";
+            this.ReloadListAds_Mnu.Size = new System.Drawing.Size(179, 22);
+            this.ReloadListAds_Mnu.Text = "Reload URLs";
+            this.ReloadListAds_Mnu.Click += new System.EventHandler(this.ReloadListAds_Mnu_Click);
+            // 
+            // toolStripSeparator38
+            // 
+            this.toolStripSeparator38.Name = "toolStripSeparator38";
+            this.toolStripSeparator38.Size = new System.Drawing.Size(176, 6);
+            // 
+            // Count_urlCache
+            // 
+            this.Count_urlCache.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Count_urlCache.ForeColor = System.Drawing.Color.Red;
+            this.Count_urlCache.Name = "Count_urlCache";
+            this.Count_urlCache.Size = new System.Drawing.Size(179, 22);
             // 
             // AddURL_Btn
             // 
@@ -1273,14 +1344,15 @@
             this.AddURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddURL_Btn.Image")));
             this.AddURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddURL_Btn.Name = "AddURL_Btn";
-            this.AddURL_Btn.Size = new System.Drawing.Size(59, 20);
+            this.AddURL_Btn.Size = new System.Drawing.Size(59, 22);
             this.AddURL_Btn.Text = "Add DB";
+            this.AddURL_Btn.ToolTipText = "Add favorite link";
             this.AddURL_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
             // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(6, 25);
             // 
             // OpnURL_Btn
             // 
@@ -1292,8 +1364,9 @@
             this.OpnURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnURL_Btn.Image")));
             this.OpnURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnURL_Btn.Name = "OpnURL_Btn";
-            this.OpnURL_Btn.Size = new System.Drawing.Size(69, 20);
+            this.OpnURL_Btn.Size = new System.Drawing.Size(69, 22);
             this.OpnURL_Btn.Text = "Open DB";
+            this.OpnURL_Btn.ToolTipText = "Open favorite links";
             this.OpnURL_Btn.Click += new System.EventHandler(this.OpnURL_Btn_Click);
             // 
             // Control_Tab
@@ -2931,7 +3004,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3224,7 +3297,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -5056,6 +5129,8 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.Redlist_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label26);
             this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Opt_Txt);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label25);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
@@ -5083,13 +5158,34 @@
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
+            // Redlist_Txt
+            // 
+            this.Redlist_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Redlist_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Redlist_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.Redlist_Txt.Location = new System.Drawing.Point(9, 597);
+            this.Redlist_Txt.Name = "Redlist_Txt";
+            this.Redlist_Txt.Size = new System.Drawing.Size(675, 22);
+            this.Redlist_Txt.TabIndex = 22;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.White;
+            this.label26.Location = new System.Drawing.Point(6, 576);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(151, 14);
+            this.label26.TabIndex = 21;
+            this.label26.Text = "Ad block list directory";
+            // 
             // CyberChef_Opt_Txt
             // 
             this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 532);
+            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 534);
             this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
             this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
             this.CyberChef_Opt_Txt.TabIndex = 20;
@@ -5098,7 +5194,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(6, 511);
+            this.label25.Location = new System.Drawing.Point(6, 513);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(180, 14);
             this.label25.TabIndex = 19;
@@ -5119,7 +5215,7 @@
             this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 596);
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 659);
             this.ArchiveAdd_Txt.Multiline = true;
             this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
             this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
@@ -5129,7 +5225,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 574);
+            this.label31.Location = new System.Drawing.Point(4, 637);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(307, 14);
             this.label31.TabIndex = 16;
@@ -5300,9 +5396,9 @@
             this.label19.ForeColor = System.Drawing.Color.White;
             this.label19.Location = new System.Drawing.Point(4, 261);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(130, 14);
+            this.label19.Size = new System.Drawing.Size(133, 14);
             this.label19.TabIndex = 8;
-            this.label19.Text = "User Agent Search";
+            this.label19.Text = "User Agent Change";
             // 
             // panel27
             // 
@@ -5588,12 +5684,13 @@
             this.GoFeed_Btn,
             this.toolStripSeparator20,
             this.ToolsFeed_Mnu,
-            this.JavaScriptFeed_Btn});
+            this.JavaScriptFeed_Btn,
+            this.BlockAdFeed_Btn});
             this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_1.Name = "Tools_TAB_1";
             this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
             this.Tools_TAB_1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 27);
+            this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 29);
             this.Tools_TAB_1.TabIndex = 14;
             this.Tools_TAB_1.Visible = false;
             // 
@@ -5606,21 +5703,21 @@
             this.HomeFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("HomeFeed_Btn.Image")));
             this.HomeFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HomeFeed_Btn.Name = "HomeFeed_Btn";
-            this.HomeFeed_Btn.Size = new System.Drawing.Size(49, 20);
+            this.HomeFeed_Btn.Size = new System.Drawing.Size(49, 22);
             this.HomeFeed_Btn.Text = "Home";
             this.HomeFeed_Btn.Click += new System.EventHandler(this.HomeFeed_Btn_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.ForeColor = System.Drawing.Color.Gray;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(72, 20);
+            this.toolStripLabel1.Size = new System.Drawing.Size(72, 22);
             this.toolStripLabel1.Text = "Category:";
             // 
             // CategorieFeed_Cbx
@@ -5631,7 +5728,7 @@
             this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.White;
             this.CategorieFeed_Cbx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 0);
             this.CategorieFeed_Cbx.Name = "CategorieFeed_Cbx";
-            this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 22);
+            this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 24);
             // 
             // CreatCategorie_Btn
             // 
@@ -5643,7 +5740,7 @@
             this.CreatCategorie_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CreatCategorie_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.CreatCategorie_Btn.Name = "CreatCategorie_Btn";
-            this.CreatCategorie_Btn.Size = new System.Drawing.Size(55, 18);
+            this.CreatCategorie_Btn.Size = new System.Drawing.Size(55, 20);
             this.CreatCategorie_Btn.Text = "Create";
             this.CreatCategorie_Btn.Click += new System.EventHandler(this.CreatCategorie_Btn_Click);
             // 
@@ -5654,7 +5751,7 @@
             this.NewCategory_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewCategory_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.NewCategory_Txt.Name = "NewCategory_Txt";
-            this.NewCategory_Txt.Size = new System.Drawing.Size(150, 23);
+            this.NewCategory_Txt.Size = new System.Drawing.Size(150, 25);
             this.NewCategory_Txt.Text = "new category";
             this.NewCategory_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NewCategory_Txt.Click += new System.EventHandler(this.NewCategory_Txt_Click);
@@ -5669,7 +5766,7 @@
             this.AddFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.AddFeed_Btn.Name = "AddFeed_Btn";
-            this.AddFeed_Btn.Size = new System.Drawing.Size(72, 18);
+            this.AddFeed_Btn.Size = new System.Drawing.Size(72, 20);
             this.AddFeed_Btn.Text = "Add Feed";
             this.AddFeed_Btn.Click += new System.EventHandler(this.AddFeed_Btn_Click);
             // 
@@ -5680,7 +5777,7 @@
             this.NewFeed_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewFeed_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.NewFeed_Txt.Name = "NewFeed_Txt";
-            this.NewFeed_Txt.Size = new System.Drawing.Size(150, 23);
+            this.NewFeed_Txt.Size = new System.Drawing.Size(150, 25);
             this.NewFeed_Txt.Text = "new feed";
             this.NewFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NewFeed_Txt.Click += new System.EventHandler(this.NewFeed_Txt_Click);
@@ -5695,14 +5792,14 @@
             this.ManageFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ManageFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.ManageFeed_Btn.Name = "ManageFeed_Btn";
-            this.ManageFeed_Btn.Size = new System.Drawing.Size(95, 18);
+            this.ManageFeed_Btn.Size = new System.Drawing.Size(95, 20);
             this.ManageFeed_Btn.Text = "Manage feed";
             this.ManageFeed_Btn.Click += new System.EventHandler(this.ManageFeed_Btn_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // DeleteCatfeed_Btn
             // 
@@ -5714,7 +5811,7 @@
             this.DeleteCatfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteCatfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.DeleteCatfeed_Btn.Name = "DeleteCatfeed_Btn";
-            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(97, 18);
+            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(97, 20);
             this.DeleteCatfeed_Btn.Text = "Del Category";
             this.DeleteCatfeed_Btn.Visible = false;
             this.DeleteCatfeed_Btn.Click += new System.EventHandler(this.DeleteCatfeed_Btn_Click);
@@ -5722,7 +5819,7 @@
             // Separator5
             // 
             this.Separator5.Name = "Separator5";
-            this.Separator5.Size = new System.Drawing.Size(6, 23);
+            this.Separator5.Size = new System.Drawing.Size(6, 25);
             this.Separator5.Visible = false;
             // 
             // DeleteURLfeed_Btn
@@ -5735,7 +5832,7 @@
             this.DeleteURLfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteURLfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.DeleteURLfeed_Btn.Name = "DeleteURLfeed_Btn";
-            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(64, 18);
+            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(64, 20);
             this.DeleteURLfeed_Btn.Text = "Del URL";
             this.DeleteURLfeed_Btn.Visible = false;
             this.DeleteURLfeed_Btn.Click += new System.EventHandler(this.DeleteURLfeed_Btn_Click);
@@ -5743,7 +5840,7 @@
             // Separator4
             // 
             this.Separator4.Name = "Separator4";
-            this.Separator4.Size = new System.Drawing.Size(6, 23);
+            this.Separator4.Size = new System.Drawing.Size(6, 25);
             this.Separator4.Visible = false;
             // 
             // CollapseTitleFeed_Btn
@@ -5756,7 +5853,7 @@
             this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
-            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(90, 18);
+            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(90, 20);
             this.CollapseTitleFeed_Btn.Text = "Collapse On";
             this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
             // 
@@ -5767,7 +5864,7 @@
             this.GoFeed_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GoFeed_Txt.ForeColor = System.Drawing.Color.Yellow;
             this.GoFeed_Txt.Name = "GoFeed_Txt";
-            this.GoFeed_Txt.Size = new System.Drawing.Size(40, 23);
+            this.GoFeed_Txt.Size = new System.Drawing.Size(40, 25);
             this.GoFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GoFeed_Txt.Click += new System.EventHandler(this.GoFeed_Txt_Click);
             // 
@@ -5779,14 +5876,14 @@
             this.GoFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("GoFeed_Btn.Image")));
             this.GoFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoFeed_Btn.Name = "GoFeed_Btn";
-            this.GoFeed_Btn.Size = new System.Drawing.Size(29, 20);
+            this.GoFeed_Btn.Size = new System.Drawing.Size(29, 22);
             this.GoFeed_Btn.Text = "Go";
             this.GoFeed_Btn.Click += new System.EventHandler(this.GoFeed_Btn_Click);
             // 
             // toolStripSeparator20
             // 
             this.toolStripSeparator20.Name = "toolStripSeparator20";
-            this.toolStripSeparator20.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator20.Size = new System.Drawing.Size(6, 25);
             // 
             // ToolsFeed_Mnu
             // 
@@ -5804,7 +5901,7 @@
             this.ToolsFeed_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolsFeed_Mnu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.ToolsFeed_Mnu.Name = "ToolsFeed_Mnu";
-            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(55, 18);
+            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(55, 20);
             this.ToolsFeed_Mnu.Text = "Tools";
             // 
             // CopyURLfeed_Mnu
@@ -5848,9 +5945,22 @@
             this.JavaScriptFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("JavaScriptFeed_Btn.Image")));
             this.JavaScriptFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.JavaScriptFeed_Btn.Name = "JavaScriptFeed_Btn";
-            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(75, 20);
+            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(75, 22);
             this.JavaScriptFeed_Btn.Text = "JS Enable";
             this.JavaScriptFeed_Btn.Click += new System.EventHandler(this.JavaScriptFeed_Btn_Click);
+            // 
+            // BlockAdFeed_Btn
+            // 
+            this.BlockAdFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BlockAdFeed_Btn.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAdFeed_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.BlockAdFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("BlockAdFeed_Btn.Image")));
+            this.BlockAdFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BlockAdFeed_Btn.Name = "BlockAdFeed_Btn";
+            this.BlockAdFeed_Btn.Size = new System.Drawing.Size(30, 22);
+            this.BlockAdFeed_Btn.Text = "🚫";
+            this.BlockAdFeed_Btn.ToolTipText = "Block Ad/Tracker";
+            this.BlockAdFeed_Btn.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
             // 
             // Tools_TAB_3
             // 
@@ -7242,6 +7352,16 @@
         private System.Windows.Forms.ToolStripMenuItem CyberChef_Btn;
         private System.Windows.Forms.ToolStripMenuItem PlantUmlLUpdate_Mnu;
         private System.Windows.Forms.Button CookiesAdd_Btn;
+        private System.Windows.Forms.ToolStripButton BlockAdFeed_Btn;
+        private System.Windows.Forms.ToolStripDropDownButton BlockAdmenu_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem BlockAds_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem ReloadListAds_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem AllowUrlAds_Mnu;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator37;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator38;
+        private System.Windows.Forms.ToolStripMenuItem Count_urlCache;
+        private System.Windows.Forms.TextBox Redlist_Txt;
+        private System.Windows.Forms.Label label26;
     }
 }
 

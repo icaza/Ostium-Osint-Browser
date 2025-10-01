@@ -5,6 +5,11 @@ SDelete is part of Microsoft's Sysinternals suite, learn about its use and the d
 
 # Install_SecureDelete_ContextMenu.bat
 
+_Change the directory according to your configuration in the file_ Install_SecureDelete_ContextMenu.bat
+
+set "ICO=\Ostium\SDelete_cmd\sdsd.ico"
+set "SCRIPT=\Ostium\SDelete_cmd\SDelete_cmd.bat"
+
 Script to add the registry keys needed to add a Secure Deletion button to the Windows context menu.
 ! Must be run in Admin mode
 
