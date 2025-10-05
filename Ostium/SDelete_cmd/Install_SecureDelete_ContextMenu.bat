@@ -6,8 +6,8 @@
 :: ===========================================
 
 :: Full paths (adjust if different)
-set "ICO=C:\Users\icaza\Documents\Ostium\SDelete_cmd\sdsd.ico"
-set "SCRIPT=C:\Users\icaza\Documents\Ostium\SDelete_cmd\SDelete_cmd.bat"
+set "ICO=\Ostium\SDelete_cmd\sdsd.ico"
+set "SCRIPT=\Ostium\SDelete_cmd\SDelete_cmd.bat"
 
 echo.
 echo === Installing "Secure deletion" into context menu (files & folders) ===

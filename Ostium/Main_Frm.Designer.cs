@@ -1297,42 +1297,42 @@
             // 
             this.BlockAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BlockAds_Mnu.Name = "BlockAds_Mnu";
-            this.BlockAds_Mnu.Size = new System.Drawing.Size(179, 22);
+            this.BlockAds_Mnu.Size = new System.Drawing.Size(180, 22);
             this.BlockAds_Mnu.Text = "Block/Unblock";
             this.BlockAds_Mnu.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
             // 
             // toolStripSeparator37
             // 
             this.toolStripSeparator37.Name = "toolStripSeparator37";
-            this.toolStripSeparator37.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator37.Size = new System.Drawing.Size(177, 6);
             // 
             // AllowUrlAds_Mnu
             // 
             this.AllowUrlAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AllowUrlAds_Mnu.Name = "AllowUrlAds_Mnu";
-            this.AllowUrlAds_Mnu.Size = new System.Drawing.Size(179, 22);
-            this.AllowUrlAds_Mnu.Text = "Allow open URL";
+            this.AllowUrlAds_Mnu.Size = new System.Drawing.Size(180, 22);
+            this.AllowUrlAds_Mnu.Text = "Allow URL";
             this.AllowUrlAds_Mnu.Click += new System.EventHandler(this.AllowUrlAds_Mnu_Click);
             // 
             // ReloadListAds_Mnu
             // 
             this.ReloadListAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReloadListAds_Mnu.Name = "ReloadListAds_Mnu";
-            this.ReloadListAds_Mnu.Size = new System.Drawing.Size(179, 22);
+            this.ReloadListAds_Mnu.Size = new System.Drawing.Size(180, 22);
             this.ReloadListAds_Mnu.Text = "Reload URLs";
             this.ReloadListAds_Mnu.Click += new System.EventHandler(this.ReloadListAds_Mnu_Click);
             // 
             // toolStripSeparator38
             // 
             this.toolStripSeparator38.Name = "toolStripSeparator38";
-            this.toolStripSeparator38.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator38.Size = new System.Drawing.Size(177, 6);
             // 
             // Count_urlCache
             // 
             this.Count_urlCache.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Count_urlCache.ForeColor = System.Drawing.Color.Red;
             this.Count_urlCache.Name = "Count_urlCache";
-            this.Count_urlCache.Size = new System.Drawing.Size(179, 22);
+            this.Count_urlCache.Size = new System.Drawing.Size(180, 22);
             // 
             // AddURL_Btn
             // 
@@ -1380,10 +1380,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1403,7 +1403,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 23);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1416,7 +1416,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 461);
+            this.WBrowse.Size = new System.Drawing.Size(920, 432);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
             // 
@@ -1436,7 +1436,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 491);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 462);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
@@ -1570,7 +1570,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 556);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 527);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1579,7 +1579,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 528);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 499);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -1633,7 +1633,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 452);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 423);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -2013,7 +2013,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 583);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 554);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -2027,7 +2027,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 239);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 210);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -2038,7 +2038,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 266);
+            this.label5.Location = new System.Drawing.Point(0, 237);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -2050,7 +2050,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 290);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 261);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -2073,7 +2073,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 392);
+            this.label1.Location = new System.Drawing.Point(0, 363);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -2085,7 +2085,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 416);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 387);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -2097,7 +2097,7 @@
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 518);
+            this.label23.Location = new System.Drawing.Point(0, 489);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -2109,7 +2109,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 542);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 513);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -2123,7 +2123,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 586);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 557);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
@@ -3004,7 +3004,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3297,7 +3297,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -4521,9 +4521,9 @@
             this.KeepTrackDir_Opn.ForeColor = System.Drawing.Color.White;
             this.KeepTrackDir_Opn.Location = new System.Drawing.Point(8, 653);
             this.KeepTrackDir_Opn.Name = "KeepTrackDir_Opn";
-            this.KeepTrackDir_Opn.Size = new System.Drawing.Size(147, 14);
+            this.KeepTrackDir_Opn.Size = new System.Drawing.Size(114, 14);
             this.KeepTrackDir_Opn.TabIndex = 28;
-            this.KeepTrackDir_Opn.Text = "Keep Track Directory";
+            this.KeepTrackDir_Opn.Text = "Keep Track path";
             this.KeepTrackDir_Opn.Click += new System.EventHandler(this.KeepTrackDir_Opn_Click);
             // 
             // JsonDir_Lbl
@@ -4545,9 +4545,9 @@
             this.JsonDir_Opn.ForeColor = System.Drawing.Color.White;
             this.JsonDir_Opn.Location = new System.Drawing.Point(8, 608);
             this.JsonDir_Opn.Name = "JsonDir_Opn";
-            this.JsonDir_Opn.Size = new System.Drawing.Size(135, 14);
+            this.JsonDir_Opn.Size = new System.Drawing.Size(102, 14);
             this.JsonDir_Opn.TabIndex = 26;
-            this.JsonDir_Opn.Text = "Json files Directory";
+            this.JsonDir_Opn.Text = "Json files path";
             this.JsonDir_Opn.Click += new System.EventHandler(this.JsonDir_Opn_Click);
             // 
             // MapDir_Lbl
@@ -4569,9 +4569,9 @@
             this.MapDir_Opn.ForeColor = System.Drawing.Color.White;
             this.MapDir_Opn.Location = new System.Drawing.Point(8, 563);
             this.MapDir_Opn.Name = "MapDir_Opn";
-            this.MapDir_Opn.Size = new System.Drawing.Size(100, 14);
+            this.MapDir_Opn.Size = new System.Drawing.Size(67, 14);
             this.MapDir_Opn.TabIndex = 24;
-            this.MapDir_Opn.Text = "Map Directory";
+            this.MapDir_Opn.Text = "Map path";
             this.MapDir_Opn.Click += new System.EventHandler(this.MapDir_Opn_Click);
             // 
             // OstiumDir_Opn
@@ -4582,9 +4582,9 @@
             this.OstiumDir_Opn.ForeColor = System.Drawing.Color.White;
             this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
             this.OstiumDir_Opn.Name = "OstiumDir_Opn";
-            this.OstiumDir_Opn.Size = new System.Drawing.Size(120, 14);
+            this.OstiumDir_Opn.Size = new System.Drawing.Size(87, 14);
             this.OstiumDir_Opn.TabIndex = 0;
-            this.OstiumDir_Opn.Text = "Ostium Directory";
+            this.OstiumDir_Opn.Text = "path Ostium";
             this.OstiumDir_Opn.Click += new System.EventHandler(this.OstiumDir_Opn_Click);
             // 
             // BkmkltDir_Lbl
@@ -4606,9 +4606,9 @@
             this.AddOnDir_Opn.ForeColor = System.Drawing.Color.White;
             this.AddOnDir_Opn.Location = new System.Drawing.Point(8, 56);
             this.AddOnDir_Opn.Name = "AddOnDir_Opn";
-            this.AddOnDir_Opn.Size = new System.Drawing.Size(162, 14);
+            this.AddOnDir_Opn.Size = new System.Drawing.Size(129, 14);
             this.AddOnDir_Opn.TabIndex = 1;
-            this.AddOnDir_Opn.Text = "Add-On Tools Directory";
+            this.AddOnDir_Opn.Text = "Add-On Tools path";
             this.AddOnDir_Opn.Click += new System.EventHandler(this.AddOnDir_Opn_Click);
             // 
             // BkmkltDir_Opn
@@ -4619,9 +4619,9 @@
             this.BkmkltDir_Opn.ForeColor = System.Drawing.Color.White;
             this.BkmkltDir_Opn.Location = new System.Drawing.Point(8, 518);
             this.BkmkltDir_Opn.Name = "BkmkltDir_Opn";
-            this.BkmkltDir_Opn.Size = new System.Drawing.Size(164, 14);
+            this.BkmkltDir_Opn.Size = new System.Drawing.Size(131, 14);
             this.BkmkltDir_Opn.TabIndex = 22;
-            this.BkmkltDir_Opn.Text = "Bookmarklets Directory";
+            this.BkmkltDir_Opn.Text = "Bookmarklets path";
             this.BkmkltDir_Opn.Click += new System.EventHandler(this.BkmkltDir_Opn_Click);
             // 
             // DatabaseDir_Opn
@@ -4632,9 +4632,9 @@
             this.DatabaseDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DatabaseDir_Opn.Location = new System.Drawing.Point(8, 103);
             this.DatabaseDir_Opn.Name = "DatabaseDir_Opn";
-            this.DatabaseDir_Opn.Size = new System.Drawing.Size(135, 14);
+            this.DatabaseDir_Opn.Size = new System.Drawing.Size(102, 14);
             this.DatabaseDir_Opn.TabIndex = 2;
-            this.DatabaseDir_Opn.Text = "Database Directory";
+            this.DatabaseDir_Opn.Text = "Database path";
             this.DatabaseDir_Opn.Click += new System.EventHandler(this.DatabaseDir_Opn_Click);
             // 
             // SpritesDir_Lbl
@@ -4656,9 +4656,9 @@
             this.FeedDir_Opn.ForeColor = System.Drawing.Color.White;
             this.FeedDir_Opn.Location = new System.Drawing.Point(8, 150);
             this.FeedDir_Opn.Name = "FeedDir_Opn";
-            this.FeedDir_Opn.Size = new System.Drawing.Size(105, 14);
+            this.FeedDir_Opn.Size = new System.Drawing.Size(72, 14);
             this.FeedDir_Opn.TabIndex = 3;
-            this.FeedDir_Opn.Text = "Feed Directory";
+            this.FeedDir_Opn.Text = "Feed path";
             this.FeedDir_Opn.Click += new System.EventHandler(this.FeedDir_Opn_Click);
             // 
             // SpritesDir_Opn
@@ -4669,9 +4669,9 @@
             this.SpritesDir_Opn.ForeColor = System.Drawing.Color.White;
             this.SpritesDir_Opn.Location = new System.Drawing.Point(8, 473);
             this.SpritesDir_Opn.Name = "SpritesDir_Opn";
-            this.SpritesDir_Opn.Size = new System.Drawing.Size(120, 14);
+            this.SpritesDir_Opn.Size = new System.Drawing.Size(87, 14);
             this.SpritesDir_Opn.TabIndex = 20;
-            this.SpritesDir_Opn.Text = "Sprites Directory";
+            this.SpritesDir_Opn.Text = "Sprites path";
             this.SpritesDir_Opn.Click += new System.EventHandler(this.SpritesDir_Opn_Click);
             // 
             // ScriptDir_Opn
@@ -4682,9 +4682,9 @@
             this.ScriptDir_Opn.ForeColor = System.Drawing.Color.White;
             this.ScriptDir_Opn.Location = new System.Drawing.Point(8, 197);
             this.ScriptDir_Opn.Name = "ScriptDir_Opn";
-            this.ScriptDir_Opn.Size = new System.Drawing.Size(112, 14);
+            this.ScriptDir_Opn.Size = new System.Drawing.Size(79, 14);
             this.ScriptDir_Opn.TabIndex = 4;
-            this.ScriptDir_Opn.Text = "Script Directory";
+            this.ScriptDir_Opn.Text = "Script path";
             this.ScriptDir_Opn.Click += new System.EventHandler(this.ScriptDir_Opn_Click);
             // 
             // DiagramDir_Lbl
@@ -4706,9 +4706,9 @@
             this.WorkFlowDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowDir_Opn.Location = new System.Drawing.Point(8, 244);
             this.WorkFlowDir_Opn.Name = "WorkFlowDir_Opn";
-            this.WorkFlowDir_Opn.Size = new System.Drawing.Size(138, 14);
+            this.WorkFlowDir_Opn.Size = new System.Drawing.Size(105, 14);
             this.WorkFlowDir_Opn.TabIndex = 5;
-            this.WorkFlowDir_Opn.Text = "Workflow Directory";
+            this.WorkFlowDir_Opn.Text = "Workflow path";
             this.WorkFlowDir_Opn.Click += new System.EventHandler(this.WorkFlowDir_Opn_Click);
             // 
             // DiagramDir_Opn
@@ -4719,9 +4719,9 @@
             this.DiagramDir_Opn.ForeColor = System.Drawing.Color.White;
             this.DiagramDir_Opn.Location = new System.Drawing.Point(8, 428);
             this.DiagramDir_Opn.Name = "DiagramDir_Opn";
-            this.DiagramDir_Opn.Size = new System.Drawing.Size(129, 14);
+            this.DiagramDir_Opn.Size = new System.Drawing.Size(96, 14);
             this.DiagramDir_Opn.TabIndex = 18;
-            this.DiagramDir_Opn.Text = "Diagram Directory";
+            this.DiagramDir_Opn.Text = "Diagram path";
             this.DiagramDir_Opn.Click += new System.EventHandler(this.DiagramDir_Opn_Click);
             // 
             // OstiumDir_Lbl
@@ -4811,9 +4811,9 @@
             this.PictureDir_Opn.ForeColor = System.Drawing.Color.White;
             this.PictureDir_Opn.Location = new System.Drawing.Point(8, 338);
             this.PictureDir_Opn.Name = "PictureDir_Opn";
-            this.PictureDir_Opn.Size = new System.Drawing.Size(127, 14);
+            this.PictureDir_Opn.Size = new System.Drawing.Size(94, 14);
             this.PictureDir_Opn.TabIndex = 14;
-            this.PictureDir_Opn.Text = "Pictures Directory";
+            this.PictureDir_Opn.Text = "Pictures path";
             this.PictureDir_Opn.Click += new System.EventHandler(this.PictureDir_Opn_Click);
             // 
             // ScriptDir_Lbl
@@ -4857,9 +4857,9 @@
             this.WorkFlowModelDir_Opn.ForeColor = System.Drawing.Color.White;
             this.WorkFlowModelDir_Opn.Location = new System.Drawing.Point(8, 291);
             this.WorkFlowModelDir_Opn.Name = "WorkFlowModelDir_Opn";
-            this.WorkFlowModelDir_Opn.Size = new System.Drawing.Size(181, 14);
+            this.WorkFlowModelDir_Opn.Size = new System.Drawing.Size(148, 14);
             this.WorkFlowModelDir_Opn.TabIndex = 12;
-            this.WorkFlowModelDir_Opn.Text = "Workflow Model Directory";
+            this.WorkFlowModelDir_Opn.Text = "Workflow Model path";
             this.WorkFlowModelDir_Opn.Click += new System.EventHandler(this.WorkFlowModelDir_Opn_Click);
             // 
             // panel26
@@ -4983,7 +4983,7 @@
             this.MultipleDir_Opt.Name = "MultipleDir_Opt";
             this.MultipleDir_Opt.Size = new System.Drawing.Size(218, 36);
             this.MultipleDir_Opt.TabIndex = 23;
-            this.MultipleDir_Opt.Text = "Multiple Windows Directory";
+            this.MultipleDir_Opt.Text = "Multiple Windows Path";
             this.MultipleDir_Opt.UseVisualStyleBackColor = false;
             this.MultipleDir_Opt.Click += new System.EventHandler(this.MultipleDir_Opt_Click);
             // 
@@ -5001,7 +5001,7 @@
             this.Furlconstdir_Opt.Name = "Furlconstdir_Opt";
             this.Furlconstdir_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furlconstdir_Opt.TabIndex = 22;
-            this.Furlconstdir_Opt.Text = "Build URL Directory";
+            this.Furlconstdir_Opt.Text = "Build URL Path";
             this.Furlconstdir_Opt.UseVisualStyleBackColor = false;
             this.Furlconstdir_Opt.Click += new System.EventHandler(this.Furlconstdir_Opt_Click);
             // 
@@ -5175,9 +5175,9 @@
             this.label26.ForeColor = System.Drawing.Color.White;
             this.label26.Location = new System.Drawing.Point(6, 576);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(151, 14);
+            this.label26.Size = new System.Drawing.Size(120, 14);
             this.label26.TabIndex = 21;
-            this.label26.Text = "Ad block list directory";
+            this.label26.Text = "Ad block list path";
             // 
             // CyberChef_Opt_Txt
             // 
@@ -5196,9 +5196,9 @@
             this.label25.ForeColor = System.Drawing.Color.White;
             this.label25.Location = new System.Drawing.Point(6, 513);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(180, 14);
+            this.label25.Size = new System.Drawing.Size(110, 14);
             this.label25.TabIndex = 19;
-            this.label25.Text = "CyberChef directory index";
+            this.label25.Text = "Path CyberChef";
             // 
             // label32
             // 
@@ -5227,9 +5227,9 @@
             this.label31.ForeColor = System.Drawing.Color.White;
             this.label31.Location = new System.Drawing.Point(4, 637);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(307, 14);
+            this.label31.Size = new System.Drawing.Size(326, 14);
             this.label31.TabIndex = 16;
-            this.label31.Text = "Add directory to save in archive (line by line)";
+            this.label31.Text = "Add a path to save it in the archive (line by line)";
             // 
             // label4
             // 
@@ -5270,9 +5270,9 @@
             this.label22.ForeColor = System.Drawing.Color.White;
             this.label22.Location = new System.Drawing.Point(4, 450);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(98, 14);
+            this.label22.Size = new System.Drawing.Size(131, 14);
             this.label22.TabIndex = 14;
-            this.label22.Text = "Default Editor";
+            this.label22.Text = "Default Editor path";
             // 
             // label13
             // 

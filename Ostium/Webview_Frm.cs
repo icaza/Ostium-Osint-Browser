@@ -15,9 +15,6 @@ namespace Ostium
     {
         #region Var_
 
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
-
         readonly string AppStart = Application.StartupPath + @"\";
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
@@ -261,7 +258,7 @@ namespace Ostium
         {
             string textData = WBrowsew.Source.AbsoluteUri;
             Clipboard.SetData(DataFormats.Text, textData);
-            Beep(1500, 400);
+            Console.Beep(1500, 400);
         }
 
         #endregion

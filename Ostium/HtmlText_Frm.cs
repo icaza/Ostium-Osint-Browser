@@ -18,9 +18,6 @@ namespace Ostium
     {
         #region Var_
 
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
-
         readonly IcazaClass senderror = new IcazaClass();
         readonly IcazaClass selectdir = new IcazaClass();
 
@@ -252,7 +249,7 @@ namespace Ostium
             {
                 string textData = URLbrowse_Cbx.Text;
                 Clipboard.SetData(DataFormats.Text, textData);
-                Beep(1500, 400);
+                Console.Beep(1500, 400);
             }
         }
 
@@ -274,7 +271,7 @@ namespace Ostium
                         {
                             fc.WriteLine(WbrowseTxt.Text);
                         }
-                        Beep(800, 200);
+                        Console.Beep(800, 200);
                     }
                 }
                 catch (Exception ex)

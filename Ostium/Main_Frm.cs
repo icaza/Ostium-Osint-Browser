@@ -46,16 +46,6 @@ namespace Ostium
         #region Var_
         ///
         /// <summary>
-        /// Emits a beep at the end of certain actions
-        /// </summary>
-        /// <param name="freq">Beep tone frequency</param>
-        /// <param name="duration">Beep emission duration</param>
-        /// <returns></returns>
-        /// 
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
-        ///
-        /// <summary>
         /// Initialization of the voice for Reading Feed Titles
         /// </summary>
         ///
@@ -1870,7 +1860,7 @@ namespace Ostium
             else
             {
                 ClearOnOff = "off";
-                Process.Start(AppStart + "Ostium.exe");
+                Process.Start(Path.Combine(AppStart, "Ostium.exe"));
                 Close();
             }
         }
@@ -1923,7 +1913,7 @@ namespace Ostium
                 {
                     Word_URL_Builder_Txt.Text = Word_URL_Builder_Txt.Text.Replace(" ", "%20");
                     URL_Builder(Word_URL_Builder_Txt.Text);
-                    Beep(800, 200);
+                    Console.Beep(800, 200);
                 }
                 else
                 {
@@ -1973,7 +1963,7 @@ namespace Ostium
             {
                 string textData = WBrowse.Source.AbsoluteUri;
                 Clipboard.SetData(DataFormats.Text, textData);
-                Beep(1500, 400);
+                Console.Beep(1500, 400);
             }
             catch (Exception ex)
             {
@@ -2118,7 +2108,7 @@ namespace Ostium
                 string filePath = Path.Combine(Pictures, $"{Una}_{Domain}.png");
 
                 img.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
-                Beep(800, 200);
+                Console.Beep(800, 200);
 
                 Process.Start(filePath);
             }
@@ -2235,7 +2225,7 @@ namespace Ostium
             CoreWebView2Cookie cookie = WBrowse.CoreWebView2.CookieManager.CreateCookie(CookieName_Txt.Text, CookieValue_Txt.Text, CookieDomain_Txt.Text, "/");
             WBrowse.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
 
-            Beep(800, 200);
+            Console.Beep(800, 200);
         }
 
         void SetCookie_Btn_Click(object sender, EventArgs e)
@@ -2685,7 +2675,7 @@ namespace Ostium
         {
             string textData = WBrowsefeed.Source.AbsoluteUri;
             Clipboard.SetData(DataFormats.Text, textData);
-            Beep(1500, 400);
+            Console.Beep(1500, 400);
         }
 
         void TraductPageFeed_Btn_Click(object sender, EventArgs e)
@@ -2782,7 +2772,7 @@ namespace Ostium
                 {
                     using (Process proc = new Process())
                     {
-                        proc.StartInfo.FileName = SVGviewerdir + "SVGviewer.exe";
+                        proc.StartInfo.FileName = Path.Combine(SVGviewerdir, "SVGviewer.exe");
                         proc.StartInfo.Arguments = fileopen;
                         proc.StartInfo.UseShellExecute = true;
                         proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -2842,7 +2832,7 @@ namespace Ostium
                     }
                 Export:
                     File.Copy(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"), Path.Combine(dirselect, NameProjectwf_Txt.Text + ".xml"), true);
-                    Beep(1000, 400);
+                    Console.Beep(1000, 400);
                 }
             }
             catch (Exception ex)
@@ -2875,7 +2865,7 @@ namespace Ostium
                     }
                 Export:
                     ConvertJson(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"), Path.Combine(dirselect, NameProjectwf_Txt.Text + ".json"), 0);
-                    Beep(1000, 400);
+                    Console.Beep(1000, 400);
                 }
             }
             catch (Exception ex)
@@ -3718,11 +3708,10 @@ namespace Ostium
                 string pageContents = encoding.GetString(contentBytes);
 
                 File_Write(Path.Combine(AppStart, "sourcepage"), pageContents);
-                Beep(300, 200);
+                Console.Beep(300, 200);
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Exception : {ex}");
                 senderror.ErrorLog("Error! Download_Source_Page: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
@@ -4100,7 +4089,7 @@ namespace Ostium
                 if (opnOrNo == "yes")
                     Open_Source_Frm(nameFile);
                 else
-                    Beep(1200, 200);
+                    Console.Beep(1200, 200);
             }
             catch (Exception ex)
             {
@@ -4404,7 +4393,7 @@ namespace Ostium
                 if (DBadmin == "off")
                 {
                     OpnAllTable();
-                    Beep(1000, 400);
+                    Console.Beep(1000, 400);
                 }
                 DBadmin = "off";
             }
@@ -5027,7 +5016,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"General error: {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Exception: {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -5435,7 +5424,7 @@ namespace Ostium
             SaveVolumeRate("VOLUME_TRACK_VAR", Class_Var.VOLUME_TRACK);
             SaveVolumeRate("RATE_TRACK_VAR", Class_Var.RATE_TRACK);
 
-            Beep(800, 200);
+            Console.Beep(800, 200);
         }
 
         void SaveVolumeRate(string nodeselect, int value)
@@ -5689,7 +5678,7 @@ namespace Ostium
                 ModelEdit_Btn.Enabled = false;
                 ModelList_Lst.ClearSelected();
 
-                Beep(1000, 400);
+                Console.Beep(1000, 400);
             }
             catch (Exception ex)
             {
@@ -5770,7 +5759,7 @@ namespace Ostium
                 LoadAllXML.Start();
 
                 AddSingleItemswf_Txt.Text = string.Empty;
-                Beep(1000, 400);
+                Console.Beep(1000, 400);
             }
             catch (Exception ex)
             {
@@ -6195,7 +6184,7 @@ namespace Ostium
 
                     loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
 
-                    Beep(1000, 400);
+                    Console.Beep(1000, 400);
                 }
                 else
                 {
@@ -6253,7 +6242,7 @@ namespace Ostium
                             AddItemswf_Txt.Text = string.Empty;
 
                             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
-                            Beep(1000, 400);
+                            Console.Beep(1000, 400);
                         }
                         else
                         {
@@ -7470,7 +7459,7 @@ namespace Ostium
         void CopyGeoMap_Tls_Click(object sender, EventArgs e)
         {
             Clipboard.SetData(DataFormats.Text, LatTCurrent_Lbl.Text + " " + LonGtCurrent_Lbl.Text);
-            Beep(1000, 400);
+            Console.Beep(1000, 400);
         }
 
         void NegativeModeMap_Tls_Click(object sender, EventArgs e)
@@ -7556,7 +7545,7 @@ namespace Ostium
                 LocationName_Txt.Text = "Pts_" + Una;
                 AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Lbl.Text, LonGtCurrent_Lbl.Text, TextMarker_Txt.Text);
                 OpnLocationPoints();
-                Beep(1000, 400);
+                Console.Beep(1000, 400);
             }
             catch (Exception ex)
             {
@@ -8415,7 +8404,7 @@ namespace Ostium
                     Uri uri = new Uri("file:///" + JsonB);
                     WbOutB.Source = uri;
                 }
-                Beep(1000, 400);
+                Console.Beep(1000, 400);
             }
         }
 
@@ -8435,7 +8424,7 @@ namespace Ostium
             if (JsonUri_Txt.Text != string.Empty)
             {
                 CreateData(JsonDir + "list-url-json.txt", JsonUri_Txt.Text);
-                Beep(1200, 200);
+                Console.Beep(1200, 200);
             }
         }
 
@@ -8567,7 +8556,7 @@ namespace Ostium
             string txt = File.ReadAllText(Jselect);
             txt = txt.Replace(BrcktA_Txt.Text, BrcktB_Txt.Text);
             File.WriteAllText(Jselect, txt);
-            Beep(1200, 200);
+            Console.Beep(1200, 200);
         }
 
         void OpnJsonDirTable_Btn_Click(object sender, EventArgs e)
@@ -8604,7 +8593,7 @@ namespace Ostium
                 else
                     WbOutB.Source = uri;
 
-                Beep(1000, 400);
+                Console.Beep(1000, 400);
             }
             catch (Exception ex)
             {
@@ -8882,7 +8871,7 @@ namespace Ostium
             if (saveFD.ShowDialog() == DialogResult.OK)
             {
                 File.Copy(DataFile, saveFD.FileName, true);
-                Beep(1000, 400);
+                Console.Beep(1000, 400);
             }
         }
 
@@ -9001,7 +8990,7 @@ namespace Ostium
             else
                 WbOutA.Source = uri;
 
-            Beep(1000, 400);
+            Console.Beep(1000, 400);
         }
 
         void OpnTableJson_Invk(string val)
