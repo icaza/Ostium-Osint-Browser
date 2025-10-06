@@ -12,8 +12,6 @@ namespace Ostium
 {
     public partial class DeserializeJson_Frm : Form
     {
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
         readonly IcazaClass senderror = new IcazaClass();
 
         public DeserializeJson_Frm()
@@ -133,7 +131,7 @@ namespace Ostium
 
                             isData.Close();
 
-                            Beep(1200, 200);
+                            Console.Beep(1200, 200);
                         }
                     }
                 }

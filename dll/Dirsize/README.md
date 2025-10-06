@@ -1,16 +1,15 @@
-﻿Name: Dirsize.dll
+﻿# Dirsize.dll
+
 using Dirsize;
 
---------------------------------------------------------------------------------------------------------
+### Dirsize.dll
 
-Dirsize.dll
-
-description: Return size directory.
+_description: Return size directory._
 
 var   => (string)
 value => Directory Name
 
-usage:
+use:
 
         readonly ReturnSize sizedireturn = new ReturnSize();
 
@@ -20,5 +19,3 @@ usage:
             long dirSize = await Task.Run(() => dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length));
             MessageBox.Show(sizedireturn.GetSizeName(long.Parse(Convert.ToString(dirSize))));
         }
-
---------------------------------------------------------------------------------------------------------

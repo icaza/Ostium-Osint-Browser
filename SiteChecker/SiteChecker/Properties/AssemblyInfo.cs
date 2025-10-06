@@ -1,16 +1,15 @@
-﻿using System.Resources;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ostium Osint Browser")]
-[assembly: AssemblyDescription("Ostium Osint Browser")]
+[assembly: AssemblyTitle("SiteChecker")]
+[assembly: AssemblyDescription("SiteChecker - Website Status Verification")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ICAZA MEDIA")]
-[assembly: AssemblyProduct("OOB")]
+[assembly: AssemblyProduct("SiteChecker")]
 [assembly: AssemblyCopyright("ICAZA MEDIA")]
 [assembly: AssemblyTrademark("ICAZA MEDIA")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fec6509a-81d9-4dbf-9c50-681633417347")]
+[assembly: Guid("df169372-72f9-48ce-a01c-f52514968554")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -30,10 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyVersion("1.3.28.0")]
-[assembly: AssemblyFileVersion("1.3.28.0")]
-[assembly: NeutralResourcesLanguage("en")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

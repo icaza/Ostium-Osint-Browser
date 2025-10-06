@@ -1,16 +1,13 @@
-﻿Name: LoadDirectory.dll
+﻿# LoadDirectory.dll
+
 using LoadDirectory;
 
---------------------------------------------------------------------------------------------------------
-
-LoadDirectory.dll
-
-description: Load files from a directory into ListBox ComboBox and ToolStripComboBox.
+**description**: _Load files from a directory into ListBox ComboBox and ToolStripComboBox._
 
 var   => (string, string, string, object)
 value => Directory select, File Extension, Object Type, Object select
 
-usage:
+use:
 
 - ListBox
 
@@ -31,5 +28,3 @@ loadfiledir.LoadFileDirectory(@"C:\", "exe", "cbxts", toolStripComboBox1);
 
 Loaddir loadfiledir = new Loaddir();
 loadfiledir.LoadFileDirectory(@"C:\", "exe", "splitb", ToolStripSplitButton1);
-
---------------------------------------------------------------------------------------------------------

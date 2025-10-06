@@ -15,9 +15,6 @@ namespace Ostium
     {
         #region Var_
 
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
-
         readonly string AppStart = Application.StartupPath + @"\";
         readonly string Scripts = Application.StartupPath + @"\scripts\bookmarklet\";
 
@@ -220,7 +217,7 @@ namespace Ostium
             if (ScriptMinify_Txt.Text != string.Empty)
             {
                 Clipboard.SetData(DataFormats.Text, ScriptMinify_Txt.Text);
-                Beep(300, 200);
+                Console.Beep(300, 200);
             }
         }
 

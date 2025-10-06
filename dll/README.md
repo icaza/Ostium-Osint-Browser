@@ -6,7 +6,7 @@ using Icaza;
 
 **description**: _Open folder browser dialogue to select save directory._
 
-usage:
+use:
 
 IcazaClass selectdir = new IcazaClass();
 string dirselect = selectdir.Dirselect();
@@ -18,7 +18,7 @@ string dirselect = selectdir.Dirselect();
 var   => (string, string, string, string)
 value => Section Error, Error Message, Form Name, Directory Error File
 
-usage:
+use:
 
 IcazaClass senderror = new IcazaClass();
 senderror.ErrorLog("Error! FunctionName: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
@@ -30,7 +30,7 @@ senderror.ErrorLog("Error! FunctionName: ", ex.Message, "Main_Frm", Application.
 var   => (string, string, int)
 value => Initial Directory, Filter, FilterIndex
 
-usage:
+use:
 
 IcazaClass openfile = new IcazaClass();
 string fileopen = openfile.Fileselect("c:\\", "txt files (*.txt)|*.txt|All files (*.*)|*.*", 2);
@@ -42,7 +42,7 @@ string fileopen = openfile.Fileselect("c:\\", "txt files (*.txt)|*.txt|All files
 var   => (string, int)
 value => Filter, FilterIndex
 
-usage:
+use:
 
 IcazaClass savefiledialog = new IcazaClass();
 string savefile = savefiledialog.Savefiledialog("All files (*.*)|*.*", 2);
@@ -58,7 +58,7 @@ using Dirsize;
 var   => (string)
 value => Directory Name
 
-usage:
+use:
 
         readonly ReturnSize sizedireturn = new ReturnSize();
 
@@ -80,7 +80,7 @@ using Errordll;
 var   => (string, string, string, string)
 value => Section Error, Error Message, Form Name, Directory Error File
 
-usage:
+use:
 
 Errorsend senderror = new Errorsend();
 senderror.ErrorLog("Error! FunctionName: ", ex.Message, "Main_Frm", Application.StartupPath + @"\");
@@ -96,7 +96,7 @@ using LoadDirectory;
 var   => (string, string, string, object)
 value => Directory select, File Extension, Object Type, Object select
 
-usage:
+use:
 
 - ListBox
 
@@ -117,4 +117,3 @@ loadfiledir.LoadFileDirectory(@"C:\", "exe", "cbxts", toolStripComboBox1);
 
 Loaddir loadfiledir = new Loaddir();
 loadfiledir.LoadFileDirectory(@"C:\", "exe", "splitb", ToolStripSplitButton1);
-

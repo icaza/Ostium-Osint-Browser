@@ -7,7 +7,8 @@
 
 setlocal enabledelayedexpansion
 
-set SDELETE=C:\Users\icaza\Documents\Ostium\SDelete_cmd\SDelete\sdelete64.exe
+:: Full paths (adjust if different)
+set SDELETE=\Ostium\SDelete_cmd\SDelete\sdelete64.exe
 
 if not exist "%SDELETE%" (
     echo [ERROR] Cannot find %SDELETE%

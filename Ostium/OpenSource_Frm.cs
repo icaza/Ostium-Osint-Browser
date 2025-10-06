@@ -10,9 +10,6 @@ namespace Ostium
     {
         #region Var_
 
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
-
         readonly IcazaClass senderror = new IcazaClass();
         readonly string AppStart = Application.StartupPath + @"\";
 
@@ -51,7 +48,7 @@ namespace Ostium
                 {
                     string formatUrl = Sortie_Lst.SelectedItem.ToString().Replace("[[", "").Replace("]]", "");
                     Clipboard.SetData(DataFormats.Text, formatUrl);
-                    Beep(300, 200);
+                    Console.Beep(300, 200);
                 }
             }
             catch (Exception ex)
@@ -89,7 +86,7 @@ namespace Ostium
 
                             isData.Close();
 
-                            Beep(1200, 200);
+                            Console.Beep(1200, 200);
                         }
                     }
                 }
