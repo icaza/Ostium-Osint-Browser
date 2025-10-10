@@ -17,7 +17,6 @@ A high-performance .NET Framework console application for bulk website availabil
 
 - .NET Framework 4.8.1
 - Windows OS
-- Optional: Microsoft.Web.WebView2 NuGet package (if WebView2 features are needed)
 
 ## Installation
 
@@ -217,4 +216,4 @@ Last Updated: October 2025
 
 ## Author
 
-Created as a professional website monitoring solution with enterprise-grade reliability and performance.
+Enjoy.
