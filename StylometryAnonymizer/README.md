@@ -43,12 +43,6 @@ La stylométrie permet d'identifier un auteur par son style d'écriture unique. 
 Install-Package Newtonsoft.Json
 ```
 
-### Clonage du Repository
-```bash
-git clone https://github.com/votre-username/TextAnonymizer.git
-cd TextAnonymizer
-```
-
 ## Usage
 
 ### Configuration de Base
@@ -217,33 +211,6 @@ Sur un texte de 1000 mots avec un dictionnaire de 500 synonymes :
 | 100 variations | ~1.1s | ~4.5MB |
 
 *Testé sur Intel i7-9700K, 16GB RAM*
-
-## Contribution
-
-Les contributions sont les bienvenues ! Voici comment participer :
-
-1. **Fork** le projet
-2. Créez une **branche** pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. **Committez** vos changements (`git commit -m 'Add AmazingFeature'`)
-4. **Pushez** vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une **Pull Request**
-
-### Guidelines
-- Respectez les conventions de nommage C#
-- Ajoutez des tests unitaires pour les nouvelles fonctionnalités
-- Documentez les changements dans le README
-- Assurez-vous que le code compile sans warnings
-
-## TODO
-
-- [ ] Ajouter support pour d'autres langues (anglais, espagnol)
-- [ ] Implémenter des tests unitaires complets
-- [ ] Créer une interface CLI
-- [ ] Ajouter un système de logging configurable
-- [ ] Optimiser la mémoire pour très grands textes (>100KB)
-- [ ] Ajouter support pour formats structurés (Markdown, HTML)
-- [ ] Créer une API REST
-- [ ] Implémenter un système de cache pour le dictionnaire
 
 ## Licence
 
