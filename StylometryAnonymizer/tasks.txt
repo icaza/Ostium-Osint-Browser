@@ -1,3 +1,0 @@
-- Afficher le nombre de mots dans la liste
-- Ajouter option qui permet d'ajouter des mots et des synonymes a la liste
-- Vérifier la fenêtre focus avant la copy de texte
