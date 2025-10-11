@@ -214,7 +214,7 @@ Sur un texte de 1000 mots avec un dictionnaire de 500 synonymes :
 
 ## Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est sous licence MIT. Voir le fichier ([LICENSE](https://github.com/icaza/Ostium-Osint-Browser/blob/feature%2314/StylometryAnonymizer/LICENSE.txt)) pour plus de détails.
 
 ## 👤 Auteur
 
