@@ -1,13 +1,13 @@
-# TextAnonymizer
+# StylometryAnonymizer
 
 [![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-blue.svg)](https://dotnet.microsoft.com/download/dotnet-framework)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**TextAnonymizer** est conçue pour générer des variations de texte en français tout en préservant le sens original. L'outil modifie le style d'écriture pour rendre l'analyse stylométrique plus difficile, protégeant ainsi l'identité de l'auteur.
+**StylometryAnonymizer** est conçue pour générer des variations de texte en français tout en préservant le sens original. L'outil modifie le style d'écriture pour rendre l'analyse stylométrique plus difficile, protégeant ainsi l'identité de l'auteur.
 
 ## Objectif
 
-La stylométrie permet d'identifier un auteur par son style d'écriture unique. TextAnonymizer combat cette analyse en :
+La stylométrie permet d'identifier un auteur par son style d'écriture unique. StylometryAnonymizer combat cette analyse en :
 - Remplaçant le vocabulaire par des synonymes contextuels
 - Variant la structure syntaxique des phrases
 - Modifiant la ponctuation de manière subtile
@@ -176,7 +176,7 @@ L'application utilise des expressions régulières compilées pour une performan
 ## Sécurité et Confidentialité
 
 ### Limitations
-- **Pas de garantie d'anonymat absolu** : TextAnonymizer rend l'analyse stylométrique plus difficile mais ne garantit pas un anonymat total
+- **Pas de garantie d'anonymat absolu** : StylometryAnonymizer rend l'analyse stylométrique plus difficile mais ne garantit pas un anonymat total
 - **Contexte important** : L'efficacité dépend de la qualité du dictionnaire de synonymes
 - **Révision recommandée** : Il est conseillé de relire les variations générées
 
@@ -190,7 +190,7 @@ L'application utilise des expressions régulières compilées pour une performan
 
 ### Structure du Projet
 ```
-TextAnonymizer/
+StylometryAnonymizer/
 ├── TextAnonymizer.cs          // Classe principale
 ├── AnonymizationOptions.cs    // Configuration
 ├── synonyms.json              // Dictionnaire de synonymes
@@ -224,9 +224,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 ## Ressources
 
 ### Stylométrie et Anonymisation
-- [Adversarial Stylometry](https://www.cs.princeton.edu/~arvindn/publications/adversarial-stylometry.pdf)
-- [Authorship Attribution](https://en.wikipedia.org/wiki/Stylometry)
-- [Text Anonymization Techniques](https://arxiv.org/abs/1234.5678)
+- [wikipedia](https://en.wikipedia.org/wiki/Stylometry)
 
 ### Documentation Technique
 - [Newtonsoft.Json Documentation](https://www.newtonsoft.com/json/help/html/Introduction.htm)

@@ -201,19 +201,3 @@ Press any key to exit...
 - Increase timeout value if network is slow
 - Verify URLs are correctly formatted in input file
 
-### High memory usage
-- Reduce SemaphoreSlim concurrent request limit
-- Check for extremely large input files (>1000 sites)
-
-## License
-
-This project is provided as-is for educational and commercial use.
-
-## Version
-
-Current Version: 1.0.0  
-Last Updated: October 2025
-
-## Author
-
-Enjoy.
