@@ -1717,7 +1717,16 @@ namespace Ostium
                         Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
                     }
 
-                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    ///
+                    /// Change, for those who use Google as their default search engine, the link used was the following 
+                    /// https://www.google.com/search?q=SEARCHWORD you just had to enter the search term in Ostium or the Url. 
+                    /// For the Url it is therefore direct for the search it was a combination of the Google Url + the search term. 
+                    /// This method is deprecated and requires us to validate a stupid captha. So I modified the code so that it 
+                    /// opens the Google search page (for those who use it) rather than leaving the automation to facilitate a step. 
+                    /// I grayed out the old line for those who want to keep it in the code.
+                    ///
+                    //uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH);
                 }
 
                 if (WebviewRedirect == 0)
