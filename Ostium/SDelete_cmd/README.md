@@ -1,13 +1,15 @@
-# SDelete_cmd.bat
+# _SDelete_cmd.bat
 
 Added script to add SDelete to Windows context menu and/or drag and drop a file or directory onto the SDelete_cmd.bat script icon to permanently delete it. 
 SDelete is part of Microsoft's Sysinternals suite, learn about its use and the difference between SSD/HDD disk before using it.
 
-_Change the path according to your configuration in the file_ SDelete_cmd.bat
+_Change the path according to your configuration in the file_ _SDelete_cmd.bat
+_remove the underscore in front of the_ _SDelete_cmd.bat _file name so that your modified file is not overwritten by updates._
 
-# Install_SecureDelete_ContextMenu.bat
+# _Install_SecureDelete_ContextMenu.bat
 
-_Change the path according to your configuration in the file_ Install_SecureDelete_ContextMenu.bat
+_Change the path according to your configuration in the file_ _Install_SecureDelete_ContextMenu.bat
+_remove the underscore in front of the_ _Install_SecureDelete_ContextMenu.bat _file name so that your modified file is not overwritten by updates._
 
 set "ICO=\Ostium\SDelete_cmd\sdsd.ico"
 set "SCRIPT=\Ostium\SDelete_cmd\SDelete_cmd.bat"

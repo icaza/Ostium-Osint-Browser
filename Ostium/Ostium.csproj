@@ -303,11 +303,11 @@
     <None Include="purge.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="SDelete_cmd\Install_SecureDelete_ContextMenu.bat">
+    <None Include="SDelete_cmd\_Install_SecureDelete_ContextMenu.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="SDelete_cmd\README.md" />
-    <None Include="SDelete_cmd\SDelete_cmd.bat">
+    <None Include="SDelete_cmd\_SDelete_cmd.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="SDelete_cmd\Uninstall_SecureDelete_ContextMenu.bat">
