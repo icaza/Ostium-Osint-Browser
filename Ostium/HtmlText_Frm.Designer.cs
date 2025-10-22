@@ -225,7 +225,7 @@
             this.UserAgent_Txt.Size = new System.Drawing.Size(715, 13);
             this.UserAgent_Txt.TabIndex = 0;
             this.UserAgent_Txt.Text = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
-    "Chrome/125.0.0.0 Safari/537.36";
+    "Chrome/140.0.0.0 Safari/537.36";
             // 
             // label1
             // 
@@ -251,6 +251,7 @@
             this.Name = "HtmlText_Frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HTML Text";
+            this.Load += new System.EventHandler(this.HtmlText_Frm_Load);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

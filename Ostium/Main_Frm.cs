@@ -1774,7 +1774,7 @@ namespace Ostium
                     /// opens the Google search page (for those who use it) rather than leaving the automation to facilitate a step. 
                     /// I grayed out the old line for those who want to keep it in the code.
                     ///
-                    //uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    /// uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                     uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH);
                 }
 

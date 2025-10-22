@@ -20,9 +20,31 @@ namespace StylometryAnonymizer
         public Main_Frm()
         {
             InitializeComponent();
+            InitializeCustomControls();
             EventHandler();
 
             anonymizer = new TextAnonymizer("synonyms.json");
+        }
+
+        void InitializeCustomControls()
+        {
+            cmbStyle.Items.AddRange(new object[]
+            {
+                WritingStyle.Neutre,
+                WritingStyle.Formel,
+                WritingStyle.Journalistique,
+                WritingStyle.Littéraire,
+                WritingStyle.Technique,
+                WritingStyle.Décontracté
+            });
+            cmbStyle.SelectedIndex = 0;
+
+            chkRandomStyle.CheckedChanged += (s, e) =>
+            {
+                cmbStyle.Enabled = !chkRandomStyle.Checked;
+            };
+
+            cmbStyle.Enabled = !chkRandomStyle.Checked;
         }
 
         void EventHandler()
@@ -49,13 +71,17 @@ namespace StylometryAnonymizer
                     VariateSyntax = chkSyntax.Checked,
                     ReplaceVocabulary = chkVocabulary.Checked,
                     ModifyPunctuation = chkPunctuation.Checked,
-                    RestructureSentences = chkStructure.Checked
+                    RestructureSentences = chkStructure.Checked,
+                    MinModificationRate = 20.0,
+                    StyleTarget = GetSelectedStyle(),
+                    AggressiveMode = true,
+                    RemoveIdioms = true,
+                    RandomizeStyle = chkRandomStyle.Checked
                 };
 
                 int count = (int)numVariations.Value;
                 lblStatus.Text = $"Génération de {count} variations en cours...";
 
-                var anonymizer = new TextAnonymizer();
                 var results = await Task.Run(() => anonymizer.GenerateVariationsAsync(txtInput.Text, count, options));
 
                 DisplayResults(results);
@@ -72,7 +98,22 @@ namespace StylometryAnonymizer
             }
         }
 
-        void DisplayResults(List<string> results)
+        WritingStyle GetSelectedStyle()
+        {
+            if (chkRandomStyle?.Checked == true)
+            {
+                return WritingStyle.Neutre;
+            }
+
+            if (cmbStyle?.SelectedItem != null)
+            {
+                return (WritingStyle)cmbStyle.SelectedItem;
+            }
+
+            return WritingStyle.Neutre;
+        }
+
+        void DisplayResults(List<AnonymizationResult> results)
         {
             txtOutput.Clear();
             string originalText = txtInput.Text;
@@ -85,10 +126,10 @@ namespace StylometryAnonymizer
                 txtOutput.SelectionColor = Color.Blue;
                 txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Bold);
 
-                double percentage = HighlightDifferences(originalText, results[i]);
+                double percentage = HighlightDifferences(originalText, results[i].Text);
 
                 int percentStart = txtOutput.TextLength;
-                txtOutput.AppendText($"\n[Modifications : {percentage:F1}%]");
+                txtOutput.AppendText($"\n[Modifications : {percentage:F1}% | Score : {results[i].StylometricScore:F2}]");
                 txtOutput.Select(percentStart, txtOutput.TextLength - percentStart);
                 txtOutput.SelectionColor = Color.Gray;
                 txtOutput.SelectionFont = new Font(txtOutput.Font, FontStyle.Italic);
@@ -102,19 +143,23 @@ namespace StylometryAnonymizer
 
         void BtnCopy_Click(object sender, EventArgs e)
         {
-            if (txtFocus)
+            try
             {
-                if (!string.IsNullOrWhiteSpace(txtInput.Text))
-                    Clipboard.SetText(txtInput.SelectedText);
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(txtOutput.Text))
-                    Clipboard.SetText(txtOutput.SelectedText);
-            }
+                if (txtFocus)
+                {
+                    if (!string.IsNullOrWhiteSpace(txtInput.Text))
+                        Clipboard.SetText(txtInput.SelectedText);
+                }
+                else
+                {
+                    if (!string.IsNullOrWhiteSpace(txtOutput.Text))
+                        Clipboard.SetText(txtOutput.SelectedText);
+                }
 
-            lblStatus.Text = "Copié dans le presse-papiers";
+                lblStatus.Text = "Copié dans le presse-papiers";
                 Console.Beep(800, 600);
+            }
+            catch { }
         }
 
         void BtnClear_Click(object sender, EventArgs e)
@@ -133,7 +178,6 @@ namespace StylometryAnonymizer
             string normalizedOriginal = Regex.Replace(originalText, @"\s+", " ").Trim();
             string normalizedModified = Regex.Replace(modifiedText, @"\s+", " ").Trim();
 
-            // Utiliser un algorithme de différence simple
             var originalTokens = TokenizeText(normalizedOriginal);
             var modifiedTokens = TokenizeText(normalizedModified);
 
@@ -250,43 +294,55 @@ namespace StylometryAnonymizer
         }
     }
 
+    public enum WritingStyle
+    {
+        Neutre,
+        Formel,
+        Journalistique,
+        Littéraire,
+        Technique,
+        Décontracté
+    }
+
     public class AnonymizationOptions
     {
         public bool VariateSyntax { get; set; }
         public bool ReplaceVocabulary { get; set; }
         public bool ModifyPunctuation { get; set; }
         public bool RestructureSentences { get; set; }
+        public double MinModificationRate { get; set; } = 20.0;
+        public WritingStyle StyleTarget { get; set; } = WritingStyle.Neutre;
+        public bool AggressiveMode { get; set; } = true;
+        public bool RemoveIdioms { get; set; } = true;
+        public bool RandomizeStyle { get; set; } = false;
+    }
+
+    public class AnonymizationResult
+    {
+        public string Text { get; set; }
+        public double ModificationRate { get; set; }
+        public double StylometricScore { get; set; }
     }
 
     public class TextAnonymizer
     {
         readonly ThreadLocal<Random> threadLocalRng;
         readonly Dictionary<string, string[]> synonyms;
+        readonly HashSet<string> commonIdioms;
         readonly object synonymsLock = new object();
 
-        // Patterns compilés
         static readonly Regex SentenceSplitPattern = new Regex(
             @"(?<=[.!?])\s+",
             RegexOptions.Compiled
         );
 
         static readonly Regex PassiveVoicePattern = new Regex(
-            @"(\w+)\s+(est|sont|était|étaient)\s+(\w+)",
+            @"(\w+)\s+(est|sont|était|étaient|fut|furent)\s+(\w+)",
             RegexOptions.Compiled | RegexOptions.IgnoreCase
         );
 
         static readonly Regex SubjectVerbPattern = new Regex(
-            @"^(\w+)\s+(est|sont|a|ont|peut|peuvent)\s+",
-            RegexOptions.Compiled
-        );
-
-        static readonly Regex ConjunctionPattern = new Regex(
-            @"(\w+)\s+(et|ou|donc|car|mais)\s+",
-            RegexOptions.Compiled
-        );
-
-        static readonly Regex LongSentenceSplitPattern = new Regex(
-            @"(.{60,}?)[,;]\s+(.+)",
+            @"^(\w+)\s+(est|sont|a|ont|peut|peuvent|doit|doivent)\s+",
             RegexOptions.Compiled
         );
 
@@ -305,30 +361,49 @@ namespace StylometryAnonymizer
             RegexOptions.Compiled
         );
 
-        static readonly Regex DoubleDotsRemover = new Regex(
-            @"\.(\s*\.)+",
-            RegexOptions.Compiled
-        );
-
-        readonly string[] sentenceConnectors = new[]
+        // Connecteurs variés par style
+        readonly Dictionary<WritingStyle, string[]> styleConnectors = new Dictionary<WritingStyle, string[]>
         {
-        "", ". ", ". En outre, ", ". Par ailleurs, ", ". De plus, ", ". Également, ",
-        ". Aussi, ", ". D'autre part, ", ". En effet, ", ". Ainsi, ", ". Cependant, ",
-        ". Néanmoins, ", ". Toutefois, ", ". Pourtant, ", ". Or, ", ". Car, ",
-        ". En conséquence, ", ". Par conséquent, ", ". Dès lors, ", ". De ce fait, "
-    };
+            [WritingStyle.Formel] = new[] { ". ", ". Néanmoins, ", ". Toutefois, ", ". En outre, ", ". Par ailleurs, ", ". De surcroît, ", ". Qui plus est, " },
+            [WritingStyle.Journalistique] = new[] { ". ", ". Selon les sources, ", ". D'après les informations, ", ". Il semblerait que ", ". On constate que " },
+            [WritingStyle.Littéraire] = new[] { ". ", ". Et voilà que ", ". C'est ainsi que ", ". Tel était ", ". Or il advint que " },
+            [WritingStyle.Technique] = new[] { ". ", ". On observe que ", ". Il convient de noter que ", ". À cet égard, ", ". Dans ce contexte, " },
+            [WritingStyle.Décontracté] = new[] { ". ", ". Du coup, ", ". Bon, ", ". Bref, ", ". Enfin, ", ". Alors, " },
+            [WritingStyle.Neutre] = new[] { ". ", ". En outre, ", ". Par ailleurs, ", ". Également, ", ". Aussi, ", ". Ainsi, " }
+        };
 
-        readonly string[] passiveVoiceTemplates = new[]
+        readonly string[] advancedPassiveTemplates = new[]
         {
-        "{0} est {1}", "{0} a été {1}", "{0} se trouve {1}",
-        "{0} demeure {1}", "{0} s'avère {1}", "Il apparaît que {0} est {1}"
-    };
+            "{0} est {1}", "{0} a été {1}", "{0} se trouve {1}", "{0} demeure {1}",
+            "{0} s'avère {1}", "Il apparaît que {0} est {1}", "On constate que {0} est {1}",
+            "Force est de constater que {0} est {1}", "{0} se révèle {1}"
+        };
 
-        // Constructeur
         public TextAnonymizer(string jsonFilePath = "synonyms.json")
         {
             synonyms = LoadSynonymsFromJson(jsonFilePath);
             threadLocalRng = new ThreadLocal<Random>(() => new Random(Guid.NewGuid().GetHashCode()));
+            commonIdioms = InitializeCommonIdioms();
+        }
+
+        HashSet<string> InitializeCommonIdioms()
+        {
+            return new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                // Idiomes d'expressions'
+                "chassez le naturel, il revient au galop",
+                "c'est l'hôpital qui se moque de la charité",
+                "qui se ressemble s'assemble",
+                "petit à petit, l'oiseau fait son nid",
+                "la fin justifie les moyens",
+                
+                // Ajoutez ici d'autres idiomes à détecter
+                "il n'y a pas de fumée sans feu",
+                "les chiens aboient, la caravane passe",
+                "chat échaudé craint l'eau froide",
+                "pierre qui roule n'amasse pas mousse",
+                "tel est pris qui croyait prendre"
+            };
         }
 
         Dictionary<string, string[]> LoadSynonymsFromJson(string jsonFilePath)
@@ -338,7 +413,7 @@ namespace StylometryAnonymizer
                 if (!File.Exists(jsonFilePath))
                 {
                     MessageBox.Show($"Erreur lors du chargement du dictionnaire de synonymes. Le fichier synonyms.json n'existe pas.\n" +
-                        $"\nVous devez créer un fichier de synonymes à la racine du répertoire de l'application.", "Fichier manquant", 
+                        $"\nVous devez créer un fichier de synonymes à la racine du répertoire de l'application.", "Fichier manquant",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     return new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
@@ -349,20 +424,17 @@ namespace StylometryAnonymizer
 
                 if (loadedSynonyms == null || loadedSynonyms.Count == 0)
                 {
-                    MessageBox.Show($"Le dictionnaire de synonymes ne contiens aucun mot. Vous devez en ajouter.", "Fichier vide",
+                    MessageBox.Show($"Le dictionnaire de synonymes ne contient aucun mot. Vous devez en ajouter.", "Fichier vide",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     return new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
                 }
 
-                var result = new Dictionary<string, string[]>(loadedSynonyms, StringComparer.OrdinalIgnoreCase);
-
-                return result;
+                return new Dictionary<string, string[]>(loadedSynonyms, StringComparer.OrdinalIgnoreCase);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors du chargement du dictionnaire :\n{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 return new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
             }
         }
@@ -382,12 +454,12 @@ namespace StylometryAnonymizer
                     }
                 }
 
-                MessageBox.Show("Le dictionnaire de synonymes a été rechargé avec succès.", 
+                MessageBox.Show("Le dictionnaire de synonymes a été rechargé avec succès.",
                     "Rechargement réussi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        public List<string> GenerateVariationsAsync(string text, int count, AnonymizationOptions options)
+        public List<AnonymizationResult> GenerateVariationsAsync(string text, int count, AnonymizationOptions options)
         {
             if (string.IsNullOrWhiteSpace(text))
                 throw new ArgumentException("Le texte ne peut pas être vide", nameof(text));
@@ -395,44 +467,229 @@ namespace StylometryAnonymizer
             if (count <= 0)
                 throw new ArgumentException("Le nombre de variations doit être positif", nameof(count));
 
-            var variations = new List<string>(count);
+            var variations = new List<AnonymizationResult>(count);
             var sentences = SplitIntoSentences(text);
 
             for (int i = 0; i < count; i++)
             {
                 var seed = Guid.NewGuid().GetHashCode();
                 var localRng = new Random(seed);
-                var transformed = TransformText(sentences, options, localRng);
-                variations.Add(transformed);
+
+                // Style aléatoire pour chaque variation (plus anonymisant)
+                var randomStyle = options.StyleTarget;
+                if (options.RandomizeStyle)
+                {
+                    var styles = Enum.GetValues(typeof(WritingStyle));
+                    randomStyle = (WritingStyle)styles.GetValue(localRng.Next(styles.Length));
+                }
+
+                int attempts = 0;
+                double modRate;
+
+                string transformed;
+                // Boucle jusqu'à atteindre le taux de modification minimum
+                do
+                {
+                    transformed = TransformText(sentences, options, localRng, randomStyle);
+                    modRate = CalculateModificationRate(text, transformed);
+                    attempts++;
+
+                    if (attempts > 10) break; // Éviter boucle infinie
+
+                } while (modRate < options.MinModificationRate && attempts < 10);
+
+                var score = CalculateStylometricScore(text, transformed);
+
+                variations.Add(new AnonymizationResult
+                {
+                    Text = transformed,
+                    ModificationRate = modRate,
+                    StylometricScore = score
+                });
             }
 
             return variations;
         }
 
-        string TransformText(List<string> sentences, AnonymizationOptions options, Random localRng)
+        double CalculateModificationRate(string original, string modified)
         {
-            var transformedSentences = new List<string>(sentences.Count);
+            var originalWords = original.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            var modifiedWords = modified.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+            int different = 0;
+            int total = Math.Max(originalWords.Length, modifiedWords.Length);
+
+            for (int i = 0; i < Math.Min(originalWords.Length, modifiedWords.Length); i++)
+            {
+                if (!originalWords[i].Equals(modifiedWords[i], StringComparison.OrdinalIgnoreCase))
+                    different++;
+            }
+
+            different += Math.Abs(originalWords.Length - modifiedWords.Length);
+
+            return total > 0 ? (different * 100.0 / total) : 0.0;
+        }
+
+        double CalculateStylometricScore(string original, string modified)
+        {
+            // Score simple basé sur: diversité lexicale, longueur phrases, ponctuation
+            double score = 0;
+
+            // 1. Diversité lexicale
+            var origWords = new HashSet<string>(original.ToLower().Split());
+            var modWords = new HashSet<string>(modified.ToLower().Split());
+            double lexicalDiversity = 1.0 - (origWords.Intersect(modWords).Count() / (double)origWords.Count);
+            score += lexicalDiversity * 40;
+
+            // 2. Différence longueur moyenne phrases
+            var origSentences = SentenceSplitPattern.Split(original);
+            var modSentences = SentenceSplitPattern.Split(modified);
+            double origAvg = origSentences.Average(s => s.Length);
+            double modAvg = modSentences.Average(s => s.Length);
+            double lengthDiff = Math.Abs(origAvg - modAvg) / origAvg;
+            score += Math.Min(lengthDiff * 30, 30);
+
+            // 3. Différence ponctuation
+            int origPunct = original.Count(c => char.IsPunctuation(c));
+            int modPunct = modified.Count(c => char.IsPunctuation(c));
+            double punctDiff = Math.Abs(origPunct - modPunct) / (double)Math.Max(origPunct, 1);
+            score += Math.Min(punctDiff * 30, 30);
+
+            return Math.Min(score, 100);
+        }
+
+        string TransformText(List<string> sentences, AnonymizationOptions options, Random localRng, WritingStyle style)
+        {
+            var transformedSentences = new List<string>(sentences);
+
+            // Suppression/réécriture d'idiomes
+            if (options.RemoveIdioms)
+            {
+                transformedSentences = RemoveOrRewriteIdioms(transformedSentences, localRng);
+            }
+
+            // Restructuration AVANT transformations locales
+            if (options.RestructureSentences && localRng.Next(100) < 70)
+            {
+                transformedSentences = RestructureSentencesAdvanced(transformedSentences, localRng);
+            }
+
+            // Transformations sur chaque phrase
+            for (int i = 0; i < transformedSentences.Count; i++)
+            {
+                string transformed = transformedSentences[i];
+
+                // Augmentation des taux de transformation
+                if (options.ReplaceVocabulary)
+                    transformed = ReplaceSynonymsAdvanced(transformed, localRng, options.AggressiveMode);
+
+                if (options.VariateSyntax)
+                    transformed = VariateSyntaxAdvanced(transformed, localRng, options.AggressiveMode);
+
+                if (options.ModifyPunctuation)
+                    transformed = ModifyPunctuationAdvanced(transformed, localRng, options.AggressiveMode);
+
+                transformedSentences[i] = transformed;
+            }
+
+            return JoinSentences(transformedSentences, localRng, style);
+        }
+
+        List<string> RemoveOrRewriteIdioms(List<string> sentences, Random rng)
+        {
+            var result = new List<string>();
 
             foreach (var sentence in sentences)
             {
-                string transformed = sentence;
+                string modified = sentence;
 
-                if (options.ReplaceVocabulary)
-                    transformed = ReplaceSynonyms(transformed, localRng);
+                foreach (var idiom in commonIdioms)
+                {
+                    if (modified.Contains(idiom))
+                    {
+                        // CONDITION 1: 60% de chance de SUPPRIMER l'idiome
+                        if (rng.Next(100) < 60)
+                        {
+                            // Suppression pure et simple
+                            modified = modified.Replace(idiom, "");
+                        }
+                        // CONDITION 2: 40% de chance de PARAPHRASER l'idiome
+                        else
+                        {
+                            // Paraphrase via ParaphraseIdiom()
+                            string paraphrase = ParaphraseIdiom(idiom, rng);
 
-                if (options.VariateSyntax)
-                    transformed = VariateSyntax(transformed, localRng);
+                            // Si une paraphrase existe, on remplace
+                            if (!string.IsNullOrEmpty(paraphrase))
+                            {
+                                modified = modified.Replace(idiom, paraphrase);
+                            }
+                            else
+                            {
+                                // Sinon on supprime aussi
+                                modified = modified.Replace(idiom, "");
+                            }
+                        }
+                    }
+                }
 
-                if (options.ModifyPunctuation)
-                    transformed = ModifyPunctuation(transformed, localRng);
-
-                transformedSentences.Add(transformed);
+                if (!string.IsNullOrWhiteSpace(modified))
+                    result.Add(modified);
             }
 
-            if (options.RestructureSentences)
-                transformedSentences = RestructureSentences(transformedSentences, localRng);
+            return result.Any() ? result : sentences;
+        }
 
-            return JoinSentences(transformedSentences, localRng);
+        string ParaphraseIdiom(string idiom, Random rng)
+        {
+            // Dictionnaire de paraphrases pour les idiomes courants
+            var paraphrases = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["chassez le naturel, il revient au galop"] = new[]
+                {
+                    "les habitudes sont tenaces",
+                    "on ne change pas si facilement",
+                    "le tempérament reprend toujours le dessus",
+                    "la nature profonde finit toujours par ressurgir",
+                    "impossible d'échapper à sa vraie nature"
+                },
+                ["c'est l'hôpital qui se moque de la charité"] = new[]
+                {
+                    "une critique paradoxale",
+                    "une remarque ironique venant de cette source",
+                    "un reproche étonnant",
+                    "quelle hypocrisie dans ce jugement",
+                    "voilà un commentaire pour le moins contradictoire"
+                },
+                ["qui se ressemble s'assemble"] = new[]
+                {
+                    "les affinités rapprochent les gens",
+                    "on s'entoure de nos semblables",
+                    "les similitudes créent des liens"
+                },
+                ["petit à petit, l'oiseau fait son nid"] = new[]
+                {
+                    "la persévérance porte ses fruits",
+                    "les efforts réguliers finissent par payer",
+                    "progresser graduellement mène au succès"
+                },
+                ["la fin justifie les moyens"] = new[]
+                {
+                    "peu importe la méthode si le résultat est atteint",
+                    "l'objectif prime sur le processus",
+                    "tous les chemins sont bons pour arriver au but"
+                }
+            };
+
+            // Chercher une paraphrase correspondante
+            if (paraphrases.TryGetValue(idiom.Trim(), out var options))
+            {
+                // Sélectionner aléatoirement une paraphrase
+                return options[rng.Next(options.Length)];
+            }
+
+            // Si aucune paraphrase n'existe, retourner vide
+            return "";
         }
 
         List<string> SplitIntoSentences(string text)
@@ -445,49 +702,60 @@ namespace StylometryAnonymizer
             return sentences.Any() ? sentences : new List<string> { text };
         }
 
-        string ReplaceSynonyms(string text, Random localRng)
+        string ReplaceSynonymsAdvanced(string text, Random localRng, bool aggressive)
         {
             if (synonyms.Count == 0)
                 return text;
 
             var result = text;
+            int replacementThreshold = aggressive ? 70 : 50; // Augmenté
 
             lock (synonymsLock)
             {
-                // Créer une liste ordonnée aléatoirement 1x
+                // Mélange pour éviter patterns prévisibles
                 var shuffledSynonyms = synonyms.OrderBy(_ => localRng.Next()).ToList();
+                var usedReplacements = new HashSet<string>();
 
                 foreach (var kvp in shuffledSynonyms)
                 {
-                    if (localRng.Next(100) >= 50)
+                    if (localRng.Next(100) >= replacementThreshold)
                         continue;
 
-                    var pattern = $@"\b{Regex.Escape(kvp.Key)}\b";
-                    var replacement = kvp.Value[localRng.Next(kvp.Value.Length)];
+                    // Éviter de réutiliser les mêmes remplacements
+                    var availableSynonyms = kvp.Value.Where(s => !usedReplacements.Contains(s)).ToArray();
+                    if (availableSynonyms.Length == 0)
+                        availableSynonyms = kvp.Value;
 
-                    result = Regex.Replace(
-                        result,
-                        pattern,
-                        replacement,
-                        RegexOptions.IgnoreCase
-                    );
+                    var pattern = $@"\b{Regex.Escape(kvp.Key)}\b";
+                    var replacement = availableSynonyms[localRng.Next(availableSynonyms.Length)];
+                    usedReplacements.Add(replacement);
+
+                    // Ne remplacer qu'UNE seule occurrence aléatoire
+                    var matches = Regex.Matches(result, pattern, RegexOptions.IgnoreCase);
+                    if (matches.Count > 0)
+                    {
+                        var matchIndex = localRng.Next(matches.Count);
+                        var match = matches[matchIndex];
+                        result = result.Remove(match.Index, match.Length).Insert(match.Index, replacement);
+                    }
                 }
             }
 
             return result;
         }
 
-        string VariateSyntax(string text, Random localRng)
+        string VariateSyntaxAdvanced(string text, Random localRng, bool aggressive)
         {
             var result = text;
+            int threshold = aggressive ? 50 : 30;
 
-            // Variation de la voix (active/passive) - réduit à 20%
-            if (localRng.Next(100) < 20)
+            // Voix passive - augmenté
+            if (localRng.Next(100) < threshold)
             {
                 var match = PassiveVoicePattern.Match(result);
-                if (match.Success && localRng.Next(2) == 0)
+                if (match.Success)
                 {
-                    var template = passiveVoiceTemplates[localRng.Next(passiveVoiceTemplates.Length)];
+                    var template = advancedPassiveTemplates[localRng.Next(advancedPassiveTemplates.Length)];
                     result = result.Replace(
                         match.Value,
                         string.Format(template, match.Groups[1].Value, match.Groups[3].Value)
@@ -495,65 +763,69 @@ namespace StylometryAnonymizer
                 }
             }
 
-            // Inversion sujet-verbe occasionnelle - réduit à 15%
-            if (localRng.Next(100) < 15)
+            // Inversion sujet-verbe - augmenté
+            if (localRng.Next(100) < threshold)
             {
                 result = SubjectVerbPattern.Replace(
                     result,
-                    m => m.Groups[2].Value + " " + m.Groups[1].Value + " "
+                    m => m.Groups[2].Value + " " + m.Groups[1].Value + " ",
+                    1
                 );
             }
 
-            // Modification de virgules - réduit à 25%
-            if (localRng.Next(100) < 25)
+            //// Ajout de subordonnées
+            if (localRng.Next(100) < 30 && result.Contains(","))
             {
-                if (localRng.Next(2) == 0)
-                    result = result.Replace(", ", " ");
-                else
-                    result = ConjunctionPattern.Replace(result, "$1, $2 ");
+                var subordinates = new[] { "bien que ", "sachant que ", "étant donné que ", "puisque " };
+                var parts = result.Split(new[] { ", " }, StringSplitOptions.None);
+                if (parts.Length > 1)
+                {
+                    parts[0] += ", " + subordinates[localRng.Next(subordinates.Length)];
+                    result = string.Join(" ", parts);
+                }
+            }
+
+            // Variation ordre propositions
+            if (localRng.Next(100) < 25 && result.Contains(" et "))
+            {
+                var parts = result.Split(new[] { " et " }, 2, StringSplitOptions.None);
+                if (parts.Length == 2)
+                {
+                    result = parts[1].Trim() + " et " + char.ToLower(parts[0][0]) + parts[0].Substring(1);
+                }
             }
 
             return result;
         }
 
-        string ModifyPunctuation(string text, Random localRng)
+        string ModifyPunctuationAdvanced(string text, Random localRng, bool aggressive)
         {
             var result = text;
+            int threshold = aggressive ? 50 : 30;
 
-            // Limiter les points de suspension
-            if (localRng.Next(100) < 5 && result.Contains("..."))
+            // Variation guillemets
+            if (localRng.Next(100) < threshold && result.Contains("\""))
             {
-                // Remplacer par un point simple la plupart du temps
-                if (localRng.Next(100) < 70)
-                    result = result.Replace("...", ".");
-                else
-                    result = result.Replace("...", "…");
+                var styles = new[] { "« $1 »", "‹ $1 ›", "'$1'" };
+                result = Regex.Replace(result, @"""([^""]+)""", styles[localRng.Next(styles.Length)]);
             }
 
-            // Variation des guillemets - réduit à 20%
-            if (localRng.Next(100) < 20 && result.Contains("\""))
+            // Points de suspension
+            if (localRng.Next(100) < 15)
             {
-                var usesFrenchQuotes = localRng.Next(2) == 0;
-                if (usesFrenchQuotes)
-                {
-                    result = Regex.Replace(result, @"""([^""]+)""", "« $1 »");
-                }
+                if (result.Contains("..."))
+                    result = result.Replace("...", localRng.Next(2) == 0 ? "." : "…");
             }
 
-            // Ajout de parenthèses occasionnelles - réduit à 10%
-            if (localRng.Next(100) < 10)
-            {
-                var words = result.Split(' ');
-                if (words.Length > 5)
-                {
-                    var pos = localRng.Next(2, words.Length - 2);
-                    words[pos] = $"({words[pos]})";
-                    result = string.Join(" ", words);
-                }
-            }
-
-            // Variation tirets/virgules - réduit à 20%
+            // Variation ponctuation forte
             if (localRng.Next(100) < 20)
+            {
+                if (result.EndsWith(".") && localRng.Next(3) == 0)
+                    result = result.Substring(0, result.Length - 1) + (localRng.Next(2) == 0 ? " !" : " ?");
+            }
+
+            // Tirets et virgules
+            if (localRng.Next(100) < threshold)
             {
                 if (localRng.Next(2) == 0)
                     result = result.Replace(" - ", ", ");
@@ -561,24 +833,30 @@ namespace StylometryAnonymizer
                     result = result.Replace(", ", " - ");
             }
 
+            // Points-virgules
+            if (localRng.Next(100) < 20 && result.Contains(", "))
+            {
+                result = Regex.Replace(result, @", (\w)", m => "; " + m.Groups[1].Value, (RegexOptions)1);
+            }
+
             return result;
         }
 
-        List<string> RestructureSentences(List<string> sentences, Random localRng)
+        List<string> RestructureSentencesAdvanced(List<string> sentences, Random localRng)
         {
             if (sentences.Count < 2)
                 return sentences;
 
             var restructured = new List<string>(sentences);
 
-            // Fusion de phrases courtes - réduit à 20%
+            // Fusion phrases - augmenté à 40%
             for (int i = 0; i < restructured.Count - 1; i++)
             {
-                if (localRng.Next(100) < 20 &&
-                    restructured[i].Length < 60 &&
-                    restructured[i + 1].Length < 60)
+                if (localRng.Next(100) < 40 &&
+                    restructured[i].Length < 80 &&
+                    restructured[i + 1].Length < 80)
                 {
-                    var connectors = new[] { " et ", ", ", " ; " };
+                    var connectors = new[] { " et ", ", ", " ; ", " car ", " donc ", " mais " };
                     var connector = connectors[localRng.Next(connectors.Length)];
 
                     restructured[i] = restructured[i].TrimEnd('.', '!', '?') + connector +
@@ -587,36 +865,55 @@ namespace StylometryAnonymizer
                 }
             }
 
-            // Division de phrases longues - réduit à 15%
+            // Division phrases - augmenté à 35%
             for (int i = 0; i < restructured.Count; i++)
             {
-                if (localRng.Next(100) < 15 && restructured[i].Length > 120)
+                if (localRng.Next(100) < 35 && restructured[i].Length > 100)
                 {
-                    var match = LongSentenceSplitPattern.Match(restructured[i]);
-                    if (match.Success)
+                    var splitPoints = new[] { ", ", " et ", " mais ", " car " };
+                    foreach (var point in splitPoints)
                     {
-                        restructured[i] = match.Groups[1].Value.Trim() + ".";
-                        restructured.Insert(
-                            i + 1,
-                            char.ToUpper(match.Groups[2].Value[0]) + match.Groups[2].Value.Substring(1)
-                        );
-                        i++;
+                        if (restructured[i].Contains(point))
+                        {
+                            var parts = restructured[i].Split(new[] { point }, 2, StringSplitOptions.None);
+                            if (parts.Length == 2 && parts[0].Length > 30)
+                            {
+                                restructured[i] = parts[0].Trim() + ".";
+                                restructured.Insert(i + 1, char.ToUpper(parts[1][0]) + parts[1].Substring(1));
+                                i++;
+                                break;
+                            }
+                        }
                     }
                 }
             }
 
-            // Réorganisation aléatoire - réduit à 10%
-            if (localRng.Next(100) < 10 && restructured.Count > 2)
+            //  Réorganisation plus agressive - 25%
+            if (localRng.Next(100) < 25 && restructured.Count > 3)
             {
-                var swapCount = Math.Min(1, restructured.Count / 4);
+                var swapCount = Math.Max(2, restructured.Count / 3);
                 for (int i = 0; i < swapCount; i++)
                 {
                     var idx1 = localRng.Next(restructured.Count);
                     var idx2 = localRng.Next(restructured.Count);
 
-                    if (idx1 != idx2)
+                    if (idx1 != idx2 && Math.Abs(idx1 - idx2) > 1) // Éviter échanges adjacents
                     {
                         (restructured[idx2], restructured[idx1]) = (restructured[idx1], restructured[idx2]);
+                    }
+                }
+            }
+
+            // Inversion ordre dans phrase complexe
+            for (int i = 0; i < restructured.Count; i++)
+            {
+                if (localRng.Next(100) < 20 && restructured[i].Contains(" qui "))
+                {
+                    // Exemple: "L'homme qui parle" -> "Celui qui parle, l'homme"
+                    var match = Regex.Match(restructured[i], @"(\w+\s+\w+)\s+qui\s+(.+)");
+                    if (match.Success)
+                    {
+                        restructured[i] = $"Celui qui {match.Groups[2].Value}, {match.Groups[1].Value.ToLower()}";
                     }
                 }
             }
@@ -624,44 +921,65 @@ namespace StylometryAnonymizer
             return restructured;
         }
 
-        string JoinSentences(List<string> sentences, Random localRng)
+        string JoinSentences(List<string> sentences, Random localRng, WritingStyle style)
         {
-            var sb = new StringBuilder(sentences.Sum(s => s.Length) + sentences.Count * 20);
+            var connectors = styleConnectors.ContainsKey(style)
+                ? styleConnectors[style]
+                : styleConnectors[WritingStyle.Neutre];
+
+            // Mélanger les connecteurs pour éviter patterns
+            var shuffledConnectors = connectors.OrderBy(_ => localRng.Next()).ToArray();
+            int connectorIndex = 0;
+
+            var sb = new StringBuilder(sentences.Sum(s => s.Length) + sentences.Count * 30);
 
             for (int i = 0; i < sentences.Count; i++)
             {
-                // Ajouter la phrase en s'assurant qu'elle se termine par une ponctuation
                 var sentence = sentences[i];
-                if (!sentence.EndsWith(".") &&
-                    !sentence.EndsWith("!") &&
-                    !sentence.EndsWith("?"))
+
+                // Assurer ponctuation finale
+                if (!sentence.EndsWith(".") && !sentence.EndsWith("!") && !sentence.EndsWith("?"))
                 {
                     sentence += ".";
                 }
 
                 sb.Append(sentence);
 
-                // Ajouter le connecteur APRÈS la phrase (sauf pour la dernière)
+                // Connecteur varié (pas pour la dernière phrase)
                 if (i < sentences.Count - 1)
                 {
-                    var connector = sentenceConnectors[localRng.Next(sentenceConnectors.Length)];
+                    // Randomiser davantage le choix des connecteurs
+                    string connector;
+                    if (localRng.Next(100) < 30)
+                    {
+                        connector = " "; // Pas de connecteur parfois
+                    }
+                    else
+                    {
+                        connector = shuffledConnectors[connectorIndex % shuffledConnectors.Length];
+                        connectorIndex++;
+                    }
                     sb.Append(connector);
                 }
             }
 
             var result = sb.ToString();
 
-            // Normalisation des espaces et ponctuation
+            // Normalisation
             result = WhitespaceNormalizer.Replace(result, " ");
             result = PunctuationSpacingBefore.Replace(result, "$1");
             result = PunctuationSpacingAfter.Replace(result, "$1 $2");
 
-            // Éliminer les doubles points
-            result = DoubleDotsRemover.Replace(result, ".");
-
-            // Éliminer ponctuation double (! . ou ? . ou ! ! etc.)
+            // Éliminer doubles ponctuations
+            result = Regex.Replace(result, @"\.(\s*\.)+", ".");
             result = Regex.Replace(result, @"([.!?])\s+\.", "$1");
             result = Regex.Replace(result, @"([.!?])\s+([.!?])", "$1");
+
+            // Variation espacement après ponctuation (style)
+            if (style == WritingStyle.Littéraire && localRng.Next(100) < 20)
+            {
+                result = Regex.Replace(result, @"([.!?]) ", "$1  "); // Double espace parfois
+            }
 
             return result.Trim();
         }

@@ -41,10 +41,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblStyle = new System.Windows.Forms.Label();
+            this.cmbStyle = new System.Windows.Forms.ComboBox();
             this.BtnLoadList = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnCopy = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkRandomStyle = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -66,7 +69,7 @@
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
             this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtInput.Size = new System.Drawing.Size(432, 251);
+            this.txtInput.Size = new System.Drawing.Size(432, 250);
             this.txtInput.TabIndex = 0;
             // 
             // txtOutput
@@ -79,7 +82,7 @@
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
             this.txtOutput.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtOutput.Size = new System.Drawing.Size(433, 251);
+            this.txtOutput.Size = new System.Drawing.Size(433, 250);
             this.txtOutput.TabIndex = 1;
             this.txtOutput.Text = "";
             // 
@@ -91,7 +94,7 @@
             this.BtnAnonymize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAnonymize.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAnonymize.ForeColor = System.Drawing.Color.White;
-            this.BtnAnonymize.Location = new System.Drawing.Point(468, 80);
+            this.BtnAnonymize.Location = new System.Drawing.Point(468, 104);
             this.BtnAnonymize.Name = "BtnAnonymize";
             this.BtnAnonymize.Size = new System.Drawing.Size(394, 31);
             this.BtnAnonymize.TabIndex = 2;
@@ -105,7 +108,7 @@
             this.numVariations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numVariations.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numVariations.ForeColor = System.Drawing.Color.White;
-            this.numVariations.Location = new System.Drawing.Point(602, 20);
+            this.numVariations.Location = new System.Drawing.Point(533, 20);
             this.numVariations.Maximum = new decimal(new int[] {
             20,
             0,
@@ -206,15 +209,17 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(466, 23);
+            this.label3.Location = new System.Drawing.Point(466, 24);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 15);
+            this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Nombre de variations:";
+            this.label3.Text = "Variations:";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.panel1.Controls.Add(this.lblStyle);
+            this.panel1.Controls.Add(this.cmbStyle);
             this.panel1.Controls.Add(this.BtnLoadList);
             this.panel1.Controls.Add(this.BtnClear);
             this.panel1.Controls.Add(this.BtnCopy);
@@ -223,10 +228,31 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.BtnAnonymize);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 294);
+            this.panel1.Location = new System.Drawing.Point(0, 293);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(877, 127);
+            this.panel1.Size = new System.Drawing.Size(877, 156);
             this.panel1.TabIndex = 11;
+            // 
+            // lblStyle
+            // 
+            this.lblStyle.AutoSize = true;
+            this.lblStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStyle.ForeColor = System.Drawing.Color.White;
+            this.lblStyle.Location = new System.Drawing.Point(582, 24);
+            this.lblStyle.Name = "lblStyle";
+            this.lblStyle.Size = new System.Drawing.Size(70, 15);
+            this.lblStyle.TabIndex = 16;
+            this.lblStyle.Text = "Style cible :";
+            // 
+            // cmbStyle
+            // 
+            this.cmbStyle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbStyle.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStyle.FormattingEnabled = true;
+            this.cmbStyle.Location = new System.Drawing.Point(652, 21);
+            this.cmbStyle.Name = "cmbStyle";
+            this.cmbStyle.Size = new System.Drawing.Size(210, 21);
+            this.cmbStyle.TabIndex = 15;
             // 
             // BtnLoadList
             // 
@@ -236,7 +262,7 @@
             this.BtnLoadList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLoadList.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLoadList.ForeColor = System.Drawing.Color.White;
-            this.BtnLoadList.Location = new System.Drawing.Point(536, 52);
+            this.BtnLoadList.Location = new System.Drawing.Point(536, 60);
             this.BtnLoadList.Name = "BtnLoadList";
             this.BtnLoadList.Size = new System.Drawing.Size(181, 22);
             this.BtnLoadList.TabIndex = 14;
@@ -252,7 +278,7 @@
             this.BtnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnClear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnClear.ForeColor = System.Drawing.Color.White;
-            this.BtnClear.Location = new System.Drawing.Point(468, 52);
+            this.BtnClear.Location = new System.Drawing.Point(468, 60);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(62, 22);
             this.BtnClear.TabIndex = 13;
@@ -268,7 +294,7 @@
             this.BtnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCopy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCopy.ForeColor = System.Drawing.Color.White;
-            this.BtnCopy.Location = new System.Drawing.Point(723, 52);
+            this.BtnCopy.Location = new System.Drawing.Point(723, 60);
             this.BtnCopy.Name = "BtnCopy";
             this.BtnCopy.Size = new System.Drawing.Size(139, 22);
             this.BtnCopy.TabIndex = 12;
@@ -278,6 +304,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkRandomStyle);
             this.groupBox1.Controls.Add(this.chkSyntax);
             this.groupBox1.Controls.Add(this.chkVocabulary);
             this.groupBox1.Controls.Add(this.chkPunctuation);
@@ -286,10 +313,23 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(15, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 100);
+            this.groupBox1.Size = new System.Drawing.Size(417, 129);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options de transformation";
+            // 
+            // chkRandomStyle
+            // 
+            this.chkRandomStyle.AutoSize = true;
+            this.chkRandomStyle.Checked = true;
+            this.chkRandomStyle.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRandomStyle.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRandomStyle.Location = new System.Drawing.Point(11, 96);
+            this.chkRandomStyle.Name = "chkRandomStyle";
+            this.chkRandomStyle.Size = new System.Drawing.Size(328, 18);
+            this.chkRandomStyle.TabIndex = 8;
+            this.chkRandomStyle.Text = "Randomiser le style par variation (recommandé)";
+            this.chkRandomStyle.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -303,7 +343,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 257);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 256);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -327,7 +367,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 421);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 449);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(877, 22);
             this.statusStrip1.SizingGrip = false;
@@ -345,7 +385,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 443);
+            this.ClientSize = new System.Drawing.Size(877, 471);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -392,6 +432,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.Button BtnLoadList;
+        private System.Windows.Forms.CheckBox chkRandomStyle;
+        private System.Windows.Forms.ComboBox cmbStyle;
+        private System.Windows.Forms.Label lblStyle;
     }
 }
 

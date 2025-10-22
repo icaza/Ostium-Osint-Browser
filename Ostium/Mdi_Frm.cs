@@ -55,8 +55,23 @@ namespace Ostium
 
         void NewFrm_Mnu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(@Class_Var.URL_HOME)) 
-                @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+            if (string.IsNullOrEmpty(@Class_Var.URL_HOME))
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    senderror.ErrorLog("Error! lstUrlDfltCnf Main_Frm_Load: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
 
             OpnNewForm(@Class_Var.URL_HOME);
         }
