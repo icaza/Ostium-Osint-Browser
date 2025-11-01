@@ -7,7 +7,6 @@ using Icaza;
 using LoadDirectory;
 using Microsoft.VisualBasic;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ostium.Properties;
@@ -104,8 +103,8 @@ namespace Ostium
         Label SizeAll_Lbl;
 
         // Json
-        WebView2 WbOutJson;
-        WebView2 WbOutParse;
+        Microsoft.Web.WebView2.WinForms.WebView2 WbOutJson;
+        Microsoft.Web.WebView2.WinForms.WebView2 WbOutParse;
         readonly string JsonA = Application.StartupPath + @"\json-files\out-a-json.json";
         readonly string JsonB = Application.StartupPath + @"\json-files\out-b-json.json";
         ///
@@ -1177,11 +1176,6 @@ namespace Ostium
         /// 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
-            string UriYoutube = string.Empty;
-            string C = WBrowse.Source.AbsoluteUri;
-            if (C.Length > 32)
-                UriYoutube += C.Substring(0, 32);
-
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
             CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Speech", null, CoreWebView2ContextMenuItemKind.Command);
@@ -1209,12 +1203,17 @@ namespace Ostium
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
-                    if (UriYoutube == "https://www.youtube.com/watch?v=")
+                    string currentUrl = WBrowse.Source.ToString();
+
+                    if (currentUrl.Contains("youtube.com/watch?v="))
                     {
-                        string pageUri = WBrowse.Source.AbsoluteUri;
-                        pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        GoBrowser("file:///" + AppStart + "tmpytb.html", 0);
+                        int vIndex = currentUrl.IndexOf("v=") + 2;
+                        string videoId = currentUrl.Substring(vIndex, 11);
+
+                        string encodedUrl = Uri.EscapeDataString(currentUrl);
+                        string customUrl = $"https://icaza.github.io/?v={videoId}&url={encodedUrl}";
+
+                        GoBrowser(customUrl, 0);
                     }
                     else
                     {
@@ -1228,12 +1227,17 @@ namespace Ostium
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
-                    if (UriYoutube == "https://www.youtube.com/watch?v=")
+                    string currentUrl = WBrowse.Source.ToString();
+
+                    if (currentUrl.Contains("youtube.com/watch?v="))
                     {
-                        string pageUri = WBrowse.Source.AbsoluteUri;
-                        pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        GoBrowser("file:///" + AppStart + "tmpytb.html", 1);
+                        int vIndex = currentUrl.IndexOf("v=") + 2;
+                        string videoId = currentUrl.Substring(vIndex, 11);
+
+                        string encodedUrl = Uri.EscapeDataString(currentUrl);
+                        string customUrl = $"https://icaza.github.io/?v={videoId}&url={encodedUrl}";
+
+                        GoBrowser(customUrl, 1);
                     }
                     else
                     {
@@ -1450,7 +1454,7 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowse_EventHandlers(WebView2 control)
+        void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
@@ -1594,7 +1598,7 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowsefeed_EventHandlers(WebView2 control)
+        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
