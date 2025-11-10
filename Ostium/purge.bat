@@ -27,8 +27,4 @@ del /s "tmp.txt" 2>nul
 if %errorlevel% neq 0 (
     echo Error deleting tmp.txt
 )
-del /s "tmpytb.html" 2>nul
-if %errorlevel% neq 0 (
-    echo Error deleting tmpytb.html
-)
 exit

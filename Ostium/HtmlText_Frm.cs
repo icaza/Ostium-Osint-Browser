@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -200,7 +199,7 @@ namespace Ostium
                 }));
             }
             catch (HttpRequestException)
-            {}
+            { }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpenWebPageTxt: ", ex.ToString(), "HtmlText_Frm", AppStart);

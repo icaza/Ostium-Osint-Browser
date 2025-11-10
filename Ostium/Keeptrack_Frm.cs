@@ -13,9 +13,6 @@ namespace Ostium
     {
         #region Var_
 
-        [DllImport("kernel32.dll")]
-        static extern bool Beep(int freq, int duration);
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -97,7 +94,7 @@ namespace Ostium
 
             FaviconLoad();
 
-            Beep(800, 200);
+            Console.Beep(800, 200);
         }
 
         static bool IsCsvFile(string filePath)
@@ -139,8 +136,8 @@ namespace Ostium
         private void TrackRecord_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             label2.Focus();
-        }        
-        
+        }
+
         void Close_Btn_Click(object sender, EventArgs e)
         {
             MouseEnter -= Keeptrack_Frm_MouseEnter;

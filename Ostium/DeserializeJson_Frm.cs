@@ -4,8 +4,6 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -60,7 +58,7 @@ namespace Ostium
             }
         }
 
-        private void AppendDnsResponse(RichTextBox rtb, string header, JObject json)
+        void AppendDnsResponse(RichTextBox rtb, string header, JObject json)
         {
             rtb.SelectionColor = Color.Yellow;
             rtb.SelectionFont = new Font("Consolas", 10, FontStyle.Bold);
@@ -105,7 +103,7 @@ namespace Ostium
             rtb.AppendText("\n");
         }
 
-        private void ExportData_Btn_Click(object sender, EventArgs e)
+        void ExportData_Btn_Click(object sender, EventArgs e)
         {
             try
             {
