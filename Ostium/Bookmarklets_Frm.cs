@@ -197,7 +197,7 @@ namespace Ostium
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                        File.Delete(Path.Combine("Scripts" + "NameBkmklt_Txt.Text" + ".xml"));
+                        File.Delete(Path.Combine("Scripts", "NameBkmklt_Txt.Text" + ".xml"));
 
                     Bookmarklet_Lst.Items.Clear();
                     loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);
