@@ -178,7 +178,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html"; // <= Change the URL to distribute your version
-        readonly string versionNow = "28";
+        readonly string versionNow = "29";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
