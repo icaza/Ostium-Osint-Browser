@@ -7,7 +7,6 @@ using Icaza;
 using LoadDirectory;
 using Microsoft.VisualBasic;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ostium.Properties;
@@ -23,7 +22,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
 using System.Speech.Synthesis;
@@ -105,8 +103,8 @@ namespace Ostium
         Label SizeAll_Lbl;
 
         // Json
-        WebView2 WbOutJson;
-        WebView2 WbOutParse;
+        Microsoft.Web.WebView2.WinForms.WebView2 WbOutJson;
+        Microsoft.Web.WebView2.WinForms.WebView2 WbOutParse;
         readonly string JsonA = Application.StartupPath + @"\json-files\out-a-json.json";
         readonly string JsonB = Application.StartupPath + @"\json-files\out-b-json.json";
         ///
@@ -178,9 +176,9 @@ namespace Ostium
         /// <param name="versionNow">Current version of the application to compare with the Http request = > "updt_ostium.html"</param>
         /// </summary>
         /// 
-        readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html";
-        readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html";
-        readonly string versionNow = "28";
+        readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
+        readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html"; // <= Change the URL to distribute your version
+        readonly string versionNow = "29";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -254,6 +252,11 @@ namespace Ostium
                         lstUrlDfltCnf.Clear();
                         lstUrlDfltCnf.AddRange(File.ReadAllLines(Path.Combine(AppStart, "url_dflt_cnf.ost")));
                     }
+                    else
+                    {
+                        MessageBox.Show("The url_dflt_cnf.ost file is missing! Go to Ostium GitHub page to download this " +
+                            "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     ///
                     /// Loading configuration
                     /// <param name="CreateConfigFile"></param>
@@ -269,9 +272,26 @@ namespace Ostium
                     /// If empty loading from default URL file
                     ///
                     if (string.IsNullOrEmpty(@Class_Var.URL_HOME))
-                        @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                    {
+                        try
+                        {
+                            if (lstUrlDfltCnf.Count > 0)
+                                @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                                "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            senderror.ErrorLog("Error! lstUrlDfltCnf Main_Frm_Load: ", ex.ToString(), "Main_Frm", AppStart);
+                        }
+                    }
 
-                    WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+                    if (!string.IsNullOrEmpty(@Class_Var.URL_HOME))
+                        WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+
                     WBrowsefeed.Source = new Uri(HomeUrlRSS);
 
                     Tools_TAB_0.Visible = true;
@@ -431,13 +451,28 @@ namespace Ostium
 
             if (val == 0)
             {
-                dbDflt = lstUrlDfltCnf[0].ToString();
-                urlHom = lstUrlDfltCnf[1].ToString();
-                urlTra = lstUrlDfltCnf[2].ToString();
-                Search = lstUrlDfltCnf[3].ToString();
-                UsrAgt = lstUrlDfltCnf[4].ToString();
-                UsrHtt = lstUrlDfltCnf[5].ToString();
-                GoogBo = lstUrlDfltCnf[6].ToString();
+                if (lstUrlDfltCnf.Count > 0)
+                {
+                    try
+                    {
+                        dbDflt = lstUrlDfltCnf[0].ToString();
+                        urlHom = lstUrlDfltCnf[1].ToString();
+                        urlTra = lstUrlDfltCnf[2].ToString();
+                        Search = lstUrlDfltCnf[3].ToString();
+                        UsrAgt = lstUrlDfltCnf[4].ToString();
+                        UsrHtt = lstUrlDfltCnf[5].ToString();
+                        GoogBo = lstUrlDfltCnf[6].ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                            "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        senderror.ErrorLog("Error! lstUrlDfltCnf CreateConfigFile: ", ex.ToString(), "Main_Frm", AppStart);
+                    }
+                }
 
                 DefaultEditor_Opt_Txt.Text = Path.Combine(AppStart, "OstiumE.exe");
                 Redlist_Txt.Text = Path.Combine(AppStart, "data", BlockedUrl);
@@ -1141,11 +1176,6 @@ namespace Ostium
         /// 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
-            string UriYoutube = string.Empty;
-            string C = WBrowse.Source.AbsoluteUri;
-            if (C.Length > 32)
-                UriYoutube += C.Substring(0, 32);
-
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
             CoreWebView2ContextMenuItem newItem0 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Speech", null, CoreWebView2ContextMenuItemKind.Command);
@@ -1173,12 +1203,17 @@ namespace Ostium
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
-                    if (UriYoutube == "https://www.youtube.com/watch?v=")
+                    string currentUrl = WBrowse.Source.ToString();
+
+                    if (currentUrl.Contains("youtube.com/watch?v="))
                     {
-                        string pageUri = WBrowse.Source.AbsoluteUri;
-                        pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        GoBrowser("file:///" + AppStart + "tmpytb.html", 0);
+                        int vIndex = currentUrl.IndexOf("v=") + 2;
+                        string videoId = currentUrl.Substring(vIndex, 11);
+
+                        string encodedUrl = Uri.EscapeDataString(currentUrl);
+                        string customUrl = $"https://icaza.github.io/?v={videoId}&url={encodedUrl}";
+
+                        GoBrowser(customUrl, 0);
                     }
                     else
                     {
@@ -1192,12 +1227,17 @@ namespace Ostium
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
-                    if (UriYoutube == "https://www.youtube.com/watch?v=")
+                    string currentUrl = WBrowse.Source.ToString();
+
+                    if (currentUrl.Contains("youtube.com/watch?v="))
                     {
-                        string pageUri = WBrowse.Source.AbsoluteUri;
-                        pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        File_Write(AppStart + "tmpytb.html", "<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        GoBrowser("file:///" + AppStart + "tmpytb.html", 1);
+                        int vIndex = currentUrl.IndexOf("v=") + 2;
+                        string videoId = currentUrl.Substring(vIndex, 11);
+
+                        string encodedUrl = Uri.EscapeDataString(currentUrl);
+                        string customUrl = $"https://icaza.github.io/?v={videoId}&url={encodedUrl}";
+
+                        GoBrowser(customUrl, 1);
                     }
                     else
                     {
@@ -1414,7 +1454,7 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowse_EventHandlers(WebView2 control)
+        void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
@@ -1558,7 +1598,7 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowsefeed_EventHandlers(WebView2 control)
+        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
@@ -1714,10 +1754,32 @@ namespace Ostium
                 {
                     if (string.IsNullOrEmpty(Class_Var.URL_DEFAUT_WSEARCH))
                     {
-                        Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
+                        try
+                        {
+                            if (lstUrlDfltCnf.Count > 0)
+                                Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                                "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            senderror.ErrorLog("Error! lstUrlDfltCnf GoBrowser: ", ex.ToString(), "Main_Frm", AppStart);
+                        }
                     }
 
-                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    ///
+                    /// Change, for those who use Google as their default search engine, the link used was the following 
+                    /// https://www.google.com/search?q=SEARCHWORD you just had to enter the search term in Ostium or the Url. 
+                    /// For the Url it is therefore direct for the search it was a combination of the Google Url + the search term. 
+                    /// This method is deprecated and requires us to validate a stupid captha. So I modified the code so that it 
+                    /// opens the Google search page (for those who use it) rather than leaving the automation to facilitate a step. 
+                    /// I grayed out the old line for those who want to keep it in the code.
+                    ///
+                    /// uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH);
                 }
 
                 if (WebviewRedirect == 0)
@@ -1775,7 +1837,22 @@ namespace Ostium
         void Home_Btn_Click(object sender, EventArgs e)
         {
             if (@Class_Var.URL_HOME == string.Empty)
-                @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    senderror.ErrorLog("Error! lstUrlDfltCnf Home_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
 
             WBrowse.Source = new Uri(@Class_Var.URL_HOME);
         }
@@ -1846,7 +1923,22 @@ namespace Ostium
         void ChangeUserAgent()
         {
             if (Class_Var.URL_USER_AGENT == string.Empty)
-                Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        Class_Var.URL_USER_AGENT = lstUrlDfltCnf[4].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    senderror.ErrorLog("Error! lstUrlDfltCnf ChangeUserAgent: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
 
             bool isUserAgentChange = UserAgentChange_Btn.Text == "Change User Agent On";
 
@@ -1881,7 +1973,22 @@ namespace Ostium
         void GoogleBot()
         {
             if (Class_Var.URL_GOOGLEBOT == string.Empty)
-                Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        Class_Var.URL_GOOGLEBOT = lstUrlDfltCnf[6].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    senderror.ErrorLog("Error! lstUrlDfltCnf GoogleBot: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
 
             bool isGooglebotOn = Googlebot_Btn.Text == "Googlebot On";
 
@@ -1982,7 +2089,22 @@ namespace Ostium
             try
             {
                 if (Class_Var.URL_TRAD_WEBPAGE == string.Empty)
-                    Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
+                {
+                    try
+                    {
+                        if (lstUrlDfltCnf.Count > 0)
+                            Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                            "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        senderror.ErrorLog("Error! lstUrlDfltCnf TraductPage_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+                    }
+                }
 
                 string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowse.Source.AbsoluteUri);
                 WBrowse.Source = new Uri(@formatURI);
@@ -2681,7 +2803,22 @@ namespace Ostium
         void TraductPageFeed_Btn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Class_Var.URL_TRAD_WEBPAGE))
-                Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    senderror.ErrorLog("Error! lstUrlDfltCnf TraductPageFeed_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsefeed.Source.AbsoluteUri);
             WBrowsefeed.Source = new Uri(@formatURI);
@@ -3608,7 +3745,11 @@ namespace Ostium
             Tools_TAB_3.Visible = false;
             Tools_TAB_4.Visible = false;
             Text = TmpTitleWBrowse;
-            URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
+            try
+            {
+                URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
+            }
+            catch { }
             TableOpn_Lbl.Visible = true;
             CountFeed_Lbl.Visible = false;
             DBSelectOpen_Lbl.Visible = false;
@@ -3685,7 +3826,22 @@ namespace Ostium
                     return;
 
                 if (string.IsNullOrWhiteSpace(Class_Var.URL_USER_AGENT_SRC_PAGE))
-                    Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5]?.ToString() ?? "Mozilla/5.0";
+                {
+                    try
+                    {
+                        if (lstUrlDfltCnf.Count > 0)
+                            Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                            "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        senderror.ErrorLog("Error! lstUrlDfltCnf Download_Source_Page: ", ex.ToString(), "Main_Frm", AppStart);
+                    }
+                }
 
                 client.DefaultRequestHeaders.UserAgent.ParseAdd(Class_Var.URL_USER_AGENT_SRC_PAGE);
 
@@ -6304,13 +6460,11 @@ namespace Ostium
             if (IsAdsTrackersBlocked)
             {
                 BlockAdmenu_Mnu.ForeColor = Color.Red;
-                BlockAds_Mnu.ForeColor = Color.Black;
                 BlockAdFeed_Btn.ForeColor = Color.Red;
             }
             else
             {
                 BlockAdmenu_Mnu.ForeColor = Color.Lime;
-                BlockAds_Mnu.ForeColor = Color.Lime;
                 BlockAdFeed_Btn.ForeColor = Color.Lime;
             }
         }
@@ -7395,32 +7549,57 @@ namespace Ostium
         {
             try
             {
-                string VerifyStyle = "a"; // a Aerien - r Road
-                string ZommValueMaps = "19";
-                string TiltMapsValue = "100";
-                string Direction = "North";
-
-                Process.Start("bingmaps:?cp=" + LatTCurrent_Lbl.Text + "~" + LonGtCurrent_Lbl.Text + "&lvl=" +
-                    ZommValueMaps + "&sty=" + VerifyStyle + "&pit=" + TiltMapsValue + "&hdg=" + Direction + string.Empty);
+                GoBrowser(lstUrlDfltCnf[9].ToString() + LatTCurrent_Lbl.Text + "~" + LonGtCurrent_Lbl.Text, 0);
+                CtrlTabBrowsx();
+                Control_Tab.SelectedIndex = 0;
             }
-            catch (Exception ex)
+            catch (ArgumentOutOfRangeException)
             {
-                senderror.ErrorLog("Error! OpnBingMap_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+                MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                    "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (ArgumentException ex)
+            {
+                senderror.ErrorLog("Error! OpnBingMap_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
         void OpnGoogleMaps_Tls_Click(object sender, EventArgs e)
         {
-            GoBrowser(lstUrlDfltCnf[7].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
-            CtrlTabBrowsx();
-            Control_Tab.SelectedIndex = 0;
+            try
+            {
+                GoBrowser(lstUrlDfltCnf[7].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
+                CtrlTabBrowsx();
+                Control_Tab.SelectedIndex = 0;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                    "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (ArgumentException ex)
+            {
+                senderror.ErrorLog("Error! OpnGoogleMaps_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void OpnGoogleStreet_Tls_Click(object sender, EventArgs e)
         {
-            GoBrowser(lstUrlDfltCnf[8].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
-            CtrlTabBrowsx();
-            Control_Tab.SelectedIndex = 0;
+            try
+            {
+                GoBrowser(lstUrlDfltCnf[8].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
+                CtrlTabBrowsx();
+                Control_Tab.SelectedIndex = 0;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                    "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (ArgumentException ex)
+            {
+                senderror.ErrorLog("Error! OpnGoogleMaps_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void OpenGoogleEarth_Tls_Click(object sender, EventArgs e)
@@ -8456,7 +8635,22 @@ namespace Ostium
             }
 
             if (Class_Var.URL_USER_AGENT_SRC_PAGE == string.Empty)
-                Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        Class_Var.URL_USER_AGENT_SRC_PAGE = lstUrlDfltCnf[5].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    senderror.ErrorLog("Error! lstUrlDfltCnf GetJson_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+                }
+            }
 
             GetAsync(JsonUri_Txt.Text);
         }
@@ -9071,6 +9265,5 @@ namespace Ostium
         }
 
         #endregion
-
     }
 }

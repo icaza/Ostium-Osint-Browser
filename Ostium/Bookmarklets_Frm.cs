@@ -3,7 +3,6 @@ using LoadDirectory;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -198,7 +197,7 @@ namespace Ostium
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                        File.Delete(Scripts + NameBkmklt_Txt.Text + ".xml");
+                        File.Delete(Path.Combine("Scripts", "NameBkmklt_Txt.Text" + ".xml"));
 
                     Bookmarklet_Lst.Items.Clear();
                     loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);

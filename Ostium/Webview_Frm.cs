@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -208,17 +207,39 @@ namespace Ostium
                 {
                     if (string.IsNullOrEmpty(Class_Var.URL_DEFAUT_WSEARCH))
                     {
-                        Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
+                        try
+                        {
+                            if (lstUrlDfltCnf.Count > 0)
+                                Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                                "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            MessageBox.Show("Error! lstUrlDfltCnf GoBrowser: " + ex.Message, "Error!");
+                        }
                     }
 
-                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    ///
+                    /// Change, for those who use Google as their default search engine, the link used was the following 
+                    /// https://www.google.com/search?q=SEARCHWORD you just had to enter the search term in Ostium or the Url. 
+                    /// For the Url it is therefore direct for the search it was a combination of the Google Url + the search term. 
+                    /// This method is deprecated and requires us to validate a stupid captha. So I modified the code so that it 
+                    /// opens the Google search page (for those who use it) rather than leaving the automation to facilitate a step. 
+                    /// I grayed out the old line for those who want to keep it in the code.
+                    ///
+                    /// uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH);
                 }
 
                 WBrowsew.Source = uri;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in GoBrowser: {ex.Message}");
+                MessageBox.Show("Error! GoBrowser: " + ex.Message, "Error!");
             }
         }
 
@@ -239,16 +260,46 @@ namespace Ostium
 
         void Home_Btn_Click(object sender, EventArgs e)
         {
-            if (@Class_Var.URL_HOME == string.Empty)
-                @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+            if (string.IsNullOrEmpty(@Class_Var.URL_HOME))
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Error! lstUrlDfltCnf Home_Btn_Click: " + ex.Message, "Error!");
+                }
+            }
 
             WBrowsew.Source = new Uri(@Class_Var.URL_HOME);
         }
 
         void Trad_Btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Class_Var.URL_TRAD_WEBPAGE))
-                Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
+            if (string.IsNullOrEmpty(@Class_Var.URL_TRAD_WEBPAGE))
+            {
+                try
+                {
+                    if (lstUrlDfltCnf.Count > 0)
+                        @Class_Var.URL_TRAD_WEBPAGE = lstUrlDfltCnf[2].ToString();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                        "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Error! lstUrlDfltCnf Trad_Btn_Click: " + ex.Message, "Error!");
+                }
+            }
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsew.Source.AbsoluteUri);
             WBrowsew.Source = new Uri(@formatURI);

@@ -1,4 +1,4 @@
-﻿using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Core;
 using System;
 using System.Threading.Tasks;
 
@@ -22,112 +22,418 @@ public class FloodHeader
         int hardwareConcurrency = GenerateRandomHardwareConcurrency();
         float deviceMemory = GenerateRandomDeviceMemory();
         int maxTouchPoints = GenerateRandomMaxTouchPoints();
-        string webdriver = GenerateRandomWebdriver();
+        bool webdriver = false; // Always false to avoid detection
         string connectionType = GenerateRandomConnectionType();
 
         webView.Settings.UserAgent = userAgent;
 
-        await EnableWebGLProtectionAsync();
+        // Injecting the scripts in the correct order
+        await InjectCoreProtectionAsync();
         await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset, language, hardwareConcurrency, deviceMemory, maxTouchPoints, webdriver, connectionType);
+        await EnableWebGLProtectionAsync();
+        await EnableCanvasProtectionAsync();
         await EnableAudioContextProtectionAsync();
-        await EnableCanvasAndWebGLProtectionAsync();
         await EnableWebRTCAndBatteryAndSpeechProtectionAsync();
+        await EnableAdvancedFingerprintProtectionAsync();
     }
 
-    public async Task EnableWebGLProtectionAsync()
+    async Task InjectCoreProtectionAsync()
     {
         string script = @"
         (function() {
-            console.log('[Fingerprint Defender] Advanced WebGL Protection Enabled');
+            'use strict';
+            console.log('[Fingerprint Defender] Core Protection Enabled');
 
-            // Fake GPU IDs
-            const fakeVendor = 'FakeVendor';
-            const fakeRenderer = 'FakeRenderer';
+            // Remove traces of automation
+            delete window.cdc_adoQpoasnfa76pfcZLmcfl_Array;
+            delete window.cdc_adoQpoasnfa76pfcZLmcfl_Promise;
+            delete window.cdc_adoQpoasnfa76pfcZLmcfl_Symbol;
+            
+            // Hide WebDriver properties
+            Object.defineProperty(navigator, 'webdriver', {
+                get: () => undefined,
+                configurable: false
+            });
 
-            function spoofWebGL() {
-                const getParameterProxy = new Proxy(WebGLRenderingContext.prototype.getParameter, {
-                    apply: function(target, thisArg, args) {
-                        const param = args[0];
-
-                        if (param === 0x1F00 || param === 0x1F01) { 
-                            // VENDOR or RENDERER standard
-                            return fakeVendor;
-                        }
-                        if (param === 0x9245) { 
-                            // UNMASKED_VENDOR_WEBGL
-                            return fakeVendor;
-                        }
-                        if (param === 0x9246) { 
-                            // UNMASKED_RENDERER_WEBGL
-                            return fakeRenderer;
-                        }
-
-                        return Reflect.apply(target, thisArg, args);
-                    }
-                });
-
-                const getExtensionProxy = new Proxy(WebGLRenderingContext.prototype.getExtension, {
-                    apply: function(target, thisArg, args) {
-                        if (args[0] === 'WEBGL_debug_renderer_info') {
-                            return null; // Prevents access to the extension
-                        }
-                        return Reflect.apply(target, thisArg, args);
-                    }
-                });
-
-                WebGLRenderingContext.prototype.getParameter = getParameterProxy;
-                WebGL2RenderingContext.prototype.getParameter = getParameterProxy;
-                WebGLRenderingContext.prototype.getExtension = getExtensionProxy;
-                WebGL2RenderingContext.prototype.getExtension = getExtensionProxy;
+            // Prevent detection via window.chrome
+            if (!window.chrome) {
+                window.chrome = {
+                    runtime: {},
+                    loadTimes: function() {},
+                    csi: function() {},
+                    app: {}
+                };
             }
 
-            // Execute as soon as possible
-            spoofWebGL();
-            console.log('[Fingerprint Defender] UNMASKED_VENDOR & UNMASKED_RENDERER modified !');
+            // Hide automation permissions
+            const originalQuery = window.navigator.permissions.query;
+            window.navigator.permissions.query = (parameters) => (
+                parameters.name === 'notifications' ?
+                    Promise.resolve({ state: Notification.permission }) :
+                    originalQuery(parameters)
+            );
+
+            // Protect against plugin detection
+            Object.defineProperty(navigator, 'plugins', {
+                get: () => [
+                    {
+                        0: {type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format'},
+                        description: 'Portable Document Format',
+                        filename: 'internal-pdf-viewer',
+                        length: 1,
+                        name: 'Chrome PDF Plugin'
+                    },
+                    {
+                        0: {type: 'application/pdf', suffixes: 'pdf', description: 'Portable Document Format'},
+                        description: 'Portable Document Format', 
+                        filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai',
+                        length: 1,
+                        name: 'Chrome PDF Viewer'
+                    }
+                ]
+            });
+
+            // Protect mimeTypes
+            Object.defineProperty(navigator, 'mimeTypes', {
+                get: () => [
+                    {type: 'application/pdf', suffixes: 'pdf', description: 'Portable Document Format', enabledPlugin: {name: 'Chrome PDF Plugin'}},
+                    {type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format', enabledPlugin: {name: 'Chrome PDF Plugin'}}
+                ]
+            });
         })();
         ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
 
-    async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, string webdriver, string connectionType)
+    async Task FloodHeaderScripts(int width, int height, string platform, int timezoneOffset, string language, int hardwareConcurrency, float deviceMemory, int maxTouchPoints, bool webdriver, string connectionType)
     {
+        // Consistency: maxTouchPoints should be 0 for desktop
+        if (platform.Contains("Win") || platform.Contains("Linux") || platform.Contains("Mac"))
+        {
+            maxTouchPoints = 0;
+        }
+
         string script = $@"
         (function() {{
+            'use strict';
+            
             // Manipulating Screen and Window Properties
-            Object.defineProperty(window.screen, 'width', {{ get: () => {width} }});
-            Object.defineProperty(window.screen, 'height', {{ get: () => {height} }});
-            Object.defineProperty(window, 'innerWidth', {{ get: () => {width} }});
-            Object.defineProperty(window, 'innerHeight', {{ get: () => {height} }});
+            Object.defineProperty(window.screen, 'width', {{ 
+                get: () => {width},
+                configurable: false
+            }});
+            Object.defineProperty(window.screen, 'height', {{ 
+                get: () => {height},
+                configurable: false
+            }});
+            Object.defineProperty(window.screen, 'availWidth', {{ 
+                get: () => {width},
+                configurable: false
+            }});
+            Object.defineProperty(window.screen, 'availHeight', {{ 
+                get: () => {height - 40},
+                configurable: false
+            }});
+            Object.defineProperty(window, 'innerWidth', {{ 
+                get: () => {width},
+                configurable: false
+            }});
+            Object.defineProperty(window, 'innerHeight', {{ 
+                get: () => {height - 120},
+                configurable: false
+            }});
+            Object.defineProperty(window, 'outerWidth', {{ 
+                get: () => {width},
+                configurable: false
+            }});
+            Object.defineProperty(window, 'outerHeight', {{ 
+                get: () => {height},
+                configurable: false
+            }});
+
+            // Screen orientation (cohérent avec la résolution)
+            const orientation = {width} > {height} ? 'landscape-primary' : 'portrait-primary';
+            Object.defineProperty(window.screen.orientation, 'type', {{
+                get: () => orientation,
+                configurable: false
+            }});
 
             // Manipulate platform and time zone
-            Object.defineProperty(navigator, 'platform', {{ get: () => '{platform}' }});
-            Object.defineProperty(navigator, 'oscpu', {{ get: () => '{platform}' }});
-            Date.prototype.getTimezoneOffset = function() {{ return {timezoneOffset}; }};
+            Object.defineProperty(navigator, 'platform', {{ 
+                get: () => '{platform}',
+                configurable: false
+            }});
+            Object.defineProperty(navigator, 'oscpu', {{ 
+                get: () => '{platform}',
+                configurable: false
+            }});
+            
+            const originalGetTimezoneOffset = Date.prototype.getTimezoneOffset;
+            Date.prototype.getTimezoneOffset = function() {{ 
+                return {timezoneOffset}; 
+            }};
 
             // Manipulating languages
-            Object.defineProperty(navigator, 'language', {{ get: () => '{language}' }});
-            Object.defineProperty(navigator, 'languages', {{ get: () => ['{language}', 'en-US', 'en'] }});
-
-            // Manipulating material properties
-            Object.defineProperty(navigator, 'hardwareConcurrency', {{ get: () => {hardwareConcurrency} }});
-            Object.defineProperty(navigator, 'deviceMemory', {{ get: () => {deviceMemory} }});
-            Object.defineProperty(navigator, 'maxTouchPoints', {{ get: () => {maxTouchPoints} }});
-
-            // Manipulating Webdriver (to avoid automation detection))
-            Object.defineProperty(navigator, 'webdriver', {{ get: () => {webdriver.ToLower()} }});
-
-            // Manipulate login information
-            Object.defineProperty(navigator, 'connection', {{
-                get: () => ({{
-                    downlink: 10,
-                    effectiveType: '{connectionType}',
-                    rtt: 100,
-                    saveData: false,
-                    type: '{connectionType}'
-                }})
+            Object.defineProperty(navigator, 'language', {{ 
+                get: () => '{language}',
+                configurable: false
             }});
+            Object.defineProperty(navigator, 'languages', {{ 
+                get: () => ['{language}', 'en-US'],
+                configurable: false
+            }});
+
+            // Manipulating hardware properties
+            Object.defineProperty(navigator, 'hardwareConcurrency', {{ 
+                get: () => {hardwareConcurrency},
+                configurable: false
+            }});
+            Object.defineProperty(navigator, 'deviceMemory', {{ 
+                get: () => {deviceMemory},
+                configurable: false
+            }});
+            Object.defineProperty(navigator, 'maxTouchPoints', {{ 
+                get: () => {maxTouchPoints},
+                configurable: false
+            }});
+
+            // Manipulating Webdriver
+            Object.defineProperty(navigator, 'webdriver', {{ 
+                get: () => {webdriver.ToString().ToLower()},
+                configurable: false
+            }});
+
+            // Manipulate connection information
+            if (navigator.connection) {{
+                Object.defineProperty(navigator.connection, 'downlink', {{ get: () => 10 }});
+                Object.defineProperty(navigator.connection, 'effectiveType', {{ get: () => '{connectionType}' }});
+                Object.defineProperty(navigator.connection, 'rtt', {{ get: () => 50 }});
+                Object.defineProperty(navigator.connection, 'saveData', {{ get: () => false }});
+            }}
+
+            // doNotTrack
+            Object.defineProperty(navigator, 'doNotTrack', {{
+                get: () => null,
+                configurable: false
+            }});
+
+            // Vendor et product
+            Object.defineProperty(navigator, 'vendor', {{
+                get: () => 'Google Inc.',
+                configurable: false
+            }});
+            Object.defineProperty(navigator, 'vendorSub', {{
+                get: () => '',
+                configurable: false
+            }});
+
+            console.log('[Fingerprint Defender] Navigator properties modified');
         }})();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableWebGLProtectionAsync()
+    {
+        // Generate a random seed for this profile
+        double noiseSeed = random.NextDouble();
+
+        string script = $@"
+        (function() {{
+            'use strict';
+            console.log('[Fingerprint Defender] Advanced WebGL Protection Enabled');
+
+            // Seed for noise (only one per session)
+            const noiseSeed = {noiseSeed.ToString(System.Globalization.CultureInfo.InvariantCulture)};
+
+            // Fake GPU IDs
+            const fakeVendor = 'Google Inc. (Intel)';
+            const fakeRenderer = 'ANGLE (Intel, Intel(R) UHD Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)';
+
+            function spoofWebGL() {{
+                // hook getParameter to modify text AND numeric properties
+                const getParameterHandler = {{
+                    apply: function(target, thisArg, args) {{
+                        const param = args[0];
+
+                        if (param === 0x1F00) {{ // VENDOR
+                            return fakeVendor;
+                        }}
+                        if (param === 0x1F01) {{ // RENDERER
+                            return fakeRenderer;
+                        }}
+                        if (param === 0x9245) {{ // UNMASKED_VENDOR_WEBGL
+                            return fakeVendor;
+                        }}
+                        if (param === 0x9246) {{ // UNMASKED_RENDERER_WEBGL
+                            return fakeRenderer;
+                        }}
+
+                        // Slightly modify the numerical values ​​to change the hash
+                        const result = Reflect.apply(target, thisArg, args);
+                        
+                        // If it's a number, add noise
+                        if (typeof result === 'number') {{
+                            const noise = (Math.sin(noiseSeed * param) * 2) - 1;
+                            return Math.floor(result + noise);
+                        }}
+
+                        return result;
+                    }}
+                }};
+
+                const getExtensionHandler = {{
+                    apply: function(target, thisArg, args) {{
+                        if (args[0] === 'WEBGL_debug_renderer_info') {{
+                            return null;
+                        }}
+                        return Reflect.apply(target, thisArg, args);
+                    }}
+                }};
+
+                // Hook readPixels to modify the rendered pixels (core of the WebGL hash)
+                const readPixelsHandler = {{
+                    apply: function(target, thisArg, args) {{
+                        const result = Reflect.apply(target, thisArg, args);
+                        
+                        // Slightly adjust the pixels
+                        if (args[6] && args[6].length) {{
+                            for (let i = 0; i < args[6].length; i += 100) {{
+                                const noise = Math.floor((Math.sin(noiseSeed * i) * 3));
+                                args[6][i] = Math.max(0, Math.min(255, args[6][i] + noise));
+                            }}
+                        }}
+                        
+                        return result;
+                    }}
+                }};
+
+                // Hook shaderSource to modify shaders (affects rendering)
+                const shaderSourceHandler = {{
+                    apply: function(target, thisArg, args) {{
+                        let source = args[1];
+                        
+                        // Add a unique comment based on the seed
+                        if (typeof source === 'string') {{
+                            source = '// Seed: ' + noiseSeed.toFixed(8) + '\\n' + source;
+                            args[1] = source;
+                        }}
+                        
+                        return Reflect.apply(target, thisArg, args);
+                    }}
+                }};
+
+                // Apply the proxies
+                WebGLRenderingContext.prototype.getParameter = new Proxy(WebGLRenderingContext.prototype.getParameter, getParameterHandler);
+                WebGL2RenderingContext.prototype.getParameter = new Proxy(WebGL2RenderingContext.prototype.getParameter, getParameterHandler);
+                WebGLRenderingContext.prototype.getExtension = new Proxy(WebGLRenderingContext.prototype.getExtension, getExtensionHandler);
+                WebGL2RenderingContext.prototype.getExtension = new Proxy(WebGL2RenderingContext.prototype.getExtension, getExtensionHandler);
+                WebGLRenderingContext.prototype.readPixels = new Proxy(WebGLRenderingContext.prototype.readPixels, readPixelsHandler);
+                WebGL2RenderingContext.prototype.readPixels = new Proxy(WebGL2RenderingContext.prototype.readPixels, readPixelsHandler);
+                WebGLRenderingContext.prototype.shaderSource = new Proxy(WebGLRenderingContext.prototype.shaderSource, shaderSourceHandler);
+                WebGL2RenderingContext.prototype.shaderSource = new Proxy(WebGL2RenderingContext.prototype.shaderSource, shaderSourceHandler);
+
+                // Protect getSupportedExtensions
+                const originalGetSupportedExtensions = WebGLRenderingContext.prototype.getSupportedExtensions;
+                WebGLRenderingContext.prototype.getSupportedExtensions = function() {{
+                    const extensions = originalGetSupportedExtensions.apply(this, arguments);
+                    return extensions ? extensions.filter(ext => ext !== 'WEBGL_debug_renderer_info') : [];
+                }};
+
+                // Hook getShaderPrecisionFormat to modify the precision
+                const precisionHandler = {{
+                    apply: function(target, thisArg, args) {{
+                        const result = Reflect.apply(target, thisArg, args);
+                        if (result) {{
+                            const noise = Math.floor(Math.sin(noiseSeed * 1000) * 2);
+                            return {{
+                                rangeMin: result.rangeMin + noise,
+                                rangeMax: result.rangeMax + noise,
+                                precision: result.precision
+                            }};
+                        }}
+                        return result;
+                    }}
+                }};
+
+                WebGLRenderingContext.prototype.getShaderPrecisionFormat = new Proxy(
+                    WebGLRenderingContext.prototype.getShaderPrecisionFormat, 
+                    precisionHandler
+                );
+                WebGL2RenderingContext.prototype.getShaderPrecisionFormat = new Proxy(
+                    WebGL2RenderingContext.prototype.getShaderPrecisionFormat, 
+                    precisionHandler
+                );
+            }}
+
+            spoofWebGL();
+            console.log('[Fingerprint Defender] WebGL fingerprint randomized with seed:', noiseSeed.toFixed(8));
+        }})();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableCanvasProtectionAsync()
+    {
+        string script = @"
+        (function() {
+            'use strict';
+            console.log('[Fingerprint Defender] Canvas Protection activated');
+
+            // Use a consistent seed per session to avoid excessive variations
+            let noiseSeed = Math.random();
+
+            // Deterministic noise function based on position
+            function getNoiseValue(index) {
+                const x = Math.sin(noiseSeed * index) * 10000;
+                return x - Math.floor(x);
+            }
+
+            const getContext = HTMLCanvasElement.prototype.getContext;
+
+            HTMLCanvasElement.prototype.getContext = function(type, attrs) {
+                const ctx = getContext.apply(this, arguments);
+                
+                if (type === '2d') {
+                    const originalToDataURL = this.toDataURL;
+                    const originalGetImageData = ctx.getImageData;
+
+                    // Function to add subtle noise
+                    function addNoise(imageData) {
+                        const data = imageData.data;
+                        const factor = 1; // Bruit très léger
+                        for (let i = 0; i < data.length; i += 4) {
+                            const noise = getNoiseValue(i) * factor * 2 - factor;
+                            data[i] = Math.max(0, Math.min(255, data[i] + noise));     // R
+                            data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + noise)); // G
+                            data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + noise)); // B
+                        }
+                    }
+
+                    // Override toDataURL
+                    this.toDataURL = function() {
+                        const imageData = ctx.getImageData(0, 0, this.width, this.height);
+                        addNoise(imageData);
+                        ctx.putImageData(imageData, 0, 0);
+                        return originalToDataURL.apply(this, arguments);
+                    };
+
+                    // Override getImageData
+                    ctx.getImageData = function() {
+                        const imageData = originalGetImageData.apply(this, arguments);
+                        addNoise(imageData);
+                        return imageData;
+                    };
+                }
+
+                return ctx;
+            };
+
+            console.log('[Fingerprint Defender] Canvas fingerprint modified');
+        })();
         ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
@@ -135,150 +441,42 @@ public class FloodHeader
 
     public async Task EnableAudioContextProtectionAsync()
     {
-        string script = $@"
-        (function() {{
-            console.log('[Fingerprint Defender] AudioContext Protection Enabled');
-
-            // Change the AudioContext footprint
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if (AudioContext) {{
-                const originalGetChannelData = AudioBuffer.prototype.getChannelData;
-                
-                AudioBuffer.prototype.getChannelData = function() {{
-                    const data = originalGetChannelData.apply(this, arguments);
-                    for (let i = 0; i < data.length; i += 100) {{ 
-                        data[i] += (Math.random() * 0.0001) - 0.00005; // Light disturbance
-                    }}
-                    return data;
-                }};
-        
-                const originalCreateAnalyser = AudioContext.prototype.createAnalyser;
-                AudioContext.prototype.createAnalyser = function() {{
-                    const analyser = originalCreateAnalyser.apply(this, arguments);
-                    const originalGetFloatFrequencyData = analyser.getFloatFrequencyData;
-        
-                    analyser.getFloatFrequencyData = function(array) {{
-                        originalGetFloatFrequencyData.apply(this, [array]);
-                        for (let i = 0; i < array.length; i++) {{
-                            array[i] += (Math.random() * 0.1) - 0.05; // Changing frequencies
-                        }}
-                    }};
-        
-                    return analyser;
-                }};
-            }}
-
-            //// Refresh fingerprint on every load
-            //function refreshFingerprint() {{
-            //    console.log('[Fingerprint Defender] New audio hash generated !');
-            //    document.body.style.opacity = '0'; 
-            //    setTimeout(() => {{
-            //        document.body.style.opacity = '1';
-            //    }}, 500);
-            //}}
-        
-            //window.onload = function() {{
-            //    refreshFingerprint();
-            //}};
-        }})();
-        ";
-
-        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
-    }
-
-    public async Task EnableCanvasAndWebGLProtectionAsync()
-    {
         string script = @"
         (function() {
-            console.log('[Fingerprint Defender] Canvas Protection activated');
+            'use strict';
+            console.log('[Fingerprint Defender] AudioContext Protection Enabled');
 
-            const getContext = HTMLCanvasElement.prototype.getContext;
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
 
-            HTMLCanvasElement.prototype.getContext = function(type, attrs) {
-                const ctx = getContext.apply(this, arguments);
-                if (type === '2d') {
-                    const originalToDataURL = ctx.toDataURL;
-                    const originalGetImageData = ctx.getImageData;
-                    const originalPutImageData = ctx.putImageData;
-                    const originalToBlob = ctx.toBlob;
-                    const originalFillText = ctx.fillText;
-                    const originalFillRect = ctx.fillRect;
+            // Seed for audio noise
+            let audioSeed = Math.random() * 1000;
 
-                    // Function to add noise
-                    function addNoise(data) {
-                        const factor = 20; // Noise intensity
-                        for (let i = 0; i < data.length; i += 4) {
-                            data[i] += (Math.random() * factor) - (factor / 2);     // Red
-                            data[i + 1] += (Math.random() * factor) - (factor / 2); // Green
-                            data[i + 2] += (Math.random() * factor) - (factor / 2); // Blue
-                        }
-                    }
-
-                    // Function to apply light distortions
-                    function distortCanvas(ctx) {
-                        const { width, height } = ctx.canvas;
-                        const imageData = ctx.getImageData(0, 0, width, height);
-                        addNoise(imageData.data);
-                        ctx.putImageData(imageData, 0, 0);
-                    }
-
-                    // Edit text and shapes to add noise
-                    ctx.fillText = function(text, x, y, maxWidth) {
-                        const offsetX = Math.random() * 2 - 1; 
-                        const offsetY = Math.random() * 2 - 1;
-                        originalFillText.apply(this, [text, x + offsetX, y + offsetY, maxWidth]);
-                    };
-
-                    ctx.fillRect = function(x, y, width, height) {
-                        const offsetX = Math.random() * 2 - 1;
-                        const offsetY = Math.random() * 2 - 1;
-                        originalFillRect.apply(this, [x + offsetX, y + offsetY, width, height]);
-                    };
-
-                    ctx.toDataURL = function() {
-                        distortCanvas(ctx);
-                        return originalToDataURL.apply(this, arguments);
-                    };
-
-                    ctx.getImageData = function(x, y, width, height) {
-                        const imageData = originalGetImageData.apply(this, arguments);
-                        addNoise(imageData.data);
-                        return imageData;
-                    };
-
-                    ctx.putImageData = function(imageData, x, y) {
-                        addNoise(imageData.data);
-                        originalPutImageData.apply(this, arguments);
-                    };
-
-                    ctx.toBlob = function() {
-                        distortCanvas(ctx);
-                        return originalToBlob.apply(this, arguments);
-                    };
+            const originalGetChannelData = AudioBuffer.prototype.getChannelData;
+            AudioBuffer.prototype.getChannelData = function() {
+                const data = originalGetChannelData.apply(this, arguments);
+                for (let i = 0; i < data.length; i += 100) { 
+                    data[i] += (Math.sin(audioSeed + i) * 0.00001);
                 }
-                return ctx;
+                return data;
             };
 
-            // Modify WebGL to change GPU fingerprint
-            const getParameter = WebGLRenderingContext.prototype.getParameter;
-            WebGLRenderingContext.prototype.getParameter = function(parameter) {
-                if (parameter === 0x1F00) return 'RandomVendor_' + Math.random().toString(36).substring(7);
-                if (parameter === 0x1F01) return 'RandomRenderer_' + Math.random().toString(36).substring(7);
-                return getParameter.apply(this, arguments);
+            const originalCreateAnalyser = AudioContext.prototype.createAnalyser;
+            AudioContext.prototype.createAnalyser = function() {
+                const analyser = originalCreateAnalyser.apply(this, arguments);
+                const originalGetFloatFrequencyData = analyser.getFloatFrequencyData;
+
+                analyser.getFloatFrequencyData = function(array) {
+                    originalGetFloatFrequencyData.apply(this, [array]);
+                    for (let i = 0; i < array.length; i++) {
+                        array[i] += (Math.sin(audioSeed + i) * 0.05);
+                    }
+                };
+
+                return analyser;
             };
 
-            //// Generate a new hash on each load
-            //function refreshFingerprint() {
-            //    console.log('[Fingerprint Defender] New hash generated !');
-            //    document.body.style.opacity = '0'; 
-            //    setTimeout(() => {
-            //        document.body.style.opacity = '1';
-            //    }, 500);
-            //}
-
-            //window.onload = function() {
-            //    refreshFingerprint();
-            //};
+            console.log('[Fingerprint Defender] Audio fingerprint modified');
         })();
         ";
 
@@ -289,29 +487,134 @@ public class FloodHeader
     {
         string script = @"
         (function() {
+            'use strict';
             console.log('[Fingerprint Defender] WebRTC, Battery API and Speech Synthesis protection enabled');
 
-            // WebRTC Leak Protection
-            const originalRTCPeerConnection = window.RTCPeerConnection;
-            window.RTCPeerConnection = function() {
-                console.warn('[Fingerprint Defender] WebRTC blocked !');
-                return null;
-            };
+            // WebRTC - Block IP leaks
+            const originalRTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+            if (originalRTCPeerConnection) {
+                window.RTCPeerConnection = function(config) {
+                    if (config && config.iceServers) {
+                        config.iceServers = [];
+                    }
+                    return new originalRTCPeerConnection(config);
+                };
+                window.RTCPeerConnection.prototype = originalRTCPeerConnection.prototype;
+            }
+
+            // MediaDevices - limit the enumeration
+            if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+                const originalEnumerateDevices = navigator.mediaDevices.enumerateDevices;
+                navigator.mediaDevices.enumerateDevices = function() {
+                    return originalEnumerateDevices.apply(this, arguments).then(devices => {
+                        return devices.map(device => ({
+                            deviceId: 'default',
+                            kind: device.kind,
+                            label: '',
+                            groupId: 'default'
+                        }));
+                    });
+                };
+            }
 
             // Battery API Protection
             if (navigator.getBattery) {
                 navigator.getBattery = function() {
-                    console.warn('[Fingerprint Defender] API Battery Blocked !');
-                    return new Promise(resolve => resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity }));
+                    return Promise.resolve({
+                        charging: true,
+                        chargingTime: 0,
+                        dischargingTime: Infinity,
+                        level: 1,
+                        addEventListener: function() {},
+                        removeEventListener: function() {},
+                        dispatchEvent: function() { return true; }
+                    });
                 };
             }
 
             // Speech Synthesis Protection
-            const originalGetVoices = window.speechSynthesis.getVoices;
-            window.speechSynthesis.getVoices = function() {
-                console.warn('[Fingerprint Defender] Speech Synthesis blocked !');
-                return [{ name: 'FakeVoice', lang: 'en-US', localService: false, voiceURI: 'fake' }];
+            if (window.speechSynthesis) {
+                const originalGetVoices = window.speechSynthesis.getVoices;
+                window.speechSynthesis.getVoices = function() {
+                    return [
+                        { name: 'Google US English', lang: 'en-US', localService: false, voiceURI: 'Google US English', default: true }
+                    ];
+                };
+            }
+
+            console.log('[Fingerprint Defender] WebRTC/Battery/Speech modified');
+        })();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableAdvancedFingerprintProtectionAsync()
+    {
+        string script = @"
+        (function() {
+            'use strict';
+            console.log('[Fingerprint Defender] Advanced Fingerprint Protection Enabled');
+
+            // Protect against font fingerprinting
+            const originalOffscreenCanvas = window.OffscreenCanvas;
+            if (originalOffscreenCanvas) {
+                window.OffscreenCanvas = function() {
+                    const canvas = new originalOffscreenCanvas(...arguments);
+                    const originalGetContext = canvas.getContext;
+                    canvas.getContext = function(type) {
+                        const ctx = originalGetContext.apply(this, arguments);
+                        if (type === '2d' && ctx) {
+                            const originalMeasureText = ctx.measureText;
+                            ctx.measureText = function(text) {
+                                const metrics = originalMeasureText.apply(this, arguments);
+                                return {
+                                    ...metrics,
+                                    width: metrics.width + (Math.random() * 0.01 - 0.005)
+                                };
+                            };
+                        }
+                        return ctx;
+                    };
+                    return canvas;
+                };
+            }
+
+            // Protect CSS media query properties
+            const originalMatchMedia = window.matchMedia;
+            window.matchMedia = function(query) {
+                const result = originalMatchMedia.apply(this, arguments);
+                // Certains fingerprinters utilisent les media queries
+                if (query.includes('prefers-color-scheme')) {
+                    return { matches: false, media: query };
+                }
+                return result;
             };
+
+            // Protect Keyboard Layout
+            if (navigator.keyboard) {
+                Object.defineProperty(navigator.keyboard, 'getLayoutMap', {
+                    value: function() {
+                        return Promise.resolve(new Map());
+                    }
+                });
+            }
+
+            // Protecting performance properties
+            if (window.performance && window.performance.memory) {
+                Object.defineProperty(window.performance, 'memory', {
+                    get: () => ({
+                        jsHeapSizeLimit: 2172649472,
+                        totalJSHeapSize: 10000000,
+                        usedJSHeapSize: 10000000
+                    })
+                });
+            }
+
+            // Hide automation-specific properties
+            delete Object.getPrototypeOf(navigator).webdriver;
+
+            console.log('[Fingerprint Defender] Advanced protections applied');
         })();
         ";
 
@@ -322,16 +625,13 @@ public class FloodHeader
     {
         string[] userAgents =
         {
-            "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.3",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.1",
-            "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:135.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.",
-            "Mozilla/5.0 (Windows NT 6.1; rv:109.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:135.0) Gecko/20100101 Firefox/134.0",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.7; rv:135.0) Gecko/20100101 Firefox/135.0",
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0",
-            "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0"
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
         };
 
         return userAgents[random.Next(userAgents.Length)];
@@ -341,8 +641,8 @@ public class FloodHeader
     {
         (int, int)[] resolutions =
         {
-            (1920, 1080), (1366, 768), (1440, 900), (1600, 900), (1280, 720),
-            (2560, 1440), (3840, 2160), (1024, 768), (1280, 1024)
+            (1920, 1080), (1366, 768), (1440, 900), (1536, 864), (1280, 720),
+            (2560, 1440), (1600, 900), (1280, 1024), (1680, 1050)
         };
 
         return resolutions[random.Next(resolutions.Length)];
@@ -352,7 +652,7 @@ public class FloodHeader
     {
         string[] platforms =
         {
-            "Win32", "Linux x86_64", "MacIntel", "Android", "iPhone", "Linux i686", "Ubuntu", "Fedora"
+            "Win32", "MacIntel", "Linux x86_64"
         };
 
         return platforms[random.Next(platforms.Length)];
@@ -360,40 +660,37 @@ public class FloodHeader
 
     int GenerateRandomTimezoneOffset()
     {
-        int[] offsets = { -720, -480, -300, -240, -180, 0, 180, 300, 480, 720 };
+        int[] offsets = { -480, -420, -360, -300, -240, -180, 0, 60, 120, 180, 330, 480, 540 };
         return offsets[random.Next(offsets.Length)];
     }
 
     string GenerateRandomLanguage()
     {
-        string[] languages = { "en-US", "fr-FR", "es-ES", "de-DE", "ja-JP" };
+        string[] languages = { "en-US", "en-GB", "fr-FR", "de-DE", "es-ES" };
         return languages[random.Next(languages.Length)];
     }
 
     int GenerateRandomHardwareConcurrency()
     {
-        return random.Next(2, 16); // Between 2 and 16 cores
+        int[] cores = { 4, 6, 8, 12, 16 };
+        return cores[random.Next(cores.Length)];
     }
 
     float GenerateRandomDeviceMemory()
     {
-        float[] memories = { 2, 4, 8, 16, 32 };
+        float[] memories = { 4, 8, 16 }; // GB
         return memories[random.Next(memories.Length)];
     }
 
     int GenerateRandomMaxTouchPoints()
     {
-        return random.Next(0, 10); // Between 0 and 10 touch points
-    }
-
-    string GenerateRandomWebdriver()
-    {
-        return random.Next(2) == 0 ? "false" : "true"; // Randomly true or false
+        // Desktop = 0, Mobile = 5 ou 10
+        return 0; // Pour desktop uniquement
     }
 
     string GenerateRandomConnectionType()
     {
-        string[] types = { "wifi", "cellular", "ethernet", "none" };
+        string[] types = { "4g", "wifi" };
         return types[random.Next(types.Length)];
     }
 }

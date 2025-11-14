@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,7 +16,6 @@ namespace Ostium
     public partial class HtmlText_Frm : Form
     {
         #region Var_
-
         readonly IcazaClass senderror = new IcazaClass();
         readonly IcazaClass selectdir = new IcazaClass();
 
@@ -25,8 +23,8 @@ namespace Ostium
         string UriTxt = string.Empty;
         string Una = string.Empty;
 
-        private static readonly HttpClient client = new HttpClient();
-
+        static readonly HttpClient client = new HttpClient();
+        readonly List<string> lstUrlDfltCnf = new List<string>();
         #endregion
 
         public HtmlText_Frm()
@@ -35,6 +33,15 @@ namespace Ostium
 
             WbrowseTxt.LinkClicked += new LinkClickedEventHandler(RTFLink_Clicked);
             URLbrowse_Cbx.KeyPress += new KeyPressEventHandler(URLbrowseCbx_Keypress);
+        }
+
+        void HtmlText_Frm_Load(object sender, EventArgs e)
+        {
+            if (File.Exists(Path.Combine(AppStart, "url_dflt_cnf.ost")))
+            {
+                lstUrlDfltCnf.Clear();
+                lstUrlDfltCnf.AddRange(File.ReadAllLines(Path.Combine(AppStart, "url_dflt_cnf.ost")));
+            }
         }
 
         void Go_Btn_Click(object sender, EventArgs e)
@@ -77,10 +84,22 @@ namespace Ostium
                     {
                         if (string.IsNullOrEmpty(Class_Var.URL_DEFAUT_WSEARCH))
                         {
-                            Class_Var.URL_DEFAUT_WSEARCH = "https://www.google.com/search?q=";
+                            try
+                            {
+                                if (lstUrlDfltCnf.Count > 0)
+                                    Class_Var.URL_DEFAUT_WSEARCH = lstUrlDfltCnf[3].ToString();
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                                    "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            catch (ArgumentException ex)
+                            {
+                                senderror.ErrorLog("Error! lstUrlDfltCnf GoBrowser: ", ex.ToString(), "Main_Frm", AppStart);
+                            }
                         }
-
-                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
+                        uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH);
                     }
 
                     URLbrowse_Cbx.Text = Convert.ToString(uri);
@@ -179,6 +198,8 @@ namespace Ostium
                     RegReplaceTxt(cleanText);
                 }));
             }
+            catch (HttpRequestException)
+            { }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpenWebPageTxt: ", ex.ToString(), "HtmlText_Frm", AppStart);

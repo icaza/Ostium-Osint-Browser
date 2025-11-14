@@ -17,7 +17,6 @@ A high-performance .NET Framework console application for bulk website availabil
 
 - .NET Framework 4.8.1
 - Windows OS
-- Optional: Microsoft.Web.WebView2 NuGet package (if WebView2 features are needed)
 
 ## Installation
 
@@ -202,19 +201,3 @@ Press any key to exit...
 - Increase timeout value if network is slow
 - Verify URLs are correctly formatted in input file
 
-### High memory usage
-- Reduce SemaphoreSlim concurrent request limit
-- Check for extremely large input files (>1000 sites)
-
-## License
-
-This project is provided as-is for educational and commercial use.
-
-## Version
-
-Current Version: 1.0.0  
-Last Updated: October 2025
-
-## Author
-
-Created as a professional website monitoring solution with enterprise-grade reliability and performance.
