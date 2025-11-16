@@ -1335,7 +1335,6 @@ namespace Ostium
                 await HeaderFlood.FloodHeaderAsync();
 
                 await WBrowse.EnsureCoreWebView2Async();
-                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
             }
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
@@ -1536,11 +1535,10 @@ namespace Ostium
 
             if (FloodHeader_Chk.Checked)
             {
-                await WBrowse.EnsureCoreWebView2Async();
-                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
-
-                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                HeaderFlood = new FloodHeader(WBrowsefeed.CoreWebView2);
                 await HeaderFlood.FloodHeaderAsync();
+
+                await WBrowsefeed.EnsureCoreWebView2Async();
             }
 
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
@@ -8544,6 +8542,9 @@ namespace Ostium
             {
                 @Class_Var.FLOOD_HEADER = 1;
                 FloodHeader_Chk.ForeColor = Color.Red;
+
+                MessageBox.Show("The method used against fingerprinting is aggressive; website functionality is disrupted, " +
+                    "and you are flagged as a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {

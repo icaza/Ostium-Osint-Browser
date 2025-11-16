@@ -234,7 +234,6 @@
     <Compile Include="ScriptCreator.Designer.cs">
       <DependentUpon>ScriptCreator.cs</DependentUpon>
     </Compile>
-    <Compile Include="TextInputDialog.cs" />
     <Compile Include="VisitLogger.cs" />
     <Compile Include="FloodHeader.cs" />
     <Compile Include="WebViewHandler.cs" />

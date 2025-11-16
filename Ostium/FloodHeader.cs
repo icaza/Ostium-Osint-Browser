@@ -1,3 +1,6 @@
+// The method used against fingerprinting is aggressive; website functionality is disrupted, and you are flagged as a robot.
+// A significant balance must be struck between active defense and 'normal' browser operation.
+
 using Microsoft.Web.WebView2.Core;
 using System;
 using System.Threading.Tasks;
@@ -24,13 +27,17 @@ public class FloodHeader
         int maxTouchPoints = GenerateRandomMaxTouchPoints();
         bool webdriver = false; // Always false to avoid detection
         string connectionType = GenerateRandomConnectionType();
+        // Random renderer selection
+        string fakeRenderer = GenerateRandomRenderer();
+        string fakeVendor = GenerateVendorForRenderer(fakeRenderer);
 
         webView.Settings.UserAgent = userAgent;
 
         // Injecting the scripts in the correct order
         await InjectCoreProtectionAsync();
         await FloodHeaderScripts(screenWidth, screenHeight, platform, timezoneOffset, language, hardwareConcurrency, deviceMemory, maxTouchPoints, webdriver, connectionType);
-        await EnableWebGLProtectionAsync();
+        await EnableWebGLProtectionAsync(fakeRenderer, fakeVendor);
+        await EnableWebGL1ProtectionAsync(fakeRenderer, fakeVendor);
         await EnableCanvasProtectionAsync();
         await EnableAudioContextProtectionAsync();
         await EnableWebRTCAndBatteryAndSpeechProtectionAsync();
@@ -235,7 +242,7 @@ public class FloodHeader
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
 
-    public async Task EnableWebGLProtectionAsync()
+    public async Task EnableWebGLProtectionAsync(string fakeRenderer, string fakeVendor)
     {
         // Generate a random seed for this profile
         double noiseSeed = random.NextDouble();
@@ -249,8 +256,10 @@ public class FloodHeader
             const noiseSeed = {noiseSeed.ToString(System.Globalization.CultureInfo.InvariantCulture)};
 
             // Fake GPU IDs
-            const fakeVendor = 'Google Inc. (Intel)';
-            const fakeRenderer = 'ANGLE (Intel, Intel(R) UHD Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)';
+            //const fakeVendor = 'Google Inc. (Intel)';
+            //const fakeRenderer = 'ANGLE (Intel, Intel(R) UHD Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)';
+            const fakeVendor = '{fakeVendor}';
+            const fakeRenderer = '{fakeRenderer}';
 
             function spoofWebGL() {{
                 // hook getParameter to modify text AND numeric properties
@@ -372,6 +381,213 @@ public class FloodHeader
             console.log('[Fingerprint Defender] WebGL fingerprint randomized with seed:', noiseSeed.toFixed(8));
         }})();
         ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableWebGL1ProtectionAsync(string fakeRenderer, string fakeVendor)
+    {
+        // Generate a random seed for this profile
+        double noiseSeed = random.NextDouble();
+
+        string script = $@"
+    (function() {{
+        'use strict';
+        console.log('[Fingerprint Defender] WebGL1 Specific Protection Enabled');
+
+        // Seed for noise (only one per session)
+        const noiseSeed = {noiseSeed.ToString(System.Globalization.CultureInfo.InvariantCulture)};
+
+        // Fake GPU IDs for WebGL1
+        //const fakeVendor = 'Google Inc. (Intel)';
+        //const fakeRenderer = 'ANGLE (Intel, Intel(R) HD Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)';
+        const fakeVendor = '{fakeVendor}';
+        const fakeRenderer = '{fakeRenderer}';
+
+        function spoofWebGL1() {{
+            // Hook getParameter for WebGL1 only
+            const getParameterHandler = {{
+                apply: function(target, thisArg, args) {{
+                    const param = args[0];
+
+                    // String parameters
+                    if (param === 0x1F00) {{ // GL_VENDOR
+                        return fakeVendor;
+                    }}
+                    if (param === 0x1F01) {{ // GL_RENDERER
+                        return fakeRenderer;
+                    }}
+                    if (param === 0x1F02) {{ // GL_VERSION
+                        return 'WebGL 1.0 (OpenGL ES 2.0 Chromium)';
+                    }}
+                    if (param === 0x8B8C) {{ // GL_SHADING_LANGUAGE_VERSION
+                        return 'WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)';
+                    }}
+                    if (param === 0x9245) {{ // UNMASKED_VENDOR_WEBGL
+                        return fakeVendor;
+                    }}
+                    if (param === 0x9246) {{ // UNMASKED_RENDERER_WEBGL
+                        return fakeRenderer;
+                    }}
+
+                    // Numeric parameters with noise
+                    const result = Reflect.apply(target, thisArg, args);
+                    
+                    if (typeof result === 'number') {{
+                        const noise = (Math.sin(noiseSeed * param) * 2) - 1;
+                        return Math.floor(result + noise);
+                    }}
+
+                    return result;
+                }}
+            }};
+
+            // Hook getExtension to block debug info
+            const getExtensionHandler = {{
+                apply: function(target, thisArg, args) {{
+                    const extName = args[0];
+                    
+                    // Block debug renderer info extension
+                    if (extName === 'WEBGL_debug_renderer_info') {{
+                        return null;
+                    }}
+                    
+                    return Reflect.apply(target, thisArg, args);
+                }}
+            }};
+
+            // Hook readPixels to modify rendered pixels
+            const readPixelsHandler = {{
+                apply: function(target, thisArg, args) {{
+                    const result = Reflect.apply(target, thisArg, args);
+                    
+                    // Modify pixel data (args[6] is the pixel array)
+                    if (args[6] && args[6].length) {{
+                        for (let i = 0; i < args[6].length; i += 100) {{
+                            const noise = Math.floor((Math.sin(noiseSeed * i) * 3));
+                            args[6][i] = Math.max(0, Math.min(255, args[6][i] + noise));
+                        }}
+                    }}
+                    
+                    return result;
+                }}
+            }};
+
+            // Hook shaderSource to modify shader code
+            const shaderSourceHandler = {{
+                apply: function(target, thisArg, args) {{
+                    let source = args[1];
+                    
+                    if (typeof source === 'string') {{
+                        // Add unique comment based on seed
+                        source = '// WebGL1 Seed: ' + noiseSeed.toFixed(8) + '\\n' + source;
+                        args[1] = source;
+                    }}
+                    
+                    return Reflect.apply(target, thisArg, args);
+                }}
+            }};
+
+            // Hook getShaderPrecisionFormat
+            const precisionHandler = {{
+                apply: function(target, thisArg, args) {{
+                    const result = Reflect.apply(target, thisArg, args);
+                    
+                    if (result) {{
+                        const noise = Math.floor(Math.sin(noiseSeed * 1000) * 2);
+                        return {{
+                            rangeMin: result.rangeMin + noise,
+                            rangeMax: result.rangeMax + noise,
+                            precision: result.precision
+                        }};
+                    }}
+                    
+                    return result;
+                }}
+            }};
+
+            // Hook getContextAttributes
+            const contextAttributesHandler = {{
+                apply: function(target, thisArg, args) {{
+                    const result = Reflect.apply(target, thisArg, args);
+                    
+                    if (result) {{
+                        // Slightly modify context attributes
+                        return {{
+                            ...result,
+                            antialias: Math.sin(noiseSeed) > 0,
+                            premultipliedAlpha: Math.cos(noiseSeed) > 0
+                        }};
+                    }}
+                    
+                    return result;
+                }}
+            }};
+
+            // Apply all proxies to WebGL1 RenderingContext
+            WebGLRenderingContext.prototype.getParameter = new Proxy(
+                WebGLRenderingContext.prototype.getParameter, 
+                getParameterHandler
+            );
+            
+            WebGLRenderingContext.prototype.getExtension = new Proxy(
+                WebGLRenderingContext.prototype.getExtension, 
+                getExtensionHandler
+            );
+            
+            WebGLRenderingContext.prototype.readPixels = new Proxy(
+                WebGLRenderingContext.prototype.readPixels, 
+                readPixelsHandler
+            );
+            
+            WebGLRenderingContext.prototype.shaderSource = new Proxy(
+                WebGLRenderingContext.prototype.shaderSource, 
+                shaderSourceHandler
+            );
+            
+            WebGLRenderingContext.prototype.getShaderPrecisionFormat = new Proxy(
+                WebGLRenderingContext.prototype.getShaderPrecisionFormat, 
+                precisionHandler
+            );
+            
+            WebGLRenderingContext.prototype.getContextAttributes = new Proxy(
+                WebGLRenderingContext.prototype.getContextAttributes, 
+                contextAttributesHandler
+            );
+
+            // Protect getSupportedExtensions for WebGL1
+            const originalGetSupportedExtensions = WebGLRenderingContext.prototype.getSupportedExtensions;
+            WebGLRenderingContext.prototype.getSupportedExtensions = function() {{
+                const extensions = originalGetSupportedExtensions.apply(this, arguments);
+                return extensions ? extensions.filter(ext => ext !== 'WEBGL_debug_renderer_info') : [];
+            }};
+
+            // Hook getAttachedShaders to add noise
+            const attachedShadersHandler = {{
+                apply: function(target, thisArg, args) {{
+                    const result = Reflect.apply(target, thisArg, args);
+                    
+                    // Shuffle array order based on seed
+                    if (result && Array.isArray(result) && result.length > 1) {{
+                        if (Math.sin(noiseSeed) > 0) {{
+                            return result.reverse();
+                        }}
+                    }}
+                    
+                    return result;
+                }}
+            }};
+            
+            WebGLRenderingContext.prototype.getAttachedShaders = new Proxy(
+                WebGLRenderingContext.prototype.getAttachedShaders, 
+                attachedShadersHandler
+            );
+        }}
+
+        spoofWebGL1();
+        console.log('[Fingerprint Defender] WebGL1 fingerprint randomized with seed:', noiseSeed.toFixed(8));
+    }})();
+    ";
 
         await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
     }
@@ -666,13 +882,13 @@ public class FloodHeader
 
     string GenerateRandomLanguage()
     {
-        string[] languages = { "en-US", "en-GB", "fr-FR", "de-DE", "es-ES" };
+        string[] languages = { "en-US", "en-GB", "fr-FR", "de-DE", "es-ES", "ja-JP", "pt-BR", "it-IT" };
         return languages[random.Next(languages.Length)];
     }
 
     int GenerateRandomHardwareConcurrency()
     {
-        int[] cores = { 4, 6, 8, 12, 16 };
+        int[] cores = { 2, 4, 6, 8, 12, 16, 24 };
         return cores[random.Next(cores.Length)];
     }
 
@@ -684,13 +900,54 @@ public class FloodHeader
 
     int GenerateRandomMaxTouchPoints()
     {
-        // Desktop = 0, Mobile = 5 ou 10
-        return 0; // Pour desktop uniquement
+        // Desktop = 0, Mobile = 5 or 10
+        return 0; // desktop only
     }
 
     string GenerateRandomConnectionType()
     {
-        string[] types = { "4g", "wifi" };
+        string[] types = { "wifi", "4g", "3g", "ethernet" };
         return types[random.Next(types.Length)];
+    }
+
+    static readonly string[] Renderers = new string[]
+    {
+        // Intel Graphics
+        "ANGLE (Intel, Intel(R) HD Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "ANGLE (Intel, Intel(R) UHD Graphics 620 Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "ANGLE (Intel, Intel(R) UHD Graphics 630 Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "ANGLE (Intel, Intel(R) HD Graphics 4000 Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        
+        // NVIDIA Graphics
+        "ANGLE (NVIDIA, NVIDIA GeForce GTX 1050 Ti Direct3D11 vs_5_0 ps_5_0, D3D11-27.21.14.5671)",
+        "ANGLE (NVIDIA, NVIDIA GeForce GTX 1060 Direct3D11 vs_5_0 ps_5_0, D3D11-27.21.14.5671)",
+        "ANGLE (NVIDIA, NVIDIA GeForce GTX 1650 Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.14.9649)",
+        "ANGLE (NVIDIA, NVIDIA GeForce RTX 2060 Direct3D11 vs_5_0 ps_5_0, D3D11-31.0.15.1659)",
+        "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0, D3D11-31.0.15.4601)",
+        
+        // AMD Graphics
+        "ANGLE (AMD, AMD Radeon(TM) Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "ANGLE (AMD, Radeon RX 580 Series Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.13031.5003)",
+        "ANGLE (AMD, AMD Radeon RX 5600 XT Direct3D11 vs_5_0 ps_5_0, D3D11-30.0.15002.92)",
+        "ANGLE (AMD, AMD Radeon RX 6600 Direct3D11 vs_5_0 ps_5_0, D3D11-31.0.14051.5006)",
+        "ANGLE (AMD, AMD Radeon(TM) Vega 8 Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    };
+
+    public string GenerateRandomRenderer()
+    {
+        return Renderers[random.Next(Renderers.Length)];
+    }
+
+    public string GenerateVendorForRenderer(string renderer)
+    {
+        if (renderer.Contains("Intel"))
+            return "Google Inc. (Intel)";
+        else if (renderer.Contains("NVIDIA"))
+            return "Google Inc. (NVIDIA)";
+        else if (renderer.Contains("AMD"))
+            return "Google Inc. (AMD)";
+
+        return "Google Inc. (Intel)";
     }
 }
