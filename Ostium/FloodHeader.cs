@@ -55,12 +55,53 @@ public class FloodHeader
             delete window.cdc_adoQpoasnfa76pfcZLmcfl_Array;
             delete window.cdc_adoQpoasnfa76pfcZLmcfl_Promise;
             delete window.cdc_adoQpoasnfa76pfcZLmcfl_Symbol;
-            
+
             // Hide WebDriver properties
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => undefined,
-                configurable: false
-            });
+            const hideWebDriverProperties = () => {
+                try {
+                    // Strategy 1: Direct removal (if possible)
+                    try {
+                        delete navigator.webdriver;
+                        console.log('[Fingerprint Defender] WebDriver deleted successfully');
+                    } catch (e) {}
+                    
+                    // Strategy 2: Conditional Redefinition
+                    try {
+                        const descriptor = Object.getOwnPropertyDescriptor(navigator, 'webdriver');
+                        if (!descriptor || descriptor.configurable) {
+                            Object.defineProperty(navigator, 'webdriver', {
+                                get: () => undefined,
+                                configurable: false,
+                                enumerable: false
+                            });
+                            console.log('[Fingerprint Defender] WebDriver redefined successfully');
+                        }
+                    } catch (e) {}
+                    
+                    // Strategy 3: Advanced masking for detection
+                    try {
+                        // Make the property non-enumerable
+                        Object.defineProperty(navigator, 'webdriver', {
+                            value: undefined,
+                            enumerable: false,
+                            configurable: true,
+                            writable: true
+                        });
+                    } catch (e) {}
+                    
+                    // Final check
+                    if (navigator.webdriver === undefined) {
+                        console.log('[Fingerprint Defender] WebDriver protection: ACTIVE');
+                    } else {
+                        console.log('[Fingerprint Defender] WebDriver protection: LIMITED');
+                    }
+                    
+                } catch (error) {
+                    console.log('[Fingerprint Defender] WebDriver protection: Basic mode');
+                }
+            };
+            
+            hideWebDriverProperties();
 
             // Prevent detection via window.chrome
             if (!window.chrome) {
@@ -80,33 +121,39 @@ public class FloodHeader
                     originalQuery(parameters)
             );
 
-            // Protect against plugin detection
-            Object.defineProperty(navigator, 'plugins', {
-                get: () => [
-                    {
-                        0: {type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format'},
-                        description: 'Portable Document Format',
-                        filename: 'internal-pdf-viewer',
-                        length: 1,
-                        name: 'Chrome PDF Plugin'
-                    },
-                    {
-                        0: {type: 'application/pdf', suffixes: 'pdf', description: 'Portable Document Format'},
-                        description: 'Portable Document Format', 
-                        filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai',
-                        length: 1,
-                        name: 'Chrome PDF Viewer'
-                    }
-                ]
-            });
+            // Plugin Protection
+            const protectPluginsGuaranteed = () => {
+                try {
+                    const fakePlugins = [
+                        {
+                            name: 'Chrome PDF Plugin',
+                            filename: 'internal-pdf-viewer',
+                            description: 'Portable Document Format',
+                            length: 1,
+                            0: {
+                                type: 'application/x-google-chrome-pdf',
+                                suffixes: 'pdf',
+                                description: 'Portable Document Format'
+                            }
+                        }
+                    ];
+            
+                    // Direct method
+                    Object.defineProperty(navigator, 'plugins', {
+                        get: () => fakePlugins,
+                        configurable: true,
+                        enumerable: true
+                    });
+            
+                    console.log('[Fingerprint Defender] Plugin protection active');
+            
+                } catch (error) {
+                    // no message
+                }
+            };
+            
+            protectPluginsGuaranteed();
 
-            // Protect mimeTypes
-            Object.defineProperty(navigator, 'mimeTypes', {
-                get: () => [
-                    {type: 'application/pdf', suffixes: 'pdf', description: 'Portable Document Format', enabledPlugin: {name: 'Chrome PDF Plugin'}},
-                    {type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format', enabledPlugin: {name: 'Chrome PDF Plugin'}}
-                ]
-            });
         })();
         ";
 
@@ -123,57 +170,55 @@ public class FloodHeader
 
         string script = $@"
         (function() {{
-            'use strict';
-            
-            // Manipulating Screen and Window Properties
-            Object.defineProperty(window.screen, 'width', {{ 
-                get: () => {width},
-                configurable: false
-            }});
-            Object.defineProperty(window.screen, 'height', {{ 
-                get: () => {height},
-                configurable: false
-            }});
-            Object.defineProperty(window.screen, 'availWidth', {{ 
-                get: () => {width},
-                configurable: false
-            }});
-            Object.defineProperty(window.screen, 'availHeight', {{ 
-                get: () => {height - 40},
-                configurable: false
-            }});
-            Object.defineProperty(window, 'innerWidth', {{ 
-                get: () => {width},
-                configurable: false
-            }});
-            Object.defineProperty(window, 'innerHeight', {{ 
-                get: () => {height - 120},
-                configurable: false
-            }});
-            Object.defineProperty(window, 'outerWidth', {{ 
-                get: () => {width},
-                configurable: false
-            }});
-            Object.defineProperty(window, 'outerHeight', {{ 
-                get: () => {height},
-                configurable: false
-            }});
+            'use strict';           
 
-            // Screen orientation (cohérent avec la résolution)
-            const orientation = {width} > {height} ? 'landscape-primary' : 'portrait-primary';
-            Object.defineProperty(window.screen.orientation, 'type', {{
-                get: () => orientation,
-                configurable: false
-            }});
+            // Screen Protection
+            const protectScreen = () => {{
+                const WIDTH = {width};
+                const HEIGHT = {height};
+                
+                try {{
+                    // Replace screen object completely
+                    window.screen = {{
+                        width: WIDTH,
+                        height: HEIGHT,
+                        availWidth: WIDTH - 20,
+                        availHeight: HEIGHT - 80,
+                        colorDepth: 24,
+                        pixelDepth: 24,
+                        availLeft: 0,
+                        availTop: 0,
+                        orientation: {{
+                            type: WIDTH > HEIGHT ? 'landscape-primary' : 'portrait-primary',
+                            angle: WIDTH > HEIGHT ? 0 : 90,
+                            lock: () => Promise.resolve(),
+                            unlock: () => {{}}
+                        }}
+                    }};
+            
+                    // Override key window properties
+                    Object.defineProperty(window, 'outerWidth', {{ get: () => WIDTH, configurable: true }});
+                    Object.defineProperty(window, 'outerHeight', {{ get: () => HEIGHT, configurable: true }});
+                    Object.defineProperty(window, 'innerWidth', {{ get: () => WIDTH - 20, configurable: true }});
+                    Object.defineProperty(window, 'innerHeight', {{ get: () => HEIGHT - 100, configurable: true }});
+            
+                    console.log(`[Fingerprint Defender] Screen: ${{WIDTH}}x${{HEIGHT}}`);
+                    
+                }} catch (error) {{
+                    console.warn('Screen protection limited');
+                }}
+            }};
+            
+            protectScreen();
 
             // Manipulate platform and time zone
             Object.defineProperty(navigator, 'platform', {{ 
                 get: () => '{platform}',
-                configurable: false
+                configurable: true
             }});
             Object.defineProperty(navigator, 'oscpu', {{ 
                 get: () => '{platform}',
-                configurable: false
+                configurable: true
             }});
             
             const originalGetTimezoneOffset = Date.prototype.getTimezoneOffset;
@@ -184,56 +229,117 @@ public class FloodHeader
             // Manipulating languages
             Object.defineProperty(navigator, 'language', {{ 
                 get: () => '{language}',
-                configurable: false
+                configurable: true
             }});
             Object.defineProperty(navigator, 'languages', {{ 
                 get: () => ['{language}', 'en-US'],
-                configurable: false
+                configurable: true
             }});
 
             // Manipulating hardware properties
             Object.defineProperty(navigator, 'hardwareConcurrency', {{ 
                 get: () => {hardwareConcurrency},
-                configurable: false
+                configurable: true
             }});
             Object.defineProperty(navigator, 'deviceMemory', {{ 
                 get: () => {deviceMemory},
-                configurable: false
+                configurable: true
             }});
             Object.defineProperty(navigator, 'maxTouchPoints', {{ 
                 get: () => {maxTouchPoints},
-                configurable: false
+                configurable: true
             }});
 
             // Manipulating Webdriver
-            Object.defineProperty(navigator, 'webdriver', {{ 
-                get: () => {webdriver.ToString().ToLower()},
-                configurable: false
-            }});
+            try {{
+                // Clean deletion attempt
+                if (navigator.webdriver !== undefined) {{
+                    delete navigator.webdriver;
+                }}
+            }} catch (e) {{
+                // Fallback 1: Modification via prototype (less detectable)
+                try {{
+                    Object.defineProperty(Object.getPrototypeOf(navigator), 'webdriver', {{
+                        get: () => undefined,
+                        configurable: true,
+                        enumerable: false
+                    }});
+                }} catch (e2) {{
+                    // Fallback 2: Override at the global level
+                    const originalDefineProperty = Object.defineProperty;
+                    Object.defineProperty = function(obj, prop, descriptor) {{
+                        if (obj === navigator && prop === 'webdriver') {{
+                            return obj; // Silently ignores attempts at definition
+                        }}
+                        return originalDefineProperty.call(this, obj, prop, descriptor);
+                    }};
+                }}
+            }}
 
-            // Manipulate connection information
+            // Connection Protection
             if (navigator.connection) {{
-                Object.defineProperty(navigator.connection, 'downlink', {{ get: () => 10 }});
-                Object.defineProperty(navigator.connection, 'effectiveType', {{ get: () => '{connectionType}' }});
-                Object.defineProperty(navigator.connection, 'rtt', {{ get: () => 50 }});
-                Object.defineProperty(navigator.connection, 'saveData', {{ get: () => false }});
+                try {{
+                    navigator.connection = {{
+                        downlink: 10,
+                        effectiveType: '{connectionType}',
+                        rtt: 50, 
+                        saveData: false,
+                        type: '{connectionType}',
+                        addEventListener: navigator.connection.addEventListener?.bind(navigator.connection),
+                        removeEventListener: navigator.connection.removeEventListener?.bind(navigator.connection),
+                        onchange: null
+                    }};
+                    console.log(`[Fingerprint Defender] Connection protection: ${connectionType}`);
+                }} catch (error) {{
+                    console.log('[Fingerprint Defender] Connection protection failed:', error.message);
+                }}
+            }} else {{
+                console.log('[Fingerprint Defender] navigator.connection not available');
             }}
 
             // doNotTrack
             Object.defineProperty(navigator, 'doNotTrack', {{
                 get: () => null,
-                configurable: false
+                configurable: true
             }});
 
             // Vendor et product
             Object.defineProperty(navigator, 'vendor', {{
                 get: () => 'Google Inc.',
-                configurable: false
+                configurable: true
             }});
             Object.defineProperty(navigator, 'vendorSub', {{
                 get: () => '',
-                configurable: false
+                configurable: true
             }});
+
+            // Simple Font Fingerprint Protection
+            const simpleFontProtection = () => {{
+                try {{
+                    // Add random noise to font measurements
+                    const addNoise = () => Math.floor(Math.random() * 4 - 2); // -2 to +2
+                    
+                    // Protect offset measurements
+                    ['offsetWidth', 'offsetHeight', 'clientWidth', 'clientHeight'].forEach(prop => {{
+                        const original = Object.getOwnPropertyDescriptor(HTMLElement.prototype, prop);
+                        if (original) {{
+                            Object.defineProperty(HTMLElement.prototype, prop, {{
+                                get: function () {{
+                                    const value = original.get.call(this);
+                                    return Math.random() < 0.3 ? value + addNoise() : value;
+                                }},
+                                configurable: true
+                            }});
+                        }}
+                    }});
+                    
+                    console.log('[Fingerprint Defender] Simple font protection active');
+                }} catch (e) {{
+                    console.log('[Fingerprint Defender] Font protection error:', e);
+                }}
+            }};
+            
+            simpleFontProtection();
 
             console.log('[Fingerprint Defender] Navigator properties modified');
         }})();
@@ -256,8 +362,6 @@ public class FloodHeader
             const noiseSeed = {noiseSeed.ToString(System.Globalization.CultureInfo.InvariantCulture)};
 
             // Fake GPU IDs
-            //const fakeVendor = 'Google Inc. (Intel)';
-            //const fakeRenderer = 'ANGLE (Intel, Intel(R) UHD Graphics Direct3D11 vs_5_0 ps_5_0, D3D11)';
             const fakeVendor = '{fakeVendor}';
             const fakeRenderer = '{fakeRenderer}';
 
@@ -620,7 +724,7 @@ public class FloodHeader
                     // Function to add subtle noise
                     function addNoise(imageData) {
                         const data = imageData.data;
-                        const factor = 1; // Bruit très léger
+                        const factor = 1; // Very slight noise
                         for (let i = 0; i < data.length; i += 4) {
                             const noise = getNoiseValue(i) * factor * 2 - factor;
                             data[i] = Math.max(0, Math.min(255, data[i] + noise));     // R
@@ -772,30 +876,6 @@ public class FloodHeader
             'use strict';
             console.log('[Fingerprint Defender] Advanced Fingerprint Protection Enabled');
 
-            // Protect against font fingerprinting
-            const originalOffscreenCanvas = window.OffscreenCanvas;
-            if (originalOffscreenCanvas) {
-                window.OffscreenCanvas = function() {
-                    const canvas = new originalOffscreenCanvas(...arguments);
-                    const originalGetContext = canvas.getContext;
-                    canvas.getContext = function(type) {
-                        const ctx = originalGetContext.apply(this, arguments);
-                        if (type === '2d' && ctx) {
-                            const originalMeasureText = ctx.measureText;
-                            ctx.measureText = function(text) {
-                                const metrics = originalMeasureText.apply(this, arguments);
-                                return {
-                                    ...metrics,
-                                    width: metrics.width + (Math.random() * 0.01 - 0.005)
-                                };
-                            };
-                        }
-                        return ctx;
-                    };
-                    return canvas;
-                };
-            }
-
             // Protect CSS media query properties
             const originalMatchMedia = window.matchMedia;
             window.matchMedia = function(query) {
@@ -808,24 +888,68 @@ public class FloodHeader
             };
 
             // Protect Keyboard Layout
-            if (navigator.keyboard) {
-                Object.defineProperty(navigator.keyboard, 'getLayoutMap', {
-                    value: function() {
-                        return Promise.resolve(new Map());
+            const protectKeyboardLayoutAdvanced = () => {
+                if (!navigator.keyboard) return;
+                
+                try {
+                    const keyboardHandler = {
+                        get(target, prop) {
+                            if (prop === 'getLayoutMap') {
+                                return () => Promise.resolve(new Map([
+                                    ['key1', 'layout1'],
+                                    ['key2', 'layout2']
+                                ]));
+                            }
+                            
+                            const value = target[prop];
+                            return typeof value === 'function' ? value.bind(target) : value;
+                        }
+                    };
+                    
+                    navigator.keyboard = new Proxy(navigator.keyboard, keyboardHandler);
+                    
+                } catch (error) {
+                    // Fallback simple
+                    try {
+                        navigator.keyboard.getLayoutMap = () => Promise.resolve(new Map());
+                    } catch (e) {
+                        console.warn('Keyboard layout protection failed');
                     }
-                });
-            }
+                }
+            };
 
             // Protecting performance properties
-            if (window.performance && window.performance.memory) {
-                Object.defineProperty(window.performance, 'memory', {
-                    get: () => ({
-                        jsHeapSizeLimit: 2172649472,
-                        totalJSHeapSize: 10000000,
-                        usedJSHeapSize: 10000000
-                    })
-                });
-            }
+            const protectPerformanceProperties = () => {
+                if (!window.performance) return;
+                
+                try {
+                    const performanceHandler = {
+                        get(target, prop) {
+                            // Intercept access to 'memory'
+                            if (prop === 'memory') {
+                                return {
+                                    jsHeapSizeLimit: 2172649472,
+                                    totalJSHeapSize: 10000000,
+                                    usedJSHeapSize: 10000000
+                                };
+                            }
+                            
+                            // For other properties, return the original value
+                            const value = target[prop];
+                            // If it's a function, bind the context
+                            return typeof value === 'function' ? value.bind(target) : value;
+                        }
+                    };
+                    
+                    // Replace performance with the proxy
+                    window.performance = new Proxy(window.performance, performanceHandler);
+                    
+                } catch (error) {
+                    console.warn('Performance properties protection not available');
+                }
+            };
+            
+            protectPerformanceProperties();
 
             // Hide automation-specific properties
             delete Object.getPrototypeOf(navigator).webdriver;
