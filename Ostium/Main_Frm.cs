@@ -201,21 +201,22 @@ namespace Ostium
 
         bool IsAdsTrackersBlocked = false;
         // redlist
-        HashSet<string> _blockedFullUrls;
-        HashSet<string> _blockedHosts;
-        HashSet<string> _blockedPatterns;
-        readonly Dictionary<string, bool> _urlCache;
+        HashSet<string> _blockedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _blockedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _blockedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        readonly Dictionary<string, bool> _urlCache = new Dictionary<string, bool>();
         const int MAX_CACHE_SIZE = 10000;
         // Whitelist - priority over blocklist
-        HashSet<string> _allowedFullUrls;
-        HashSet<string> _allowedHosts;
-        HashSet<string> _allowedPatterns;
-        List<Regex> _compiledAllowedPatterns;
+        HashSet<string> _allowedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _allowedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _allowedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        List<Regex> _compiledAllowedPatterns = new List<Regex>();
         // Pre-compiling regexes for patterns
         List<Regex> _compiledPatterns;
         string BlockedUrl = "blocked_min.txt";
         readonly string AllowUrl = "allowed.txt";
         int urlBlocked = 0;
+
         #endregion
 
         #region Frm_
@@ -890,9 +891,7 @@ namespace Ostium
 
             return shouldBlock;
         }
-        /// <summary>
-        /// whitelist
-        /// </summary>
+
         bool IsUrlAllowed(string url)
         {
             try
