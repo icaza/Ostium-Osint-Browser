@@ -201,21 +201,22 @@ namespace Ostium
 
         bool IsAdsTrackersBlocked = false;
         // redlist
-        HashSet<string> _blockedFullUrls;
-        HashSet<string> _blockedHosts;
-        HashSet<string> _blockedPatterns;
-        readonly Dictionary<string, bool> _urlCache;
+        HashSet<string> _blockedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _blockedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _blockedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        readonly Dictionary<string, bool> _urlCache = new Dictionary<string, bool>();
         const int MAX_CACHE_SIZE = 10000;
         // Whitelist - priority over blocklist
-        HashSet<string> _allowedFullUrls;
-        HashSet<string> _allowedHosts;
-        HashSet<string> _allowedPatterns;
-        List<Regex> _compiledAllowedPatterns;
+        HashSet<string> _allowedFullUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _allowedHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        HashSet<string> _allowedPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        List<Regex> _compiledAllowedPatterns = new List<Regex>();
         // Pre-compiling regexes for patterns
         List<Regex> _compiledPatterns;
         string BlockedUrl = "blocked_min.txt";
         readonly string AllowUrl = "allowed.txt";
         int urlBlocked = 0;
+
         #endregion
 
         #region Frm_
@@ -890,9 +891,7 @@ namespace Ostium
 
             return shouldBlock;
         }
-        /// <summary>
-        /// whitelist
-        /// </summary>
+
         bool IsUrlAllowed(string url)
         {
             try
@@ -1335,7 +1334,6 @@ namespace Ostium
                 await HeaderFlood.FloodHeaderAsync();
 
                 await WBrowse.EnsureCoreWebView2Async();
-                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
             }
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
@@ -1536,11 +1534,10 @@ namespace Ostium
 
             if (FloodHeader_Chk.Checked)
             {
-                await WBrowse.EnsureCoreWebView2Async();
-                _ = new WebViewHandler(WBrowse.CoreWebView2, "config.json");
-
-                HeaderFlood = new FloodHeader(WBrowse.CoreWebView2);
+                HeaderFlood = new FloodHeader(WBrowsefeed.CoreWebView2);
                 await HeaderFlood.FloodHeaderAsync();
+
+                await WBrowsefeed.EnsureCoreWebView2Async();
             }
 
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
@@ -8544,6 +8541,9 @@ namespace Ostium
             {
                 @Class_Var.FLOOD_HEADER = 1;
                 FloodHeader_Chk.ForeColor = Color.Red;
+
+                MessageBox.Show("The method used against fingerprinting is aggressive; website functionality is disrupted, " +
+                    "and you are flagged as a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
