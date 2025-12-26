@@ -216,6 +216,7 @@ namespace Ostium
         string BlockedUrl = "blocked_min.txt";
         readonly string AllowUrl = "allowed.txt";
         int urlBlocked = 0;
+
         #endregion
 
         #region Frm_
