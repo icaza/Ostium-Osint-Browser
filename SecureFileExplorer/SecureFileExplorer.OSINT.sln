@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36811.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureFileExplorer.OSINT", "SecureFileExplorer.OSINT\SecureFileExplorer.OSINT.csproj", "{64033481-B706-488A-97C4-488974A4D15B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64033481-B706-488A-97C4-488974A4D15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64033481-B706-488A-97C4-488974A4D15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64033481-B706-488A-97C4-488974A4D15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64033481-B706-488A-97C4-488974A4D15B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92ADAF79-7D3D-445C-A2D2-DF004B1FA4C5}
+	EndGlobalSection
+EndGlobal

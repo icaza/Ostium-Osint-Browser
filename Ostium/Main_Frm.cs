@@ -356,8 +356,8 @@ namespace Ostium
             FormClosing += new FormClosingEventHandler(Main_Frm_FormClosed);
             LocationChanged += new EventHandler(Main_Frm_LocationChanged);
             CategorieFeed_Cbx.SelectedIndexChanged += new EventHandler(CategorieFeed_Cbx_SelectedIndexChanged);
-            CountBlockSite_Lbl.MouseEnter += new EventHandler(CountBlockSite_Lbl_MouseEnter);
-            CountBlockSite_Lbl.MouseLeave += new EventHandler(CountBlockSite_Lbl_Leave);
+            RSSListSite_Lbl.MouseEnter += new EventHandler(RSSListSite_Lbl_Lbl_MouseEnter);
+            RSSListSite_Lbl.MouseLeave += new EventHandler(RSSListSite_Lbl_Lbl_Leave);
             ThemDiag_Cbx.SelectedIndexChanged += new EventHandler(ThemDiag_Cbx_SelectedIndexChanged);
             GMap_Ctrl.OnPositionChanged += new PositionChanged(GMap_Ctrl_OnPositionChanged);
             GMap_Ctrl.OnMapZoomChanged += new MapZoomChanged(GMap_Ctrl_OnMapZoomChanged);
@@ -5113,10 +5113,10 @@ namespace Ostium
 
         void CountBlockSite_Lbl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CountBlockSite_Lbl.SelectedIndex != -1)
+            if (RSSListSite_Lbl.SelectedIndex != -1)
             {
-                CountBlockFeed_Lbl.Items[CountBlockSite_Lbl.SelectedIndex].ToString();
-                int value = Convert.ToInt32(CountBlockFeed_Lbl.Items[CountBlockSite_Lbl.SelectedIndex].ToString());
+                CountBlockFeed_Lbl.Items[RSSListSite_Lbl.SelectedIndex].ToString();
+                int value = Convert.ToInt32(CountBlockFeed_Lbl.Items[RSSListSite_Lbl.SelectedIndex].ToString());
 
                 Title_Lst.SetSelected(value, true);
             }
@@ -5615,27 +5615,27 @@ namespace Ostium
 
         #endregion
 
-        void CountBlockSite_Lbl_MouseEnter(object sender, EventArgs e)
+        void RSSListSite_Lbl_Lbl_MouseEnter(object sender, EventArgs e)
         {
             MSenter();
         }
 
-        void CountBlockSite_Lbl_Leave(object sender, EventArgs e)
+        void RSSListSite_Lbl_Lbl_Leave(object sender, EventArgs e)
         {
             MSleave();
         }
 
         void MSenter()
         {
-            CountBlockSite_Lbl.BringToFront();
-            CountBlockSite_Lbl.Width = 250;
-            CountBlockSite_Lbl.Visible = true;
+            RSSListSite_Lbl.BringToFront();
+            RSSListSite_Lbl.Width = 250;
+            RSSListSite_Lbl.Visible = true;
         }
 
         void MSleave()
         {
-            CountBlockSite_Lbl.SendToBack();
-            CountBlockSite_Lbl.Width = 50;
+            RSSListSite_Lbl.SendToBack();
+            RSSListSite_Lbl.Width = 50;
         }
 
         #region Param_
@@ -6786,15 +6786,15 @@ namespace Ostium
             switch (xswitch)
             {
                 case "Clear":
-                    CountBlockSite_Lbl.Items.Clear();
+                    RSSListSite_Lbl.Items.Clear();
                     CountBlockFeed_Lbl.Items.Clear();
                     break;
                 case "Disable":
-                    CountBlockSite_Lbl.Enabled = false;
+                    RSSListSite_Lbl.Enabled = false;
                     break;
                 case "AllTrue":
                     CategorieFeed_Cbx.Enabled = true;
-                    CountBlockSite_Lbl.Enabled = true;
+                    RSSListSite_Lbl.Enabled = true;
                     CreatCategorie_Btn.Enabled = true;
                     AddFeed_Btn.Enabled = true;
                     CollapseTitleFeed_Btn.Enabled = true;
@@ -6811,7 +6811,7 @@ namespace Ostium
                 case "FeedTitle":
                     CountFeed_Lbl.Text = TitleFeed;
                     string trimmedTitleFeed = TitleFeed.Trim();
-                    CountBlockSite_Lbl.Items.Add(trimmedTitleFeed);
+                    RSSListSite_Lbl.Items.Add(trimmedTitleFeed);
                     break;
                 case "ListCount":
                     CountBlockFeed_Lbl.Items.Add(Title_Lst.Items.Count);
@@ -6826,8 +6826,8 @@ namespace Ostium
                     CountFeed_Lbl.Text = "Count Feed: " + Title_Lst.Items.Count;
                     break;
                 case "Msleave":
-                    CountBlockSite_Lbl.SendToBack();
-                    CountBlockSite_Lbl.Width = 50;
+                    RSSListSite_Lbl.SendToBack();
+                    RSSListSite_Lbl.Width = 50;
                     break;
                 default:
                     break;

@@ -178,7 +178,7 @@
             this.Rss_Tab = new System.Windows.Forms.TabPage();
             this.splitContain_Rss = new System.Windows.Forms.SplitContainer();
             this.Title_Lst = new System.Windows.Forms.ListBox();
-            this.CountBlockSite_Lbl = new System.Windows.Forms.ListBox();
+            this.RSSListSite_Lbl = new System.Windows.Forms.ListBox();
             this.CountBlockFeed_Lbl = new System.Windows.Forms.ListBox();
             this.WBrowsefeed = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.Link_Lst = new System.Windows.Forms.ListBox();
@@ -2155,7 +2155,7 @@
             // splitContain_Rss.Panel1
             // 
             this.splitContain_Rss.Panel1.Controls.Add(this.Title_Lst);
-            this.splitContain_Rss.Panel1.Controls.Add(this.CountBlockSite_Lbl);
+            this.splitContain_Rss.Panel1.Controls.Add(this.RSSListSite_Lbl);
             this.splitContain_Rss.Panel1Collapsed = true;
             // 
             // splitContain_Rss.Panel2
@@ -2182,21 +2182,21 @@
             this.Title_Lst.TabIndex = 0;
             this.Title_Lst.SelectedIndexChanged += new System.EventHandler(this.Title_Lst_SelectedIndexChanged);
             // 
-            // CountBlockSite_Lbl
+            // RSSListSite_Lbl
             // 
-            this.CountBlockSite_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CountBlockSite_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountBlockSite_Lbl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CountBlockSite_Lbl.ForeColor = System.Drawing.Color.OrangeRed;
-            this.CountBlockSite_Lbl.FormattingEnabled = true;
-            this.CountBlockSite_Lbl.ItemHeight = 14;
-            this.CountBlockSite_Lbl.Location = new System.Drawing.Point(150, 0);
-            this.CountBlockSite_Lbl.MaximumSize = new System.Drawing.Size(0, 227);
-            this.CountBlockSite_Lbl.Name = "CountBlockSite_Lbl";
-            this.CountBlockSite_Lbl.Size = new System.Drawing.Size(0, 227);
-            this.CountBlockSite_Lbl.TabIndex = 6;
-            this.CountBlockSite_Lbl.Visible = false;
-            this.CountBlockSite_Lbl.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lbl_SelectedIndexChanged);
+            this.RSSListSite_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.RSSListSite_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RSSListSite_Lbl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.RSSListSite_Lbl.ForeColor = System.Drawing.Color.OrangeRed;
+            this.RSSListSite_Lbl.FormattingEnabled = true;
+            this.RSSListSite_Lbl.ItemHeight = 14;
+            this.RSSListSite_Lbl.Location = new System.Drawing.Point(150, 0);
+            this.RSSListSite_Lbl.MaximumSize = new System.Drawing.Size(0, 227);
+            this.RSSListSite_Lbl.Name = "RSSListSite_Lbl";
+            this.RSSListSite_Lbl.Size = new System.Drawing.Size(0, 227);
+            this.RSSListSite_Lbl.TabIndex = 6;
+            this.RSSListSite_Lbl.Visible = false;
+            this.RSSListSite_Lbl.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lbl_SelectedIndexChanged);
             // 
             // CountBlockFeed_Lbl
             // 
@@ -6963,7 +6963,7 @@
         private System.Windows.Forms.ToolStripStatusLabel CountFeed_Lbl;
         private System.Windows.Forms.ToolStripMenuItem TraductPageFeed_Btn;
         private System.Windows.Forms.ListBox CountBlockFeed_Lbl;
-        private System.Windows.Forms.ListBox CountBlockSite_Lbl;
+        private System.Windows.Forms.ListBox RSSListSite_Lbl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;

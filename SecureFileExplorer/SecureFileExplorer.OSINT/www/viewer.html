@@ -1,0 +1,799 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Viewer - OSINT Explorer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0b0f19;
+            color: #eee;
+        }
+
+        .header {
+            background: #111421;
+            padding: 15px 20px;
+            border-bottom: 2px solid #2a3040;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .header h1 {
+                color: #0af;
+                font-size: 18px;
+            }
+
+            .header .actions {
+                display: flex;
+                gap: 10px;
+            }
+
+            .header button {
+                padding: 8px 15px;
+                background: #0af;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background 0.3s;
+            }
+
+                .header button:hover {
+                    background: #0099dd;
+                }
+
+        .content {
+            padding: 20px;
+            height: calc(100vh - 60px);
+            overflow: auto;
+        }
+
+        pre {
+            background: #111421;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .xml-viewer {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+        }
+
+        .xml-tag {
+            color: #e74c3c;
+        }
+
+        .xml-attr {
+            color: #3498db;
+        }
+
+        .xml-value {
+            color: #2ecc71;
+        }
+
+        .xml-text {
+            color: #eee;
+        }
+
+        .zip-list {
+            list-style: none;
+        }
+
+            .zip-list li {
+                padding: 10px;
+                border-bottom: 1px solid #2a3040;
+                display: flex;
+                justify-content: space-between;
+                transition: background 0.2s;
+            }
+
+                .zip-list li:hover {
+                    background: rgba(0, 170, 255, 0.1);
+                }
+
+        .csv-viewer {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+            .csv-viewer th {
+                background: #1a1e2e;
+                color: #0af;
+                padding: 10px;
+                text-align: left;
+                border: 1px solid #2a3040;
+                font-weight: 600;
+            }
+
+            .csv-viewer td {
+                padding: 8px 10px;
+                border: 1px solid #2a3040;
+                color: #eee;
+            }
+
+            .csv-viewer tr:nth-child(even) {
+                background: rgba(255, 255, 255, 0.02);
+            }
+
+            .csv-viewer tr:hover {
+                background: rgba(0, 170, 255, 0.1);
+            }
+
+        .file-icon {
+            margin-right: 10px;
+        }
+
+        .file-size {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .error {
+            color: #e74c3c;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #0af;
+            font-size: 18px;
+        }
+
+        .hex-viewer {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 12px;
+        }
+
+        .hex-offset {
+            color: #888;
+            margin-right: 20px;
+        }
+
+        .hex-bytes {
+            color: #0af;
+            margin-right: 20px;
+        }
+
+        .hex-ascii {
+            color: #2ecc71;
+        }
+
+        .json-viewer {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+        }
+
+        .json-key {
+            color: #3498db;
+        }
+
+        .json-string {
+            color: #2ecc71;
+        }
+
+        .json-number {
+            color: #f39c12;
+        }
+
+        .json-boolean {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="filename">Loading...</h1>
+        <div class="actions">
+            <button onclick="downloadFile()">📥 Download</button>
+            <button onclick="copyToClipboard()">📋 Copy</button>
+            <button onclick="window.close()">✖ Close</button>
+        </div>
+    </div>
+
+    <div class="content" id="content">
+        <div class="loading">Loading file...</div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const filePath = urlParams.get('file');
+        const fileName = urlParams.get('name') || 'Unknown';
+
+        document.getElementById('filename').textContent = fileName;
+
+        async function loadFile() {
+            if (!filePath) {
+                showError('No file specified');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/files/${filePath}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const contentType = response.headers.get('Content-Type');
+                const ext = fileName.split('.').pop().toLowerCase();
+
+                if (ext === 'xml' || contentType.includes('xml')) {
+                    const text = await response.text();
+                    displayXML(text);
+                } else if (ext === 'json' || contentType.includes('json')) {
+                    const text = await response.text();
+                    displayJSON(text);
+                } else if (ext === 'csv' || contentType.includes('csv')) {
+                    const text = await response.text();
+                    displayCSV(text);
+                } else if (ext === 'rtf' || contentType.includes('rtf')) {
+                    const text = await response.text();
+                    displayRTF(text);
+                } else if (ext === 'docx' || ext === 'xlsx' || ext === 'pptx') {
+                    await displayOfficeFile(ext, response);
+                } else if (ext === 'doc' || ext === 'xls' || ext === 'ppt') {
+                    displayLegacyOfficeInfo(ext);
+                } else if (ext === 'pdf' || contentType.includes('pdf')) {
+                    displayPDF(filePath);
+                } else if (ext === 'zip' || ext === 'rar' || ext === '7z' || ext === 'tar' || ext === 'gz') {
+                    displayArchiveInfo(ext);
+                } else if (contentType.includes('text') ||
+                    ext === 'txt' || ext === 'md' || ext === 'log' ||
+                    ext === 'js' || ext === 'css' || ext === 'html' || ext === 'htm' ||
+                    ext === 'yml' || ext === 'yaml' || ext === 'ini' || ext === 'cfg' ||
+                    ext === 'sql' || ext === 'php' || ext === 'py' || ext === 'java' ||
+                    ext === 'cpp' || ext === 'c' || ext === 'h' || ext === 'cs' ||
+                    ext === 'sh' || ext === 'bat' || ext === 'ps1' || ext === 'vbs') {
+                    const text = await response.text();
+                    displayText(text, ext);
+                } else if (contentType.includes('image')) {
+                    displayImage(filePath, ext);
+                } else if (ext === 'eml' || ext === 'msg') {
+                    const text = await response.text();
+                    displayEmail(text, ext);
+                } else {
+                    const arrayBuffer = await response.arrayBuffer();
+                    displayHex(arrayBuffer);
+                }
+            } catch (error) {
+                showError(`Error loading file: ${error.message}`);
+            }
+        }
+
+        function displayRTF(rtfText) {
+            let plainText = rtfText;
+
+            try {
+                plainText = plainText
+                    .replace(/\\[^{}]+/g, ' ')  // Remove RTF commands
+                    .replace(/[{}]/g, ' ')      // Remove curly braces
+                    .replace(/\s+/g, ' ')       // Normalize whitespace
+                    .trim();
+                if (plainText.length < 50 && rtfText.length > 100) {
+                    plainText = rtfText;
+                }
+            } catch (e) {
+                console.warn('RTF parsing failed:', e);
+            }
+
+            document.getElementById('content').innerHTML = `
+            <div style="padding: 20px;">
+                <h2 style="color: #0af; margin-bottom: 20px;">📝 RTF Document</h2>
+                <div style="margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px;">
+                    <strong style="color: #3498db;">ℹ️ Format:</strong>
+                    <span style="color: #ccc;"> Rich Text Format (RTF)</span>
+                </div>
+                <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="color: #eee; margin-bottom: 15px;">📋 Extracted Text:</h3>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 500px; overflow-y: auto;">
+                        ${escapeHtml(plainText.substring(0, 10000))}
+                        ${plainText.length > 10000 ? '\n... (content truncated)' : ''}
+                    </pre>
+                </div>
+                <div style="background: #111421; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #eee; margin-bottom: 15px;">⚙️ Raw RTF (Preview):</h3>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 300px; overflow-y: auto; font-size: 12px; color: #888;">
+                        ${escapeHtml(rtfText.substring(0, 2000))}
+                        ${rtfText.length > 2000 ? '\n... (RTF truncated for preview)' : ''}
+                    </pre>
+                </div>
+            </div>
+        `;
+        }
+
+        async function displayOfficeFile(ext, response) {
+            try {
+                const arrayBuffer = await response.arrayBuffer();
+
+                const typeNames = {
+                    'docx': 'Word Document',
+                    'xlsx': 'Excel Spreadsheet',
+                    'pptx': 'PowerPoint Presentation'
+                };
+
+                let contentHtml = `
+                <div style="padding: 20px;">
+                    <h2 style="color: #0af; margin-bottom: 20px;">📄 ${typeNames[ext]} (${ext.toUpperCase()})</h2>
+                    <div style="margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px;">
+                        <strong style="color: #3498db;">ℹ️ File Info:</strong>
+                        <span style="color: #ccc;"> ${(arrayBuffer.byteSize || arrayBuffer.byteLength).toLocaleString()} bytes</span>
+                    </div>
+            `;
+
+                if (ext === 'docx') {
+                    try {
+                        const text = await extractTextFromDocx(arrayBuffer);
+                        if (text && text.trim().length > 0) {
+                            contentHtml += `
+                            <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                                <h3 style="color: #eee; margin-bottom: 15px;">📋 Extracted Text:</h3>
+                                <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 500px; overflow-y: auto;">
+                                    ${escapeHtml(text.substring(0, 10000))}
+                                    ${text.length > 10000 ? '\n... (content truncated)' : ''}
+                                </pre>
+                            </div>
+                        `;
+                        }
+                    } catch (e) {
+                        console.warn('DOCX text extraction failed:', e);
+                    }
+                }
+
+                contentHtml += `
+                    <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                        <ul style="list-style: none; line-height: 2;">
+                            <li>📥 <strong>Download</strong> the file using the button above</li>
+                            <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
+                            <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
+                            <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;">
+                        <strong style="color: #3498db;">💡 OSINT Tip:</strong>
+                        <p style="color: #ccc; margin-top: 5px;">
+                            Office files contain metadata (author, dates, revisions) and potentially hidden data. 
+                            Consider using specialized tools for thorough analysis.
+                        </p>
+                    </div>
+                </div>
+            `;
+
+                document.getElementById('content').innerHTML = contentHtml;
+
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                <div class="error">❌ Error processing Office file: ${escapeHtml(error.message)}</div>
+            `;
+            }
+        }
+
+        async function extractTextFromDocx(arrayBuffer) {
+            try {
+                const bytes = new Uint8Array(arrayBuffer);
+                let text = '';
+
+                for (let i = 0; i < bytes.length; i++) {
+                    if (bytes[i] >= 32 && bytes[i] <= 126) {
+                        let word = '';
+                        while (i < bytes.length && bytes[i] >= 32 && bytes[i] <= 126) {
+                            word += String.fromCharCode(bytes[i]);
+                            i++;
+                        }
+                        if (word.length > 3) {
+                            text += word + ' ';
+                        }
+                    }
+                }
+
+                const decoder = new TextDecoder('utf-8');
+                const fullText = decoder.decode(bytes);
+
+                const xmlMatches = fullText.match(/<[^>]+>([^<]+)<\/[^>]+>/g);
+                if (xmlMatches) {
+                    xmlMatches.forEach(match => {
+                        const textMatch = match.match(/<[^>]+>([^<]+)<\/[^>]+>/);
+                        if (textMatch && textMatch[1].trim().length > 1) {
+                            text += textMatch[1] + ' ';
+                        }
+                    });
+                }
+
+                return text.trim() || 'No extractable text found.';
+            } catch (error) {
+                console.warn('Text extraction failed:', error);
+                return 'Unable to extract text from DOCX file.';
+            }
+        }
+
+        function displayLegacyOfficeInfo(ext) {
+            const typeNames = {
+                'doc': 'Word Document (Legacy)',
+                'xls': 'Excel Spreadsheet (Legacy)',
+                'ppt': 'PowerPoint Presentation (Legacy)'
+            };
+
+            document.getElementById('content').innerHTML = `
+            <div style="padding: 20px;">
+                <h2 style="color: #0af; margin-bottom: 20px;">📄 ${typeNames[ext]} (${ext.toUpperCase()})</h2>
+                <p style="color: #888; margin-bottom: 20px;">
+                    This is a legacy Microsoft Office binary file format.
+                </p>
+                <div style="background: #111421; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>📥 <strong>Download</strong> the file using the button above</li>
+                        <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
+                        <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        }
+
+        function displayImage(imagePath, ext) {
+            document.getElementById('content').innerHTML = `
+            <div style="padding: 20px; text-align: center;">
+                <h2 style="color: #0af; margin-bottom: 20px;">🖼️ Image (${ext.toUpperCase()})</h2>
+                <div style="background: #111421; padding: 20px; border-radius: 8px; display: inline-block;">
+                    <img src="/files/${imagePath}" 
+                         alt="${fileName}"
+                         style="max-width: 100%; max-height: 70vh; border-radius: 5px;"
+                         onerror="this.style.display='none'; document.getElementById('imageError').style.display='block';">
+                    <div id="imageError" style="display: none; color: #e74c3c; padding: 20px;">
+                        Unable to display image. It may be corrupted or in an unsupported format.
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #111421; border-radius: 8px; text-align: left; display: inline-block;">
+                    <p><strong style="color: #0af;">ℹ️ Image loaded from:</strong> <code style="color: #ccc;">${escapeHtml(imagePath)}</code></p>
+                </div>
+            </div>
+        `;
+        }
+
+        function displayPDF(pdfPath) {
+            document.getElementById('content').innerHTML = `
+            <div style="padding: 20px;">
+                <h2 style="color: #0af; margin-bottom: 20px;">📄 PDF Document</h2>
+                <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="color: #ccc; margin-bottom: 15px;">
+                        PDF viewer requires browser support. If not displayed below, download and open with a PDF reader.
+                    </p>
+                    <iframe src="/files/${pdfPath}" 
+                            style="width: 100%; height: 70vh; border: none; border-radius: 5px;"
+                            title="PDF Viewer">
+                    </iframe>
+                    <p style="color: #888; margin-top: 15px; font-size: 12px;">
+                        Note: Some PDFs may not display inline due to security restrictions.
+                    </p>
+                </div>
+            </div>
+        `;
+        }
+
+        function displayEmail(emailText, ext) {
+            document.getElementById('content').innerHTML = `
+            <div style="padding: 20px;">
+                <h2 style="color: #0af; margin-bottom: 20px;">📧 Email (${ext.toUpperCase()})</h2>
+                <div style="background: #111421; padding: 20px; border-radius: 8px;">
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; max-height: 600px; overflow-y: auto;">
+                        ${escapeHtml(emailText.substring(0, 5000))}
+                        ${emailText.length > 5000 ? '\n... (email content truncated)' : ''}
+                    </pre>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;">
+                    <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
+                    <p style="color: #ccc; margin-top: 5px;">
+                        Check email headers for sender IP, routing information, and metadata. 
+                        Look for embedded links and attachments.
+                    </p>
+                </div>
+            </div>
+        `;
+        }
+
+        function displayXML(xmlText) {
+            const highlighted = highlightXML(xmlText);
+            document.getElementById('content').innerHTML = `
+                    <pre class="xml-viewer">${highlighted}</pre>
+                `;
+        }
+
+        function highlightXML(xml) {
+            return xml
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/(&lt;\/?[\w-]+)/g, '<span class="xml-tag">$1</span>')
+                .replace(/(&gt;)/g, '<span class="xml-tag">$1</span>')
+                .replace(/([\w-]+)=/g, '<span class="xml-attr">$1</span>=')
+                .replace(/="([^"]*)"/g, '=<span class="xml-value">"$1"</span>');
+        }
+
+        function displayJSON(jsonText) {
+            try {
+                const obj = JSON.parse(jsonText);
+                const formatted = JSON.stringify(obj, null, 2);
+                const highlighted = highlightJSON(formatted);
+                document.getElementById('content').innerHTML = `
+                        <pre class="json-viewer">${highlighted}</pre>
+                    `;
+            } catch (e) {
+                displayText(jsonText);
+            }
+        }
+
+        function highlightJSON(json) {
+            return json
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
+                .replace(/: "([^"]*)"/g, ': <span class="json-string">"$1"</span>')
+                .replace(/: (\d+)/g, ': <span class="json-number">$1</span>')
+                .replace(/: (true|false|null)/g, ': <span class="json-boolean">$1</span>');
+        }
+
+        function displayText(text, ext) {
+            let highlighted = escapeHtml(text);
+
+            if (ext === 'html' || ext === 'htm') {
+                highlighted = highlightHTML(text);
+            } else if (ext === 'xml') {
+                highlighted = highlightXML(text);
+            } else if (ext === 'json') {
+                try {
+                    const obj = JSON.parse(text);
+                    highlighted = highlightJSON(JSON.stringify(obj, null, 2));
+                } catch (e) {
+                    highlighted = escapeHtml(text);
+                }
+            } else if (ext === 'js') {
+                highlighted = highlightJavaScript(text);
+            } else if (ext === 'css') {
+                highlighted = highlightCSS(text);
+            }
+
+            const lineCount = text.split('\n').length;
+            const charCount = text.length;
+
+            document.getElementById('content').innerHTML = `
+            <div style="padding: 20px;">
+                <h2 style="color: #0af; margin-bottom: 20px;">📝 Text File (${ext.toUpperCase()})</h2>
+                <div style="margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px; display: flex; gap: 20px;">
+                    <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
+                    <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
+                    <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
+                </div>
+                <div style="background: #111421; padding: 20px; border-radius: 8px;">
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Consolas', 'Monaco', monospace; max-height: 600px; overflow-y: auto; tab-size: 4;">
+                        ${highlighted}
+                    </pre>
+                </div>
+            </div>
+        `;
+        }
+
+        function highlightHTML(html) {
+            return escapeHtml(html)
+                .replace(/&lt;(\/?)(\w+)/g, '&lt;<span class="xml-tag">$1$2</span>')
+                .replace(/&lt;\/\w+&gt;/g, '<span class="xml-tag">$&</span>')
+                .replace(/(\w+)=/g, '<span class="xml-attr">$1</span>=')
+                .replace(/="([^"]*)"/g, '=<span class="xml-value">"$1"</span>');
+        }
+
+        function highlightJavaScript(js) {
+            return escapeHtml(js)
+                .replace(/(\b(function|return|if|else|for|while|var|let|const|class|import|export|from|default)\b)/g, '<span style="color: #e74c3c;">$1</span>')
+                .replace(/(\b(true|false|null|undefined)\b)/g, '<span style="color: #f39c12;">$1</span>')
+                .replace(/(["'][^"']*["'])/g, '<span style="color: #2ecc71;">$1</span>')
+                .replace(/(\/\/[^\n]*)/g, '<span style="color: #7f8c8d;">$1</span>');
+        }
+
+        function highlightCSS(css) {
+            return escapeHtml(css)
+                .replace(/([^{}]+){/g, '<span style="color: #3498db;">$1</span>{')
+                .replace(/([a-zA-Z-]+):/g, '<span style="color: #9b59b6;">$1</span>:')
+                .replace(/(#[0-9a-fA-F]{3,6})/g, '<span style="color: #2ecc71;">$1</span>')
+                .replace(/(\b\d+[a-z]*\b)/g, '<span style="color: #f39c12;">$1</span>');
+        }
+
+        function displayCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            if (lines.length === 0) {
+                displayText(csvText);
+                return;
+            }
+
+            const delimiter = csvText.includes(';') ? ';' : ',';
+            const rows = lines.map(line => {
+                const cells = [];
+                let currentCell = '';
+                let inQuotes = false;
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === delimiter && !inQuotes) {
+                        cells.push(currentCell.trim());
+                        currentCell = '';
+                    } else {
+                        currentCell += char;
+                    }
+                }
+                cells.push(currentCell.trim());
+                return cells;
+            });
+
+            const headers = rows[0];
+            const dataRows = rows.slice(1);
+
+            let tableHtml = '<table class="csv-viewer"><thead><tr>';
+            headers.forEach(header => {
+                tableHtml += `<th>${escapeHtml(header)}</th>`;
+            });
+            tableHtml += '</tr></thead><tbody>';
+
+            dataRows.forEach(row => {
+                tableHtml += '<tr>';
+                row.forEach(cell => {
+                    tableHtml += `<td>${escapeHtml(cell)}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+
+            tableHtml += '</tbody></table>';
+
+            document.getElementById('content').innerHTML = `
+                    <div style="overflow-x: auto;">
+                        ${tableHtml}
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; background: #111421; border-radius: 8px; color: #888;">
+                        <strong>ℹ️ CSV Info:</strong> ${dataRows.length} rows × ${headers.length} columns
+                    </div>
+                `;
+        }
+
+        function displayOfficeInfo(ext) {
+            const typeNames = {
+                'docx': 'Word Document',
+                'xlsx': 'Excel Spreadsheet',
+                'pptx': 'PowerPoint Presentation'
+            };
+
+            document.getElementById('content').innerHTML = `
+                    <div style="padding: 20px;">
+                        <h2 style="color: #0af; margin-bottom: 20px;">📄 ${typeNames[ext]} (${ext.toUpperCase()})</h2>
+                        <p style="color: #888; margin-bottom: 20px;">
+                            This is a Microsoft Office file that requires special software to view properly.
+                        </p>
+                        <div style="background: #111421; padding: 20px; border-radius: 8px;">
+                            <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📥 <strong>Download</strong> the file using the button above</li>
+                                <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
+                                <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
+                                <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;">
+                            <strong style="color: #3498db;">💡 Tip:</strong>
+                            <p style="color: #ccc; margin-top: 5px;">
+                                For OSINT analysis, consider extracting metadata, examining document properties, and checking for hidden data.
+                            </p>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function displayArchiveInfo(ext) {
+            document.getElementById('content').innerHTML = `
+                    <div style="padding: 20px;">
+                        <h2 style="color: #0af; margin-bottom: 20px;">📦 Archive File (${ext.toUpperCase()})</h2>
+                        <p style="color: #888; margin-bottom: 20px;">
+                            This is an archive file. The browser cannot display its contents directly.
+                        </p>
+                        <div style="background: #111421; padding: 20px; border-radius: 8px;">
+                            <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📥 <strong>Download</strong> the file using the button above</li>
+                                <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
+                                <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; border-radius: 5px;">
+                            <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
+                            <p style="color: #ccc; margin-top: 5px;">
+                                Always scan archive files for malware before extracting them.
+                            </p>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function displayHex(arrayBuffer) {
+            const bytes = new Uint8Array(arrayBuffer);
+            const maxBytes = Math.min(bytes.length, 4096); // Limit to 4KB for performance
+            let hexHtml = '';
+
+            for (let i = 0; i < maxBytes; i += 16) {
+                const offset = i.toString(16).padStart(8, '0');
+                const hexPart = [];
+                const asciiPart = [];
+
+                for (let j = 0; j < 16; j++) {
+                    if (i + j < maxBytes) {
+                        const byte = bytes[i + j];
+                        hexPart.push(byte.toString(16).padStart(2, '0'));
+                        asciiPart.push(byte >= 32 && byte <= 126 ? String.fromCharCode(byte) : '.');
+                    } else {
+                        hexPart.push('  ');
+                        asciiPart.push(' ');
+                    }
+                }
+
+                hexHtml += `<div><span class="hex-offset">${offset}</span><span class="hex-bytes">${hexPart.join(' ')}</span><span class="hex-ascii">${asciiPart.join('')}</span></div>`;
+            }
+
+            if (bytes.length > maxBytes) {
+                hexHtml += `<div style="color: #888; margin-top: 20px;">... (showing first ${maxBytes} bytes of ${bytes.length})</div>`;
+            }
+
+            document.getElementById('content').innerHTML = `
+                    <pre class="hex-viewer">${hexHtml}</pre>
+                `;
+        }
+
+        function showError(message) {
+            document.getElementById('content').innerHTML = `
+                    <div class="error">❌ ${escapeHtml(message)}</div>
+                `;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function downloadFile() {
+            const a = document.createElement('a');
+            a.href = `/files/${filePath}`;
+            a.download = fileName;
+            a.click();
+        }
+
+        async function copyToClipboard() {
+            const contentElement = document.querySelector('#content pre');
+            if (contentElement) {
+                try {
+                    await navigator.clipboard.writeText(contentElement.textContent);
+                    alert('✅ Content copied to clipboard!');
+                } catch (err) {
+                    alert('❌ Failed to copy to clipboard');
+                }
+            }
+        }
+
+        loadFile();
+    </script>
+</body>
+</html>
