@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; frame-src 'self';">
     <title>File Viewer - OSINT Explorer</title>
     <style>
         * {
@@ -212,15 +213,121 @@
     </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const filePath = urlParams.get('file');
-        const fileName = urlParams.get('name') || 'Unknown';
+        // ============================================
+        // SECURITY ENHANCEMENT: Input Sanitization
+        // ============================================
 
-        document.getElementById('filename').textContent = fileName;
+        /**
+         * Sanitize file path to prevent directory traversal and XSS
+         */
+        function sanitizeFilePath(path) {
+            if (!path || typeof path !== 'string') {
+                return null;
+            }
+
+            // Remove any null bytes
+            path = path.replace(/\0/g, '');
+
+            // Remove protocol handlers (javascript:, data:, etc.)
+            if (/^(javascript|data|vbscript|file|about):/i.test(path)) {
+                return null;
+            }
+
+            // Remove path traversal attempts
+            path = path.replace(/\.\./g, '');
+
+            // Only allow alphanumeric, dash, underscore, dot, and forward slash
+            if (!/^[a-zA-Z0-9\-_./]+$/.test(path)) {
+                return null;
+            }
+
+            return path;
+        }
+
+        /**
+         * Sanitize filename for display
+         */
+        function sanitizeFileName(name) {
+            if (!name || typeof name !== 'string') {
+                return 'Unknown';
+            }
+
+            // Remove any HTML tags and dangerous characters
+            name = name.replace(/<[^>]*>/g, '');
+            name = name.replace(/[<>"'&]/g, '');
+
+            return name.substring(0, 255); // Limit length
+        }
+
+        /**
+         * Escape HTML entities (already exists but enhanced)
+         */
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /**
+         * Safely create an attribute value (for src, href, etc.)
+         */
+        function sanitizeAttribute(value) {
+            if (!value || typeof value !== 'string') {
+                return '';
+            }
+
+            // HTML encode and remove quotes
+            return escapeHtml(value).replace(/["']/g, '');
+        }
+
+        /**
+         * Create element safely using DOM methods instead of innerHTML
+         */
+        function createSafeElement(tag, attributes = {}, textContent = '') {
+            const element = document.createElement(tag);
+
+            for (const [key, value] of Object.entries(attributes)) {
+                if (key === 'textContent') {
+                    element.textContent = value;
+                } else if (key === 'innerHTML') {
+                    // Only for pre-sanitized content
+                    element.innerHTML = value;
+                } else {
+                    element.setAttribute(key, sanitizeAttribute(value));
+                }
+            }
+
+            if (textContent) {
+                element.textContent = textContent;
+            }
+
+            return element;
+        }
+
+        // ============================================
+        // Initialize with sanitized parameters
+        // ============================================
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const rawFilePath = urlParams.get('file');
+        const rawFileName = urlParams.get('name');
+
+        const filePath = sanitizeFilePath(rawFilePath);
+        const fileName = sanitizeFileName(rawFileName);
+
+        // Update filename in header safely
+        const filenameElement = document.getElementById('filename');
+        filenameElement.textContent = fileName;
+
+        // Validate file path
+        if (!filePath) {
+            showError('Invalid or unsafe file path');
+        }
 
         async function loadFile() {
             if (!filePath) {
-                showError('No file specified');
+                showError('No valid file specified');
                 return;
             }
 
@@ -281,9 +388,9 @@
 
             try {
                 plainText = plainText
-                    .replace(/\\[^{}]+/g, ' ')  // Remove RTF commands
-                    .replace(/[{}]/g, ' ')      // Remove curly braces
-                    .replace(/\s+/g, ' ')       // Normalize whitespace
+                    .replace(/\\[^{}]+/g, ' ')
+                    .replace(/[{}]/g, ' ')
+                    .replace(/\s+/g, ' ')
                     .trim();
                 if (plainText.length < 50 && rtfText.length > 100) {
                     plainText = rtfText;
@@ -292,29 +399,56 @@
                 console.warn('RTF parsing failed:', e);
             }
 
-            document.getElementById('content').innerHTML = `
-            <div style="padding: 20px;">
-                <h2 style="color: #0af; margin-bottom: 20px;">📝 RTF Document</h2>
-                <div style="margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px;">
-                    <strong style="color: #3498db;">ℹ️ Format:</strong>
-                    <span style="color: #ccc;"> Rich Text Format (RTF)</span>
-                </div>
-                <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                    <h3 style="color: #eee; margin-bottom: 15px;">📋 Extracted Text:</h3>
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 500px; overflow-y: auto;">
-                        ${escapeHtml(plainText.substring(0, 10000))}
-                        ${plainText.length > 10000 ? '\n... (content truncated)' : ''}
-                    </pre>
-                </div>
-                <div style="background: #111421; padding: 20px; border-radius: 8px;">
-                    <h3 style="color: #eee; margin-bottom: 15px;">⚙️ Raw RTF (Preview):</h3>
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 300px; overflow-y: auto; font-size: 12px; color: #888;">
-                        ${escapeHtml(rtfText.substring(0, 2000))}
-                        ${rtfText.length > 2000 ? '\n... (RTF truncated for preview)' : ''}
-                    </pre>
-                </div>
-            </div>
-        `;
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, '📝 RTF Document');
+
+            const infoBox = createSafeElement('div', {
+                style: 'margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px;'
+            });
+            infoBox.innerHTML = '<strong style="color: #3498db;">ℹ️ Format:</strong><span style="color: #ccc;"> Rich Text Format (RTF)</span>';
+
+            const extractedBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
+            });
+
+            const extractedHeading = createSafeElement('h3', {
+                style: 'color: #eee; margin-bottom: 15px;'
+            }, '📋 Extracted Text:');
+
+            const extractedPre = createSafeElement('pre', {
+                style: 'white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 500px; overflow-y: auto;'
+            }, plainText.substring(0, 10000) + (plainText.length > 10000 ? '\n... (content truncated)' : ''));
+
+            extractedBox.appendChild(extractedHeading);
+            extractedBox.appendChild(extractedPre);
+
+            const rawBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px;'
+            });
+
+            const rawHeading = createSafeElement('h3', {
+                style: 'color: #eee; margin-bottom: 15px;'
+            }, '⚙️ Raw RTF (Preview):');
+
+            const rawPre = createSafeElement('pre', {
+                style: 'white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 300px; overflow-y: auto; font-size: 12px; color: #888;'
+            }, rtfText.substring(0, 2000) + (rtfText.length > 2000 ? '\n... (RTF truncated for preview)' : ''));
+
+            rawBox.appendChild(rawHeading);
+            rawBox.appendChild(rawPre);
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(infoBox);
+            wrapper.appendChild(extractedBox);
+            wrapper.appendChild(rawBox);
+
+            container.appendChild(wrapper);
         }
 
         async function displayOfficeFile(ext, response) {
@@ -327,36 +461,52 @@
                     'pptx': 'PowerPoint Presentation'
                 };
 
-                let contentHtml = `
-                <div style="padding: 20px;">
-                    <h2 style="color: #0af; margin-bottom: 20px;">📄 ${typeNames[ext]} (${ext.toUpperCase()})</h2>
-                    <div style="margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px;">
-                        <strong style="color: #3498db;">ℹ️ File Info:</strong>
-                        <span style="color: #ccc;"> ${(arrayBuffer.byteSize || arrayBuffer.byteLength).toLocaleString()} bytes</span>
-                    </div>
-            `;
+                const container = document.getElementById('content');
+                container.innerHTML = '';
+
+                const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+                const heading = createSafeElement('h2', {
+                    style: 'color: #0af; margin-bottom: 20px;'
+                }, `📄 ${typeNames[ext]} (${ext.toUpperCase()})`);
+
+                wrapper.appendChild(heading);
+
+                const infoBox = createSafeElement('div', {
+                    style: 'margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px;'
+                });
+                infoBox.innerHTML = `<strong style="color: #3498db;">ℹ️ File Info:</strong><span style="color: #ccc;"> ${arrayBuffer.byteLength.toLocaleString()} bytes</span>`;
+                wrapper.appendChild(infoBox);
 
                 if (ext === 'docx') {
                     try {
                         const text = await extractTextFromDocx(arrayBuffer);
                         if (text && text.trim().length > 0) {
-                            contentHtml += `
-                            <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                                <h3 style="color: #eee; margin-bottom: 15px;">📋 Extracted Text:</h3>
-                                <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 500px; overflow-y: auto;">
-                                    ${escapeHtml(text.substring(0, 10000))}
-                                    ${text.length > 10000 ? '\n... (content truncated)' : ''}
-                                </pre>
-                            </div>
-                        `;
+                            const textBox = createSafeElement('div', {
+                                style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
+                            });
+
+                            const textHeading = createSafeElement('h3', {
+                                style: 'color: #eee; margin-bottom: 15px;'
+                            }, '📋 Extracted Text:');
+
+                            const textPre = createSafeElement('pre', {
+                                style: 'white-space: pre-wrap; word-wrap: break-word; font-family: monospace; background: #0b0f19; padding: 15px; border-radius: 5px; max-height: 500px; overflow-y: auto;'
+                            }, text.substring(0, 10000) + (text.length > 10000 ? '\n... (content truncated)' : ''));
+
+                            textBox.appendChild(textHeading);
+                            textBox.appendChild(textPre);
+                            wrapper.appendChild(textBox);
                         }
                     } catch (e) {
                         console.warn('DOCX text extraction failed:', e);
                     }
                 }
 
-                contentHtml += `
-                    <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                const optionsBox = createSafeElement('div', {
+                    style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
+                });
+                optionsBox.innerHTML = `
                         <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
                         <ul style="list-style: none; line-height: 2;">
                             <li>📥 <strong>Download</strong> the file using the button above</li>
@@ -364,23 +514,25 @@
                             <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
                             <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
                         </ul>
-                    </div>
-                    <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;">
+                    `;
+                wrapper.appendChild(optionsBox);
+
+                const tipBox = createSafeElement('div', {
+                    style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
+                });
+                tipBox.innerHTML = `
                         <strong style="color: #3498db;">💡 OSINT Tip:</strong>
                         <p style="color: #ccc; margin-top: 5px;">
-                            Office files contain metadata (author, dates, revisions) and potentially hidden data. 
+                            Office files contain metadata (author, dates, revisions) and potentially hidden data.
                             Consider using specialized tools for thorough analysis.
                         </p>
-                    </div>
-                </div>
-            `;
+                    `;
+                wrapper.appendChild(tipBox);
 
-                document.getElementById('content').innerHTML = contentHtml;
+                container.appendChild(wrapper);
 
             } catch (error) {
-                document.getElementById('content').innerHTML = `
-                <div class="error">❌ Error processing Office file: ${escapeHtml(error.message)}</div>
-            `;
+                showError(`Error processing Office file: ${error.message}`);
             }
         }
 
@@ -429,97 +581,189 @@
                 'ppt': 'PowerPoint Presentation (Legacy)'
             };
 
-            document.getElementById('content').innerHTML = `
-            <div style="padding: 20px;">
-                <h2 style="color: #0af; margin-bottom: 20px;">📄 ${typeNames[ext]} (${ext.toUpperCase()})</h2>
-                <p style="color: #888; margin-bottom: 20px;">
-                    This is a legacy Microsoft Office binary file format.
-                </p>
-                <div style="background: #111421; padding: 20px; border-radius: 8px;">
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, `📄 ${typeNames[ext]} (${ext.toUpperCase()})`);
+
+            const description = createSafeElement('p', {
+                style: 'color: #888; margin-bottom: 20px;'
+            }, 'This is a legacy Microsoft Office binary file format.');
+
+            const optionsBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px;'
+            });
+            optionsBox.innerHTML = `
                     <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
                     <ul style="list-style: none; line-height: 2;">
                         <li>📥 <strong>Download</strong> the file using the button above</li>
                         <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
                         <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
                     </ul>
-                </div>
-            </div>
-        `;
+                `;
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(description);
+            wrapper.appendChild(optionsBox);
+
+            container.appendChild(wrapper);
         }
 
+        // FIXED: Secure image display using DOM methods
         function displayImage(imagePath, ext) {
-            document.getElementById('content').innerHTML = `
-            <div style="padding: 20px; text-align: center;">
-                <h2 style="color: #0af; margin-bottom: 20px;">🖼️ Image (${ext.toUpperCase()})</h2>
-                <div style="background: #111421; padding: 20px; border-radius: 8px; display: inline-block;">
-                    <img src="/files/${imagePath}" 
-                         alt="${fileName}"
-                         style="max-width: 100%; max-height: 70vh; border-radius: 5px;"
-                         onerror="this.style.display='none'; document.getElementById('imageError').style.display='block';">
-                    <div id="imageError" style="display: none; color: #e74c3c; padding: 20px;">
-                        Unable to display image. It may be corrupted or in an unsupported format.
-                    </div>
-                </div>
-                <div style="margin-top: 20px; padding: 15px; background: #111421; border-radius: 8px; text-align: left; display: inline-block;">
-                    <p><strong style="color: #0af;">ℹ️ Image loaded from:</strong> <code style="color: #ccc;">${escapeHtml(imagePath)}</code></p>
-                </div>
-            </div>
-        `;
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', {
+                style: 'padding: 20px; text-align: center;'
+            });
+
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, `🖼️ Image (${escapeHtml(ext.toUpperCase())})`);
+
+            const imageBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px; display: inline-block;'
+            });
+
+            // Create image element safely
+            const img = document.createElement('img');
+            img.src = `/files/${sanitizeAttribute(imagePath)}`;
+            img.alt = fileName; // Already sanitized
+            img.style.cssText = 'max-width: 100%; max-height: 70vh; border-radius: 5px;';
+
+            const errorDiv = createSafeElement('div', {
+                id: 'imageError',
+                style: 'display: none; color: #e74c3c; padding: 20px;'
+            }, 'Unable to display image. It may be corrupted or in an unsupported format.');
+
+            img.onerror = function () {
+                img.style.display = 'none';
+                errorDiv.style.display = 'block';
+            };
+
+            imageBox.appendChild(img);
+            imageBox.appendChild(errorDiv);
+
+            const infoBox = createSafeElement('div', {
+                style: 'margin-top: 20px; padding: 15px; background: #111421; border-radius: 8px; text-align: left; display: inline-block;'
+            });
+
+            const infoText = createSafeElement('p');
+            const strongTag = createSafeElement('strong', {
+                style: 'color: #0af;'
+            }, 'ℹ️ Image loaded from: ');
+            const codeTag = createSafeElement('code', {
+                style: 'color: #ccc;'
+            }, imagePath);
+
+            infoText.appendChild(strongTag);
+            infoText.appendChild(codeTag);
+            infoBox.appendChild(infoText);
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(imageBox);
+            wrapper.appendChild(infoBox);
+
+            container.appendChild(wrapper);
         }
 
+        // FIXED: Secure PDF display using DOM methods
         function displayPDF(pdfPath) {
-            document.getElementById('content').innerHTML = `
-            <div style="padding: 20px;">
-                <h2 style="color: #0af; margin-bottom: 20px;">📄 PDF Document</h2>
-                <div style="background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                    <p style="color: #ccc; margin-bottom: 15px;">
-                        PDF viewer requires browser support. If not displayed below, download and open with a PDF reader.
-                    </p>
-                    <iframe src="/files/${pdfPath}" 
-                            style="width: 100%; height: 70vh; border: none; border-radius: 5px;"
-                            title="PDF Viewer">
-                    </iframe>
-                    <p style="color: #888; margin-top: 15px; font-size: 12px;">
-                        Note: Some PDFs may not display inline due to security restrictions.
-                    </p>
-                </div>
-            </div>
-        `;
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, '📄 PDF Document');
+
+            const pdfBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
+            });
+
+            const description = createSafeElement('p', {
+                style: 'color: #ccc; margin-bottom: 15px;'
+            }, 'PDF viewer requires browser support. If not displayed below, download and open with a PDF reader.');
+
+            // Create iframe safely
+            const iframe = document.createElement('iframe');
+            iframe.src = `/files/${sanitizeAttribute(pdfPath)}`;
+            iframe.style.cssText = 'width: 100%; height: 70vh; border: none; border-radius: 5px;';
+            iframe.title = 'PDF Viewer';
+
+            const note = createSafeElement('p', {
+                style: 'color: #888; margin-top: 15px; font-size: 12px;'
+            }, 'Note: Some PDFs may not display inline due to security restrictions.');
+
+            pdfBox.appendChild(description);
+            pdfBox.appendChild(iframe);
+            pdfBox.appendChild(note);
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(pdfBox);
+
+            container.appendChild(wrapper);
         }
 
         function displayEmail(emailText, ext) {
-            document.getElementById('content').innerHTML = `
-            <div style="padding: 20px;">
-                <h2 style="color: #0af; margin-bottom: 20px;">📧 Email (${ext.toUpperCase()})</h2>
-                <div style="background: #111421; padding: 20px; border-radius: 8px;">
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: monospace; max-height: 600px; overflow-y: auto;">
-                        ${escapeHtml(emailText.substring(0, 5000))}
-                        ${emailText.length > 5000 ? '\n... (email content truncated)' : ''}
-                    </pre>
-                </div>
-                <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;">
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, `📧 Email (${escapeHtml(ext.toUpperCase())})`);
+
+            const emailBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px;'
+            });
+
+            const emailPre = createSafeElement('pre', {
+                style: 'white-space: pre-wrap; word-wrap: break-word; font-family: monospace; max-height: 600px; overflow-y: auto;'
+            }, emailText.substring(0, 5000) + (emailText.length > 5000 ? '\n... (email content truncated)' : ''));
+
+            emailBox.appendChild(emailPre);
+
+            const tipBox = createSafeElement('div', {
+                style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
+            });
+            tipBox.innerHTML = `
                     <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
                     <p style="color: #ccc; margin-top: 5px;">
-                        Check email headers for sender IP, routing information, and metadata. 
+                        Check email headers for sender IP, routing information, and metadata.
                         Look for embedded links and attachments.
                     </p>
-                </div>
-            </div>
-        `;
+                `;
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(emailBox);
+            wrapper.appendChild(tipBox);
+
+            container.appendChild(wrapper);
         }
 
         function displayXML(xmlText) {
             const highlighted = highlightXML(xmlText);
-            document.getElementById('content').innerHTML = `
-                    <pre class="xml-viewer">${highlighted}</pre>
-                `;
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const pre = createSafeElement('pre', {
+                class: 'xml-viewer',
+                innerHTML: highlighted // Already escaped by highlightXML
+            });
+
+            container.appendChild(pre);
         }
 
         function highlightXML(xml) {
-            return xml
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
+            return escapeHtml(xml)
                 .replace(/(&lt;\/?[\w-]+)/g, '<span class="xml-tag">$1</span>')
                 .replace(/(&gt;)/g, '<span class="xml-tag">$1</span>')
                 .replace(/([\w-]+)=/g, '<span class="xml-attr">$1</span>=')
@@ -531,28 +775,34 @@
                 const obj = JSON.parse(jsonText);
                 const formatted = JSON.stringify(obj, null, 2);
                 const highlighted = highlightJSON(formatted);
-                document.getElementById('content').innerHTML = `
-                        <pre class="json-viewer">${highlighted}</pre>
-                    `;
+
+                const container = document.getElementById('content');
+                container.innerHTML = '';
+
+                const pre = createSafeElement('pre', {
+                    class: 'json-viewer',
+                    innerHTML: highlighted // Already escaped by highlightJSON
+                });
+
+                container.appendChild(pre);
             } catch (e) {
-                displayText(jsonText);
+                displayText(jsonText, 'txt');
             }
         }
 
         function highlightJSON(json) {
-            return json
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
+            return escapeHtml(json)
                 .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
                 .replace(/: "([^"]*)"/g, ': <span class="json-string">"$1"</span>')
                 .replace(/: (\d+)/g, ': <span class="json-number">$1</span>')
                 .replace(/: (true|false|null)/g, ': <span class="json-boolean">$1</span>');
         }
 
+        // FIXED: Secure text display
         function displayText(text, ext) {
             let highlighted = escapeHtml(text);
 
+            // Apply syntax highlighting (already escaped)
             if (ext === 'html' || ext === 'htm') {
                 highlighted = highlightHTML(text);
             } else if (ext === 'xml') {
@@ -573,21 +823,41 @@
             const lineCount = text.split('\n').length;
             const charCount = text.length;
 
-            document.getElementById('content').innerHTML = `
-            <div style="padding: 20px;">
-                <h2 style="color: #0af; margin-bottom: 20px;">📝 Text File (${ext.toUpperCase()})</h2>
-                <div style="margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px; display: flex; gap: 20px;">
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+            // SECURITY: Sanitize ext before display
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, `📝 Text File (${escapeHtml(ext.toUpperCase())})`);
+
+            const statsBox = createSafeElement('div', {
+                style: 'margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px; display: flex; gap: 20px;'
+            });
+            statsBox.innerHTML = `
                     <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
                     <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
                     <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
-                </div>
-                <div style="background: #111421; padding: 20px; border-radius: 8px;">
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Consolas', 'Monaco', monospace; max-height: 600px; overflow-y: auto; tab-size: 4;">
-                        ${highlighted}
-                    </pre>
-                </div>
-            </div>
-        `;
+                `;
+
+            const codeBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px;'
+            });
+
+            const codePre = createSafeElement('pre', {
+                style: 'white-space: pre-wrap; word-wrap: break-word; font-family: "Consolas", "Monaco", monospace; max-height: 600px; overflow-y: auto; tab-size: 4;',
+                innerHTML: highlighted // Already escaped
+            });
+
+            codeBox.appendChild(codePre);
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(statsBox);
+            wrapper.appendChild(codeBox);
+
+            container.appendChild(wrapper);
         }
 
         function highlightHTML(html) {
@@ -617,7 +887,7 @@
         function displayCSV(csvText) {
             const lines = csvText.trim().split('\n');
             if (lines.length === 0) {
-                displayText(csvText);
+                displayText(csvText, 'txt');
                 return;
             }
 
@@ -646,93 +916,104 @@
             const headers = rows[0];
             const dataRows = rows.slice(1);
 
-            let tableHtml = '<table class="csv-viewer"><thead><tr>';
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', {
+                style: 'overflow-x: auto;'
+            });
+
+            const table = document.createElement('table');
+            table.className = 'csv-viewer';
+
+            // Create thead
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
             headers.forEach(header => {
-                tableHtml += `<th>${escapeHtml(header)}</th>`;
+                const th = document.createElement('th');
+                th.textContent = header; // Safe: uses textContent
+                headerRow.appendChild(th);
             });
-            tableHtml += '</tr></thead><tbody>';
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
 
+            // Create tbody
+            const tbody = document.createElement('tbody');
             dataRows.forEach(row => {
-                tableHtml += '<tr>';
+                const tr = document.createElement('tr');
                 row.forEach(cell => {
-                    tableHtml += `<td>${escapeHtml(cell)}</td>`;
+                    const td = document.createElement('td');
+                    td.textContent = cell; // Safe: uses textContent
+                    tr.appendChild(td);
                 });
-                tableHtml += '</tr>';
+                tbody.appendChild(tr);
             });
+            table.appendChild(tbody);
 
-            tableHtml += '</tbody></table>';
+            wrapper.appendChild(table);
 
-            document.getElementById('content').innerHTML = `
-                    <div style="overflow-x: auto;">
-                        ${tableHtml}
-                    </div>
-                    <div style="margin-top: 20px; padding: 15px; background: #111421; border-radius: 8px; color: #888;">
-                        <strong>ℹ️ CSV Info:</strong> ${dataRows.length} rows × ${headers.length} columns
-                    </div>
-                `;
-        }
+            const infoBox = createSafeElement('div', {
+                style: 'margin-top: 20px; padding: 15px; background: #111421; border-radius: 8px; color: #888;'
+            });
+            infoBox.innerHTML = `<strong>ℹ️ CSV Info:</strong> ${dataRows.length} rows × ${headers.length} columns`;
 
-        function displayOfficeInfo(ext) {
-            const typeNames = {
-                'docx': 'Word Document',
-                'xlsx': 'Excel Spreadsheet',
-                'pptx': 'PowerPoint Presentation'
-            };
-
-            document.getElementById('content').innerHTML = `
-                    <div style="padding: 20px;">
-                        <h2 style="color: #0af; margin-bottom: 20px;">📄 ${typeNames[ext]} (${ext.toUpperCase()})</h2>
-                        <p style="color: #888; margin-bottom: 20px;">
-                            This is a Microsoft Office file that requires special software to view properly.
-                        </p>
-                        <div style="background: #111421; padding: 20px; border-radius: 8px;">
-                            <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>📥 <strong>Download</strong> the file using the button above</li>
-                                <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
-                                <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
-                                <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
-                            </ul>
-                        </div>
-                        <div style="margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;">
-                            <strong style="color: #3498db;">💡 Tip:</strong>
-                            <p style="color: #ccc; margin-top: 5px;">
-                                For OSINT analysis, consider extracting metadata, examining document properties, and checking for hidden data.
-                            </p>
-                        </div>
-                    </div>
-                `;
+            container.appendChild(wrapper);
+            container.appendChild(infoBox);
         }
 
         function displayArchiveInfo(ext) {
-            document.getElementById('content').innerHTML = `
-                    <div style="padding: 20px;">
-                        <h2 style="color: #0af; margin-bottom: 20px;">📦 Archive File (${ext.toUpperCase()})</h2>
-                        <p style="color: #888; margin-bottom: 20px;">
-                            This is an archive file. The browser cannot display its contents directly.
-                        </p>
-                        <div style="background: #111421; padding: 20px; border-radius: 8px;">
-                            <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>📥 <strong>Download</strong> the file using the button above</li>
-                                <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
-                                <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
-                            </ul>
-                        </div>
-                        <div style="margin-top: 20px; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; border-radius: 5px;">
-                            <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
-                            <p style="color: #ccc; margin-top: 5px;">
-                                Always scan archive files for malware before extracting them.
-                            </p>
-                        </div>
-                    </div>
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
+
+            const heading = createSafeElement('h2', {
+                style: 'color: #0af; margin-bottom: 20px;'
+            }, `📦 Archive File (${escapeHtml(ext.toUpperCase())})`);
+
+            const description = createSafeElement('p', {
+                style: 'color: #888; margin-bottom: 20px;'
+            }, 'This is an archive file. The browser cannot display its contents directly.');
+
+            const optionsBox = createSafeElement('div', {
+                style: 'background: #111421; padding: 20px; border-radius: 8px;'
+            });
+            optionsBox.innerHTML = `
+                    <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>📥 <strong>Download</strong> the file using the button above</li>
+                        <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
+                        <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
+                    </ul>
                 `;
+
+            const warningBox = createSafeElement('div', {
+                style: 'margin-top: 20px; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; border-radius: 5px;'
+            });
+            warningBox.innerHTML = `
+                    <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
+                    <p style="color: #ccc; margin-top: 5px;">
+                        Always scan archive files for malware before extracting them.
+                    </p>
+                `;
+
+            wrapper.appendChild(heading);
+            wrapper.appendChild(description);
+            wrapper.appendChild(optionsBox);
+            wrapper.appendChild(warningBox);
+
+            container.appendChild(wrapper);
         }
 
         function displayHex(arrayBuffer) {
             const bytes = new Uint8Array(arrayBuffer);
-            const maxBytes = Math.min(bytes.length, 4096); // Limit to 4KB for performance
-            let hexHtml = '';
+            const maxBytes = Math.min(bytes.length, 4096);
+
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            const pre = document.createElement('pre');
+            pre.className = 'hex-viewer';
 
             for (let i = 0; i < maxBytes; i += 16) {
                 const offset = i.toString(16).padStart(8, '0');
@@ -750,35 +1031,60 @@
                     }
                 }
 
-                hexHtml += `<div><span class="hex-offset">${offset}</span><span class="hex-bytes">${hexPart.join(' ')}</span><span class="hex-ascii">${asciiPart.join('')}</span></div>`;
+                const lineDiv = document.createElement('div');
+
+                const offsetSpan = createSafeElement('span', {
+                    class: 'hex-offset'
+                }, offset);
+
+                const bytesSpan = createSafeElement('span', {
+                    class: 'hex-bytes'
+                }, hexPart.join(' '));
+
+                const asciiSpan = createSafeElement('span', {
+                    class: 'hex-ascii'
+                }, asciiPart.join(''));
+
+                lineDiv.appendChild(offsetSpan);
+                lineDiv.appendChild(bytesSpan);
+                lineDiv.appendChild(asciiSpan);
+
+                pre.appendChild(lineDiv);
             }
 
             if (bytes.length > maxBytes) {
-                hexHtml += `<div style="color: #888; margin-top: 20px;">... (showing first ${maxBytes} bytes of ${bytes.length})</div>`;
+                const truncateDiv = createSafeElement('div', {
+                    style: 'color: #888; margin-top: 20px;'
+                }, `... (showing first ${maxBytes} bytes of ${bytes.length})`);
+                pre.appendChild(truncateDiv);
             }
 
-            document.getElementById('content').innerHTML = `
-                    <pre class="hex-viewer">${hexHtml}</pre>
-                `;
+            container.appendChild(pre);
         }
 
         function showError(message) {
-            document.getElementById('content').innerHTML = `
-                    <div class="error">❌ ${escapeHtml(message)}</div>
-                `;
-        }
+            const container = document.getElementById('content');
+            container.innerHTML = '';
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+            const errorDiv = createSafeElement('div', {
+                class: 'error'
+            }, `❌ ${message}`); // message is already validated or is a literal string
+
+            container.appendChild(errorDiv);
         }
 
         async function downloadFile() {
+            if (!filePath) {
+                alert('Invalid file path');
+                return;
+            }
+
             const a = document.createElement('a');
-            a.href = `/files/${filePath}`;
-            a.download = fileName;
+            a.href = `/files/${sanitizeAttribute(filePath)}`;
+            a.download = fileName; // Already sanitized
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
         }
 
         async function copyToClipboard() {
@@ -788,12 +1094,16 @@
                     await navigator.clipboard.writeText(contentElement.textContent);
                     alert('✅ Content copied to clipboard!');
                 } catch (err) {
+                    console.error('Copy failed:', err);
                     alert('❌ Failed to copy to clipboard');
                 }
+            } else {
+                alert('❌ No content available to copy');
             }
         }
 
+        // Initialize on page load
         loadFile();
     </script>
 </body>
-</html>
+</html>           
