@@ -118,7 +118,7 @@ mkdir C:\OSINT_DATA
 
 Copy your documents to `C:\OSINT_DATA` or its subfolders.
 
-Open your browser to: **http://localhost:8787**
+Open your browser to: **http://localhost:PORT**
 
 ### Search
 - Type in the search bar to filter files in real time

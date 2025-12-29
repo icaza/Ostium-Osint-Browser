@@ -179,7 +179,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html"; // <= Change the URL to distribute your version
-        readonly string versionNow = "30";
+        readonly string versionNow = "31";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -2977,7 +2977,8 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(SVGviewerdir, "SVGviewer.exe")))
             {
-                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!");
+                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3110,7 +3111,8 @@ namespace Ostium
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3259,7 +3261,8 @@ namespace Ostium
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3291,6 +3294,13 @@ namespace Ostium
         {
             try
             {
+                if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
+                {
+                    MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                        "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (File.Exists(Path.Combine(DiagramDir, NameProjectwf_Txt.Text + ".txt")))
                     File.Delete(Path.Combine(DiagramDir, NameProjectwf_Txt.Text + ".txt"));
 
@@ -3402,7 +3412,8 @@ namespace Ostium
             {
                 if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
                 {
-                    MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                    MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                        "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -3471,7 +3482,8 @@ namespace Ostium
             {
                 if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
                 {
-                    MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                    MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                        "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -3518,7 +3530,7 @@ namespace Ostium
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
                 MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
-                    "SecureFileExplore", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3547,7 +3559,7 @@ namespace Ostium
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
                 MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
-                    "SecureFileExplore", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3625,7 +3637,7 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(AppStart, "setirps.exe")))
             {
-                MessageBox.Show("Setirps is missing!", "Missing editor");
+                MessageBox.Show("Setirps is missing!", "Missing editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

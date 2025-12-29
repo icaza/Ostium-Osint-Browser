@@ -4,8 +4,8 @@ namespace SecureFileExplorer.OSINT.Services;
 
 public class FileIndexer(AppConfig config)
 {
-    private readonly List<FileDto> _index = [];
-    private readonly AppConfig _config = config;
+    readonly List<FileDto> _index = [];
+    readonly AppConfig _config = config;
     public IEnumerable<FileDto> All() => _index;
 
     public void Build()
