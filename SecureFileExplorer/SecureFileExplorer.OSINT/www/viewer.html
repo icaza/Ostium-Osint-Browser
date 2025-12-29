@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; frame-src 'self';">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; frame-src 'self';">
     <title>File Viewer - OSINT Explorer</title>
     <style>
         * {
@@ -198,6 +200,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <h1 id="filename">Loading...</h1>
@@ -219,6 +222,7 @@
 
         /**
          * Sanitize file path to prevent directory traversal and XSS
+         * Uses iterative approach to prevent bypass attacks
          */
         function sanitizeFilePath(path) {
             if (!path || typeof path !== 'string') {
@@ -233,11 +237,30 @@
                 return null;
             }
 
-            // Remove path traversal attempts
-            path = path.replace(/\.\./g, '');
+            // Iteratively remove path traversal attempts until no more exist
+            // This prevents bypass attacks like ./.././
+            let previous;
+            do {
+                previous = path;
+                path = path.replace(/\.\./g, '');
+            } while (path !== previous);
+
+            // Remove any backslashes (normalize to forward slashes only)
+            path = path.replace(/\\/g, '/');
+
+            // Remove multiple consecutive slashes
+            path = path.replace(/\/+/g, '/');
+
+            // Remove leading slash to prevent absolute path access
+            path = path.replace(/^\/+/, '');
 
             // Only allow alphanumeric, dash, underscore, dot, and forward slash
-            if (!/^[a-zA-Z0-9\-_./]+$/.test(path)) {
+            if (!/^[a-zA-Z0-9\-_.\/]+$/.test(path)) {
+                return null;
+            }
+
+            // Additional check: ensure no '..' remains after all sanitization
+            if (path.includes('..')) {
                 return null;
             }
 
@@ -246,15 +269,37 @@
 
         /**
          * Sanitize filename for display
+         * Uses iterative approach to prevent nested tag bypass attacks
          */
         function sanitizeFileName(name) {
             if (!name || typeof name !== 'string') {
                 return 'Unknown';
             }
 
-            // Remove any HTML tags and dangerous characters
-            name = name.replace(/<[^>]*>/g, '');
-            name = name.replace(/[<>"'&]/g, '');
+            // Iteratively remove HTML tags until no more tags exist
+            // This prevents bypass attacks like <scr<script>ipt>
+            let previous;
+            do {
+                previous = name;
+                name = name.replace(/<[^>]*>/g, '');
+            } while (name !== previous);
+
+            // Iteratively remove dangerous characters
+            do {
+                previous = name;
+                name = name.replace(/[<>"'&`=;()]/g, '');
+            } while (name !== previous);
+
+            // Remove any remaining control characters and null bytes
+            name = name.replace(/[\x00-\x1F\x7F]/g, '');
+
+            // Trim whitespace
+            name = name.trim();
+
+            // If empty after sanitization, return default
+            if (name.length === 0) {
+                return 'Unknown';
+            }
 
             return name.substring(0, 255); // Limit length
         }
@@ -271,14 +316,33 @@
 
         /**
          * Safely create an attribute value (for src, href, etc.)
+         * Uses iterative approach to prevent bypass attacks
          */
         function sanitizeAttribute(value) {
             if (!value || typeof value !== 'string') {
                 return '';
             }
 
-            // HTML encode and remove quotes
-            return escapeHtml(value).replace(/["']/g, '');
+            // First escape HTML entities
+            let sanitized = escapeHtml(value);
+
+            // Iteratively remove quotes and dangerous characters
+            let previous;
+            do {
+                previous = sanitized;
+                sanitized = sanitized.replace(/["'`]/g, '');
+            } while (sanitized !== previous);
+
+            // Remove control characters and null bytes
+            sanitized = sanitized.replace(/[\x00-\x1F\x7F]/g, '');
+
+            // Remove any remaining angle brackets
+            do {
+                previous = sanitized;
+                sanitized = sanitized.replace(/[<>]/g, '');
+            } while (sanitized !== previous);
+
+            return sanitized;
         }
 
         /**
@@ -507,26 +571,26 @@
                     style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
                 });
                 optionsBox.innerHTML = `
-                                <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
-                                <ul style="list-style: none; line-height: 2;">
-                                    <li>📥 <strong>Download</strong> the file using the button above</li>
-                                    <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
-                                    <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
-                                    <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
-                                </ul>
-                            `;
+                                    <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                                    <ul style="list-style: none; line-height: 2;">
+                                        <li>📥 <strong>Download</strong> the file using the button above</li>
+                                        <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
+                                        <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
+                                        <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
+                                    </ul>
+                                `;
                 wrapper.appendChild(optionsBox);
 
                 const tipBox = createSafeElement('div', {
                     style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
                 });
                 tipBox.innerHTML = `
-                                <strong style="color: #3498db;">💡 OSINT Tip:</strong>
-                                <p style="color: #ccc; margin-top: 5px;">
-                                    Office files contain metadata (author, dates, revisions) and potentially hidden data.
-                                    Consider using specialized tools for thorough analysis.
-                                </p>
-                            `;
+                                    <strong style="color: #3498db;">💡 OSINT Tip:</strong>
+                                    <p style="color: #ccc; margin-top: 5px;">
+                                        Office files contain metadata (author, dates, revisions) and potentially hidden data.
+                                        Consider using specialized tools for thorough analysis.
+                                    </p>
+                                `;
                 wrapper.appendChild(tipBox);
 
                 container.appendChild(wrapper);
@@ -598,13 +662,13 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
             });
             optionsBox.innerHTML = `
-                            <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>📥 <strong>Download</strong> the file using the button above</li>
-                                <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
-                                <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
-                            </ul>
-                        `;
+                                <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                                <ul style="list-style: none; line-height: 2;">
+                                    <li>📥 <strong>Download</strong> the file using the button above</li>
+                                    <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
+                                    <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
+                                </ul>
+                            `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(description);
@@ -735,12 +799,12 @@
                 style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
             });
             tipBox.innerHTML = `
-                            <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
-                            <p style="color: #ccc; margin-top: 5px;">
-                                Check email headers for sender IP, routing information, and metadata.
-                                Look for embedded links and attachments.
-                            </p>
-                        `;
+                                <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
+                                <p style="color: #ccc; margin-top: 5px;">
+                                    Check email headers for sender IP, routing information, and metadata.
+                                    Look for embedded links and attachments.
+                                </p>
+                            `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(emailBox);
@@ -837,10 +901,10 @@
                 style: 'margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px; display: flex; gap: 20px;'
             });
             statsBox.innerHTML = `
-                            <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
-                            <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
-                            <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
-                        `;
+                                <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
+                                <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
+                                <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
+                            `;
 
             const codeBox = createSafeElement('div', {
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
@@ -979,23 +1043,23 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
             });
             optionsBox.innerHTML = `
-                            <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>📥 <strong>Download</strong> the file using the button above</li>
-                                <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
-                                <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
-                            </ul>
-                        `;
+                                <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
+                                <ul style="list-style: none; line-height: 2;">
+                                    <li>📥 <strong>Download</strong> the file using the button above</li>
+                                    <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
+                                    <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
+                                </ul>
+                            `;
 
             const warningBox = createSafeElement('div', {
                 style: 'margin-top: 20px; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; border-radius: 5px;'
             });
             warningBox.innerHTML = `
-                            <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
-                            <p style="color: #ccc; margin-top: 5px;">
-                                Always scan archive files for malware before extracting them.
-                            </p>
-                        `;
+                                <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
+                                <p style="color: #ccc; margin-top: 5px;">
+                                    Always scan archive files for malware before extracting them.
+                                </p>
+                            `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(description);
@@ -1106,4 +1170,5 @@
         loadFile();
     </script>
 </body>
-</html>           
+
+</html>
