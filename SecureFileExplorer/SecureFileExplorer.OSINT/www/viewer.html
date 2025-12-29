@@ -214,7 +214,7 @@
 
     <script>
         // ============================================
-        // SECURITY ENHANCEMENT: Input Sanitization
+        // ENHANCED SECURITY FUNCTIONS
         // ============================================
 
         /**
@@ -225,19 +225,43 @@
                 return null;
             }
 
-            // Remove any null bytes
+            // Remove null bytes
             path = path.replace(/\0/g, '');
 
-            // Remove protocol handlers (javascript:, data:, etc.)
-            if (/^(javascript|data|vbscript|file|about):/i.test(path)) {
+            // Normalize path separators
+            path = path.replace(/\\/g, '/');
+
+            // Recursively remove path traversal attempts
+            let previous;
+            do {
+                previous = path;
+                path = path.replace(/\.\.\//g, '');
+                path = path.replace(/\.\.\\/g, '');
+                path = path.replace(/\/\.\//g, '/');
+                path = path.replace(/\/[^/]*\/\.\./g, '/');
+            } while (path !== previous);
+
+            // Block dangerous protocols
+            if (/^(javascript|data|vbscript|file|about|jar):/i.test(path)) {
                 return null;
             }
 
-            // Remove path traversal attempts
-            path = path.replace(/\.\./g, '');
+            // Remove dangerous characters
+            path = path.replace(/[<>"\'\&\|;\(\)\$\!\`]/g, '');
 
-            // Only allow alphanumeric, dash, underscore, dot, and forward slash
-            if (!/^[a-zA-Z0-9\-_./]+$/.test(path)) {
+            // Limit length
+            path = path.substring(0, 2048);
+
+            // Validate path format
+            if (!/^[a-zA-Z0-9\-_\.\/][a-zA-Z0-9\-_\.\/\s]*$/.test(path)) {
+                return null;
+            }
+
+            // Prevent absolute paths and special paths
+            if (path.startsWith('/') || path.startsWith('\\') ||
+                /^[a-zA-Z]:[\\\/]/.test(path) ||
+                path.includes('//') ||
+                path.includes('\\\\')) {
                 return null;
             }
 
@@ -245,68 +269,132 @@
         }
 
         /**
-         * Sanitize filename for display
+         * Sanitize filename with enhanced HTML injection protection
          */
         function sanitizeFileName(name) {
             if (!name || typeof name !== 'string') {
                 return 'Unknown';
             }
 
-            // Remove any HTML tags and dangerous characters
-            name = name.replace(/<[^>]*>/g, '');
-            name = name.replace(/[<>"'&]/g, '');
+            let sanitized = name;
 
-            return name.substring(0, 255); // Limit length
+            // Recursively remove all HTML tags and their contents
+            let previous;
+            do {
+                previous = sanitized;
+                sanitized = sanitized.replace(/<[^>]*(>|$)/g, '');
+                sanitized = sanitized.replace(/<\/[^>]*>/g, '');
+            } while (sanitized !== previous);
+
+            // Escape HTML special characters
+            sanitized = escapeHtml(sanitized);
+
+            // Remove control characters
+            sanitized = sanitized.replace(/[\x00-\x1F\x7F]/g, '');
+
+            // Remove additional dangerous characters
+            sanitized = sanitized.replace(/[<>"'\&\|;\(\)\$\!\`]/g, '');
+
+            // Remove URL encoding attempts
+            sanitized = sanitized.replace(/%[0-9a-fA-F]{2}/g, '');
+
+            // Remove JavaScript expressions
+            sanitized = sanitized.replace(/javascript:/gi, '');
+            sanitized = sanitized.replace(/on\w+\s*=/gi, '');
+
+            // Clean up spaces and truncate
+            sanitized = sanitized.replace(/\s+/g, ' ').trim();
+            sanitized = sanitized.substring(0, 255);
+
+            return sanitized || 'Untitled';
         }
 
         /**
-         * Escape HTML entities (already exists but enhanced)
+         * Enhanced HTML escaping function
          */
         function escapeHtml(text) {
-            if (!text) return '';
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        /**
-         * Safely create an attribute value (for src, href, etc.)
-         */
-        function sanitizeAttribute(value) {
-            if (!value || typeof value !== 'string') {
+            if (text === null || text === undefined) {
                 return '';
             }
 
-            // HTML encode and remove quotes
-            return escapeHtml(value).replace(/["']/g, '');
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#x27;',
+                '/': '&#x2F;',
+                '`': '&#x60;'
+            };
+
+            return String(text).replace(/[&<>"'\/`]/g, function (m) {
+                return map[m];
+            });
         }
 
         /**
-         * Create element safely using DOM methods instead of innerHTML
+         * Create element safely using DOM methods
          */
         function createSafeElement(tag, attributes = {}, textContent = '') {
             const element = document.createElement(tag);
 
             for (const [key, value] of Object.entries(attributes)) {
                 if (key === 'textContent') {
-                    element.textContent = value;
+                    element.textContent = escapeHtml(value);
                 } else if (key === 'innerHTML') {
-                    // Only for pre-sanitized content
                     element.innerHTML = value;
-                } else {
-                    element.setAttribute(key, sanitizeAttribute(value));
+                } else if (key === 'style') {
+                    element.style.cssText = value;
+                } else if (key.startsWith('on')) {
+                    continue;
+                } else if (value !== null && value !== undefined) {
+                    element.setAttribute(key, String(value));
                 }
             }
 
             if (textContent) {
-                element.textContent = textContent;
+                element.textContent = escapeHtml(textContent);
             }
 
             return element;
         }
 
+        /**
+         * Validate MIME type
+         */
+        function validateMimeType(mimeType) {
+            const allowedTypes = [
+                'text/plain',
+                'text/html',
+                'text/xml',
+                'application/json',
+                'text/csv',
+                'application/pdf',
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+                'image/webp',
+                'image/svg+xml',
+                'application/zip',
+                'application/x-rar-compressed',
+                'application/x-7z-compressed',
+                'application/x-tar',
+                'application/gzip',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                'application/msword',
+                'application/vnd.ms-excel',
+                'application/vnd.ms-powerpoint',
+                'application/rtf',
+                'message/rfc822'
+            ];
+
+            return allowedTypes.some(type => mimeType.includes(type));
+        }
+
         // ============================================
-        // Initialize with sanitized parameters
+        // Initialize with enhanced security
         // ============================================
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -316,11 +404,9 @@
         const filePath = sanitizeFilePath(rawFilePath);
         const fileName = sanitizeFileName(rawFileName);
 
-        // Update filename in header safely
         const filenameElement = document.getElementById('filename');
         filenameElement.textContent = fileName;
 
-        // Validate file path
         if (!filePath) {
             showError('Invalid or unsafe file path');
         }
@@ -332,13 +418,17 @@
             }
 
             try {
-                const response = await fetch(`/files/${filePath}`);
+                const response = await fetch(`/files/${encodeURIComponent(filePath)}`);
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
 
-                const contentType = response.headers.get('Content-Type');
+                const contentType = response.headers.get('Content-Type') || '';
                 const ext = fileName.split('.').pop().toLowerCase();
+
+                if (!validateMimeType(contentType) && !contentType.includes('octet-stream')) {
+                    console.warn('Unusual content type:', contentType);
+                }
 
                 if (ext === 'xml' || contentType.includes('xml')) {
                     const text = await response.text();
@@ -379,7 +469,7 @@
                     displayHex(arrayBuffer);
                 }
             } catch (error) {
-                showError(`Error loading file: ${error.message}`);
+                showError(`Error loading file: ${escapeHtml(error.message)}`);
             }
         }
 
@@ -507,32 +597,32 @@
                     style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
                 });
                 optionsBox.innerHTML = `
-                        <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
-                        <ul style="list-style: none; line-height: 2;">
-                            <li>📥 <strong>Download</strong> the file using the button above</li>
-                            <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
-                            <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
-                            <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
-                        </ul>
-                    `;
+                                <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                                <ul style="list-style: none; line-height: 2;">
+                                    <li>📥 <strong>Download</strong> the file using the button above</li>
+                                    <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
+                                    <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
+                                    <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
+                                </ul>
+                            `;
                 wrapper.appendChild(optionsBox);
 
                 const tipBox = createSafeElement('div', {
                     style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
                 });
                 tipBox.innerHTML = `
-                        <strong style="color: #3498db;">💡 OSINT Tip:</strong>
-                        <p style="color: #ccc; margin-top: 5px;">
-                            Office files contain metadata (author, dates, revisions) and potentially hidden data.
-                            Consider using specialized tools for thorough analysis.
-                        </p>
-                    `;
+                                <strong style="color: #3498db;">💡 OSINT Tip:</strong>
+                                <p style="color: #ccc; margin-top: 5px;">
+                                    Office files contain metadata (author, dates, revisions) and potentially hidden data.
+                                    Consider using specialized tools for thorough analysis.
+                                </p>
+                            `;
                 wrapper.appendChild(tipBox);
 
                 container.appendChild(wrapper);
 
             } catch (error) {
-                showError(`Error processing Office file: ${error.message}`);
+                showError(`Error processing Office file: ${escapeHtml(error.message)}`);
             }
         }
 
@@ -598,13 +688,13 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
             });
             optionsBox.innerHTML = `
-                    <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
-                    <ul style="list-style: none; line-height: 2;">
-                        <li>📥 <strong>Download</strong> the file using the button above</li>
-                        <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
-                        <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
-                    </ul>
-                `;
+                            <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📥 <strong>Download</strong> the file using the button above</li>
+                                <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
+                                <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
+                            </ul>
+                        `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(description);
@@ -613,7 +703,6 @@
             container.appendChild(wrapper);
         }
 
-        // FIXED: Secure image display using DOM methods
         function displayImage(imagePath, ext) {
             const container = document.getElementById('content');
             container.innerHTML = '';
@@ -630,10 +719,9 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px; display: inline-block;'
             });
 
-            // Create image element safely
             const img = document.createElement('img');
-            img.src = `/files/${sanitizeAttribute(imagePath)}`;
-            img.alt = fileName; // Already sanitized
+            img.src = `/files/${encodeURIComponent(imagePath)}`;
+            img.alt = fileName;
             img.style.cssText = 'max-width: 100%; max-height: 70vh; border-radius: 5px;';
 
             const errorDiv = createSafeElement('div', {
@@ -659,7 +747,7 @@
             }, 'ℹ️ Image loaded from: ');
             const codeTag = createSafeElement('code', {
                 style: 'color: #ccc;'
-            }, imagePath);
+            }, escapeHtml(imagePath));
 
             infoText.appendChild(strongTag);
             infoText.appendChild(codeTag);
@@ -672,7 +760,6 @@
             container.appendChild(wrapper);
         }
 
-        // FIXED: Secure PDF display using DOM methods
         function displayPDF(pdfPath) {
             const container = document.getElementById('content');
             container.innerHTML = '';
@@ -691,9 +778,8 @@
                 style: 'color: #ccc; margin-bottom: 15px;'
             }, 'PDF viewer requires browser support. If not displayed below, download and open with a PDF reader.');
 
-            // Create iframe safely
             const iframe = document.createElement('iframe');
-            iframe.src = `/files/${sanitizeAttribute(pdfPath)}`;
+            iframe.src = `/files/${encodeURIComponent(pdfPath)}`;
             iframe.style.cssText = 'width: 100%; height: 70vh; border: none; border-radius: 5px;';
             iframe.title = 'PDF Viewer';
 
@@ -727,7 +813,7 @@
 
             const emailPre = createSafeElement('pre', {
                 style: 'white-space: pre-wrap; word-wrap: break-word; font-family: monospace; max-height: 600px; overflow-y: auto;'
-            }, emailText.substring(0, 5000) + (emailText.length > 5000 ? '\n... (email content truncated)' : ''));
+            }, escapeHtml(emailText.substring(0, 5000)) + (emailText.length > 5000 ? '\n... (email content truncated)' : ''));
 
             emailBox.appendChild(emailPre);
 
@@ -735,12 +821,12 @@
                 style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
             });
             tipBox.innerHTML = `
-                    <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
-                    <p style="color: #ccc; margin-top: 5px;">
-                        Check email headers for sender IP, routing information, and metadata.
-                        Look for embedded links and attachments.
-                    </p>
-                `;
+                            <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
+                            <p style="color: #ccc; margin-top: 5px;">
+                                Check email headers for sender IP, routing information, and metadata.
+                                Look for embedded links and attachments.
+                            </p>
+                        `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(emailBox);
@@ -750,20 +836,20 @@
         }
 
         function displayXML(xmlText) {
-            const highlighted = highlightXML(xmlText);
+            const highlighted = highlightXML(escapeHtml(xmlText));
             const container = document.getElementById('content');
             container.innerHTML = '';
 
             const pre = createSafeElement('pre', {
                 class: 'xml-viewer',
-                innerHTML: highlighted // Already escaped by highlightXML
+                innerHTML: highlighted
             });
 
             container.appendChild(pre);
         }
 
         function highlightXML(xml) {
-            return escapeHtml(xml)
+            return xml
                 .replace(/(&lt;\/?[\w-]+)/g, '<span class="xml-tag">$1</span>')
                 .replace(/(&gt;)/g, '<span class="xml-tag">$1</span>')
                 .replace(/([\w-]+)=/g, '<span class="xml-attr">$1</span>=')
@@ -774,14 +860,14 @@
             try {
                 const obj = JSON.parse(jsonText);
                 const formatted = JSON.stringify(obj, null, 2);
-                const highlighted = highlightJSON(formatted);
+                const highlighted = highlightJSON(escapeHtml(formatted));
 
                 const container = document.getElementById('content');
                 container.innerHTML = '';
 
                 const pre = createSafeElement('pre', {
                     class: 'json-viewer',
-                    innerHTML: highlighted // Already escaped by highlightJSON
+                    innerHTML: highlighted
                 });
 
                 container.appendChild(pre);
@@ -791,18 +877,16 @@
         }
 
         function highlightJSON(json) {
-            return escapeHtml(json)
+            return json
                 .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
                 .replace(/: "([^"]*)"/g, ': <span class="json-string">"$1"</span>')
                 .replace(/: (\d+)/g, ': <span class="json-number">$1</span>')
                 .replace(/: (true|false|null)/g, ': <span class="json-boolean">$1</span>');
         }
 
-        // FIXED: Secure text display
         function displayText(text, ext) {
             let highlighted = escapeHtml(text);
 
-            // Apply syntax highlighting (already escaped)
             if (ext === 'html' || ext === 'htm') {
                 highlighted = highlightHTML(text);
             } else if (ext === 'xml') {
@@ -810,14 +894,14 @@
             } else if (ext === 'json') {
                 try {
                     const obj = JSON.parse(text);
-                    highlighted = highlightJSON(JSON.stringify(obj, null, 2));
+                    highlighted = highlightJSON(escapeHtml(JSON.stringify(obj, null, 2)));
                 } catch (e) {
                     highlighted = escapeHtml(text);
                 }
             } else if (ext === 'js') {
-                highlighted = highlightJavaScript(text);
+                highlighted = highlightJavaScript(escapeHtml(text));
             } else if (ext === 'css') {
-                highlighted = highlightCSS(text);
+                highlighted = highlightCSS(escapeHtml(text));
             }
 
             const lineCount = text.split('\n').length;
@@ -828,7 +912,6 @@
 
             const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
 
-            // SECURITY: Sanitize ext before display
             const heading = createSafeElement('h2', {
                 style: 'color: #0af; margin-bottom: 20px;'
             }, `📝 Text File (${escapeHtml(ext.toUpperCase())})`);
@@ -837,10 +920,10 @@
                 style: 'margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px; display: flex; gap: 20px;'
             });
             statsBox.innerHTML = `
-                    <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
-                    <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
-                    <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
-                `;
+                            <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
+                            <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
+                            <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
+                        `;
 
             const codeBox = createSafeElement('div', {
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
@@ -848,7 +931,7 @@
 
             const codePre = createSafeElement('pre', {
                 style: 'white-space: pre-wrap; word-wrap: break-word; font-family: "Consolas", "Monaco", monospace; max-height: 600px; overflow-y: auto; tab-size: 4;',
-                innerHTML: highlighted // Already escaped
+                innerHTML: highlighted
             });
 
             codeBox.appendChild(codePre);
@@ -861,7 +944,8 @@
         }
 
         function highlightHTML(html) {
-            return escapeHtml(html)
+            const escaped = escapeHtml(html);
+            return escaped
                 .replace(/&lt;(\/?)(\w+)/g, '&lt;<span class="xml-tag">$1$2</span>')
                 .replace(/&lt;\/\w+&gt;/g, '<span class="xml-tag">$&</span>')
                 .replace(/(\w+)=/g, '<span class="xml-attr">$1</span>=')
@@ -869,7 +953,7 @@
         }
 
         function highlightJavaScript(js) {
-            return escapeHtml(js)
+            return js
                 .replace(/(\b(function|return|if|else|for|while|var|let|const|class|import|export|from|default)\b)/g, '<span style="color: #e74c3c;">$1</span>')
                 .replace(/(\b(true|false|null|undefined)\b)/g, '<span style="color: #f39c12;">$1</span>')
                 .replace(/(["'][^"']*["'])/g, '<span style="color: #2ecc71;">$1</span>')
@@ -877,7 +961,7 @@
         }
 
         function highlightCSS(css) {
-            return escapeHtml(css)
+            return css
                 .replace(/([^{}]+){/g, '<span style="color: #3498db;">$1</span>{')
                 .replace(/([a-zA-Z-]+):/g, '<span style="color: #9b59b6;">$1</span>:')
                 .replace(/(#[0-9a-fA-F]{3,6})/g, '<span style="color: #2ecc71;">$1</span>')
@@ -926,24 +1010,22 @@
             const table = document.createElement('table');
             table.className = 'csv-viewer';
 
-            // Create thead
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
             headers.forEach(header => {
                 const th = document.createElement('th');
-                th.textContent = header; // Safe: uses textContent
+                th.textContent = escapeHtml(header);
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
             table.appendChild(thead);
 
-            // Create tbody
             const tbody = document.createElement('tbody');
             dataRows.forEach(row => {
                 const tr = document.createElement('tr');
                 row.forEach(cell => {
                     const td = document.createElement('td');
-                    td.textContent = cell; // Safe: uses textContent
+                    td.textContent = escapeHtml(cell);
                     tr.appendChild(td);
                 });
                 tbody.appendChild(tr);
@@ -979,23 +1061,23 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
             });
             optionsBox.innerHTML = `
-                    <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
-                    <ul style="list-style: none; line-height: 2;">
-                        <li>📥 <strong>Download</strong> the file using the button above</li>
-                        <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
-                        <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
-                    </ul>
-                `;
+                            <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📥 <strong>Download</strong> the file using the button above</li>
+                                <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
+                                <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
+                            </ul>
+                        `;
 
             const warningBox = createSafeElement('div', {
                 style: 'margin-top: 20px; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; border-radius: 5px;'
             });
             warningBox.innerHTML = `
-                    <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
-                    <p style="color: #ccc; margin-top: 5px;">
-                        Always scan archive files for malware before extracting them.
-                    </p>
-                `;
+                            <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
+                            <p style="color: #ccc; margin-top: 5px;">
+                                Always scan archive files for malware before extracting them.
+                            </p>
+                        `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(description);
@@ -1068,7 +1150,7 @@
 
             const errorDiv = createSafeElement('div', {
                 class: 'error'
-            }, `❌ ${message}`); // message is already validated or is a literal string
+            }, `❌ ${escapeHtml(message)}`);
 
             container.appendChild(errorDiv);
         }
@@ -1080,11 +1162,15 @@
             }
 
             const a = document.createElement('a');
-            a.href = `/files/${sanitizeAttribute(filePath)}`;
-            a.download = fileName; // Already sanitized
+            a.href = `/files/${encodeURIComponent(filePath)}`;
+            a.download = fileName;
+            a.rel = 'noopener noreferrer';
             document.body.appendChild(a);
             a.click();
-            document.body.removeChild(a);
+
+            setTimeout(() => {
+                document.body.removeChild(a);
+            }, 100);
         }
 
         async function copyToClipboard() {
@@ -1104,6 +1190,17 @@
 
         // Initialize on page load
         loadFile();
+
+        // Security event listeners
+        document.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A' && e.target.href) {
+                const href = e.target.href;
+                if (href.startsWith('javascript:') || href.startsWith('data:')) {
+                    e.preventDefault();
+                    console.warn('Blocked potentially dangerous link');
+                }
+            }
+        });
     </script>
 </body>
-</html>           
+</html>
