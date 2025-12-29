@@ -12,17 +12,38 @@ public static class StaticFileHandler
         {
             var requestPath = ctx.Request.Url!.AbsolutePath.TrimStart('/');
 
-            if (string.IsNullOrEmpty(requestPath) || requestPath == "/")
-                requestPath = "index.html";
+            if (!IsValidRequestPath(requestPath, out string sanitizedPath))
+            {
+                SendError(ctx, 400, "Bad Request - Invalid path");
+                return;
+            }
 
-            var filePath = Path.Combine(WebRoot, requestPath.Replace('/', Path.DirectorySeparatorChar));
+            if (string.IsNullOrEmpty(sanitizedPath) || sanitizedPath == "/")
+                sanitizedPath = "index.html";
+
+            if (!IsPathSafe(sanitizedPath))
+            {
+                SendError(ctx, 403, "Forbidden - Unsafe path detected");
+                return;
+            }
+
+            var filePath = Path.Combine(WebRoot, sanitizedPath.Replace('/', Path.DirectorySeparatorChar));
 
             var fullPath = Path.GetFullPath(filePath);
             var fullWebRoot = Path.GetFullPath(WebRoot);
 
-            if (!fullPath.StartsWith(fullWebRoot, StringComparison.OrdinalIgnoreCase))
+            if (!fullPath.StartsWith(fullWebRoot + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) &&
+                !fullPath.Equals(fullWebRoot, StringComparison.OrdinalIgnoreCase))
             {
+                Console.WriteLine($"Security: Path traversal attempt blocked - {requestPath}");
                 SendError(ctx, 403, "Forbidden");
+                return;
+            }
+
+            if (!IsAllowedFileExtension(fullPath))
+            {
+                Console.WriteLine($"Security: Blocked access to disallowed file type - {fullPath}");
+                SendError(ctx, 403, "Forbidden - File type not allowed");
                 return;
             }
 
@@ -32,14 +53,53 @@ public static class StaticFileHandler
                 return;
             }
 
-            var bytes = File.ReadAllBytes(fullPath);
+            FileAttributes attributes = File.GetAttributes(fullPath);
+            if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                SendError(ctx, 403, "Forbidden - Cannot serve directories");
+                return;
+            }
+
+            var fileInfo = new FileInfo(fullPath);
+            if (fileInfo.Length > 100 * 1024 * 1024)
+            {
+                SendError(ctx, 413, "Payload Too Large - File exceeds maximum size");
+                return;
+            }
+
+            byte[] bytes;
+            try
+            {
+                bytes = File.ReadAllBytes(fullPath);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine($"Security: Unauthorized access attempt - {fullPath}");
+                SendError(ctx, 403, "Forbidden");
+                return;
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"IO Error reading file: {ex.Message}");
+                SendError(ctx, 500, "Internal server error");
+                return;
+            }
+
             ctx.Response.ContentType = GetContentType(fullPath);
             ctx.Response.ContentLength64 = bytes.Length;
             ctx.Response.StatusCode = 200;
 
+            ctx.Response.AddHeader("X-Content-Type-Options", "nosniff");
+            ctx.Response.AddHeader("X-Frame-Options", "DENY");
+            ctx.Response.AddHeader("X-XSS-Protection", "1; mode=block");
+
             if (IsCacheable(fullPath))
             {
                 ctx.Response.AddHeader("Cache-Control", "public, max-age=3600");
+            }
+            else
+            {
+                ctx.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             }
 
             ctx.Response.OutputStream.Write(bytes, 0, bytes.Length);
@@ -106,6 +166,167 @@ public static class StaticFileHandler
             //_ => "text/plain; charset=utf-8",
             _ => "application/octet-stream"
         };
+    }
+
+    /// <summary>
+    /// Validates and sanitizes the request path to prevent path traversal attacks
+    /// </summary>
+    static bool IsValidRequestPath(string requestPath, out string sanitizedPath)
+    {
+        sanitizedPath = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(requestPath))
+        {
+            return true;
+        }
+
+        if (requestPath.Contains('\0'))
+        {
+            Console.WriteLine($"Security: Null byte detected in path - {requestPath}");
+            return false;
+        }
+
+        string decodedPath = Uri.UnescapeDataString(requestPath);
+
+        string doubleDecoded = Uri.UnescapeDataString(decodedPath);
+        if (decodedPath != doubleDecoded)
+        {
+            Console.WriteLine($"Security: Double encoding detected - {requestPath}");
+            return false;
+        }
+
+        string previous;
+        do
+        {
+            previous = decodedPath;
+            decodedPath = decodedPath.Replace("..", string.Empty);
+        } while (decodedPath != previous);
+
+        if (decodedPath.Contains(".."))
+        {
+            Console.WriteLine($"Security: Path traversal sequence detected - {requestPath}");
+            return false;
+        }
+
+        decodedPath = decodedPath.Replace('\\', '/');
+
+        do
+        {
+            previous = decodedPath;
+            decodedPath = decodedPath.Replace("//", "/");
+        } while (decodedPath != previous);
+
+        decodedPath = decodedPath.TrimStart('/');
+
+        sanitizedPath = decodedPath;
+        return true;
+    }
+
+    /// <summary>
+    /// Additional path safety checks for dangerous patterns
+    /// </summary>
+    static bool IsPathSafe(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return true;
+
+        char[] dangerousChars = { '<', '>', ':', '"', '|', '?', '*', '\0' };
+        if (path.IndexOfAny(dangerousChars) >= 0)
+        {
+            Console.WriteLine($"Security: Dangerous characters detected in path - {path}");
+            return false;
+        }
+
+        if (path.Any(c => char.IsControl(c)))
+        {
+            Console.WriteLine($"Security: Control characters detected in path - {path}");
+            return false;
+        }
+
+        if (path.StartsWith("/") ||
+            path.StartsWith("\\") ||
+            (path.Length >= 2 && path[1] == ':'))
+        {
+            Console.WriteLine($"Security: Absolute path detected - {path}");
+            return false;
+        }
+
+        if (path.StartsWith("\\\\") || path.StartsWith("//"))
+        {
+            Console.WriteLine($"Security: UNC path detected - {path}");
+            return false;
+        }
+
+        if (path.Contains(".."))
+        {
+            Console.WriteLine($"Security: Path traversal pattern detected - {path}");
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Validates that the file extension is in the allowed list
+    /// </summary>
+    static bool IsAllowedFileExtension(string filePath)
+    {
+        var extension = Path.GetExtension(filePath).ToLowerInvariant();
+
+        var allowedExtensions = new HashSet<string>
+        {
+            // Documents
+            ".pdf", ".docx", ".doc", ".txt", ".csv", ".rtf",
+            ".xlsx", ".xls", ".pptx", ".ppt",
+            
+            // Images
+            ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".ico",
+            
+            // Web files
+            ".html", ".htm", ".css", ".js", ".json", ".xml", ".md",
+            
+            // Archives
+            ".zip", ".rar", ".7z",
+            
+            // Email
+            ".eml", ".msg",
+            
+            // Code files (read-only viewing)
+            ".py", ".java", ".cpp", ".c", ".h", ".cs", ".php", ".sql",
+            ".sh", ".bat", ".ps1", ".vbs",
+            
+            // Config files
+            ".yml", ".yaml", ".ini", ".cfg", ".log",
+            
+            // Fonts
+            ".woff", ".woff2", ".ttf"
+        };
+
+        if (!allowedExtensions.Contains(extension))
+        {
+            Console.WriteLine($"Security: File extension not allowed - {extension}");
+            return false;
+        }
+
+        string fileNameWithoutExt = Path.GetFileNameWithoutExtension(filePath);
+        if (fileNameWithoutExt.Contains('.'))
+        {
+            string secondExtension = Path.GetExtension(fileNameWithoutExt).ToLowerInvariant();
+
+            var dangerousExtensions = new HashSet<string>
+            {
+                ".exe", ".dll", ".com", ".bat", ".cmd", ".scr", ".vbs", ".vbe",
+                ".js", ".jse", ".wsf", ".wsh", ".msi", ".msp", ".cpl", ".jar"
+            };
+
+            if (dangerousExtensions.Contains(secondExtension))
+            {
+                Console.WriteLine($"Security: Dangerous double extension detected - {filePath}");
+                return false;
+            }
+        }
+
+        return true;
     }
 
     static bool IsCacheable(string filePath)

@@ -48,10 +48,32 @@ function openFile(path, sha, fileName) {
 
     console.log('Opening file:', fileName, 'Extension:', ext);
 
-    const directOpenExtensions = ['.pdf', '.docx', '.doc', '.txt', '.csv', '.xlsx', '.xls', '.pptx', '.ppt', '.jpg', '.jpeg',
-        '.png', '.gif', '.bmp', '.zip', '.rar', '.7z', '.json', '.xml', '.html', '.htm', '.md', '.rtf', '.eml', '.msg', '.py',
-        '.java', '.cpp', '.c', '.h', '.cs', '.php', '.sql', '.sh', '.bat', '.ps1', '.vbs', '.yml', '.yaml', '.ini', '.cfg',
-        '.log', '.svg', '.js', '.ico', '.woff', '.woff2', '.ttf'];
+    const directOpenExtensions = [
+        // Documents
+        '.pdf', '.docx', '.doc', '.txt', '.csv', '.rtf',
+        '.xlsx', '.xls', '.pptx', '.ppt',
+
+        // Images
+        '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.ico',
+
+        // Web files
+        '.html', '.htm', '.css', '.js', '.json', '.xml', '.md',
+
+        // Archives
+        '.zip', '.rar', '.7z',
+
+        // Email
+        '.eml', '.msg',
+
+        // Code files (read-only viewing)
+        '.py', '.java', '.cpp', '.c', '.h', '.cs', '.php', '.sql',
+        '.sh', '.bat', '.ps1', '.vbs',
+
+        // Config files
+        '.yml', '.yaml', '.ini', '.cfg', '.log',
+
+        // Fonts
+        '.woff', '.woff2', '.ttf'];
 
     if (directOpenExtensions.includes(ext)) {
         console.log('Opening directly:', `/files/${path}`);

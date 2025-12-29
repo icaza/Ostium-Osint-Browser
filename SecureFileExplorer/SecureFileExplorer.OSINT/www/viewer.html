@@ -219,11 +219,6 @@
         // ============================================
         // SECURITY ENHANCEMENT: Input Sanitization
         // ============================================
-
-        /**
-         * Sanitize file path to prevent directory traversal and XSS
-         * Uses iterative approach to prevent bypass attacks
-         */
         function sanitizeFilePath(path) {
             if (!path || typeof path !== 'string') {
                 return null;
@@ -232,13 +227,10 @@
             // Remove any null bytes
             path = path.replace(/\0/g, '');
 
-            // Remove protocol handlers (javascript:, data:, etc.)
             if (/^(javascript|data|vbscript|file|about):/i.test(path)) {
                 return null;
             }
 
-            // Iteratively remove path traversal attempts until no more exist
-            // This prevents bypass attacks like ./.././
             let previous;
             do {
                 previous = path;
@@ -267,10 +259,6 @@
             return path;
         }
 
-        /**
-         * Sanitize filename for display
-         * Uses iterative approach to prevent nested tag bypass attacks
-         */
         function sanitizeFileName(name) {
             if (!name || typeof name !== 'string') {
                 return 'Unknown';
@@ -380,11 +368,9 @@
         const filePath = sanitizeFilePath(rawFilePath);
         const fileName = sanitizeFileName(rawFileName);
 
-        // Update filename in header safely
         const filenameElement = document.getElementById('filename');
         filenameElement.textContent = fileName;
 
-        // Validate file path
         if (!filePath) {
             showError('Invalid or unsafe file path');
         }
@@ -677,7 +663,6 @@
             container.appendChild(wrapper);
         }
 
-        // FIXED: Secure image display using DOM methods
         function displayImage(imagePath, ext) {
             const container = document.getElementById('content');
             container.innerHTML = '';
@@ -694,10 +679,9 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px; display: inline-block;'
             });
 
-            // Create image element safely
             const img = document.createElement('img');
             img.src = `/files/${sanitizeAttribute(imagePath)}`;
-            img.alt = fileName; // Already sanitized
+            img.alt = fileName;
             img.style.cssText = 'max-width: 100%; max-height: 70vh; border-radius: 5px;';
 
             const errorDiv = createSafeElement('div', {
@@ -736,7 +720,6 @@
             container.appendChild(wrapper);
         }
 
-        // FIXED: Secure PDF display using DOM methods
         function displayPDF(pdfPath) {
             const container = document.getElementById('content');
             container.innerHTML = '';
@@ -755,7 +738,6 @@
                 style: 'color: #ccc; margin-bottom: 15px;'
             }, 'PDF viewer requires browser support. If not displayed below, download and open with a PDF reader.');
 
-            // Create iframe safely
             const iframe = document.createElement('iframe');
             iframe.src = `/files/${sanitizeAttribute(pdfPath)}`;
             iframe.style.cssText = 'width: 100%; height: 70vh; border: none; border-radius: 5px;';
@@ -820,7 +802,7 @@
 
             const pre = createSafeElement('pre', {
                 class: 'xml-viewer',
-                innerHTML: highlighted // Already escaped by highlightXML
+                innerHTML: highlighted
             });
 
             container.appendChild(pre);
@@ -845,7 +827,7 @@
 
                 const pre = createSafeElement('pre', {
                     class: 'json-viewer',
-                    innerHTML: highlighted // Already escaped by highlightJSON
+                    innerHTML: highlighted
                 });
 
                 container.appendChild(pre);
@@ -862,11 +844,9 @@
                 .replace(/: (true|false|null)/g, ': <span class="json-boolean">$1</span>');
         }
 
-        // FIXED: Secure text display
         function displayText(text, ext) {
             let highlighted = escapeHtml(text);
 
-            // Apply syntax highlighting (already escaped)
             if (ext === 'html' || ext === 'htm') {
                 highlighted = highlightHTML(text);
             } else if (ext === 'xml') {
@@ -892,7 +872,6 @@
 
             const wrapper = createSafeElement('div', { style: 'padding: 20px;' });
 
-            // SECURITY: Sanitize ext before display
             const heading = createSafeElement('h2', {
                 style: 'color: #0af; margin-bottom: 20px;'
             }, `📝 Text File (${escapeHtml(ext.toUpperCase())})`);
@@ -912,7 +891,7 @@
 
             const codePre = createSafeElement('pre', {
                 style: 'white-space: pre-wrap; word-wrap: break-word; font-family: "Consolas", "Monaco", monospace; max-height: 600px; overflow-y: auto; tab-size: 4;',
-                innerHTML: highlighted // Already escaped
+                innerHTML: highlighted
             });
 
             codeBox.appendChild(codePre);
@@ -990,24 +969,22 @@
             const table = document.createElement('table');
             table.className = 'csv-viewer';
 
-            // Create thead
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
             headers.forEach(header => {
                 const th = document.createElement('th');
-                th.textContent = header; // Safe: uses textContent
+                th.textContent = header;
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
             table.appendChild(thead);
 
-            // Create tbody
             const tbody = document.createElement('tbody');
             dataRows.forEach(row => {
                 const tr = document.createElement('tr');
                 row.forEach(cell => {
                     const td = document.createElement('td');
-                    td.textContent = cell; // Safe: uses textContent
+                    td.textContent = cell;
                     tr.appendChild(td);
                 });
                 tbody.appendChild(tr);
@@ -1132,7 +1109,7 @@
 
             const errorDiv = createSafeElement('div', {
                 class: 'error'
-            }, `❌ ${message}`); // message is already validated or is a literal string
+            }, `❌ ${message}`);
 
             container.appendChild(errorDiv);
         }
@@ -1145,7 +1122,7 @@
 
             const a = document.createElement('a');
             a.href = `/files/${sanitizeAttribute(filePath)}`;
-            a.download = fileName; // Already sanitized
+            a.download = fileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -1166,7 +1143,6 @@
             }
         }
 
-        // Initialize on page load
         loadFile();
     </script>
 </body>
