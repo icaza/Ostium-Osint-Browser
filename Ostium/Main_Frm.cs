@@ -192,6 +192,7 @@ namespace Ostium
         bool IsTimelineEnabled = false;
         bool IsParentLinkEnabled = false;
         string FileTimeLineName = "visit";
+        bool ProcessLoad = false;
 
         int _historyIndex = -1;
         readonly List<string> _commandHistory = new List<string>();
@@ -2732,6 +2733,13 @@ namespace Ostium
 
         void ConfigSFE_Btn_Click(object sender, EventArgs e)
         {
+            if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "config.json")))
+            {
+                MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                    "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             OpenFile_Editor(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
         }
 
@@ -2739,6 +2747,21 @@ namespace Ostium
         {
             try 
             {
+                if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe")))
+                {
+                    MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!", 
+                        "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                VerifyProcess("SecureFileExplorer");
+
+                if (ProcessLoad)
+                {
+                    MessageBox.Show("SecureFileExplorer is already running!", "SecureFileExplorre", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 using (Process proc = new Process())
                 {
                     proc.StartInfo.FileName = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
@@ -2759,6 +2782,14 @@ namespace Ostium
         {
             try
             {
+                VerifyProcess("SecureFileExplorer");
+
+                if (!ProcessLoad)
+                {
+                    MessageBox.Show("SecureFileExplorer is not started!", "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -3486,7 +3517,8 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "SecureFileExplore", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3514,13 +3546,14 @@ namespace Ostium
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "SecureFileExplore", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (!File.Exists(Path.Combine(DiagramDir, Btn + "_plantuml.txt")))
             {
-                MessageBox.Show("Sorry, " + Btn + "_plantuml.txt file is not exist, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show(Btn + "_plantuml.txt file is not exist, go to Discord channel Ostium for fix and help.");
                 return;
             }
 
@@ -6696,6 +6729,11 @@ namespace Ostium
         void VerifProcessRun_Btn_Click(object sender, EventArgs e)
         {
             VerifyProcess("javaw");
+
+            if (ProcessLoad)
+                MessageBox.Show("Process is True.", "javaw");
+            else
+                MessageBox.Show("Process is False.", "javaw");
         }
 
         void KillProcess_Btn_Click(object sender, EventArgs e)
@@ -6735,13 +6773,13 @@ namespace Ostium
             {
                 Process[] localByName = Process.GetProcessesByName(ProcessVerif);
                 if (localByName.Length > 0)
-                    MessageBox.Show("Process is True.", "Process");
+                    ProcessLoad = true;
                 else
-                    MessageBox.Show("Process is False.", "Process");
+                    ProcessLoad = false;
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! VerifyProcess: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog($"Error! VerifyProcess: {ProcessVerif} ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

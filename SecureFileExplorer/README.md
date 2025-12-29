@@ -1,5 +1,7 @@
 # SecureFileExplorer
 
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/icaza/Ostium-Osint-Browser/blob/feature%2314/StylometryAnonymizer/LICENSE.txt)
+
 ## Overview
 
 SecureFileExplorer is a web application for file analysis. It allows you to index, search, view, and analyze document collections with a secure interface.

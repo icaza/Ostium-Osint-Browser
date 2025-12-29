@@ -79,7 +79,7 @@ public static class ApiRouter
                 return;
             }
 
-            // Serve the files from the directory OSINT_DATA
+            // Serve the files from the directory selected
             if (path.StartsWith("/files/"))
             {
                 ServeOsintFile(ctx, config, path.Substring(7));
