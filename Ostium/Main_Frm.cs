@@ -26,6 +26,7 @@ using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
 using System.Speech.Synthesis;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -1902,6 +1903,11 @@ namespace Ostium
 
         #endregion
 
+        public class ConfigSFE
+        {
+            public int Port { get; set; }
+        }
+
         #region Tools_Tab_0
         ///
         /// <summary>
@@ -2722,6 +2728,51 @@ namespace Ostium
         void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
         {
             OpenKeepTrack();
+        }
+
+        void ConfigSFE_Btn_Click(object sender, EventArgs e)
+        {
+            OpenFile_Editor(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+        }
+
+        void StartSFE_Btn_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
+                    proc.StartInfo.Arguments = string.Empty;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "SecureFileExplorer");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! StartSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LocalhostSFE_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                string json = File.ReadAllText(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+                ConfigSFE config = System.Text.Json.JsonSerializer.Deserialize<ConfigSFE>(json, options);
+
+                GoBrowser($"http://localhost:{config.Port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LocalhostSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void OpenKeepTrack()

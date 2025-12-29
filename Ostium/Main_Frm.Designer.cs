@@ -535,6 +535,12 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.secureFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConfigSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
+            this.LocalhostSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1041,6 +1047,7 @@
             this.OpnEncFrm,
             this.toolStripSeparator31,
             this.KeepTrackViewer_Btn,
+            this.secureFileExplorerToolStripMenuItem,
             this.toolStripSeparator34,
             this.Download_Param,
             this.History_Param,
@@ -6739,6 +6746,49 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // secureFileExplorerToolStripMenuItem
+            // 
+            this.secureFileExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigSFE_Btn,
+            this.toolStripSeparator39,
+            this.StartSFE_Btn,
+            this.toolStripSeparator40,
+            this.LocalhostSFE_Btn});
+            this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
+            this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.secureFileExplorerToolStripMenuItem.Text = "SecureFileExplorer";
+            // 
+            // StartSFE_Btn
+            // 
+            this.StartSFE_Btn.Name = "StartSFE_Btn";
+            this.StartSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.StartSFE_Btn.Text = "Start";
+            this.StartSFE_Btn.Click += new System.EventHandler(this.StartSFE_Btn_Click);
+            // 
+            // ConfigSFE_Btn
+            // 
+            this.ConfigSFE_Btn.Name = "ConfigSFE_Btn";
+            this.ConfigSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.ConfigSFE_Btn.Text = "Config";
+            this.ConfigSFE_Btn.Click += new System.EventHandler(this.ConfigSFE_Btn_Click);
+            // 
+            // toolStripSeparator39
+            // 
+            this.toolStripSeparator39.Name = "toolStripSeparator39";
+            this.toolStripSeparator39.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            this.toolStripSeparator40.Size = new System.Drawing.Size(177, 6);
+            // 
+            // LocalhostSFE_Btn
+            // 
+            this.LocalhostSFE_Btn.Name = "LocalhostSFE_Btn";
+            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.LocalhostSFE_Btn.Text = "Localhost";
+            this.LocalhostSFE_Btn.Click += new System.EventHandler(this.LocalhostSFE_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7362,6 +7412,12 @@
         private System.Windows.Forms.ToolStripMenuItem Count_urlCache;
         private System.Windows.Forms.TextBox Redlist_Txt;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ToolStripMenuItem secureFileExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StartSFE_Btn;
+        private System.Windows.Forms.ToolStripMenuItem ConfigSFE_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.ToolStripMenuItem LocalhostSFE_Btn;
     }
 }
 
