@@ -1,5 +1,7 @@
 # SecureFileExplorer
 
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/icaza/Ostium-Osint-Browser/blob/feature%2314/StylometryAnonymizer/LICENSE.txt)
+
 ## Overview
 
 SecureFileExplorer is a web application for file analysis. It allows you to index, search, view, and analyze document collections with a secure interface.
@@ -116,7 +118,7 @@ mkdir C:\OSINT_DATA
 
 Copy your documents to `C:\OSINT_DATA` or its subfolders.
 
-Open your browser to: **http://localhost:8787**
+Open your browser to: **http://localhost:PORT**
 
 ### Search
 - Type in the search bar to filter files in real time

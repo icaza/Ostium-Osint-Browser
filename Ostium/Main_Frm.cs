@@ -26,6 +26,7 @@ using System.Security.Cryptography;
 using System.ServiceModel.Syndication;
 using System.Speech.Synthesis;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -178,7 +179,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html"; // <= Change the URL to distribute your version
-        readonly string versionNow = "30";
+        readonly string versionNow = "31";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -191,6 +192,7 @@ namespace Ostium
         bool IsTimelineEnabled = false;
         bool IsParentLinkEnabled = false;
         string FileTimeLineName = "visit";
+        bool ProcessLoad = false;
 
         int _historyIndex = -1;
         readonly List<string> _commandHistory = new List<string>();
@@ -1902,6 +1904,11 @@ namespace Ostium
 
         #endregion
 
+        public class ConfigSFE
+        {
+            public int Port { get; set; }
+        }
+
         #region Tools_Tab_0
         ///
         /// <summary>
@@ -2724,6 +2731,81 @@ namespace Ostium
             OpenKeepTrack();
         }
 
+        void ConfigSFE_Btn_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "config.json")))
+            {
+                MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                    "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+        }
+
+        void StartSFE_Btn_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe")))
+                {
+                    MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!", 
+                        "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                VerifyProcess("SecureFileExplorer");
+
+                if (ProcessLoad)
+                {
+                    MessageBox.Show("SecureFileExplorer is already running!", "SecureFileExplorre", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
+                    proc.StartInfo.Arguments = string.Empty;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "SecureFileExplorer");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! StartSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LocalhostSFE_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                VerifyProcess("SecureFileExplorer");
+
+                if (!ProcessLoad)
+                {
+                    MessageBox.Show("SecureFileExplorer is not started!", "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                string json = File.ReadAllText(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+                ConfigSFE config = System.Text.Json.JsonSerializer.Deserialize<ConfigSFE>(json, options);
+
+                GoBrowser($"http://localhost:{config.Port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LocalhostSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void OpenKeepTrack()
         {
             if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
@@ -2895,7 +2977,8 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(SVGviewerdir, "SVGviewer.exe")))
             {
-                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!");
+                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3028,7 +3111,8 @@ namespace Ostium
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3177,7 +3261,8 @@ namespace Ostium
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3209,6 +3294,13 @@ namespace Ostium
         {
             try
             {
+                if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
+                {
+                    MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                        "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 if (File.Exists(Path.Combine(DiagramDir, NameProjectwf_Txt.Text + ".txt")))
                     File.Delete(Path.Combine(DiagramDir, NameProjectwf_Txt.Text + ".txt"));
 
@@ -3320,7 +3412,8 @@ namespace Ostium
             {
                 if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
                 {
-                    MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                    MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                        "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -3389,7 +3482,8 @@ namespace Ostium
             {
                 if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
                 {
-                    MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                    MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                        "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -3435,7 +3529,8 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -3463,13 +3558,14 @@ namespace Ostium
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
-                MessageBox.Show("Sorry, PlantUML is not install, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show("PlantUML is not install, go to Discord channel Ostium for fix and help.",
+                    "PlantUML", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (!File.Exists(Path.Combine(DiagramDir, Btn + "_plantuml.txt")))
             {
-                MessageBox.Show("Sorry, " + Btn + "_plantuml.txt file is not exist, go to Discord channel Ostium for fix and help.");
+                MessageBox.Show(Btn + "_plantuml.txt file is not exist, go to Discord channel Ostium for fix and help.");
                 return;
             }
 
@@ -3541,7 +3637,7 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(AppStart, "setirps.exe")))
             {
-                MessageBox.Show("Setirps is missing!", "Missing editor");
+                MessageBox.Show("Setirps is missing!", "Missing editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -6645,6 +6741,11 @@ namespace Ostium
         void VerifProcessRun_Btn_Click(object sender, EventArgs e)
         {
             VerifyProcess("javaw");
+
+            if (ProcessLoad)
+                MessageBox.Show("Process is True.", "javaw");
+            else
+                MessageBox.Show("Process is False.", "javaw");
         }
 
         void KillProcess_Btn_Click(object sender, EventArgs e)
@@ -6684,13 +6785,13 @@ namespace Ostium
             {
                 Process[] localByName = Process.GetProcessesByName(ProcessVerif);
                 if (localByName.Length > 0)
-                    MessageBox.Show("Process is True.", "Process");
+                    ProcessLoad = true;
                 else
-                    MessageBox.Show("Process is False.", "Process");
+                    ProcessLoad = false;
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! VerifyProcess: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog($"Error! VerifyProcess: {ProcessVerif} ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

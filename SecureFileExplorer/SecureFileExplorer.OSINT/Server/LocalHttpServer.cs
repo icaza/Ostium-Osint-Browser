@@ -5,9 +5,9 @@ namespace SecureFileExplorer.OSINT.Server;
 
 public class LocalHttpServer
 {
-    private readonly HttpListener _listener = new();
-    private readonly AppConfig _config;
-    private readonly FileIndexer _indexer;
+    readonly HttpListener _listener = new();
+    readonly AppConfig _config;
+    readonly FileIndexer _indexer;
 
     public LocalHttpServer(AppConfig config, FileIndexer indexer)
     {
@@ -22,7 +22,7 @@ public class LocalHttpServer
         Task.Run(Listen);
     }
 
-    private async Task Listen()
+    async Task Listen()
     {
         while (true)
         {

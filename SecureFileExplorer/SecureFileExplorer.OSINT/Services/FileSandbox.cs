@@ -24,7 +24,7 @@ public static class FileSandbox
     /// <summary>
     /// Cleans up a file path by removing potentially dangerous characters
     /// </summary>
-    private static string SanitizePath(string path)
+    static string SanitizePath(string path)
     {
         if (string.IsNullOrWhiteSpace(path))
             return string.Empty;

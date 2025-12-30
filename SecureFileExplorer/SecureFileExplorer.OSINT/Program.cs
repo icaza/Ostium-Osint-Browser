@@ -9,7 +9,7 @@ Console.WriteLine("██║███╗██║██╔══╝  ██║  
 Console.WriteLine("╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗");
 Console.WriteLine(" ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
 Console.WriteLine("==================================================");
-Console.WriteLine("  [*] SecureFileExplorer.OSINT - SYSTEM BOOT SEQUENCE INITIATED");
+Console.WriteLine("  [*] SecureFileExplorer - BOOT SEQUENCE INITIATED");
 Console.WriteLine("  [*] " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss"));
 Console.WriteLine("==================================================");
 Console.WriteLine();
