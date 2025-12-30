@@ -178,7 +178,7 @@ namespace Ostium
         /// </summary>
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
-        readonly string WebPageUpdate = "http://veydunet.com/ostium/update.html"; // <= Change the URL to distribute your version
+        readonly string WebPageUpdate = "https://veydunet.com/ostium/update.html"; // <= Change the URL to distribute your version
         readonly string versionNow = "31";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
@@ -749,7 +749,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! DireSizeCalc: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! UpdateDirectorySize: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1263,6 +1263,12 @@ namespace Ostium
                     Browser_Tab.BackColor = Color.Red;
                     CreateNameAleat();
                     FileTimeLineName = Una + ".csv";
+
+                    if (!IsParentLinkEnabled)
+                    {
+                        IsParentLinkEnabled = !IsParentLinkEnabled;
+                        ForceLinkParent_Btn.ForeColor = Color.Red;
+                    }
                 }
                 else
                     Browser_Tab.BackColor = Color.FromArgb(41, 44, 51);
@@ -1273,6 +1279,12 @@ namespace Ostium
             {
                 keeptrackForm = new Keeptrack_Frm();
                 keeptrackForm.Show();
+
+                if (!IsParentLinkEnabled)
+                {
+                    IsParentLinkEnabled = !IsParentLinkEnabled;
+                    ForceLinkParent_Btn.ForeColor = Color.Red;
+                }
             };
 
             menuList.Insert(menuList.Count, newItem0);
@@ -8645,6 +8657,12 @@ namespace Ostium
 
                 MessageBox.Show("The method used against fingerprinting is aggressive; website functionality is disrupted, " +
                     "and you are flagged as a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                if (!IsParentLinkEnabled)
+                {
+                    IsParentLinkEnabled = !IsParentLinkEnabled;
+                    ForceLinkParent_Btn.ForeColor = Color.Red;
+                }
             }
             else
             {

@@ -1,0 +1,331 @@
+﻿Directory tree : C:\Users\icaza\Documents\DEV2024\Ostium_clone\Install\Ostium-Osint-Browser-release-1.3.30
+==================================================
+├── add-on
+│   └── SiteChecker.exe
+├── ConvFav
+│   ├── runtimes
+│   │   ├── win-x64
+│   │   │   └── native
+│   │   │       └── e_sqlite3.dll
+│   │   └── win-x86
+│   │       └── native
+│   │           └── e_sqlite3.dll
+│   ├── ConvFav.deps.json
+│   ├── ConvFav.dll
+│   ├── ConvFav.exe
+│   ├── ConvFav.pdb
+│   ├── ConvFav.runtimeconfig.json
+│   ├── CsvHelper.dll
+│   ├── desktop.ini
+│   ├── HtmlAgilityPack.dll
+│   ├── Microsoft.Windows.SDK.NET.dll
+│   ├── README.md
+│   ├── System.Data.SQLite.dll
+│   └── WinRT.Runtime.dll
+├── data
+│   ├── allowed.txt
+│   ├── blocked_full.txt
+│   └── blocked_min.txt
+├── diagram
+│   ├── License_plantuml.txt
+│   ├── plantuml.jar
+│   ├── puml-theme-amiga.puml
+│   ├── puml-theme-aws-orange.puml
+│   ├── puml-theme-black-knight.puml
+│   ├── puml-theme-bluegray.puml
+│   ├── puml-theme-blueprint.puml
+│   ├── puml-theme-cloudscape-design.puml
+│   ├── puml-theme-crt-amber.puml
+│   ├── puml-theme-crt-green.puml
+│   ├── puml-theme-cyborg.puml
+│   ├── puml-theme-hacker.puml
+│   ├── puml-theme-materia-outline.puml
+│   ├── puml-theme-materia.puml
+│   ├── puml-theme-minty.puml
+│   ├── puml-theme-reddress-darkblue.puml
+│   ├── puml-theme-reddress-lightred.puml
+│   ├── puml-theme-sandstone.puml
+│   ├── puml-theme-sketchy-outline.puml
+│   ├── puml-theme-sketchy.puml
+│   ├── puml-theme-spacelab.puml
+│   ├── puml-theme-superhero-outline.puml
+│   ├── puml-theme-superhero.puml
+│   ├── puml-theme-united.puml
+│   └── Version_plantuml.txt
+├── filesdir
+│   ├── grp-frm
+│   │   └── grp_frm_url_opn.txt
+│   ├── url-constructor
+│   │   ├── construct_url.txt
+│   │   ├── Liste.txt
+│   │   └── search-images.txt
+│   ├── cmdc.txt
+│   ├── gdork.txt
+│   ├── map_points.txt
+│   └── url.txt
+├── Keeptrack
+│   └── Keeptrack.html
+├── map
+│   ├── demo-abri-voyageurs-ecrans-connectes-paris.xml
+│   └── demo-belib-points-de-recharge-pour-vehicules-electriques.xml
+├── runtimes
+│   ├── win-arm64
+│   │   └── native
+│   │       └── WebView2Loader.dll
+│   ├── win-x64
+│   │   └── native
+│   │       └── WebView2Loader.dll
+│   └── win-x86
+│       └── native
+│           └── WebView2Loader.dll
+├── RW5jcnlwdA
+│   ├── desktop.ini
+│   ├── Konscious.Security.Cryptography.Argon2.dll
+│   ├── Konscious.Security.Cryptography.Blake2.dll
+│   ├── Microsoft.Windows.SDK.NET.dll
+│   ├── RW5jcnlwdA.deps.json
+│   ├── RW5jcnlwdA.dll
+│   ├── RW5jcnlwdA.exe
+│   ├── RW5jcnlwdA.pdb
+│   ├── RW5jcnlwdA.runtimeconfig.json
+│   └── WinRT.Runtime.dll
+├── scripts
+│   └── scriptsl
+│       ├── Domain_Infos.js
+│       ├── Extract_Article_and_Link.js
+│       ├── Extract_Data.js
+│       └── Extract_Images.js
+├── SDelete_cmd
+│   ├── SDelete
+│   │   ├── Eula.txt
+│   │   ├── sdelete.exe
+│   │   ├── sdelete64.exe
+│   │   └── sdelete64a.exe
+│   ├── Install_SecureDelete_ContextMenu.bat
+│   ├── SDelete_cmd.bat
+│   ├── sdsd.ico
+│   ├── Uninstall_SecureDelete_ContextMenu.bat
+│   ├── _Install_SecureDelete_ContextMenu.bat
+│   └── _SDelete_cmd.bat
+├── setirps
+│   ├── sprites
+│   │   ├── Hardware
+│   │   │   ├── osa_camera_web.png
+│   │   │   ├── osa_desktop.png
+│   │   │   ├── osa_desktop_imac.png
+│   │   │   ├── osa_device_music.png
+│   │   │   ├── osa_device_scanner.png
+│   │   │   ├── osa_device_usb.png
+│   │   │   ├── osa_device_usb_wifi.png
+│   │   │   ├── osa_device_wireless_router.png
+│   │   │   ├── osa_drive_harddisk.png
+│   │   │   ├── osa_drive_optical.png
+│   │   │   ├── osa_hub.png
+│   │   │   ├── osa_ics_drive.png
+│   │   │   ├── osa_ics_plc.png
+│   │   │   ├── osa_iPhone.png
+│   │   │   ├── osa_laptop.png
+│   │   │   ├── osa_media_flash.png
+│   │   │   ├── osa_media_optical.png
+│   │   │   ├── osa_media_tape.png
+│   │   │   ├── osa_mobile_pda.png
+│   │   │   ├── osa_printer.png
+│   │   │   └── osa_vpn.png
+│   │   ├── Misc
+│   │   │   ├── osa_arrow_green_left.png
+│   │   │   ├── osa_arrow_yellow_right.png
+│   │   │   ├── osa_awareness.png
+│   │   │   ├── osa_cloud.png
+│   │   │   ├── osa_contract.png
+│   │   │   ├── osa_database.png
+│   │   │   ├── osa_disposal.png
+│   │   │   ├── osa_firewall.png
+│   │   │   ├── osa_home.png
+│   │   │   ├── osa_ics_thermometer.png
+│   │   │   ├── osa_id_card.png
+│   │   │   ├── osa_image_generic.png
+│   │   │   ├── osa_lifecycle.png
+│   │   │   ├── osa_lightning.png
+│   │   │   ├── osa_padlock.png
+│   │   │   ├── osa_warning.png
+│   │   │   └── osa_wireless_network.png
+│   │   ├── Server
+│   │   │   ├── osa_server.png
+│   │   │   ├── osa_server_application.png
+│   │   │   ├── osa_server_database.png
+│   │   │   ├── osa_server_directory.png
+│   │   │   ├── osa_server_distribution.png
+│   │   │   ├── osa_server_file.png
+│   │   │   ├── osa_server_gateway.png
+│   │   │   ├── osa_server_identity.png
+│   │   │   ├── osa_server_mail.png
+│   │   │   ├── osa_server_media.png
+│   │   │   ├── osa_server_monitor.png
+│   │   │   ├── osa_server_proxy.png
+│   │   │   ├── osa_server_terminal.png
+│   │   │   └── osa_server_web.png
+│   │   ├── Site
+│   │   │   ├── osa_site_branch.png
+│   │   │   ├── osa_site_factory.png
+│   │   │   ├── osa_site_head_office.png
+│   │   │   └── osa_site_neighbourhood.png
+│   │   └── User
+│   │       ├── osa_users_blue_green.png
+│   │       ├── osa_user_audit.png
+│   │       ├── osa_user_black_hat.png
+│   │       ├── osa_user_blue.png
+│   │       ├── osa_user_blue_security_specialist.png
+│   │       ├── osa_user_blue_sysadmin.png
+│   │       ├── osa_user_blue_tester.png
+│   │       ├── osa_user_blue_tie.png
+│   │       ├── osa_user_green.png
+│   │       ├── osa_user_green_architect.png
+│   │       ├── osa_user_green_business_manager.png
+│   │       ├── osa_user_green_developer.png
+│   │       ├── osa_user_green_operations.png
+│   │       ├── osa_user_green_project_manager.png
+│   │       ├── osa_user_green_service_manager.png
+│   │       ├── osa_user_green_warning.png
+│   │       ├── osa_user_large_group.png
+│   │       └── osa_user_white_hat.png
+│   ├── stdliblocal
+│   │   ├── Hardware
+│   │   │   └── all.puml
+│   │   ├── Misc
+│   │   │   └── all.puml
+│   │   ├── Server
+│   │   │   └── all.puml
+│   │   ├── Site
+│   │   │   └── all.puml
+│   │   ├── User
+│   │   │   └── all.puml
+│   │   └── Common.puml
+│   ├── Ostium.svg
+│   ├── Ostium.txt
+│   └── Ostium.xml
+├── StylometryAnonymizer
+│   ├── desktop.ini
+│   ├── Newtonsoft.Json.dll
+│   ├── Newtonsoft.Json.xml
+│   ├── StylometryAnonymizer.exe
+│   └── synonyms.json
+├── SVGviewer
+│   ├── desktop.ini
+│   ├── ExCSS.dll
+│   ├── Svg.dll
+│   ├── Svg.xml
+│   ├── SVGviewer.exe
+│   ├── SVGviewer.exe.config
+│   ├── SVGviewer.pdb
+│   ├── System.Buffers.dll
+│   ├── System.Buffers.xml
+│   ├── System.Memory.dll
+│   ├── System.Memory.xml
+│   ├── System.Numerics.Vectors.dll
+│   ├── System.Numerics.Vectors.xml
+│   ├── System.Runtime.CompilerServices.Unsafe.dll
+│   └── System.Runtime.CompilerServices.Unsafe.xml
+├── workflow
+│   └── model
+│       ├── Cryptocurrency.txt
+│       ├── Dark Web Marketplace.txt
+│       ├── Discord.txt
+│       ├── Email.txt
+│       ├── Gab.txt
+│       ├── General Website.txt
+│       ├── Gettr.txt
+│       ├── Github.txt
+│       ├── Image.txt
+│       ├── Instagram.txt
+│       ├── IP.txt
+│       ├── LinkedIn.txt
+│       ├── Mastodon.txt
+│       ├── OpenSea.txt
+│       ├── Person.txt
+│       ├── Pinterest.txt
+│       ├── Pokemon.txt
+│       ├── Reddit.txt
+│       ├── Skype.txt
+│       ├── Snapchat.txt
+│       ├── Telephone.txt
+│       ├── TikTok.txt
+│       ├── Tumblr.txt
+│       ├── Twitter.txt
+│       ├── Username.txt
+│       └── Youtube.txt
+├── x64
+│   └── SQLite.Interop.dll
+├── x86
+│   └── SQLite.Interop.dll
+├── 7za.dll
+├── 7za.exe
+├── 7zxa.dll
+├── AjaxMin.dll
+├── config.json
+├── desktop.ini
+├── Dirsize.dll
+├── EntityFramework.dll
+├── EntityFramework.SqlServer.dll
+├── EntityFramework.SqlServer.xml
+├── EntityFramework.xml
+├── Errordll.dll
+├── FastColoredTextBox.dll
+├── FastColoredTextBox.xml
+├── GMap.NET.Core.dll
+├── GMap.NET.WindowsForms.dll
+├── GMap.NET.WindowsPresentation.dll
+├── HtmlAgilityPack.dll
+├── HtmlAgilityPack.pdb
+├── HtmlAgilityPack.xml
+├── Icaza.dll
+├── Icaza.pdb
+├── License.txt
+├── LoadDirectory.dll
+├── Microsoft.Bcl.AsyncInterfaces.dll
+├── Microsoft.Bcl.AsyncInterfaces.xml
+├── Microsoft.Data.Sqlite.dll
+├── Microsoft.Data.Sqlite.xml
+├── Microsoft.Web.WebView2.Core.dll
+├── Microsoft.Web.WebView2.Core.xml
+├── Microsoft.Web.WebView2.WinForms.dll
+├── Microsoft.Web.WebView2.WinForms.xml
+├── Microsoft.Web.WebView2.Wpf.dll
+├── Microsoft.Web.WebView2.Wpf.xml
+├── Newtonsoft.Json.dll
+├── Newtonsoft.Json.xml
+├── Ostium.exe
+├── Ostium.exe.config
+├── Ostium.pdb
+├── OstiumE.exe
+├── purge.bat
+├── readme.txt
+├── setirps.exe
+├── SQLitePCLRaw.core.dll
+├── System.Buffers.dll
+├── System.Buffers.xml
+├── System.Data.SqlClient.dll
+├── System.Data.SqlClient.xml
+├── System.Data.SQLite.dll
+├── System.Data.SQLite.EF6.dll
+├── System.Data.SQLite.Linq.dll
+├── System.Data.SQLite.xml
+├── System.IO.Pipelines.dll
+├── System.IO.Pipelines.xml
+├── System.Memory.dll
+├── System.Memory.xml
+├── System.Net.Http.Json.dll
+├── System.Net.Http.Json.xml
+├── System.Numerics.Vectors.dll
+├── System.Numerics.Vectors.xml
+├── System.Runtime.CompilerServices.Unsafe.dll
+├── System.Runtime.CompilerServices.Unsafe.xml
+├── System.Security.Principal.Windows.dll
+├── System.Security.Principal.Windows.xml
+├── System.Text.Encodings.Web.dll
+├── System.Text.Encodings.Web.xml
+├── System.Text.Json.dll
+├── System.Text.Json.xml
+├── System.Threading.Tasks.Extensions.dll
+├── System.Threading.Tasks.Extensions.xml
+├── System.ValueTuple.dll
+└── url_dflt_cnf.ost

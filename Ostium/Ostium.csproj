@@ -285,9 +285,6 @@
     <EmbeddedResource Include="Webview_Frm.resx">
       <DependentUpon>Webview_Frm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="content\net40\App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

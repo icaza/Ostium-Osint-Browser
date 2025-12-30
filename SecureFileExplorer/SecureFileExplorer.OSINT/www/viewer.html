@@ -224,13 +224,23 @@
                 return null;
             }
 
+            // Decode URL encoding first (to handle %20 for spaces, etc.)
+            try {
+                path = decodeURIComponent(path);
+            } catch (e) {
+                console.warn('Failed to decode path:', e);
+                return null;
+            }
+
             // Remove any null bytes
             path = path.replace(/\0/g, '');
 
+            // Check for dangerous protocols
             if (/^(javascript|data|vbscript|file|about):/i.test(path)) {
                 return null;
             }
 
+            // Iteratively remove path traversal attempts
             let previous;
             do {
                 previous = path;
@@ -246,8 +256,10 @@
             // Remove leading slash to prevent absolute path access
             path = path.replace(/^\/+/, '');
 
-            // Only allow alphanumeric, dash, underscore, dot, and forward slash
-            if (!/^[a-zA-Z0-9\-_.\/]+$/.test(path)) {
+            // Allow alphanumeric, spaces, common punctuation, accented characters, and path separators
+            // This regex allows: letters (including accented), numbers, spaces, dash, underscore, 
+            // dot, forward slash, parentheses, brackets, apostrophe, and common accented characters
+            if (!/^[a-zA-Z0-9\-_. \/\(\)\[\]'àâäéèêëïîôùûüÿçÀÂÄÉÈÊËÏÎÔÙÛÜŸÇ]+$/.test(path)) {
                 return null;
             }
 

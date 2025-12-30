@@ -35,7 +35,7 @@ function renderResults(files) {
 
     resultsDiv.innerHTML = files.map(f => `
         <div class="item ${openedFiles.includes(f.Sha256) ? 'opened' : ''}" 
-             onclick="openFile('${encodeURIComponent(f.Path)}', '${f.Sha256}', '${escapeHtml(f.Name)}')">
+             onclick="openFile('${escapeHtml(f.Path.replace(/\\/g, '/')).replace(/'/g, "\\'")}', '${f.Sha256}', '${escapeHtml(f.Name).replace(/'/g, "\\'")}')">
             <b>${escapeHtml(f.Name)}</b>
             <small>${f.Extension} | ${f.Sha256.slice(0, 16)}...</small>
             <div class="meta">Size: ${formatBytes(f.Size)} | Modified: ${new Date(f.Modified).toLocaleString()}</div>
@@ -44,9 +44,11 @@ function renderResults(files) {
 }
 
 function openFile(path, sha, fileName) {
+    // Normalize path to use forward slashes
+    path = path.replace(/\\/g, '/');
     const ext = (fileName || path).split('.').pop().toLowerCase();
 
-    console.log('Opening file:', fileName, 'Extension:', ext);
+    console.log('Opening file:', fileName, 'Path:', path, 'Extension:', ext);
 
     const directOpenExtensions = [
         // Documents
@@ -75,11 +77,14 @@ function openFile(path, sha, fileName) {
         // Fonts
         '.woff', '.woff2', '.ttf'];
 
+    // Encode the path properly for URL usage
+    const encodedPath = encodeURIComponent(path);
+
     if (directOpenExtensions.includes(ext)) {
-        console.log('Opening directly:', `/files/${path}`);
-        window.open(`/files/${path}`, "_blank");
+        console.log('Opening directly:', `/files/${encodedPath}`);
+        window.open(`/files/${encodedPath}`, "_blank");
     } else {
-        const viewerUrl = `/viewer.html?file=${encodeURIComponent(path)}&name=${encodeURIComponent(fileName || path)}`;
+        const viewerUrl = `/viewer.html?file=${encodedPath}&name=${encodeURIComponent(fileName || path)}`;
         console.log('Opening in viewer:', viewerUrl);
         window.open(viewerUrl, "_blank");
     }
@@ -108,7 +113,7 @@ async function loadTimeline() {
         }
 
         timelineDiv.innerHTML = data.map(f => `
-            <div class="timeline-item" onclick="openFile('${encodeURIComponent(f.Path)}', '', '${escapeHtml(f.Name)}')">
+            <div class="timeline-item" onclick="openFile('${escapeHtml(f.Path.replace(/\\/g, '/')).replace(/'/g, "\\'")}', '', '${escapeHtml(f.Name).replace(/'/g, "\\'")}')">
                 <span class="date">${new Date(f.Created).toLocaleString()}</span>
                 <span class="name">${escapeHtml(f.Name)}</span>
             </div>
@@ -122,7 +127,7 @@ async function loadTimeline() {
 async function loadGraph() {
     try {
         const res = await fetch("/api/graph");
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status} `);
         const data = await res.json();
 
         if (data.nodes.length === 0) {
@@ -294,11 +299,11 @@ function renderGraph() {
 
         group.addEventListener("dblclick", (e) => {
             e.stopPropagation();
-            openFile(encodeURIComponent(n.path), n.id, n.label);
+            openFile(n.path.replace(/\\/g, '/'), n.id, n.label);
         });
 
         const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-        title.textContent = `${n.label} (${n.ext})\nDouble-click to open`;
+        title.textContent = `${n.label} (${n.ext}) \nDouble - click to open`;
         group.appendChild(title);
 
         let drag = false;
@@ -593,7 +598,7 @@ function exportGraphPNG() {
 
 // --- Export ---
 function exportData(format) {
-    window.open(`/api/export?f=${format}`, "_blank");
+    window.open(`/ api /export?f = ${format} `, "_blank");
 }
 
 // --- Utilities ---
