@@ -17,7 +17,7 @@ namespace Ostium
         readonly string AppStart = Application.StartupPath + @"\";
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
-        FloodHeader TrackingFlood;
+        FloodHeader HeaderFlood;
 
         #endregion
 
@@ -43,11 +43,6 @@ namespace Ostium
 
         void WBrowsew_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
-            string UriYoutube = string.Empty;
-            string C = WBrowsew.Source.AbsoluteUri;
-            if (C.Length > 32)
-                UriYoutube += C.Substring(0, 32);
-
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
 
             CoreWebView2ContextMenuItem newItem0 = WBrowsew.CoreWebView2.Environment.CreateContextMenuItem("Search on WayBackMachine", null, CoreWebView2ContextMenuItemKind.Command);
@@ -66,15 +61,17 @@ namespace Ostium
             {
                 SynchronizationContext.Current.Post((_) =>
                 {
-                    if (UriYoutube == "https://www.youtube.com/watch?v=")
+                    string currentUrl = WBrowsew.Source.ToString();
+
+                    if (currentUrl.Contains("youtube.com/watch?v="))
                     {
-                        string pageUri = WBrowsew.Source.AbsoluteUri;
-                        pageUri = pageUri.Replace(UriYoutube, "https://www.youtube.com/embed/");
-                        using (StreamWriter file_create = new StreamWriter(AppStart + "tmpytb.html"))
-                        {
-                            file_create.Write("<iframe width=100% height=100% src=\"" + pageUri + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>");
-                        }
-                        GoBrowser("file:///" + AppStart + "tmpytb.html");
+                        int vIndex = currentUrl.IndexOf("v=") + 2;
+                        string videoId = currentUrl.Substring(vIndex, 11);
+
+                        string encodedUrl = Uri.EscapeDataString(currentUrl);
+                        string customUrl = $"https://icaza.github.io/?v={videoId}&url={encodedUrl}";
+
+                        GoBrowser(customUrl);
                     }
                     else
                     {
@@ -97,11 +94,10 @@ namespace Ostium
         {
             if (@Class_Var.FLOOD_HEADER == 1)
             {
-                await WBrowsew.EnsureCoreWebView2Async();
-                _ = new WebViewHandler(WBrowsew.CoreWebView2, "config.json");
+                HeaderFlood = new FloodHeader(WBrowsew.CoreWebView2);
+                await HeaderFlood.FloodHeaderAsync();
 
-                TrackingFlood = new FloodHeader(WBrowsew.CoreWebView2);
-                await TrackingFlood.FloodHeaderAsync();
+                await WBrowsew.EnsureCoreWebView2Async();
             }
 
             WBrowsew_UpdtTitleEvent("Navigation Starting");
