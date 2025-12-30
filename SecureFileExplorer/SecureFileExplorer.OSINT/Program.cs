@@ -25,7 +25,7 @@ class Program
             Console.WriteLine("==================================================");
             Console.WriteLine();
 
-            LogInfo("Application démarrée");
+            LogInfo("Application started");
 
             Console.WriteLine("  [>] LOADING CONFIGURATION PARAMETERS...");
             Thread.Sleep(500);
@@ -38,12 +38,12 @@ class Program
                 Console.WriteLine($"  [+] PORT ASSIGNED: {config.Port}");
                 Console.WriteLine("  [✓] CONFIGURATION LOADED SUCCESSFULLY");
                 Console.WriteLine();
-                LogInfo($"Configuration chargée - Root: {config.RootDirectory}, Port: {config.Port}");
+                LogInfo($"Loaded configuration - Root: {config.RootDirectory}, Port: {config.Port}");
             }
             catch (Exception ex)
             {
-                LogError("Erreur lors du chargement de la configuration", ex);
-                Console.WriteLine("  [✗] ERREUR: Impossible de charger la configuration");
+                LogError("Error loading configuration", ex);
+                Console.WriteLine("  [✗] ERROR: Unable to load configuration");
                 Console.WriteLine($"  [✗] {ex.Message}");
                 WaitForExit();
                 return;
@@ -62,28 +62,28 @@ class Program
                 Console.WriteLine($"  [+] FILES INDEXED: {fileCount}");
                 Console.WriteLine($"  [✓] INDEXING COMPLETE - {fileCount} ENTRIES PROCESSED");
                 Console.WriteLine();
-                LogInfo($"Indexation terminée - {fileCount} fichiers");
+                LogInfo($"Indexing complete - {fileCount} files");
             }
             catch (UnauthorizedAccessException ex)
             {
-                LogError("Accès refusé lors de l'indexation", ex);
-                Console.WriteLine("  [✗] ERREUR: Accès refusé au répertoire");
+                LogError("Access denied during indexing", ex);
+                Console.WriteLine("  [✗] ERROR: Access denied to directory");
                 Console.WriteLine($"  [✗] {ex.Message}");
                 WaitForExit();
                 return;
             }
             catch (DirectoryNotFoundException ex)
             {
-                LogError("Répertoire introuvable", ex);
-                Console.WriteLine("  [✗] ERREUR: Le répertoire spécifié n'existe pas");
+                LogError("Directory not found", ex);
+                Console.WriteLine("  [✗] ERROR: The specified directory does not exist");
                 Console.WriteLine($"  [✗] {ex.Message}");
                 WaitForExit();
                 return;
             }
             catch (Exception ex)
             {
-                LogError("Erreur lors de l'indexation des fichiers", ex);
-                Console.WriteLine("  [✗] ERREUR: Échec de l'indexation");
+                LogError("Error indexing files", ex);
+                Console.WriteLine("  [✗] ERROR: Indexing failed");
                 Console.WriteLine($"  [✗] {ex.Message}");
                 WaitForExit();
                 return;
@@ -102,20 +102,20 @@ class Program
                 Console.WriteLine($"  [+] LISTENING ON PORT: {config.Port}");
                 Console.WriteLine("  [✓] SERVER OPERATIONAL");
                 Console.WriteLine();
-                LogInfo($"Serveur démarré sur le port {config.Port}");
+                LogInfo($"Server started on port {config.Port}");
             }
             catch (System.Net.Sockets.SocketException ex)
             {
-                LogError($"Impossible de démarrer le serveur sur le port {config.Port}", ex);
-                Console.WriteLine("  [✗] ERREUR: Le port est déjà utilisé ou inaccessible");
+                LogError($"Unable to start the server on the port {config.Port}", ex);
+                Console.WriteLine("  [✗] ERROR: The port is already in use or inaccessible");
                 Console.WriteLine($"  [✗] {ex.Message}");
                 WaitForExit();
                 return;
             }
             catch (Exception ex)
             {
-                LogError("Erreur lors du démarrage du serveur", ex);
-                Console.WriteLine("  [✗] ERREUR: Impossible de démarrer le serveur");
+                LogError("Error starting server", ex);
+                Console.WriteLine("  [✗] ERROR: Unable to start the server");
                 Console.WriteLine($"  [✗] {ex.Message}");
                 WaitForExit();
                 return;
@@ -134,7 +134,7 @@ class Program
             Console.WriteLine();
             Console.WriteLine("==================================================");
             Console.WriteLine("  [>] SHUTDOWN SEQUENCE INITIATED...");
-            LogInfo("Arrêt du système initié");
+            LogInfo("System shutdown initiated");
             Thread.Sleep(300);
             Console.WriteLine("  [>] TERMINATING HTTP SERVER...");
             Thread.Sleep(300);
@@ -142,11 +142,11 @@ class Program
             Thread.Sleep(300);
             Console.WriteLine("  [✓] SecureFileExplorer.OSINT - SYSTEM OFFLINE");
             Console.WriteLine("==================================================");
-            LogInfo("Application arrêtée normalement");
+            LogInfo("Application stopped normally");
         }
         catch (Exception ex)
         {
-            LogError("Erreur critique non gérée", ex);
+            LogError("Unhandled critical error", ex);
             Console.WriteLine();
             Console.WriteLine("==================================================");
             Console.WriteLine("  [✗] ERREUR CRITIQUE");
@@ -181,7 +181,7 @@ class Program
     static void WaitForExit()
     {
         Console.WriteLine();
-        Console.WriteLine("  [i] Appuyez sur ENTER pour quitter...");
+        Console.WriteLine("  [i] Press ENTER to exit...");
         Console.ReadLine();
     }
 }
