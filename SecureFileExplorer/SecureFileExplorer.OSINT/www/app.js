@@ -35,12 +35,25 @@ function renderResults(files) {
 
     resultsDiv.innerHTML = files.map(f => `
         <div class="item ${openedFiles.includes(f.Sha256) ? 'opened' : ''}" 
-             onclick="openFile('${escapeHtml(f.Path.replace(/\\/g, '/')).replace(/'/g, "\\'")}', '${f.Sha256}', '${escapeHtml(f.Name).replace(/'/g, "\\'")}')">
+             data-path="${escapeHtml(f.Path.replace(/\\/g, '/'))}"
+             data-sha="${escapeHtml(f.Sha256)}"
+             data-name="${escapeHtml(f.Name)}">
             <b>${escapeHtml(f.Name)}</b>
-            <small>${f.Extension} | ${f.Sha256.slice(0, 16)}...</small>
+            <small>${escapeHtml(f.Extension)} | ${escapeHtml(f.Sha256.slice(0, 16))}...</small>
             <div class="meta">Size: ${formatBytes(f.Size)} | Modified: ${new Date(f.Modified).toLocaleString()}</div>
         </div>
     `).join("");
+
+    // Attacher les event listeners après avoir créé le HTML
+    const items = resultsDiv.querySelectorAll('.item');
+    items.forEach(item => {
+        item.addEventListener('click', function() {
+            const path = this.getAttribute('data-path');
+            const sha = this.getAttribute('data-sha');
+            const name = this.getAttribute('data-name');
+            openFile(path, sha, name);
+        });
+    });
 }
 
 function openFile(path, sha, fileName) {
@@ -93,8 +106,7 @@ function openFile(path, sha, fileName) {
         openedFiles.push(sha);
         const items = document.querySelectorAll('.item');
         items.forEach(item => {
-            const onclickStr = item.getAttribute('onclick') || '';
-            if (onclickStr.includes(sha)) {
+            if (item.getAttribute('data-sha') === sha) {
                 item.classList.add('opened');
             }
         });
@@ -113,11 +125,23 @@ async function loadTimeline() {
         }
 
         timelineDiv.innerHTML = data.map(f => `
-            <div class="timeline-item" onclick="openFile('${escapeHtml(f.Path.replace(/\\/g, '/')).replace(/'/g, "\\'")}', '', '${escapeHtml(f.Name).replace(/'/g, "\\'")}')">
+            <div class="timeline-item" 
+                 data-path="${escapeHtml(f.Path.replace(/\\/g, '/'))}"
+                 data-name="${escapeHtml(f.Name)}">
                 <span class="date">${new Date(f.Created).toLocaleString()}</span>
                 <span class="name">${escapeHtml(f.Name)}</span>
             </div>
         `).join("");
+
+        // Attacher les event listeners après avoir créé le HTML
+        const items = timelineDiv.querySelectorAll('.timeline-item');
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                const path = this.getAttribute('data-path');
+                const name = this.getAttribute('data-name');
+                openFile(path, '', name);
+            });
+        });
     } catch (error) {
         console.error("Timeline error:", error);
         timelineDiv.innerHTML = '<div class="error">Error loading timeline</div>';
@@ -166,10 +190,16 @@ function createExtensionFilter(extensions) {
 
     chipsContainer.innerHTML = extensions.map(ext => `
         <label class="extension-chip" style="background: ${getColorByExtension(ext)}22; border: 1px solid ${getColorByExtension(ext)};">
-            <input type="checkbox" value="${ext}" checked onchange="filterByExtension()">
-            <span style="color: ${getColorByExtension(ext)};">${ext}</span>
+            <input type="checkbox" value="${escapeHtml(ext)}" checked>
+            <span style="color: ${getColorByExtension(ext)};">${escapeHtml(ext)}</span>
         </label>
     `).join('');
+
+    // Attacher les event listeners pour les checkboxes
+    const checkboxes = chipsContainer.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', filterByExtension);
+    });
 }
 
 function filterByExtension() {
@@ -303,7 +333,7 @@ function renderGraph() {
         });
 
         const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-        title.textContent = `${n.label} (${n.ext}) \nDouble - click to open`;
+        title.textContent = `${n.label} (${n.ext}) \nDouble-click to open`;
         group.appendChild(title);
 
         let drag = false;
@@ -598,7 +628,7 @@ function exportGraphPNG() {
 
 // --- Export ---
 function exportData(format) {
-    window.open(`/ api /export?f = ${format} `, "_blank");
+    window.open(`/api/export?f=${format}`, "_blank");
 }
 
 // --- Utilities ---
