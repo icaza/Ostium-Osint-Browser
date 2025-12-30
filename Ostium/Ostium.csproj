@@ -236,7 +236,6 @@
     </Compile>
     <Compile Include="VisitLogger.cs" />
     <Compile Include="FloodHeader.cs" />
-    <Compile Include="WebViewHandler.cs" />
     <Compile Include="Webview_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
