@@ -133,7 +133,7 @@ namespace Ostium
             }
         }
 
-        private void TrackRecord_Cbx_SelectedIndexChanged(object sender, EventArgs e)
+        void TrackRecord_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             label2.Focus();
         }
