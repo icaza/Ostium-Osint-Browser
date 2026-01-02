@@ -44,7 +44,7 @@ function renderResults(files) {
         </div>
     `).join("");
 
-    // Attacher les event listeners après avoir créé le HTML
+    // Attach the event listeners after creating the HTML
     const items = resultsDiv.querySelectorAll('.item');
     items.forEach(item => {
         item.addEventListener('click', function() {
@@ -133,7 +133,7 @@ async function loadTimeline() {
             </div>
         `).join("");
 
-        // Attacher les event listeners après avoir créé le HTML
+        // Attach the event listeners after creating the HTML
         const items = timelineDiv.querySelectorAll('.timeline-item');
         items.forEach(item => {
             item.addEventListener('click', function() {
@@ -195,7 +195,7 @@ function createExtensionFilter(extensions) {
         </label>
     `).join('');
 
-    // Attacher les event listeners pour les checkboxes
+    // Attach event listeners for checkboxes
     const checkboxes = chipsContainer.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(cb => {
         cb.addEventListener('change', filterByExtension);
@@ -685,6 +685,7 @@ function getColorByExtension(ext) {
         ".bat": '#5900ffff',
         ".ps1": '#213530ff',
         ".vbs": '#ffffffff',
+        ".vb": '#ffffffff',
         ".yml": '#7bfc85ff',
         ".yaml": '#962151ff',
         ".ini": '#a7f7bbff',

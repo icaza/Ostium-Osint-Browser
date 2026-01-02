@@ -6,11 +6,15 @@
 
 SecureFileExplorer is a web application for file analysis. It allows you to index, search, view, and analyze document collections with a secure interface.
 
-# INSTALL
+# Requirements
 
 [.Net 9.0 SDK x64](https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.308/dotnet-sdk-9.0.308-win-x64.exe)
+- Windows OS
 
-SHA512:2396ac99f4562137184d73543c15ce0d1c68a1e50456f6f1ab34b7fdfe55af369bdb843d2f866659c3b55e8f198a2934d2f8aeadb44c45808e2ec17b8bac22b5
+### SHA512
+```bash
+2396ac99f4562137184d73543c15ce0d1c68a1e50456f6f1ab34b7fdfe55af369bdb843d2f866659c3b55e8f198a2934d2f8aeadb44c45808e2ec17b8bac22b5
+```
 
 ## Features
 
@@ -139,7 +143,7 @@ Open your browser to: **http://localhost:PORT**
 - Visualizes the relationships between files (grouped by extension)
 - **Click** on a node to open the file
 - **Drag** a node to rearrange the graph
-- Colors indicate the file type:
+- Colors indicate the file type: (ex.)
   - 🔴 Red: PDF
   - 🔵 Blue: DOCX
   - 🟢 Green: CSV
@@ -150,3 +154,6 @@ Open your browser to: **http://localhost:PORT**
 ### Export
 - **Export JSON**: All data and metadata
 - **Export CSV**: Tabular format for Excel/analysis
+
+### Application doesn't start
+- Ensure .Net 9.0

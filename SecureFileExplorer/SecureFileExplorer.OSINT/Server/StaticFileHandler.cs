@@ -152,6 +152,7 @@ public static class StaticFileHandler
             ".bat" => "application/x-bat",
             ".ps1" => "application/x-powershell",
             ".vbs" => "text/vbscript",
+            ".vb" => "text/vb",
             ".yml" => "text/x-yaml",
             ".yaml" => "text/x-yaml",
             ".ini" => "text/x-ini",
@@ -293,7 +294,7 @@ public static class StaticFileHandler
             
             // Code files (read-only viewing)
             ".py", ".java", ".cpp", ".c", ".h", ".cs", ".php", ".sql",
-            ".sh", ".bat", ".ps1", ".vbs",
+            ".sh", ".bat", ".ps1", ".vbs", ".vb",
             
             // Config files
             ".yml", ".yaml", ".ini", ".cfg", ".log",
@@ -315,7 +316,7 @@ public static class StaticFileHandler
 
             var dangerousExtensions = new HashSet<string>
             {
-                ".exe", ".dll", ".com", ".bat", ".cmd", ".scr", ".vbs", ".vbe",
+                ".exe", ".dll", ".com", ".bat", ".cmd", ".scr", ".vbs", ".vb", ".vbe",
                 ".js", ".jse", ".wsf", ".wsh", ".msi", ".msp", ".cpl", ".jar"
             };
 
