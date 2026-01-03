@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; frame-src 'self';">
+          content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; frame-src 'self';">
     <title>File Viewer - OSINT Explorer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -257,7 +259,7 @@
             path = path.replace(/^\/+/, '');
 
             // Allow alphanumeric, spaces, common punctuation, accented characters, and path separators
-            // This regex allows: letters (including accented), numbers, spaces, dash, underscore, 
+            // This regex allows: letters (including accented), numbers, spaces, dash, underscore,
             // dot, forward slash, parentheses, brackets, apostrophe, and common accented characters
             if (!/^[a-zA-Z0-9\-_. \/\(\)\[\]'àâäéèêëïîôùûüÿçÀÂÄÉÈÊËÏÎÔÙÛÜŸÇ]+$/.test(path)) {
                 return null;
@@ -402,7 +404,13 @@
                 const contentType = response.headers.get('Content-Type');
                 const ext = fileName.split('.').pop().toLowerCase();
 
-                if (ext === 'xml' || contentType.includes('xml')) {
+                if (ext === 'docx' || ext === 'doc') {
+                    const arrayBuffer = await response.arrayBuffer();
+                    await displayDocx(arrayBuffer);
+                } else if (ext === 'xlsx' || ext === 'xls') {
+                    const arrayBuffer = await response.arrayBuffer();
+                    await displayXlsx(arrayBuffer);
+                } else if (ext === 'xml' || contentType.includes('xml')) {
                     const text = await response.text();
                     displayXML(text);
                 } else if (ext === 'json' || contentType.includes('json')) {
@@ -414,9 +422,9 @@
                 } else if (ext === 'rtf' || contentType.includes('rtf')) {
                     const text = await response.text();
                     displayRTF(text);
-                } else if (ext === 'docx' || ext === 'xlsx' || ext === 'pptx') {
+                } else if (ext === 'pptx') {
                     await displayOfficeFile(ext, response);
-                } else if (ext === 'doc' || ext === 'xls' || ext === 'ppt') {
+                } else if (ext === 'ppt') {
                     displayLegacyOfficeInfo(ext);
                 } else if (ext === 'pdf' || contentType.includes('pdf')) {
                     displayPDF(filePath);
@@ -442,6 +450,125 @@
                 }
             } catch (error) {
                 showError(`Error loading file: ${error.message}`);
+            }
+        }
+
+        async function displayDocx(arrayBuffer) {
+            try {
+                const zip = await JSZip.loadAsync(arrayBuffer);
+                const documentXml = await zip.file('word/document.xml').async('string');
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(documentXml, 'text/xml');
+
+                const container = document.getElementById('content');
+                container.innerHTML = '';
+
+                const wrapper = document.createElement('div');
+                wrapper.style.padding = '20px';
+
+                const heading = document.createElement('h2');
+                heading.style.cssText = 'color: #0af; margin-bottom: 20px;';
+                heading.textContent = '📄 Word Document (DOCX)';
+
+                const contentBox = document.createElement('div');
+                contentBox.className = 'docx-content';
+
+                const paragraphs = xmlDoc.getElementsByTagName('w:p');
+
+                for (let i = 0; i < paragraphs.length; i++) {
+                    const paragraph = paragraphs[i];
+                    const texts = paragraph.getElementsByTagName('w:t');
+
+                    let paragraphText = '';
+                    for (let j = 0; j < texts.length; j++) {
+                        paragraphText += texts[j].textContent;
+                    }
+
+                    if (paragraphText.trim()) {
+                        const p = document.createElement('p');
+                        p.textContent = paragraphText;
+                        contentBox.appendChild(p);
+                    } else {
+                        contentBox.appendChild(document.createElement('br'));
+                    }
+                }
+
+                if (contentBox.children.length === 0) {
+                    contentBox.innerHTML = '<p style="color: #888; font-style: italic;">Document appears to be empty.</p>';
+                }
+
+                wrapper.appendChild(heading);
+                wrapper.appendChild(contentBox);
+                container.appendChild(wrapper);
+
+            } catch (error) {
+                console.error('DOCX parsing error:', error);
+                showError(`Error parsing DOCX: ${error.message}`);
+            }
+        }
+
+        async function displayXlsx(arrayBuffer) {
+            try {
+                const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+                const container = document.getElementById('content');
+                container.innerHTML = '';
+
+                const wrapper = document.createElement('div');
+                wrapper.style.padding = '20px';
+
+                const heading = document.createElement('h2');
+                heading.style.cssText = 'color: #0af; margin-bottom: 20px;';
+                heading.textContent = '📊 Excel Spreadsheet';
+                wrapper.appendChild(heading);
+
+                if (workbook.SheetNames.length > 1) {
+                    const sheetSelector = document.createElement('div');
+                    sheetSelector.className = 'sheet-selector';
+
+                    workbook.SheetNames.forEach((sheetName, index) => {
+                        const btn = document.createElement('button');
+                        btn.className = index === 0 ? 'sheet-btn active' : 'sheet-btn';
+                        btn.textContent = sheetName;
+
+                        btn.onclick = function () {
+                            document.querySelectorAll('.sheet-btn').forEach(b => b.classList.remove('active'));
+                            this.classList.add('active');
+                            showSheet(workbook, sheetName);
+                        };
+
+                        sheetSelector.appendChild(btn);
+                    });
+
+                    wrapper.appendChild(sheetSelector);
+                }
+
+                const tableWrapper = document.createElement('div');
+                tableWrapper.className = 'table-wrapper';
+                tableWrapper.id = 'sheet-content';
+
+                wrapper.appendChild(tableWrapper);
+                container.appendChild(wrapper);
+
+                showSheet(workbook, workbook.SheetNames[0]);
+
+            } catch (error) {
+                console.error('XLSX parsing error:', error);
+                showError(`Error parsing Excel file: ${error.message}`);
+            }
+        }
+
+        function showSheet(workbook, sheetName) {
+            const sheet = workbook.Sheets[sheetName];
+            const html = XLSX.utils.sheet_to_html(sheet);
+
+            const tableWrapper = document.getElementById('sheet-content');
+            tableWrapper.innerHTML = html;
+
+            const table = tableWrapper.querySelector('table');
+            if (table) {
+                table.className = 'xlsx-viewer';
             }
         }
 
@@ -569,26 +696,26 @@
                     style: 'background: #111421; padding: 20px; border-radius: 8px; margin-bottom: 20px;'
                 });
                 optionsBox.innerHTML = `
-                                    <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
-                                    <ul style="list-style: none; line-height: 2;">
-                                        <li>📥 <strong>Download</strong> the file using the button above</li>
-                                        <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
-                                        <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
-                                        <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
-                                    </ul>
-                                `;
+                                        <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                                        <ul style="list-style: none; line-height: 2;">
+                                            <li>📥 <strong>Download</strong> the file using the button above</li>
+                                            <li>📂 <strong>Open with Microsoft Office</strong> or compatible software</li>
+                                            <li>🌐 <strong>Upload to Google Docs/Sheets/Slides</strong> for online viewing</li>
+                                            <li>🔍 <strong>Extract metadata</strong> using specialized tools</li>
+                                        </ul>
+                                    `;
                 wrapper.appendChild(optionsBox);
 
                 const tipBox = createSafeElement('div', {
                     style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
                 });
                 tipBox.innerHTML = `
-                                    <strong style="color: #3498db;">💡 OSINT Tip:</strong>
-                                    <p style="color: #ccc; margin-top: 5px;">
-                                        Office files contain metadata (author, dates, revisions) and potentially hidden data.
-                                        Consider using specialized tools for thorough analysis.
-                                    </p>
-                                `;
+                                        <strong style="color: #3498db;">💡 OSINT Tip:</strong>
+                                        <p style="color: #ccc; margin-top: 5px;">
+                                            Office files contain metadata (author, dates, revisions) and potentially hidden data.
+                                            Consider using specialized tools for thorough analysis.
+                                        </p>
+                                    `;
                 wrapper.appendChild(tipBox);
 
                 container.appendChild(wrapper);
@@ -660,13 +787,13 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
             });
             optionsBox.innerHTML = `
-                                <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
-                                <ul style="list-style: none; line-height: 2;">
-                                    <li>📥 <strong>Download</strong> the file using the button above</li>
-                                    <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
-                                    <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
-                                </ul>
-                            `;
+                                    <h3 style="color: #eee; margin-bottom: 15px;">🛠️ Options:</h3>
+                                    <ul style="list-style: none; line-height: 2;">
+                                        <li>📥 <strong>Download</strong> the file using the button above</li>
+                                        <li>🔄 <strong>Convert to modern format</strong> (.docx, .xlsx, .pptx) for better compatibility</li>
+                                        <li>🔍 <strong>Use specialized tools</strong> for binary analysis</li>
+                                    </ul>
+                                `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(description);
@@ -793,12 +920,12 @@
                 style: 'margin-top: 20px; padding: 15px; background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498db; border-radius: 5px;'
             });
             tipBox.innerHTML = `
-                                <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
-                                <p style="color: #ccc; margin-top: 5px;">
-                                    Check email headers for sender IP, routing information, and metadata.
-                                    Look for embedded links and attachments.
-                                </p>
-                            `;
+                                    <strong style="color: #3498db;">🔍 OSINT Analysis:</strong>
+                                    <p style="color: #ccc; margin-top: 5px;">
+                                        Check email headers for sender IP, routing information, and metadata.
+                                        Look for embedded links and attachments.
+                                    </p>
+                                `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(emailBox);
@@ -892,10 +1019,10 @@
                 style: 'margin-bottom: 20px; padding: 15px; background: #111421; border-radius: 8px; display: flex; gap: 20px;'
             });
             statsBox.innerHTML = `
-                                <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
-                                <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
-                                <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
-                            `;
+                                    <div><strong style="color: #3498db;">📊 Lines:</strong> <span style="color: #ccc;">${lineCount}</span></div>
+                                    <div><strong style="color: #3498db;">🔤 Characters:</strong> <span style="color: #ccc;">${charCount}</span></div>
+                                    <div><strong style="color: #3498db;">💾 Size:</strong> <span style="color: #ccc;">${(text.length / 1024).toFixed(2)} KB</span></div>
+                                `;
 
             const codeBox = createSafeElement('div', {
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
@@ -1032,23 +1159,23 @@
                 style: 'background: #111421; padding: 20px; border-radius: 8px;'
             });
             optionsBox.innerHTML = `
-                                <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
-                                <ul style="list-style: none; line-height: 2;">
-                                    <li>📥 <strong>Download</strong> the file using the button above</li>
-                                    <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
-                                    <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
-                                </ul>
-                            `;
+                                    <h3 style="color: #eee; margin-bottom: 15px;">Options:</h3>
+                                    <ul style="list-style: none; line-height: 2;">
+                                        <li>📥 <strong>Download</strong> the file using the button above</li>
+                                        <li>🗜️ <strong>Extract</strong> it using a tool like 7-Zip or WinRAR</li>
+                                        <li>🔍 <strong>Analyze</strong> the contents for OSINT purposes</li>
+                                    </ul>
+                                `;
 
             const warningBox = createSafeElement('div', {
                 style: 'margin-top: 20px; padding: 15px; background: rgba(231, 76, 60, 0.1); border-left: 3px solid #e74c3c; border-radius: 5px;'
             });
             warningBox.innerHTML = `
-                                <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
-                                <p style="color: #ccc; margin-top: 5px;">
-                                    Always scan archive files for malware before extracting them.
-                                </p>
-                            `;
+                                    <strong style="color: #e74c3c;">⚠️ Security Note:</strong>
+                                    <p style="color: #ccc; margin-top: 5px;">
+                                        Always scan archive files for malware before extracting them.
+                                    </p>
+                                `;
 
             wrapper.appendChild(heading);
             wrapper.appendChild(description);

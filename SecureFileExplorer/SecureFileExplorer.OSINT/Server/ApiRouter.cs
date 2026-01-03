@@ -198,6 +198,7 @@ public static class ApiRouter
             ".bat" => "application/x-bat",
             ".ps1" => "application/x-powershell",
             ".vbs" => "text/vbscript",
+            ".vb" => "text/vb",
             ".yml" => "text/x-yaml",
             ".yaml" => "text/x-yaml",
             ".ini" => "text/x-ini",
