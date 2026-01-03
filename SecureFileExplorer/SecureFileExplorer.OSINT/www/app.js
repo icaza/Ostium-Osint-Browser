@@ -47,7 +47,7 @@ function renderResults(files) {
     // Attach the event listeners after creating the HTML
     const items = resultsDiv.querySelectorAll('.item');
     items.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const path = this.getAttribute('data-path');
             const sha = this.getAttribute('data-sha');
             const name = this.getAttribute('data-name');
@@ -136,7 +136,7 @@ async function loadTimeline() {
         // Attach the event listeners after creating the HTML
         const items = timelineDiv.querySelectorAll('.timeline-item');
         items.forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 const path = this.getAttribute('data-path');
                 const name = this.getAttribute('data-name');
                 openFile(path, '', name);
@@ -586,6 +586,9 @@ function updatePositions(nodes, links, nodeElems, linkElems) {
 }
 
 function exportGraphSVG() {
+    if (!graphSvg.getAttribute("xmlns")) {
+        graphSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    }
     const svgData = graphSvg.outerHTML;
     const blob = new Blob([svgData], { type: 'image/svg+xml' });
     const url = URL.createObjectURL(blob);
@@ -627,8 +630,26 @@ function exportGraphPNG() {
 }
 
 // --- Export ---
-function exportData(format) {
-    window.open(`/api/export?f=${format}`, "_blank");
+async function exportData(format) {
+    try {
+        const res = await fetch(`/api/export?f=${format}`);
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        // Simple date format for filename
+        const dateStr = new Date().toISOString().split('T')[0];
+        a.download = `export_${dateStr}.${format}`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    } catch (error) {
+        console.error("Export error:", error);
+        alert("Failed to export data. Please try again.");
+    }
 }
 
 // --- Utilities ---
