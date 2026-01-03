@@ -2818,6 +2818,18 @@ namespace Ostium
             }
         }
 
+        void LogPathSFE_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(Path.Combine(AppStart, "SecureFileExplorer", "logs"));
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LogPathSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }            
+        }
+
         void OpenKeepTrack()
         {
             if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
