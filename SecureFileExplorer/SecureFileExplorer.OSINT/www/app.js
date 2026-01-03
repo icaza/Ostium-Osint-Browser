@@ -47,7 +47,7 @@ function renderResults(files) {
     // Attach the event listeners after creating the HTML
     const items = resultsDiv.querySelectorAll('.item');
     items.forEach(item => {
-        item.addEventListener('click', function () {
+        item.addEventListener('click', function() {
             const path = this.getAttribute('data-path');
             const sha = this.getAttribute('data-sha');
             const name = this.getAttribute('data-name');
@@ -136,7 +136,7 @@ async function loadTimeline() {
         // Attach the event listeners after creating the HTML
         const items = timelineDiv.querySelectorAll('.timeline-item');
         items.forEach(item => {
-            item.addEventListener('click', function () {
+            item.addEventListener('click', function() {
                 const path = this.getAttribute('data-path');
                 const name = this.getAttribute('data-name');
                 openFile(path, '', name);
