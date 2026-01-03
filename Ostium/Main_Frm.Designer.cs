@@ -541,6 +541,8 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.LogPathSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1126,7 +1128,9 @@
             this.toolStripSeparator39,
             this.StartSFE_Btn,
             this.toolStripSeparator40,
-            this.LocalhostSFE_Btn});
+            this.LocalhostSFE_Btn,
+            this.toolStripSeparator41,
+            this.LogPathSFE_Btn});
             this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
             this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.secureFileExplorerToolStripMenuItem.Text = "SecureFileExplorer";
@@ -1134,31 +1138,31 @@
             // ConfigSFE_Btn
             // 
             this.ConfigSFE_Btn.Name = "ConfigSFE_Btn";
-            this.ConfigSFE_Btn.Size = new System.Drawing.Size(137, 22);
+            this.ConfigSFE_Btn.Size = new System.Drawing.Size(180, 22);
             this.ConfigSFE_Btn.Text = "Config";
             this.ConfigSFE_Btn.Click += new System.EventHandler(this.ConfigSFE_Btn_Click);
             // 
             // toolStripSeparator39
             // 
             this.toolStripSeparator39.Name = "toolStripSeparator39";
-            this.toolStripSeparator39.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator39.Size = new System.Drawing.Size(177, 6);
             // 
             // StartSFE_Btn
             // 
             this.StartSFE_Btn.Name = "StartSFE_Btn";
-            this.StartSFE_Btn.Size = new System.Drawing.Size(137, 22);
+            this.StartSFE_Btn.Size = new System.Drawing.Size(180, 22);
             this.StartSFE_Btn.Text = "Start";
             this.StartSFE_Btn.Click += new System.EventHandler(this.StartSFE_Btn_Click);
             // 
             // toolStripSeparator40
             // 
             this.toolStripSeparator40.Name = "toolStripSeparator40";
-            this.toolStripSeparator40.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator40.Size = new System.Drawing.Size(177, 6);
             // 
             // LocalhostSFE_Btn
             // 
             this.LocalhostSFE_Btn.Name = "LocalhostSFE_Btn";
-            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(137, 22);
+            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(180, 22);
             this.LocalhostSFE_Btn.Text = "Localhost";
             this.LocalhostSFE_Btn.Click += new System.EventHandler(this.LocalhostSFE_Btn_Click);
             // 
@@ -3054,7 +3058,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3347,7 +3351,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -6789,6 +6793,18 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // LogPathSFE_Btn
+            // 
+            this.LogPathSFE_Btn.Name = "LogPathSFE_Btn";
+            this.LogPathSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.LogPathSFE_Btn.Text = "Log Path";
+            this.LogPathSFE_Btn.Click += new System.EventHandler(this.LogPathSFE_Btn_Click);
+            // 
+            // toolStripSeparator41
+            // 
+            this.toolStripSeparator41.Name = "toolStripSeparator41";
+            this.toolStripSeparator41.Size = new System.Drawing.Size(177, 6);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7418,6 +7434,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
         private System.Windows.Forms.ToolStripMenuItem LocalhostSFE_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
+        private System.Windows.Forms.ToolStripMenuItem LogPathSFE_Btn;
     }
 }
 
