@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Ostium.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
@@ -7137,10 +7138,11 @@ namespace Ostium
         /// <param value="0">Continue</param>
         /// <param value="1">Return</param>
         /// 
-        void NewProjectMapList_Tls_Click(object sender, EventArgs e)
+        void NewProjectMapList_Tls_ClickAsync(object sender, EventArgs e)
         {
             int model;
             string Btn = (sender as ToolStripMenuItem).Name;
+
             if (Btn == NewProjectMapList_Tls.Name)
                 model = 0;
             else
@@ -7158,10 +7160,21 @@ namespace Ostium
             if (fileopen == string.Empty)
                 return;
 
-            MessageBox.Show(MessageStartGeoloc);
-
-            Thread AutoCreatePoints = new Thread(() => AutoCreatePoints_Thrd(fileopen, model));
-            AutoCreatePoints.Start();
+            Task.Run(() =>
+            {
+                try
+                {
+                    AutoCreatePoints_Thrd(fileopen, model);
+                }
+                catch (Exception ex)
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        MessageBox.Show($"Error: {ex.Message}", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    });
+                }
+            });
         }
         ///
         /// <summary>Create XML location from a list</summary>
@@ -7174,31 +7187,147 @@ namespace Ostium
         /// <param value="0">Name/Latitude/Longitude/Marker</param>
         /// <param value="1">Latitude/Longitude</param>
         /// <param name="Una">Use random name</param>
-        /// 
+        ///
         void AutoCreatePoints_Thrd(string fileopn, int model)
         {
-            CreateNameAleat();
-            int inct = 0;
-
-            using (var reader = new StreamReader(fileopn))
+            if (string.IsNullOrEmpty(fileopn) || !File.Exists(fileopn))
             {
-                while (!reader.EndOfStream)
+                MessageBox.Show("File not found.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            CreateNameAleat();
+
+            XmlDocument doc = new XmlDocument();
+            try
+            {
+                doc.Load(MapXmlOpn);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading XML: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!(doc.SelectSingleNode("/Table/Location") is XmlElement nod))
+            {
+                MessageBox.Show("Invalid XML structure: node '/Table/Location' not found.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int inct = 0;
+            int processedCount = 0;
+            var errors = new List<string>();
+
+            using (var reader = new StreamReader(fileopn, Encoding.UTF8))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    inct += 1;
-                    var line = reader.ReadLine();
+                    inct++;
                     string trimmedLine = line.Trim();
-                    if (!string.IsNullOrEmpty(trimmedLine))
+
+                    if (string.IsNullOrEmpty(trimmedLine))
+                        continue;
+
+                    var values = trimmedLine.Split(',');
+
+                    if (values.Length < 3)
                     {
-                        var values = line.Split(',');
+                        errors.Add($"Line {inct}: Invalid format (insufficient columns)");
+                        continue;
+                    }
+
+                    try
+                    {
                         if (model == 0)
-                            AddNewLocPoints(values[0], values[1], values[2], values[3]);
+                        {
+                            if (values.Length < 4)
+                            {
+                                errors.Add($"Line {inct}: 4 columns required for the model 0");
+                                continue;
+                            }
+                            AddNewLocPointOptimized(doc, nod, values[0].Trim(),
+                                values[1].Trim(), values[2].Trim(), values[3].Trim());
+                        }
                         else
-                            AddNewLocPoints(Una + inct, values[0], values[1], Una + inct);
+                        {
+                            string generatedName = Una + inct;
+                            AddNewLocPointOptimized(doc, nod, generatedName,
+                                values[0].Trim(), values[1].Trim(), generatedName);
+                        }
+                        processedCount++;
+                    }
+                    catch (Exception ex)
+                    {
+                        errors.Add($"Line {inct}: {ex.Message}");
                     }
                 }
             }
 
-            MessageBox.Show("Completed.");
+            try
+            {
+                string backupPath = MapXmlOpn + ".backup";
+                if (File.Exists(MapXmlOpn))
+                    File.Copy(MapXmlOpn, backupPath, true);
+
+                doc.Save(MapXmlOpn);
+
+                if (File.Exists(backupPath))
+                    File.Delete(backupPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error during backup: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string message = $"Processing complete.\n\n" +
+                            $"Processed lines: {processedCount}\n" +
+                            $"Total lines: {inct}";
+
+            if (errors.Any())
+            {
+                message += $"\n\nErrors: {errors.Count}";
+                if (errors.Count <= 10)
+                    message += "\n" + string.Join("\n", errors);
+                else
+                    message += $"\n(Displaying the first 10)\n" +
+                              string.Join("\n", errors.Take(10));
+            }
+
+            MessageBox.Show(message, "Finished", MessageBoxButtons.OK,
+                errors.Any() ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+        }
+
+        void AddNewLocPointOptimized(XmlDocument doc, XmlElement parentNode, string locationname, string lat, string lon, string txtmarker)
+        {
+            if (string.IsNullOrWhiteSpace(lat) || string.IsNullOrWhiteSpace(lon))
+                throw new ArgumentException("Latitude or longitude missing");
+
+            if (!double.TryParse(lat, NumberStyles.Float, CultureInfo.InvariantCulture, out double latVal) ||
+                !double.TryParse(lon, NumberStyles.Float, CultureInfo.InvariantCulture, out double lonVal))
+                throw new ArgumentException("Invalid coordinate format");
+
+            if (latVal < -90 || latVal > 90 || lonVal < -180 || lonVal > 180)
+                throw new ArgumentException("Coordinates out of bounds");
+
+            XmlElement elem = doc.CreateElement("Point_Point");
+            elem.SetAttribute("latitude", lat);
+            elem.SetAttribute("longitude", lon);
+            elem.SetAttribute("textmarker", txtmarker ?? string.Empty);
+            elem.InnerText = locationname ?? string.Empty;
+
+            parentNode.AppendChild(elem);
+        }
+
+        async Task AutoCreatePointsAsync(string fileopn, int model)
+        {
+            await Task.Run(() => AutoCreatePoints_Thrd(fileopn, model));
         }
 
         void NewRouteProject_Tls_Click(object sender, EventArgs e)

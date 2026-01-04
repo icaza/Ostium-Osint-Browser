@@ -6412,14 +6412,14 @@
             this.NewProjectMapList_Tls.Name = "NewProjectMapList_Tls";
             this.NewProjectMapList_Tls.Size = new System.Drawing.Size(472, 22);
             this.NewProjectMapList_Tls.Text = "Create a project from a list of points";
-            this.NewProjectMapList_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
+            this.NewProjectMapList_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
             // 
             // NewProjectMapLatLon_Tls
             // 
             this.NewProjectMapLatLon_Tls.Name = "NewProjectMapLatLon_Tls";
             this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(472, 22);
             this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
-            this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_Click);
+            this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
             // 
             // NewRouteProject_Tls
             // 
