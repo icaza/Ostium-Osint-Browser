@@ -35,6 +35,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using Formatting = Newtonsoft.Json.Formatting;
 using GMapMarker = GMap.NET.WindowsForms.GMapMarker;
 using GMapPolygon = GMap.NET.WindowsForms.GMapPolygon;
 using GMapRoute = GMap.NET.WindowsForms.GMapRoute;
@@ -220,6 +221,7 @@ namespace Ostium
         readonly string AllowUrl = "allowed.txt";
         int urlBlocked = 0;
 
+        private CancellationTokenSource _parseCancellationSource;
         #endregion
 
         #region Frm_
@@ -7235,7 +7237,7 @@ namespace Ostium
 
                     var values = trimmedLine.Split(',');
 
-                    if (values.Length < 3)
+                    if (values.Length < 2)
                     {
                         errors.Add($"Line {inct}: Invalid format (insufficient columns)");
                         continue;
@@ -7323,11 +7325,6 @@ namespace Ostium
             elem.InnerText = locationname ?? string.Empty;
 
             parentNode.AppendChild(elem);
-        }
-
-        async Task AutoCreatePointsAsync(string fileopn, int model)
-        {
-            await Task.Run(() => AutoCreatePoints_Thrd(fileopn, model));
         }
 
         void NewRouteProject_Tls_Click(object sender, EventArgs e)
@@ -8917,44 +8914,71 @@ namespace Ostium
 
         void ParseJson_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonVal_Txt.Text == string.Empty)
+            _parseCancellationSource?.Cancel();
+            _parseCancellationSource?.Dispose();
+            _parseCancellationSource = new CancellationTokenSource();
+
+            var token = _parseCancellationSource.Token;
+            string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
+            string value = JsonVal_Txt.Text;
+            string charSpace = CharSpace_Txt.Text;
+
+            if (string.IsNullOrWhiteSpace(value))
             {
-                JsonVal_Txt.BackColor = Color.Red;
-                MessageBox.Show("Insert keyword!");
-                JsonVal_Txt.BackColor = Color.Black;
+                MessageBox.Show("Veuillez fournir des valeurs à parser.", "Erreur");
                 return;
             }
 
-            string Jselect;
-            if (OutJsonA_Chk.Checked)
-                Jselect = JsonA;
-            else
-                Jselect = JsonB;
+            if (string.IsNullOrWhiteSpace(jsonPath) || !File.Exists(jsonPath))
+            {
+                MessageBox.Show("Chemin JSON invalide ou fichier non trouvé.", "Erreur");
+                return;
+            }
 
-            Thread ParseVal = new Thread(() => ParseVal_Thrd(JsonVal_Txt.Text, Jselect, CharSpace_Txt.Text));
-            ParseVal.Start();
+            Task.Run(() => ParseVal_Thrd(value, jsonPath, charSpace, token), token);
         }
 
         void ParseNodeJson_Btn_Click(object sender, EventArgs e)
         {
-            if (JsonVal_Txt.Text == string.Empty || JsonNode_Txt.Text == string.Empty)
+            string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
+
+            var parameters = new ParseNodeParameters
             {
-                JsonVal_Txt.BackColor = Color.Red;
-                JsonNode_Txt.BackColor = Color.Red;
-                MessageBox.Show("Insert keyword!");
-                JsonVal_Txt.BackColor = Color.Black;
-                JsonNode_Txt.BackColor = Color.Black;
-                return;
-            }
+                Value = JsonVal_Txt.Text,
+                Count = JsonCnt_txt.Text,
+                JsonPath = jsonPath,
+                JsonNode = JsonNode_Txt.Text,
+                CharSpace = CharSpace_Txt.Text,
+                UseBrackets = Brkt_Chk.Checked,
+                ChangeCulture = ChgCult_Chk.Checked
+            };
 
-            string Jselect;
-            if (OutJsonA_Chk.Checked)
-                Jselect = JsonA;
-            else
-                Jselect = JsonB;
+            Task.Run(() =>
+            {
+                try
+                {
+                    ParseNode_Thrd(parameters);
+                }
+                catch (Exception ex)
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        MessageBox.Show($"Error: {ex.Message}", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    });
+                }
+            });
+        }
 
-            Thread ParseNode = new Thread(() => ParseNode_Thrd(JsonVal_Txt.Text, JsonCnt_txt.Text, Jselect, JsonNode_Txt.Text, CharSpace_Txt.Text));
-            ParseNode.Start();
+        class ParseNodeParameters
+        {
+            public string Value { get; set; }
+            public string Count { get; set; }
+            public string JsonPath { get; set; }
+            public string JsonNode { get; set; }
+            public string CharSpace { get; set; }
+            public bool UseBrackets { get; set; }
+            public bool ChangeCulture { get; set; }
         }
 
         void TableParse_Btn_Click(object sender, EventArgs e)
@@ -9055,47 +9079,143 @@ namespace Ostium
             }
         }
 
-        void ParseVal_Thrd(string value, string jsonout, string charspace)
+        void ParseVal_Thrd(string value, string jsonPath, string charSpace, CancellationToken cancellationToken)
         {
             try
             {
-                string xT = value;
-                string xO = string.Empty;
-                char[] charsToTrim = { ',' };
-                string[] words = xT.Split();
-                string sendval = string.Empty;
-                string OutJs = string.Empty;
+                var words = value.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                                .Select(w => w.TrimEnd(','))
+                                .Where(w => !string.IsNullOrWhiteSpace(w))
+                                .Distinct()
+                                .ToArray();
 
-                using (StreamReader sr = new StreamReader(jsonout))
+                if (words.Length == 0) return;
+
+                string jsonContent = File.ReadAllText(jsonPath, Encoding.UTF8);
+
+                if (Brkt_Chk.Checked && !jsonContent.Trim().StartsWith("["))
                 {
-                    OutJs = sr.ReadToEnd();
-                }
-                if (Brkt_Chk.Checked)
-                    OutJs = "[" + OutJs + "]";
-
-                JArray jsonVal = JArray.Parse(OutJs);
-                dynamic valjson = jsonVal;
-
-                foreach (dynamic val in valjson)
-                {
-                    foreach (string word in words)
-                    {
-                        if (ChgCult_Chk.Checked)
-                            xO += val[word.TrimEnd(charsToTrim)].ToString(new CultureInfo("us-US")) + charspace;
-                        else
-                            xO += val[word.TrimEnd(charsToTrim)] + charspace;
-                    }
-
-                    sendval += xO + "\r\n";
-                    xO = string.Empty;
+                    jsonContent = "[" + jsonContent + "]";
                 }
 
-                Invoke(new Action<string>(ValAdd_Invk), sendval);
+                var jsonArray = JArray.Parse(jsonContent);
+
+                // parallel or sequential
+                bool useParallel = ShouldUseParallel(jsonArray.Count, words.Length);
+
+                string finalResult;
+
+                if (useParallel)
+                {
+                    finalResult = ProcessParallel(jsonArray, words, charSpace, cancellationToken);
+                }
+                else
+                {
+                    finalResult = ProcessSequential(jsonArray, words, charSpace, cancellationToken);
+                }
+
+                if (!cancellationToken.IsCancellationRequested && !string.IsNullOrEmpty(finalResult))
+                {
+                    Invoke(new Action<string>(ValAdd_Invk), finalResult);
+                }
             }
+            catch (OperationCanceledException) { /* Canceled */ }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                Invoke(new Action(() => MessageBox.Show($"Erreur: {ex.Message}", "Erreur")));
             }
+        }
+
+        bool ShouldUseParallel(int itemCount, int wordCount)
+        {
+            int threshold = Environment.ProcessorCount * 500; // 500 items by heart
+
+            return itemCount > threshold
+                   && wordCount > 1
+                   && Environment.ProcessorCount > 1
+                   && itemCount > 100; // Absolute minimum
+        }
+
+        string ProcessParallel(JArray jsonArray, string[] words, string charSpace, CancellationToken token)
+        {
+            bool useUsCulture = ChgCult_Chk.Checked;
+            var culture = useUsCulture ? CultureInfo.GetCultureInfo("en-US") : null;
+
+            // Optimal configuration for PLINQ
+            var results = jsonArray.AsParallel()
+                .WithCancellation(token)
+                .WithDegreeOfParallelism(Math.Min(Environment.ProcessorCount, 8)) // Max 8 threads
+                .WithMergeOptions(ParallelMergeOptions.NotBuffered)
+                .Select(item =>
+                {
+                    if (token.IsCancellationRequested)
+                        return string.Empty;
+
+                    var lineBuilder = new StringBuilder();
+                    bool hasData = false;
+
+                    foreach (var word in words)
+                    {
+                        var tokenValue = item[word];
+                        if (tokenValue == null) continue;
+
+                        string value = useUsCulture && (tokenValue.Type == JTokenType.Float || tokenValue.Type == JTokenType.Integer)
+                            ? (tokenValue.Type == JTokenType.Float
+                                ? ((double)tokenValue).ToString("G", culture)
+                                : ((long)tokenValue).ToString("G", culture))
+                            : tokenValue.ToString();
+
+                        if (hasData) lineBuilder.Append(charSpace);
+                        lineBuilder.Append(value);
+                        hasData = true;
+                    }
+
+                    return lineBuilder.ToString();
+                })
+                .Where(line => !string.IsNullOrEmpty(line))
+                .ToArray();
+
+            return string.Join(Environment.NewLine, results);
+        }
+
+        string ProcessSequential(JArray jsonArray, string[] words, string charSpace, CancellationToken token)
+        {
+            bool useUsCulture = ChgCult_Chk.Checked;
+            var culture = useUsCulture ? CultureInfo.GetCultureInfo("en-US") : null;
+
+            int estimatedLength = jsonArray.Count * (words.Length * 20 + charSpace.Length * (words.Length - 1) + 2);
+            var resultBuilder = new StringBuilder(estimatedLength);
+
+            foreach (var item in jsonArray)
+            {
+                if (token.IsCancellationRequested) break;
+
+                var lineBuilder = new StringBuilder();
+                bool hasData = false;
+
+                foreach (var word in words)
+                {
+                    var tokenValue = item[word];
+                    if (tokenValue == null) continue;
+
+                    string value = useUsCulture && (tokenValue.Type == JTokenType.Float || tokenValue.Type == JTokenType.Integer)
+                        ? (tokenValue.Type == JTokenType.Float
+                            ? ((double)tokenValue).ToString("G", culture)
+                            : ((long)tokenValue).ToString("G", culture))
+                        : tokenValue.ToString();
+
+                    if (hasData) lineBuilder.Append(charSpace);
+                    lineBuilder.Append(value);
+                    hasData = true;
+                }
+
+                if (hasData)
+                {
+                    resultBuilder.AppendLine(lineBuilder.ToString());
+                }
+            }
+
+            return resultBuilder.ToString();
         }
 
         void TableParseVal_Thrd()
@@ -9176,53 +9296,119 @@ namespace Ostium
             }
         }
 
-        void ParseNode_Thrd(string value, string count, string jsonout, string jsonnode, string charspace)
+        void ParseNode_Thrd(object state)
         {
+            if (!(state is ParseNodeParameters parameters))
+            {
+                return;
+            }
+
             try
             {
-                string xT = value;
-                string xO = string.Empty;
-                char[] charsToTrim = { ',' };
-                string[] words = xT.Split();
-                string sendval = string.Empty;
-                string OutJs = string.Empty;
-
-                using (StreamReader sr = new StreamReader(jsonout))
-                {
-                    OutJs = sr.ReadToEnd();
-                }
-                if (Brkt_Chk.Checked)
-                    OutJs = "[" + OutJs + "]";
-
-                int CntEnd = Convert.ToInt32(count);
-                JsonNode CastNode = JsonNode.Parse(OutJs);
-                JsonNode SelNode = CastNode[jsonnode];
-
-                for (int i = 0; i < CntEnd; i++)
-                {
-                    JsonNode SrcName = SelNode[i];
-
-                    JArray jsonVal = JArray.Parse("[" + SrcName.ToJsonString() + "]");
-                    dynamic valjson = jsonVal;
-                    foreach (dynamic val in valjson)
-                    {
-                        foreach (string word in words)
-                        {
-                            if (ChgCult_Chk.Checked)
-                                xO += val[word.TrimEnd(charsToTrim)].ToString(new CultureInfo("us-US")) + charspace;
-                            else
-                                xO += val[word.TrimEnd(charsToTrim)] + charspace;
-                        }
-
-                        sendval += xO + "\r\n";
-                        xO = string.Empty;
-                    }
-                }
-                Invoke(new Action<string>(ValAdd_Invk), sendval);
+                var result = ProcessJson(parameters);
+                Invoke(new Action<string>(ValAdd_Invk), result);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                Invoke(new Action(() =>
+                    MessageBox.Show($"Error processing JSON: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)));
+            }
+        }
+
+        string ProcessJson(ParseNodeParameters parameters)
+        {
+            string[] keys = parameters.Value.Split(
+                new[] { ' ', '\t' },
+                StringSplitOptions.RemoveEmptyEntries
+            );
+
+            char[] trimChars = { ',' };
+            for (int i = 0; i < keys.Length; i++)
+            {
+                keys[i] = keys[i].TrimEnd(trimChars);
+            }
+
+            string jsonContent = File.ReadAllText(parameters.JsonPath, Encoding.UTF8);
+            if (parameters.UseBrackets)
+            {
+                jsonContent = $"[{jsonContent}]";
+            }
+
+            using (JsonDocument document = JsonDocument.Parse(jsonContent))
+            {
+                JsonElement root = document.RootElement;
+
+                if (!root.TryGetProperty(parameters.JsonNode, out JsonElement selectedNode))
+                {
+                    throw new KeyNotFoundException($"Node '{parameters.JsonNode}' not found in JSON");
+                }
+
+                if (!int.TryParse(parameters.Count, out int count) || count <= 0)
+                {
+                    throw new ArgumentException("Invalid count value");
+                }
+
+                int actualCount = Math.Min(count, selectedNode.GetArrayLength());
+
+                var results = new StringBuilder(actualCount * 100); // Approximate pre-allocation
+                _ = parameters.ChangeCulture ? // CultureInfo culture
+                    new CultureInfo("en-US") :
+                    CultureInfo.InvariantCulture;
+
+                for (int i = 0; i < actualCount; i++)
+                {
+                    JsonElement element = selectedNode[i];
+                    StringBuilder lineBuilder = new StringBuilder();
+
+                    foreach (string key in keys)
+                    {
+                        if (element.TryGetProperty(key, out JsonElement valueElement))
+                        {
+                            string value = "";
+
+                            switch (valueElement.ValueKind)
+                            {
+                                case JsonValueKind.Number when parameters.ChangeCulture:
+                                    value = valueElement.GetRawText().Replace(",", ".");
+                                    break;
+                                case JsonValueKind.String:
+                                    value = valueElement.GetString();
+                                    break;
+                                case JsonValueKind.Number:
+                                    value = valueElement.GetRawText();
+                                    break;
+                                case JsonValueKind.True:
+                                    value = "true";
+                                    break;
+                                case JsonValueKind.False:
+                                    value = "false";
+                                    break;
+                                case JsonValueKind.Null:
+                                    value = "null";
+                                    break;
+                                default:
+                                    value = valueElement.GetRawText();
+                                    break;
+                            }
+
+                            lineBuilder.Append(value).Append(parameters.CharSpace);
+                        }
+                        else
+                        {
+                            lineBuilder.Append(parameters.CharSpace);
+                        }
+                    }
+
+                    if (lineBuilder.Length > 0 && !string.IsNullOrEmpty(parameters.CharSpace))
+                    {
+                        lineBuilder.Length -= parameters.CharSpace.Length;
+                    }
+
+                    results.AppendLine(lineBuilder.ToString());
+                }
+
+                return results.ToString();
             }
         }
 
@@ -9428,7 +9614,7 @@ namespace Ostium
 
         #region Invoke_Json
 
-        void ValAdd_Invk(string val)
+        void ValAdd_Invk(string result)
         {
             string Jselect;
             if (OutJsonA_Chk.Checked)
@@ -9436,7 +9622,7 @@ namespace Ostium
             else
                 Jselect = JsonA;
 
-            File_Write(Jselect, val);
+            File_Write(Jselect, result);
             Uri uri = new Uri("file:///" + Jselect);
 
             if (OutJsonA_Chk.Checked)

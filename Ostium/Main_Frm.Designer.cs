@@ -94,6 +94,8 @@
             this.StartSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.LocalhostSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
+            this.LogPathSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
             this.Download_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.History_Param = new System.Windows.Forms.ToolStripMenuItem();
@@ -541,8 +543,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.LogPathSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1138,33 +1138,45 @@
             // ConfigSFE_Btn
             // 
             this.ConfigSFE_Btn.Name = "ConfigSFE_Btn";
-            this.ConfigSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.ConfigSFE_Btn.Size = new System.Drawing.Size(137, 22);
             this.ConfigSFE_Btn.Text = "Config";
             this.ConfigSFE_Btn.Click += new System.EventHandler(this.ConfigSFE_Btn_Click);
             // 
             // toolStripSeparator39
             // 
             this.toolStripSeparator39.Name = "toolStripSeparator39";
-            this.toolStripSeparator39.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator39.Size = new System.Drawing.Size(134, 6);
             // 
             // StartSFE_Btn
             // 
             this.StartSFE_Btn.Name = "StartSFE_Btn";
-            this.StartSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.StartSFE_Btn.Size = new System.Drawing.Size(137, 22);
             this.StartSFE_Btn.Text = "Start";
             this.StartSFE_Btn.Click += new System.EventHandler(this.StartSFE_Btn_Click);
             // 
             // toolStripSeparator40
             // 
             this.toolStripSeparator40.Name = "toolStripSeparator40";
-            this.toolStripSeparator40.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator40.Size = new System.Drawing.Size(134, 6);
             // 
             // LocalhostSFE_Btn
             // 
             this.LocalhostSFE_Btn.Name = "LocalhostSFE_Btn";
-            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(137, 22);
             this.LocalhostSFE_Btn.Text = "Localhost";
             this.LocalhostSFE_Btn.Click += new System.EventHandler(this.LocalhostSFE_Btn_Click);
+            // 
+            // toolStripSeparator41
+            // 
+            this.toolStripSeparator41.Name = "toolStripSeparator41";
+            this.toolStripSeparator41.Size = new System.Drawing.Size(134, 6);
+            // 
+            // LogPathSFE_Btn
+            // 
+            this.LogPathSFE_Btn.Name = "LogPathSFE_Btn";
+            this.LogPathSFE_Btn.Size = new System.Drawing.Size(137, 22);
+            this.LogPathSFE_Btn.Text = "Log Path";
+            this.LogPathSFE_Btn.Click += new System.EventHandler(this.LogPathSFE_Btn_Click);
             // 
             // toolStripSeparator34
             // 
@@ -4064,7 +4076,7 @@
             this.BrcktB_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktB_Txt.Location = new System.Drawing.Point(1008, 0);
+            this.BrcktB_Txt.Location = new System.Drawing.Point(1037, 0);
             this.BrcktB_Txt.Name = "BrcktB_Txt";
             this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktB_Txt.TabIndex = 29;
@@ -4075,7 +4087,7 @@
             this.label30.Dock = System.Windows.Forms.DockStyle.Left;
             this.label30.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.Gray;
-            this.label30.Location = new System.Drawing.Point(974, 0);
+            this.label30.Location = new System.Drawing.Point(1003, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(34, 22);
             this.label30.TabIndex = 28;
@@ -4089,7 +4101,7 @@
             this.BrcktA_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktA_Txt.Location = new System.Drawing.Point(937, 0);
+            this.BrcktA_Txt.Location = new System.Drawing.Point(966, 0);
             this.BrcktA_Txt.Name = "BrcktA_Txt";
             this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
             this.BrcktA_Txt.TabIndex = 27;
@@ -4106,7 +4118,7 @@
             this.ReplaceBrckt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReplaceBrckt_btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReplaceBrckt_btn.ForeColor = System.Drawing.Color.White;
-            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(869, 0);
+            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(898, 0);
             this.ReplaceBrckt_btn.Name = "ReplaceBrckt_btn";
             this.ReplaceBrckt_btn.Size = new System.Drawing.Size(68, 22);
             this.ReplaceBrckt_btn.TabIndex = 30;
@@ -4118,7 +4130,7 @@
             // 
             this.label29.Dock = System.Windows.Forms.DockStyle.Left;
             this.label29.ForeColor = System.Drawing.Color.Gray;
-            this.label29.Location = new System.Drawing.Point(859, 0);
+            this.label29.Location = new System.Drawing.Point(888, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(10, 22);
             this.label29.TabIndex = 26;
@@ -4131,7 +4143,7 @@
             this.CharSpace_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.CharSpace_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CharSpace_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.CharSpace_Txt.Location = new System.Drawing.Point(832, 0);
+            this.CharSpace_Txt.Location = new System.Drawing.Point(861, 0);
             this.CharSpace_Txt.Name = "CharSpace_Txt";
             this.CharSpace_Txt.Size = new System.Drawing.Size(27, 22);
             this.CharSpace_Txt.TabIndex = 25;
@@ -4143,7 +4155,7 @@
             this.label28.Dock = System.Windows.Forms.DockStyle.Left;
             this.label28.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.Gray;
-            this.label28.Location = new System.Drawing.Point(741, 0);
+            this.label28.Location = new System.Drawing.Point(770, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(91, 22);
             this.label28.TabIndex = 24;
@@ -4157,7 +4169,7 @@
             this.JsonCnt_txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonCnt_txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonCnt_txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonCnt_txt.Location = new System.Drawing.Point(692, 0);
+            this.JsonCnt_txt.Location = new System.Drawing.Point(721, 0);
             this.JsonCnt_txt.Name = "JsonCnt_txt";
             this.JsonCnt_txt.Size = new System.Drawing.Size(49, 22);
             this.JsonCnt_txt.TabIndex = 23;
@@ -4169,7 +4181,7 @@
             this.label27.Dock = System.Windows.Forms.DockStyle.Left;
             this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.Gray;
-            this.label27.Location = new System.Drawing.Point(630, 0);
+            this.label27.Location = new System.Drawing.Point(659, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(62, 22);
             this.label27.TabIndex = 22;
@@ -4183,7 +4195,7 @@
             this.JsonNode_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.JsonNode_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonNode_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonNode_Txt.Location = new System.Drawing.Point(394, 0);
+            this.JsonNode_Txt.Location = new System.Drawing.Point(423, 0);
             this.JsonNode_Txt.Name = "JsonNode_Txt";
             this.JsonNode_Txt.Size = new System.Drawing.Size(236, 22);
             this.JsonNode_Txt.TabIndex = 21;
@@ -4201,7 +4213,7 @@
             this.ParseNodeJson_Btn.ForeColor = System.Drawing.Color.White;
             this.ParseNodeJson_Btn.Location = new System.Drawing.Point(297, 0);
             this.ParseNodeJson_Btn.Name = "ParseNodeJson_Btn";
-            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(97, 22);
+            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(126, 22);
             this.ParseNodeJson_Btn.TabIndex = 20;
             this.ParseNodeJson_Btn.Text = "Parse Object";
             this.ParseNodeJson_Btn.UseVisualStyleBackColor = false;
@@ -6792,18 +6804,6 @@
             this.UndoRoutePoint_Btn.Text = "Undo Route Point";
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
-            // 
-            // LogPathSFE_Btn
-            // 
-            this.LogPathSFE_Btn.Name = "LogPathSFE_Btn";
-            this.LogPathSFE_Btn.Size = new System.Drawing.Size(180, 22);
-            this.LogPathSFE_Btn.Text = "Log Path";
-            this.LogPathSFE_Btn.Click += new System.EventHandler(this.LogPathSFE_Btn_Click);
-            // 
-            // toolStripSeparator41
-            // 
-            this.toolStripSeparator41.Name = "toolStripSeparator41";
-            this.toolStripSeparator41.Size = new System.Drawing.Size(177, 6);
             // 
             // Main_Frm
             // 
