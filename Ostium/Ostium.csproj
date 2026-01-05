@@ -327,6 +327,11 @@
     <Content Include="Keeptrack\Keeptrack.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\scriptsl\Domain_Infos.js" />
+    <Content Include="scripts\scriptsl\Extract_Article_and_Link.js" />
+    <Content Include="scripts\scriptsl\Extract_Data.js" />
+    <Content Include="scripts\scriptsl\Extract_Images.js" />
+    <Content Include="scripts\scriptsl\Url_Extractor.js" />
     <Content Include="SDelete_cmd\SDelete\Eula.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -343,18 +348,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Viewxml.png" />
-    <Content Include="scripts\scriptsl\Domain_Infos.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="scripts\scriptsl\Extract_Article_and_Link.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="scripts\scriptsl\Extract_Data.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="scripts\scriptsl\Extract_Images.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\Top.png" />
     <None Include="Resources\Menutls.png" />
     <None Include="Resources\Sprites.png" />

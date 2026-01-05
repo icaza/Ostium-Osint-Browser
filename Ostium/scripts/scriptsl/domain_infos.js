@@ -1,3 +1,11 @@
+/**
+ * @file Domain_Infos.js
+ * @author ICAZA <github.wildly512@passinbox.com>
+ * @version 1.1
+ * @description Display information for a domain.
+ * @license MIT
+ */
+
 function collectData() {
     return {
         "Full domain name": window.location.hostname,

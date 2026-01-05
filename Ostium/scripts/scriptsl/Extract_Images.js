@@ -1,4 +1,12 @@
-﻿(function () {
+﻿/**
+ * @file Extract_Images.js
+ * @author ICAZA <github.wildly512@passinbox.com>
+ * @version 1.1
+ * @description Extract images from a web page.
+ * @license MIT
+ */
+
+(function () {
     function createTable(headers, data) {
         let table = document.createElement("table");
         table.style.border = "1px solid black";
