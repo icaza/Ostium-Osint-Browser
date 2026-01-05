@@ -8846,13 +8846,8 @@ namespace Ostium
 
         void JsonSaveFile_Btn_Click(object sender, EventArgs e)
         {
-            string Jselect;
-            if (OutJsonA_Chk.Checked)
-                Jselect = JsonA;
-            else
-                Jselect = JsonB;
-
-            SavefileShowDiag(Jselect, "json files (*.json)|*.json");
+           string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
+            SavefileShowDiag(jsonPath, "json files (*.json)|*.json");
         }
 
         void JsonSaveUri_Btn_Click(object sender, EventArgs e)
@@ -8872,13 +8867,8 @@ namespace Ostium
 
         void JsonSaveData_Btn_Click(object sender, EventArgs e)
         {
-            string Jselect;
-            if (OutJsonA_Chk.Checked)
-                Jselect = JsonA;
-            else
-                Jselect = JsonB;
-
-            SavefileShowDiag(Jselect, "files (*.*)|*.*");
+            string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
+            SavefileShowDiag(jsonPath, "files (*.*)|*.*");
         }
 
         void GetJson_Btn_Click(object sender, EventArgs e)
@@ -8925,7 +8915,9 @@ namespace Ostium
 
             if (string.IsNullOrWhiteSpace(value))
             {
-                MessageBox.Show("Veuillez fournir des valeurs à parser.", "Erreur");
+                JsonVal_Txt.BackColor = Color.Red;
+                MessageBox.Show("Provide values ​​to parse!");
+                JsonVal_Txt.BackColor = Color.Black;
                 return;
             }
 
@@ -8941,6 +8933,16 @@ namespace Ostium
         void ParseNodeJson_Btn_Click(object sender, EventArgs e)
         {
             string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
+
+            if (string.IsNullOrWhiteSpace(JsonVal_Txt.Text) || string.IsNullOrWhiteSpace(JsonNode_Txt.Text))
+            {
+                JsonVal_Txt.BackColor = Color.Red;
+                JsonNode_Txt.BackColor = Color.Red;
+                MessageBox.Show("Provide values ​​to parse!");
+                JsonVal_Txt.BackColor = Color.Black;
+                JsonNode_Txt.BackColor = Color.Black;
+                return;
+            }
 
             var parameters = new ParseNodeParameters
             {
