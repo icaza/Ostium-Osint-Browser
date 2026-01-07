@@ -12,7 +12,6 @@ using Newtonsoft.Json.Linq;
 using Ostium.Properties;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
@@ -35,7 +34,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using Formatting = Newtonsoft.Json.Formatting;
 using GMapMarker = GMap.NET.WindowsForms.GMapMarker;
 using GMapPolygon = GMap.NET.WindowsForms.GMapPolygon;
 using GMapRoute = GMap.NET.WindowsForms.GMapRoute;
@@ -222,6 +220,7 @@ namespace Ostium
         int urlBlocked = 0;
 
         private CancellationTokenSource _parseCancellationSource;
+        readonly List<string> collectedItemsTitleRss = new List<string>();
         #endregion
 
         #region Frm_
@@ -1784,16 +1783,7 @@ namespace Ostium
                         }
                     }
 
-                    ///
-                    /// Change, for those who use Google as their default search engine, the link used was the following 
-                    /// https://www.google.com/search?q=SEARCHWORD you just had to enter the search term in Ostium or the Url. 
-                    /// For the Url it is therefore direct for the search it was a combination of the Google Url + the search term. 
-                    /// This method is deprecated and requires us to validate a stupid captha. So I modified the code so that it 
-                    /// opens the Google search page (for those who use it) rather than leaving the automation to facilitate a step. 
-                    /// I grayed out the old line for those who want to keep it in the code.
-                    ///
-                    /// uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
-                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH);
+                    uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                 }
 
                 if (WebviewRedirect == 0)
@@ -2760,11 +2750,11 @@ namespace Ostium
 
         void StartSFE_Btn_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe")))
                 {
-                    MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!", 
+                    MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
                         "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
@@ -2830,7 +2820,7 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! LogPathSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
-            }            
+            }
         }
 
         void OpenKeepTrack()
@@ -3004,7 +2994,7 @@ namespace Ostium
         {
             if (!File.Exists(Path.Combine(SVGviewerdir, "SVGviewer.exe")))
             {
-                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!", 
+                MessageBox.Show("SVGviewer are not exist in directory, go to Discord channel Ostium for fix and help.", "Error!",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -4388,6 +4378,18 @@ namespace Ostium
             }
         }
 
+        void CreateDataOAI(string fileName, IEnumerable<string> fileValues)
+        {
+            try
+            {
+                File.AppendAllLines(fileName, fileValues);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("CreateDataOAI: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void OpnFileOpt(string dirPath)
         {
             if (!File.Exists(Class_Var.DEFAULT_EDITOR))
@@ -5626,6 +5628,14 @@ namespace Ostium
                 VolumeValue_Lbl.Text = "Volume: " + Convert.ToString(VolumeVal_Track.Value);
                 RateValue_Lbl.Text = "Rate: " + Convert.ToString(RateVal_Track.Value);
             }
+        }
+
+        void SaveTitleRss_Btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(Path.Combine(AppStart, "acturesume.txt")))
+                File.Delete(Path.Combine(AppStart, "acturesume.txt"));
+
+            CreateDataOAI(Path.Combine(AppStart, "acturesume.txt"), collectedItemsTitleRss);
         }
 
         void ReadTitle_Btn_Click(object sender, EventArgs e)
@@ -6946,6 +6956,7 @@ namespace Ostium
                     break;
                 case "ItemTitleAdd":
                     Title_Lst.Items.Add(AddTitleItem);
+                    collectedItemsTitleRss.Add(AddTitleItem);
                     break;
                 case "ItemLinkAdd":
                     Link_Lst.Items.Add(AddLinkItem);
@@ -8846,7 +8857,7 @@ namespace Ostium
 
         void JsonSaveFile_Btn_Click(object sender, EventArgs e)
         {
-           string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
+            string jsonPath = OutJsonA_Chk.Checked ? JsonA : JsonB;
             SavefileShowDiag(jsonPath, "json files (*.json)|*.json");
         }
 

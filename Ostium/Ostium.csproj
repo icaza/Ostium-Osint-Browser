@@ -327,11 +327,21 @@
     <Content Include="Keeptrack\Keeptrack.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="scripts\scriptsl\Domain_Infos.js" />
-    <Content Include="scripts\scriptsl\Extract_Article_and_Link.js" />
-    <Content Include="scripts\scriptsl\Extract_Data.js" />
-    <Content Include="scripts\scriptsl\Extract_Images.js" />
-    <Content Include="scripts\scriptsl\Url_Extractor.js" />
+    <Content Include="scripts\scriptsl\Domain_Infos.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Extract_Article_and_Link.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Extract_Data.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Extract_Images.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Url_Extractor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SDelete_cmd\SDelete\Eula.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

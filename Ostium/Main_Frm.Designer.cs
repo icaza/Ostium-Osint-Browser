@@ -543,6 +543,7 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.SaveTitleRss_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -5960,7 +5961,8 @@
             this.OpnFileCategory_Btn,
             this.TraductPageFeed_Btn,
             this.toolStripSeparator19,
-            this.SpeakOpenPnl_Btn});
+            this.SpeakOpenPnl_Btn,
+            this.SaveTitleRss_Btn});
             this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.White;
             this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
@@ -6805,6 +6807,13 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // SaveTitleRss_Btn
+            // 
+            this.SaveTitleRss_Btn.Name = "SaveTitleRss_Btn";
+            this.SaveTitleRss_Btn.Size = new System.Drawing.Size(201, 22);
+            this.SaveTitleRss_Btn.Text = "OAI";
+            this.SaveTitleRss_Btn.Click += new System.EventHandler(this.SaveTitleRss_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -7436,6 +7445,7 @@
         private System.Windows.Forms.ToolStripMenuItem LocalhostSFE_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
         private System.Windows.Forms.ToolStripMenuItem LogPathSFE_Btn;
+        private System.Windows.Forms.ToolStripMenuItem SaveTitleRss_Btn;
     }
 }
 
