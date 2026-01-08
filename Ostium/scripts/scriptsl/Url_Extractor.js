@@ -24,7 +24,12 @@
 
     links.forEach(link => {
       const href = link.href;
-      if (!href || href.startsWith('javascript:')) return;
+      if (!href ||
+          href.startsWith('javascript:') ||
+          href.startsWith('data:') ||
+          href.startsWith('vbscript:')) {
+        return;
+      }
 
       const text = link.textContent.trim() || link.title || href;
       const domain = new URL(href).hostname;
