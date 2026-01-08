@@ -225,7 +225,14 @@
         const links = Array.from(document.querySelectorAll('a[href]'))
             .map(a => {
                 const href = a.href;
-                if (!isValidUrl(href) || href.startsWith('javascript:') || href.startsWith('#')) {
+                const normalizedHref = href.trim().toLowerCase();
+                if (
+                    !isValidUrl(href) ||
+                    normalizedHref.startsWith('javascript:') ||
+                    normalizedHref.startsWith('data:') ||
+                    normalizedHref.startsWith('vbscript:') ||
+                    href.startsWith('#')
+                ) {
                     return null;
                 }
                 if (uniqueLinks.has(href)) return null;
