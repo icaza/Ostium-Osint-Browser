@@ -3,7 +3,6 @@
  * @author ICAZA <github.wildly512@passinbox.com>
  * @version 1.1
  * @description Extract images from a web page.
- * @license MIT
  */
 
 (function () {

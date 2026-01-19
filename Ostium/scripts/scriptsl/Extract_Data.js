@@ -3,7 +3,6 @@
  * @author ICAZA <github.wildly512@passinbox.com>
  * @version 1.3
  * @description Extract Data Enhanced.
- * @license MIT
  */
 
 (function () {

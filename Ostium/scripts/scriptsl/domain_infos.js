@@ -3,7 +3,6 @@
  * @author ICAZA <github.wildly512@passinbox.com>
  * @version 2.1
  * @description Display secure domain information with improved safety and performance
- * @license MIT
  */
 
 ; (function () {

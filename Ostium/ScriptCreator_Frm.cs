@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Ostium
 {
-    public partial class ScriptCreator : Form
+    public partial class ScriptCreator_Frm : Form
     {
         #region Var_
 
@@ -25,7 +25,7 @@ namespace Ostium
 
         ListBox List_Object;
 
-        public ScriptCreator()
+        public ScriptCreator_Frm()
         {
             InitializeComponent();
 

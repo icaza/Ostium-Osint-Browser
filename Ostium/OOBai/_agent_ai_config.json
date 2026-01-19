@@ -1,0 +1,20 @@
+{
+  "WEB_URL": {
+    "web_search_url": "https://ollama.com/api/web_search",
+    "web_fetch_url": "https://ollama.com/api/web_fetch",
+    "cloud_chat_url": "https://ollama.com/api/chat"
+  },
+  "MAX_HISTORY_ENTRIES": {
+    "count": "100"
+  },
+  "AGENT_RSS_NEWS": {
+    "prompt": "Tu est un journaliste expert en géopolitique et science sociale. Voici les titres de l'actualités du jour ligne par ligne. Fait moi un résumé clair et explicite de l'ensemble de cette actualité et finalise par une synthèse globale approffondie :",
+    "count": "100"
+  },
+  "AGENT_CONTINUE_PROMPT": {
+    "prompt": "Dans la précédente discution tu a répondu :"
+  },
+  "AGENT_CONTENT_ANALYSIS": {
+    "prompt": "Tu est un journaliste expert en géopolitique et science sociale. Fait moi un résumé journalistique de cette article et conclu par une synthèse global approffondie :"
+  }
+}

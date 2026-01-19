@@ -1,4 +1,5 @@
-﻿using Dirsize;
+﻿using ConversationCompressor;
+using Dirsize;
 using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
@@ -28,6 +29,7 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,6 +39,8 @@ using System.Xml.Linq;
 using GMapMarker = GMap.NET.WindowsForms.GMapMarker;
 using GMapPolygon = GMap.NET.WindowsForms.GMapPolygon;
 using GMapRoute = GMap.NET.WindowsForms.GMapRoute;
+using JsonException = System.Text.Json.JsonException;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Ostium
 {
@@ -88,13 +92,14 @@ namespace Ostium
         /// </summary>
         /// 
         Webview_Frm webviewForm;
-        HtmlText_Frm HtmlTextFrm;
+        HtmlText_Frm htmlTextFrm;
         Mdi_Frm mdiFrm;
         Doc_Frm docForm;
         Keeptrack_Frm keeptrackForm;
         DeserializeJson_Frm deserializeForm;
         OpenSource_Frm openSourceForm;
-        ScriptCreator scriptCreatorFrm;
+        //PromptSend_Frm promptSendForm;
+        ScriptCreator_Frm scriptCreatorFrm;
         Bookmarklets_Frm bookmarkletsFrm;
         ListBox List_Object;
         ToolStripComboBox Cbx_Object;
@@ -169,8 +174,8 @@ namespace Ostium
         /// </summary>
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
-        readonly string MessageStartGeoloc = "When this window closes, the creation process begins. Please be patient, as the time depends on the number " +
-            "of points to be added to the file. ";
+        //readonly string MessageStartGeoloc = "When this window closes, the creation process begins. Please be patient, as the time depends on the number " +
+        //    "of points to be added to the file. ";
         ///
         /// <summary>
         /// Variable for checking updates
@@ -219,8 +224,54 @@ namespace Ostium
         readonly string AllowUrl = "allowed.txt";
         int urlBlocked = 0;
 
-        private CancellationTokenSource _parseCancellationSource;
+        CancellationTokenSource _parseCancellationSource;
         readonly List<string> collectedItemsTitleRss = new List<string>();
+        #endregion
+
+        #region Var_OOBai
+        HttpClientHandler _httpHandler;
+        HttpClient _httpClient;
+        CancellationTokenSource _cancellationTokenSource;
+        System.Windows.Forms.Timer _statusResetTimer;
+
+        readonly string OOBai = Application.StartupPath + @"\OOBai\";
+        readonly string Config_OOBai = Application.StartupPath + @"\OOBai\config.json";
+        readonly string History_OOBai = Application.StartupPath + @"\OOBai\history.json";
+        readonly string Templates_OOBai = Application.StartupPath + @"\OOBai\templates.json";
+        readonly string Log_OOBai = Application.StartupPath + @"\OOBai\error.log";
+
+        const int TIMEOUT_MINUTES = 10;
+        const int MAX_PROMPT_LENGTH = 100000; // 100KB
+        const int MAX_URL_LENGTH = 2048;
+        const int MAX_MODEL_NAME_LENGTH = 100;
+        const int MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+        int MAX_HISTORY_ENTRIES = 100;
+        const int UI_UPDATE_BATCH_SIZE = 1; // character by character
+        const int UI_UPDATE_DELAY_MS = 50;
+
+        List<ConversationEntry> _conversationHistory;
+        int _currentHistoryIndex = -1;
+        List<PromptTemplate> _templates;
+        bool _disposed = false;
+
+        //readonly Queue<string> _streamingQueue;
+        //readonly System.Windows.Forms.Timer _streamingTimer;
+
+        readonly bool _isAutoScrolling = true;
+        //readonly int _lastScrollPosition = 0;
+
+        string WEB_SEARCH_URL = "https://ollama.com/api/web_search";
+        string WEB_FETCH_URL = "https://ollama.com/api/web_fetch";
+        string CLOUD_CHAT_URL = "https://ollama.com/api/chat";
+        const int MAX_QUERY_LENGTH = 1000;
+
+        string AGENT_RSS_NEWS_PROMPT;
+        int AGENT_RSS_COUNT_NEWS = 100;
+        string AGENT_CONTINUE_PROMPT;
+        string AGENT_CONTENT_ANALYSIS_PROMPT;
+        string AnswerContinue;
+        string ChatHost = "local";
+        string QuestionOnly = "";
         #endregion
 
         #region Frm_
@@ -328,6 +379,10 @@ namespace Ostium
         {
             try
             {
+                SaveSettings();
+                SaveHistory();
+                CompressionManager.Cleanup();
+
                 if (ClearOnOff == "on")
                 {
                     var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, " +
@@ -360,8 +415,8 @@ namespace Ostium
             FormClosing += new FormClosingEventHandler(Main_Frm_FormClosed);
             LocationChanged += new EventHandler(Main_Frm_LocationChanged);
             CategorieFeed_Cbx.SelectedIndexChanged += new EventHandler(CategorieFeed_Cbx_SelectedIndexChanged);
-            RSSListSite_Lbl.MouseEnter += new EventHandler(RSSListSite_Lbl_Lbl_MouseEnter);
-            RSSListSite_Lbl.MouseLeave += new EventHandler(RSSListSite_Lbl_Lbl_Leave);
+            RSSListSite_Lbl.MouseEnter += new EventHandler(RSSListSite_Lbl_MouseEnter);
+            RSSListSite_Lbl.MouseLeave += new EventHandler(RSSListSite_Lbl_Leave);
             ThemDiag_Cbx.SelectedIndexChanged += new EventHandler(ThemDiag_Cbx_SelectedIndexChanged);
             GMap_Ctrl.OnPositionChanged += new PositionChanged(GMap_Ctrl_OnPositionChanged);
             GMap_Ctrl.OnMapZoomChanged += new MapZoomChanged(GMap_Ctrl_OnMapZoomChanged);
@@ -547,7 +602,8 @@ namespace Ostium
                         MapDir,
                         JsonDir,
                         JsonDir + "table",
-                        Keeptrack + "thumbnails"
+                        Keeptrack + "thumbnails",
+                        OOBai
                     };
 
                 for (int i = 0; i < CreateDir.Count; i++)
@@ -577,6 +633,7 @@ namespace Ostium
                 InitializeDatabase();
                 LoadAdditionalFiles();
                 InitializeClassVariables();
+                LoadOOBaiConfig();
             }
             catch (Exception ex)
             {
@@ -728,6 +785,11 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
             loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
+
+            RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
+                Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
+            RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
+                Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
         }
 
         void InitializeClassVariables()
@@ -736,7 +798,73 @@ namespace Ostium
             Class_Var.SCRIPTCREATOR = "off";
         }
 
+        void LoadOOBaiConfig()
+        {
+            RenameFileForUPDT(Path.Combine(OOBai, "_ai_model_list.txt"), Path.Combine(OOBai, "ai_model_list.txt"));
+            RenameFileForUPDT(Path.Combine(OOBai, "_agent_ai_config.json"), Path.Combine(OOBai, "agent_ai_config.json"));
+            RenameFileForUPDT(Path.Combine(OOBai, "_french_words.txt"), Path.Combine(OOBai, "french_words.txt"));
+
+            AgentConfig.Load();
+
+            InitializeHttpClient();
+            InitializeStatusTimer();
+            LoadSettings();
+            LoadHistory();
+            LoadTemplates();
+            InitializeTemplatesMenu();
+
+            WEB_SEARCH_URL = string.IsNullOrWhiteSpace(AgentConfig.Get("WEB_URL", "web_search_url"))
+                ? "https://ollama.com/api/web_search"
+                : AgentConfig.Get("WEB_URL", "web_search_url");
+            WebSearch_Txt.Text = WEB_SEARCH_URL;
+
+            WEB_FETCH_URL = string.IsNullOrWhiteSpace(AgentConfig.Get("WEB_URL", "web_fetch_url"))
+                ? "https://ollama.com/api/web_fetch"
+                : AgentConfig.Get("WEB_URL", "web_fetch_url");
+            WebFetch_Txt.Text = WEB_FETCH_URL;
+
+            CLOUD_CHAT_URL = string.IsNullOrWhiteSpace(AgentConfig.Get("WEB_URL", "cloud_chat_url"))
+                ? "https://ollama.com/api/chat"
+                : AgentConfig.Get("WEB_URL", "cloud_chat_url");
+            CloudChat_Txt.Text = CLOUD_CHAT_URL;
+
+            string maxHistoryValue = string.IsNullOrWhiteSpace(AgentConfig.Get("MAX_HISTORY_ENTRIES", "count"))
+                ? "100"
+                : AgentConfig.Get("MAX_HISTORY_ENTRIES", "count");
+            MaxHistoryEntry_Status.Text = $"Max History Entry: {maxHistoryValue}";
+
+            string agentRssCount = string.IsNullOrWhiteSpace(AgentConfig.Get("AGENT_RSS_NEWS", "count"))
+                ? "100"
+                : AgentConfig.Get("AGENT_RSS_NEWS", "count");
+            Agent_RSS_Cnt_Status.Text = $"Agent RSS count: {agentRssCount}";
+
+            ModeSelectl_Cbx.Items.Clear();
+            ModeSelectl_Cbx.Items.AddRange(File.ReadAllLines(Path.Combine(OOBai, "ai_model_list.txt")));
+
+            OOBai_Tab.Text = $"OOBai [{ModeSelectl_Cbx.Text}]";
+        }
+
         #endregion
+
+        void RenameFileForUPDT(string sourceFileName, string targetFileName)
+        {
+            try
+            {
+                if (File.Exists(targetFileName))
+                {
+                    return;
+                }
+
+                if (File.Exists(sourceFileName))
+                {
+                    File.Move(sourceFileName, targetFileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! RenameFileForUPDT: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
 
         async void UpdateDirectorySize(string directoryPath, object objectsend)
         {
@@ -1258,13 +1386,46 @@ namespace Ostium
             CoreWebView2ContextMenuItem newItem5 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Keep Track", null, CoreWebView2ContextMenuItemKind.Command);
             newItem5.CustomItemSelected += delegate (object send, object ex)
             {
-                IsTimelineEnabled = !IsTimelineEnabled;
+                Form existingForm = Application.OpenForms["Keeptrack_Frm"];
 
-                if (IsTimelineEnabled)
+                if (existingForm == null)
                 {
-                    Browser_Tab.BackColor = Color.Red;
-                    CreateNameAleat();
-                    FileTimeLineName = Una + ".csv";
+                    IsTimelineEnabled = !IsTimelineEnabled;
+
+                    if (IsTimelineEnabled)
+                    {
+                        Browser_Tab.BackColor = Color.Red;
+                        CreateNameAleat();
+                        FileTimeLineName = Una + ".csv";
+
+                        if (!IsParentLinkEnabled)
+                        {
+                            IsParentLinkEnabled = !IsParentLinkEnabled;
+                            ForceLinkParent_Btn.ForeColor = Color.Red;
+                        }
+                    }
+                    else
+                        Browser_Tab.BackColor = Color.FromArgb(41, 44, 51);
+                }
+                else
+                {
+                    MessageBox.Show("Keep Track's automatic and manual modes should not be run simultaneously. " +
+                        "Automatic mode saves every new URL, while manual mode only collects URLs you add.",
+                        "Keep Track", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            };
+
+            CoreWebView2ContextMenuItem newItem6 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Tracking tool", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem6.CustomItemSelected += delegate (object send, object ex)
+            {
+                Form existingForm = Application.OpenForms["Keeptrack_Frm"];
+                if (existingForm != null)
+                    return;
+
+                if (!IsTimelineEnabled)
+                {
+                    keeptrackForm = new Keeptrack_Frm();
+                    keeptrackForm.Show();
 
                     if (!IsParentLinkEnabled)
                     {
@@ -1273,20 +1434,27 @@ namespace Ostium
                     }
                 }
                 else
-                    Browser_Tab.BackColor = Color.FromArgb(41, 44, 51);
+                {
+                    MessageBox.Show("Keep Track's automatic and manual modes should not be run simultaneously. " +
+                        "Automatic mode saves every new URL, while manual mode only collects URLs you add.",
+                        "Keep Track", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             };
 
-            CoreWebView2ContextMenuItem newItem6 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("Tracking tool", null, CoreWebView2ContextMenuItemKind.Command);
-            newItem6.CustomItemSelected += delegate (object send, object ex)
+            CoreWebView2ContextMenuItem newItem7 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("OOBai [Agent Content Analysis] Localhost", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem7.CustomItemSelected += delegate (object send, object ex)
             {
-                keeptrackForm = new Keeptrack_Frm();
-                keeptrackForm.Show();
+                ChatHost = "local";
 
-                if (!IsParentLinkEnabled)
-                {
-                    IsParentLinkEnabled = !IsParentLinkEnabled;
-                    ForceLinkParent_Btn.ForeColor = Color.Red;
-                }
+                Agent_ExtractScript();
+            };
+
+            CoreWebView2ContextMenuItem newItem8 = WBrowse.CoreWebView2.Environment.CreateContextMenuItem("OOBai [Agent Content Analysis] Cloud", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem8.CustomItemSelected += delegate (object send, object ex)
+            {
+                ChatHost = "cloud";
+
+                Agent_ExtractScript();
             };
 
             menuList.Insert(menuList.Count, newItem0);
@@ -1296,6 +1464,8 @@ namespace Ostium
             menuList.Insert(menuList.Count, newItem4);
             menuList.Insert(menuList.Count, newItem5);
             menuList.Insert(menuList.Count, newItem6);
+            menuList.Insert(menuList.Count, newItem7);
+            menuList.Insert(menuList.Count, newItem8);
         }
         ///
         /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
@@ -1413,7 +1583,7 @@ namespace Ostium
         ///
         void WBrowse_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
-            URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
+            URLtxt_Status.Text = WBrowse.Source.AbsoluteUri;
             WBrowse_UpdtTitleEvent("Source Changed");
         }
 
@@ -1573,7 +1743,7 @@ namespace Ostium
         /// 
         void WBrowsefeed_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
-            URLtxt_txt.Text = WBrowsefeed.Source.AbsoluteUri;
+            URLtxt_Status.Text = WBrowsefeed.Source.AbsoluteUri;
             WBrowsefeed_UpdtTitleEvent("Source Changed");
         }
 
@@ -1734,6 +1904,8 @@ namespace Ostium
         /// <param name="WebviewRedirect"></param>
         /// <param value="0">Opening or Searching in parent window</param>
         /// <param value="1">Open or Search in a new window</param>
+        /// <param value="2">OOBai Agent Fetches a single web page by URL and returns its content or Performs a 
+        /// web search for a single query and returns relevant results.</param> 
         /// <param value="file:///">Local file opening</param>
         /// <param name="URIopn">URL open in wBrowser "TAB BROWSx"</param>
         /// 
@@ -1783,6 +1955,12 @@ namespace Ostium
                         }
                     }
 
+                    if (WebviewRedirect == 2)
+                    {
+                        Agent_Web_Search(inputUrl);
+                        return;
+                    }
+
                     uri = new Uri(Class_Var.URL_DEFAUT_WSEARCH + Uri.EscapeDataString(inputUrl));
                 }
 
@@ -1790,10 +1968,14 @@ namespace Ostium
                 {
                     WBrowse.Source = uri;
                 }
-                else
+                else if (WebviewRedirect == 1)
                 {
                     Class_Var.URL_WEBVIEW = Convert.ToString(uri);
                     GoNewtab();
+                }
+                else if (WebviewRedirect == 2)
+                {
+                    AgentFetchSearch(Convert.ToString(uri));
                 }
             }
             catch (Exception ex)
@@ -1908,11 +2090,6 @@ namespace Ostium
         }
 
         #endregion
-
-        public class ConfigSFE
-        {
-            public int Port { get; set; }
-        }
 
         #region Tools_Tab_0
         ///
@@ -2325,8 +2502,8 @@ namespace Ostium
 
         void HTMLtxt_Btn_Click(object sender, EventArgs e)
         {
-            HtmlTextFrm = new HtmlText_Frm();
-            HtmlTextFrm.Show();
+            htmlTextFrm = new HtmlText_Frm();
+            htmlTextFrm.Show();
         }
 
         void Cookie_Btn_Click(object sender, EventArgs e)
@@ -2492,7 +2669,8 @@ namespace Ostium
             if (Class_Var.SCRIPTCREATOR == "off")
             {
                 Class_Var.SCRIPTCREATOR = "on";
-                scriptCreatorFrm = new ScriptCreator();
+
+                scriptCreatorFrm = new ScriptCreator_Frm();
                 scriptCreatorFrm.Show();
             }
         }
@@ -2948,13 +3126,13 @@ namespace Ostium
             {
                 JavaScriptFeed_Btn.Text = "JS Enabled";
                 JavaScriptFeed_Btn.ForeColor = Color.White;
-                JavaDisableFeed_Lbl.Visible = false;
+                JavaDisableFeed_Status.Visible = false;
             }
             else
             {
                 JavaScriptFeed_Btn.Text = "JS Disabled";
                 JavaScriptFeed_Btn.ForeColor = Color.Red;
-                JavaDisableFeed_Lbl.Visible = true;
+                JavaDisableFeed_Status.Visible = true;
             }
         }
 
@@ -3676,25 +3854,27 @@ namespace Ostium
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
                     Text = TmpTitleWBrowsefeed;
-                    URLtxt_txt.Text = WBrowsefeed.Source.AbsoluteUri;
-                    TableOpn_Lbl.Visible = false;
-                    CountFeed_Lbl.Visible = true;
-                    DBSelectOpen_Lbl.Visible = false;
-                    TableCount_Lbl.Visible = false;
-                    TableOpen_Lbl.Visible = false;
-                    TableVal_Lbl.Visible = false;
-                    RecordsCount_Lbl.Visible = false;
-                    LatTCurrent_Lbl.Visible = false;
+                    URLtxt_Status.Text = WBrowsefeed.Source.AbsoluteUri;
+                    TableOpn_Status.Visible = false;
+                    CountFeed_Status.Visible = true;
+                    DBSelectOpen_Status.Visible = false;
+                    TableCount_Status.Visible = false;
+                    TableOpen_Status.Visible = false;
+                    TableVal_Status.Visible = false;
+                    RecordsCount_Status.Visible = false;
+                    LatTCurrent_Status.Visible = false;
                     Separator.Visible = false;
-                    LonGtCurrent_Lbl.Visible = false;
-                    ProjectMapOpn_Lbl.Visible = false;
+                    LonGtCurrent_Status.Visible = false;
+                    ProjectMapOpn_Status.Visible = false;
                     TtsButton_Sts.Visible = false;
-                    FileOpnJson_Lbl.Visible = false;
+                    FileOpnJson_Status.Visible = false;
+                    MaxHistoryEntry_Status.Visible = false;
+                    Agent_RSS_Cnt_Status.Visible = false;
 
                     if (JavaScriptFeed_Btn.Text == "JS Disabled")
-                        JavaDisableFeed_Lbl.Visible = true;
+                        JavaDisableFeed_Status.Visible = true;
 
-                    JavaDisable_Lbl.Visible = false;
+                    JavaDisable_Status.Visible = false;
 
                     NewCategory_Txt.ForeColor = Color.DimGray;
                     NewCategory_Txt.Text = "new category";
@@ -3706,23 +3886,25 @@ namespace Ostium
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
-                    URLtxt_txt.Text = string.Empty;
+                    URLtxt_Status.Text = string.Empty;
                     Text = "DataBase Url";
-                    TableOpn_Lbl.Visible = false;
-                    CountFeed_Lbl.Visible = false;
-                    JavaDisable_Lbl.Visible = false;
-                    JavaDisableFeed_Lbl.Visible = false;
-                    DBSelectOpen_Lbl.Visible = true;
-                    TableCount_Lbl.Visible = true;
-                    TableOpen_Lbl.Visible = true;
-                    TableVal_Lbl.Visible = true;
-                    RecordsCount_Lbl.Visible = true;
-                    LatTCurrent_Lbl.Visible = false;
+                    TableOpn_Status.Visible = false;
+                    CountFeed_Status.Visible = false;
+                    JavaDisable_Status.Visible = false;
+                    JavaDisableFeed_Status.Visible = false;
+                    DBSelectOpen_Status.Visible = true;
+                    TableCount_Status.Visible = true;
+                    TableOpen_Status.Visible = true;
+                    TableVal_Status.Visible = true;
+                    RecordsCount_Status.Visible = true;
+                    LatTCurrent_Status.Visible = false;
                     Separator.Visible = false;
-                    LonGtCurrent_Lbl.Visible = false;
-                    ProjectMapOpn_Lbl.Visible = false;
+                    LonGtCurrent_Status.Visible = false;
+                    ProjectMapOpn_Status.Visible = false;
                     TtsButton_Sts.Visible = false;
-                    FileOpnJson_Lbl.Visible = false;
+                    FileOpnJson_Status.Visible = false;
+                    MaxHistoryEntry_Status.Visible = false;
+                    Agent_RSS_Cnt_Status.Visible = false;
 
                     ValueChange_Txt.ForeColor = Color.DimGray;
                     ValueChange_Txt.Text = "update URL and Name here";
@@ -3734,46 +3916,50 @@ namespace Ostium
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = true;
                     Tools_TAB_4.Visible = false;
-                    URLtxt_txt.Text = string.Empty;
+                    URLtxt_Status.Text = string.Empty;
                     Text = "Workflow";
-                    TableOpn_Lbl.Visible = false;
-                    CountFeed_Lbl.Visible = false;
-                    JavaDisable_Lbl.Visible = false;
-                    JavaDisableFeed_Lbl.Visible = false;
-                    DBSelectOpen_Lbl.Visible = false;
-                    TableCount_Lbl.Visible = false;
-                    TableOpen_Lbl.Visible = false;
-                    TableVal_Lbl.Visible = false;
-                    RecordsCount_Lbl.Visible = false;
-                    LatTCurrent_Lbl.Visible = false;
+                    TableOpn_Status.Visible = false;
+                    CountFeed_Status.Visible = false;
+                    JavaDisable_Status.Visible = false;
+                    JavaDisableFeed_Status.Visible = false;
+                    DBSelectOpen_Status.Visible = false;
+                    TableCount_Status.Visible = false;
+                    TableOpen_Status.Visible = false;
+                    TableVal_Status.Visible = false;
+                    RecordsCount_Status.Visible = false;
+                    LatTCurrent_Status.Visible = false;
                     Separator.Visible = false;
-                    LonGtCurrent_Lbl.Visible = false;
-                    ProjectMapOpn_Lbl.Visible = false;
+                    LonGtCurrent_Status.Visible = false;
+                    ProjectMapOpn_Status.Visible = false;
                     TtsButton_Sts.Visible = false;
-                    FileOpnJson_Lbl.Visible = false;
+                    FileOpnJson_Status.Visible = false;
+                    MaxHistoryEntry_Status.Visible = false;
+                    Agent_RSS_Cnt_Status.Visible = false;
                     break;
                 case 4:
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = true;
-                    URLtxt_txt.Text = string.Empty;
+                    URLtxt_Status.Text = string.Empty;
                     Text = "Map";
-                    TableOpn_Lbl.Visible = false;
-                    CountFeed_Lbl.Visible = false;
-                    JavaDisable_Lbl.Visible = false;
-                    JavaDisableFeed_Lbl.Visible = false;
-                    DBSelectOpen_Lbl.Visible = false;
-                    TableCount_Lbl.Visible = false;
-                    TableOpen_Lbl.Visible = false;
-                    TableVal_Lbl.Visible = false;
-                    RecordsCount_Lbl.Visible = false;
-                    LatTCurrent_Lbl.Visible = true;
+                    TableOpn_Status.Visible = false;
+                    CountFeed_Status.Visible = false;
+                    JavaDisable_Status.Visible = false;
+                    JavaDisableFeed_Status.Visible = false;
+                    DBSelectOpen_Status.Visible = false;
+                    TableCount_Status.Visible = false;
+                    TableOpen_Status.Visible = false;
+                    TableVal_Status.Visible = false;
+                    RecordsCount_Status.Visible = false;
+                    LatTCurrent_Status.Visible = true;
                     Separator.Visible = true;
-                    LonGtCurrent_Lbl.Visible = true;
-                    ProjectMapOpn_Lbl.Visible = true;
+                    LonGtCurrent_Status.Visible = true;
+                    ProjectMapOpn_Status.Visible = true;
                     TtsButton_Sts.Visible = false;
-                    FileOpnJson_Lbl.Visible = false;
+                    FileOpnJson_Status.Visible = false;
+                    MaxHistoryEntry_Status.Visible = false;
+                    Agent_RSS_Cnt_Status.Visible = false;
 
                     if (VerifMapOpn == "off")
                     {
@@ -3788,46 +3974,53 @@ namespace Ostium
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
-                    URLtxt_txt.Text = string.Empty;
+                    URLtxt_Status.Text = string.Empty;
                     Text = "Json";
-                    TableOpn_Lbl.Visible = false;
-                    CountFeed_Lbl.Visible = false;
-                    JavaDisable_Lbl.Visible = false;
-                    JavaDisableFeed_Lbl.Visible = false;
-                    DBSelectOpen_Lbl.Visible = false;
-                    TableCount_Lbl.Visible = false;
-                    TableOpen_Lbl.Visible = false;
-                    TableVal_Lbl.Visible = false;
-                    RecordsCount_Lbl.Visible = false;
-                    LatTCurrent_Lbl.Visible = false;
+                    TableOpn_Status.Visible = false;
+                    CountFeed_Status.Visible = false;
+                    JavaDisable_Status.Visible = false;
+                    JavaDisableFeed_Status.Visible = false;
+                    DBSelectOpen_Status.Visible = false;
+                    TableCount_Status.Visible = false;
+                    TableOpen_Status.Visible = false;
+                    TableVal_Status.Visible = false;
+                    RecordsCount_Status.Visible = false;
+                    LatTCurrent_Status.Visible = false;
                     Separator.Visible = false;
-                    LonGtCurrent_Lbl.Visible = false;
-                    ProjectMapOpn_Lbl.Visible = false;
+                    LonGtCurrent_Status.Visible = false;
+                    ProjectMapOpn_Status.Visible = false;
                     TtsButton_Sts.Visible = false;
-                    FileOpnJson_Lbl.Visible = true;
+                    FileOpnJson_Status.Visible = true;
+                    MaxHistoryEntry_Status.Visible = false;
+                    Agent_RSS_Cnt_Status.Visible = false;
                     break;
                 case 6:
+                    CtrlTabOobai();
+                    break;
+                case 7:
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
-                    URLtxt_txt.Text = string.Empty;
+                    URLtxt_Status.Text = string.Empty;
                     Text = "Options";
-                    TableOpn_Lbl.Visible = false;
-                    CountFeed_Lbl.Visible = false;
-                    JavaDisable_Lbl.Visible = false;
-                    JavaDisableFeed_Lbl.Visible = false;
-                    DBSelectOpen_Lbl.Visible = false;
-                    TableCount_Lbl.Visible = false;
-                    TableOpen_Lbl.Visible = false;
-                    TableVal_Lbl.Visible = false;
-                    RecordsCount_Lbl.Visible = false;
-                    LatTCurrent_Lbl.Visible = false;
+                    TableOpn_Status.Visible = false;
+                    CountFeed_Status.Visible = false;
+                    JavaDisable_Status.Visible = false;
+                    JavaDisableFeed_Status.Visible = false;
+                    DBSelectOpen_Status.Visible = false;
+                    TableCount_Status.Visible = false;
+                    TableOpen_Status.Visible = false;
+                    TableVal_Status.Visible = false;
+                    RecordsCount_Status.Visible = false;
+                    LatTCurrent_Status.Visible = false;
                     Separator.Visible = false;
-                    LonGtCurrent_Lbl.Visible = false;
-                    ProjectMapOpn_Lbl.Visible = false;
+                    LonGtCurrent_Status.Visible = false;
+                    ProjectMapOpn_Status.Visible = false;
                     TtsButton_Sts.Visible = false;
-                    FileOpnJson_Lbl.Visible = false;
+                    FileOpnJson_Status.Visible = false;
+                    MaxHistoryEntry_Status.Visible = false;
+                    Agent_RSS_Cnt_Status.Visible = false;
 
                     UpdateDirectorySize(AppStart, OstiumDir_Lbl);
                     UpdateDirectorySize(Plugins, AddOnDir_Lbl);
@@ -3857,27 +4050,56 @@ namespace Ostium
             Text = TmpTitleWBrowse;
             try
             {
-                URLtxt_txt.Text = WBrowse.Source.AbsoluteUri;
+                URLtxt_Status.Text = WBrowse.Source.AbsoluteUri;
             }
             catch { }
-            TableOpn_Lbl.Visible = true;
-            CountFeed_Lbl.Visible = false;
-            DBSelectOpen_Lbl.Visible = false;
-            TableCount_Lbl.Visible = false;
-            TableOpen_Lbl.Visible = false;
-            TableVal_Lbl.Visible = false;
-            RecordsCount_Lbl.Visible = false;
-            LatTCurrent_Lbl.Visible = false;
+            TableOpn_Status.Visible = true;
+            CountFeed_Status.Visible = false;
+            DBSelectOpen_Status.Visible = false;
+            TableCount_Status.Visible = false;
+            TableOpen_Status.Visible = false;
+            TableVal_Status.Visible = false;
+            RecordsCount_Status.Visible = false;
+            LatTCurrent_Status.Visible = false;
             Separator.Visible = false;
-            LonGtCurrent_Lbl.Visible = false;
-            ProjectMapOpn_Lbl.Visible = false;
+            LonGtCurrent_Status.Visible = false;
+            ProjectMapOpn_Status.Visible = false;
             TtsButton_Sts.Visible = true;
-            FileOpnJson_Lbl.Visible = false;
+            FileOpnJson_Status.Visible = false;
 
             if (JavaScriptToggle_Btn.Text == "Javascript Disable")
-                JavaDisable_Lbl.Visible = true;
+                JavaDisable_Status.Visible = true;
 
-            JavaDisableFeed_Lbl.Visible = false;
+            JavaDisableFeed_Status.Visible = false;
+            MaxHistoryEntry_Status.Visible = false;
+            Agent_RSS_Cnt_Status.Visible = false;
+        }
+
+        void CtrlTabOobai()
+        {
+            Tools_TAB_0.Visible = false;
+            Tools_TAB_1.Visible = false;
+            Tools_TAB_3.Visible = false;
+            Tools_TAB_4.Visible = false;
+            URLtxt_Status.Text = string.Empty;
+            Text = "OOBai";
+            TableOpn_Status.Visible = false;
+            CountFeed_Status.Visible = false;
+            JavaDisable_Status.Visible = false;
+            JavaDisableFeed_Status.Visible = false;
+            DBSelectOpen_Status.Visible = false;
+            TableCount_Status.Visible = false;
+            TableOpen_Status.Visible = false;
+            TableVal_Status.Visible = false;
+            RecordsCount_Status.Visible = false;
+            LatTCurrent_Status.Visible = false;
+            Separator.Visible = false;
+            LonGtCurrent_Status.Visible = false;
+            ProjectMapOpn_Status.Visible = false;
+            TtsButton_Sts.Visible = false;
+            FileOpnJson_Status.Visible = false;
+            MaxHistoryEntry_Status.Visible = true;
+            Agent_RSS_Cnt_Status.Visible = true;
         }
         ///
         /// <summary>
@@ -4136,8 +4358,8 @@ namespace Ostium
                     WebpageCapture();
                     break;
                 case "htmltext":
-                    HtmlTextFrm = new HtmlText_Frm();
-                    HtmlTextFrm.Show();
+                    htmlTextFrm = new HtmlText_Frm();
+                    htmlTextFrm.Show();
                     break;
                 case "multi":
                     mdiFrm = new Mdi_Frm();
@@ -4447,6 +4669,7 @@ namespace Ostium
         void Open_Doc_Frm(string fileSelect)
         {
             Class_Var.File_Open = fileSelect;
+
             docForm = new Doc_Frm();
             docForm.Show();
         }
@@ -4454,6 +4677,7 @@ namespace Ostium
         void Open_Source_Frm(string fileSelect)
         {
             Class_Var.File_Open = fileSelect;
+
             openSourceForm = new OpenSource_Frm();
             openSourceForm.Show();
         }
@@ -4628,7 +4852,7 @@ namespace Ostium
                     DB_Pnl.Visible = false;
                 }
 
-                TableOpn_Lbl.Text = string.Format("Table open: {0}", tlsi);
+                TableOpn_Status.Text = string.Format("Table open: {0}", tlsi);
                 TableOpen = tlsi;
             }
         }
@@ -4709,10 +4933,10 @@ namespace Ostium
                 }
 
                 if (List_Object == DataTable_Lst)
-                    TableCount_Lbl.Text = "table " + List_Object.Items.Count;
+                    TableCount_Status.Text = "table " + List_Object.Items.Count;
 
                 if (List_Object == DataValue_Lst)
-                    RecordsCount_Lbl.Text = "records " + List_Object.Items.Count;
+                    RecordsCount_Status.Text = "records " + List_Object.Items.Count;
 
                 DBadmin = "off";
             }
@@ -5066,9 +5290,9 @@ namespace Ostium
                     List_Object = DataTable_Lst;
 
                     DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
-                    DBSelectOpen_Lbl.Text = $"DB open: {DataBaze_Opn.Text}";
-                    TableOpen_Lbl.Text = string.Empty;
-                    RecordsCount_Lbl.Text = string.Empty;
+                    DBSelectOpen_Status.Text = $"DB open: {DataBaze_Opn.Text}";
+                    TableOpen_Status.Text = string.Empty;
+                    RecordsCount_Status.Text = string.Empty;
 
                     databasePath = DBdirectory + DataBaze_Opn.Text;
 
@@ -5099,7 +5323,7 @@ namespace Ostium
                     tlsi = DataTable_Lst.SelectedItem.ToString();
 
                     DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
-                    TableOpen_Lbl.Text = $"Table open: {DataTable_Opn.Text}";
+                    TableOpen_Status.Text = $"Table open: {DataTable_Opn.Text}";
 
                     Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
                 }
@@ -5589,7 +5813,7 @@ namespace Ostium
         void HomeFeed_Btn_Click(object sender, EventArgs e)
         {
             WBrowsefeed.Source = new Uri(HomeUrlRSS);
-            CountFeed_Lbl.Text = string.Empty;
+            CountFeed_Status.Text = string.Empty;
         }
 
         #endregion
@@ -5628,14 +5852,6 @@ namespace Ostium
                 VolumeValue_Lbl.Text = "Volume: " + Convert.ToString(VolumeVal_Track.Value);
                 RateValue_Lbl.Text = "Rate: " + Convert.ToString(RateVal_Track.Value);
             }
-        }
-
-        void SaveTitleRss_Btn_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(Path.Combine(AppStart, "acturesume.txt")))
-                File.Delete(Path.Combine(AppStart, "acturesume.txt"));
-
-            CreateDataOAI(Path.Combine(AppStart, "acturesume.txt"), collectedItemsTitleRss);
         }
 
         void ReadTitle_Btn_Click(object sender, EventArgs e)
@@ -5748,12 +5964,12 @@ namespace Ostium
 
         #endregion
 
-        void RSSListSite_Lbl_Lbl_MouseEnter(object sender, EventArgs e)
+        void RSSListSite_Lbl_MouseEnter(object sender, EventArgs e)
         {
             MSenter();
         }
 
-        void RSSListSite_Lbl_Lbl_Leave(object sender, EventArgs e)
+        void RSSListSite_Lbl_Leave(object sender, EventArgs e)
         {
             MSleave();
         }
@@ -6681,6 +6897,12 @@ namespace Ostium
             OpnFileOpt(Path.Combine(FileDir, "gdork.txt"));
         }
 
+        void OOBai_Opt_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(OOBai))
+                Process.Start(OOBai);
+        }
+
         void OstiumDir_Opn_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(AppStart))
@@ -6863,7 +7085,7 @@ namespace Ostium
         void URLbrowseCbxText(string value)
         {
             URLbrowse_Cbx.Text = value;
-            URLtxt_txt.Text = $"Unshorten URL => {value}";
+            URLtxt_Status.Text = $"Unshorten URL => {value}";
         }
         ///
         /// <summary>
@@ -6947,7 +7169,7 @@ namespace Ostium
                     GoFeed_Txt.Enabled = true;
                     break;
                 case "FeedTitle":
-                    CountFeed_Lbl.Text = TitleFeed;
+                    CountFeed_Status.Text = TitleFeed;
                     string trimmedTitleFeed = TitleFeed.Trim();
                     RSSListSite_Lbl.Items.Add(trimmedTitleFeed);
                     break;
@@ -6962,7 +7184,7 @@ namespace Ostium
                     Link_Lst.Items.Add(AddLinkItem);
                     break;
                 case "CountFeed":
-                    CountFeed_Lbl.Text = "Count Feed: " + Title_Lst.Items.Count;
+                    CountFeed_Status.Text = "Count Feed: " + Title_Lst.Items.Count;
                     break;
                 case "Msleave":
                     RSSListSite_Lbl.SendToBack();
@@ -7391,7 +7613,7 @@ namespace Ostium
                 PointRoute_Lst.Items.Clear();
                 PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
 
-                ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.txt";
+                ProjectMapOpn_Status.Text = $"Project open: {ValName}.txt";
             }
             else
             {
@@ -7466,7 +7688,7 @@ namespace Ostium
 
                 loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
 
-                ProjectMapOpn_Lbl.Text = $"Project open: {ValName}.xml";
+                ProjectMapOpn_Status.Text = $"Project open: {ValName}.xml";
                 MapXmlOpn = MapDir + ValName + ".xml";
             }
             else
@@ -7602,7 +7824,7 @@ namespace Ostium
                         else if (LocatRoute == "routegpx")
                             loadfiledir.LoadFileDirectory(MapDirGpx, "*.*", "lst", PointLoc_Lst);
 
-                        ProjectMapOpn_Lbl.Text = string.Empty;
+                        ProjectMapOpn_Status.Text = string.Empty;
 
                         GMap_Ctrl.Overlays.Clear();
                         overlayOne.Markers.Clear();
@@ -7751,7 +7973,7 @@ namespace Ostium
 
                     RouteListGPX();
 
-                    ProjectMapOpn_Lbl.Text = $"File open: {strname}";
+                    ProjectMapOpn_Status.Text = $"File open: {strname}";
                 }
             }
             catch (Exception ex)
@@ -7808,7 +8030,7 @@ namespace Ostium
         {
             try
             {
-                GoBrowser(lstUrlDfltCnf[9].ToString() + LatTCurrent_Lbl.Text + "~" + LonGtCurrent_Lbl.Text, 0);
+                GoBrowser(lstUrlDfltCnf[9].ToString() + LatTCurrent_Status.Text + "~" + LonGtCurrent_Status.Text, 0);
                 CtrlTabBrowsx();
                 Control_Tab.SelectedIndex = 0;
             }
@@ -7827,7 +8049,7 @@ namespace Ostium
         {
             try
             {
-                GoBrowser(lstUrlDfltCnf[7].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
+                GoBrowser(lstUrlDfltCnf[7].ToString() + LatTCurrent_Status.Text + "%2C" + LonGtCurrent_Status.Text, 0);
                 CtrlTabBrowsx();
                 Control_Tab.SelectedIndex = 0;
             }
@@ -7846,7 +8068,7 @@ namespace Ostium
         {
             try
             {
-                GoBrowser(lstUrlDfltCnf[8].ToString() + LatTCurrent_Lbl.Text + "%2C" + LonGtCurrent_Lbl.Text, 0);
+                GoBrowser(lstUrlDfltCnf[8].ToString() + LatTCurrent_Status.Text + "%2C" + LonGtCurrent_Status.Text, 0);
                 CtrlTabBrowsx();
                 Control_Tab.SelectedIndex = 0;
             }
@@ -7875,8 +8097,8 @@ namespace Ostium
                     addtxt.WriteLine("	<Placemark>");
                     addtxt.WriteLine("		<name>Ostium location " + Una + "</name>");
                     addtxt.WriteLine("		<LookAt>");
-                    addtxt.WriteLine("			<longitude>" + LonGtCurrent_Lbl.Text + "</longitude>");
-                    addtxt.WriteLine("			<latitude>" + LatTCurrent_Lbl.Text + "</latitude>");
+                    addtxt.WriteLine("			<longitude>" + LonGtCurrent_Status.Text + "</longitude>");
+                    addtxt.WriteLine("			<latitude>" + LatTCurrent_Status.Text + "</latitude>");
                     addtxt.WriteLine("			<altitude>0</altitude>");
                     addtxt.WriteLine("			<heading>-1.99957389508707</heading>");
                     addtxt.WriteLine("			<range>8314.559936586644</range>");
@@ -7896,7 +8118,7 @@ namespace Ostium
 
         void CopyGeoMap_Tls_Click(object sender, EventArgs e)
         {
-            Clipboard.SetData(DataFormats.Text, LatTCurrent_Lbl.Text + " " + LonGtCurrent_Lbl.Text);
+            Clipboard.SetData(DataFormats.Text, LatTCurrent_Status.Text + " " + LonGtCurrent_Status.Text);
             Console.Beep(1000, 400);
         }
 
@@ -7981,7 +8203,7 @@ namespace Ostium
 
                 CreateNameAleat();
                 LocationName_Txt.Text = "Pts_" + Una;
-                AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Lbl.Text, LonGtCurrent_Lbl.Text, TextMarker_Txt.Text);
+                AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Status.Text, LonGtCurrent_Status.Text, TextMarker_Txt.Text);
                 OpnLocationPoints();
                 Console.Beep(1000, 400);
             }
@@ -8194,8 +8416,8 @@ namespace Ostium
 
         void GMap_Ctrl_OnPositionChanged(PointLatLng point)
         {
-            LatTCurrent_Lbl.Text = point.Lat.ToString(CultureInfo.InvariantCulture);
-            LonGtCurrent_Lbl.Text = point.Lng.ToString(CultureInfo.InvariantCulture);
+            LatTCurrent_Status.Text = point.Lat.ToString(CultureInfo.InvariantCulture);
+            LonGtCurrent_Status.Text = point.Lng.ToString(CultureInfo.InvariantCulture);
         }
 
         void GMap_Ctrl_OnMapZoomChanged()
@@ -8280,7 +8502,7 @@ namespace Ostium
                     }
                 }
 
-                ProjectMapOpn_Lbl.Text = $"Project open: {PointLoc_Lst.SelectedItem}";
+                ProjectMapOpn_Status.Text = $"Project open: {PointLoc_Lst.SelectedItem}";
             }
         }
 
@@ -8788,7 +9010,7 @@ namespace Ostium
 
         void TtsButton_Sts_ButtonClick(object sender, EventArgs e)
         {
-            GoBrowser(URLtxt_txt.Text, 1);
+            GoBrowser(URLtxt_Status.Text, 1);
         }
 
         void TtsButton_Sts_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -8837,7 +9059,7 @@ namespace Ostium
 
             if (fileopen != string.Empty)
             {
-                FileOpnJson_Lbl.Text = "File open: " + Path.GetFileName(fileopen);
+                FileOpnJson_Status.Text = "File open: " + Path.GetFileName(fileopen);
 
                 if (OutJsonA_Chk.Checked)
                 {
@@ -9653,6 +9875,2164 @@ namespace Ostium
 
         #endregion
 
+        #region OOBai UI Agent and more
+
+        #region Initialization
+
+        void InitializeHttpClient()
+        {
+            try
+            {
+                _httpHandler = new HttpClientHandler
+                {
+                    MaxConnectionsPerServer = 3,
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                };
+
+                _httpClient = new HttpClient(_httpHandler, disposeHandler: true)
+                {
+                    Timeout = TimeSpan.FromMinutes(TIMEOUT_MINUTES)
+                };
+            }
+            catch (Exception ex)
+            {
+                LogError("HttpClient initialization error", ex);
+                MessageBox.Show($"Network initialization error: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void InitializeStatusTimer()
+        {
+            _statusResetTimer = new System.Windows.Forms.Timer { Interval = 5000 };
+            _statusResetTimer.Tick += StatusResetTimer_Tick;
+        }
+
+        void StatusResetTimer_Tick(object sender, EventArgs e)
+        {
+            _statusResetTimer.Stop();
+            if (!lblStatus.IsDisposed && !_disposed)
+            {
+                lblStatus.Text = "Ready";
+                lblStatus.ForeColor = Color.White;
+            }
+        }
+
+        #endregion
+
+        #region Settings Management   
+
+        void LoadSettings()
+        {
+            if (!File.Exists(Config_OOBai))
+            {
+                SetDefaultSettings();
+                return;
+            }
+
+            try
+            {
+                var fileInfo = new FileInfo(Config_OOBai);
+                if (fileInfo.Length > 1024 * 1024)
+                {
+                    LogError("OOBai Configuration file too large");
+                    SetDefaultSettings();
+                    return;
+                }
+
+                var json = File.ReadAllText(Config_OOBai);
+                var options = new JsonSerializerOptions
+                {
+                    MaxDepth = 10,
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var config = JsonSerializer.Deserialize<Config>(json, options);
+
+                if (config != null &&
+                    !string.IsNullOrWhiteSpace(config.ApiUrl) &&
+                    config.ApiUrl.Length <= MAX_URL_LENGTH &&
+                    !string.IsNullOrWhiteSpace(config.ModelName) &&
+                    config.ModelName.Length <= MAX_MODEL_NAME_LENGTH)
+                {
+                    txtUrl.Text = config.ApiUrl;
+                    ModeSelectl_Cbx.Text = config.ModelName;
+                    txtApiKey.Text = config.ApiKey ?? "";
+                }
+                else
+                {
+                    SetDefaultSettings();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("OOBai Configuration loading error", ex);
+                SetDefaultSettings();
+            }
+        }
+
+        void SaveSettings()
+        {
+            try
+            {
+                var config = new Config
+                {
+                    ApiUrl = txtUrl.Text.Trim(),
+                    ModelName = ModeSelectl_Cbx.Text,
+                    ApiKey = txtApiKey.Text.Trim()
+                };
+
+                var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(Config_OOBai, json);
+            }
+            catch (Exception ex)
+            {
+                LogError("OOBai Configuration loading error", ex);
+            }
+        }
+
+        void SetDefaultSettings()
+        {
+            txtUrl.Text = "http://localhost:11434/api/generate";
+            ModeSelectl_Cbx.Text = "deepseek-v3.1:671b-cloud";
+            txtApiKey.Text = "";
+        }
+
+        #endregion
+
+        #region History Management
+
+        void LoadHistory()
+        {
+            string maxHistoryValue = AgentConfig.Get("MAX_HISTORY_ENTRIES", "count");
+            MAX_HISTORY_ENTRIES = (!string.IsNullOrWhiteSpace(maxHistoryValue) && int.TryParse(maxHistoryValue, out int temp))
+                ? temp
+                : 100;
+
+            _conversationHistory = new List<ConversationEntry>();
+
+            if (!File.Exists(History_OOBai))
+            {
+                UpdateHistoryButtons();
+                return;
+            }
+
+            try
+            {
+                var fileInfo = new FileInfo(History_OOBai);
+                if (fileInfo.Length > MAX_FILE_SIZE)
+                {
+                    LogError("History file too large, reset");
+                    UpdateHistoryButtons();
+                    return;
+                }
+
+                var json = File.ReadAllText(History_OOBai);
+                var options = new JsonSerializerOptions
+                {
+                    MaxDepth = 10,
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var history = JsonSerializer.Deserialize<List<ConversationEntry>>(json, options);
+                _conversationHistory = history?.Take(MAX_HISTORY_ENTRIES).ToList() ?? new List<ConversationEntry>();
+            }
+            catch (Exception ex)
+            {
+                LogError("History loading error", ex);
+            }
+
+            UpdateHistoryButtons();
+        }
+
+        void SaveHistory()
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(_conversationHistory, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(History_OOBai, json);
+            }
+            catch (Exception ex)
+            {
+                LogError("Error saving history", ex);
+            }
+        }
+
+        void AddToHistory(string prompt, string response, int tokens)
+        {
+            string maxHistoryValue = AgentConfig.Get("MAX_HISTORY_ENTRIES", "count");
+            MAX_HISTORY_ENTRIES = (!string.IsNullOrWhiteSpace(maxHistoryValue) && int.TryParse(maxHistoryValue, out int temp))
+                ? temp
+                : 100;
+
+            var entry = new ConversationEntry
+            {
+                Timestamp = DateTime.Now,
+                Prompt = prompt,
+                Response = response,
+                Model = ModeSelectl_Cbx.Text,
+                Tokens = tokens
+            };
+
+            _conversationHistory.Insert(0, entry);
+
+            if (_conversationHistory.Count > MAX_HISTORY_ENTRIES)
+            {
+                _conversationHistory.RemoveAt(_conversationHistory.Count - 1);
+            }
+
+            _currentHistoryIndex = -1;
+            UpdateHistoryButtons();
+            SaveHistory();
+        }
+
+        void UpdateHistoryButtons()
+        {
+            btnHistoryPrev.Enabled = _conversationHistory.Count > 0 && _currentHistoryIndex < _conversationHistory.Count - 1;
+            btnHistoryNext.Enabled = _currentHistoryIndex > 0;
+
+            lblHistoryInfo.Text = _conversationHistory.Count > 0
+                ? $"Backup: {_conversationHistory.Count} conversation(s)"
+                : "Backup: empty";
+        }
+        // Color UI
+        void LoadHistoryEntry(int index)
+        {
+            if (index < 0 || index >= _conversationHistory.Count)
+                return;
+
+            var entry = _conversationHistory[index];
+            txtPrompt.Text = entry.Prompt;
+
+            rtbResponse.Clear();
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText($"📊 Model: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{entry.Model}\n", Color.Yellow, FontStyle.Regular);
+            AppendFormattedText($"🕐 Date: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{entry.Timestamp:dd/MM/yyyy HH:mm:ss}\n", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText($"📊 Tokens: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{entry.Tokens}\n", Color.White, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText("💬 Response:\n\n", Color.DarkGreen, FontStyle.Bold, 11);
+            AppendFormattedText(entry.Response, Color.White, FontStyle.Regular, 10);
+
+            UpdateHistoryButtons();
+        }
+
+        #endregion
+
+        #region Templates Management
+
+        void LoadTemplates()
+        {
+            _templates = new List<PromptTemplate>();
+
+            var defaultTemplates = new List<PromptTemplate>
+            {
+                new PromptTemplate { Name = "💬 General conversation", Content = "" },
+                new PromptTemplate { Name = "🌐 Translate into English", Content = "Translate the following text into English :\n\n" },
+                new PromptTemplate { Name = "🇫🇷 Translate into French", Content = "Translate the following text into French :\n\n" },
+                new PromptTemplate { Name = "📝 To summarize", Content = "Summarize the following text concisely :\n\n" },
+                new PromptTemplate { Name = "💻 Explaining the code", Content = "Explain this code in detail. :\n\n" },
+                new PromptTemplate { Name = "🐛 Fix the code", Content = "Analyze this code and correct the errors :\n\n" },
+                new PromptTemplate { Name = "✍️ Improve the text", Content = "Improve the following text (grammar, style, clarity) :\n\n" },
+                new PromptTemplate { Name = "🎯 Key points", Content = "Extract the key points from the following text :\n\n" }
+            };
+
+            if (File.Exists(Templates_OOBai))
+            {
+                try
+                {
+                    var fileInfo = new FileInfo(Templates_OOBai);
+                    if (fileInfo.Length > 1024 * 1024) // Max 1MB
+                    {
+                        _templates = defaultTemplates;
+                        SaveTemplates();
+                        return;
+                    }
+
+                    var json = File.ReadAllText(Templates_OOBai);
+                    var options = new JsonSerializerOptions
+                    {
+                        MaxDepth = 10,
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    _templates = JsonSerializer.Deserialize<List<PromptTemplate>>(json, options) ?? defaultTemplates;
+                }
+                catch (Exception ex)
+                {
+                    LogError("Error loading templates", ex);
+                    _templates = defaultTemplates;
+                }
+            }
+            else
+            {
+                _templates = defaultTemplates;
+                SaveTemplates();
+            }
+        }
+
+        void SaveTemplates()
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(_templates, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(Templates_OOBai, json);
+            }
+            catch (Exception ex)
+            {
+                LogError("Templates saving error", ex);
+            }
+        }
+
+        void InitializeTemplatesMenu()
+        {
+            cmbTemplates.Items.Clear();
+            foreach (var template in _templates)
+            {
+                cmbTemplates.Items.Add(template.Name);
+            }
+            if (cmbTemplates.Items.Count > 0)
+                cmbTemplates.SelectedIndex = 0;
+        }
+
+        #endregion
+
+        #region HTTP Request
+
+        async void BtnSend_Click(object sender, EventArgs e)
+        {
+            ChatHost = "local";
+            await SendRequestAsync();
+        }
+
+        async Task SendRequestAsync()
+        {
+            if (!ValidateInputs())
+                return;
+
+            SetUIState(false);
+            ClearResponse();
+            SaveSettings();
+
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            try
+            {
+                ShowMessage("🔄 Sending the request...", MessageType.Info);
+
+                var requestData = new OllamaRequest
+                {
+                    Model = ModeSelectl_Cbx.Text,
+                    Prompt = txtPrompt.Text.Trim(),
+                    Stream = true
+                };
+
+                if (!string.IsNullOrWhiteSpace(QuestionOnly))
+                    txtPrompt.Text = QuestionOnly;
+
+                if (txtPrompt.Text.Length > 170 && TruncateAnswer.Checked)
+                {
+                    txtPrompt.Text = $"{txtPrompt.Text.Substring(0, 170)}(...)";
+                }
+
+                var json = JsonSerializer.Serialize(requestData);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var startTime = DateTime.Now;
+
+                using (var request = new HttpRequestMessage(HttpMethod.Post, txtUrl.Text.Trim()))
+                {
+                    request.Content = content;
+
+                    using (var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, _cancellationTokenSource.Token))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            await ProcessStreamingResponseAsync(response, startTime);
+                        }
+                        else
+                        {
+                            await HandleHttpErrorAsync(response);
+                        }
+                    }
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                ShowMessage("⊗ Request cancelled by user", MessageType.Info);
+            }
+            catch (HttpRequestException ex)
+            {
+                LogError("HTTP connection error", ex);
+                ShowMessage($"✗ Connection error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Verify that the Ollama server is started and accessible at the URL: {txtUrl.Text}");
+            }
+            catch (JsonException ex)
+            {
+                LogError("JSON parsing error", ex);
+                ShowMessage($"✗ JSON parsing error: {ex.Message}", MessageType.Error);
+            }
+            catch (Exception ex)
+            {
+                LogError("Unexpected error during the request", ex);
+                ShowMessage($"✗ Unexpected error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Type: {ex.GetType().Name}\nMessage: {ex.Message}");
+                QuestionOnly = string.Empty;
+            }
+            finally
+            {
+                SetUIState(true);
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+                QuestionOnly = string.Empty;
+                rtbResponse.SelectionStart = 0;
+                rtbResponse.SelectionLength = 0;
+                rtbResponse.Focus();
+            }
+        }
+
+        bool ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtPrompt.Text))
+            {
+                ShowMessage("⚠ Please enter a prompt", MessageType.Warning);
+                txtPrompt.Focus();
+                return false;
+            }
+
+            if (txtPrompt.Text.Length > MAX_PROMPT_LENGTH)
+            {
+                ShowMessage($"⚠ The prompt is too long (max: {MAX_PROMPT_LENGTH:N0} characters)", MessageType.Warning);
+                txtPrompt.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtUrl.Text))
+            {
+                ShowMessage("⚠ Please enter a valid URL", MessageType.Warning);
+                txtUrl.Focus();
+                return false;
+            }
+
+            if (txtUrl.Text.Length > MAX_URL_LENGTH)
+            {
+                ShowMessage("⚠ The URL is too long", MessageType.Warning);
+                txtUrl.Focus();
+                return false;
+            }
+
+            if (!Uri.TryCreate(txtUrl.Text.Trim(), UriKind.Absolute, out Uri uriResult) ||
+                (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+            {
+                ShowMessage("⚠ The URL is invalid", MessageType.Warning);
+                txtUrl.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(ModeSelectl_Cbx.Text))
+            {
+                ShowMessage("⚠ Please enter a model name", MessageType.Warning);
+                ModeSelectl_Cbx.Focus();
+                return false;
+            }
+
+            if (ModeSelectl_Cbx.Text.Length > MAX_MODEL_NAME_LENGTH)
+            {
+                ShowMessage("⚠ The model name is too long", MessageType.Warning);
+                ModeSelectl_Cbx.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        async Task ProcessStreamingResponseAsync(HttpResponseMessage response, DateTime startTime)
+        {
+            var fullResponse = new StringBuilder();
+            var uiBatchBuffer = new StringBuilder();
+            int totalTokens = 0;
+            int lineCount = 0;
+            var lastUIUpdate = DateTime.Now;
+
+            DisplayResponseHeader(ModeSelectl_Cbx.Text);
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            using (var reader = new StreamReader(stream))
+            {
+                string line;
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
+                    if (_cancellationTokenSource.Token.IsCancellationRequested)
+                        break;
+
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        try
+                        {
+                            var streamResponse = JsonSerializer.Deserialize<OllamaStreamResponse>(line);
+
+                            if (streamResponse != null && !string.IsNullOrEmpty(streamResponse.Response))
+                            {
+                                fullResponse.Append(streamResponse.Response);
+                                uiBatchBuffer.Append(streamResponse.Response);
+                                lineCount++;
+
+                                var timeSinceLastUpdate = (DateTime.Now - lastUIUpdate).TotalMilliseconds;
+
+                                if (lineCount >= UI_UPDATE_BATCH_SIZE || timeSinceLastUpdate >= UI_UPDATE_DELAY_MS)
+                                {
+                                    await Task.Run(() => AppendStreamingText(uiBatchBuffer.ToString()));
+                                    uiBatchBuffer.Clear();
+                                    lineCount = 0;
+                                    lastUIUpdate = DateTime.Now;
+                                    await Task.Delay(5);
+                                }
+                            }
+
+                            if (streamResponse?.Done == true)
+                            {
+                                totalTokens = streamResponse.EvalCount ?? 0;
+                            }
+                        }
+                        catch (JsonException ex)
+                        {
+                            LogError($"JSON stream parsing error: {line}", ex);
+                        }
+                    }
+                }
+
+                if (uiBatchBuffer.Length > 0)
+                {
+                    AppendStreamingText(uiBatchBuffer.ToString());
+                }
+            }
+
+            AnswerContinue = fullResponse.ToString();
+
+            var duration = DateTime.Now - startTime;
+            DisplayResponseFooter(duration, totalTokens);
+            AddToHistory(txtPrompt.Text.Trim(), fullResponse.ToString(), totalTokens);
+            ShowMessage($"✓ Response successfully received in {duration.TotalSeconds:F2}s ({totalTokens} tokens)", MessageType.Success);
+        }
+
+        async Task HandleHttpErrorAsync(HttpResponseMessage response)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            var errorMessage = $"✗ HTTP Error {(int)response.StatusCode}: {response.ReasonPhrase}";
+
+            LogError($"HTTP Error: {errorMessage}\nContent: {errorContent}");
+            ShowMessage(errorMessage, MessageType.Error);
+            AppendErrorDetails(errorContent);
+        }
+
+        #endregion
+
+        #region UI Display Methods
+        // Color UI
+        void DisplayResponseHeader(string model)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<string>(DisplayResponseHeader), model);
+                return;
+            }
+
+            rtbResponse.Clear();
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText($"☁️ OOBAI LOCAL CHAT\n\n", Color.DodgerBlue, FontStyle.Bold, 12); //0add
+            AppendFormattedText($"📊 Model: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{model}\n", Color.Orange, FontStyle.Regular);
+            AppendFormattedText($"🕐 Started at: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{DateTime.Now:HH:mm:ss}\n", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText("👤 You:\n", Color.DarkBlue, FontStyle.Bold, 11); //0add
+            AppendFormattedText($"{txtPrompt.Text.Trim()}\n\n", Color.Lime, FontStyle.Regular, 10); //0add
+            AppendFormattedText("🤖 AI:\n", Color.DarkGreen, FontStyle.Bold, 11);
+        }
+        // Color UI
+        void DisplayResponseFooter(TimeSpan duration, int tokens)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<TimeSpan, int>(DisplayResponseFooter), duration, tokens);
+                return;
+            }
+
+            AppendFormattedText("\n\n═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText($"⏱ Delay: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{duration.TotalSeconds:F2}s", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText($" | 📊 Tokens: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{tokens}\n", Color.White, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+        }
+
+        void AppendStreamingText(string text)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<string>(AppendStreamingText), text);
+                return;
+            }
+
+            NativeMethods.LockWindowUpdate(rtbResponse.Handle);
+
+            try
+            {
+                rtbResponse.SelectionStart = rtbResponse.TextLength;
+                rtbResponse.SelectionLength = 0;
+                rtbResponse.SelectionColor = Color.White;
+                rtbResponse.SelectionFont = new Font("Verdana", 10, FontStyle.Regular);
+                rtbResponse.AppendText(text);
+            }
+            finally
+            {
+                NativeMethods.LockWindowUpdate(IntPtr.Zero);
+            }
+
+            if (_isAutoScrolling)
+            {
+                NativeMethods.SendMessage(rtbResponse.Handle, NativeMethods.WM_VSCROLL,
+                    (IntPtr)NativeMethods.SB_BOTTOM, IntPtr.Zero);
+            }
+        }
+
+        void AppendFormattedText(string text, Color color, FontStyle style, float size = 10, string fontFamily = "Verdana")
+        {
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            rtbResponse.SelectionStart = rtbResponse.TextLength;
+            rtbResponse.SelectionLength = 0;
+            rtbResponse.SelectionColor = color;
+            rtbResponse.SelectionFont = new Font(fontFamily, size, style);
+            rtbResponse.SelectedText = text;
+        }
+        // Color UI
+        void AppendErrorDetails(string details)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<string>(AppendErrorDetails), details);
+                return;
+            }
+
+            AppendFormattedText("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n",
+                Color.DarkRed, FontStyle.Bold);
+            AppendFormattedText("⚠ Details of the error:\n\n", Color.DarkRed, FontStyle.Bold, 11);
+            AppendFormattedText(details + "\n", Color.DarkRed, FontStyle.Regular, 9);
+        }
+
+        void ShowMessage(string message, MessageType type)
+        {
+            if (lblStatus.InvokeRequired)
+            {
+                lblStatus.Invoke(new Action<string, MessageType>(ShowMessage), message, type);
+                return;
+            }
+
+            lblStatus.Text = message;
+
+            switch (type)
+            {
+                case MessageType.Success:
+                    lblStatus.ForeColor = Color.Lime;
+                    break;
+                case MessageType.Error:
+                    lblStatus.ForeColor = Color.Red;
+                    break;
+                case MessageType.Warning:
+                    lblStatus.ForeColor = Color.OrangeRed;
+                    break;
+                case MessageType.Info:
+                    lblStatus.ForeColor = Color.DodgerBlue;
+                    break;
+                default:
+                    lblStatus.ForeColor = Color.White;
+                    break;
+            }
+
+            _statusResetTimer.Stop();
+            _statusResetTimer.Start();
+        }
+
+        void SetUIState(bool enabled)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<bool>(SetUIState), enabled);
+                return;
+            }
+
+            Send_Btn.Enabled = enabled;
+            WebSearch_Btn.Enabled = enabled;
+            SearchURLOnly_Btn.Enabled = enabled;
+            CloudModelChat_Btn.Enabled = enabled;
+            ContinueAnswer_Btn.Enabled = enabled;
+            Cancel_Btn.Enabled = !enabled;
+            Copy_Btn.Enabled = enabled;
+            Clear_Btn.Enabled = enabled;
+            ClearPrompt_Btn.Enabled = enabled;
+            Export_Btn.Enabled = enabled;
+            AddTemplate_Btn.Enabled = enabled;
+            txtUrl.Enabled = enabled;
+            ModeSelectl_Cbx.Enabled = enabled;
+            txtApiKey.Enabled = enabled;
+            txtPrompt.Enabled = enabled;
+            cmbTemplates.Enabled = enabled;
+            btnHistoryPrev.Enabled = enabled && _conversationHistory.Count > 0 && _currentHistoryIndex < _conversationHistory.Count - 1;
+            btnHistoryNext.Enabled = enabled && _currentHistoryIndex > 0;
+            OpnPrompt_Btn.Enabled = enabled;
+            Agent_Fetch_Search.Enabled = enabled;
+            Agent_RSS_News_Local.Enabled = enabled;
+            Agent_RSS_News_Cloud.Enabled = enabled;
+            Agent_RSS_News_Promptsend.Enabled = enabled;
+        }
+
+        #endregion
+
+        #region Button Event Handlers
+
+        void BtnCancel_Click(object sender, EventArgs e)
+        {
+            var cts = _cancellationTokenSource;
+            if (cts != null && !cts.IsCancellationRequested)
+            {
+                try
+                {
+                    cts.Cancel();
+                    ShowMessage("⊗ Cancellation in progress...", MessageType.Info);
+                }
+                catch (ObjectDisposedException)
+                {
+                    // CancellationTokenSource
+                }
+            }
+        }
+
+        void BtnClear_Click(object sender, EventArgs e)
+        {
+            ClearResponse();
+            ShowMessage("✓ Answer deleted", MessageType.Info);
+        }
+
+        void BtnClearPrompt_Click(object sender, EventArgs e)
+        {
+            txtPrompt.Clear();
+            txtPrompt.Focus();
+            ShowMessage("✓ Prompt deleted", MessageType.Info);
+        }
+
+        void BtnCopy_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(rtbResponse.Text))
+            {
+                try
+                {
+                    Clipboard.SetText(rtbResponse.Text);
+                    ShowMessage("✓ Answer copied to clipboard", MessageType.Success);
+                }
+                catch (Exception ex)
+                {
+                    LogError("Clipboard copy error", ex);
+                    ShowMessage("✗ Error during copying", MessageType.Error);
+                }
+            }
+            else
+            {
+                ShowMessage("⚠ No response to copy", MessageType.Warning);
+            }
+        }
+
+        void BtnExport_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(rtbResponse.Text))
+            {
+                ShowMessage("⚠ No response to export", MessageType.Warning);
+                return;
+            }
+
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Text File (*.txt)|*.txt|Markdown file (*.md)|*.md";
+                sfd.FileName = $"oobai_response_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        File.WriteAllText(sfd.FileName, rtbResponse.Text, Encoding.UTF8);
+                        ShowMessage($"✓ Exported to: {Path.GetFileName(sfd.FileName)}", MessageType.Success);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogError("File export error", ex);
+                        ShowMessage($"✗ Export error: {ex.Message}", MessageType.Error);
+                    }
+                }
+            }
+        }
+
+        void BtnAddTemplate_Click(object sender, EventArgs e)
+        {
+            using (var form = new TemplateEditorForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    _templates.Add(new PromptTemplate
+                    {
+                        Name = form.TemplateName,
+                        Content = form.TemplateContent
+                    });
+                    SaveTemplates();
+                    InitializeTemplatesMenu();
+                    cmbTemplates.SelectedIndex = _templates.Count - 1;
+                    ShowMessage("✓ Template added successfully", MessageType.Success);
+                }
+            }
+        }
+
+        void BtnHistoryPrev_Click(object sender, EventArgs e)
+        {
+            if (_currentHistoryIndex < _conversationHistory.Count - 1)
+            {
+                _currentHistoryIndex++;
+                LoadHistoryEntry(_currentHistoryIndex);
+            }
+        }
+
+        void BtnHistoryNext_Click(object sender, EventArgs e)
+        {
+            if (_currentHistoryIndex > 0)
+            {
+                _currentHistoryIndex--;
+                LoadHistoryEntry(_currentHistoryIndex);
+            }
+            else if (_currentHistoryIndex == 0)
+            {
+                _currentHistoryIndex = -1;
+                txtPrompt.Clear();
+                rtbResponse.Clear();
+                UpdateHistoryButtons();
+            }
+        }
+
+        void CmbTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTemplates.SelectedIndex >= 0 && cmbTemplates.SelectedIndex < _templates.Count)
+            {
+                var template = _templates[cmbTemplates.SelectedIndex];
+                txtPrompt.Text = template.Content;
+                txtPrompt.Focus();
+                txtPrompt.SelectionStart = txtPrompt.Text.Length;
+            }
+        }
+
+        void TxtPrompt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                Send_Btn.PerformClick();
+            }
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        void ClearResponse()
+        {
+            rtbResponse.Clear();
+        }
+
+        void LogError(string message, Exception ex = null)
+        {
+            var logMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] ERROR: {message}";
+            if (ex != null)
+            {
+                logMessage += $"\nException: {ex.GetType().Name} - {ex.Message}";
+                if (!string.IsNullOrEmpty(ex.StackTrace))
+                    logMessage += $"\nStackTrace: {ex.StackTrace}";
+            }
+
+            Debug.WriteLine(logMessage);
+
+            try
+            {
+                File.AppendAllText(Log_OOBai, logMessage + "\n\n");
+            }
+            catch
+            { }
+        }
+
+        #endregion
+
+        #region Web Search Functionality
+
+        async void BtnWebSearch_Click(object sender, EventArgs e)
+        {
+            await PerformWebSearchAsync();
+        }
+
+        async Task PerformWebSearchAsync()
+        {
+            if (!ValidateWebSearchInputs())
+                return;
+
+            SetUIState(false);
+            ClearResponse();
+            SaveSettings();
+
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            try
+            {
+                ShowMessage("🔍 Web search in progress...", MessageType.Info);
+
+                var requestData = new WebSearchRequest
+                {
+                    Query = txtPrompt.Text.Trim(),
+                    MaxResults = 10
+                };
+
+                var json = JsonSerializer.Serialize(requestData);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var startTime = DateTime.Now;
+
+                var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
+
+                if (string.IsNullOrWhiteSpace(apiKey))
+                {
+                    apiKey = txtApiKey.Text.Trim();
+                }
+
+                using (var request = new HttpRequestMessage(HttpMethod.Post, WEB_SEARCH_URL))
+                {
+                    request.Headers.Add("Authorization", $"Bearer {apiKey}");
+                    request.Content = content;
+
+                    using (var response = await _httpClient.SendAsync(request,
+                        HttpCompletionOption.ResponseHeadersRead, _cancellationTokenSource.Token))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            await ProcessWebSearchResponseAsync(response, startTime);
+                        }
+                        else
+                        {
+                            await HandleWebSearchErrorAsync(response);
+                        }
+                    }
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                ShowMessage("⊗ Search cancelled", MessageType.Info);
+            }
+            catch (HttpRequestException ex)
+            {
+                LogError("HTTP connection error (web search)", ex);
+                ShowMessage($"✗ Connection error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Check your internet connection and your Ollama API Key.");
+            }
+            catch (JsonException ex)
+            {
+                LogError("Check your internet connection and your Ollama API Key", ex);
+                ShowMessage($"✗ JSON parsing error: {ex.Message}", MessageType.Error);
+            }
+            catch (Exception ex)
+            {
+                LogError("Unexpected error during web search", ex);
+                ShowMessage($"✗ Unexpected error: {ex.Message}", MessageType.Error);
+            }
+            finally
+            {
+                SetUIState(true);
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+                rtbResponse.SelectionStart = 0;
+                rtbResponse.SelectionLength = 0;
+                rtbResponse.Focus();
+            }
+        }
+
+        bool ValidateWebSearchInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtPrompt.Text))
+            {
+                ShowMessage("⚠ Please enter a search query", MessageType.Warning);
+                txtPrompt.Focus();
+                return false;
+            }
+
+            if (txtPrompt.Text.Length > MAX_QUERY_LENGTH)
+            {
+                ShowMessage($"⚠ The request is too long (max: {MAX_QUERY_LENGTH} characters)",
+                    MessageType.Warning);
+                txtPrompt.Focus();
+                return false;
+            }
+
+            var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
+
+            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text))
+            {
+                ShowMessage("⚠ Please configure OLLAMA_API_KEY or enter your API key.",
+                    MessageType.Warning);
+                txtApiKey.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        async Task ProcessWebSearchResponseAsync(HttpResponseMessage response, DateTime startTime)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                var webSearchResponse = JsonSerializer.Deserialize<WebSearchResponse>(responseContent);
+
+                if (webSearchResponse?.Results != null && webSearchResponse.Results.Count > 0)
+                {
+                    DisplayWebSearchResults(webSearchResponse.Results, startTime);
+
+                    var duration = DateTime.Now - startTime;
+                    ShowMessage($"✓ Search completed in {duration.TotalSeconds:F2}s " +
+                               $"({webSearchResponse.Results.Count} results)", MessageType.Success);
+
+                    AddToHistory($"🔍 Search Web: {txtPrompt.Text.Trim()}",
+                                FormatWebSearchForHistory(webSearchResponse.Results),
+                                webSearchResponse.Results.Count);
+                }
+                else
+                {
+                    ShowMessage("⚠ No results found", MessageType.Warning);
+                    AppendFormattedText("\nNo results were found for your search..\n",
+                        Color.DarkOrange, FontStyle.Bold);
+                }
+            }
+            catch (JsonException ex)
+            {
+                LogError("Error parsing web search response", ex);
+                ShowMessage("✗ Error processing results", MessageType.Error);
+                AppendErrorDetails($"Raw answer: {responseContent.Substring(0, Math.Min(500, responseContent.Length))}...");
+            }
+        }
+        // Color UI
+        void DisplayWebSearchResults(List<WebSearchResult> results, DateTime startTime)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<List<WebSearchResult>, DateTime>(DisplayWebSearchResults),
+                    results, startTime);
+                return;
+            }
+
+            rtbResponse.Clear();
+
+            // En-tête
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText("🔍 OOBAI WEB SEARCH\n\n", Color.DodgerBlue, FontStyle.Bold, 12);
+
+            AppendFormattedText("📋 Request: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{txtPrompt.Text.Trim()}\n", Color.White, FontStyle.Regular);
+
+            AppendFormattedText("🕐 Started at: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{startTime:HH:mm:ss}\n", Color.DarkSlateGray, FontStyle.Regular);
+
+            AppendFormattedText("═══════════════════════════════════════════════════\n\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+
+            // Résultats
+            AppendFormattedText($"📊 Results found: {results.Count}\n\n",
+                Color.DarkGreen, FontStyle.Bold, 11);
+
+            for (int i = 0; i < results.Count; i++)
+            {
+                var result = results[i];
+
+                AppendFormattedText($"📌 Results #{i + 1}\n", Color.DarkBlue, FontStyle.Bold);
+
+                AppendFormattedText("Title: ", Color.DarkSlateGray, FontStyle.Bold);
+                AppendFormattedText($"{result.Title}\n", Color.Yellow, FontStyle.Regular);
+
+                AppendFormattedText("URL: ", Color.DarkSlateGray, FontStyle.Bold);
+                AppendFormattedText($"{result.Url}\n", Color.Blue, FontStyle.Underline);
+
+                AppendFormattedText("Content: ", Color.DarkSlateGray, FontStyle.Bold);
+                AppendFormattedText($"{FormatWebSearchContent(result.Content)}\n\n",
+                    Color.White, FontStyle.Regular);
+
+                AppendFormattedText("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n",
+                    Color.LightGray, FontStyle.Regular, 9);
+            }
+
+            // Pied de page
+            var duration = DateTime.Now - startTime;
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText($"⏱ Search time: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{duration.TotalSeconds:F2}s\n", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText($"📊 Number of results: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{results.Count}\n", Color.Orange, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+        }
+
+        async Task HandleWebSearchErrorAsync(HttpResponseMessage response)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            var errorMessage = $"✗ HTTP Error {(int)response.StatusCode}: {response.ReasonPhrase}";
+
+            LogError($"HTTP error web search: {errorMessage}\nContent: {errorContent}");
+            ShowMessage(errorMessage, MessageType.Error);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                AppendErrorDetails("Invalid or missing API key. Check your credentials.");
+            }
+            else
+            {
+                AppendErrorDetails(errorContent);
+            }
+        }
+
+        string FormatWebSearchContent(string content)
+        {
+            if (string.IsNullOrEmpty(content))
+                return "No content available.";
+
+            if (content.Length > 500)
+            {
+                return content.Substring(0, 500) + "...";
+            }
+
+            return content;
+        }
+
+        string FormatWebSearchForHistory(List<WebSearchResult> results)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("🔍 OOBAI WEB SEARCH");
+            sb.AppendLine($"Request: {txtPrompt.Text.Trim()}");
+            sb.AppendLine($"Date: {DateTime.Now:dd/MM/yyyy HH:mm:ss}");
+            sb.AppendLine($"Number of results: {results.Count}");
+            sb.AppendLine();
+
+            for (int i = 0; i < Math.Min(3, results.Count); i++) // Limit to 3 results in the history
+            {
+                var result = results[i];
+                sb.AppendLine($"📌 Result #{i + 1}");
+                sb.AppendLine($"Title: {result.Title}");
+                sb.AppendLine($"URL: {result.Url}");
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        #endregion
+
+        #region Web Fetch
+
+        async void SearchURLOnly_Click(object sender, EventArgs e)
+        {
+            await PerformWebFetchAsync();
+        }
+
+        async Task PerformWebFetchAsync()
+        {
+            if (string.IsNullOrWhiteSpace(txtPrompt.Text))
+            {
+                ShowMessage("⚠ Please enter a URL", MessageType.Warning);
+                txtPrompt.Focus();
+                return;
+            }
+
+            var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
+
+            if (string.IsNullOrWhiteSpace(apiKey))
+            {
+                apiKey = txtApiKey.Text.Trim();
+            }
+
+            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text))
+            {
+                ShowMessage("⚠ Please configure OLLAMA_API_KEY or enter your API key.",
+                    MessageType.Warning);
+                txtApiKey.Focus();
+                return;
+            }
+
+            var url = txtPrompt.Text.Trim();
+
+            if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+                !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                url = "https://" + url;
+            }
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult) ||
+                (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+            {
+                ShowMessage("⚠ The URL is invalid", MessageType.Warning);
+                txtPrompt.Focus();
+                return;
+            }
+
+            SetUIState(false);
+            ClearResponse();
+            SaveSettings();
+
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            try
+            {
+                ShowMessage("🌐 Retrieving web content in progress...", MessageType.Info);
+
+                var fetchRequest = new WebFetchRequest
+                {
+                    Url = url
+                };
+
+                var json = JsonSerializer.Serialize(fetchRequest);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var startTime = DateTime.Now;
+
+                using (var request = new HttpRequestMessage(HttpMethod.Post, WEB_FETCH_URL))
+                {
+                    request.Headers.Add("Authorization", $"Bearer {apiKey}");
+                    request.Content = content;
+
+                    using (var response = await _httpClient.SendAsync(request, _cancellationTokenSource.Token))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var responseContent = await response.Content.ReadAsStringAsync();
+                            var fetchResponse = JsonSerializer.Deserialize<WebFetchResponse>(responseContent);
+
+                            DisplayWebFetchResults(fetchResponse, url, DateTime.Now - startTime);
+                            ShowMessage($"✓ Content successfully recovered ({fetchResponse?.Links?.Count ?? 0} links found)", MessageType.Success);
+                        }
+                        else
+                        {
+                            var errorContent = await response.Content.ReadAsStringAsync();
+                            LogError($"HTTP Web Fetch Error: {response.StatusCode}\nContent: {errorContent}");
+                            ShowMessage($"✗ Recovery error: {response.StatusCode} - {response.ReasonPhrase}", MessageType.Error);
+                            AppendErrorDetails($"Check your Ollama API key and that the URL is accessible..\nError: {errorContent}");
+                        }
+                    }
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                ShowMessage("⊗ Recovery cancelled by user", MessageType.Info);
+            }
+            catch (HttpRequestException ex)
+            {
+                LogError("Web Fetch connection error", ex);
+                ShowMessage($"✗ Connection error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Unable to contact the Ollama Web Fetch API.\nCheck your internet connection.");
+            }
+            catch (JsonException ex)
+            {
+                LogError("JSON Web Fetch parsing error", ex);
+                ShowMessage($"✗ Parsing error: {ex.Message}", MessageType.Error);
+            }
+            catch (Exception ex)
+            {
+                LogError("Unexpected Web Fetch Error", ex);
+                ShowMessage($"✗ Unexpected error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Type: {ex.GetType().Name}\nMessage: {ex.Message}");
+            }
+            finally
+            {
+                SetUIState(true);
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+                rtbResponse.SelectionStart = 0;
+                rtbResponse.SelectionLength = 0;
+                rtbResponse.Focus();
+            }
+        }
+        // Color UI
+        void DisplayWebFetchResults(WebFetchResponse fetchResponse, string url, TimeSpan duration)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<WebFetchResponse, string, TimeSpan>(DisplayWebFetchResults),
+                    fetchResponse, url, duration);
+                return;
+            }
+
+            rtbResponse.Clear();
+
+            // Header
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText($"🌐 OOBAI WEB FETCH\n", Color.DarkSlateGray, FontStyle.Bold, 12);
+            AppendFormattedText($"🔗 URL: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{url}\n", Color.Blue, FontStyle.Underline, 9);
+            AppendFormattedText($"🕐 Date: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{DateTime.Now:dd/MM/yyyy HH:mm:ss}\n", Color.Orange, FontStyle.Regular);
+            AppendFormattedText($"⏱ Durée: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{duration.TotalSeconds:F2}s\n", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+
+            if (fetchResponse != null)
+            {
+                // Title
+                if (!string.IsNullOrEmpty(fetchResponse.Title))
+                {
+                    AppendFormattedText("📄 Title: ", Color.DarkGreen, FontStyle.Bold, 11);
+                    AppendFormattedText($"{fetchResponse.Title}\n\n", Color.Yellow, FontStyle.Bold, 11);
+                }
+
+                // Content
+                if (!string.IsNullOrEmpty(fetchResponse.Content))
+                {
+                    AppendFormattedText("📝 Content:\n", Color.DarkGreen, FontStyle.Bold, 11);
+                    AppendFormattedText("─────────────────────────────────────────────────\n",
+                        Color.Gray, FontStyle.Regular, 9);
+
+                    // Limit if it is too long
+                    var displayContent = fetchResponse.Content.Length > 10000
+                        ? fetchResponse.Content.Substring(0, 10000) + "\n\n[...Truncated content...]"
+                        : fetchResponse.Content;
+
+                    AppendFormattedText(displayContent + "\n", Color.Lime, FontStyle.Regular, 10);
+                    AppendFormattedText("─────────────────────────────────────────────────\n\n",
+                        Color.Gray, FontStyle.Regular, 9);
+                }
+
+                // Links
+                if (fetchResponse.Links != null && fetchResponse.Links.Count > 0)
+                {
+                    AppendFormattedText($"🔗 Links found ({fetchResponse.Links.Count}):\n",
+                        Color.DarkGreen, FontStyle.Bold, 11);
+                    AppendFormattedText("─────────────────────────────────────────────────\n",
+                        Color.Gray, FontStyle.Regular, 9);
+
+                    int linkNumber = 1;
+                    foreach (var link in fetchResponse.Links.Take(50)) // Limit to 50 links
+                    {
+                        AppendFormattedText($"{linkNumber}. ", Color.DarkBlue, FontStyle.Bold, 9);
+                        AppendFormattedText($"{link}\n", Color.Blue, FontStyle.Underline, 9);
+                        linkNumber++;
+                    }
+
+                    if (fetchResponse.Links.Count > 50)
+                    {
+                        AppendFormattedText($"\n... and {fetchResponse.Links.Count - 50} autres liens\n",
+                            Color.Gray, FontStyle.Italic, 9);
+                    }
+                }
+                else
+                {
+                    AppendFormattedText("🔗 No link found\n", Color.Gray, FontStyle.Italic, 10);
+                }
+            }
+            else
+            {
+                AppendFormattedText("⚠ No data received\n", Color.OrangeRed, FontStyle.Bold, 11);
+            }
+
+            // Footer
+            AppendFormattedText("\n═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+        }
+
+        #endregion
+
+        #region Cloud Chat Functionality
+
+        async void CloudModelChat_Click(object sender, EventArgs e)
+        {
+            ChatHost = "cloud";
+            await PerformCloudChatAsync();
+        }
+
+        async Task PerformCloudChatAsync()
+        {
+            if (!ValidateCloudChatInputs())
+                return;
+
+            SetUIState(false);
+            ClearResponse();
+            SaveSettings();
+
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            try
+            {
+                ShowMessage("☁️ Connecting to the cloud...", MessageType.Info);
+
+                var requestData = new CloudChatRequest
+                {
+                    Model = ModeSelectl_Cbx.Text,
+                    Messages = new List<ChatMessage>
+                {
+                new ChatMessage
+                {
+                    Role = "user",
+                    Content = txtPrompt.Text.Trim()
+                }
+                },
+                    Stream = true,
+                    WebSearch = WebCloud.Checked
+                };
+
+                if (!string.IsNullOrWhiteSpace(QuestionOnly))
+                    txtPrompt.Text = QuestionOnly;
+
+                if (txtPrompt.Text.Length > 170 && TruncateAnswer.Checked)
+                {
+                    txtPrompt.Text = $"{txtPrompt.Text.Substring(0, 170)}(...)";
+                }
+
+                var json = JsonSerializer.Serialize(requestData);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var startTime = DateTime.Now;
+
+                var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
+
+                if (string.IsNullOrWhiteSpace(apiKey))
+                {
+                    apiKey = txtApiKey.Text.Trim();
+                }
+
+                using (var request = new HttpRequestMessage(HttpMethod.Post, CLOUD_CHAT_URL))
+                {
+                    request.Headers.Add("Authorization", $"Bearer {apiKey}");
+                    request.Content = content;
+
+                    using (var response = await _httpClient.SendAsync(request, _cancellationTokenSource.Token))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            await ProcessCloudChatResponseAsync(response, startTime);
+                        }
+                        else
+                        {
+                            await HandleCloudChatErrorAsync(response);
+                        }
+                    }
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                ShowMessage("⊗ Cloud chat cancelled", MessageType.Info);
+            }
+            catch (HttpRequestException ex)
+            {
+                LogError("HTTP connection error (cloud chat)", ex);
+                ShowMessage($"✗ Connection error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Check your internet connection and your Cloud API key.");
+            }
+            catch (JsonException ex)
+            {
+                LogError("JSON parsing error (cloud chat)", ex);
+                ShowMessage($"✗ JSON parsing error: {ex.Message}", MessageType.Error);
+            }
+            catch (Exception ex)
+            {
+                LogError("Unexpected error during cloud chat", ex);
+                ShowMessage($"✗ Unexpected error: {ex.Message}", MessageType.Error);
+                AppendErrorDetails($"Type: {ex.GetType().Name}\nMessage: {ex.Message}");
+                QuestionOnly = string.Empty;
+            }
+            finally
+            {
+                SetUIState(true);
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+                QuestionOnly = string.Empty;
+                rtbResponse.SelectionStart = 0;
+                rtbResponse.SelectionLength = 0;
+                rtbResponse.Focus();
+            }
+        }
+
+        bool ValidateCloudChatInputs()
+        {
+            if (string.IsNullOrWhiteSpace(txtPrompt.Text))
+            {
+                ShowMessage("⚠ Please enter a message", MessageType.Warning);
+                txtPrompt.Focus();
+                return false;
+            }
+
+            if (txtPrompt.Text.Length > MAX_PROMPT_LENGTH)
+            {
+                ShowMessage($"⚠ The message is too long (max: {MAX_PROMPT_LENGTH:N0} characters)",
+                    MessageType.Warning);
+                txtPrompt.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(ModeSelectl_Cbx.Text))
+            {
+                ShowMessage("⚠ Please enter a model name", MessageType.Warning);
+                ModeSelectl_Cbx.Focus();
+                return false;
+            }
+
+            var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
+
+            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text))
+            {
+                ShowMessage("⚠ Please configure OLLAMA_API_KEY or enter your API key.",
+                    MessageType.Warning);
+                txtApiKey.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        async Task ProcessCloudChatResponseAsync(HttpResponseMessage response, DateTime startTime)
+        {
+            var fullResponse = new StringBuilder();
+            var uiBatchBuffer = new StringBuilder();
+            int totalTokens = 0;
+            int lineCount = 0;
+            var lastUIUpdate = DateTime.Now;
+
+            DisplayCloudChatHeader(ModeSelectl_Cbx.Text);
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            using (var reader = new StreamReader(stream))
+            {
+                string line;
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
+                    if (_cancellationTokenSource.Token.IsCancellationRequested)
+                        break;
+
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        try
+                        {
+                            var streamResponse = JsonSerializer.Deserialize<CloudChatResponse>(line);
+
+                            if (streamResponse?.Message != null && !string.IsNullOrEmpty(streamResponse.Message.Content))
+                            {
+                                fullResponse.Append(streamResponse.Message.Content);
+                                uiBatchBuffer.Append(streamResponse.Message.Content);
+                                lineCount++;
+
+                                var timeSinceLastUpdate = (DateTime.Now - lastUIUpdate).TotalMilliseconds;
+
+                                if (lineCount >= UI_UPDATE_BATCH_SIZE || timeSinceLastUpdate >= UI_UPDATE_DELAY_MS)
+                                {
+                                    await Task.Run(() => AppendStreamingText(uiBatchBuffer.ToString()));
+                                    uiBatchBuffer.Clear();
+                                    lineCount = 0;
+                                    lastUIUpdate = DateTime.Now;
+                                    await Task.Delay(5);
+                                }
+                            }
+
+                            if (streamResponse?.Done == true)
+                            {
+                                totalTokens = streamResponse.EvalCount ?? 0;
+                            }
+                        }
+                        catch (JsonException ex)
+                        {
+                            LogError($"JSON stream cloud parsing error: {line}", ex);
+                        }
+                    }
+                }
+
+                if (uiBatchBuffer.Length > 0)
+                {
+                    AppendStreamingText(uiBatchBuffer.ToString());
+                }
+            }
+
+            AnswerContinue = fullResponse.ToString();
+
+            var duration = DateTime.Now - startTime;
+            DisplayCloudChatFooter(duration, totalTokens);
+            AddToHistory($"☁️ Cloud: {txtPrompt.Text.Trim()}", fullResponse.ToString(), totalTokens);
+            ShowMessage($"✓ Cloud response received in {duration.TotalSeconds:F2}s ({totalTokens} tokens)", MessageType.Success);
+        }
+        // Color UI
+        void DisplayCloudChatHeader(string model)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<string>(DisplayCloudChatHeader), model);
+                return;
+            }
+
+            rtbResponse.Clear();
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText("☁️ OOBAI CLOUD CHAT\n\n", Color.DodgerBlue, FontStyle.Bold, 12);
+            AppendFormattedText($"📊 Modele: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{model}\n", Color.Orange, FontStyle.Regular);
+
+            if (WebCloud.Checked)
+            {
+                AppendFormattedText($"🔍 Web search: ", Color.DarkSlateGray, FontStyle.Bold);
+                AppendFormattedText($"Activated\n", Color.Green, FontStyle.Bold);
+            }
+
+            AppendFormattedText($"🕐 Started at: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{DateTime.Now:HH:mm:ss}\n", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText("👤 You:\n", Color.DarkBlue, FontStyle.Bold, 11);
+            AppendFormattedText($"{txtPrompt.Text.Trim()}\n\n", Color.Lime, FontStyle.Regular, 10);
+            AppendFormattedText("🤖 AI:\n", Color.DarkGreen, FontStyle.Bold, 11);
+        }
+        // Color UI
+        void DisplayCloudChatFooter(TimeSpan duration, int tokens)
+        {
+            if (rtbResponse.InvokeRequired)
+            {
+                rtbResponse.Invoke(new Action<TimeSpan, int>(DisplayCloudChatFooter), duration, tokens);
+                return;
+            }
+
+            AppendFormattedText("\n\n═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+            AppendFormattedText($"⏱ Delay: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{duration.TotalSeconds:F2}s", Color.DodgerBlue, FontStyle.Regular);
+            AppendFormattedText($" | 📊 Tokens: ", Color.DarkSlateGray, FontStyle.Bold);
+            AppendFormattedText($"{tokens}\n", Color.White, FontStyle.Regular);
+            AppendFormattedText("═══════════════════════════════════════════════════\n",
+                Color.DarkBlue, FontStyle.Bold, 10);
+        }
+
+        async Task HandleCloudChatErrorAsync(HttpResponseMessage response)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            var errorMessage = $"✗ HTTP Error {(int)response.StatusCode}: {response.ReasonPhrase}";
+
+            LogError($"Cloud Chat HTTP Error: {errorMessage}\nContent: {errorContent}");
+            ShowMessage(errorMessage, MessageType.Error);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                AppendErrorDetails("Invalid or missing API key. Check your OLLAMA_API_KEY.");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                AppendErrorDetails("Model not found. Check if the model exists on Cloud.");
+            }
+            else
+            {
+                AppendErrorDetails(errorContent);
+            }
+        }
+
+        #endregion
+
+
+        void ModeSelectl_Cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OOBai_Tab.Text = $"OOBai [{ModeSelectl_Cbx.Text}]";
+        }
+
+        #region OOBai Agent
+        ///
+        /// <summary>
+        /// AGENT_RSS_NEWS
+        /// </summary>
+        /// <param Task="An agent who summarizes the news based on headlines."></param>
+        /// <param value="0">Using the configuration file prompt.</param>
+        /// <param value="1">Using the custom prompt.</param>
+        /// 
+        void Agent_RSS_News_Local_Click(object sender, EventArgs e)
+        {
+            ChatHost = "local";
+            Agent_RSS_News(0);
+        }
+
+        void Agent_RSS_News_Cloud_Click(object sender, EventArgs e)
+        {
+            ChatHost = "cloud";
+            Agent_RSS_News(0);
+        }
+
+        void Agent_RSS_News_Promptsend_Click(object sender, EventArgs e)
+        {
+            using (var form = new PromptSend_Frm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var promptsend = form.PromptSendFrm;
+                    var LocalCloud = form.LocalCloud;
+
+                    if (LocalCloud == "local")
+                    {
+                        ChatHost = "local";
+
+                        AGENT_RSS_NEWS_PROMPT = promptsend;
+
+                        Agent_RSS_News(1);
+                    }
+                    else if (LocalCloud == "cloud")
+                    {
+                        ChatHost = "cloud";
+
+                        AGENT_RSS_NEWS_PROMPT = promptsend;
+
+                        Agent_RSS_News(1);
+                    }
+                }
+            }
+        }
+
+        async void Agent_RSS_News(int value)
+        {
+            try
+            {
+                CtrlTabOobai();
+                Control_Tab.SelectedIndex = 6;
+
+                txtPrompt?.Clear();
+
+                if (collectedItemsTitleRss == null || collectedItemsTitleRss.Count == 0)
+                {
+                    MessageBox.Show("The RSS list is empty. No items to process.",
+                                    "Information",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (collectedItemsTitleRss.Count < 25)
+                {
+                    MessageBox.Show($"The RSS list contains only {collectedItemsTitleRss.Count} element(s).\n\nMinimum requirements : 25 elements.",
+                                    "Insufficient number of items",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return;
+                }
+
+                List<string> selectedItems = GetItemsFromList();
+
+                if (selectedItems.Count == 0)
+                {
+                    MessageBox.Show("Aucun élément valide à traiter.",
+                                    "Information",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (value == 0)
+                {
+                    AGENT_RSS_NEWS_PROMPT = string.IsNullOrWhiteSpace(AgentConfig.Get("AGENT_RSS_NEWS", "prompt"))
+                        ? "No prompts are saved in the configuration file."
+                        : AgentConfig.Get("AGENT_RSS_NEWS", "prompt");
+                }
+
+                string promptText = AGENT_RSS_NEWS_PROMPT + Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, selectedItems);
+
+                if (txtPrompt != null)
+                {
+                    txtPrompt.Text = promptText;
+                }
+                else
+                {
+                    MessageBox.Show("The destination field could not be found..",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (ChatHost == "local")
+                    await SendRequestAsync();
+                else if (ChatHost == "cloud")
+                    await PerformCloudChatAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur s'est produite : {ex.Message}",
+                                "Erreur",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        List<string> GetItemsFromList()
+        {
+            string AgentrssCountValue = AgentConfig.Get("AGENT_RSS_NEWS", "count");
+            AGENT_RSS_COUNT_NEWS = (!string.IsNullOrWhiteSpace(AgentrssCountValue) && int.TryParse(AgentrssCountValue, out int temp))
+                ? temp
+                : 100;
+
+            List<string> result = new List<string>();
+            int totalItems = collectedItemsTitleRss.Count;
+
+            if (AGENT_RSS_COUNT_NEWS > totalItems)
+            {
+                foreach (var item in collectedItemsTitleRss)
+                {
+                    if (!string.IsNullOrWhiteSpace(item))
+                    {
+                        result.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                result = GetRandomItemsFromList(totalItems, AGENT_RSS_COUNT_NEWS);
+            }
+
+            return result;
+        }
+
+        List<string> GetRandomItemsFromList(int totalItems, int maxItems)
+        {
+            List<string> selectedItems = new List<string>();
+            Random random = new Random();
+            HashSet<int> selectedIndices = new HashSet<int>();
+
+            while (selectedIndices.Count < maxItems)
+            {
+                int randomIndex = random.Next(0, totalItems);
+                selectedIndices.Add(randomIndex);
+            }
+
+            foreach (int index in selectedIndices)
+            {
+                var item = collectedItemsTitleRss[index];
+                if (!string.IsNullOrWhiteSpace(item))
+                {
+                    selectedItems.Add(item);
+                }
+            }
+
+            return selectedItems;
+        }
+        ///
+        /// <summary>
+        /// AGENT_CONTINUE_PROMPT
+        /// </summary>
+        /// <param Task="Continue the discussion."></param>
+        ///
+        async void ContinueAnswer_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(AnswerContinue))
+                {
+                    ShowMessage("⚠ There is no further discussion to be had", MessageType.Warning);
+                    return;
+                }
+
+                QuestionOnly = txtPrompt.Text;
+
+                var compressedText = string.Empty;
+
+                if (SemanticCompress.Checked)
+                {
+                    var originalText = AnswerContinue;
+
+                    compressedText = CompressionManager.CompressConversation(originalText);
+
+                    var originalLength = originalText.Length;
+                    var compressedLength = compressedText.Length;
+                    var ratio = (1 - (double)compressedLength / originalLength) * 100;
+
+                    StatsCompressText_Lbl.Text = $"Compression: {ratio:F1}% " +
+                                  $"(Original: {originalLength} → Compress: {compressedLength})";
+
+                    var signature = CompressionManager.GenerateContextSignature(compressedText);
+                    SignatureCompressText_Lbl.Text = $"Signature: {signature}";
+                }
+                else
+                {
+                    compressedText = AnswerContinue;
+                }
+
+                if (ViewTruncatePrompt.Checked)
+                {
+                    QuestionOnly += Environment.NewLine + compressedText;
+                }
+
+                AGENT_CONTINUE_PROMPT = string.IsNullOrWhiteSpace(AgentConfig.Get("AGENT_CONTINUE_PROMPT", "prompt"))
+                    ? "No prompts are saved in the configuration file."
+                    : AgentConfig.Get("AGENT_CONTINUE_PROMPT", "prompt");
+
+                string promptText = AGENT_CONTINUE_PROMPT + Environment.NewLine + Environment.NewLine +
+                    compressedText + Environment.NewLine + Environment.NewLine + txtPrompt.Text;
+
+                if (txtPrompt != null)
+                {
+                    txtPrompt.Text = promptText;
+                }
+                else
+                {
+                    MessageBox.Show("The destination field could not be found.",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (ChatHost == "local")
+                    await SendRequestAsync();
+                else if (ChatHost == "cloud")
+                    await PerformCloudChatAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur s'est produite : {ex.Message}",
+                                "Erreur",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+        ///
+        /// <summary>
+        /// AGENT_CONTENT_ANALYSIS
+        /// </summary>
+        /// <param Task="Web page content analysis."></param>
+        /// <param value="0">Using the configuration file prompt.</param>
+        /// <param value="1">Using the custom prompt.</param>
+        ///
+        void OpnPrompt_Btn_Click(object sender, EventArgs e)
+        {
+            Agent_ExtractScript_Promptsend();
+        }
+
+        async void Agent_ExtractScript()
+        {
+            string content = await ExtractPageContent();
+
+            if (!string.IsNullOrEmpty(content))
+            {
+                StartWebPageAnalyse(0, content);
+            }
+        }
+
+        async void Agent_ExtractScript_Promptsend()
+        {
+            using (var form = new PromptSend_Frm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var promptsend = form.PromptSendFrm;
+                    var LocalCloud = form.LocalCloud;
+
+                    if (LocalCloud == "local")
+                    {
+                        ChatHost = "local";
+                    }
+                    else if (LocalCloud == "cloud")
+                    {
+                        ChatHost = "cloud";
+                    }
+
+                    AGENT_CONTENT_ANALYSIS_PROMPT = promptsend;
+
+                    string content = await ExtractPageContent();
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        StartWebPageAnalyse(1, content);
+                    }
+                }
+            }
+        }
+
+        async Task<string> ExtractPageContent()
+        {
+            string rawResult = null;
+
+            try
+            {
+                string script = File.ReadAllText(Path.Combine(Scripts, "oobai", "Copy_Content_to_Clipboard.js"));
+
+                rawResult = await WBrowse.CoreWebView2.ExecuteScriptAsync(script);
+
+                if (string.IsNullOrWhiteSpace(rawResult))
+                {
+                    throw new Exception("The script returned nothing.");
+                }
+
+                string extractedText;
+
+                if (rawResult.StartsWith("\""))
+                {
+                    extractedText = JsonConvert.DeserializeObject<string>(rawResult);
+                }
+                else if (rawResult.StartsWith("{") || rawResult.StartsWith("["))
+                {
+                    throw new Exception($"The script returned an object/array instead of a string. Start: {rawResult.Substring(0, Math.Min(50, rawResult.Length))}");
+                }
+                else
+                {
+                    extractedText = rawResult;
+                }
+
+                return extractedText;
+            }
+            catch (JsonException jsonEx)
+            {
+                string preview = rawResult?.Substring(0, Math.Min(300, rawResult?.Length ?? 0)) ?? "NULL";
+                MessageBox.Show(
+                    $"Erreur JSON lors de l'extraction:\n{jsonEx.Message}\n\n" +
+                    $"Résultat brut (300 premiers car.):\n{preview}\n\n" +
+                    $"Fichier complet: debug_raw_result.txt",
+                    "Erreur JSON",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return null;
+            }
+            catch (Exception ex)
+            {
+                string preview = rawResult?.Substring(0, Math.Min(200, rawResult?.Length ?? 0)) ?? "NULL";
+                MessageBox.Show(
+                    $"Erreur lors de l'extraction:\n{ex.Message}\n\n" +
+                    $"Type: {ex.GetType().Name}\n" +
+                    $"Résultat brut: {preview}",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return null;
+            }
+        }
+
+        async void StartWebPageAnalyse(int value, string content)
+        {
+            CtrlTabOobai();
+            Control_Tab.SelectedIndex = 6;
+
+            string texte = content;
+
+            if (value == 0)
+            {
+                AGENT_CONTENT_ANALYSIS_PROMPT = string.IsNullOrWhiteSpace(AgentConfig.Get("AGENT_CONTENT_ANALYSIS", "prompt"))
+                    ? "No prompts are saved in the configuration file."
+                    : AgentConfig.Get("AGENT_CONTENT_ANALYSIS", "prompt");
+            }
+
+            string promptText = AGENT_CONTENT_ANALYSIS_PROMPT + Environment.NewLine + Environment.NewLine + texte;
+            txtPrompt.Text = promptText;
+
+            if (ChatHost == "local")
+                await SendRequestAsync();
+            else if (ChatHost == "cloud")
+                await PerformCloudChatAsync();
+        }
+
+        ///
+        /// <summary>
+        /// AGENT_WEB_FETCH
+        /// </summary>
+        /// <param Task="Fetches a single web page by URL and returns its content."></param>
+        ///
+        void Agent_Web_Fetch_Btn_Click(object sender, EventArgs e)
+        {
+            AgentFetchSearch(WBrowse.Source.AbsoluteUri);
+        }
+        ///
+        /// <summary>
+        /// AGENT_FETCH_SEARCH
+        /// </summary>
+        /// <param Task="Fetches a single web page by URL and returns its content or Performs a web 
+        /// search for a single query and returns relevant results."></param>
+        ///
+        void Agent_Fetch_Search_Click(object sender, EventArgs e)
+        {
+            int x;
+            x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
+            if (x == -1)
+            {
+                URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+            }
+            GoBrowser(URLbrowse_Cbx.Text, 2);
+        }
+
+        async void AgentFetchSearch(string Uri)
+        {
+            CtrlTabOobai();
+            Control_Tab.SelectedIndex = 6;
+
+            txtPrompt.Text = Uri;
+
+            await PerformWebFetchAsync();
+        }
+
+        async void Agent_Web_Search(string word)
+        {
+            CtrlTabOobai();
+            Control_Tab.SelectedIndex = 6;
+
+            txtPrompt.Text = word;
+
+            await PerformWebSearchAsync();
+        }
+        /// <summary>
+        /// Load Agent AI config
+        /// </summary>
+        public static class AgentConfig
+        {
+            static readonly string ConfigPath = Application.StartupPath + @"\OOBai\agent_ai_config.json";
+            static Dictionary<string, Dictionary<string, string>> _cache;
+
+            public static void Load()
+            {
+                try
+                {
+                    var fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigPath);
+
+                    if (File.Exists(fullPath))
+                    {
+                        var json = File.ReadAllText(fullPath);
+                        _cache = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(json)
+                                 ?? new Dictionary<string, Dictionary<string, string>>();
+
+                        Debug.WriteLine($"[AgentConfig] Configuration loaded from: {fullPath}");
+                    }
+                    else
+                    {
+                        _cache = new Dictionary<string, Dictionary<string, string>>();
+                        Debug.WriteLine($"[AgentConfig] File not found: {fullPath}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _cache = new Dictionary<string, Dictionary<string, string>>();
+                    Debug.WriteLine($"[AgentConfig] Error during loading: {ex.Message}");
+                }
+            }
+
+            public static string Get(string effect, string param, string defaultValue = "")
+            {
+                if (_cache.TryGetValue(effect, out var parameters) &&
+                    parameters.TryGetValue(param, out var value))
+                    return value;
+                return defaultValue;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
         #region Update_
         ///
         /// <summary>
@@ -9724,5 +12104,184 @@ namespace Ostium
         }
 
         #endregion
+    }
+
+    public class ConfigSFE
+    {
+        public int Port { get; set; }
+    }
+
+    #region Data Models
+
+    public enum MessageType
+    {
+        Success,
+        Error,
+        Warning,
+        Info
+    }
+
+    public class Config
+    {
+        public string ApiUrl { get; set; }
+        public string ModelName { get; set; }
+        public string ApiKey { get; set; }
+    }
+
+    public class ConversationEntry
+    {
+        public DateTime Timestamp { get; set; }
+        public string Prompt { get; set; }
+        public string Response { get; set; }
+        public string Model { get; set; }
+        public int Tokens { get; set; }
+    }
+
+    public class PromptTemplate
+    {
+        public string Name { get; set; }
+        public string Content { get; set; }
+    }
+
+    public class OllamaRequest
+    {
+        [JsonPropertyName("model")]
+        public string Model { get; set; } = "deepseek-v3.1:671b-cloud";
+
+        [JsonPropertyName("prompt")]
+        public string Prompt { get; set; } = "";
+
+        [JsonPropertyName("stream")]
+        public bool Stream { get; set; } = false;
+    }
+
+    public class OllamaStreamResponse
+    {
+        [JsonPropertyName("model")]
+        public string Model { get; set; }
+
+        [JsonPropertyName("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonPropertyName("response")]
+        public string Response { get; set; }
+
+        [JsonPropertyName("done")]
+        public bool Done { get; set; }
+
+        [JsonPropertyName("total_duration")]
+        public long? TotalDuration { get; set; }
+
+        [JsonPropertyName("eval_count")]
+        public int? EvalCount { get; set; }
+    }
+
+    public class WebSearchRequest
+    {
+        [JsonPropertyName("query")]
+        public string Query { get; set; }
+
+        [JsonPropertyName("max_results")]
+        public int MaxResults { get; set; } = 10;
+    }
+
+    public class WebSearchResult
+    {
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+    }
+
+    public class WebSearchResponse
+    {
+        [JsonPropertyName("results")]
+        public List<WebSearchResult> Results { get; set; }
+    }
+
+    public class WebFetchRequest
+    {
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+    }
+
+    public class WebFetchResponse
+    {
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+
+        [JsonPropertyName("links")]
+        public List<string> Links { get; set; }
+    }
+
+    public class CloudChatRequest
+    {
+        [JsonPropertyName("model")]
+        public string Model { get; set; }
+
+        [JsonPropertyName("messages")]
+        public List<ChatMessage> Messages { get; set; }
+
+        [JsonPropertyName("stream")]
+        public bool Stream { get; set; } = false;
+
+        [JsonPropertyName("web_search")]
+        public bool WebSearch { get; set; } = false;
+    }
+
+    public class ChatMessage
+    {
+        [JsonPropertyName("role")]
+        public string Role { get; set; }
+
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+    }
+
+    public class CloudChatResponse
+    {
+        [JsonPropertyName("model")]
+        public string Model { get; set; }
+
+        [JsonPropertyName("message")]
+        public ChatMessage Message { get; set; }
+
+        [JsonPropertyName("done")]
+        public bool Done { get; set; }
+
+        [JsonPropertyName("total_duration")]
+        public long? TotalDuration { get; set; }
+
+        [JsonPropertyName("eval_count")]
+        public int? EvalCount { get; set; }
+    }
+
+#endregion
+
+internal static class NativeMethods
+    {
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool LockWindowUpdate(IntPtr hWndLock);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int GetScrollPos(IntPtr hWnd, int nBar);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SetScrollPos(IntPtr hWnd, int nBar, int nPos, bool bRedraw);
+
+        public const int SB_HORZ = 0x0;
+        public const int SB_VERT = 0x1;
+        public const uint WM_VSCROLL = 0x115;
+        public const int SB_BOTTOM = 7;
     }
 }
