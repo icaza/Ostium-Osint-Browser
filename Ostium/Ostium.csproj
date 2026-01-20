@@ -393,7 +393,7 @@
     <Content Include="scripts\scriptsl\Extract_Images.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="scripts\oobai\Copy_Content_to_Clipboard.js">
+    <Content Include="scripts\oobai\extractcontentpage.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\scriptsl\Url_Extractor.js">

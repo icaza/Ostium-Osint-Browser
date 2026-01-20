@@ -254,11 +254,7 @@ namespace Ostium
         List<PromptTemplate> _templates;
         bool _disposed = false;
 
-        //readonly Queue<string> _streamingQueue;
-        //readonly System.Windows.Forms.Timer _streamingTimer;
-
         readonly bool _isAutoScrolling = true;
-        //readonly int _lastScrollPosition = 0;
 
         string WEB_SEARCH_URL = "https://ollama.com/api/web_search";
         string WEB_FETCH_URL = "https://ollama.com/api/web_fetch";
@@ -272,6 +268,9 @@ namespace Ostium
         string AnswerContinue;
         string ChatHost = "local";
         string QuestionOnly = "";
+
+        Microsoft.Web.WebView2.WinForms.WebView2 WbrowseSelect;
+        ContextMenuStrip contextMenuResponse;
         #endregion
 
         #region Frm_
@@ -360,6 +359,8 @@ namespace Ostium
 
                     WbOutParse = WbOutA;
                     WbOutJson = WbOutB;
+
+                    ConfigPromptResponse();
                 });
             }
             catch (Exception ex)
@@ -1304,6 +1305,8 @@ namespace Ostium
         /// <param name="newItem4">Text select Auto Clipboard</param>
         /// <param name="newItem5">Keep Track</param>
         /// <param name="newItem6">Tracking tool</param>
+        /// <param name="newItem7">OOBai RSS Headline Analysis localhost</param>
+        /// <param name="newItem8">OOBai RSS Headline Analysis cloud</param>
         /// 
         void WBrowse_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
@@ -1445,7 +1448,7 @@ namespace Ostium
             newItem7.CustomItemSelected += delegate (object send, object ex)
             {
                 ChatHost = "local";
-
+                WbrowseSelect = WBrowse;
                 Agent_ExtractScript();
             };
 
@@ -1453,7 +1456,7 @@ namespace Ostium
             newItem8.CustomItemSelected += delegate (object send, object ex)
             {
                 ChatHost = "cloud";
-
+                WbrowseSelect = WBrowse;
                 Agent_ExtractScript();
             };
 
@@ -1685,6 +1688,39 @@ namespace Ostium
             }
         }
 
+        ///
+        /// <summary>
+        /// Adding an item to the Wbrowsefeed Context Menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="newItem0">OOBai RSS Headline Analysis localhost</param>
+        /// <param name="newItem1">OOBai RSS Headline Analysis cloud</param>
+        /// 
+        void Wbrowsefeed_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
+        {
+            IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
+
+            CoreWebView2ContextMenuItem newItem0 = WBrowsefeed.CoreWebView2.Environment.CreateContextMenuItem("OOBai [Agent Content Analysis] Localhost", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem0.CustomItemSelected += delegate (object send, object ex)
+            {
+                ChatHost = "local";
+                WbrowseSelect = WBrowsefeed;
+                Agent_ExtractScript();
+            };
+
+            CoreWebView2ContextMenuItem newItem1 = WBrowsefeed.CoreWebView2.Environment.CreateContextMenuItem("OOBai [Agent Content Analysis] Cloud", null, CoreWebView2ContextMenuItemKind.Command);
+            newItem1.CustomItemSelected += delegate (object send, object ex)
+            {
+                ChatHost = "cloud";
+                WbrowseSelect = WBrowsefeed;
+                Agent_ExtractScript();
+            };
+
+            menuList.Insert(menuList.Count, newItem0);
+            menuList.Insert(menuList.Count, newItem1);
+        }
+
         void WBrowsefeed_UpdtTitleEvent(string message)
         {
             string currentDocumentTitle = WBrowsefeed?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
@@ -1770,6 +1806,7 @@ namespace Ostium
 
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
+            WBrowsefeed.CoreWebView2.ContextMenuRequested += Wbrowsefeed_ContextMenuRequested;
 
             WBrowsefeed.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
             WBrowsefeed.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
@@ -11560,12 +11597,14 @@ namespace Ostium
         void Agent_RSS_News_Local_Click(object sender, EventArgs e)
         {
             ChatHost = "local";
+            WbrowseSelect = WBrowsefeed;
             Agent_RSS_News(0);
         }
 
         void Agent_RSS_News_Cloud_Click(object sender, EventArgs e)
         {
             ChatHost = "cloud";
+            WbrowseSelect = WBrowsefeed;
             Agent_RSS_News(0);
         }
 
@@ -11581,19 +11620,15 @@ namespace Ostium
                     if (LocalCloud == "local")
                     {
                         ChatHost = "local";
-
-                        AGENT_RSS_NEWS_PROMPT = promptsend;
-
-                        Agent_RSS_News(1);
                     }
                     else if (LocalCloud == "cloud")
                     {
                         ChatHost = "cloud";
-
-                        AGENT_RSS_NEWS_PROMPT = promptsend;
-
-                        Agent_RSS_News(1);
                     }
+
+                    AGENT_RSS_NEWS_PROMPT = promptsend;
+                    WbrowseSelect = WBrowsefeed;
+                    Agent_RSS_News(1);
                 }
             }
         }
@@ -11843,6 +11878,7 @@ namespace Ostium
                         ChatHost = "cloud";
                     }
 
+                    WbrowseSelect = WBrowse;
                     AGENT_CONTENT_ANALYSIS_PROMPT = promptsend;
 
                     string content = await ExtractPageContent();
@@ -11861,9 +11897,9 @@ namespace Ostium
 
             try
             {
-                string script = File.ReadAllText(Path.Combine(Scripts, "oobai", "Copy_Content_to_Clipboard.js"));
+                string script = File.ReadAllText(Path.Combine(Scripts, "oobai", "extractcontentpage.js"));
 
-                rawResult = await WBrowse.CoreWebView2.ExecuteScriptAsync(script);
+                rawResult = await WbrowseSelect.CoreWebView2.ExecuteScriptAsync(script);
 
                 if (string.IsNullOrWhiteSpace(rawResult))
                 {
@@ -12031,6 +12067,35 @@ namespace Ostium
 
         #endregion
 
+        // Prompt response Menu
+        void ConfigPromptResponse()
+        {
+            contextMenuResponse = new ContextMenuStrip();
+
+            ToolStripMenuItem copierItem = new ToolStripMenuItem("Copier", null, Copier)
+            {
+                ShortcutKeys = Keys.Control | Keys.C
+            };
+            contextMenuResponse.Items.Add(copierItem);
+
+            ToolStripMenuItem selectItem = new ToolStripMenuItem("Select All", null, SelectAllText)
+            {
+                ShortcutKeys = Keys.Control | Keys.A
+            };
+            contextMenuResponse.Items.Add(selectItem);
+
+            rtbResponse.ContextMenuStrip = contextMenuResponse;
+        }
+
+        void Copier(object sender, EventArgs e)
+        {
+            rtbResponse.Copy();
+        }
+
+        void SelectAllText(object sender, EventArgs e)
+        {
+            rtbResponse.SelectAll();
+        }
         #endregion
 
         #region Update_
@@ -12263,9 +12328,9 @@ namespace Ostium
         public int? EvalCount { get; set; }
     }
 
-#endregion
+    #endregion
 
-internal static class NativeMethods
+    internal static class NativeMethods
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool LockWindowUpdate(IntPtr hWndLock);

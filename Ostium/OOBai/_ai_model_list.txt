@@ -14,7 +14,6 @@ gemma3:12b-cloud
 gemma3:4b-cloud
 deepseek-v3.1:671b-cloud
 qwen3-next:80b-cloud
-gemini-3-pro-preview
 glm-4.6:cloud
 minimax-m2:cloud
 cogito-2.1:671b-cloud
