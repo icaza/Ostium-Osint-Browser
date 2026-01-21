@@ -374,11 +374,12 @@
             this.panel38 = new System.Windows.Forms.Panel();
             this.panel36 = new System.Windows.Forms.Panel();
             this.Panel_Right_Bottom_Oobai = new System.Windows.Forms.Panel();
+            this.Clear_Btn = new System.Windows.Forms.Button();
+            this.SpeakPrompt_Btn = new System.Windows.Forms.Button();
             this.panelHistory = new System.Windows.Forms.Panel();
             this.lblHistoryInfo = new System.Windows.Forms.Label();
             this.btnHistoryPrev = new System.Windows.Forms.Button();
             this.btnHistoryNext = new System.Windows.Forms.Button();
-            this.Clear_Btn = new System.Windows.Forms.Button();
             this.Copy_Btn = new System.Windows.Forms.Button();
             this.Export_Btn = new System.Windows.Forms.Button();
             this.panel37 = new System.Windows.Forms.Panel();
@@ -559,6 +560,7 @@
             this.Agent_RSS_News_Promptsend = new System.Windows.Forms.ToolStripMenuItem();
             this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
             this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
             this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
             this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
@@ -4713,8 +4715,9 @@
             // 
             // Panel_Right_Bottom_Oobai
             // 
-            this.Panel_Right_Bottom_Oobai.Controls.Add(this.panelHistory);
             this.Panel_Right_Bottom_Oobai.Controls.Add(this.Clear_Btn);
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.SpeakPrompt_Btn);
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.panelHistory);
             this.Panel_Right_Bottom_Oobai.Controls.Add(this.Copy_Btn);
             this.Panel_Right_Bottom_Oobai.Controls.Add(this.Export_Btn);
             this.Panel_Right_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -4722,6 +4725,39 @@
             this.Panel_Right_Bottom_Oobai.Name = "Panel_Right_Bottom_Oobai";
             this.Panel_Right_Bottom_Oobai.Size = new System.Drawing.Size(695, 30);
             this.Panel_Right_Bottom_Oobai.TabIndex = 23;
+            // 
+            // Clear_Btn
+            // 
+            this.Clear_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.Clear_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Clear_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Clear_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Clear_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Clear_Btn.ForeColor = System.Drawing.Color.Black;
+            this.Clear_Btn.Location = new System.Drawing.Point(308, 0);
+            this.Clear_Btn.Name = "Clear_Btn";
+            this.Clear_Btn.Size = new System.Drawing.Size(83, 30);
+            this.Clear_Btn.TabIndex = 9;
+            this.Clear_Btn.Text = "🗑 Empty";
+            this.Clear_Btn.UseVisualStyleBackColor = false;
+            this.Clear_Btn.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // SpeakPrompt_Btn
+            // 
+            this.SpeakPrompt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.SpeakPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SpeakPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SpeakPrompt_Btn.FlatAppearance.BorderSize = 0;
+            this.SpeakPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SpeakPrompt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpeakPrompt_Btn.ForeColor = System.Drawing.Color.White;
+            this.SpeakPrompt_Btn.Location = new System.Drawing.Point(391, 0);
+            this.SpeakPrompt_Btn.Name = "SpeakPrompt_Btn";
+            this.SpeakPrompt_Btn.Size = new System.Drawing.Size(83, 30);
+            this.SpeakPrompt_Btn.TabIndex = 18;
+            this.SpeakPrompt_Btn.Text = "▶️ Speak";
+            this.SpeakPrompt_Btn.UseVisualStyleBackColor = false;
+            this.SpeakPrompt_Btn.Click += new System.EventHandler(this.SpeakPrompt_Btn_Click);
             // 
             // panelHistory
             // 
@@ -4733,7 +4769,7 @@
             this.panelHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelHistory.Location = new System.Drawing.Point(0, 0);
             this.panelHistory.Name = "panelHistory";
-            this.panelHistory.Size = new System.Drawing.Size(391, 30);
+            this.panelHistory.Size = new System.Drawing.Size(474, 30);
             this.panelHistory.TabIndex = 17;
             // 
             // lblHistoryInfo
@@ -4778,22 +4814,6 @@
             this.btnHistoryNext.Text = "►";
             this.btnHistoryNext.UseVisualStyleBackColor = false;
             this.btnHistoryNext.Click += new System.EventHandler(this.BtnHistoryNext_Click);
-            // 
-            // Clear_Btn
-            // 
-            this.Clear_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Clear_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Clear_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Clear_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Clear_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Clear_Btn.ForeColor = System.Drawing.Color.Black;
-            this.Clear_Btn.Location = new System.Drawing.Point(391, 0);
-            this.Clear_Btn.Name = "Clear_Btn";
-            this.Clear_Btn.Size = new System.Drawing.Size(83, 30);
-            this.Clear_Btn.TabIndex = 9;
-            this.Clear_Btn.Text = "🗑 Empty";
-            this.Clear_Btn.UseVisualStyleBackColor = false;
-            this.Clear_Btn.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // Copy_Btn
             // 
@@ -6217,9 +6237,9 @@
             this.label31.ForeColor = System.Drawing.Color.White;
             this.label31.Location = new System.Drawing.Point(4, 637);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(326, 14);
+            this.label31.Size = new System.Drawing.Size(402, 14);
             this.label31.TabIndex = 16;
-            this.label31.Text = "Add a path to save it in the archive (line by line)";
+            this.label31.Text = "Add or remove  a path to save it in the archive (line by line)";
             // 
             // label4
             // 
@@ -6695,7 +6715,8 @@
             this.toolStripSeparator20,
             this.ToolsFeed_Mnu,
             this.JavaScriptFeed_Btn,
-            this.BlockAdFeed_Btn});
+            this.BlockAdFeed_Btn,
+            this.OpnPromptRss_Btn});
             this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_1.Name = "Tools_TAB_1";
             this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
@@ -7003,6 +7024,19 @@
             this.BlockAdFeed_Btn.Text = "🚫";
             this.BlockAdFeed_Btn.ToolTipText = "Block Ad/Tracker";
             this.BlockAdFeed_Btn.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
+            // 
+            // OpnPromptRss_Btn
+            // 
+            this.OpnPromptRss_Btn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.OpnPromptRss_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnPromptRss_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnPromptRss_Btn.ForeColor = System.Drawing.Color.White;
+            this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
+            this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
+            this.OpnPromptRss_Btn.Text = "Prompt";
+            this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
             // 
             // Tools_TAB_3
             // 
@@ -8497,6 +8531,8 @@
         private System.Windows.Forms.Button Agent_Fetch_Search;
         private System.Windows.Forms.ToolStripMenuItem Agent_RSS_News_Promptsend;
         private System.Windows.Forms.Button OpnPrompt_Btn;
+        private System.Windows.Forms.Button SpeakPrompt_Btn;
+        private System.Windows.Forms.ToolStripButton OpnPromptRss_Btn;
     }
 }
 

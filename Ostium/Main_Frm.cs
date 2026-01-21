@@ -538,6 +538,24 @@ namespace Ostium
                 DefaultEditor_Opt_Txt.Text = Path.Combine(AppStart, "OstiumE.exe");
                 Redlist_Txt.Text = Path.Combine(AppStart, "data", BlockedUrl);
                 CyberChef_Opt_Txt.Text = "";
+                ArchiveAdd_Txt.Text = "";
+
+                var ArchiveDir = new List<string>()
+                    {
+                        DBdirectory,
+                        FeedDir,
+                        FileDir,
+                        Workflow,
+                        Scripts,
+                        Setirps,
+                        MapDir,
+                        JsonDir
+                    };
+
+                for (int i = 0; i < ArchiveDir.Count; i++)
+                {
+                    ArchiveAdd_Txt.AppendText(ArchiveDir[i].ToString() + Environment.NewLine);
+                }
             }
             ///
             /// Create XML file "config.xml"
@@ -773,6 +791,7 @@ namespace Ostium
 
             if (File.Exists(Path.Combine(AppStart, "archiveAdd.txt")))
             {
+                ArchiveAdd_Lst.Items.Clear();
                 using (StreamReader sr = new StreamReader(Path.Combine(AppStart, "archiveAdd.txt")))
                 {
                     ArchiveAdd_Txt.Text = sr.ReadToEnd();
@@ -2858,18 +2877,6 @@ namespace Ostium
         {
             try
             {
-                var ArchiveDir = new List<string>()
-                    {
-                        DBdirectory,
-                        FeedDir,
-                        FileDir,
-                        Workflow,
-                        Scripts,
-                        Setirps,
-                        MapDir,
-                        JsonDir
-                    };
-
                 using (StreamWriter addtxt = new StreamWriter(AppStart + "Archive-DB-FILES-FEED.bat"))
                 {
                     addtxt.WriteLine("@echo off");
@@ -2879,11 +2886,6 @@ namespace Ostium
                     addtxt.WriteLine("@echo.");
                     addtxt.WriteLine("echo Backup: DATABASE - FEED - FILES");
                     addtxt.WriteLine("@echo.");
-
-                    for (int i = 0; i < ArchiveDir.Count; i++)
-                    {
-                        addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveDir[i].ToString() + " -mx9 -mtc=on");
-                    }
 
                     if (ArchiveAdd_Lst.Items.Count > 0)
                     {
@@ -5713,6 +5715,15 @@ namespace Ostium
                 DeleteCatfeed_Btn.Visible = true;
                 Separator4.Visible = true;
                 Separator5.Visible = true;
+
+                GoFeed_Btn.Visible = false;
+                toolStripSeparator20.Visible = false;
+                CollapseTitleFeed_Btn.Visible = false;
+                GoFeed_Txt.Visible = false;
+                ToolsFeed_Mnu.Visible = false;
+                JavaScriptFeed_Btn.Visible = false;
+                BlockAdFeed_Btn.Visible = false;
+                OpnPromptRss_Btn.Visible = false;
             }
             else
             {
@@ -5734,6 +5745,15 @@ namespace Ostium
                 DeleteCatfeed_Btn.Visible = false;
                 Separator4.Visible = false;
                 Separator5.Visible = false;
+
+                GoFeed_Btn.Visible = true;
+                toolStripSeparator20.Visible = true;
+                CollapseTitleFeed_Btn.Visible = true;
+                GoFeed_Txt.Visible = true;
+                ToolsFeed_Mnu.Visible = true;
+                JavaScriptFeed_Btn.Visible = true;
+                BlockAdFeed_Btn.Visible = true;
+                OpnPromptRss_Btn.Visible = true;
             }
         }
 
@@ -6893,7 +6913,7 @@ namespace Ostium
         void SaveConfig_Opt_Btn_Click(object sender, EventArgs e)
         {
             CreateConfigFile(1);
-            MessageBox.Show("Config save.");
+            MessageBox.Show("The configuration was saved correctly.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         void Furldir_Opt_Click(object sender, EventArgs e)
@@ -10630,6 +10650,7 @@ namespace Ostium
             Agent_RSS_News_Local.Enabled = enabled;
             Agent_RSS_News_Cloud.Enabled = enabled;
             Agent_RSS_News_Promptsend.Enabled = enabled;
+            SpeakPrompt_Btn.Enabled = enabled;
         }
 
         #endregion
@@ -11579,7 +11600,6 @@ namespace Ostium
 
         #endregion
 
-
         void ModeSelectl_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             OOBai_Tab.Text = $"OOBai [{ModeSelectl_Cbx.Text}]";
@@ -11610,6 +11630,15 @@ namespace Ostium
 
         void Agent_RSS_News_Promptsend_Click(object sender, EventArgs e)
         {
+            if (collectedItemsTitleRss == null || collectedItemsTitleRss.Count == 0)
+            {
+                MessageBox.Show("The RSS list is empty. No items to process.",
+                                "Information",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                return;
+            }
+
             using (var form = new PromptSend_Frm())
             {
                 if (form.ShowDialog() == DialogResult.OK)
@@ -11633,15 +11662,22 @@ namespace Ostium
             }
         }
 
+        void OpnPromptRss_Btn_Click(object sender, EventArgs e)
+        {
+            if (Title_Lst.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must first select an item to open the prompt!", "Select an item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            WbrowseSelect = WBrowsefeed;
+            Agent_ExtractScript_Promptsend(1);
+        }
+
         async void Agent_RSS_News(int value)
         {
             try
             {
-                CtrlTabOobai();
-                Control_Tab.SelectedIndex = 6;
-
-                txtPrompt?.Clear();
-
                 if (collectedItemsTitleRss == null || collectedItemsTitleRss.Count == 0)
                 {
                     MessageBox.Show("The RSS list is empty. No items to process.",
@@ -11650,6 +11686,11 @@ namespace Ostium
                                     MessageBoxIcon.Information);
                     return;
                 }
+
+                CtrlTabOobai();
+                Control_Tab.SelectedIndex = 6;
+
+                txtPrompt?.Clear();
 
                 if (collectedItemsTitleRss.Count < 25)
                 {
@@ -11837,17 +11878,11 @@ namespace Ostium
                                 MessageBoxIcon.Error);
             }
         }
-        ///
-        /// <summary>
-        /// AGENT_CONTENT_ANALYSIS
-        /// </summary>
-        /// <param Task="Web page content analysis."></param>
-        /// <param value="0">Using the configuration file prompt.</param>
-        /// <param value="1">Using the custom prompt.</param>
-        ///
+
         void OpnPrompt_Btn_Click(object sender, EventArgs e)
         {
-            Agent_ExtractScript_Promptsend();
+            WbrowseSelect = WBrowse;
+            Agent_ExtractScript_Promptsend(1);
         }
 
         async void Agent_ExtractScript()
@@ -11860,7 +11895,7 @@ namespace Ostium
             }
         }
 
-        async void Agent_ExtractScript_Promptsend()
+        async void Agent_ExtractScript_Promptsend(int value)
         {
             using (var form = new PromptSend_Frm())
             {
@@ -11878,14 +11913,14 @@ namespace Ostium
                         ChatHost = "cloud";
                     }
 
-                    WbrowseSelect = WBrowse;
+                    //WbrowseSelect = WBrowse;
                     AGENT_CONTENT_ANALYSIS_PROMPT = promptsend;
 
                     string content = await ExtractPageContent();
 
                     if (!string.IsNullOrEmpty(content))
                     {
-                        StartWebPageAnalyse(1, content);
+                        StartWebPageAnalyse(value, content);
                     }
                 }
             }
@@ -11950,7 +11985,14 @@ namespace Ostium
                 return null;
             }
         }
-
+        ///
+        /// <summary>
+        /// AGENT_CONTENT_ANALYSIS
+        /// </summary>
+        /// <param Task="Web page content analysis."></param>
+        /// <param value="0">Using the configuration file prompt.</param>
+        /// <param value="1">Using the custom prompt.</param>
+        ///
         async void StartWebPageAnalyse(int value, string content)
         {
             CtrlTabOobai();
@@ -12021,49 +12063,6 @@ namespace Ostium
 
             await PerformWebSearchAsync();
         }
-        /// <summary>
-        /// Load Agent AI config
-        /// </summary>
-        public static class AgentConfig
-        {
-            static readonly string ConfigPath = Application.StartupPath + @"\OOBai\agent_ai_config.json";
-            static Dictionary<string, Dictionary<string, string>> _cache;
-
-            public static void Load()
-            {
-                try
-                {
-                    var fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigPath);
-
-                    if (File.Exists(fullPath))
-                    {
-                        var json = File.ReadAllText(fullPath);
-                        _cache = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(json)
-                                 ?? new Dictionary<string, Dictionary<string, string>>();
-
-                        Debug.WriteLine($"[AgentConfig] Configuration loaded from: {fullPath}");
-                    }
-                    else
-                    {
-                        _cache = new Dictionary<string, Dictionary<string, string>>();
-                        Debug.WriteLine($"[AgentConfig] File not found: {fullPath}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _cache = new Dictionary<string, Dictionary<string, string>>();
-                    Debug.WriteLine($"[AgentConfig] Error during loading: {ex.Message}");
-                }
-            }
-
-            public static string Get(string effect, string param, string defaultValue = "")
-            {
-                if (_cache.TryGetValue(effect, out var parameters) &&
-                    parameters.TryGetValue(param, out var value))
-                    return value;
-                return defaultValue;
-            }
-        }
 
         #endregion
 
@@ -12072,7 +12071,7 @@ namespace Ostium
         {
             contextMenuResponse = new ContextMenuStrip();
 
-            ToolStripMenuItem copierItem = new ToolStripMenuItem("Copier", null, Copier)
+            ToolStripMenuItem copierItem = new ToolStripMenuItem("Copy", null, Copy)
             {
                 ShortcutKeys = Keys.Control | Keys.C
             };
@@ -12087,7 +12086,7 @@ namespace Ostium
             rtbResponse.ContextMenuStrip = contextMenuResponse;
         }
 
-        void Copier(object sender, EventArgs e)
+        void Copy(object sender, EventArgs e)
         {
             rtbResponse.Copy();
         }
@@ -12096,6 +12095,35 @@ namespace Ostium
         {
             rtbResponse.SelectAll();
         }
+
+        void SpeakPrompt_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (VerifLangOpn == 0)
+                    LoadLang();
+
+                if (!string.IsNullOrEmpty(AnswerContinue))
+                {
+                    synth.Volume = Class_Var.VOLUME_TRACK;
+                    synth.Rate = Class_Var.RATE_TRACK;
+
+                    if (LangSelect_Lst.SelectedIndex == -1)
+                    {
+                        LangSelect_Lst.SelectedIndex = 0;
+                    }
+
+                    string removeChar = AnswerContinue;
+                    removeChar = Regex.Replace(removeChar, @"[^a-zA-Z0-9\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ.,!?;:""'()-]", "");
+
+                    synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
+                    synth.SpeakAsync(removeChar);
+                }
+            }
+            catch
+            { }
+        }
+
         #endregion
 
         #region Update_
@@ -12169,6 +12197,47 @@ namespace Ostium
         }
 
         #endregion
+    }
+
+    public static class AgentConfig
+    {
+        static readonly string ConfigPath = Application.StartupPath + @"\OOBai\agent_ai_config.json";
+        static Dictionary<string, Dictionary<string, string>> _cache;
+
+        public static void Load()
+        {
+            try
+            {
+                var fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigPath);
+
+                if (File.Exists(fullPath))
+                {
+                    var json = File.ReadAllText(fullPath);
+                    _cache = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(json)
+                             ?? new Dictionary<string, Dictionary<string, string>>();
+
+                    Debug.WriteLine($"[AgentConfig] Configuration loaded from: {fullPath}");
+                }
+                else
+                {
+                    _cache = new Dictionary<string, Dictionary<string, string>>();
+                    Debug.WriteLine($"[AgentConfig] File not found: {fullPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _cache = new Dictionary<string, Dictionary<string, string>>();
+                Debug.WriteLine($"[AgentConfig] Error during loading: {ex.Message}");
+            }
+        }
+
+        public static string Get(string effect, string param, string defaultValue = "")
+        {
+            if (_cache.TryGetValue(effect, out var parameters) &&
+                parameters.TryGetValue(param, out var value))
+                return value;
+            return defaultValue;
+        }
     }
 
     public class ConfigSFE
