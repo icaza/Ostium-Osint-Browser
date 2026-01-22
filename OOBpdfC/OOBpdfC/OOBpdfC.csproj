@@ -13,6 +13,7 @@
     <Authors>ICAZA</Authors>
     <Company>ICAZA MEDIA</Company>
     <Platforms>AnyCPU;x64</Platforms>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

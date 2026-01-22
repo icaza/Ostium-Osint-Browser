@@ -3,7 +3,7 @@
     public partial class MainForm : Form
     {
         readonly PdfProcessor _pdfProcessor;
-        readonly List<string> _selectedFiles = new();
+        readonly List<string> _selectedFiles = [];
         bool _isProcessing = false;
 
         public PdfProcessor PdfProcessor => _pdfProcessor;
@@ -97,7 +97,7 @@
 
                     var item = new ListViewItem(Path.GetFileName(file));
                     item.SubItems.Add(FormatFileSize(fileInfo.Length));
-                    item.SubItems.Add("En attente");
+                    item.SubItems.Add("On hold");
                     item.Tag = file;
                     item.ImageIndex = 0;
 
@@ -149,7 +149,7 @@
         {
             if (_selectedFiles.Count == 0)
             {
-                MessageBox.Show("No file selected.", "Attention",
+                MessageBox.Show("No file selected.", "Select file",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -240,7 +240,7 @@
 
         static string FormatFileSize(long bytes)
         {
-            string[] sizes = { "B", "KB", "MB", "GB" };
+            string[] sizes = ["B", "KB", "MB", "GB"];
             double len = bytes;
             int order = 0;
 

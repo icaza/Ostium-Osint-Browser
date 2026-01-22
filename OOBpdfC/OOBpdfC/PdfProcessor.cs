@@ -250,7 +250,7 @@ namespace OOBpdfC
 
             if (options.ExtractMetadata && pdfData.Metadata.Count > 0)
             {
-                sb.AppendLine("## 📋 Métadonnées");
+                sb.AppendLine("## 📋 Metadata");
                 sb.AppendLine();
 
                 foreach (var kvp in pdfData.Metadata)
@@ -407,9 +407,9 @@ namespace OOBpdfC
 
     internal class PdfData
     {
-        public Dictionary<string, string> Metadata { get; set; } = new();
-        public List<PageData> Pages { get; set; } = new();
-        public List<Bitmap> Images { get; set; } = new();
+        public Dictionary<string, string> Metadata { get; set; } = [];
+        public List<PageData> Pages { get; set; } = [];
+        public List<Bitmap> Images { get; set; } = [];
         public int TotalPages { get; set; }
     }
 
@@ -440,7 +440,7 @@ namespace OOBpdfC
                         var imageBytes = image.GetImageBytes();
                         using var ms = new MemoryStream(imageBytes);
                         var bitmap = new Bitmap(ms);
-                        Images.Add(new Bitmap(bitmap)); // Clone pour éviter les problèmes de disposal
+                        Images.Add(new Bitmap(bitmap)); // Clone to avoid disposal problems
                     }
                 }
             }

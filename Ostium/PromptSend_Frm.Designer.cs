@@ -182,7 +182,7 @@
             this.Controls.Add(this.Cancel_Btn);
             this.Controls.Add(this.Ok_Btn);
             this.Controls.Add(this.PromptSendForm_Txt);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -7,6 +8,14 @@ namespace Ostium
     public partial class PromptSend_Frm : Form
     {
         #region Var_
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         readonly string FilePromptSave = Path.Combine(Application.StartupPath, "OOBai", "SendPrompt.txt");
         public string PromptSendFrm => PromptSendForm_Txt.Text.Trim();
         public string LocalCloud;
@@ -23,6 +32,16 @@ namespace Ostium
         void PromptSend_Frm_Load(object sender, EventArgs e)
         {
             LoadPrompt();
+            MouseDown += new MouseEventHandler(Main_Frm_MouseDown);
+        }
+
+        void Main_Frm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
 
         void LoadPrompt()

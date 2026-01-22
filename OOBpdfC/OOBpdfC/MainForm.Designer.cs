@@ -107,6 +107,7 @@
             // 
             btnAddFiles.BackColor = Color.FromArgb(46, 204, 113);
             btnAddFiles.Cursor = Cursors.Hand;
+            btnAddFiles.FlatAppearance.BorderSize = 0;
             btnAddFiles.FlatStyle = FlatStyle.Flat;
             btnAddFiles.Font = new Font("Verdana", 9.75F, FontStyle.Bold);
             btnAddFiles.ForeColor = Color.White;
@@ -122,6 +123,7 @@
             // 
             btnAddFolder.BackColor = Color.FromArgb(52, 152, 219);
             btnAddFolder.Cursor = Cursors.Hand;
+            btnAddFolder.FlatAppearance.BorderSize = 0;
             btnAddFolder.FlatStyle = FlatStyle.Flat;
             btnAddFolder.Font = new Font("Verdana", 9.75F, FontStyle.Bold);
             btnAddFolder.ForeColor = Color.White;
@@ -137,6 +139,7 @@
             // 
             btnRemoveSelected.BackColor = Color.FromArgb(231, 76, 60);
             btnRemoveSelected.Cursor = Cursors.Hand;
+            btnRemoveSelected.FlatAppearance.BorderSize = 0;
             btnRemoveSelected.FlatStyle = FlatStyle.Flat;
             btnRemoveSelected.Font = new Font("Verdana", 9.75F, FontStyle.Bold);
             btnRemoveSelected.ForeColor = Color.White;
@@ -152,6 +155,7 @@
             // 
             btnClearAll.BackColor = Color.FromArgb(149, 165, 166);
             btnClearAll.Cursor = Cursors.Hand;
+            btnClearAll.FlatAppearance.BorderSize = 0;
             btnClearAll.FlatStyle = FlatStyle.Flat;
             btnClearAll.Font = new Font("Verdana", 9.75F, FontStyle.Bold);
             btnClearAll.ForeColor = Color.White;
