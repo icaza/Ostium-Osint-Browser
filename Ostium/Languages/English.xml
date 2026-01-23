@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language>
+  <Name>English</Name>
+  
+  <!-- Stop words - common words to exclude from analysis -->
+  <StopWords>
+    <!-- Articles -->
+    <Word>the</Word>
+    <Word>a</Word>
+    <Word>an</Word>
+    
+    <!-- Prepositions -->
+    <Word>of</Word>
+    <Word>to</Word>
+    <Word>in</Word>
+    <Word>for</Word>
+    <Word>on</Word>
+    <Word>with</Word>
+    <Word>at</Word>
+    <Word>by</Word>
+    <Word>from</Word>
+    <Word>up</Word>
+    <Word>about</Word>
+    <Word>into</Word>
+    <Word>through</Word>
+    <Word>during</Word>
+    
+    <!-- Pronouns -->
+    <Word>i</Word>
+    <Word>you</Word>
+    <Word>he</Word>
+    <Word>she</Word>
+    <Word>it</Word>
+    <Word>we</Word>
+    <Word>they</Word>
+    <Word>them</Word>
+    <Word>their</Word>
+    <Word>what</Word>
+    <Word>which</Word>
+    <Word>who</Word>
+    <Word>whom</Word>
+    <Word>this</Word>
+    <Word>that</Word>
+    <Word>these</Word>
+    <Word>those</Word>
+    
+    <!-- Conjunctions -->
+    <Word>and</Word>
+    <Word>but</Word>
+    <Word>or</Word>
+    <Word>nor</Word>
+    <Word>so</Word>
+    <Word>yet</Word>
+    <Word>if</Word>
+    <Word>when</Word>
+    <Word>where</Word>
+    <Word>while</Word>
+    <Word>because</Word>
+    <Word>although</Word>
+    
+    <!-- Auxiliary verbs -->
+    <Word>is</Word>
+    <Word>are</Word>
+    <Word>was</Word>
+    <Word>were</Word>
+    <Word>been</Word>
+    <Word>being</Word>
+    <Word>have</Word>
+    <Word>has</Word>
+    <Word>had</Word>
+    <Word>do</Word>
+    <Word>does</Word>
+    <Word>did</Word>
+    <Word>will</Word>
+    <Word>would</Word>
+    <Word>should</Word>
+    <Word>could</Word>
+    <Word>may</Word>
+    <Word>might</Word>
+    <Word>must</Word>
+    <Word>can</Word>
+    
+    <!-- Common adverbs -->
+    <Word>not</Word>
+    <Word>no</Word>
+    <Word>yes</Word>
+    <Word>very</Word>
+    <Word>too</Word>
+    <Word>also</Word>
+    <Word>just</Word>
+    <Word>now</Word>
+    <Word>then</Word>
+    <Word>here</Word>
+    <Word>there</Word>
+    <Word>more</Word>
+    <Word>most</Word>
+    <Word>all</Word>
+    <Word>any</Word>
+    <Word>some</Word>
+    <Word>each</Word>
+    <Word>every</Word>
+  </StopWords>
+  
+  <!-- Sentiment analysis -->
+  <Sentiment>
+    <Positive>
+      <!-- Positive emotions -->
+      <Word>happy</Word>
+      <Word>joy</Word>
+      <Word>joyful</Word>
+      <Word>delighted</Word>
+      <Word>pleased</Word>
+      <Word>satisfied</Word>
+      <Word>content</Word>
+      <Word>glad</Word>
+      <Word>cheerful</Word>
+      <Word>enthusiastic</Word>
+      <Word>excited</Word>
+      <Word>optimistic</Word>
+      <Word>hopeful</Word>
+      <Word>love</Word>
+      <Word>happiness</Word>
+      <Word>pleasure</Word>
+      
+      <!-- Positive qualities -->
+      <Word>excellent</Word>
+      <Word>wonderful</Word>
+      <Word>magnificent</Word>
+      <Word>superb</Word>
+      <Word>great</Word>
+      <Word>fantastic</Word>
+      <Word>amazing</Word>
+      <Word>awesome</Word>
+      <Word>brilliant</Word>
+      <Word>perfect</Word>
+      <Word>splendid</Word>
+      <Word>remarkable</Word>
+      <Word>outstanding</Word>
+      <Word>exceptional</Word>
+      <Word>marvelous</Word>
+      
+      <!-- Positive actions -->
+      <Word>success</Word>
+      <Word>succeed</Word>
+      <Word>achievement</Word>
+      <Word>accomplish</Word>
+      <Word>victory</Word>
+      <Word>win</Word>
+      <Word>improve</Word>
+      <Word>progress</Word>
+      <Word>create</Word>
+      <Word>innovate</Word>
+      <Word>develop</Word>
+      
+      <!-- Positive adjectives -->
+      <Word>good</Word>
+      <Word>better</Word>
+      <Word>best</Word>
+      <Word>nice</Word>
+      <Word>beautiful</Word>
+      <Word>lovely</Word>
+      <Word>pleasant</Word>
+      <Word>kind</Word>
+      <Word>friendly</Word>
+      <Word>smart</Word>
+      <Word>intelligent</Word>
+      <Word>bright</Word>
+      <Word>effective</Word>
+      <Word>useful</Word>
+      <Word>valuable</Word>
+      <Word>precious</Word>
+    </Positive>
+    
+    <Negative>
+      <!-- Negative emotions -->
+      <Word>sad</Word>
+      <Word>sadness</Word>
+      <Word>unhappy</Word>
+      <Word>miserable</Word>
+      <Word>depressed</Word>
+      <Word>despair</Word>
+      <Word>anxious</Word>
+      <Word>worried</Word>
+      <Word>fear</Word>
+      <Word>afraid</Word>
+      <Word>angry</Word>
+      <Word>anger</Word>
+      <Word>frustrated</Word>
+      <Word>frustration</Word>
+      <Word>disappointed</Word>
+      <Word>disappointment</Word>
+      
+      <!-- Negative qualities -->
+      <Word>bad</Word>
+      <Word>worse</Word>
+      <Word>worst</Word>
+      <Word>terrible</Word>
+      <Word>horrible</Word>
+      <Word>awful</Word>
+      <Word>dreadful</Word>
+      <Word>poor</Word>
+      <Word>mediocre</Word>
+      <Word>inferior</Word>
+      <Word>ugly</Word>
+      <Word>nasty</Word>
+      
+      <!-- Negative actions -->
+      <Word>fail</Word>
+      <Word>failure</Word>
+      <Word>lose</Word>
+      <Word>loss</Word>
+      <Word>defeat</Word>
+      <Word>destroy</Word>
+      <Word>damage</Word>
+      <Word>harm</Word>
+      <Word>hurt</Word>
+      <Word>criticize</Word>
+      <Word>blame</Word>
+      <Word>accuse</Word>
+      
+      <!-- Negative adjectives -->
+      <Word>difficult</Word>
+      <Word>hard</Word>
+      <Word>complex</Word>
+      <Word>complicated</Word>
+      <Word>problematic</Word>
+      <Word>dangerous</Word>
+      <Word>risky</Word>
+      <Word>useless</Word>
+      <Word>ineffective</Word>
+      <Word>weak</Word>
+      <Word>mean</Word>
+      <Word>cruel</Word>
+      <Word>stupid</Word>
+    </Negative>
+  </Sentiment>
+  
+  <!-- Thematic categories -->
+  <Categories>
+    <!-- Technology -->
+    <Category name="Technology">
+      <Word>computer</Word>
+      <Word>software</Word>
+      <Word>program</Word>
+      <Word>application</Word>
+      <Word>internet</Word>
+      <Word>web</Word>
+      <Word>digital</Word>
+      <Word>data</Word>
+      <Word>algorithm</Word>
+      <Word>artificial</Word>
+      <Word>intelligence</Word>
+      <Word>automation</Word>
+      <Word>robotics</Word>
+      <Word>computing</Word>
+      <Word>electronic</Word>
+      <Word>network</Word>
+      <Word>server</Word>
+      <Word>cloud</Word>
+      <Word>security</Word>
+      <Word>cybersecurity</Word>
+      <Word>technology</Word>
+      <Word>innovation</Word>
+    </Category>
+    
+    <!-- Business -->
+    <Category name="Business">
+      <Word>business</Word>
+      <Word>company</Word>
+      <Word>corporation</Word>
+      <Word>enterprise</Word>
+      <Word>commerce</Word>
+      <Word>market</Word>
+      <Word>customer</Word>
+      <Word>client</Word>
+      <Word>sale</Word>
+      <Word>purchase</Word>
+      <Word>product</Word>
+      <Word>service</Word>
+      <Word>marketing</Word>
+      <Word>advertising</Word>
+      <Word>strategy</Word>
+      <Word>competition</Word>
+      <Word>competitor</Word>
+      <Word>profit</Word>
+      <Word>revenue</Word>
+      <Word>investment</Word>
+      <Word>finance</Word>
+      <Word>economy</Word>
+      <Word>growth</Word>
+      <Word>development</Word>
+    </Category>
+    
+    <!-- Education -->
+    <Category name="Education">
+      <Word>school</Word>
+      <Word>university</Word>
+      <Word>college</Word>
+      <Word>student</Word>
+      <Word>teacher</Word>
+      <Word>professor</Word>
+      <Word>instructor</Word>
+      <Word>education</Word>
+      <Word>learning</Word>
+      <Word>teaching</Word>
+      <Word>course</Word>
+      <Word>class</Word>
+      <Word>training</Word>
+      <Word>knowledge</Word>
+      <Word>skill</Word>
+      <Word>competence</Word>
+      <Word>degree</Word>
+      <Word>diploma</Word>
+      <Word>exam</Word>
+      <Word>test</Word>
+      <Word>research</Word>
+      <Word>study</Word>
+      <Word>academic</Word>
+    </Category>
+    
+    <!-- Health -->
+    <Category name="Health">
+      <Word>health</Word>
+      <Word>medical</Word>
+      <Word>medicine</Word>
+      <Word>doctor</Word>
+      <Word>physician</Word>
+      <Word>hospital</Word>
+      <Word>clinic</Word>
+      <Word>patient</Word>
+      <Word>treatment</Word>
+      <Word>medication</Word>
+      <Word>drug</Word>
+      <Word>therapy</Word>
+      <Word>disease</Word>
+      <Word>illness</Word>
+      <Word>symptom</Word>
+      <Word>diagnosis</Word>
+      <Word>prevention</Word>
+      <Word>wellness</Word>
+      <Word>nutrition</Word>
+      <Word>exercise</Word>
+      <Word>fitness</Word>
+      <Word>sport</Word>
+    </Category>
+    
+    <!-- Environment -->
+    <Category name="Environment">
+      <Word>environment</Word>
+      <Word>ecology</Word>
+      <Word>ecological</Word>
+      <Word>nature</Word>
+      <Word>natural</Word>
+      <Word>climate</Word>
+      <Word>weather</Word>
+      <Word>pollution</Word>
+      <Word>recycling</Word>
+      <Word>sustainable</Word>
+      <Word>sustainability</Word>
+      <Word>energy</Word>
+      <Word>renewable</Word>
+      <Word>biodiversity</Word>
+      <Word>conservation</Word>
+      <Word>protection</Word>
+      <Word>planet</Word>
+      <Word>earth</Word>
+      <Word>ocean</Word>
+      <Word>forest</Word>
+      <Word>wildlife</Word>
+    </Category>
+    
+    <!-- Society -->
+    <Category name="Society">
+      <Word>society</Word>
+      <Word>social</Word>
+      <Word>community</Word>
+      <Word>population</Word>
+      <Word>citizen</Word>
+      <Word>people</Word>
+      <Word>culture</Word>
+      <Word>cultural</Word>
+      <Word>tradition</Word>
+      <Word>value</Word>
+      <Word>equality</Word>
+      <Word>justice</Word>
+      <Word>right</Word>
+      <Word>freedom</Word>
+      <Word>liberty</Word>
+      <Word>democracy</Word>
+      <Word>political</Word>
+      <Word>politics</Word>
+      <Word>government</Word>
+      <Word>law</Word>
+    </Category>
+  </Categories>
+</Language>

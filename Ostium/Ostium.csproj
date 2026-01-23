@@ -246,6 +246,7 @@
     <Compile Include="Mdi_Frm.Designer.cs">
       <DependentUpon>Mdi_Frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models.cs" />
     <Compile Include="OpenSource_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +267,7 @@
     <Compile Include="ScriptCreator_Frm.Designer.cs">
       <DependentUpon>ScriptCreator_Frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SemanticAnalyzer.cs" />
     <Compile Include="TemplateEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,6 +371,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\blocked_min.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\English.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\French.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="OOBai\_french_words.txt">

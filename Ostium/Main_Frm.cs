@@ -11,6 +11,7 @@ using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ostium.Properties;
+using SemanticAnalyzer;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -226,6 +227,8 @@ namespace Ostium
 
         CancellationTokenSource _parseCancellationSource;
         readonly List<string> collectedItemsTitleRss = new List<string>();
+
+        readonly TextSemanticAnalyzer analyzer;
         #endregion
 
         #region Var_OOBai
@@ -290,6 +293,8 @@ namespace Ostium
             AssemblyName thisAssemName = thisAssem.GetName();
             Version ver = thisAssemName.Version;
             SoftVersion = string.Format("{0} {1}", thisAssemName.Name, ver);
+
+            analyzer = new TextSemanticAnalyzer();
         }
 
         void Main_Frm_Load(object sender, EventArgs e)
@@ -2948,6 +2953,81 @@ namespace Ostium
             }
         }
 
+        async void SemanticFile_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = SelectDocumentFile();
+                if (string.IsNullOrEmpty(filePath)) return;
+
+                string languageFile = SelectLanguageFile();
+                if (string.IsNullOrEmpty(languageFile)) return;
+
+                using (var progressForm = new ProgressForm())
+                {
+                    progressForm.StartPosition = FormStartPosition.CenterScreen;
+                    progressForm.BackColor = Color.FromArgb(41, 44, 51);
+
+                    progressForm.Show(this);
+
+                    var progress = new Progress<int>(value =>
+                    {
+                        if (!progressForm.IsDisposed)
+                        {
+                            progressForm.UpdateProgress(value);
+                        }
+                    });
+
+                    var result = await analyzer.AnalyzeDocumentAsync(filePath, languageFile, progress);
+
+                    string outputDir = Path.GetDirectoryName(filePath);
+                    string baseName = Path.GetFileNameWithoutExtension(filePath);
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+                    string htmlPath = Path.Combine(outputDir, $"{baseName}_analysis_{timestamp}.html");
+                    string mdPath = Path.Combine(outputDir, $"{baseName}_analysis_{timestamp}.md");
+
+                    await analyzer.SaveAsHtmlAsync(result, htmlPath);
+                    await analyzer.SaveAsMarkdownAsync(result, mdPath);
+
+                    progressForm.Close();
+
+                    ShowSuccessMessage(htmlPath, mdPath, result);
+
+                    if (MessageBox.Show("Do you want to open the HTML report? ?", "Open the report",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        GoBrowser($"file:///{htmlPath}", 1);
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show($"File not found:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($"Access denied:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (NotSupportedException ex)
+            {
+                MessageBox.Show($"Unsupported format:\n{ex.Message}\n\nAccepted formats: {GetSupportedExtensionsString()}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show($"Invalid operation:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error:\n{ex.Message}\n\n{ex.StackTrace}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
         {
             OpenKeepTrack();
@@ -3876,6 +3956,88 @@ namespace Ostium
             }
 
             Process.Start(Path.Combine(AppStart, "setirps.exe"));
+        }
+
+        #endregion
+
+        #region Semantic Analysis
+
+        string SelectDocumentFile()
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.InitialDirectory = AppStart;
+                ofd.Filter = GetFileFilterString();
+                ofd.Title = "Select a document to analyze";
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                ofd.Multiselect = false;
+
+                return ofd.ShowDialog() == DialogResult.OK ? ofd.FileName : null;
+            }
+        }
+
+        string SelectLanguageFile()
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Language files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.Title = "Select the language file";
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+
+                string languagesDir = Path.Combine(Application.StartupPath, "Languages");
+                if (Directory.Exists(languagesDir))
+                {
+                    ofd.InitialDirectory = languagesDir;
+                }
+
+                return ofd.ShowDialog() == DialogResult.OK ? ofd.FileName : null;
+            }
+        }
+
+        string GetFileFilterString()
+        {
+            var extensions = TextSemanticAnalyzer.SupportedExtensions.OrderBy(e => e).ToList();
+            var filterParts = extensions.Select(ext => $"*{ext}").ToList();
+
+            string allFilesFilter = $"All supported file types|{string.Join(";", filterParts)}";
+            string individualFilters = string.Join("|", extensions.Select(ext =>
+                $"Files {ext.TrimStart('.').ToUpper()} (*{ext})|*{ext}"));
+
+            return $"{allFilesFilter}|{individualFilters}|All files (*.*)|*.*";
+        }
+
+        string GetSupportedExtensionsString()
+        {
+            return string.Join(", ", TextSemanticAnalyzer.SupportedExtensions.OrderBy(e => e));
+        }
+
+        void ShowSuccessMessage(string htmlPath, string mdPath, SemanticAnalysisResult result)
+        {
+            string message = $"✅ Analysis successfully completed!\n\n" +
+                $"📄 Document: {result.FileName}\n" +
+                $"📊 Statistics:\n" +
+                $"   • Words: {result.TotalWords:N0} ({result.UniqueWords:N0} unique)\n" +
+                $"   • Sentences: {result.TotalSentences:N0}\n" +
+                $"   • Lexical diversity: {result.LexicalDiversity:P2}\n" +
+                $"   • Feeling: {GetSentimentDescription(result.SentimentRatio)}\n\n" +
+                $"📁 Files generated:\n" +
+                $"   • {Path.GetFileName(htmlPath)}\n" +
+                $"   • {Path.GetFileName(mdPath)}\n\n" +
+                $"📂 Folder: {Path.GetDirectoryName(htmlPath)}";
+
+            MessageBox.Show(message, "Semantic Analysis - Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        string GetSentimentDescription(double sentimentRatio)
+        {
+            if (sentimentRatio >= 0.7) return "Very positive 👍";
+            if (sentimentRatio >= 0.6) return "Positive 😊";
+            if (sentimentRatio >= 0.4) return "Neutral ➖";
+            if (sentimentRatio >= 0.3) return "Négatif 😐";
+            return "Very negative ⚠️";
         }
 
         #endregion
@@ -12095,7 +12257,7 @@ namespace Ostium
         {
             rtbResponse.SelectAll();
         }
-
+        // <=
         void SpeakPrompt_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -12122,6 +12284,11 @@ namespace Ostium
             }
             catch
             { }
+        }
+
+        void ModelInfos_Btn_Click(object sender, EventArgs e)
+        {
+            GoBrowser($"https://ollama.com/library/{ModeSelectl_Cbx.Text}", 1);
         }
 
         #endregion
@@ -12197,6 +12364,73 @@ namespace Ostium
         }
 
         #endregion
+    }
+
+    public class ProgressForm : Form
+    {
+        ProgressBar progressBar;
+        Label lblStatus;
+
+        public ProgressForm()
+        {
+            InitializeComponents();
+        }
+
+        void InitializeComponents()
+        {
+            Text = "Analysis in progress...";
+            Size = new Size(450, 150);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            StartPosition = FormStartPosition.CenterParent;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            ControlBox = false;
+
+            lblStatus = new Label
+            {
+                Text = "Initializing the analysis...",
+                Location = new Point(20, 20),
+                Size = new Size(400, 30),
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White
+            };
+
+            progressBar = new ProgressBar
+            {
+                Location = new Point(20, 60),
+                Size = new Size(400, 30),
+                Style = ProgressBarStyle.Continuous,
+                Minimum = 0,
+                Maximum = 100
+            };
+
+            Controls.Add(lblStatus);
+            Controls.Add(progressBar);
+        }
+
+        public void UpdateProgress(int percentage)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<int>(UpdateProgress), percentage);
+                return;
+            }
+
+            progressBar.Value = Math.Min(percentage, 100);
+
+            if (percentage < 20)
+                lblStatus.Text = "📂 Loading file...";
+            else if (percentage < 40)
+                lblStatus.Text = "🔤 Text extraction...";
+            else if (percentage < 60)
+                lblStatus.Text = "📊 Statistical analysis...";
+            else if (percentage < 80)
+                lblStatus.Text = "🎯 Thematic analysis...";
+            else if (percentage < 95)
+                lblStatus.Text = "💾 Report generation...";
+            else
+                lblStatus.Text = "✅ Finalization...";
+        }
     }
 
     public static class AgentConfig

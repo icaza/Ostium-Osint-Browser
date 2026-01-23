@@ -114,6 +114,9 @@
             this.OpnWorkflowTools_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnEncFrm = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator42 = new System.Windows.Forms.ToolStripSeparator();
+            this.semanticAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SemanticFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
             this.KeepTrackViewer_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.secureFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -415,6 +418,7 @@
             this.ClearPrompt_Btn = new System.Windows.Forms.Button();
             this.Cancel_Btn = new System.Windows.Forms.Button();
             this.Panel_Left_Top_Oobai = new System.Windows.Forms.Panel();
+            this.ModelInfos_Btn = new System.Windows.Forms.Button();
             this.ModeSelectl_Cbx = new System.Windows.Forms.ComboBox();
             this.lblUrl = new System.Windows.Forms.Label();
             this.lblModel = new System.Windows.Forms.Label();
@@ -1164,6 +1168,8 @@
             this.OpnWorkflowTools_Tls,
             this.toolStripSeparator17,
             this.OpnEncFrm,
+            this.toolStripSeparator42,
+            this.semanticAnalysisToolStripMenuItem,
             this.toolStripSeparator31,
             this.KeepTrackViewer_Btn,
             this.secureFileExplorerToolStripMenuItem,
@@ -1225,6 +1231,26 @@
             this.OpnEncFrm.Size = new System.Drawing.Size(239, 22);
             this.OpnEncFrm.Text = "Encryption";
             this.OpnEncFrm.Click += new System.EventHandler(this.OpnEncFrm_Click);
+            // 
+            // toolStripSeparator42
+            // 
+            this.toolStripSeparator42.Name = "toolStripSeparator42";
+            this.toolStripSeparator42.Size = new System.Drawing.Size(236, 6);
+            // 
+            // semanticAnalysisToolStripMenuItem
+            // 
+            this.semanticAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SemanticFile_Btn});
+            this.semanticAnalysisToolStripMenuItem.Name = "semanticAnalysisToolStripMenuItem";
+            this.semanticAnalysisToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.semanticAnalysisToolStripMenuItem.Text = "Semantic Analysis";
+            // 
+            // SemanticFile_Btn
+            // 
+            this.SemanticFile_Btn.Name = "SemanticFile_Btn";
+            this.SemanticFile_Btn.Size = new System.Drawing.Size(218, 22);
+            this.SemanticFile_Btn.Text = "Semantic file analysis";
+            this.SemanticFile_Btn.Click += new System.EventHandler(this.SemanticFile_Btn_Click);
             // 
             // toolStripSeparator31
             // 
@@ -5275,6 +5301,7 @@
             // 
             // Panel_Left_Top_Oobai
             // 
+            this.Panel_Left_Top_Oobai.Controls.Add(this.ModelInfos_Btn);
             this.Panel_Left_Top_Oobai.Controls.Add(this.ModeSelectl_Cbx);
             this.Panel_Left_Top_Oobai.Controls.Add(this.lblUrl);
             this.Panel_Left_Top_Oobai.Controls.Add(this.lblModel);
@@ -5287,6 +5314,21 @@
             this.Panel_Left_Top_Oobai.Size = new System.Drawing.Size(624, 100);
             this.Panel_Left_Top_Oobai.TabIndex = 24;
             // 
+            // ModelInfos_Btn
+            // 
+            this.ModelInfos_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModelInfos_Btn.FlatAppearance.BorderSize = 0;
+            this.ModelInfos_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModelInfos_Btn.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelInfos_Btn.ForeColor = System.Drawing.Color.Yellow;
+            this.ModelInfos_Btn.Location = new System.Drawing.Point(597, 39);
+            this.ModelInfos_Btn.Name = "ModelInfos_Btn";
+            this.ModelInfos_Btn.Size = new System.Drawing.Size(25, 25);
+            this.ModelInfos_Btn.TabIndex = 11;
+            this.ModelInfos_Btn.Text = "ℹ️";
+            this.ModelInfos_Btn.UseVisualStyleBackColor = true;
+            this.ModelInfos_Btn.Click += new System.EventHandler(this.ModelInfos_Btn_Click);
+            // 
             // ModeSelectl_Cbx
             // 
             this.ModeSelectl_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -5296,7 +5338,7 @@
             this.ModeSelectl_Cbx.FormattingEnabled = true;
             this.ModeSelectl_Cbx.Location = new System.Drawing.Point(70, 41);
             this.ModeSelectl_Cbx.Name = "ModeSelectl_Cbx";
-            this.ModeSelectl_Cbx.Size = new System.Drawing.Size(554, 22);
+            this.ModeSelectl_Cbx.Size = new System.Drawing.Size(523, 22);
             this.ModeSelectl_Cbx.Sorted = true;
             this.ModeSelectl_Cbx.TabIndex = 10;
             this.ModeSelectl_Cbx.Text = "deepseek-v3.1:671b-cloud";
@@ -8533,6 +8575,10 @@
         private System.Windows.Forms.Button OpnPrompt_Btn;
         private System.Windows.Forms.Button SpeakPrompt_Btn;
         private System.Windows.Forms.ToolStripButton OpnPromptRss_Btn;
+        private System.Windows.Forms.Button ModelInfos_Btn;
+        private System.Windows.Forms.ToolStripMenuItem semanticAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SemanticFile_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator42;
     }
 }
 
