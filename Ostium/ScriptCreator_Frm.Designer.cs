@@ -1,6 +1,6 @@
 ﻿namespace Ostium
 {
-    partial class ScriptCreator
+    partial class ScriptCreator_Frm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScriptCreator));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScriptCreator_Frm));
             this.Tls_Tls = new System.Windows.Forms.ToolStrip();
             this.NewScript_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();

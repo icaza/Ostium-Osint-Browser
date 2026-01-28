@@ -3,7 +3,6 @@
  * @author ICAZA <github.wildly512@passinbox.com>
  * @version 2.1
  * @description Extract articles and links from a web page with enhanced features
- * @license MIT
  */
 
 (function () {
