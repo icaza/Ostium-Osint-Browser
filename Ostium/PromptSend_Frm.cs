@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -19,6 +20,8 @@ namespace Ostium
         readonly string FilePromptSave = Path.Combine(Application.StartupPath, "OOBai", "SendPrompt.txt");
         public string PromptSendFrm => PromptSendForm_Txt.Text.Trim();
         public string LocalCloud;
+
+        readonly HashSet<string> itemsPrompt = new HashSet<string>();
         #endregion
 
         public PromptSend_Frm()
@@ -52,6 +55,11 @@ namespace Ostium
             {
                 Prompt_Lst.Items.AddRange(File.ReadAllLines(FilePromptSave));
             }
+
+            foreach (var item in Prompt_Lst.Items)
+            {
+                itemsPrompt.Add(item.ToString());
+            }
         }
 
         void Ok_Btn_Click(object sender, EventArgs e)
@@ -74,9 +82,16 @@ namespace Ostium
                 return;
             }
 
-            using (StreamWriter fw = File.AppendText(FilePromptSave))
+            if (!itemsPrompt.Contains(PromptSendForm_Txt.Text))
             {
-                fw.WriteLine(PromptSendForm_Txt.Text);
+                using (StreamWriter fw = File.AppendText(FilePromptSave))
+                {
+                    fw.WriteLine(PromptSendForm_Txt.Text);
+                }
+            }
+            else
+            {
+                MessageBox.Show("The prompt already exists!", "Prompt exist", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             LoadPrompt();

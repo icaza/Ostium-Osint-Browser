@@ -185,7 +185,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "33";
+        readonly string versionNow = "34";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -2656,15 +2656,35 @@ namespace Ostium
 
         void CyberChef_Btn_Click(object sender, EventArgs e)
         {
+            CyberChefExec();
+        }
+
+        void CyberChefExec()
+        {
             try
             {
                 if (!string.IsNullOrEmpty(CyberChef_Opt_Txt.Text))
+                {
                     if (File.Exists(CyberChef_Opt_Txt.Text))
-                        GoBrowser("file:///" + CyberChef_Opt_Txt.Text, 0);
+                    {
+                        GoBrowser($"file:///{CyberChef_Opt_Txt.Text}", 0);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "CyberChef not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("CyberChef is not downloaded; you must download it and place the " +
+                        "directory in the root directory. See the Wiki on GitHub for setup instructions!",
+                        "CyberChef not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! CyberChef_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! CyberChefExec: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -2953,10 +2973,17 @@ namespace Ostium
             }
         }
 
-        async void SemanticFile_Btn_Click(object sender, EventArgs e)
+        void SemanticFile_Btn_Click(object sender, EventArgs e)
+        {
+            SemanticFile();
+        }
+
+        async void SemanticFile()
         {
             try
             {
+                SemanticFile_Btn.Enabled = false;
+
                 string filePath = SelectDocumentFile();
                 if (string.IsNullOrEmpty(filePath)) return;
 
@@ -3026,11 +3053,23 @@ namespace Ostium
                 MessageBox.Show($"Unexpected error:\n{ex.Message}\n\n{ex.StackTrace}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                SemanticFile_Btn.Enabled = true;
+            }
         }
 
         void KeepTrackViewer_Btn_Click(object sender, EventArgs e)
         {
             OpenKeepTrack();
+        }
+
+        void OpenKeepTrack()
+        {
+            if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
+            {
+                GoBrowser($"file:///{Keeptrack}Keeptrack.html", 0);
+            }
         }
 
         void ConfigSFE_Btn_Click(object sender, EventArgs e)
@@ -3120,12 +3159,15 @@ namespace Ostium
             }
         }
 
-        void OpenKeepTrack()
+        void ConvertPDF_Btn_Click(object sender, EventArgs e)
         {
-            if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
+            if (!File.Exists(Path.Combine(AppStart, "OOBpdfC", "OOBpdfC.exe")))
             {
-                GoBrowser("file:///" + Keeptrack + "Keeptrack.html", 0);
+                MessageBox.Show("There is no PDF converter!", "OOBpdfC", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+
+            Process.Start(Path.Combine(AppStart, "OOBpdfC", "OOBpdfC.exe"));
         }
 
         void TreeExport_Btn_Click(object sender, EventArgs e)
@@ -4618,6 +4660,12 @@ namespace Ostium
                     break;
                 case "googlebot":
                     GoogleBot();
+                    break;
+                case "semantic":
+                    SemanticFile();
+                    break;
+                case "cyberchef":
+                    CyberChefExec();
                     break;
                 case "exit":
                     Console_Cmd_Txt.Visible = !Console_Cmd_Txt.Visible;
@@ -11773,8 +11821,8 @@ namespace Ostium
         /// AGENT_RSS_NEWS
         /// </summary>
         /// <param Task="An agent who summarizes the news based on headlines."></param>
-        /// <param value="0">Using the configuration file prompt.</param>
-        /// <param value="1">Using the custom prompt.</param>
+        /// <param value="0">Using the configuration file prompt message.</param>
+        /// <param value="1">Using the custom prompt message.</param>
         /// 
         void Agent_RSS_News_Local_Click(object sender, EventArgs e)
         {
@@ -12152,8 +12200,8 @@ namespace Ostium
         /// AGENT_CONTENT_ANALYSIS
         /// </summary>
         /// <param Task="Web page content analysis."></param>
-        /// <param value="0">Using the configuration file prompt.</param>
-        /// <param value="1">Using the custom prompt.</param>
+        /// <param value="0">Using the configuration file prompt message.</param>
+        /// <param value="1">Using the custom prompt message.</param>
         ///
         async void StartWebPageAnalyse(int value, string content)
         {
