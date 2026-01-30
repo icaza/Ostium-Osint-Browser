@@ -99,7 +99,6 @@ namespace Ostium
         Keeptrack_Frm keeptrackForm;
         DeserializeJson_Frm deserializeForm;
         OpenSource_Frm openSourceForm;
-        //PromptSend_Frm promptSendForm;
         ScriptCreator_Frm scriptCreatorFrm;
         Bookmarklets_Frm bookmarkletsFrm;
         ListBox List_Object;
@@ -578,7 +577,6 @@ namespace Ostium
                 writer.WriteElementString("DB_USE_DEFAULT", dbDflt);
                 writer.WriteElementString("URL_HOME_VAR", urlHom);
                 writer.WriteElementString("URL_TRAD_WEBPAGE_VAR", urlTra);
-                //writer.WriteElementString("URL_TRAD_WEBTXT_VAR", "https://translate.google.fr/?hl=fr&sl=auto&tl=fr&text=replace_query&op=translate"); // Not implemented
                 writer.WriteElementString("URL_DEFAUT_WSEARCH_VAR", Search);
                 writer.WriteElementString("URL_USER_AGENT_VAR", UsrAgt);
                 writer.WriteElementString("URL_USER_AGENT_SRC_PAGE_VAR", UsrHtt);
