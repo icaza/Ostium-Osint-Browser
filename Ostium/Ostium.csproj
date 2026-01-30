@@ -331,6 +331,7 @@
       <DependentUpon>Webview_Frm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="content\net40\App.config" />
+    <None Include="Languages\README.md" />
     <None Include="OOBai\_agent_ai_config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
