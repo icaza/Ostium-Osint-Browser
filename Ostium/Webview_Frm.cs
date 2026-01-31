@@ -13,12 +13,10 @@ namespace Ostium
     public partial class Webview_Frm : Form
     {
         #region Var_
-
         readonly string AppStart = Application.StartupPath + @"\";
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
         FloodHeader HeaderFlood;
-
         #endregion
 
         public Webview_Frm()

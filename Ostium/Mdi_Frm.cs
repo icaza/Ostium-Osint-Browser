@@ -11,7 +11,6 @@ namespace Ostium
     public partial class Mdi_Frm : Form
     {
         #region Var_
-
         Webview_Frm webviewForm;
         int VerifPosChild = 1;
 
@@ -22,7 +21,6 @@ namespace Ostium
         readonly Loaddir loadfiledir = new Loaddir();
 
         readonly List<string> lstUrlDfltCnf = new List<string>();
-
         #endregion
 
         #region Form_
@@ -88,16 +86,27 @@ namespace Ostium
                 }
 
                 string filePath = Path.Combine(FileDirAll, URLlist_Cbx.Text);
-
                 ChargeListURL(filePath);
 
-                foreach (var url in UrlOpn_Lst.Items)
+                int formsOpened = 0;
+                int maxForms = Convert.ToInt32(FormsCount_Txt.Text); ;
+
+                for (int i = UrlOpn_Lst.Items.Count - 1; i >= 0; i--)
                 {
+                    if (formsOpened >= maxForms)
+                    {
+                        break;
+                    }
+
+                    var url = UrlOpn_Lst.Items[i];
+
                     if (!string.IsNullOrEmpty(url?.ToString()))
                     {
                         try
                         {
                             OpnNewForm(url.ToString());
+                            UrlOpn_Lst.Items.RemoveAt(i);
+                            formsOpened++;
                         }
                         catch (Exception ex)
                         {
@@ -297,5 +306,16 @@ namespace Ostium
         }
 
         #endregion
+
+        void UrlOpn_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UrlOpn_Lst.SelectedIndex != -1)
+                OpnNewForm(UrlOpn_Lst.SelectedItem.ToString());
+        }
+
+        void OpnListUR_Btn_Click(object sender, EventArgs e)
+        {
+            UrlOpn_Lst.Visible = !UrlOpn_Lst.Visible;
+        }
     }
 }

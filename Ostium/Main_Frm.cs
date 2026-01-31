@@ -10493,6 +10493,7 @@ namespace Ostium
                 {
                     Model = ModeSelectl_Cbx.Text,
                     Prompt = txtPrompt.Text.Trim(),
+                    //Think = true,
                     Stream = true
                 };
 
@@ -12567,6 +12568,9 @@ namespace Ostium
 
         [JsonPropertyName("stream")]
         public bool Stream { get; set; } = false;
+
+        //[JsonPropertyName("think")]
+        //public bool Think { get; set; } = false;
     }
 
     public class OllamaStreamResponse

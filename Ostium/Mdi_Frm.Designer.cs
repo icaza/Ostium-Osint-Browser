@@ -45,6 +45,11 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ReplaceChild_Btn = new System.Windows.Forms.ToolStripButton();
             this.UrlOpn_Lst = new System.Windows.Forms.ListBox();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.FormsCount_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.OpnListUR_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_Tls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,17 +61,22 @@
             this.Tools_Tls.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewFrm_Mnu,
             this.toolStripSeparator2,
+            this.OpnListUR_Btn,
+            this.toolStripSeparator6,
             this.toolStripLabel1,
             this.URLlist_Cbx,
             this.AddUrlGrp_Btn,
             this.toolStripSeparator1,
             this.toolStripDropDownButton1,
             this.toolStripSeparator3,
-            this.ReplaceChild_Btn});
+            this.ReplaceChild_Btn,
+            this.toolStripSeparator5,
+            this.toolStripLabel2,
+            this.FormsCount_Txt});
             this.Tools_Tls.Location = new System.Drawing.Point(0, 0);
             this.Tools_Tls.Name = "Tools_Tls";
             this.Tools_Tls.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.Tools_Tls.Size = new System.Drawing.Size(884, 30);
+            this.Tools_Tls.Size = new System.Drawing.Size(1020, 30);
             this.Tools_Tls.TabIndex = 4;
             this.Tools_Tls.Text = "toolStrip1";
             // 
@@ -191,21 +201,69 @@
             // 
             // UrlOpn_Lst
             // 
+            this.UrlOpn_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.UrlOpn_Lst.Dock = System.Windows.Forms.DockStyle.Left;
+            this.UrlOpn_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UrlOpn_Lst.ForeColor = System.Drawing.Color.White;
             this.UrlOpn_Lst.FormattingEnabled = true;
-            this.UrlOpn_Lst.Location = new System.Drawing.Point(3, 231);
+            this.UrlOpn_Lst.ItemHeight = 14;
+            this.UrlOpn_Lst.Location = new System.Drawing.Point(0, 30);
             this.UrlOpn_Lst.Name = "UrlOpn_Lst";
-            this.UrlOpn_Lst.Size = new System.Drawing.Size(19, 17);
+            this.UrlOpn_Lst.Size = new System.Drawing.Size(198, 431);
             this.UrlOpn_Lst.TabIndex = 5;
             this.UrlOpn_Lst.Visible = false;
+            this.UrlOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.UrlOpn_Lst_SelectedIndexChanged);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 30);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(196, 27);
+            this.toolStripLabel2.Text = "Number of windows loaded: ";
+            // 
+            // FormsCount_Txt
+            // 
+            this.FormsCount_Txt.AutoSize = false;
+            this.FormsCount_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.FormsCount_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FormsCount_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormsCount_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.FormsCount_Txt.Name = "FormsCount_Txt";
+            this.FormsCount_Txt.Size = new System.Drawing.Size(50, 23);
+            this.FormsCount_Txt.Text = "15";
+            this.FormsCount_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // OpnListUR_Btn
+            // 
+            this.OpnListUR_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnListUR_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnListUR_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.OpnListUR_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnListUR_Btn.Image")));
+            this.OpnListUR_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnListUR_Btn.Name = "OpnListUR_Btn";
+            this.OpnListUR_Btn.Size = new System.Drawing.Size(77, 27);
+            this.OpnListUR_Btn.Text = "Open URL";
+            this.OpnListUR_Btn.Click += new System.EventHandler(this.OpnListUR_Btn_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 30);
             // 
             // Mdi_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(884, 461);
-            this.Controls.Add(this.Tools_Tls);
+            this.ClientSize = new System.Drawing.Size(1020, 461);
             this.Controls.Add(this.UrlOpn_Lst);
+            this.Controls.Add(this.Tools_Tls);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "Mdi_Frm";
@@ -237,5 +295,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem CloseAllForm_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripTextBox FormsCount_Txt;
+        private System.Windows.Forms.ToolStripButton OpnListUR_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
