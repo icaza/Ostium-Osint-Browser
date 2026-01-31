@@ -3,8 +3,8 @@
 <div align="center">
 
 ![Ostium OSINT Browser](https://img.shields.io/badge/OSINT-Browser-blue?style=for-the-badge)
-![Version](https://img.shields.io/badge/version-development-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/license-Open%20Source-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-release-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/license-mit-green?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey?style=for-the-badge)
 
 **An OSINT-oriented web browser with powerful built-in tools for investigation and open-source intelligence research**
