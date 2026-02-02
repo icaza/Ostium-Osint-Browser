@@ -30,30 +30,135 @@ searchInput.addEventListener("input", async () => {
 function renderResults(files) {
     if (files.length === 0) {
         resultsDiv.innerHTML = '<div class="no-results">No files found</div>';
+        document.getElementById('image-gallery-section').style.display = 'none';
         return;
     }
 
-    resultsDiv.innerHTML = files.map(f => `
-        <div class="item ${openedFiles.includes(f.Sha256) ? 'opened' : ''}" 
-             data-path="${escapeHtml(f.Path.replace(/\\/g, '/'))}"
-             data-sha="${escapeHtml(f.Sha256)}"
-             data-name="${escapeHtml(f.Name)}">
-            <b>${escapeHtml(f.Name)}</b>
-            <small>${escapeHtml(f.Extension)} | ${escapeHtml(f.Sha256.slice(0, 16))}...</small>
-            <div class="meta">Size: ${formatBytes(f.Size)} | Modified: ${new Date(f.Modified).toLocaleString()}</div>
-        </div>
-    `).join("");
+    // Categorize files by type
+    const categorized = categorizeFilesByType(files);
 
-    // Attach the event listeners after creating the HTML
+    // Render image gallery if there are images
+    if (categorized.images && categorized.images.length > 0) {
+        renderImageGallery(categorized.images);
+    } else {
+        document.getElementById('image-gallery-section').style.display = 'none';
+    }
+
+    // Render files organized by type
+    renderFilesByType(categorized, files);
+}
+
+function categorizeFilesByType(files) {
+    const categories = {
+        images: [],
+        documents: [],
+        spreadsheets: [],
+        emails: [],
+        archives: [],
+        code: [],
+        other: []
+    };
+
+    const imageExts = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.ico', '.webp'];
+    const docExts = ['.pdf', '.docx', '.doc', '.txt', '.rtf', '.md'];
+    const spreadsheetExts = ['.xlsx', '.xls', '.csv'];
+    const emailExts = ['.eml', '.msg'];
+    const archiveExts = ['.zip', '.rar', '.7z', '.tar', '.gz'];
+    const codeExts = ['.js', '.css', '.html', '.htm', '.json', '.xml', '.yml', '.yaml',
+        '.py', '.java', '.cpp', '.c', '.h', '.cs', '.php', '.sql',
+        '.sh', '.bat', '.ps1', '.vbs', '.ini', '.cfg', '.log'];
+
+    files.forEach(f => {
+        const ext = f.Extension.toLowerCase();
+        if (imageExts.includes(ext)) {
+            categories.images.push(f);
+        } else if (docExts.includes(ext)) {
+            categories.documents.push(f);
+        } else if (spreadsheetExts.includes(ext)) {
+            categories.spreadsheets.push(f);
+        } else if (emailExts.includes(ext)) {
+            categories.emails.push(f);
+        } else if (archiveExts.includes(ext)) {
+            categories.archives.push(f);
+        } else if (codeExts.includes(ext)) {
+            categories.code.push(f);
+        } else {
+            categories.other.push(f);
+        }
+    });
+
+    return categories;
+}
+
+function renderFilesByType(categorized, allFiles) {
+    let html = '';
+
+    // Define sections with icons and labels
+    const sections = [
+        { key: 'images', icon: '🖼️', label: 'Images', files: categorized.images },
+        { key: 'documents', icon: '📄', label: 'Documents', files: categorized.documents },
+        { key: 'spreadsheets', icon: '📊', label: 'Spreadsheets', files: categorized.spreadsheets },
+        { key: 'emails', icon: '📧', label: 'Emails', files: categorized.emails },
+        { key: 'archives', icon: '📦', label: 'Archives', files: categorized.archives },
+        { key: 'code', icon: '💻', label: 'Code Files', files: categorized.code },
+        { key: 'other', icon: '📋', label: 'Other Files', files: categorized.other }
+    ];
+
+    sections.forEach(section => {
+        if (section.files && section.files.length > 0) {
+            html += `
+                <div class="file-type-section">
+                    <div class="file-type-header" onclick="toggleSection('${section.key}')">
+                        <h3>
+                            ${section.icon} ${section.label}
+                            <span class="file-count">${section.files.length}</span>
+                        </h3>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="file-type-content" id="section-${section.key}">
+                        ${section.files.map(f => `
+                            <div class="item ${openedFiles.includes(f.Sha256) ? 'opened' : ''}" 
+                                 data-path="${escapeHtml(f.Path.replace(/\\/g, '/'))}"
+                                 data-sha="${escapeHtml(f.Sha256)}"
+                                 data-name="${escapeHtml(f.Name)}">
+                                <div>
+                                    <b>${escapeHtml(f.Name)}</b>
+                                    <small>${escapeHtml(f.Extension)} | ${escapeHtml(f.Sha256.slice(0, 16))}...</small>
+                                </div>
+                                <small>${formatBytes(f.Size)}</small>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    resultsDiv.innerHTML = html;
+
+    // Attach event listeners
     const items = resultsDiv.querySelectorAll('.item');
     items.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const path = this.getAttribute('data-path');
             const sha = this.getAttribute('data-sha');
             const name = this.getAttribute('data-name');
             openFile(path, sha, name);
         });
     });
+}
+
+function toggleSection(sectionKey) {
+    const content = document.getElementById(`section-${sectionKey}`);
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        header.classList.remove('collapsed');
+    } else {
+        content.classList.add('collapsed');
+        header.classList.add('collapsed');
+    }
 }
 
 function openFile(path, sha, fileName) {
@@ -136,7 +241,7 @@ async function loadTimeline() {
         // Attach the event listeners after creating the HTML
         const items = timelineDiv.querySelectorAll('.timeline-item');
         items.forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 const path = this.getAttribute('data-path');
                 const name = this.getAttribute('data-name');
                 openFile(path, '', name);
@@ -717,7 +822,136 @@ function getColorByExtension(ext) {
     return colors[ext] || '#0af';
 }
 
-// --- Initialization ---
+// ============================================
+// IMAGE GALLERY AND SLIDESHOW
+// ============================================
+
+let currentSlideshowImages = [];
+let currentSlideshowIndex = 0;
+
+function renderImageGallery(images) {
+    const gallerySection = document.getElementById('image-gallery-section');
+    const galleryDiv = document.getElementById('image-gallery');
+
+    if (!images || images.length === 0) {
+        gallerySection.style.display = 'none';
+        return;
+    }
+
+    gallerySection.style.display = 'block';
+
+    galleryDiv.innerHTML = `
+        <div class="image-gallery">
+            ${images.map((img, index) => `
+                <div class="image-thumbnail" onclick="openSlideshow(${index})">
+                    <img src="/files/${escapeHtml(img.Path.replace(/\\/g, '/'))}" 
+                         alt="${escapeHtml(img.Name)}"
+                         loading="lazy"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%231a1e2e%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23888%22%3E✖%3C/text%3E%3C/svg%3E'">
+                    <div class="thumbnail-info">
+                        <span class="thumbnail-name">${escapeHtml(img.Name)}</span>
+                        <span class="thumbnail-size">${formatBytes(img.Size)}</span>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    // Store images for slideshow
+    currentSlideshowImages = images;
+}
+
+function openSlideshow(index) {
+    if (!currentSlideshowImages || currentSlideshowImages.length === 0) return;
+
+    currentSlideshowIndex = index;
+    const modal = document.getElementById('slideshow-modal');
+    modal.classList.add('active');
+
+    updateSlideshowImage();
+    renderSlideshowThumbnails();
+
+    // Add keyboard event listener
+    document.addEventListener('keydown', handleSlideshowKeyboard);
+}
+
+function closeSlideshow() {
+    const modal = document.getElementById('slideshow-modal');
+    modal.classList.remove('active');
+
+    // Remove keyboard event listener
+    document.removeEventListener('keydown', handleSlideshowKeyboard);
+}
+
+function navigateSlideshow(direction) {
+    currentSlideshowIndex += direction;
+
+    // Loop around
+    if (currentSlideshowIndex < 0) {
+        currentSlideshowIndex = currentSlideshowImages.length - 1;
+    } else if (currentSlideshowIndex >= currentSlideshowImages.length) {
+        currentSlideshowIndex = 0;
+    }
+
+    updateSlideshowImage();
+}
+
+function updateSlideshowImage() {
+    const img = currentSlideshowImages[currentSlideshowIndex];
+    const slideshowImage = document.getElementById('slideshow-image');
+    const counter = document.getElementById('slideshow-counter');
+    const filename = document.getElementById('slideshow-filename');
+
+    slideshowImage.src = `/files/${img.Path.replace(/\\/g, '/')}`;
+    counter.textContent = `${currentSlideshowIndex + 1} / ${currentSlideshowImages.length}`;
+    filename.textContent = img.Name;
+
+    // Update active thumbnail
+    const thumbnails = document.querySelectorAll('.slideshow-thumbnails img');
+    thumbnails.forEach((thumb, index) => {
+        if (index === currentSlideshowIndex) {
+            thumb.classList.add('active');
+            thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+            thumb.classList.remove('active');
+        }
+    });
+}
+
+function renderSlideshowThumbnails() {
+    const thumbnailsDiv = document.getElementById('slideshow-thumbnails');
+
+    thumbnailsDiv.innerHTML = currentSlideshowImages.map((img, index) => `
+        <img src="/files/${escapeHtml(img.Path.replace(/\\/g, '/'))}" 
+             alt="${escapeHtml(img.Name)}"
+             class="${index === currentSlideshowIndex ? 'active' : ''}"
+             onclick="jumpToSlide(${index})"
+             onerror="this.style.display='none'">
+    `).join('');
+}
+
+function jumpToSlide(index) {
+    currentSlideshowIndex = index;
+    updateSlideshowImage();
+}
+
+function handleSlideshowKeyboard(e) {
+    switch (e.key) {
+        case 'Escape':
+            closeSlideshow();
+            break;
+        case 'ArrowLeft':
+            navigateSlideshow(-1);
+            break;
+        case 'ArrowRight':
+            navigateSlideshow(1);
+            break;
+    }
+}
+
+// ============================================
+// Initialization
+// ============================================
 loadTimeline();
 loadGraph();
 searchInput.dispatchEvent(new Event('input'));
