@@ -184,7 +184,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "34";
+        readonly string versionNow = "35";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -2359,12 +2359,16 @@ namespace Ostium
                 senderror.ErrorLog("Error! TraductPage_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-
-        void UnshortUrl_Btn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Unshorten URL
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        async void UnshortUrl_Btn_Click(object sender, EventArgs e)
         {
             if (URLbrowse_Cbx.Text != string.Empty)
             {
-                StartUnshortUrl(URLbrowse_Cbx.Text);
+                await StartUnshortUrlAsync(URLbrowse_Cbx.Text);
             }
             else
             {
@@ -2374,35 +2378,344 @@ namespace Ostium
             }
         }
 
-        void StartUnshortUrl(string Uri)
-        {
-            UnshortURLval = Uri;
-
-            Thread Thr_UnshortUrl = new Thread(new ThreadStart(UnshortUrl));
-            Thr_UnshortUrl.Start();
-        }
-
-        void UnshortUrl()
+        async Task StartUnshortUrlAsync(string uri)
         {
             try
             {
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(UnshortURLval);
-                req.AllowAutoRedirect = false;
-                var resp = req.GetResponse();
-                string realUrl = resp.Headers["Location"];
-
-                Invoke(new Action<string>(URLbrowseCbxText), realUrl);
-            }
-            catch (WebException ex)
-            {
-                senderror.ErrorLog("Error! => UnshortUrl() WebException: ", ex.ToString(), "Main_Frm", AppStart);
+                string unshortenedUrl = await UnshortUrlAsync(uri);
+                if (!string.IsNullOrEmpty(unshortenedUrl))
+                {
+                    if (InvokeRequired)
+                    {
+                        Invoke(new Action<string>(URLbrowseCbxText), unshortenedUrl);
+                    }
+                    else
+                    {
+                        URLbrowseCbxText(unshortenedUrl);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! => UnshortUrl() Exception: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! => StartUnshortUrlAsync() Exception: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
+        async Task<string> UnshortUrlAsync(string shortUrl, int maxRedirects = 10)
+        {
+            if (string.IsNullOrWhiteSpace(shortUrl))
+                return shortUrl;
+
+            if (!Uri.TryCreate(shortUrl, UriKind.Absolute, out Uri validatedUri))
+            {
+                senderror.ErrorLog("Error! => Invalid URL format: ", shortUrl, "Main_Frm", AppStart);
+                return shortUrl;
+            }
+
+            if (validatedUri.Scheme != Uri.UriSchemeHttp && validatedUri.Scheme != Uri.UriSchemeHttps)
+            {
+                senderror.ErrorLog("Error! => Unsupported URL scheme: ", validatedUri.Scheme, "Main_Frm", AppStart);
+                return shortUrl;
+            }
+
+            // 1. Try the direct method first
+            string directResult = await TryDirectUnshorten(shortUrl, maxRedirects);
+            if (!string.IsNullOrEmpty(directResult) && directResult != shortUrl)
+            {
+                return directResult;
+            }
+
+            // 2. Try the external API
+            string apiResult = await TryApiUnshorten(shortUrl);
+            if (!string.IsNullOrEmpty(apiResult))
+            {
+                return apiResult;
+            }
+
+            // 3. Use the isolated process with WebView2
+            string isolatedResult = await TryIsolatedProcessUnshorten(shortUrl);
+            if (!string.IsNullOrEmpty(isolatedResult))
+            {
+                return isolatedResult;
+            }
+
+            return shortUrl;
+        }
+
+        async Task<string> TryIsolatedProcessUnshorten(string shortUrl)
+        {
+            try
+            {
+                string workerPath = Path.Combine(AppStart, "UrlUnshortenWorker.exe");
+
+                if (!File.Exists(workerPath))
+                {
+                    senderror.ErrorLog("Error! => Worker process not found: ", workerPath, "Main_Frm", AppStart);
+                    return null;
+                }
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = workerPath,
+                    Arguments = $"\"{shortUrl}\" 15000", // URL and timeout ms
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                };
+
+                using (Process process = new Process { StartInfo = startInfo })
+                {
+                    var outputBuilder = new StringBuilder();
+                    var errorBuilder = new StringBuilder();
+
+                    process.OutputDataReceived += (sender, args) =>
+                    {
+                        if (args.Data != null)
+                            outputBuilder.AppendLine(args.Data);
+                    };
+
+                    process.ErrorDataReceived += (sender, args) =>
+                    {
+                        if (args.Data != null)
+                            errorBuilder.AppendLine(args.Data);
+                    };
+
+                    process.Start();
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
+
+                    bool exited = await Task.Run(() => process.WaitForExit(20000));
+
+                    if (!exited)
+                    {
+                        // Force the termination of the process
+                        try
+                        {
+                            process.Kill();
+                            senderror.ErrorLog("Warning! => Worker process timeout, killed", shortUrl, "Main_Frm", AppStart);
+                        }
+                        catch { }
+                        return null;
+                    }
+
+                    string output = outputBuilder.ToString().Trim();
+                    string error = errorBuilder.ToString().Trim();
+
+                    if (process.ExitCode == 0 && output.StartsWith("SUCCESS:"))
+                    {
+                        string result = output.Substring(8).Trim(); // Remove "SUCCESS:"
+                        return result;
+                    }
+                    else
+                    {
+                        string errorMsg = output.StartsWith("ERROR:") ? output.Substring(6) : error;
+                        senderror.ErrorLog("Error! => Worker process failed: ", errorMsg, "Main_Frm", AppStart);
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! => TryIsolatedProcessUnshorten: ", ex.Message, "Main_Frm", AppStart);
+                return null;
+            }
+        }
+
+        async Task<string> TryDirectUnshorten(string shortUrl, int maxRedirects)
+        {
+            string currentUrl = shortUrl;
+            int redirectCount = 0;
+            HashSet<string> visitedUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            using (HttpClientHandler handler = new HttpClientHandler())
+            {
+                handler.AllowAutoRedirect = false;
+                handler.UseCookies = true;
+                handler.CookieContainer = new CookieContainer();
+
+                using (HttpClient client = new HttpClient(handler))
+                {
+                    client.Timeout = TimeSpan.FromSeconds(10);
+
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36");
+                    client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+                    client.DefaultRequestHeaders.Add("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7");
+
+                    while (redirectCount < maxRedirects)
+                    {
+                        if (visitedUrls.Contains(currentUrl))
+                            break;
+
+                        visitedUrls.Add(currentUrl);
+
+                        try
+                        {
+                            using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, currentUrl))
+                            {
+                                var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+
+                                using (response)
+                                {
+                                    if ((int)response.StatusCode >= 300 && (int)response.StatusCode < 400)
+                                    {
+                                        string location = response.Headers.Location?.ToString();
+
+                                        if (!string.IsNullOrEmpty(location))
+                                        {
+                                            if (!Uri.TryCreate(location, UriKind.Absolute, out Uri nextUri))
+                                            {
+                                                Uri baseUri = new Uri(currentUrl);
+                                                if (Uri.TryCreate(baseUri, location, out nextUri))
+                                                    location = nextUri.ToString();
+                                            }
+
+                                            currentUrl = location;
+                                            redirectCount++;
+                                            continue;
+                                        }
+                                    }
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        string htmlContent = await response.Content.ReadAsStringAsync();
+                                        string extractedUrl = ExtractRedirectFromHtml(htmlContent, currentUrl);
+
+                                        if (!string.IsNullOrEmpty(extractedUrl) && extractedUrl != currentUrl)
+                                        {
+                                            currentUrl = extractedUrl;
+                                            redirectCount++;
+                                            continue;
+                                        }
+
+                                        return currentUrl;
+                                    }
+                                    else
+                                    {
+                                        return null;
+                                    }
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    }
+
+                    return currentUrl;
+                }
+            }
+        }
+
+        async Task<string> TryApiUnshorten(string shortUrl)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(10);
+
+                    string apiUrl = $"https://unshorten.me/json/{Uri.EscapeDataString(shortUrl)}";
+
+                    var response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        var match = Regex.Match(
+                            jsonResponse,
+                            @"""resolved_url""\s*:\s*""([^""]+)""",
+                            RegexOptions.IgnoreCase
+                        );
+
+                        if (match.Success)
+                        {
+                            string resolvedUrl = match.Groups[1].Value;
+                            resolvedUrl = Regex.Unescape(resolvedUrl);
+
+                            if (Uri.TryCreate(resolvedUrl, UriKind.Absolute, out _))
+                            {
+                                return resolvedUrl;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! => API Unshorten failed: ", ex.Message, "Main_Frm", AppStart);
+            }
+
+            return null;
+        }
+
+        string ExtractRedirectFromHtml(string html, string baseUrl)
+        {
+            if (string.IsNullOrEmpty(html))
+                return null;
+
+            try
+            {
+                var metaRefreshMatch = Regex.Match(
+                    html,
+                    @"<meta[^>]*http-equiv\s*=\s*[""']?refresh[""']?[^>]*content\s*=\s*[""']?\d+\s*;\s*url\s*=\s*([^""'>\s]+)[""']?",
+                    RegexOptions.IgnoreCase
+                );
+
+                if (metaRefreshMatch.Success)
+                {
+                    string url = WebUtility.HtmlDecode(metaRefreshMatch.Groups[1].Value);
+                    return ResolveUrl(url, baseUrl);
+                }
+
+                var jsMatches = Regex.Matches(
+                    html,
+                    @"(?:window\.location(?:\.href)?|location\.href|document\.location|location\.replace)\s*(?:=|\()\s*[""']([^""']+)[""']",
+                    RegexOptions.IgnoreCase
+                );
+
+                foreach (Match match in jsMatches)
+                {
+                    string url = WebUtility.HtmlDecode(match.Groups[1].Value);
+                    if (!string.IsNullOrEmpty(url) && !url.StartsWith("javascript:", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var resolved = ResolveUrl(url, baseUrl);
+                        if (resolved != null) return resolved;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! => ExtractRedirectFromHtml: ", ex.Message, "Main_Frm", AppStart);
+            }
+
+            return null;
+        }
+
+        string ResolveUrl(string url, string baseUrl)
+        {
+            if (string.IsNullOrEmpty(url))
+                return null;
+
+            url = url.Trim();
+
+            if (Uri.TryCreate(url, UriKind.Absolute, out Uri absoluteUri))
+            {
+                return absoluteUri.ToString();
+            }
+
+            if (Uri.TryCreate(new Uri(baseUrl), url, out Uri resolvedUri))
+            {
+                return resolvedUri.ToString();
+            }
+
+            return null;
+        }
+        /// <========
         void AddOn_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -7413,6 +7726,7 @@ namespace Ostium
                 case "Clear":
                     RSSListSite_Lbl.Items.Clear();
                     CountBlockFeed_Lbl.Items.Clear();
+                    collectedItemsTitleRss.Clear();
                     break;
                 case "Disable":
                     RSSListSite_Lbl.Enabled = false;
