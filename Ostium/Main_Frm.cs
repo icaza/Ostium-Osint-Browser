@@ -184,7 +184,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "34";
+        readonly string versionNow = "35";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -7726,6 +7726,7 @@ namespace Ostium
                 case "Clear":
                     RSSListSite_Lbl.Items.Clear();
                     CountBlockFeed_Lbl.Items.Clear();
+                    collectedItemsTitleRss.Clear();
                     break;
                 case "Disable":
                     RSSListSite_Lbl.Enabled = false;
