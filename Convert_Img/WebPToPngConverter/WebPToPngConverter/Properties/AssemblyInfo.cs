@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SVGviewer")]
-[assembly: AssemblyDescription("SVG Visualizer")]
+[assembly: AssemblyTitle("WebPToPngConverter")]
+[assembly: AssemblyDescription("Convert WEBP to PNG")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ICAZA MEDIA")]
-[assembly: AssemblyProduct("SVGviewer")]
+[assembly: AssemblyProduct("WebPToPngConverter")]
 [assembly: AssemblyCopyright("ICAZA MEDIA")]
 [assembly: AssemblyTrademark("ICAZA MEDIA")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("21baf096-08b2-4410-89f2-b6a6d9840a8a")]
+[assembly: Guid("93cf85e2-037b-4f0a-b703-3fa800692934")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.2")]
-[assembly: AssemblyFileVersion("1.0.0.2")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
