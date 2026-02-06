@@ -203,14 +203,25 @@ function filterRelationsTable(searchTerm) {
         if (!noResultsRow) {
             noResultsRow = document.createElement('tr');
             noResultsRow.className = 'no-results-row';
-            noResultsRow.innerHTML = `
-                <td colspan="5" class="text-center">
-                    <div class="no-data-message">
-                        <i class="fas fa-search"></i>
-                        <p>No relationship matches "${searchTerm}"</p>
-                    </div>
-                </td>
-            `;
+
+            const td = document.createElement('td');
+            td.colSpan = 5;
+            td.className = 'text-center';
+
+            const container = document.createElement('div');
+            container.className = 'no-data-message';
+
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-search';
+
+            const message = document.createElement('p');
+            message.textContent = 'No relationship matches "' + searchTerm + '"';
+
+            container.appendChild(icon);
+            container.appendChild(message);
+            td.appendChild(container);
+            noResultsRow.appendChild(td);
+
             tbody.appendChild(noResultsRow);
         }
         noResultsRow.style.display = '';
