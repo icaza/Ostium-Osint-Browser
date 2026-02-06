@@ -14,11 +14,15 @@ const app = express();
 const PORT = config.server.port || 3000;
 
 // Security middleware
-app.use(helmet({
-    contentSecurityPolicy: config.security.csp.enabled ? {
+const helmetOptions = {};
+
+if (config.security.csp && config.security.csp.enabled) {
+    helmetOptions.contentSecurityPolicy = {
         directives: config.security.csp.directives
-    } : false,
-}));
+    };
+}
+
+app.use(helmet(helmetOptions));
 
 // Rate limiting
 const limiter = rateLimit({
