@@ -7,6 +7,7 @@ using GMap.NET.WindowsForms.Markers;
 using Icaza;
 using LoadDirectory;
 using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.Devices;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -121,7 +122,7 @@ namespace Ostium
         readonly string SoftVersion = string.Empty;
         string ClearOnOff = "on";
         string NameUriDB = string.Empty;
-        string UnshortURLval = string.Empty;
+        readonly string UnshortURLval = string.Empty;
         string Una = string.Empty;
         string TableOpen = string.Empty;
         string Tables_Lst_Opt = "add";
@@ -813,6 +814,14 @@ namespace Ostium
                 Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
             RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
                 Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
+
+            if (!File.Exists(Path.Combine(AppStart, "Messis", "config.js")))
+            {
+                if (File.Exists(Path.Combine(AppStart, "Messis", "config.example.js")))
+                {
+                    RenameFileForUPDT(Path.Combine(AppStart, "Messis", "config.example.js"), Path.Combine(AppStart, "Messis", "config.js"));
+                }
+            }
         }
 
         void InitializeClassVariables()
@@ -3383,23 +3392,125 @@ namespace Ostium
             }
         }
 
+        void ConfigMESS_Btn_Click(object sender, EventArgs e)
+        {
+            string dirPath = Path.Combine(AppStart, "Messis", "config.js");
+
+            if (!File.Exists(dirPath))
+            {
+                MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                    "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(dirPath);
+        }
+
+        void StartMESS_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "Messis", "start.bat");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("Messis is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = filepath;
+                    proc.StartInfo.Arguments = string.Empty;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "Messis");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! StartMESS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LocalhostMESS_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "Messis", "config.js");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(filepath);
+
+                string portLine = lines.FirstOrDefault(l => l.Contains("port:"));
+                string hostLine = lines.FirstOrDefault(l => l.Contains("host:"));
+
+                if (portLine == null || hostLine == null)
+                {
+                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string portStr = new string(portLine
+                    .SkipWhile(c => !char.IsDigit(c))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray());
+
+                int port = int.Parse(portStr);
+
+                string host = ExtractHostValue(hostLine);
+
+                GoBrowser($"{host}:{port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LocalhostMESS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LogPathMESS_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string dirPath = Path.Combine(AppStart, "Messis", "logs");
+                if (Directory.Exists(dirPath))
+                    Process.Start(dirPath);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LogPathMESS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void ConfigSFE_Btn_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "config.json")))
+            string filepath = Path.Combine(AppStart, "SecureFileExplorer", "config.json");
+
+            if (!File.Exists(filepath))
             {
                 MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
                     "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            OpenFile_Editor(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+            OpenFile_Editor(filepath);
         }
 
         void StartSFE_Btn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe")))
+                string filepath = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
+
+                if (!File.Exists(filepath))
                 {
                     MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
                         "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -3416,7 +3527,7 @@ namespace Ostium
 
                 using (Process proc = new Process())
                 {
-                    proc.StartInfo.FileName = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
+                    proc.StartInfo.FileName = filepath;
                     proc.StartInfo.Arguments = string.Empty;
                     proc.StartInfo.UseShellExecute = true;
                     proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "SecureFileExplorer");
@@ -3428,6 +3539,31 @@ namespace Ostium
             {
                 senderror.ErrorLog("Error! StartSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
+        }
+
+        static string ExtractHostValue(string line)
+        {
+            int hostIndex = line.IndexOf("host:", StringComparison.OrdinalIgnoreCase);
+            string afterHost = line.Substring(hostIndex + 5).Trim();
+
+            int commentIndex = afterHost.IndexOf("//");
+            if (commentIndex > 0)
+            {
+                afterHost = afterHost.Substring(0, commentIndex).Trim();
+            }
+
+            afterHost = afterHost.TrimEnd(',');
+
+            if (afterHost.StartsWith("'") && afterHost.EndsWith("'"))
+            {
+                return afterHost.Substring(1, afterHost.Length - 2);
+            }
+            else if (afterHost.StartsWith("\"") && afterHost.EndsWith("\""))
+            {
+                return afterHost.Substring(1, afterHost.Length - 2);
+            }
+
+            return afterHost.Trim();
         }
 
         void LocalhostSFE_Btn_Click(object sender, EventArgs e)
@@ -3447,10 +3583,13 @@ namespace Ostium
                     PropertyNameCaseInsensitive = true
                 };
 
-                string json = File.ReadAllText(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
-                ConfigSFE config = System.Text.Json.JsonSerializer.Deserialize<ConfigSFE>(json, options);
+                if (File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "config.json")))
+                {
+                    string json = File.ReadAllText(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+                    ConfigSFE config = JsonSerializer.Deserialize<ConfigSFE>(json, options);
 
-                GoBrowser($"http://localhost:{config.Port}", 0);
+                    GoBrowser($"{config.Host}:{config.Port}", 0);
+                }               
             }
             catch (Exception ex)
             {
@@ -3462,7 +3601,10 @@ namespace Ostium
         {
             try
             {
-                Process.Start(Path.Combine(AppStart, "SecureFileExplorer", "logs"));
+                if (Directory.Exists(Path.Combine(AppStart, "SecureFileExplorer", "logs")))
+                {
+                    Process.Start(Path.Combine(AppStart, "SecureFileExplorer", "logs"));
+                }                
             }
             catch (Exception ex)
             {
@@ -12838,6 +12980,7 @@ namespace Ostium
     public class ConfigSFE
     {
         public int Port { get; set; }
+        public string Host { get; set; }
     }
 
     #region Data Models

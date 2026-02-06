@@ -46,6 +46,8 @@ Ostium OSINT Browser is designed for professionals who analyze public informatio
 
 ### 🤖 Artificial Intelligence
 - **OOB Ai**: Integrated Ollama client for AI-assisted analysis
+### AI-Enhanced Features: Integrated advanced AI technology for translation, summarization, recommendations, and more, making reading smarter
+
 
 ### 🧩 Navigation & Control
 - Advanced cookie management
