@@ -1,6 +1,7 @@
 {
   "RootDirectory": "C:\\OSINT_DATA",
   "Port": 8888,
+  "Host": "localhost",  
   "AllowedExtensions": [
     ".pdf",
     ".docx",

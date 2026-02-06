@@ -3394,23 +3394,25 @@ namespace Ostium
 
         void ConfigMESS_Btn_Click(object sender, EventArgs e)
         {
-            string dirPath = Path.Combine(AppStart, "Messis");
+            string dirPath = Path.Combine(AppStart, "Messis", "config.js");
 
-            if (!File.Exists(Path.Combine(dirPath, "config.js")))
+            if (!File.Exists(dirPath))
             {
                 MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
                     "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            OpenFile_Editor(Path.Combine(dirPath, "config.js"));
+            OpenFile_Editor(dirPath);
         }
 
         void StartMESS_Btn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!File.Exists(Path.Combine(AppStart, "Messis", "start.bat")))
+                string filepath = Path.Combine(AppStart, "Messis", "start.bat");
+
+                if (!File.Exists(filepath))
                 {
                     MessageBox.Show("Messis is not install, go to Discord channel Ostium for fix and help. is not started!",
                         "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -3419,7 +3421,7 @@ namespace Ostium
 
                 using (Process proc = new Process())
                 {
-                    proc.StartInfo.FileName = Path.Combine(AppStart, "Messis", "start.bat");
+                    proc.StartInfo.FileName = filepath;
                     proc.StartInfo.Arguments = string.Empty;
                     proc.StartInfo.UseShellExecute = true;
                     proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "Messis");
@@ -3437,14 +3439,16 @@ namespace Ostium
         {
             try
             {
-                if (!File.Exists(Path.Combine(AppStart, "Messis", "config.js")))
+                string filepath = Path.Combine(AppStart, "Messis", "config.js");
+
+                if (!File.Exists(filepath))
                 {
                     MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
                         "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
-                string[] lines = File.ReadAllLines(Path.Combine(AppStart, "Messis", "config.js"));
+                string[] lines = File.ReadAllLines(filepath);
 
                 string portLine = lines.FirstOrDefault(l => l.Contains("port:"));
                 string hostLine = lines.FirstOrDefault(l => l.Contains("host:"));
@@ -3476,8 +3480,9 @@ namespace Ostium
         {
             try
             {
-                if (Directory.Exists(Path.Combine(AppStart, "Messis", "logs")))
-                    Process.Start(Path.Combine(AppStart, "Messis", "logs"));
+                string dirPath = Path.Combine(AppStart, "Messis", "logs");
+                if (Directory.Exists(dirPath))
+                    Process.Start(dirPath);
             }
             catch (Exception ex)
             {
@@ -3487,21 +3492,25 @@ namespace Ostium
 
         void ConfigSFE_Btn_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "config.json")))
+            string filepath = Path.Combine(AppStart, "SecureFileExplorer", "config.json");
+
+            if (!File.Exists(filepath))
             {
                 MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
                     "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            OpenFile_Editor(Path.Combine(AppStart, "SecureFileExplorer", "config.json"));
+            OpenFile_Editor(filepath);
         }
 
         void StartSFE_Btn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!File.Exists(Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe")))
+                string filepath = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
+
+                if (!File.Exists(filepath))
                 {
                     MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
                         "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -3518,7 +3527,7 @@ namespace Ostium
 
                 using (Process proc = new Process())
                 {
-                    proc.StartInfo.FileName = Path.Combine(AppStart, "SecureFileExplorer", "SecureFileExplorer.exe");
+                    proc.StartInfo.FileName = filepath;
                     proc.StartInfo.Arguments = string.Empty;
                     proc.StartInfo.UseShellExecute = true;
                     proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "SecureFileExplorer");

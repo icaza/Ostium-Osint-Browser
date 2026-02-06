@@ -1,13 +1,13 @@
-// Configuration avancée de Messis
-// Copiez ce fichier en config.js et modifiez selon vos besoins
+// Advanced Messis configuration
+// Copy this file to config.js and modify it as needed
 
 module.exports = {
-    // Configuration du serveur
+    // Server configuration
     server: {
         port: 3000,
         host: 'localhost',
         
-        // Activer HTTPS (nécessite certificats SSL)
+        // Enable HTTPS (requires SSL certificates)
         https: {
             enabled: false,
             keyPath: './certs/key.pem',
@@ -15,32 +15,32 @@ module.exports = {
         }
     },
     
-    // Base de données
+    // Database
     database: {
         filename: 'messis.db',
         
-        // Options SQLite3
+        // SQLite3 Options
         options: {
-            // Mode lecture seule
+            // Read-only mode
             readonly: false,
             
-            // Timeout pour les opérations (ms)
+            // Timeout for operations (ms)
             timeout: 5000
         }
     },
     
-    // Sécurité
+    // Security
     security: {
         // Rate limiting
         rateLimit: {
             windowMs: 15 * 60 * 1000, // 15 minutes
-            max: 1000 // requêtes max par fenêtre
+            max: 1000 // max queries per window
         },
         
         // CORS (Cross-Origin Resource Sharing)
         cors: {
             enabled: false,
-            origin: '*' // ou domaine spécifique
+            origin: '*' // or specific area
         },
         
         // Content Security Policy
@@ -57,10 +57,10 @@ module.exports = {
     
     // Export
     export: {
-        // Taille maximale des exports (bytes)
+        // Maximum export size (bytes)
         maxSize: 50 * 1024 * 1024, // 50 MB
         
-        // Formats activés
+        // Enabled formats
         formats: {
             json: true,
             csv: true,
@@ -70,7 +70,7 @@ module.exports = {
             pdf: true
         },
         
-        // Options PDF
+        // PDF Options
         pdf: {
             format: 'A4',
             margin: {
@@ -82,18 +82,18 @@ module.exports = {
         }
     },
     
-    // Interface utilisateur
+    // User interface
     ui: {
-        // Thème par défaut
+        // Default theme
         theme: 'dark', // 'dark' ou 'light'
         
-        // Langue par défaut
+        // Default language
         language: 'en',
         
-        // Nombre d'entités par page (vue données)
+        // Number of entities per page (data view)
         itemsPerPage: 20,
         
-        // Options du graphe
+        // Graph options
         graph: {
             defaultLayout: 'force', // 'force', 'hierarchical', 'circular'
             
@@ -104,7 +104,7 @@ module.exports = {
                 }
             },
             
-            // Couleurs personnalisées par type
+            // Custom colors by type
             colors: {
                 'Personne': '#2563eb',
                 'Organisation': '#dc2626',
@@ -122,27 +122,27 @@ module.exports = {
     
     // Logging
     logging: {
-        // Niveau de log : 'error', 'warn', 'info', 'debug'
+        // Log level : 'error', 'warn', 'info', 'debug'
         level: 'info',
         
-        // Enregistrer dans un fichier
+        // Save to a file
         file: {
             enabled: false,
             path: './logs/messis.log'
         }
     },
     
-    // Sauvegarde automatique
+    // Automatic backup
     backup: {
         enabled: false,
         
-        // Intervalle de sauvegarde (minutes)
+        // Backup interval (minutes)
         interval: 60,
         
-        // Dossier de sauvegarde
+        // Backup folder
         path: './backups',
         
-        // Nombre de sauvegardes à conserver
+        // Number of backups to keep
         keep: 10
     }
 };
