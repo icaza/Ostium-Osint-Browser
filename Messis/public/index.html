@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messis - OSINT Investigation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-network-wired"></i>
+                <h1>Messis</h1>
+                <span class="subtitle">OSINT Investigation Platform</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="newProjectBtn">
+                    <i class="fas fa-plus"></i> New Project
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-folder-open"></i> Projects</h2>
+                <button class="btn-icon" id="refreshProjectsBtn" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            <div class="projects-list" id="projectsList">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading...
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-content">
+                    <i class="fas fa-search-location"></i>
+                    <h2>Welcome to Messis</h2>
+                    <p>Professional OSINT investigation platform</p>
+                    <button class="btn btn-large btn-primary" id="startProjectBtn">
+                        <i class="fas fa-plus-circle"></i> Create your first project
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project View -->
+            <div class="project-view hidden" id="projectView">
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-secondary" id="backToProjectsBtn">
+                            <i class="fas fa-arrow-left"></i> Projects
+                        </button>
+                        <h2 id="projectTitle" class="project-title"></h2>
+                        <button class="btn-icon" id="editProjectBtn" title="Modify the project">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-secondary" id="manageRelationsBtn">
+                            <i class="fas fa-link"></i> Managing Relationships
+                        </button>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn btn-secondary" id="addEntityBtn">
+                            <i class="fas fa-user-plus"></i> Add Entity
+                        </button>
+                        <div class="view-toggle">
+                            <button class="toggle-btn active" data-view="graph" title="Graph View">
+                                <i class="fas fa-project-diagram"></i>
+                            </button>
+                            <button class="toggle-btn" data-view="data" title="Data View">
+                                <i class="fas fa-table"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="dropdown-item" data-export="json">
+                                    <i class="fas fa-file-code"></i> JSON
+                                </button>
+                                <button class="dropdown-item" data-export="csv">
+                                    <i class="fas fa-file-csv"></i> CSV
+                                </button>
+                                <button class="dropdown-item" data-export="markdown">
+                                    <i class="fab fa-markdown"></i> Markdown
+                                </button>
+                                <button class="dropdown-item" data-export="html">
+                                    <i class="fab fa-html5"></i> HTML
+                                </button>
+                                <button class="dropdown-item" data-export="txt">
+                                    <i class="fas fa-file-alt"></i> Text
+                                </button>
+                                <button class="dropdown-item" data-export="pdf">
+                                    <i class="fas fa-file-pdf"></i> PDF
+                                </button>
+                                <button class="dropdown-item" data-export="svg">
+                                    <i class="fas fa-bezier-curve"></i> SVG
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graph View -->
+                <div class="view-container" id="graphView">
+                    <div class="graph-controls">
+                        <button class="btn-icon" id="fitGraphBtn" title="Adjust to screen">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="btn-icon" id="zoomInBtn" title="Zoom in">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button class="btn-icon" id="zoomOutBtn" title="Zoom out">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <button class="btn-icon" id="resetGraphBtn" title="Reset view">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                        <button class="btn-icon" id="toggleLegendBtn" title="Show/Hide legend">
+                            <i class="fas fa-layer-group"></i>
+                        </button>
+                        <div class="graph-layout-toggle">
+                            <select id="layoutSelect" class="select-control">
+                                <option value="hierarchical">Hierarchical</option>
+                                <option value="force" selected>Force-Directed</option>
+                                <option value="circular">Circular</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="network" class="network-graph"></div>
+                    <div class="graph-legend" id="graphLegend">
+                        <div class="legend-header">
+                            <h4><i class="fas fa-info-circle"></i> Legend</h4>
+                            <button class="btn-icon btn-legend-close" title="Hide the legend">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="legend-content">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #2563eb;"></span>
+                                <span>Person</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #dc2626;"></span>
+                                <span>Organization</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #16a34a;"></span>
+                                <span>Location</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #ea580c;"></span>
+                                <span>Document</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #9333ea;"></span>
+                                <span>Other</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data View -->
+                <div class="view-container hidden" id="dataView">
+                    <div class="entities-grid" id="entitiesGrid">
+                        <!-- Entities will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- New/Edit Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="projectModalTitle"><i class="fas fa-folder-plus"></i> New Project</h3>
+                <button class="btn-close" data-modal="projectModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="projectName">
+                        <i class="fas fa-heading"></i> Project name *
+                    </label>
+                    <input type="text" id="projectName" class="form-control" placeholder="Ex: Investigation Alpha"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">
+                        <i class="fas fa-align-left"></i> Description
+                    </label>
+                    <textarea id="projectDescription" class="form-control" rows="4"
+                        placeholder="Description du projet..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="projectModal">Cancel</button>
+                <button class="btn btn-primary" id="saveProjectBtn">
+                    <i class="fas fa-save"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New/Edit Entity Modal -->
+    <div class="modal" id="entityModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="entityModalTitle"><i class="fas fa-user-plus"></i> New Entity</h3>
+                <button class="btn-close" data-modal="entityModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entityType">
+                            <i class="fas fa-tag"></i> Kind *
+                        </label>
+                        <select id="entityType" class="form-control">
+                            <option value="Person">👤 Person</option>
+                            <option value="Organization">🏢 Organization</option>
+                            <option value="Location">📍 Location</option>
+                            <option value="Document">📄 Document</option>
+                            <option value="Event">📅 Event</option>
+                            <option value="Website">🌐 Website</option>
+                            <option value="E-mail">📧 E-mail</option>
+                            <option value="Phone">📞 Phone</option>
+                            <option value="Vehicle">🚗 Vehicle</option>
+                            <option value="Other">🔹 Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="entityName">
+                            <i class="fas fa-signature"></i> Name *
+                        </label>
+                        <input type="text" id="entityName" class="form-control" placeholder="Entity name" required>
+                    </div>
+                </div>
+
+                <div class="attributes-section">
+                    <div class="section-header">
+                        <div class="section-header-left">
+                            <h4><i class="fas fa-list"></i> Attributes</h4>
+                            <span class="section-subtitle">Add detailed information about this entity</span>
+                        </div>
+                        <button class="btn btn-sm btn-primary" id="addAttributeBtn">
+                            <i class="fas fa-plus-circle"></i> Add an attribute
+                        </button>
+                    </div>
+                    
+                    <div class="attributes-container">
+                        <div class="attributes-header">
+                            <div class="attribute-header-item">Category</div>
+                            <div class="attribute-header-item">Label</div>
+                            <div class="attribute-header-item">Value</div>
+                            <div class="attribute-header-item">Actions</div>
+                        </div>
+                        
+                        <div id="attributesList" class="attributes-list">
+                            <!-- The attributes will be added here -->
+                        </div>
+                        
+                        <!-- Message quand aucun attribut -->
+                        <div id="noAttributesMessage" class="no-attributes-message">
+                            <i class="fas fa-info-circle"></i>
+                            <p>No attributes added. Click "Add an attribute" to begin..</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="entityModal">Cancel</button>
+                <button class="btn btn-danger" id="deleteEntityBtn" style="display:none; margin-right: auto;">
+                    <i class="fas fa-trash"></i> Delete the entity
+                </button>
+                <button class="btn btn-primary" id="saveEntityBtn">
+                    <i class="fas fa-save"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for creating/modifying a relationship -->
+    <div class="modal" id="relationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="relationModalTitle"><i class="fas fa-link"></i> New Relationship</h3>
+                <button class="btn-close" data-modal="relationModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sourceEntity"><i class="fas fa-arrow-right"></i> Source Entity</label>
+                        <select id="sourceEntity" class="form-control">
+                            <option value="">Select an entity...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetEntity"><i class="fas fa-arrow-left"></i> Target Entity</label>
+                        <select id="targetEntity" class="form-control">
+                            <option value="">Select an entity...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="relationType"><i class="fas fa-tag"></i> Type of Relationship</label>
+                    <select id="relationType" class="form-control">
+                        <option value="">Select a type...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="relationStrength">
+                        <i class="fas fa-signal"></i> Strength of the Relationship
+                        <span id="strengthValue">5</span>/10
+                    </label>
+                    <input type="range" id="relationStrength" min="1" max="10" value="5" class="form-range">
+                </div>
+
+                <div class="form-group">
+                    <label for="relationDescription">
+                        <i class="fas fa-align-left"></i> Description
+                    </label>
+                    <textarea id="relationDescription" class="form-control" rows="3" placeholder="Describe this relationship..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="relationEvidence">
+                        <i class="fas fa-file-alt"></i> Evidence/Sources
+                    </label>
+                    <textarea id="relationEvidence" class="form-control" rows="3" placeholder="Sources or evidence supporting this relationship..."></textarea>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="bidirectional" class="form-check-input">
+                    <label for="bidirectional" class="form-check-label">
+                        <i class="fas fa-exchange-alt"></i> Bidirectional relationship
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="relationModal">Cancel</button>
+                <button class="btn btn-primary" id="saveRelationBtn">
+                    <i class="fas fa-save"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Relationship Management Panel -->
+    <div class="modal" id="relationsPanelModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-network-wired"></i> Relationship Management</h3>
+                <button class="btn-close" data-modal="relationsPanelModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-toolbar">
+                    <button class="btn btn-primary" id="addNewRelationBtn">
+                        <i class="fas fa-plus"></i> New Relationship
+                    </button>
+                    <div class="search-box">
+                        <input type="text" id="searchRelations" class="form-control" placeholder="search for relationships...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div class="relations-table-container">
+                    <table id="relationsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Source</th>
+                                <th>Relationship</th>
+                                <th>Target</th>
+                                <th>Force</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Relations will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attribute Template -->
+    <template id="attributeTemplate">
+        <div class="attribute-item" data-collapsed="true">
+            <div class="attribute-main-row">
+                <div class="attribute-field category-field">
+                    <select class="form-control attr-category">
+                        <option value="Person">👤 Person</option>
+                        <option value="Identification">🆔 Identification</option>
+                        <option value="Contact">📞 Contact</option>
+                        <option value="Location">📍 Location</option>
+                        <option value="Social Networks">💬 Social Networks</option>
+                        <option value="Professional">💼 Professional</option>
+                        <option value="Financial">💰 Financial</option>
+                        <option value="Technical">⚙️ Technical</option>
+                        <option value="Organization">🏢 Organization</option>
+                        <option value="Document">📄 Document</option>
+                        <option value="Event">📅 Event</option>
+                        <option value="Website">🌐 Website</option>
+                        <option value="E-mail">📧 E-mail</option>
+                        <option value="Phone">📞 Phone</option>
+                        <option value="Vehicle">🚗 Vehicle</option>
+                        <option value="Other">🔹 Other</option>
+                    </select>
+                </div>
+                <div class="attribute-field label-field">
+                    <input type="text" class="form-control attr-label" placeholder="Ex: Email, Telephone...">
+                </div>
+                <div class="attribute-field value-field">
+                    <input type="text" class="form-control attr-value" placeholder="Value...">
+                </div>
+                <div class="attribute-actions">
+                    <button type="button" class="btn-icon btn-collapse" title="Show/hide notes">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <button type="button" class="btn-icon btn-remove" title="Remove this attribute">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="attribute-notes-row">
+                <div class="form-group notes-group">
+                    <label>
+                        <i class="fas fa-sticky-note"></i> Additional notes
+                    </label>
+                    <textarea class="form-control attr-notes" rows="2" placeholder="Additional notes..."></textarea>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
