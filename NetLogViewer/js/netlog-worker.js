@@ -6,6 +6,14 @@ class NetLogWorker {
         
         self.addEventListener('message', this.handleMessage.bind(this));
     }
+
+    /**
+     * Determine if a string key is unsafe to use as a property name on a plain object.
+     * This prevents prototype pollution via special keys like "__proto__".
+     */
+    isUnsafeKey(key) {
+        return key === '__proto__' || key === 'constructor' || key === 'prototype';
+    }
     
     handleMessage(event) {
         const { type, data } = event.data;
@@ -219,6 +227,8 @@ class NetLogWorker {
         const hostname = params.host;
         
         if (!hostname) return;
+        // Prevent prototype pollution via special property names.
+        if (this.isUnsafeKey(hostname)) return;
         
         if (!stats.byHost[hostname]) {
             stats.byHost[hostname] = {
