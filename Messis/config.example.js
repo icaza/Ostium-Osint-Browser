@@ -17,8 +17,8 @@ module.exports = {
     
     // Database
     database: {
-        filename: 'messis.db',
-        
+        filename: './db/messis.db',
+
         // SQLite3 Options
         options: {
             // Read-only mode
@@ -33,8 +33,8 @@ module.exports = {
     security: {
         // Rate limiting
         rateLimit: {
-            windowMs: 15 * 60 * 1000, // 15 minutes
-            max: 1000 // max queries per window
+            windowMs: 60 * 1000, // 1 minutes
+            max: 1000 
         },
         
         // CORS (Cross-Origin Resource Sharing)
@@ -106,16 +106,23 @@ module.exports = {
             
             // Custom colors by type
             colors: {
-                'Personne': '#2563eb',
-                'Organisation': '#dc2626',
-                'Localisation': '#16a34a',
+                'Person': '#2563eb',
+                'Identification': '#8b5cf6',
+                'Contact': '#0891b2',
+                'Location': '#16a34a',
+                'Social Networks': '#ec4899',
+                'Professional': '#f59e0b',
+                'Financial': '#10b981',
+                'Technical': '#6366f1',
+                'Organization': '#ff0000',
                 'Document': '#ea580c',
-                'Événement': '#ca8a04',
-                'Site Web': '#7c3aed',
-                'Email': '#0891b2',
-                'Téléphone': '#059669',
-                'Véhicule': '#4f46e5',
-                'Autre': '#9333ea'
+                'Media': '#fc38e2',
+                'Event': '#ca8a04',
+                'Website': '#00fff2',
+                'E-mail': '#0891b2',
+                'Phone': '#059669',
+                'Vehicle': '#00ff40',
+                'Other': '#c8ff00'                
             }
         }
     },
@@ -127,7 +134,7 @@ module.exports = {
         
         // Save to a file
         file: {
-            enabled: false,
+            enabled: true,
             path: './logs/messis.log'
         }
     },
@@ -137,7 +144,7 @@ module.exports = {
         enabled: false,
         
         // Backup interval (minutes)
-        interval: 60,
+        interval: 3,
         
         // Backup folder
         path: './backups',

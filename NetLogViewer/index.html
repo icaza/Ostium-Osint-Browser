@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetLog Viewer - DNS Analysis</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/worker-manager.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-search"></i> NetLog Viewer</h1>
+            <p class="subtitle">Detailed analysis of Chrome NetLog files with a focus on DNS</p>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="upload-section">
+                    <h2><i class="fas fa-upload"></i> Load a file</h2>
+                    <div class="upload-area" id="dropZone">
+                        <i class="fas fa-file-upload fa-3x"></i>
+                        <p>Drag and drop your NetLog .json file here</p>
+                        <p class="small">ou</p>
+                        <button id="fileInputBtn" class="btn">
+                            <i class="fas fa-folder-open"></i> Browse
+                        </button>
+                        <input type="file" id="fileInput" accept=".json" hidden>
+                        <div class="file-info" id="fileInfo">
+                            <p>No files loaded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3><i class="fas fa-chart-bar"></i> Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalEntries">0</div>
+                            <div class="stat-label">DNS entries</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="activeEntries">0</div>
+                            <div class="stat-label">Active</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="expiredEntries">0</div>
+                            <div class="stat-label">Expired</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions-section">
+                    <h3><i class="fas fa-cog"></i> Actions</h3>
+                    <button id="exportCsv" class="btn btn-secondary" disabled>
+                        <i class="fas fa-file-csv"></i> Export CSV
+                    </button>
+                    <button id="clearData" class="btn btn-secondary" disabled>
+                        <i class="fas fa-trash"></i> Clear data
+                    </button>
+                    <button id="toggleAdvanced" class="btn btn-secondary">
+                        <i class="fas fa-sliders-h"></i> Advanced options
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="dns">
+                        <i class="fas fa-globe"></i> DNS cache
+                    </button>
+                    <button class="tab-btn" data-tab="config">
+                        <i class="fas fa-cogs"></i> Configuration
+                    </button>
+                    <button class="tab-btn" data-tab="raw">
+                        <i class="fas fa-code"></i> Raw data
+                    </button>
+                    <button class="tab-btn" data-tab="timeline">
+                        <i class="fas fa-chart-line"></i> Timeline
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="dnsTab">
+                    <div class="tab-header">
+                        <h3><i class="fas fa-database"></i> DNS cache</h3>
+                        <div class="controls">
+                            <div class="search-container">
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="dnsSearch" placeholder="Rechercher un domaine...">
+                                    <button class="btn-icon" id="advancedSearchBtn" title="Recherche avancée">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="filter-buttons">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="active">Assets</button>
+                                <button class="filter-btn" data-filter="expired">Expired</button>
+                                <button class="filter-btn" data-filter="error">Errors</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="dnsTable">
+                            <thead>
+                                <tr>
+                                    <th data-sort="hostname">
+                                        <span>Domain <i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th data-sort="family">
+                                        <span>Family <i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th data-sort="addresses">
+                                        <span>IP addresses <i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th data-sort="ttl">
+                                        <span>TTL <i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th data-sort="expiration">
+                                        <span>Expire <i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th data-sort="network">
+                                        <span>Network changes <i class="fas fa-sort"></i></span>
+                                    </th>
+                                    <th>Network key</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dnsTableBody">
+                                <tr class="empty-row">
+                                    <td colspan="7">
+                                        <i class="fas fa-info-circle"></i>
+                                        Load a NetLog file to view the DNS data
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination" id="dnsPagination">
+                        <button class="page-btn" disabled id="prevPage">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info" id="pageInfo">Page 1 of 1</span>
+                        <button class="page-btn" disabled id="nextPage">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="configTab">
+                    <h3><i class="fas fa-cogs"></i> DNS configuration</h3>
+                    <div class="config-grid">
+                        <div class="config-card">
+                            <h4><i class="fas fa-toggle-on"></i> DNS Status</h4>
+                            <div class="config-item">
+                                <span class="config-label">Internal DNS (insecure):</span>
+                                <span class="config-value" id="dnsInsecureStatus">Not available</span>
+                            </div>
+                            <div class="config-item">
+                                <span class="config-label">DNS interne (secure):</span>
+                                <span class="config-value" id="dnsSecureStatus">Not available</span>
+                            </div>
+                            <div class="config-item">
+                                <span class="config-label">Cache capacity:</span>
+                                <span class="config-value" id="cacheCapacity">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="config-card">
+                            <h4><i class="fas fa-server"></i> DNS Servers</h4>
+                            <ul id="dnsServersList" class="server-list">
+                                <li>Aucune donnée</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="config-card full-width">
+                            <h4><i class="fas fa-list"></i> Full DNS settings</h4>
+                            <div class="table-container">
+                                <table id="configTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Setting</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="configTableBody">
+                                        <tr>
+                                            <td colspan="2" class="empty-cell">No data</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="rawTab">
+                    <h3><i class="fas fa-code"></i> Raw data</h3>
+                    <div class="json-viewer" id="jsonViewer">
+                        <pre><code>// The JSON data will appear here after loading</code></pre>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="timelineTab">
+                    <h3><i class="fas fa-chart-line"></i> Request Timeline</h3>
+                    <div class="timeline-container">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                    <div class="timeline-stats">
+                        <div class="timeline-stat">
+                            <span class="stat-label">Total queries:</span>
+                            <span class="stat-value" id="totalRequests">0</span>
+                        </div>
+                        <div class="timeline-stat">
+                            <span class="stat-label">DNS over HTTPS:</span>
+                            <span class="stat-value" id="dohRequests">0</span>
+                        </div>
+                        <div class="timeline-stat">
+                            <span class="stat-label">DNS errors:</span>
+                            <span class="stat-value" id="dnsErrors">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>NetLog Viewer - For analyzing Chrome NetLog files</p>
+            <p class="small">Developed by <code>ICAZA MEDIA</code> site <code>veydunet.com</code></p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="advancedModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-sliders-h"></i> Advanced options</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="entriesPerPage">
+                        <i class="fas fa-table"></i> Entries per page
+                    </label>
+                    <select id="entriesPerPage" class="form-control">
+                        <option value="10">10</option>
+                        <option value="25" selected>25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="timeFormat">
+                        <i class="fas fa-clock"></i> Time format
+                    </label>
+                    <select id="timeFormat" class="form-control">
+                        <option value="relative">Relative</option>
+                        <option value="absolute" selected>Absolute</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="autoRefresh" checked>
+                        <span>Automatic update</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="highlightErrors" checked>
+                        <span>Error Highlighting</span>
+                    </label>
+                </div>
+                <!-- Dans la section du modal avancé -->
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="showProgress" checked>
+                        <span>Show progress</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="saveSettings">Save</button>
+            </div>
+        </div>
+    </div>
+
+<script src="js/chart.js"></script>
+<script src="js/viewer.js"></script>
+</body>
+</html>

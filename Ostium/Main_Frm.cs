@@ -7,7 +7,6 @@ using GMap.NET.WindowsForms.Markers;
 using Icaza;
 using LoadDirectory;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.Devices;
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -3236,7 +3235,8 @@ namespace Ostium
                     {
                         for (int i = 0; i < ArchiveAdd_Lst.Items.Count; i++)
                         {
-                            addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveAdd_Lst.Items[i].ToString() + " -mx9 -mtc=on");
+                            if (Directory.Exists(ArchiveAdd_Lst.Items[i].ToString()))
+                                addtxt.WriteLine("7za.exe u -tzip " + AppStart + "Archives.zip " + ArchiveAdd_Lst.Items[i].ToString() + " -mx9 -mtc=on");
                         }
                     }
 
@@ -3589,7 +3589,7 @@ namespace Ostium
                     ConfigSFE config = JsonSerializer.Deserialize<ConfigSFE>(json, options);
 
                     GoBrowser($"{config.Host}:{config.Port}", 0);
-                }               
+                }
             }
             catch (Exception ex)
             {
@@ -3604,11 +3604,97 @@ namespace Ostium
                 if (Directory.Exists(Path.Combine(AppStart, "SecureFileExplorer", "logs")))
                 {
                     Process.Start(Path.Combine(AppStart, "SecureFileExplorer", "logs"));
-                }                
+                }
             }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! LogPathSFE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void ConfigNLV_Btn_Click(object sender, EventArgs e)
+        {
+            string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
+
+            if (!File.Exists(filepath))
+            {
+                MessageBox.Show("NetLogViewer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                    "NetLogViewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(filepath);
+        }
+
+        void NetExport_Btn_Click(object sender, EventArgs e)
+        {
+            GoBrowser("edge://net-export/", 1);
+        }
+
+        void StartNLV_Btn_Click(object sender, EventArgs e)
+        {            
+            try
+            {
+                string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = filepath;
+                    proc.StartInfo.Arguments = string.Empty;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "NetLogViewer");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! StartNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        private void OpnNLV_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(filepath);
+
+                string portLine = lines.FirstOrDefault(l => l.Contains("PORT="));
+
+                if (portLine == null)
+                {
+                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string portStr = new string(portLine
+                    .SkipWhile(c => !char.IsDigit(c))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray());
+
+                int port = int.Parse(portStr);
+
+                GoBrowser($"localhost:{port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! OpnNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -6571,6 +6657,57 @@ namespace Ostium
             {
                 VolumeValue_Lbl.Text = "Volume: " + Convert.ToString(VolumeVal_Track.Value);
                 RateValue_Lbl.Text = "Rate: " + Convert.ToString(RateVal_Track.Value);
+            }
+        }
+
+        void ReadArticle_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Title_Lst.SelectedIndex == -1)
+                {
+                    MessageBox.Show("You must first select an item to read the article!", "Select an item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (VerifLangOpn == 0)
+                    LoadLang();
+
+                WbrowseSelect = WBrowsefeed;
+                ExtractReadArticle();
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ReadArticle_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        async void ExtractReadArticle()
+        {
+            try
+            {
+                string content = await ExtractPageContent();
+
+                if (!string.IsNullOrEmpty(content))
+                {
+                    synth.Volume = Class_Var.VOLUME_TRACK;
+                    synth.Rate = Class_Var.RATE_TRACK;
+
+                    if (LangSelect_Lst.SelectedIndex == -1)
+                    {
+                        LangSelect_Lst.SelectedIndex = 0;
+                    }
+
+                    string removeChar = content;
+                    removeChar = Regex.Replace(removeChar, @"[^a-zA-Z0-9\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ.,!?;:""'()-]", "");
+
+                    synth.SelectVoice(LangSelect_Lst.SelectedItem.ToString());
+                    synth.SpeakAsync(removeChar);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ExtractReadArticle: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

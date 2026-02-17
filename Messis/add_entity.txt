@@ -1,0 +1,26 @@
+----------------------------------------------------------------
+app.js
+
+function getEntityColor(type)
+function getEntityIcon(type)
+
+function getCategoryColor(category)
+function getCategoryIcon(category)
+
+----------------------------------------------------------------
+index.html
+
+<select id="entityType" class="form-control">
+<select class="form-control attr-category">
+
+----------------------------------------------------------------
+config.js
+
+colors:
+
+
+
+
+
+
+
