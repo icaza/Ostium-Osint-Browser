@@ -764,13 +764,26 @@ class NetLogViewer {
         };
         return errors[errorCode?.toString()] || `Erreur ${errorCode}`;
     }
+
+    _escapeHtml(str) {
+        if (str == null) {
+            return '';
+        }
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
     
     // ============ USER INTERFACE ============
     showLoadingState(file) {
+        const safeFileName = this._escapeHtml(file && file.name);
         this.elements.fileInfo.innerHTML = `
             <div class="loading-container">
                 <div class="loading-spinner"></div>
-                <p><i class="fas fa-file"></i> <strong>${file.name}</strong></p>
+                <p><i class="fas fa-file"></i> <strong>${safeFileName}</strong></p>
                 <p class="small">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
                 <div class="progress-container">
                     <div class="progress-bar">
