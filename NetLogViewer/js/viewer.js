@@ -1528,8 +1528,24 @@ class NetLogViewer {
                 config.can_use_secure_dns_transactions = params.secure_dns_policy > 0;
             }
             
-            if (params.host && params.host.includes('cloudflare-dns.com')) {
-                config.dns_over_https_servers.add(params.host);
+            if (params.host) {
+                let hostValue = params.host;
+                let hostname = hostValue;
+                // If params.host looks like a full URL, extract the hostname
+                try {
+                    const url = new URL(hostValue);
+                    hostname = url.hostname;
+                } catch (e) {
+                    // Not a full URL, treat params.host as a hostname
+                }
+                
+                const allowedBaseDomain = 'cloudflare-dns.com';
+                const isExactDomain = hostname === allowedBaseDomain;
+                const isSubdomain = hostname.endsWith('.' + allowedBaseDomain);
+                
+                if (isExactDomain || isSubdomain) {
+                    config.dns_over_https_servers.add(params.host);
+                }
             }
         }
         
