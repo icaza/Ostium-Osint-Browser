@@ -809,17 +809,68 @@ class NetLogViewer {
         const eventsCount = data.events ? data.events.length : 0;
         const cacheCount = data.hostResolverInfo?.cache?.entries?.length || 0;
         
-        this.elements.fileInfo.innerHTML = `
-            <div class="file-info-success">
-                <p><i class="fas fa-check-circle success-text"></i> <strong>${file.name}</strong></p>
-                <p class="small">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                <div class="file-stats">
-                    <p class="small"><i class="fas fa-database"></i> ${this.dnsEntries.length.toLocaleString()} DNS entries</p>
-                    <p class="small"><i class="fas fa-list"></i> ${eventsCount.toLocaleString()} events</p>
-                    ${cacheCount > 0 ? `<p class="small"><i class="fas fa-cache"></i> ${cacheCount.toLocaleString()} cache entries</p>` : ''}
-                </div>
-            </div>
-        `;
+        // Safely construct file info DOM without interpolating untrusted text into innerHTML
+        const fileInfoContainer = this.elements.fileInfo;
+        if (fileInfoContainer) {
+            // Clear previous content
+            fileInfoContainer.innerHTML = '';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'file-info-success';
+
+            // First line: icon + file name
+            const nameParagraph = document.createElement('p');
+            const nameIcon = document.createElement('i');
+            nameIcon.className = 'fas fa-check-circle success-text';
+            nameParagraph.appendChild(nameIcon);
+
+            const nameStrong = document.createElement('strong');
+            nameStrong.textContent = file.name;
+
+            // Add a space between icon and file name
+            nameParagraph.appendChild(document.createTextNode(' '));
+            nameParagraph.appendChild(nameStrong);
+            wrapper.appendChild(nameParagraph);
+
+            // File size line
+            const sizeParagraph = document.createElement('p');
+            sizeParagraph.className = 'small';
+            sizeParagraph.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+            wrapper.appendChild(sizeParagraph);
+
+            // Stats container
+            const statsDiv = document.createElement('div');
+            statsDiv.className = 'file-stats';
+
+            const dnsParagraph = document.createElement('p');
+            dnsParagraph.className = 'small';
+            const dnsIcon = document.createElement('i');
+            dnsIcon.className = 'fas fa-database';
+            dnsParagraph.appendChild(dnsIcon);
+            dnsParagraph.appendChild(document.createTextNode(` ${this.dnsEntries.length.toLocaleString()} DNS entries`));
+            statsDiv.appendChild(dnsParagraph);
+
+            const eventsParagraph = document.createElement('p');
+            eventsParagraph.className = 'small';
+            const eventsIcon = document.createElement('i');
+            eventsIcon.className = 'fas fa-list';
+            eventsParagraph.appendChild(eventsIcon);
+            eventsParagraph.appendChild(document.createTextNode(` ${eventsCount.toLocaleString()} events`));
+            statsDiv.appendChild(eventsParagraph);
+
+            if (cacheCount > 0) {
+                const cacheParagraph = document.createElement('p');
+                cacheParagraph.className = 'small';
+                const cacheIcon = document.createElement('i');
+                cacheIcon.className = 'fas fa-cache';
+                cacheParagraph.appendChild(cacheIcon);
+                cacheParagraph.appendChild(document.createTextNode(` ${cacheCount.toLocaleString()} cache entries`));
+                statsDiv.appendChild(cacheParagraph);
+            }
+
+            wrapper.appendChild(statsDiv);
+            fileInfoContainer.appendChild(wrapper);
+        }
     }
     
     showError(message) {
