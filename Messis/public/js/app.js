@@ -9,7 +9,8 @@ const state = {
     relationships: [],
     network: null,
     currentView: 'graph',
-    editingProjectId: null
+    editingProjectId: null,
+    currentLayout: 'force'  // Track current layout to preserve it
 };
 
 // ==================== INITIALIZATION ====================
@@ -771,6 +772,9 @@ function initializeNetwork() {
 
     const config = state.config?.graph || {};
     const defaultLayout = config.defaultLayout || 'force';
+    
+    // Store the default layout in state
+    state.currentLayout = defaultLayout;
 
     const options = {
         nodes: {
@@ -813,15 +817,7 @@ function initializeNetwork() {
             }
         },
         physics: {
-            enabled: config.physics?.enabled ?? true,
-            barnesHut: {
-                gravitationalConstant: -30000,
-                centralGravity: 0.3,
-                springLength: 200,
-                springConstant: 0.04,
-                damping: 0.09,
-                avoidOverlap: 0.5
-            },
+            enabled: defaultLayout !== 'hierarchical',
             stabilization: {
                 iterations: config.physics?.stabilization?.iterations || 100
             }
@@ -833,12 +829,60 @@ function initializeNetwork() {
             dragView: true
         },
         layout: {
-            improvedLayout: true,
-            hierarchical: {
-                enabled: defaultLayout === 'hierarchical'
-            }
+            improvedLayout: true
         }
     };
+
+    // Apply initial layout options
+    if (defaultLayout === 'hierarchical') {
+        options.layout.hierarchical = {
+            enabled: true,
+            direction: 'UD',
+            sortMethod: 'directed',
+            levelSeparation: 150,
+            nodeSpacing: 200
+        };
+        options.physics = { enabled: false };
+    } else if (defaultLayout === 'circular') {
+        options.layout.hierarchical = { enabled: false };
+        options.physics = {
+            enabled: true,
+            stabilization: {
+                iterations: config.physics?.stabilization?.iterations || 100,
+                updateInterval: 25
+            },
+            solver: 'repulsion',
+            repulsion: {
+                nodeDistance: 150,
+                centralGravity: 0.15,
+                damping: 0.2
+            },
+            maxVelocity: 50,
+            minVelocity: 0.75,
+            timestep: 0.5
+        };
+    } else if (defaultLayout === 'force') {
+        options.layout.hierarchical = { enabled: false };
+        options.physics = {
+            enabled: true,
+            stabilization: {
+                iterations: config.physics?.stabilization?.iterations || 100,
+                updateInterval: 25
+            },
+            solver: 'barnesHut',
+            barnesHut: {
+                gravitationalConstant: -30000,
+                centralGravity: 0.3,
+                springLength: 200,
+                springConstant: 0.04,
+                damping: 0.09,
+                avoidOverlap: 0.5
+            },
+            maxVelocity: 50,
+            minVelocity: 0.75,
+            timestep: 0.5
+        };
+    }
 
     // Set initial layout selection in UI
     const layoutSelect = document.getElementById('layoutSelect');
@@ -940,15 +984,23 @@ function renderGraph() {
 
     state.network.setData({ nodes, edges });
 
-    // Fit to screen after stabilization
+    // Restore the current layout after data update
+    const currentLayoutType = state.currentLayout || 'force';
+    
+    // ReApply layout immediately after setData to ensure physics settings are correct
+    applyLayout(currentLayoutType);
+    
+    // Fit to screen after stabilization completes
     setTimeout(() => {
-        state.network.fit({
-            animation: {
-                duration: 1000,
-                easingFunction: 'easeInOutQuad'
-            }
-        });
-    }, 500);
+        if (state.network) {
+            state.network.fit({
+                animation: {
+                    duration: 1000,
+                    easingFunction: 'easeInOutQuad'
+                }
+            });
+        }
+    }, 800);
 }
 
 function getEntityColor(type) {
@@ -959,15 +1011,16 @@ function getEntityColor(type) {
 
     const colors = {
         'Person': '#2563eb',
-        'Organization': '#dc2626',
+        'Organization': '#ff0000',
         'Location': '#16a34a',
         'Document': '#ea580c',
+        'Media': '#fc38e2',
         'Event': '#ca8a04',
-        'Website': '#7c3aed',
+        'Website': '#00fff2',
         'E-mail': '#0891b2',
         'Phone': '#059669',
-        'Vehicle': '#4f46e5',
-        'Other': '#9333ea'
+        'Vehicle': '#00ff40',
+        'Other': '#c8ff00'
     };
     return colors[type] || '#9333ea';
 }
@@ -978,6 +1031,7 @@ function getEntityIcon(type) {
         'Organization': '🏢',
         'Location': '📍',
         'Document': '📄',
+        'Media': 'ℹ️',
         'Event': '📅',
         'Website': '🌐',
         'E-mail': '📧',
@@ -998,14 +1052,14 @@ function getCategoryColor(category) {
         'Professional': '#f59e0b',
         'Financial': '#10b981',
         'Technical': '#6366f1',
-        'Organization': '#dc2626',
+        'Organization': '#ff0000',
         'Document': '#ea580c',
         'Event': '#ca8a04',
-        'Website': '#7c3aed',
+        'Website': '#00fff2',
         'E-mail': '#0891b2',
         'Phone': '#059669',
-        'Vehicle': '#4f46e5',
-        'Other': '#64748b'
+        'Vehicle': '#00ff40',
+        'Other': '#c8ff00'
     };
     return colors[category] || '#64748b';
 }
@@ -1063,44 +1117,63 @@ function resetGraph() {
 function updateLayout(layoutType) {
     if (!state.network) return;
 
+    // Store the selected layout in state
+    state.currentLayout = layoutType;
+    
+    // Apply the layout
+    applyLayout(layoutType);
+}
+
+function applyLayout(layoutType) {
+    if (!state.network) return;
+
+    // Clear physics and layout settings first
     let options = {
         layout: {
-            hierarchical: {
-                enabled: false
-            }
+            improvedLayout: true
         },
         physics: {
-            enabled: true
+            enabled: false
         }
     };
 
     if (layoutType === 'hierarchical') {
-        options.layout = {
-            hierarchical: {
-                enabled: true,
-                direction: 'UD',
-                sortMethod: 'directed',
-                levelSeparation: 150,
-                nodeSpacing: 200
-            }
+        options.layout.hierarchical = {
+            enabled: true,
+            direction: 'UD',
+            sortMethod: 'directed',
+            levelSeparation: 150,
+            nodeSpacing: 200
         };
         options.physics = { enabled: false };
     } else if (layoutType === 'circular') {
-        // Circular layout will be handled by physics (using repulsion solver)
+        // Circular layout: Use repulsion solver
+        options.layout.hierarchical = { enabled: false };
         options.physics = {
             enabled: true,
+            stabilization: {
+                iterations: 100,
+                updateInterval: 25
+            },
             solver: 'repulsion',
             repulsion: {
-                nodeDistance: 100,
-                centralGravity: 0.2,
-                springLength: 200,
-                springConstant: 0.05,
-                damping: 0.09
-            }
+                nodeDistance: 150,
+                centralGravity: 0.15,
+                damping: 0.2
+            },
+            maxVelocity: 50,
+            minVelocity: 0.75,
+            timestep: 0.5
         };
     } else if (layoutType === 'force') {
+        // Force-directed layout: Using Barnes-Hut solver
+        options.layout.hierarchical = { enabled: false };
         options.physics = {
             enabled: true,
+            stabilization: {
+                iterations: 100,
+                updateInterval: 25
+            },
             solver: 'barnesHut',
             barnesHut: {
                 gravitationalConstant: -30000,
@@ -1109,16 +1182,22 @@ function updateLayout(layoutType) {
                 springConstant: 0.04,
                 damping: 0.09,
                 avoidOverlap: 0.5
-            }
+            },
+            maxVelocity: 50,
+            minVelocity: 0.75,
+            timestep: 0.5
         };
     }
 
+    // Apply the options
     state.network.setOptions(options);
 
-    // Force stabilization to ensure clean transition
-    if (layoutType !== 'hierarchical') {
-        state.network.stabilize(500);
-    }
+    // Stabilize the network after a brief delay
+    setTimeout(() => {
+        if (state.network) {
+            state.network.stabilize();
+        }
+    }, 50);
 }
 
 // ==================== DATA VIEW ====================
@@ -2295,15 +2374,18 @@ async function loadRelationships() {
         // AVOID duplication: replace the table rather than adding
         state.relationships = [...relationshipsData];
 
-        // Update graph with relationships - ONLY if you are in graph view
-        if (state.currentView === 'graph') {
-            updateGraphWithRelationships();
-        }
+        // NOTE: Do NOT call updateGraphWithRelationships() here
+        // Opening the modal should NOT modify the graph appearance
+        // The graph is only updated when relationships are actually saved/deleted
     } catch (error) {
         console.error('Error loading relationships:', error);
     }
 }
 
+// DEPRECATED: This function is no longer called
+// Previously used to update graph edges directly when relationships were loaded
+// Now the graph is only updated via renderGraph() during project data loads and after relationship CRUD operations
+// This prevents unwanted layout recalculations when just opening the "Managing Relationships" modal
 function updateGraphWithRelationships() {
     if (!state.network) return;
 
@@ -2368,6 +2450,9 @@ function updateGraphWithRelationships() {
             });
         }
     });
+
+    // NOTE: Do NOT reapply layout here - edges don't affect node positioning
+    // The layout should remain stable when relationships are just added/modified
 }
 
 function getRelationshipType(typeId) {

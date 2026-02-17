@@ -36,7 +36,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.static('public'));
 
 // Database initialization
-const dbPath = config.database.filename || './messis.db';
+const dbPath = config.database.filename || './db/messis.db';
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         logger.error('Database connection error:', err);
@@ -375,7 +375,6 @@ app.get('/api/projects/:projectId/relationships', (req, res) => {
 });
 
 // Create relationship
-// Create relationship
 app.post('/api/relationships', (req, res) => {
     const { project_id, source_entity_id, target_entity_id, relationship_type_id, description, strength, evidence, bidirectional } = req.body;
     const safeDesc = sanitize(description);
@@ -506,37 +505,208 @@ app.get('/api/projects/:projectId/export/pdf', async (req, res) => {
                     });
                 });
 
-                resolve({ project, entities, attributes });
+                const relationships = await new Promise((res2, rej2) => {
+                    db.all(`
+                        SELECT r.* FROM relationships r
+                        INNER JOIN entities e ON (r.source_entity_id = e.id OR r.target_entity_id = e.id)
+                        WHERE e.project_id = ?
+                        GROUP BY r.id
+                    `, [projectId], (err2, rows) => {
+                        if (err2) rej2(err2);
+                        else res2(rows);
+                    });
+                });
+
+                resolve({ project, entities, attributes, relationships });
             });
         });
 
-        const doc = new PDFDocument();
+        const doc = new PDFDocument({ margin: 40 });
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', `attachment; filename=messis_${projectId}.pdf`);
 
         doc.pipe(res);
 
-        doc.fontSize(24).text(data.project.name, { align: 'center' });
-        doc.moveDown();
-        doc.fontSize(12).text(data.project.description || 'No description', { align: 'center' });
+        // Title page
+        doc.fontSize(24).font('Helvetica-Bold').text(data.project.name, { align: 'center' });
+        doc.moveDown(0.5);
+        doc.fontSize(12).font('Helvetica').text('OSINT Investigation Report', { align: 'center' });
         doc.moveDown(2);
 
-        data.entities.forEach(entity => {
-            doc.fontSize(16).text(`${entity.type}: ${entity.name}`);
-            doc.moveDown(0.5);
+        if (data.project.description) {
+            doc.fontSize(11).text(data.project.description, { align: 'center' });
+            doc.moveDown(2);
+        }
+
+        // Statistics
+        doc.fontSize(10).fillColor('#666666');
+        doc.text(`Total Entities: ${data.entities.length}`, { indent: 20 });
+        doc.text(`Total Relationships: ${data.relationships.length}`, { indent: 20 });
+        doc.text(`Total Attributes: ${data.attributes.length}`, { indent: 20 });
+        doc.fillColor('black');
+        doc.moveDown(2);
+
+        // Entities Section
+        doc.fontSize(16).font('Helvetica-Bold').text('ENTITIES', { underline: true });
+        doc.moveDown(1);
+
+        data.entities.forEach((entity, index) => {
+            // Check if we need a new page
+            if (doc.y > doc.page.height - 100) {
+                doc.addPage();
+            }
+
+            doc.fontSize(13).font('Helvetica-Bold').fillColor('#2563eb').text(`${entity.type}: ${entity.name}`);
+            doc.fillColor('black').font('Helvetica');
+            doc.moveDown(0.3);
 
             const entityAttrs = data.attributes.filter(a => a.entity_id === entity.id);
-            entityAttrs.forEach(attr => {
-                doc.fontSize(10).text(`  • ${attr.label}: ${attr.value}`);
-                if (attr.notes) {
-                    doc.fontSize(9).fillColor('gray').text(`    Notes: ${attr.notes}`).fillColor('black');
-                }
-            });
-            doc.moveDown();
+            
+            if (entityAttrs.length > 0) {
+                doc.fontSize(10).fillColor('#666666').text('Attributes:', { indent: 10 });
+                entityAttrs.forEach(attr => {
+                    doc.fontSize(9).text(`* ${attr.label}: ${attr.value}`, { indent: 20 });
+                    if (attr.category) {
+                        doc.fontSize(8).fillColor('#999999').text(`  Category: ${attr.category}`, { indent: 25 });
+                    }
+                    if (attr.notes) {
+                        doc.fontSize(8).text(`  Notes: ${attr.notes}`, { indent: 25 });
+                    }
+                });
+            }
+
+            // Relationships for this entity
+            const entityRels = data.relationships.filter(r => 
+                r.source_entity_id === entity.id || r.target_entity_id === entity.id
+            );
+
+            if (entityRels.length > 0) {
+                doc.fillColor('black').fontSize(10).text('Relations:', { indent: 10 });
+                entityRels.forEach(rel => {
+                    // Check if we need a new page
+                    if (doc.y > doc.page.height - 50) {
+                        doc.addPage();
+                    }
+
+                    const isSource = rel.source_entity_id === entity.id;
+                    const otherEntityId = isSource ? rel.target_entity_id : rel.source_entity_id;
+                    const otherEntity = data.entities.find(e => e.id === otherEntityId);
+                    const arrow = rel.bidirectional ? '<->' : (isSource ? '->' : '<-');
+
+                    if (otherEntity) {
+                        doc.fontSize(9).fillColor('#10b981');
+                        doc.text(`* ${entity.name} ${arrow} ${otherEntity.name} (${rel.relationship_type})`, 
+                                { indent: 20 });
+                        doc.fillColor('black').fontSize(8);
+                        if (rel.description) {
+                            doc.text(`Description: ${rel.description}`, { indent: 25 });
+                        }
+                        doc.text(`Strength: ${rel.strength || 5}/10`, { indent: 25 });
+                        if (rel.evidence) {
+                            doc.text(`Evidence: ${rel.evidence}`, { indent: 25 });
+                        }
+                        if (rel.bidirectional) {
+                            doc.fillColor('#f59e0b').text('Bidirectional: Yes', { indent: 25 });
+                        }
+                        doc.fillColor('black');
+                    }
+                });
+            }
+
+            doc.moveDown(0.5);
         });
+
+        // Relationships Summary Table
+        if (data.relationships && data.relationships.length > 0) {
+            doc.addPage();
+            doc.fontSize(16).font('Helvetica-Bold').fillColor('#2563eb').text('RELATIONSHIPS SUMMARY', { underline: true });
+            doc.fillColor('black');
+            doc.moveDown(1);
+
+            // Create a simple table with relationship details
+            const tableTop = doc.y;
+            const col1 = 40;
+            const col2 = 140;
+            const col3 = 240;
+            const col4 = 340;
+            const col5 = 400;
+            const col6 = 450;
+            const rowHeight = 25;
+
+            // Table header
+            doc.fontSize(8).font('Helvetica-Bold');
+            doc.rect(col1, tableTop, 100, rowHeight).stroke();
+            doc.text('Source', col1 + 5, tableTop + 7, { width: 90 });
+            
+            doc.rect(col2, tableTop, 100, rowHeight).stroke();
+            doc.text('Relation', col2 + 5, tableTop + 7, { width: 90 });
+            
+            doc.rect(col3, tableTop, 100, rowHeight).stroke();
+            doc.text('Target', col3 + 5, tableTop + 7, { width: 90 });
+            
+            doc.rect(col4, tableTop, 50, rowHeight).stroke();
+            doc.text('Force', col4 + 5, tableTop + 7, { width: 40 });
+            
+            doc.rect(col5, tableTop, 50, rowHeight).stroke();
+            doc.text('Evid', col5 + 5, tableTop + 7, { width: 40 });
+
+            // Table rows
+            let currentY = tableTop + rowHeight;
+            doc.font('Helvetica');
+            doc.fontSize(7);
+
+            data.relationships.forEach(rel => {
+                const sourceEntity = data.entities.find(e => e.id === rel.source_entity_id);
+                const targetEntity = data.entities.find(e => e.id === rel.target_entity_id);
+
+                // Check if we need a new page
+                if (currentY > doc.page.height - 50) {
+                    doc.addPage();
+                    currentY = 50;
+                    
+                    // Redraw table header on new page
+                    doc.fontSize(8).font('Helvetica-Bold');
+                    doc.rect(col1, currentY, 100, rowHeight).stroke();
+                    doc.text('Source', col1 + 5, currentY + 7, { width: 90 });
+                    
+                    doc.rect(col2, currentY, 100, rowHeight).stroke();
+                    doc.text('Relation', col2 + 5, currentY + 7, { width: 90 });
+                    
+                    doc.rect(col3, currentY, 100, rowHeight).stroke();
+                    doc.text('Target', col3 + 5, currentY + 7, { width: 90 });
+                    
+                    doc.rect(col4, currentY, 50, rowHeight).stroke();
+                    doc.text('Force', col4 + 5, currentY + 7, { width: 40 });
+                    
+                    doc.rect(col5, currentY, 50, rowHeight).stroke();
+                    doc.text('Evid', col5 + 5, currentY + 7, { width: 40 });
+
+                    currentY += rowHeight;
+                    doc.fontSize(7).font('Helvetica');
+                }
+
+                doc.rect(col1, currentY, 100, rowHeight).stroke();
+                doc.text((sourceEntity?.name || '?').substring(0, 12), col1 + 5, currentY + 7, { width: 90 });
+
+                doc.rect(col2, currentY, 100, rowHeight).stroke();
+                doc.text((rel.relationship_type || '?').substring(0, 12), col2 + 5, currentY + 7, { width: 90 });
+
+                doc.rect(col3, currentY, 100, rowHeight).stroke();
+                doc.text((targetEntity?.name || '?').substring(0, 12), col3 + 5, currentY + 7, { width: 90 });
+
+                doc.rect(col4, currentY, 50, rowHeight).stroke();
+                doc.text(((rel.strength || 5) + '/10').substring(0, 6), col4 + 5, currentY + 7, { width: 40 });
+
+                doc.rect(col5, currentY, 50, rowHeight).stroke();
+                doc.text(rel.evidence ? 'Yes' : 'No', col5 + 10, currentY + 7, { width: 30 });
+
+                currentY += rowHeight;
+            });
+        }
 
         doc.end();
     } catch (err) {
+        logger.error('PDF export error:', err);
         res.status(500).json({ error: err.message });
     }
 });

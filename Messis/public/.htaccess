@@ -1,0 +1,15 @@
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
+</IfModule>
+
+# Cache
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Security headers
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "DENY"
