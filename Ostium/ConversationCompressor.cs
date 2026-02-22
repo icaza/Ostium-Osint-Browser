@@ -328,18 +328,18 @@ namespace ConversationCompressor
                 throw new ArgumentNullException(nameof(text));
 
             if (string.IsNullOrWhiteSpace(text))
-                throw new ArgumentException("Le texte ne peut pas être vide");
+                throw new ArgumentException("The text cannot be empty");
 
             if (text.Length > 1000000) // 1MB max
-                throw new ArgumentException("Le texte est trop volumineux");
+                throw new ArgumentException("The text is too large");
 
             if (text.Contains("\0") || text.Contains("\u0000"))
-                throw new ArgumentException("Texte contenant des caractères nuls");
+                throw new ArgumentException("Text containing null characters");
         }
 
         void LogError(Exception ex, string conversation)
         {
-            System.Diagnostics.Debug.WriteLine($"Erreur compression: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Compression error: {ex.Message}");
             if (conversation != null && conversation.Length > 0)
             {
                 System.Diagnostics.Debug.WriteLine($"Conversation: {conversation.Substring(0, Math.Min(100, conversation.Length))}...");
@@ -414,11 +414,8 @@ namespace ConversationCompressor
         {
             lock (_lock)
             {
-                if (_compressor != null)
-                {
-                    _compressor.Dispose();
-                    _compressor = null;
-                }
+                _compressor?.Dispose();
+                _compressor = null;
             }
         }
     }

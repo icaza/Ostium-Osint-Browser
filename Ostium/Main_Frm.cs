@@ -184,7 +184,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "35";
+        readonly string versionNow = "36";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -495,6 +495,9 @@ namespace Ostium
             AddSingleItemswf_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ExecuteCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ValueCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+
+            txtApiKey.Enter += new EventHandler(TxtApiKey_Enter);
+            txtApiKey.Leave += new EventHandler(TxtApiKey_Leave);
         }
         ///
         /// <summary>
@@ -3632,7 +3635,7 @@ namespace Ostium
         }
 
         void StartNLV_Btn_Click(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
@@ -6842,6 +6845,28 @@ namespace Ostium
         {
             RSSListSite_Lbl.SendToBack();
             RSSListSite_Lbl.Width = 50;
+        }
+
+        void TxtApiKey_Enter(object sender, EventArgs e)
+        {
+            if (txtApiKey.Text == "Instead, set the OLLAMA_API_KEY environment variable to your API key....")
+            {
+                txtApiKey.Text = string.Empty;
+                txtApiKey.UseSystemPasswordChar = false;
+            }
+        }
+
+        void TxtApiKey_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtApiKey.Text))
+            {
+                txtApiKey.Text = "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
+                txtApiKey.UseSystemPasswordChar = false;
+            }
+            else if (txtApiKey.Text != "Instead, set the OLLAMA_API_KEY environment variable to your API key...." || !string.IsNullOrEmpty(txtApiKey.Text))
+            {
+                txtApiKey.UseSystemPasswordChar = true;
+            }
         }
 
         #region Param_
@@ -10815,7 +10840,10 @@ namespace Ostium
                 {
                     txtUrl.Text = config.ApiUrl;
                     ModeSelectl_Cbx.Text = config.ModelName;
-                    txtApiKey.Text = config.ApiKey ?? "";
+                    txtApiKey.Text = config.ApiKey ?? "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
+
+                    if (txtApiKey.Text != "Instead, set the OLLAMA_API_KEY environment variable to your API key....")
+                        txtApiKey.UseSystemPasswordChar = true;
                 }
                 else
                 {
@@ -10853,7 +10881,7 @@ namespace Ostium
         {
             txtUrl.Text = "http://localhost:11434/api/generate";
             ModeSelectl_Cbx.Text = "deepseek-v3.1:671b-cloud";
-            txtApiKey.Text = "";
+            txtApiKey.Text = "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
         }
 
         #endregion
@@ -11742,7 +11770,8 @@ namespace Ostium
 
             var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
 
-            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text))
+            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text) &&
+                txtApiKey.Text == "Instead, set the OLLAMA_API_KEY environment variable to your API key....")
             {
                 ShowMessage("⚠ Please configure OLLAMA_API_KEY or enter your API key.",
                     MessageType.Warning);
@@ -11926,7 +11955,8 @@ namespace Ostium
                 apiKey = txtApiKey.Text.Trim();
             }
 
-            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text))
+            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text) &&
+                txtApiKey.Text == "Instead, set the OLLAMA_API_KEY environment variable to your API key....")
             {
                 ShowMessage("⚠ Please configure OLLAMA_API_KEY or enter your API key.",
                     MessageType.Warning);
@@ -12250,7 +12280,8 @@ namespace Ostium
 
             var apiKey = Environment.GetEnvironmentVariable("OLLAMA_API_KEY");
 
-            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text))
+            if (string.IsNullOrWhiteSpace(apiKey) && string.IsNullOrWhiteSpace(txtApiKey.Text) &&
+                txtApiKey.Text != "Instead, set the OLLAMA_API_KEY environment variable to your API key....")
             {
                 ShowMessage("⚠ Please configure OLLAMA_API_KEY or enter your API key.",
                     MessageType.Warning);
@@ -12386,11 +12417,11 @@ namespace Ostium
             LogError($"Cloud Chat HTTP Error: {errorMessage}\nContent: {errorContent}");
             ShowMessage(errorMessage, MessageType.Error);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 AppendErrorDetails("Invalid or missing API key. Check your OLLAMA_API_KEY.");
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            else if (response.StatusCode == HttpStatusCode.NotFound)
             {
                 AppendErrorDetails("Model not found. Check if the model exists on Cloud.");
             }
@@ -12837,6 +12868,15 @@ namespace Ostium
         ///
         void Agent_Fetch_Search_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+            {
+                URLbrowse_Cbx.BackColor = Color.Red;
+                MessageBox.Show("Insert value!");
+                URLbrowse_Cbx.BackColor = Color.FromArgb(41, 44, 51);
+
+                return;
+            }                
+
             int x;
             x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
             if (x == -1)

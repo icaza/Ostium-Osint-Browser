@@ -351,7 +351,7 @@ namespace QRCodeTool
             // 
             // picGenerated
             // 
-            this.picGenerated.BackColor = System.Drawing.Color.White;
+            this.picGenerated.BackColor = System.Drawing.Color.Black;
             this.picGenerated.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picGenerated.Location = new System.Drawing.Point(0, 0);
             this.picGenerated.Name = "picGenerated";
@@ -398,7 +398,7 @@ namespace QRCodeTool
             // 
             // picScanned
             // 
-            this.picScanned.BackColor = System.Drawing.Color.White;
+            this.picScanned.BackColor = System.Drawing.Color.Black;
             this.picScanned.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picScanned.Location = new System.Drawing.Point(0, 0);
             this.picScanned.Name = "picScanned";
