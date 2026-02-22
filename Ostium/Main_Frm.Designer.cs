@@ -126,11 +126,8 @@
             this.LogPathMESS_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.secureFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
             this.StartSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.LocalhostSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
             this.LogPathSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.netLogViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -1325,11 +1322,8 @@
             // 
             this.secureFileExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigSFE_Btn,
-            this.toolStripSeparator39,
             this.StartSFE_Btn,
-            this.toolStripSeparator40,
             this.LocalhostSFE_Btn,
-            this.toolStripSeparator41,
             this.LogPathSFE_Btn});
             this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
             this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
@@ -1342,11 +1336,6 @@
             this.ConfigSFE_Btn.Text = "Config";
             this.ConfigSFE_Btn.Click += new System.EventHandler(this.ConfigSFE_Btn_Click);
             // 
-            // toolStripSeparator39
-            // 
-            this.toolStripSeparator39.Name = "toolStripSeparator39";
-            this.toolStripSeparator39.Size = new System.Drawing.Size(177, 6);
-            // 
             // StartSFE_Btn
             // 
             this.StartSFE_Btn.Name = "StartSFE_Btn";
@@ -1354,22 +1343,12 @@
             this.StartSFE_Btn.Text = "Server Start";
             this.StartSFE_Btn.Click += new System.EventHandler(this.StartSFE_Btn_Click);
             // 
-            // toolStripSeparator40
-            // 
-            this.toolStripSeparator40.Name = "toolStripSeparator40";
-            this.toolStripSeparator40.Size = new System.Drawing.Size(177, 6);
-            // 
             // LocalhostSFE_Btn
             // 
             this.LocalhostSFE_Btn.Name = "LocalhostSFE_Btn";
             this.LocalhostSFE_Btn.Size = new System.Drawing.Size(180, 22);
             this.LocalhostSFE_Btn.Text = "Localhost";
             this.LocalhostSFE_Btn.Click += new System.EventHandler(this.LocalhostSFE_Btn_Click);
-            // 
-            // toolStripSeparator41
-            // 
-            this.toolStripSeparator41.Name = "toolStripSeparator41";
-            this.toolStripSeparator41.Size = new System.Drawing.Size(177, 6);
             // 
             // LogPathSFE_Btn
             // 
@@ -8622,10 +8601,7 @@
         private System.Windows.Forms.ToolStripMenuItem secureFileExplorerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StartSFE_Btn;
         private System.Windows.Forms.ToolStripMenuItem ConfigSFE_Btn;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
         private System.Windows.Forms.ToolStripMenuItem LocalhostSFE_Btn;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
         private System.Windows.Forms.ToolStripMenuItem LogPathSFE_Btn;
         private System.Windows.Forms.TabPage OOBai_Tab;
         private System.Windows.Forms.Label lblUrl;
