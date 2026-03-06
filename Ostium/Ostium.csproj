@@ -216,6 +216,12 @@
       <DependentUpon>DeserializeJson_Frm.cs</DependentUpon>
     </Compile>
     <Compile Include="DirectoryTreeExporter.cs" />
+    <Compile Include="DiscoverRSS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiscoverRSS.Designer.cs">
+      <DependentUpon>DiscoverRSS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Doc_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeserializeJson_Frm.resx">
       <DependentUpon>DeserializeJson_Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiscoverRSS.resx">
+      <DependentUpon>DiscoverRSS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Doc_Frm.resx">
       <DependentUpon>Doc_Frm.cs</DependentUpon>

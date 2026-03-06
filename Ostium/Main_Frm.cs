@@ -107,6 +107,7 @@ namespace Ostium
         ComboBox Workflow_Cbx;
         ListBox Workflow_Lst;
         Label SizeAll_Lbl;
+        DiscoverRSS DiscovRSS;
 
         // Json
         Microsoft.Web.WebView2.WinForms.WebView2 WbOutJson;
@@ -228,6 +229,8 @@ namespace Ostium
         readonly List<string> collectedItemsTitleRss = new List<string>();
 
         readonly TextSemanticAnalyzer analyzer;
+        string RSS2port = "3000";
+        bool IsRSS2Enabled = false;
         #endregion
 
         #region Var_OOBai
@@ -1521,6 +1524,15 @@ namespace Ostium
         /// 
         async void WBrowse_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            // Redirect RSS2
+            string url = e.Uri;
+            if (url.StartsWith($"http://localhost:{RSS2port}/return-rss"))
+            {
+                e.Cancel = true;
+                Control_Tab.SelectedIndex = 1;
+                CtrlTabRSS();
+            }
+
             var settings = WBrowse.CoreWebView2.Settings;
             /// Block Ads/Trackers
             if (IsAdsTrackersBlocked)
@@ -1763,6 +1775,14 @@ namespace Ostium
 
         async void WBrowsefeed_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            // Redirect RSS2
+            string url = e.Uri;
+            if (url.StartsWith($"http://localhost:{RSS2port}/reader.html?"))
+            {
+                e.Cancel = true;
+                ReadRSSflux(url);
+            }
+
             /// Block Ads/Trackers
             if (IsAdsTrackersBlocked)
             {
@@ -1860,6 +1880,13 @@ namespace Ostium
         }
 
         #endregion
+
+        void ReadRSSflux(string uri)
+        {
+            WBrowse.Source = new Uri(uri);
+            Control_Tab.SelectedIndex = 0;
+            CtrlTabBrowsx();
+        }
 
         ///
         /// <summary>
@@ -3642,8 +3669,8 @@ namespace Ostium
 
                 if (!File.Exists(filepath))
                 {
-                    MessageBox.Show("SecureFileExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
-                        "SecureFileExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("NetLogViewer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "NetLogViewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -3663,7 +3690,7 @@ namespace Ostium
             }
         }
 
-        private void OpnNLV_Btn_Click(object sender, EventArgs e)
+        void OpnNLV_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3836,6 +3863,82 @@ namespace Ostium
                 JavaScriptFeed_Btn.Text = "JS Disabled";
                 JavaScriptFeed_Btn.ForeColor = Color.Red;
                 JavaDisableFeed_Status.Visible = true;
+            }
+        }
+
+        void DiscoverRSS_Btn_Click(object sender, EventArgs e)
+        {
+            DiscovRSS = new DiscoverRSS();
+            DiscovRSS.Show();
+        }
+
+        void StartRSS2node_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "rss-aggregator", "start.bat");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("rss-aggregator is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "rss-aggregator", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = filepath;
+                    proc.StartInfo.Arguments = string.Empty;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "rss-aggregator");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! StartRSS2node_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void RSS2local_Btn_Click(object sender, EventArgs e)
+        {
+            IsRSS2Enabled = !IsRSS2Enabled;
+
+            if (IsRSS2Enabled)
+            {
+                string filepath = Path.Combine(AppStart, "rss-aggregator", "server.js");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "RSS2", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(filepath);
+
+                string portLine = lines.FirstOrDefault(l => l.Contains("const PORT = "));
+
+                if (portLine == null)
+                {
+                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string portStr = new string(portLine
+                    .SkipWhile(c => !char.IsDigit(c))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray());
+
+                int port = int.Parse(portStr);
+                RSS2port = Convert.ToString(port);
+
+                WBrowsefeed.Source = new Uri($"http://localhost:{RSS2port}");
+            }
+            else
+            {
+                WBrowsefeed.Source = new Uri(HomeUrlRSS);
             }
         }
 
@@ -4634,37 +4737,7 @@ namespace Ostium
                     CtrlTabBrowsx();
                     break;
                 case 1:
-                    Tools_TAB_0.Visible = false;
-                    Tools_TAB_1.Visible = true;
-                    Tools_TAB_3.Visible = false;
-                    Tools_TAB_4.Visible = false;
-                    Text = TmpTitleWBrowsefeed;
-                    URLtxt_Status.Text = WBrowsefeed.Source.AbsoluteUri;
-                    TableOpn_Status.Visible = false;
-                    CountFeed_Status.Visible = true;
-                    DBSelectOpen_Status.Visible = false;
-                    TableCount_Status.Visible = false;
-                    TableOpen_Status.Visible = false;
-                    TableVal_Status.Visible = false;
-                    RecordsCount_Status.Visible = false;
-                    LatTCurrent_Status.Visible = false;
-                    Separator.Visible = false;
-                    LonGtCurrent_Status.Visible = false;
-                    ProjectMapOpn_Status.Visible = false;
-                    TtsButton_Sts.Visible = false;
-                    FileOpnJson_Status.Visible = false;
-                    MaxHistoryEntry_Status.Visible = false;
-                    Agent_RSS_Cnt_Status.Visible = false;
-
-                    if (JavaScriptFeed_Btn.Text == "JS Disabled")
-                        JavaDisableFeed_Status.Visible = true;
-
-                    JavaDisable_Status.Visible = false;
-
-                    NewCategory_Txt.ForeColor = Color.DimGray;
-                    NewCategory_Txt.Text = "new category";
-                    NewFeed_Txt.ForeColor = Color.DimGray;
-                    NewFeed_Txt.Text = "new feed";
+                    CtrlTabRSS();
                     break;
                 case 2:
                     Tools_TAB_0.Visible = false;
@@ -4858,6 +4931,41 @@ namespace Ostium
             JavaDisableFeed_Status.Visible = false;
             MaxHistoryEntry_Status.Visible = false;
             Agent_RSS_Cnt_Status.Visible = false;
+        }
+
+        void CtrlTabRSS()
+        {
+            Tools_TAB_0.Visible = false;
+            Tools_TAB_1.Visible = true;
+            Tools_TAB_3.Visible = false;
+            Tools_TAB_4.Visible = false;
+            Text = TmpTitleWBrowsefeed;
+            URLtxt_Status.Text = WBrowsefeed.Source.AbsoluteUri;
+            TableOpn_Status.Visible = false;
+            CountFeed_Status.Visible = true;
+            DBSelectOpen_Status.Visible = false;
+            TableCount_Status.Visible = false;
+            TableOpen_Status.Visible = false;
+            TableVal_Status.Visible = false;
+            RecordsCount_Status.Visible = false;
+            LatTCurrent_Status.Visible = false;
+            Separator.Visible = false;
+            LonGtCurrent_Status.Visible = false;
+            ProjectMapOpn_Status.Visible = false;
+            TtsButton_Sts.Visible = false;
+            FileOpnJson_Status.Visible = false;
+            MaxHistoryEntry_Status.Visible = false;
+            Agent_RSS_Cnt_Status.Visible = false;
+
+            if (JavaScriptFeed_Btn.Text == "JS Disabled")
+                JavaDisableFeed_Status.Visible = true;
+
+            JavaDisable_Status.Visible = false;
+
+            NewCategory_Txt.ForeColor = Color.DimGray;
+            NewCategory_Txt.Text = "new category";
+            NewFeed_Txt.ForeColor = Color.DimGray;
+            NewFeed_Txt.Text = "new feed";
         }
 
         void CtrlTabOobai()
@@ -12875,7 +12983,7 @@ namespace Ostium
                 URLbrowse_Cbx.BackColor = Color.FromArgb(41, 44, 51);
 
                 return;
-            }                
+            }
 
             int x;
             x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);

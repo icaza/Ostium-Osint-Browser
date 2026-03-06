@@ -12,13 +12,13 @@ namespace SemanticAnalyzer
     public class TextSemanticAnalyzer
     {
         #region Constants
-        private const int MinWordLength = 3;
-        private const int MaxWordLength = 50;
-        private const int MaxFileSizeMB = 50;
-        private const int TopWordsCount = 20;
-        private const int TopBigramsCount = 15;
-        private const int TopTrigramsCount = 10;
-        private const int TopThemeWordsCount = 5;
+        const int MinWordLength = 3;
+        const int MaxWordLength = 50;
+        const int MaxFileSizeMB = 50;
+        const int TopWordsCount = 20;
+        const int TopBigramsCount = 15;
+        const int TopTrigramsCount = 10;
+        const int TopThemeWordsCount = 5;
         #endregion
 
         #region Properties
@@ -73,7 +73,6 @@ namespace SemanticAnalyzer
         #endregion
 
         #region Validation
-
         void ValidateInputs(string filePath, string languageFilePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
@@ -96,7 +95,6 @@ namespace SemanticAnalyzer
             if (!SupportedExtensions.Contains(extension))
                 throw new NotSupportedException($"The extension {extension} is not supported");
         }
-
         #endregion
 
         #region Document Loading
