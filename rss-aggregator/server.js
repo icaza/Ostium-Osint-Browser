@@ -240,31 +240,41 @@ function extractReadableContent(html, baseUrl) {
   do {
     previous = content;
     content = content
-      // Scripts et styles
-      .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
-      .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
-      .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
+      // Scripts et styles - avec variantes d'espaces pour éviter l'injection
+      .replace(/<\s*script\b[\s\S]*?<\s*\/\s*script(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*style\b[\s\S]*?<\s*\/\s*style(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*noscript\b[\s\S]*?<\s*\/\s*noscript(?:\s+[^>]*)?>/gi, '')
       // Nav, footer, aside, pub
-      .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
-      .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
-      .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
-      .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
-      .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
-      .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
-      .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '');
+      .replace(/<\s*nav\b[\s\S]*?<\s*\/\s*nav(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*footer\b[\s\S]*?<\s*\/\s*footer(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*aside\b[\s\S]*?<\s*\/\s*aside(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*header\b[\s\S]*?<\s*\/\s*header(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*form\b[\s\S]*?<\s*\/\s*form(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*iframe\b[\s\S]*?<\s*\/\s*iframe(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*svg\b[\s\S]*?<\s*\/\s*svg(?:\s+[^>]*)?>/gi, '');
     // Supprimer les attributs on* caractère par caractère (évite le contournement via imbrication)
     content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
       // Supprimer tous les attributs commençant par "on"
       var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+      // Supprimer les attributs javascript: dans les URL
+      cleanAttrs = cleanAttrs.replace(/\s+(?:src|href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi, '');
+      // Supprimer tout attribut iframe résiduel (ex: frameborder, allowfullscreen)
+      cleanAttrs = cleanAttrs.replace(/\s+iframe[a-z0-9_-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
       return '<' + tagName + cleanAttrs + '>';
     });
-    // Garde-fou final : si un motif <script ou <iframe subsiste, supprimer tous les chevrons
-    if (/<\s*\/?\s*(script|iframe)\b/i.test(content)) {
+    // Suppression défensive de fragments d'iframe éventuellement restants
+    content = content.replace(/<\s*iframe[\s\S]*?(?:>|$)/gi, '');
+    // Garde-fou final : si un motif de balise HTML, iframe résiduel ou de javascript: subsiste, supprimer tous les chevrons
+    if (/<\s*[a-z][\s\S]*?>/i.test(content) ||
+        /<\s*\/\s*iframe\b/i.test(content) ||
+        /<\s*iframe\b/i.test(content) ||
+        /\bjavascript\s*:/i.test(content)) {
       content = content.replace(/[<>]/g, '');
     }
   } while (content !== previous);
 
-  // Sécurité finale : retirer tous les chevrons restants pour empêcher toute balise HTML (<script> inclus)
+
+  // Sécurité finale supplémentaire : retirer tous les chevrons restants pour empêcher toute balise HTML
   content = content.replace(/[<>]/g, '');
 
   // Réécrire les URLs relatives des images en absolues
