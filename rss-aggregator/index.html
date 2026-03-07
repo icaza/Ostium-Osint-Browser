@@ -1104,7 +1104,7 @@ function markAllReadInView() {
       const onclickStr = btn.getAttribute('onclick') || '';
       const match = onclickStr.match(/markReadFromCard\(event,\s*'([^']+)'\)/);
       if (match) {
-        const link = decodeURIComponent(match[1]).replace(/\'/g, "'");
+        const link = decodeURIComponent(match[1]).replace(/\\'/g, "'");
         links.push(link);
         if (!readItems.includes(link)) readItems.push(link);
         allArticles.forEach(a => { if (a.link === link) a.read = true; });
