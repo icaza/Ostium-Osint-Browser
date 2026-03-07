@@ -241,17 +241,17 @@ function extractReadableContent(html, baseUrl) {
     previous = content;
     content = content
       // Scripts et styles - avec variantes d'espaces pour éviter l'injection
-      .replace(/<\s*script\b[\s\S]*?<\s*\/\s*script\s*>/gi, '')
-      .replace(/<\s*style\b[\s\S]*?<\s*\/\s*style\s*>/gi, '')
-      .replace(/<\s*noscript\b[\s\S]*?<\s*\/\s*noscript\s*>/gi, '')
+      .replace(/<\s*script\b[\s\S]*?<\s*\/\s*script(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*style\b[\s\S]*?<\s*\/\s*style(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*noscript\b[\s\S]*?<\s*\/\s*noscript(?:\s+[^>]*)?>/gi, '')
       // Nav, footer, aside, pub
-      .replace(/<\s*nav\b[\s\S]*?<\s*\/\s*nav\s*>/gi, '')
-      .replace(/<\s*footer\b[\s\S]*?<\s*\/\s*footer\s*>/gi, '')
-      .replace(/<\s*aside\b[\s\S]*?<\s*\/\s*aside\s*>/gi, '')
-      .replace(/<\s*header\b[\s\S]*?<\s*\/\s*header\s*>/gi, '')
-      .replace(/<\s*form\b[\s\S]*?<\s*\/\s*form\s*>/gi, '')
-      .replace(/<\s*iframe\b[\s\S]*?<\s*\/\s*iframe\s*>/gi, '')
-      .replace(/<\s*svg\b[\s\S]*?<\s*\/\s*svg\s*>/gi, '');
+      .replace(/<\s*nav\b[\s\S]*?<\s*\/\s*nav(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*footer\b[\s\S]*?<\s*\/\s*footer(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*aside\b[\s\S]*?<\s*\/\s*aside(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*header\b[\s\S]*?<\s*\/\s*header(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*form\b[\s\S]*?<\s*\/\s*form(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*iframe\b[\s\S]*?<\s*\/\s*iframe(?:\s+[^>]*)?>/gi, '')
+      .replace(/<\s*svg\b[\s\S]*?<\s*\/\s*svg(?:\s+[^>]*)?>/gi, '');
     // Supprimer les attributs on* caractère par caractère (évite le contournement via imbrication)
     content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
       // Supprimer tous les attributs commençant par "on"
