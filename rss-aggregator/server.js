@@ -251,7 +251,11 @@ function extractReadableContent(html, baseUrl) {
       .replace(/<\s*header\b[\s\S]*?<\s*\/\s*header(?:\s+[^>]*)?>/gi, '')
       .replace(/<\s*form\b[\s\S]*?<\s*\/\s*form(?:\s+[^>]*)?>/gi, '')
       .replace(/<\s*iframe\b[\s\S]*?<\s*\/\s*iframe(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*svg\b[\s\S]*?<\s*\/\s*svg(?:\s+[^>]*)?>/gi, '');
+      .replace(/<\s*svg\b[\s\S]*?<\s*\/\s*svg(?:\s+[^>]*)?>/gi, '')
+      // Securité (CWE-116) : supprimer explicitement toute balise ouvrante résiduelle
+      .replace(/<\s*script\b[^>]*(?:>|$)/gi, '')
+      .replace(/<\s*style\b[^>]*(?:>|$)/gi, '')
+      .replace(/<\s*iframe\b[^>]*(?:>|$)/gi, '');
     // Supprimer les attributs on* caractère par caractère (évite le contournement via imbrication)
     content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
       // Supprimer tous les attributs commençant par "on"
