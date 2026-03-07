@@ -235,30 +235,43 @@ function extractReadableContent(html, baseUrl) {
   }
 
   // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
-  content = content
-    // Scripts et styles
-    .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
-    .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
-    .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
-    // Nav, footer, aside, pub
-    .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
-    .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
-    .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
-    .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
-    .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
-    .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
-    .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
-    // Attributs dangereux
-    .replace(/\s*on\w+="[^"]*"/gi, '')
-    .replace(/\s*on\w+='[^']*'/gi, '')
-    // Réécrire les URLs relatives des images en absolues
-    .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
-      if (src.startsWith('//')) return pre + 'https:' + src + post;
-      if (src.startsWith('/') && baseUrl) {
-        try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
-      }
-      return m;
-    });
+  function sanitizeContent(html, baseUrl) {
+    return html
+      // Scripts et styles
+      .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
+      .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
+      .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
+      // Nav, footer, aside, pub
+      .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
+      .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
+      .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
+      .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
+      .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
+      .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
+      .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
+      // Attributs dangereux
+      .replace(/\s*on\w+="[^"]*"/gi, '')
+      .replace(/\s*on\w+='[^']*'/gi, '')
+      // Réécrire les URLs relatives des images en absolues
+      .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
+        if (src.startsWith('//')) return pre + 'https:' + src + post;
+        if (src.startsWith('/') && baseUrl) {
+          try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
+        }
+        return m;
+      });
+  }
+
+  // Appliquer la sanitisation jusqu'à stabilisation pour éviter que des motifs dangereux réapparaissent
+  (function () {
+    var previous;
+    var current = content;
+    do {
+      previous = current;
+      current = sanitizeContent(current, baseUrl);
+    } while (current !== previous);
+    content = current;
+  })();
 
   return {
     title: title,
