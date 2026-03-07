@@ -236,30 +236,36 @@ function extractReadableContent(html, baseUrl) {
 
   // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
   function sanitizeContent(html, baseUrl) {
-    return html
-      // Scripts et styles
-      .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
-      .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
-      .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
-      // Nav, footer, aside, pub
-      .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
-      .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
-      .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
-      .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
-      .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
-      .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
-      .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
-      // Attributs dangereux
-      .replace(/\s*on\w+="[^"]*"/gi, '')
-      .replace(/\s*on\w+='[^']*'/gi, '')
-      // Réécrire les URLs relatives des images en absolues
-      .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
-        if (src.startsWith('//')) return pre + 'https:' + src + post;
-        if (src.startsWith('/') && baseUrl) {
-          try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
-        }
-        return m;
-      });
+    let previous;
+    let current = html;
+    do {
+      previous = current;
+      current = current
+        // Scripts et styles
+        .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
+        .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
+        .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
+        // Nav, footer, aside, pub
+        .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
+        .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
+        .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
+        .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
+        .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
+        .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
+        .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
+        // Attributs dangereux
+        .replace(/\s*on\w+="[^"]*"/gi, '')
+        .replace(/\s*on\w+='[^']*'/gi, '')
+        // Réécrire les URLs relatives des images en absolues
+        .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
+          if (src.startsWith('//')) return pre + 'https:' + src + post;
+          if (src.startsWith('/') && baseUrl) {
+            try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
+          }
+          return m;
+        });
+    } while (current !== previous);
+    return current;
   }
 
   // Appliquer la sanitisation jusqu'à stabilisation pour éviter que des motifs dangereux réapparaissent
