@@ -589,7 +589,7 @@ function renderArticle(data) {
   var dateStr = data.publishedDate || feedDate;
   if (dateStr) {
     if (meta.length) meta.push('<span class="meta-dot">·</span>');
-    meta.push('<span>' + formatDate(dateStr) + '</span>');
+    meta.push('<span>' + escHtml(formatDate(dateStr)) + '</span>');
   }
   if (meta.length) meta.push('<span class="meta-dot">·</span>');
   try {
