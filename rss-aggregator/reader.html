@@ -457,6 +457,20 @@ var feedColor   = params.get('color') || '#c0392b';
 var feedDate    = params.get('date')  || '';
 var rssDesc     = params.get('desc')  || '';
 
+function sanitizeArticleUrl(url) {
+  if (!url) return '';
+  try {
+    var parsed = new URL(url, window.location.origin);
+    var protocol = parsed.protocol.toLowerCase();
+    if (protocol === 'http:' || protocol === 'https:') {
+      return parsed.href;
+    }
+  } catch (e) {
+    // invalid URL, fall through to return empty string
+  }
+  return '';
+}
+
 // ── Thème ─────────────────────────────────────────────────────────────────
 
 var theme = 'light';
@@ -530,7 +544,8 @@ function setOriginalLink(url) {
   } catch(e) {}
 }
 
-if (articleUrl) setOriginalLink(articleUrl);
+var safeArticleUrl = sanitizeArticleUrl(articleUrl);
+if (safeArticleUrl) setOriginalLink(safeArticleUrl);
 
 // ── Affichage de l'état initial (titre depuis RSS) ────────────────────────
 
