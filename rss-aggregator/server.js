@@ -260,6 +260,9 @@ function extractReadableContent(html, baseUrl) {
     });
   } while (content !== previous);
 
+  // Sécurité finale : retirer tous les chevrons restants pour empêcher toute balise HTML (<script> inclus)
+  content = content.replace(/[<>]/g, '');
+
   // Réécrire les URLs relatives des images en absolues
   content = content.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
     if (src.startsWith('//')) return pre + 'https:' + src + post;
