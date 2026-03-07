@@ -84,7 +84,6 @@ function fetchUrl(rawUrl, redirectCount) {
         'Cache-Control': 'no-cache',
       },
       timeout: 15000,
-      rejectUnauthorized: false,
     };
 
     console.log('[fetch] ' + options.hostname + reqPath);
@@ -142,9 +141,10 @@ function stripHtml(str) {
   if (!str) return '';
   return str
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&apos;/g, "'")
     .replace(/&nbsp;/g, ' ').replace(/&#\d+;/g, '')
+    .replace(/&amp;/g, '&')
     .replace(/\s+/g, ' ').trim();
 }
 
@@ -230,53 +230,44 @@ function extractReadableContent(html, baseUrl) {
 
   // Fallback : prendre le body entier
   if (!content) {
-    var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body[^>]*>/i);
+    var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
     content = bodyMatch ? bodyMatch[1] : html;
   }
 
   // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
-  function sanitizeContent(html, baseUrl) {
-    let previous;
-    let current = html;
-    do {
-      previous = current;
-      current = current
-        // Scripts et styles
-        .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
-        .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
-        .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
-        // Nav, footer, aside, pub
-        .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
-        .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
-        .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
-        .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
-        .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
-        .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
-        .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
-        // Attributs dangereux
-        .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
-        // Réécrire les URLs relatives des images en absolues
-        .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
-          if (src.startsWith('//')) return pre + 'https:' + src + post;
-          if (src.startsWith('/') && baseUrl) {
-            try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
-          }
-          return m;
-        });
-    } while (current !== previous);
-    return current;
-  }
+  // Boucle jusqu'à stabilité pour éviter les contournements (incomplete multi-char sanitization)
+  var previous;
+  do {
+    previous = content;
+    content = content
+      // Scripts et styles
+      .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
+      .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
+      .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
+      // Nav, footer, aside, pub
+      .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
+      .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
+      .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
+      .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
+      .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
+      .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
+      .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '');
+    // Supprimer les attributs on* caractère par caractère (évite le contournement via imbrication)
+    content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
+      // Supprimer tous les attributs commençant par "on"
+      var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+      return '<' + tagName + cleanAttrs + '>';
+    });
+  } while (content !== previous);
 
-  // Appliquer la sanitisation jusqu'à stabilisation pour éviter que des motifs dangereux réapparaissent
-  (function () {
-    var previous;
-    var current = content;
-    do {
-      previous = current;
-      current = sanitizeContent(current, baseUrl);
-    } while (current !== previous);
-    content = current;
-  })();
+  // Réécrire les URLs relatives des images en absolues
+  content = content.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
+    if (src.startsWith('//')) return pre + 'https:' + src + post;
+    if (src.startsWith('/') && baseUrl) {
+      try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
+    }
+    return m;
+  });
 
   return {
     title: title,
