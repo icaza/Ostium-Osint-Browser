@@ -254,8 +254,7 @@ function extractReadableContent(html, baseUrl) {
         .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
         .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
         // Attributs dangereux
-        .replace(/\s*on\w+="[^"]*"/gi, '')
-        .replace(/\s*on\w+='[^']*'/gi, '')
+        .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
         // Réécrire les URLs relatives des images en absolues
         .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
           if (src.startsWith('//')) return pre + 'https:' + src + post;
