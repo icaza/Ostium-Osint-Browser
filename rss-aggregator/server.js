@@ -258,12 +258,12 @@ function extractReadableContent(html, baseUrl) {
       var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
       return '<' + tagName + cleanAttrs + '>';
     });
-    // Garde-fou final : si un motif de balise dangereuse subsiste, supprimer tous les chevrons
-    if (/<\s*(?:script|style|iframe|object|embed|link|meta|form|svg)\b/i.test(content) ||
-        /\bjavascript\s*:/i.test(content)) {
+    // Garde-fou final : si un motif de balise HTML ou de javascript: subsiste, supprimer tous les chevrons
+    if (/<\s*[a-z][\s\S]*?>/i.test(content) || /\bjavascript\s*:/i.test(content)) {
       content = content.replace(/[<>]/g, '');
     }
   } while (content !== previous);
+
 
   // Sécurité finale supplémentaire : retirer tous les chevrons restants pour empêcher toute balise HTML
   content = content.replace(/[<>]/g, '');
