@@ -230,24 +230,24 @@ function extractReadableContent(html, baseUrl) {
 
   // Fallback : prendre le body entier
   if (!content) {
-    var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body[^>]*>/i);
     content = bodyMatch ? bodyMatch[1] : html;
   }
 
   // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
   content = content
     // Scripts et styles
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?<\/style>/gi, '')
-    .replace(/<noscript[\s\S]*?<\/noscript>/gi, '')
+    .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
+    .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
+    .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
     // Nav, footer, aside, pub
-    .replace(/<nav[\s\S]*?<\/nav>/gi, '')
-    .replace(/<footer[\s\S]*?<\/footer>/gi, '')
-    .replace(/<aside[\s\S]*?<\/aside>/gi, '')
-    .replace(/<header[\s\S]*?<\/header>/gi, '')
-    .replace(/<form[\s\S]*?<\/form>/gi, '')
-    .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
-    .replace(/<svg[\s\S]*?<\/svg>/gi, '')
+    .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
+    .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
+    .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
+    .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
+    .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
+    .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
+    .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
     // Attributs dangereux
     .replace(/\s*on\w+="[^"]*"/gi, '')
     .replace(/\s*on\w+='[^']*'/gi, '')
