@@ -258,6 +258,10 @@ function extractReadableContent(html, baseUrl) {
       var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
       return '<' + tagName + cleanAttrs + '>';
     });
+    // Garde-fou final : si un motif <script subsiste, supprimer tous les chevrons
+    if (/<\s*\/?\s*script\b/i.test(content)) {
+      content = content.replace(/[<>]/g, '');
+    }
   } while (content !== previous);
 
   // Sécurité finale : retirer tous les chevrons restants pour empêcher toute balise HTML (<script> inclus)
