@@ -258,8 +258,9 @@ function extractReadableContent(html, baseUrl) {
       var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
       return '<' + tagName + cleanAttrs + '>';
     });
-    // Garde-fou final : si un motif <script, <style, ou <iframe subsiste, supprimer tous les chevrons
-    if (/<\s*(?:script|style|iframe)\b/i.test(content)) {
+    // Garde-fou final : si un motif de balise dangereuse subsiste, supprimer tous les chevrons
+    if (/<\s*(?:script|style|iframe|object|embed|link|meta|form|svg)\b/i.test(content) ||
+        /\bjavascript\s*:/i.test(content)) {
       content = content.replace(/[<>]/g, '');
     }
   } while (content !== previous);
