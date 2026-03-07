@@ -84,7 +84,6 @@ function fetchUrl(rawUrl, redirectCount) {
         'Cache-Control': 'no-cache',
       },
       timeout: 15000,
-      rejectUnauthorized: false,
     };
 
     console.log('[fetch] ' + options.hostname + reqPath);
@@ -142,9 +141,10 @@ function stripHtml(str) {
   if (!str) return '';
   return str
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&apos;/g, "'")
     .replace(/&nbsp;/g, ' ').replace(/&#\d+;/g, '')
+    .replace(/&amp;/g, '&')
     .replace(/\s+/g, ' ').trim();
 }
 
@@ -230,93 +230,51 @@ function extractReadableContent(html, baseUrl) {
 
   // Fallback : prendre le body entier
   if (!content) {
-    var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body[^>]*>/i);
+    var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
     content = bodyMatch ? bodyMatch[1] : html;
   }
 
   // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
-  //
-  // Correction sécurité (CodeQL js/incomplete-multi-character-sanitization) :
-  // Les regex multi-caractères du type /<script[\s\S]*?<\/script>/gi peuvent être
-  // contournées par des payloads imbriqués (ex: <scr<script>ipt>). Pour y remédier :
-  //   a) On supprime d'abord le contenu entre balises dangereuses via une boucle
-  //      jusqu'à stabilisation (empêche la réapparition après suppression partielle).
-  //   b) On supprime ensuite toute balise ouvrante/fermante dangereuse résiduelle
-  //      en ciblant uniquement le nom de balise (pattern court, non-ambigu).
-  //   c) On supprime les attributs de gestionnaire d'événements inline (on*=...).
-  //   d) La réécriture des URLs d'images est appliquée séparément, en dehors de
-  //      la boucle de sanitisation pour ne pas interférer.
-  function removeTagAndContent(str, tagName) {
-    // Supprime <tagName ...>...</tagName> de façon itérative jusqu'à stabilisation,
-    // ce qui évite les contournements par imbrication ou injection dans le nom de balise.
-    var re = new RegExp('<' + tagName + '(?!\\w)[\\s\\S]*?<\\/' + tagName + '\\s*>', 'gi');
-    var prev;
-    do {
-      prev = str;
-      str = str.replace(re, '');
-    } while (str !== prev);
-    return str;
-  }
-
-  function removeOpenCloseTags(str, tagName) {
-    // Supprime les balises ouvrantes et fermantes résiduelles (sans leur contenu)
-    // en ciblant un seul jeton court pour éviter tout contournement multi-caractères.
-    var openRe  = new RegExp('<' + tagName + '(?!\\w)[^>]*>', 'gi');
-    var closeRe = new RegExp('<\\/' + tagName + '\\s*>', 'gi');
-    var prev;
-    do {
-      prev = str;
-      str = str.replace(openRe, '').replace(closeRe, '');
-    } while (str !== prev);
-    return str;
-  }
-
-  function sanitizeContent(html, baseUrl) {
-    var current = html;
-
-    // a) Supprimer le contenu complet des balises dangereuses (itératif)
-    var blockTags = ['script', 'style', 'noscript', 'nav', 'footer',
-                     'aside', 'header', 'form', 'iframe', 'svg'];
-    blockTags.forEach(function(tag) {
-      current = removeTagAndContent(current, tag);
+  // Boucle jusqu'à stabilité pour éviter les contournements (incomplete multi-char sanitization)
+  var previous;
+  do {
+    previous = content;
+    content = content
+      // Scripts et styles
+      .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
+      .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
+      .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
+      // Nav, footer, aside, pub
+      .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
+      .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
+      .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
+      .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
+      .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
+      .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
+      .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '');
+    // Supprimer les attributs on* caractère par caractère (évite le contournement via imbrication)
+    content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
+      // Supprimer tous les attributs commençant par "on"
+      var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+      return '<' + tagName + cleanAttrs + '>';
     });
+    // Garde-fou final : si un motif <script subsiste, supprimer tous les chevrons
+    if (/<\s*\/?\s*script\b/i.test(content)) {
+      content = content.replace(/[<>]/g, '');
+    }
+  } while (content !== previous);
 
-    // b) Supprimer les balises résiduelles éventuelles (sans contenu)
-    blockTags.forEach(function(tag) {
-      current = removeOpenCloseTags(current, tag);
-    });
+  // Sécurité finale : retirer tous les chevrons restants pour empêcher toute balise HTML (<script> inclus)
+  content = content.replace(/[<>]/g, '');
 
-    // c) Supprimer les attributs de gestionnaire d'événements inline (on*=...)
-    //    Boucle jusqu'à stabilisation pour couvrir les cas imbriqués.
-    var onAttrRe = /\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi;
-    var prev;
-    do {
-      prev = current;
-      current = current.replace(onAttrRe, '');
-    } while (current !== prev);
-
-    // d) Réécrire les URLs relatives des images en absolues (hors boucle sécurité)
-    current = current.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
-      if (src.startsWith('//')) return pre + 'https:' + src + post;
-      if (src.startsWith('/') && baseUrl) {
-        try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
-      }
-      return m;
-    });
-
-    return current;
-  }
-
-  // Appliquer la sanitisation jusqu'à stabilisation globale
-  (function () {
-    var previous;
-    var current = content;
-    do {
-      previous = current;
-      current = sanitizeContent(current, baseUrl);
-    } while (current !== previous);
-    content = current;
-  })();
+  // Réécrire les URLs relatives des images en absolues
+  content = content.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
+    if (src.startsWith('//')) return pre + 'https:' + src + post;
+    if (src.startsWith('/') && baseUrl) {
+      try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
+    }
+    return m;
+  });
 
   return {
     title: title,
