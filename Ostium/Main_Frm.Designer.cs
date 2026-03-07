@@ -126,11 +126,8 @@
             this.LogPathMESS_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.secureFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
             this.StartSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.LocalhostSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
             this.LogPathSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.netLogViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -572,6 +569,8 @@
             this.ReadArticle_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
+            this.DiscoverRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
             this.oOBaiAgentRssNewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Agent_RSS_News_Local = new System.Windows.Forms.ToolStripMenuItem();
             this.Agent_RSS_News_Cloud = new System.Windows.Forms.ToolStripMenuItem();
@@ -579,6 +578,10 @@
             this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
+            this.RSS2_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.StartRSS2node_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
+            this.RSS2local_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
             this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
             this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
@@ -1325,11 +1328,8 @@
             // 
             this.secureFileExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigSFE_Btn,
-            this.toolStripSeparator39,
             this.StartSFE_Btn,
-            this.toolStripSeparator40,
             this.LocalhostSFE_Btn,
-            this.toolStripSeparator41,
             this.LogPathSFE_Btn});
             this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
             this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
@@ -1338,43 +1338,28 @@
             // ConfigSFE_Btn
             // 
             this.ConfigSFE_Btn.Name = "ConfigSFE_Btn";
-            this.ConfigSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.ConfigSFE_Btn.Size = new System.Drawing.Size(156, 22);
             this.ConfigSFE_Btn.Text = "Config";
             this.ConfigSFE_Btn.Click += new System.EventHandler(this.ConfigSFE_Btn_Click);
-            // 
-            // toolStripSeparator39
-            // 
-            this.toolStripSeparator39.Name = "toolStripSeparator39";
-            this.toolStripSeparator39.Size = new System.Drawing.Size(177, 6);
             // 
             // StartSFE_Btn
             // 
             this.StartSFE_Btn.Name = "StartSFE_Btn";
-            this.StartSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.StartSFE_Btn.Size = new System.Drawing.Size(156, 22);
             this.StartSFE_Btn.Text = "Server Start";
             this.StartSFE_Btn.Click += new System.EventHandler(this.StartSFE_Btn_Click);
-            // 
-            // toolStripSeparator40
-            // 
-            this.toolStripSeparator40.Name = "toolStripSeparator40";
-            this.toolStripSeparator40.Size = new System.Drawing.Size(177, 6);
             // 
             // LocalhostSFE_Btn
             // 
             this.LocalhostSFE_Btn.Name = "LocalhostSFE_Btn";
-            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(156, 22);
             this.LocalhostSFE_Btn.Text = "Localhost";
             this.LocalhostSFE_Btn.Click += new System.EventHandler(this.LocalhostSFE_Btn_Click);
-            // 
-            // toolStripSeparator41
-            // 
-            this.toolStripSeparator41.Name = "toolStripSeparator41";
-            this.toolStripSeparator41.Size = new System.Drawing.Size(177, 6);
             // 
             // LogPathSFE_Btn
             // 
             this.LogPathSFE_Btn.Name = "LogPathSFE_Btn";
-            this.LogPathSFE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.LogPathSFE_Btn.Size = new System.Drawing.Size(156, 22);
             this.LogPathSFE_Btn.Text = "Log Path";
             this.LogPathSFE_Btn.Click += new System.EventHandler(this.LogPathSFE_Btn_Click);
             // 
@@ -5501,13 +5486,12 @@
             this.txtApiKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtApiKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtApiKey.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApiKey.ForeColor = System.Drawing.Color.Red;
+            this.txtApiKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.txtApiKey.Location = new System.Drawing.Point(70, 69);
             this.txtApiKey.Name = "txtApiKey";
-            this.txtApiKey.PasswordChar = '*';
             this.txtApiKey.Size = new System.Drawing.Size(554, 22);
             this.txtApiKey.TabIndex = 2;
-            this.txtApiKey.UseSystemPasswordChar = true;
+            this.txtApiKey.Text = "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
             // 
             // panel35
             // 
@@ -6866,7 +6850,8 @@
             this.ToolsFeed_Mnu,
             this.JavaScriptFeed_Btn,
             this.BlockAdFeed_Btn,
-            this.OpnPromptRss_Btn});
+            this.OpnPromptRss_Btn,
+            this.RSS2_Tls});
             this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_1.Name = "Tools_TAB_1";
             this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
@@ -7078,6 +7063,8 @@
             this.ReadArticle_Btn,
             this.SpeakOpenPnl_Btn,
             this.toolStripSeparator44,
+            this.DiscoverRSS_Btn,
+            this.toolStripSeparator39,
             this.oOBaiAgentRssNewsToolStripMenuItem});
             this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.White;
@@ -7132,6 +7119,18 @@
             // 
             this.toolStripSeparator44.Name = "toolStripSeparator44";
             this.toolStripSeparator44.Size = new System.Drawing.Size(236, 6);
+            // 
+            // DiscoverRSS_Btn
+            // 
+            this.DiscoverRSS_Btn.Name = "DiscoverRSS_Btn";
+            this.DiscoverRSS_Btn.Size = new System.Drawing.Size(239, 22);
+            this.DiscoverRSS_Btn.Text = "Discover";
+            this.DiscoverRSS_Btn.Click += new System.EventHandler(this.DiscoverRSS_Btn_Click);
+            // 
+            // toolStripSeparator39
+            // 
+            this.toolStripSeparator39.Name = "toolStripSeparator39";
+            this.toolStripSeparator39.Size = new System.Drawing.Size(236, 6);
             // 
             // oOBaiAgentRssNewsToolStripMenuItem
             // 
@@ -7198,9 +7197,41 @@
             this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
             this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 22);
             this.OpnPromptRss_Btn.Text = "Prompt";
             this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
+            // 
+            // RSS2_Tls
+            // 
+            this.RSS2_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RSS2_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StartRSS2node_Btn,
+            this.toolStripSeparator40,
+            this.RSS2local_Btn});
+            this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
+            this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RSS2_Tls.Name = "RSS2_Tls";
+            this.RSS2_Tls.Size = new System.Drawing.Size(54, 22);
+            this.RSS2_Tls.Text = "RSS2";
+            // 
+            // StartRSS2node_Btn
+            // 
+            this.StartRSS2node_Btn.Name = "StartRSS2node_Btn";
+            this.StartRSS2node_Btn.Size = new System.Drawing.Size(180, 22);
+            this.StartRSS2node_Btn.Text = "Start RSS2";
+            this.StartRSS2node_Btn.Click += new System.EventHandler(this.StartRSS2node_Btn_Click);
+            // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            this.toolStripSeparator40.Size = new System.Drawing.Size(177, 6);
+            // 
+            // RSS2local_Btn
+            // 
+            this.RSS2local_Btn.Name = "RSS2local_Btn";
+            this.RSS2local_Btn.Size = new System.Drawing.Size(180, 22);
+            this.RSS2local_Btn.Text = "Localhost";
+            this.RSS2local_Btn.Click += new System.EventHandler(this.RSS2local_Btn_Click);
             // 
             // Tools_TAB_3
             // 
@@ -8622,10 +8653,7 @@
         private System.Windows.Forms.ToolStripMenuItem secureFileExplorerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StartSFE_Btn;
         private System.Windows.Forms.ToolStripMenuItem ConfigSFE_Btn;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
         private System.Windows.Forms.ToolStripMenuItem LocalhostSFE_Btn;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
         private System.Windows.Forms.ToolStripMenuItem LogPathSFE_Btn;
         private System.Windows.Forms.TabPage OOBai_Tab;
         private System.Windows.Forms.Label lblUrl;
@@ -8715,6 +8743,12 @@
         private System.Windows.Forms.ToolStripMenuItem OpnNLV_Btn;
         private System.Windows.Forms.ToolStripMenuItem StartNLV_Btn;
         private System.Windows.Forms.ToolStripMenuItem ConfigNLV_Btn;
+        private System.Windows.Forms.ToolStripMenuItem DiscoverRSS_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
+        private System.Windows.Forms.ToolStripDropDownButton RSS2_Tls;
+        private System.Windows.Forms.ToolStripMenuItem StartRSS2node_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.ToolStripMenuItem RSS2local_Btn;
     }
 }
 

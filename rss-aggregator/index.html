@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flux — RSS Aggregator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: #2a2a38;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --accent: #f0c040;
+    --accent2: #e05050;
+    --radius: 4px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--text);
+    line-height: 1;
+  }
+  .logo span { color: var(--accent); }
+
+  .logo-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 4px;
+  }
+
+  .sidebar-nav {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--muted);
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .nav-item:hover { color: var(--text); background: var(--surface2); }
+  .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(240,192,64,0.05); }
+  .nav-item .icon { font-size: 16px; width: 20px; text-align: center; }
+
+  .feeds-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 0;
+  }
+  .feeds-section::-webkit-scrollbar { width: 4px; }
+  .feeds-section::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--muted);
+    padding: 0 24px 8px;
+  }
+
+  .feed-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 24px 8px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-left: 2px solid transparent;
+    position: relative;
+  }
+  .feed-item:hover { background: var(--surface2); }
+  .feed-item.active {
+    background: var(--surface2);
+    border-left-color: var(--accent);
+  }
+  /* Curseur pointer pour indiquer que c'est cliquable */
+  .feed-item { cursor: pointer; }
+
+  .feed-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .feed-name {
+    font-size: 13px;
+    color: var(--text);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .feed-cat {
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .feed-delete {
+    opacity: 0;
+    background: none;
+    border: none;
+    color: var(--accent2);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+    transition: opacity 0.15s;
+  }
+  .feed-item:hover .feed-delete { opacity: 1; }
+
+  .add-btn {
+    margin: 12px 16px;
+    padding: 10px;
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Main ── */
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  #topbar {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+  }
+
+  #topbar h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  #search-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 14px;
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    width: 220px;
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  #search-input:focus { border-color: var(--accent); }
+  #search-input::placeholder { color: var(--muted); }
+
+  .refresh-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: var(--radius);
+    padding: 8px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.15s;
+  }
+  .refresh-btn:hover { opacity: 0.85; }
+  .refresh-btn:disabled { opacity: 0.4; cursor: wait; }
+
+  /* ── Filter bar ── */
+  #filter-bar {
+    padding: 12px 32px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    background: var(--bg);
+  }
+  #filter-bar::-webkit-scrollbar { display: none; }
+
+  .filter-chip {
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .filter-chip:hover { border-color: var(--text); color: var(--text); }
+  .filter-chip.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 500; }
+
+  /* ── Articles ── */
+  #articles-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+  }
+  #articles-container::-webkit-scrollbar { width: 6px; }
+  #articles-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  #articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .article-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease both;
+  }
+  .article-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--feed-color, var(--accent));
+  }
+  .article-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .card-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--feed-color, var(--accent));
+    font-weight: 500;
+  }
+
+  .card-dot { color: var(--border); font-size: 10px; }
+
+  .card-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .card-category {
+    margin-left: auto;
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-author {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── States ── */
+  .state-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    gap: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+  .state-icon { font-size: 48px; opacity: 0.3; }
+  .state-text { font-family: 'IBM Plex Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+
+  .spinner {
+    width: 32px; height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Modal Ajout ── */
+  #modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+  #modal-overlay.open { display: flex; }
+
+  #modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    width: 480px;
+    max-width: 90vw;
+    animation: slideUp 0.2s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  #modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+  .form-group select option { background: var(--surface); }
+
+  .color-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .color-swatch {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s;
+  }
+  .color-swatch:hover, .color-swatch.selected { border-color: white; transform: scale(1.15); }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .btn-primary {
+    flex: 1;
+    padding: 11px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-cancel {
+    padding: 11px 20px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-cancel:hover { border-color: var(--text); color: var(--text); }
+
+  /* ── Toast ── */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    z-index: 200;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
+  }
+  #toast.show { transform: none; opacity: 1; }
+  #toast.error { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ── Stats bar ── */
+  #stats-bar {
+    padding: 10px 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    background: var(--surface);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  #stats-bar span { display: flex; align-items: center; gap: 6px; }
+  #stats-bar strong { color: var(--text); }
+
+  .card-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .read-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+  .article-card:hover .read-label { color: var(--accent); }
+
+  .ext-link-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.15s;
+    line-height: 1;
+  }
+  .ext-link-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(240,192,64,0.08);
+  }
+
+
+  .mark-read-btn {
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .mark-read-btn:hover {
+    border-color: #50e08a !important;
+    color: #50e08a !important;
+    background: rgba(80,224,138,0.08) !important;
+  }
+
+  .mark-all-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 14px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .mark-all-btn:hover {
+    border-color: #50e08a;
+    color: #50e08a;
+    background: rgba(80,224,138,0.06);
+  }
+
+  /* Articles lus — style atténué si visible dans vue "read" */
+  .article-card.is-read {
+    opacity: 0.45;
+  }
+  .article-card.is-read:hover {
+    opacity: 0.8;
+  }
+
+
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">Flux<span>·</span></div>
+    <div class="logo-sub">RSS Aggregator</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="nav-item active" data-view="all" onclick="setView(this, 'all')">
+      <span class="icon">◈</span> Tous les flux
+    </div>
+    <div class="nav-item" data-view="today" onclick="setView(this, 'today')">
+      <span class="icon">◷</span> Aujourd'hui
+    </div>
+    <div class="nav-item" data-view="starred" onclick="setView(this, 'starred')">
+      <span class="icon">◇</span> Favoris
+      <span class="badge" id="starred-count" style="margin-left:auto">0</span>
+    </div>
+    <div class="nav-item" data-view="read" onclick="setView(this, 'read')">
+      <span class="icon">✓</span> Articles lus
+      <span class="badge" id="read-count" style="margin-left:auto">0</span>
+    </div>
+  </div>
+
+  <div class="feeds-section">
+    <div class="section-label">Mes flux</div>
+    <div id="feeds-list"></div>
+    <button class="add-btn" onclick="openModal()">＋ Ajouter un flux</button>
+  </div>
+</nav>
+
+<!-- Main -->
+<main id="main">
+  <div id="topbar">
+    <h2 id="page-title">Tous les flux</h2>
+    <span class="badge" id="count-badge">— articles</span>
+    <input type="text" id="search-input" placeholder="Rechercher…" oninput="filterArticles()">
+    <button class="mark-all-btn" onclick="markAllReadInView()" title="Marquer tous les articles visibles comme lus">✓ Tout marquer lu</button>
+    <button class="refresh-btn" id="refresh-btn" onclick="loadArticles()">↻ Actualiser</button>
+  </div>
+
+  <div id="filter-bar">
+    <button class="filter-chip active" onclick="setCategory(this, 'all')">Tout</button>
+  </div>
+
+  <div id="articles-container">
+    <div id="articles-grid"></div>
+  </div>
+
+  <div id="stats-bar">
+    <span>Flux : <strong id="stat-feeds">0</strong></span>
+    <span>Articles : <strong id="stat-articles">0</strong></span>
+    <span>Actualisé : <strong id="stat-time">jamais</strong></span>
+  </div>
+</main>
+
+<!-- Modal Ajout -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h3>Ajouter un flux RSS</h3>
+    <div class="form-group">
+      <label>URL du flux *</label>
+      <input type="url" id="feed-url" placeholder="https://example.com/rss.xml">
+    </div>
+    <div class="form-group">
+      <label>Nom du flux</label>
+      <input type="text" id="feed-name" placeholder="Mon flux préféré">
+    </div>
+    <div class="form-group">
+      <label>Catégorie</label>
+      <select id="feed-category">
+        <option>Général</option>
+        <option>Actualités</option>
+        <option>Tech</option>
+        <option>Science</option>
+        <option>Culture</option>
+        <option>Sport</option>
+        <option>Économie</option>
+        <option>Jeux vidéo</option>
+        <option>Design</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Couleur</label>
+      <div class="color-row" id="color-row"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+      <button class="btn-primary" onclick="addFeed()">Ajouter le flux</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const COLORS = ['#f0c040','#e05050','#50c0e0','#50e08a','#e07050','#a078e8','#f07830','#60c8b0','#e058a0','#8898e0'];
+let allArticles = [];
+let displayedArticles = [];
+let feeds = [];
+// Persistance côté serveur dans userdata.json (pas de localStorage)
+let starred = [];          // liste de liens
+let starredArticles = [];  // articles complets persistés
+let readItems = [];
+let currentView = 'all';
+let currentCategory = 'all';
+let currentFeedId = null;   // null = tous les flux, sinon ID du flux sélectionné
+let selectedColor = COLORS[0];
+
+// ── Init ──────────────────────────────────────────────────────────────────
+
+window.addEventListener('DOMContentLoaded', async () => {
+  buildColorPicker();
+  await loadUserData();       // Charger lus + favoris depuis le serveur
+  await loadFeedsFromAPI();
+  loadArticles();
+});
+
+// ── API Calls ─────────────────────────────────────────────────────────────
+
+async function loadUserData() {
+  try {
+    const res = await fetch('/api/userdata');
+    const data = await res.json();
+    starred         = data.starred         || [];
+    starredArticles = data.starredArticles || [];
+    readItems       = data.read            || [];
+    updateStarredCount();
+    updateReadCount();
+  } catch(e) {
+    console.warn('Impossible de charger userdata :', e.message);
+  }
+}
+
+async function loadFeedsFromAPI() {
+  try {
+    const res = await fetch('/api/feeds');
+    feeds = await res.json();
+    renderFeedsList();
+    updateStarredCount();
+  } catch(e) {
+    toast('Erreur chargement des flux', true);
+  }
+}
+
+async function loadArticles() {
+  const btn = document.getElementById('refresh-btn');
+  btn.disabled = true;
+  btn.textContent = '↻ Chargement…';
+  showLoader();
+
+  try {
+    const res = await fetch('/api/all');
+    if (!res.ok) throw new Error('Erreur serveur');
+    allArticles = await res.json();
+    
+    // Marquer les favoris et les lus
+    allArticles.forEach(a => {
+      a.starred = starred.includes(a.link);
+      a.read = readItems.includes(a.link);
+    });
+    updateReadCount();
+    
+    buildCategoryFilter();
+    applyFilters();
+    document.getElementById('stat-time').textContent = new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
+    document.getElementById('stat-feeds').textContent = feeds.length;
+
+  } catch(e) {
+    showError(`Impossible de charger les articles : ${e.message}`);
+  }
+
+  btn.disabled = false;
+  btn.textContent = '↻ Actualiser';
+}
+
+async function addFeed() {
+  const feedUrl = document.getElementById('feed-url').value.trim();
+  const name = document.getElementById('feed-name').value.trim();
+  const category = document.getElementById('feed-category').value;
+
+  if (!feedUrl) { toast('Veuillez entrer une URL', true); return; }
+
+  try {
+    new URL(feedUrl);
+  } catch(e) {
+    toast('URL invalide', true); return;
+  }
+
+  const res = await fetch('/api/feeds', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url: feedUrl, name: name || feedUrl, category, color: selectedColor })
+  });
+
+  if (res.ok) {
+    closeModal();
+    toast('Flux ajouté !');
+    await loadFeedsFromAPI();
+    loadArticles();
+  } else {
+    const err = await res.json();
+    toast(err.error || 'Erreur', true);
+  }
+}
+
+async function deleteFeed(id, e) {
+  e.stopPropagation();
+  if (!confirm('Supprimer ce flux ?')) return;
+  await fetch(`/api/feeds/${id}`, { method: 'DELETE' });
+  await loadFeedsFromAPI();
+  loadArticles();
+  toast('Flux supprimé');
+}
+
+// ── Rendering ─────────────────────────────────────────────────────────────
+
+function renderFeedsList() {
+  const container = document.getElementById('feeds-list');
+  container.innerHTML = '';
+  feeds.forEach(feed => {
+    const div = document.createElement('div');
+    div.className = 'feed-item' + (currentFeedId === feed.id ? ' active' : '');
+    div.setAttribute('data-feed-id', feed.id);
+    div.onclick = () => setFeed(feed.id);
+    div.innerHTML = `
+      <div class="feed-dot" style="background:${feed.color}"></div>
+      <div style="flex:1;min-width:0">
+        <div class="feed-name">${escHtml(feed.name)}</div>
+        <div class="feed-cat">${escHtml(feed.category)}</div>
+      </div>
+      <button class="feed-delete" onclick="deleteFeed(${feed.id}, event)" title="Supprimer">✕</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function buildCategoryFilter() {
+  const bar = document.getElementById('filter-bar');
+  const categories = ['all', ...new Set(allArticles.map(a => a.feedCategory))];
+  bar.innerHTML = '';
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip' + (cat === currentCategory ? ' active' : '');
+    btn.textContent = cat === 'all' ? 'Tout' : cat;
+    btn.onclick = () => setCategory(btn, cat);
+    bar.appendChild(btn);
+  });
+}
+
+function renderArticles(articles) {
+  const grid = document.getElementById('articles-grid');
+  grid.innerHTML = '';
+
+  document.getElementById('count-badge').textContent = `${articles.length} articles`;
+  document.getElementById('stat-articles').textContent = articles.length;
+
+  if (!articles.length) {
+    grid.innerHTML = `<div class="state-center" style="grid-column:1/-1">
+      <div class="state-icon">◌</div>
+      <div class="state-text">Aucun article trouvé</div>
+    </div>`;
+    return;
+  }
+
+  articles.forEach((article, i) => {
+    const card = document.createElement('div');
+    card.className = 'article-card';
+    card.style.setProperty('--feed-color', article.feedColor || '#f0c040');
+    card.style.animationDelay = `${Math.min(i * 30, 300)}ms`;
+    card.onclick = (e) => openReader(article, e.currentTarget);
+
+    const date = formatDate(article.date);
+    const starIcon = article.starred ? '★' : '☆';
+
+    card.innerHTML = `
+      <div class="card-meta">
+        <span class="card-source">${escHtml(article.feedName)}</span>
+        <span class="card-dot">·</span>
+        <span class="card-date">${date}</span>
+        <span class="card-category">${escHtml(article.feedCategory)}</span>
+        <button onclick="toggleStar(event, '${escAttr(article.link)}')" style="margin-left:4px;background:none;border:none;cursor:pointer;color:${article.starred ? '#f0c040' : '#6b6b80'};font-size:14px;">${starIcon}</button>
+      </div>
+      <div class="card-title">${escHtml(article.title)}</div>
+      ${article.description ? `<div class="card-desc">${escHtml(article.description)}</div>` : ''}
+      ${article.author ? `<div class="card-author">par ${escHtml(article.author)}</div>` : ''}
+      <div class="card-footer-row">
+        <span class="read-label">Lire l'article →</span>
+        <div style="display:flex;gap:6px">
+          <button onclick="markReadFromCard(event, '${escAttr(article.link)}')" class="ext-link-btn mark-read-btn" title="Marquer comme lu">✓ Lu</button>
+          <button onclick="openOriginal(event, '${escAttr(article.link)}')" class="ext-link-btn" title="Ouvrir l'original">↗</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function showLoader() {
+  document.getElementById('articles-grid').innerHTML = `
+    <div class="state-center" style="grid-column:1/-1">
+      <div class="spinner"></div>
+      <div class="state-text">Récupération des articles…</div>
+    </div>`;
+}
+
+function showError(msg) {
+  document.getElementById('articles-grid').innerHTML = `
+    <div class="state-center" style="grid-column:1/-1">
+      <div class="state-icon">⚠</div>
+      <div class="state-text">${escHtml(msg)}</div>
+    </div>`;
+}
+
+// ── Filtering ─────────────────────────────────────────────────────────────
+
+function applyFilters() {
+  let filtered = [...allArticles];
+
+  // ── Filtre par flux individuel (sidebar) ──
+  if (currentFeedId !== null) {
+    filtered = filtered.filter(a => a.feedId === currentFeedId);
+    const feed = feeds.find(f => f.id === currentFeedId);
+    document.getElementById('page-title').textContent = feed ? feed.name : 'Flux';
+  } else if (currentView === 'today') {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    filtered = filtered.filter(a => new Date(a.date) >= today);
+    document.getElementById('page-title').textContent = 'Aujourd\'hui';
+  } else if (currentView === 'starred') {
+    // Fusionner les articles du RSS avec les favoris persistés
+    const fromRss = filtered.filter(a => a.starred);
+    const fromRssLinks = new Set(fromRss.map(a => a.link));
+    const fromStored = starredArticles
+      .filter(a => !fromRssLinks.has(a.link))
+      .map(a => Object.assign({}, a, { starred: true }));
+    filtered = [...fromRss, ...fromStored];
+    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+    document.getElementById('page-title').textContent = 'Favoris';
+  } else if (currentView === 'read') {
+    filtered = filtered.filter(a => a.read);
+    document.getElementById('page-title').textContent = 'Articles lus';
+  } else {
+    // Vue "tous" : masquer les articles lus (sauf si recherche active)
+    const query = document.getElementById('search-input').value.toLowerCase();
+    if (!query) filtered = filtered.filter(a => !a.read);
+    document.getElementById('page-title').textContent = 'Tous les flux';
+  }
+
+  if (currentCategory !== 'all') {
+    filtered = filtered.filter(a => a.feedCategory === currentCategory);
+  }
+
+  const searchQuery = document.getElementById('search-input').value.toLowerCase();
+  if (searchQuery) {
+    filtered = filtered.filter(a =>
+      a.title.toLowerCase().includes(searchQuery) ||
+      a.description.toLowerCase().includes(searchQuery) ||
+      a.feedName.toLowerCase().includes(searchQuery)
+    );
+  }
+
+  renderArticles(filtered);
+}
+
+function filterArticles() { applyFilters(); }
+
+function setView(el, view) {
+  currentView = view;
+  currentFeedId = null;  // Désélectionner tout flux individuel
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.feed-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function setCategory(el, cat) {
+  currentCategory = cat;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function setFeed(feedId) {
+  if (currentFeedId === feedId) {
+    // Deuxième clic sur le même flux → revenir à "tous"
+    currentFeedId = null;
+  } else {
+    currentFeedId = feedId;
+    // Désélectionner les vues nav (today/starred/read) et repasser en "all"
+    currentView = 'all';
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelector('.nav-item[data-view="all"]').classList.add('active');
+  }
+  // Mettre à jour le highlight dans la sidebar
+  document.querySelectorAll('.feed-item').forEach(el => {
+    el.classList.toggle('active', parseInt(el.dataset.feedId) === currentFeedId);
+  });
+  applyFilters();
+}
+
+function toggleStar(e, link) {
+  e.stopPropagation();
+  // Optimiste : mise à jour locale immédiate
+  const idx = starred.indexOf(link);
+  if (idx >= 0) {
+    starred.splice(idx, 1);
+    starredArticles = starredArticles.filter(a => a.link !== link);
+  } else {
+    starred.push(link);
+    // Trouver l'article complet dans allArticles pour le sauvegarder
+    const article = allArticles.find(a => a.link === link);
+    if (article) starredArticles.push(Object.assign({}, article));
+  }
+  allArticles.forEach(a => { a.starred = starred.includes(a.link); });
+  updateStarredCount();
+  applyFilters();
+  // Persistance serveur — on envoie l'article complet
+  const article = allArticles.find(a => a.link === link) || { link };
+  fetch('/api/userdata/starred', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(article)
+  }).then(r => r.json()).then(data => {
+    starred         = data.starred         || starred;
+    starredArticles = data.starredArticles || starredArticles;
+  }).catch(e => console.warn('toggleStar save error:', e));
+}
+
+function updateStarredCount() {
+  document.getElementById('starred-count').textContent = starred.length || '0';
+}
+
+function markRead(link) {
+  if (!readItems.includes(link)) {
+    // Optimiste : mise à jour locale immédiate
+    readItems.push(link);
+    allArticles.forEach(a => { if (a.link === link) a.read = true; });
+    updateReadCount();
+    // Persistance serveur
+    fetch('/api/userdata/read', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ link })
+    }).then(r => r.json()).then(data => {
+      readItems = data.read || readItems;
+    }).catch(e => console.warn('markRead save error:', e));
+  }
+}
+
+function markUnread(link) {
+  // Optimiste : mise à jour locale immédiate
+  readItems = readItems.filter(l => l !== link);
+  allArticles.forEach(a => { if (a.link === link) a.read = false; });
+  updateReadCount();
+  // Persistance serveur
+  fetch('/api/userdata/read/' + encodeURIComponent(link), {
+    method: 'DELETE'
+  }).then(r => r.json()).then(data => {
+    readItems = data.read || readItems;
+  }).catch(e => console.warn('markUnread save error:', e));
+}
+
+function markReadFromCard(e, link) {
+  e.stopPropagation();
+  markRead(link);
+  const card = e.target.closest('.article-card');
+  if (card) dismissCard(card);
+  toast('Article marqué comme lu');
+}
+
+function markAllReadInView() {
+  const visibleCards = document.querySelectorAll('.article-card');
+  const links = [];
+  visibleCards.forEach(card => {
+    const btn = card.querySelector('.mark-read-btn');
+    if (btn) {
+      const onclickStr = btn.getAttribute('onclick') || '';
+      const match = onclickStr.match(/markReadFromCard\(event,\s*'([^']+)'\)/);
+      if (match) {
+        const link = decodeURIComponent(match[1]).replace(/\\'/g, "'");
+        links.push(link);
+        if (!readItems.includes(link)) readItems.push(link);
+        allArticles.forEach(a => { if (a.link === link) a.read = true; });
+      }
+    }
+  });
+  updateReadCount();
+  // Disparition groupée
+  let delay = 0;
+  visibleCards.forEach(card => {
+    const d = delay; delay += 40;
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.25s ease';
+      card.style.opacity = '0';
+      setTimeout(() => card.remove(), 260);
+    }, d);
+  });
+  // Persistance serveur en une seule requête batch
+  if (links.length) {
+    fetch('/api/userdata/read', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ links })
+    }).then(r => r.json()).then(data => {
+      readItems = data.read || readItems;
+    }).catch(e => console.warn('markAllRead save error:', e));
+  }
+  toast('Tous les articles marqués comme lus');
+}
+
+function updateReadCount() {
+  document.getElementById('read-count').textContent = readItems.length || '0';
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('feed-url').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('feed-url').value = '';
+  document.getElementById('feed-name').value = '';
+}
+
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Color picker ──────────────────────────────────────────────────────────
+
+function buildColorPicker() {
+  const row = document.getElementById('color-row');
+  COLORS.forEach((c, i) => {
+    const s = document.createElement('div');
+    s.className = 'color-swatch' + (i === 0 ? ' selected' : '');
+    s.style.background = c;
+    s.onclick = () => {
+      document.querySelectorAll('.color-swatch').forEach(x => x.classList.remove('selected'));
+      s.classList.add('selected');
+      selectedColor = c;
+    };
+    row.appendChild(s);
+  });
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────
+
+let toastTimer;
+function toast(msg, error = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show' + (error ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = '', 3000);
+}
+
+// ── Utils ─────────────────────────────────────────────────────────────────
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(str) {
+  return String(str)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'");
+}
+
+function formatDate(iso) {
+  try {
+    const d = new Date(iso);
+    const now = new Date();
+    const diff = now - d;
+    if (diff < 3600000) return `${Math.floor(diff/60000)} min`;
+    if (diff < 86400000) return `${Math.floor(diff/3600000)} h`;
+    if (diff < 604800000) return `${Math.floor(diff/86400000)} j`;
+    return d.toLocaleDateString('fr-FR', {day:'numeric',month:'short'});
+  } catch(e) { return ''; }
+}
+
+// ── Ouverture du reader ───────────────────────────────────────────────────
+
+function openReader(article, card) {
+  const params = new URLSearchParams({
+    url:   article.link,
+    title: article.title   || '',
+    feed:  article.feedName || '',
+    color: article.feedColor || '#c0392b',
+    date:  article.date    || '',
+    desc:  article.description || '',
+  });
+  window.open('/reader.html?' + params.toString(), '_self'); // _blank 
+  // Marquer lu + animer la disparition de la carte immédiatement
+  markRead(article.link);
+  if (card) dismissCard(card);
+}
+
+function dismissCard(card) {
+  // Même animation que markReadFromCard
+  card.style.transition = 'opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease 0.2s';
+  card.style.opacity = '0';
+  card.style.transform = 'scale(0.97)';
+  card.style.overflow = 'hidden';
+  setTimeout(() => {
+    card.style.maxHeight = card.offsetHeight + 'px';
+    setTimeout(() => {
+      card.style.maxHeight = '0';
+      card.style.marginBottom = '0';
+      card.style.padding = '0';
+      card.style.border = 'none';
+    }, 20);
+    setTimeout(() => card.remove(), 420);
+  }, 280);
+}
+
+function openOriginal(e, link) {
+  e.stopPropagation();
+  window.open(link, '_self');
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture — Flux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --surface: #ffffff;
+    --text: #1a1814;
+    --muted: #7a746a;
+    --border: #e0dbd3;
+    --accent: #c0392b;
+    --accent-light: #f9f0ef;
+    --link: #2563eb;
+    --max-w: 720px;
+    --font-body: 'Lora', Georgia, serif;
+    --font-ui: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  [data-theme="dark"] {
+    --bg: #111010;
+    --surface: #1a1918;
+    --text: #e8e4de;
+    --muted: #7a746a;
+    --border: #2d2a26;
+    --accent: #e05a4a;
+    --accent-light: #1f1715;
+    --link: #7baaf7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.8;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  /* ── Barre de progression ── */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 100;
+    transition: width 0.1s linear;
+  }
+
+  /* ── Topbar ── */
+  #topbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    height: 52px;
+    backdrop-filter: blur(8px);
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.15s;
+    padding: 6px 0;
+  }
+  .back-btn:hover { color: var(--accent); }
+  .back-btn span { font-size: 16px; }
+
+  .topbar-logo {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+  .topbar-logo em { color: var(--accent); font-style: normal; }
+
+  .topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 14px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .open-original {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    padding: 6px 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.15s;
+  }
+  .open-original:hover { opacity: 0.85; color: white; }
+
+  /* ── Font size controls ── */
+  #font-size-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── Contenu principal ── */
+  #reader-wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+
+  /* État de chargement */
+  #loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 16px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* État d'erreur */
+  #error-state {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+  }
+  #error-state .err-icon { font-size: 48px; opacity: 0.3; margin-bottom: 16px; }
+  #error-state h2 { font-family: var(--font-ui); font-size: 18px; margin-bottom: 8px; color: var(--text); }
+  #error-state p { color: var(--muted); font-family: var(--font-ui); font-size: 14px; margin-bottom: 24px; }
+
+  /* Article */
+  #article { display: none; }
+
+  /* En-tête article */
+  .article-category {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  #article-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--text);
+    margin-bottom: 32px;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .meta-author { font-weight: 500; color: var(--text); }
+  .meta-dot { opacity: 0.3; }
+
+  .meta-source {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .source-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* Image héro */
+  #hero-image {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    display: block;
+    max-height: 460px;
+    object-fit: cover;
+  }
+
+  /* Description/résumé */
+  #article-desc {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 32px;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* ── Contenu extrait ── */
+  #article-content {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  #article-content p {
+    margin-bottom: 1.4em;
+    color: var(--text);
+  }
+
+  #article-content h1, #article-content h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 1.8em 0 0.6em;
+    line-height: 1.25;
+    color: var(--text);
+  }
+
+  #article-content h3, #article-content h4 {
+    font-family: var(--font-ui);
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 1.6em 0 0.5em;
+    color: var(--text);
+  }
+
+  #article-content img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin: 1.5em 0;
+    display: block;
+  }
+
+  #article-content figcaption {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: -1em;
+    margin-bottom: 1.5em;
+  }
+
+  #article-content a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.15s;
+  }
+  #article-content a:hover { text-decoration-color: var(--link); }
+
+  #article-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 4px 20px;
+    margin: 1.5em 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  #article-content ul, #article-content ol {
+    padding-left: 1.5em;
+    margin-bottom: 1.4em;
+  }
+  #article-content li { margin-bottom: 0.4em; }
+
+  #article-content pre, #article-content code {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    background: var(--border);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  #article-content pre {
+    padding: 16px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    line-height: 1.5;
+  }
+  #article-content pre code { background: none; padding: 0; }
+
+  #article-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2em 0;
+  }
+
+  /* Masquer les éléments nav/pub restants */
+  #article-content nav,
+  #article-content .advertisement,
+  #article-content [class*="ad-"],
+  #article-content [class*="banner"],
+  #article-content [id*="banner"],
+  #article-content [class*="newsletter"],
+  #article-content [class*="popup"],
+  #article-content [class*="cookie"],
+  #article-content [class*="related"],
+  #article-content [class*="recommend"],
+  #article-content [class*="share"],
+  #article-content [class*="social"],
+  #article-content [class*="comment"],
+  #article-content [class*="taboola"],
+  #article-content [class*="outbrain"] {
+    display: none !important;
+  }
+
+  /* ── Pied de page article ── */
+  .article-footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-text {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  /* ── Taille police ── */
+  body.text-sm  { font-size: 16px; }
+  body.text-md  { font-size: 18px; }
+  body.text-lg  { font-size: 21px; }
+  body.text-xl  { font-size: 24px; }
+</style>
+</head>
+<body class="text-md">
+
+<div id="progress-bar"></div>
+
+<div id="topbar">
+  <a href="/return-rss" class="back-btn" title="Retour à l'agrégateur">
+    <span>←</span> Retour
+  </a>
+  <div class="topbar-logo">Flux<em>·</em></div>
+
+  <div class="topbar-right">
+    <span id="font-size-label">Aa</span>
+    <button class="icon-btn" onclick="changeFontSize(-1)" title="Réduire la taille">A−</button>
+    <button class="icon-btn" onclick="changeFontSize(1)" title="Augmenter la taille">A+</button>
+    <button class="icon-btn" onclick="toggleTheme()" id="theme-btn" title="Changer le thème">☀</button>
+    <a id="original-link" href="#" target="_self" class="open-original">
+      ↗ Article original
+    </a>
+  </div>
+</div>
+
+<div id="reader-wrap">
+  <div id="loader">
+    <div class="spinner"></div>
+    Extraction en cours…
+  </div>
+
+  <div id="error-state">
+    <div class="err-icon">⚠</div>
+    <h2>Contenu inaccessible</h2>
+    <p id="error-msg">Impossible d'extraire le contenu de cet article.</p>
+    <a id="error-original-link" href="#" target="_self" class="open-original" style="display:inline-flex;text-decoration:none;">
+      ↗ Ouvrir l'article original
+    </a>
+  </div>
+
+  <article id="article">
+    <div class="article-category" id="article-source"></div>
+    <h1 id="article-title"></h1>
+    <div class="article-meta" id="article-meta"></div>
+    <img id="hero-image" src="" alt="" style="display:none">
+    <div id="article-desc" style="display:none"></div>
+    <div id="article-content"></div>
+    <div class="article-footer">
+      <p class="footer-text">Extrait depuis <strong id="footer-domain"></strong></p>
+      <a id="footer-link" href="#" target="_self" class="open-original" style="text-decoration:none;">
+        ↗ Lire sur le site original
+      </a>
+    </div>
+  </article>
+</div>
+
+<script>
+// ── Paramètres depuis l'URL ───────────────────────────────────────────────
+
+var params = new URLSearchParams(window.location.search);
+var articleUrl  = params.get('url')   || '';
+var articleTitle= params.get('title') || '';
+var feedName    = params.get('feed')  || '';
+var feedColor   = params.get('color') || '#c0392b';
+var feedDate    = params.get('date')  || '';
+var rssDesc     = params.get('desc')  || '';
+
+function sanitizeArticleUrl(url) {
+  if (!url) return '';
+  try {
+    var parsed = new URL(url, window.location.origin);
+    var protocol = parsed.protocol.toLowerCase();
+    if (protocol === 'http:' || protocol === 'https:') {
+      return parsed.href;
+    }
+  } catch (e) {
+    // invalid URL, fall through to return empty string
+  }
+  return '';
+}
+
+// ── Thème ─────────────────────────────────────────────────────────────────
+
+var theme = 'light';
+var sizes = ['text-sm','text-md','text-lg','text-xl'];
+var sizeIdx = 1;
+
+// Charger les préférences depuis le serveur
+fetch('/api/userdata').then(function(r) { return r.json(); }).then(function(data) {
+  var prefs = data.prefs || {};
+  theme = prefs.theme || 'light';
+  sizeIdx = prefs.sizeIdx !== undefined ? prefs.sizeIdx : 1;
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  document.getElementById('theme-btn').textContent = theme === 'dark' ? '☀' : '☾';
+  applySize();
+}).catch(function() {
+  // fallback silencieux
+  applySize();
+});
+
+if (theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+document.getElementById('theme-btn').textContent = theme === 'dark' ? '☀' : '☾';
+
+function savePrefs() {
+  fetch('/api/userdata/prefs', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ theme: theme, sizeIdx: sizeIdx })
+  }).catch(function() {});
+}
+
+function toggleTheme() {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  else document.documentElement.removeAttribute('data-theme');
+  document.getElementById('theme-btn').textContent = theme === 'dark' ? '☀' : '☾';
+  savePrefs();
+}
+
+// ── Taille de police ──────────────────────────────────────────────────────
+
+function applySize() {
+  document.body.className = sizes[sizeIdx];
+}
+
+function changeFontSize(dir) {
+  sizeIdx = Math.max(0, Math.min(sizes.length - 1, sizeIdx + dir));
+  applySize();
+  savePrefs();
+}
+
+applySize();
+
+// ── Barre de progression ──────────────────────────────────────────────────
+
+window.addEventListener('scroll', function() {
+  var scrollTop = window.scrollY;
+  var docH = document.documentElement.scrollHeight - window.innerHeight;
+  var pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── Lien original ─────────────────────────────────────────────────────────
+
+function setOriginalLink(url) {
+  document.getElementById('original-link').href = url;
+  document.getElementById('error-original-link').href = url;
+  document.getElementById('footer-link').href = url;
+  try {
+    var domain = new URL(url).hostname.replace('www.', '');
+    document.getElementById('footer-domain').textContent = domain;
+  } catch(e) {}
+}
+
+var safeArticleUrl = sanitizeArticleUrl(articleUrl);
+if (safeArticleUrl) setOriginalLink(safeArticleUrl);
+
+// ── Affichage de l'état initial (titre depuis RSS) ────────────────────────
+
+document.title = (articleTitle || 'Lecture') + ' — Flux';
+if (articleTitle) document.getElementById('article-title').textContent = articleTitle;
+
+// ── Extraction ────────────────────────────────────────────────────────────
+
+function formatDate(str) {
+  if (!str) return '';
+  try {
+    return new Date(str).toLocaleDateString('fr-FR', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+  } catch(e) { return str; }
+}
+
+function showError(msg) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('error-msg').textContent = msg;
+  document.getElementById('error-state').style.display = 'block';
+}
+
+function renderArticle(data) {
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('article').style.display = 'block';
+
+  // Titre — préférer celui extrait, sinon celui du RSS
+  var title = data.title || articleTitle || 'Sans titre';
+  document.getElementById('article-title').textContent = title;
+  document.title = title + ' — Flux';
+
+  // Source + couleur
+  var sourceEl = document.getElementById('article-source');
+  sourceEl.innerHTML = '<span class="source-dot" style="background:' + escHtml(feedColor) + '"></span> ' + escHtml(feedName || 'Article');
+
+  // Méta
+  var meta = [];
+  var author = data.author || '';
+  if (author) meta.push('<span class="meta-author">' + escHtml(author) + '</span>');
+  var dateStr = data.publishedDate || feedDate;
+  if (dateStr) {
+    if (meta.length) meta.push('<span class="meta-dot">·</span>');
+    meta.push('<span>' + escHtml(formatDate(dateStr)) + '</span>');
+  }
+  if (meta.length) meta.push('<span class="meta-dot">·</span>');
+  try {
+    var domain = new URL(articleUrl).hostname.replace('www.','');
+    meta.push('<span class="meta-source"><span class="source-dot" style="background:' + escHtml(feedColor) + '"></span>' + escHtml(domain) + '</span>');
+  } catch(e) {}
+  document.getElementById('article-meta').innerHTML = meta.join('');
+
+  // Image héro
+  if (data.heroImage) {
+    var img = document.getElementById('hero-image');
+    img.src = data.heroImage;
+    img.style.display = 'block';
+    img.onerror = function() { img.style.display = 'none'; };
+  }
+
+  // Résumé/description
+  var desc = data.description || rssDesc;
+  if (desc && desc.length > 30) {
+    var descEl = document.getElementById('article-desc');
+    descEl.textContent = desc;
+    descEl.style.display = 'block';
+  }
+
+  // Contenu principal
+  var contentEl = document.getElementById('article-content');
+  var content = data.content || '';
+
+  if (!content || content.trim().length < 100) {
+    // Pas de contenu extrait — afficher un message avec lien
+    contentEl.innerHTML = [
+      '<p style="color:var(--muted);font-family:var(--font-ui);font-size:15px;">',
+      'Le contenu complet de cet article n\'a pas pu être extrait automatiquement.',
+      ' Cela peut arriver pour les sites nécessitant une connexion, utilisant JavaScript intensivement,',
+      ' ou bloquant les robots.</p>',
+      '<p style="color:var(--muted);font-family:var(--font-ui);font-size:15px;">',
+      'Vous pouvez lire l\'article directement sur le site original en cliquant sur le bouton ci-dessus.</p>',
+    ].join('');
+  } else {
+    // Injecter le contenu HTML extrait, sandboxé
+    contentEl.innerHTML = content;
+
+    // Ouvrir tous les liens dans un nouvel onglet
+    var links = contentEl.querySelectorAll('a');
+    links.forEach(function(a) {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    // Supprimer les scripts éventuellement restants
+    var scripts = contentEl.querySelectorAll('script, style, link');
+    scripts.forEach(function(s) { s.remove(); });
+  }
+}
+
+// ── Requête d'extraction ──────────────────────────────────────────────────
+
+if (!articleUrl) {
+  showError('Aucune URL d\'article fournie.');
+} else {
+  fetch('/api/extract?url=' + encodeURIComponent(articleUrl))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.error) {
+        // Erreur serveur : afficher quand même ce qu'on a depuis le RSS
+        console.warn('Extraction partielle :', data.error);
+        renderArticle({ title: articleTitle, description: rssDesc, content: '' });
+      } else {
+        renderArticle(data);
+      }
+    })
+    .catch(function(e) {
+      // Erreur réseau : afficher quand même les infos RSS
+      renderArticle({ title: articleTitle, description: rssDesc, content: '' });
+    });
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
