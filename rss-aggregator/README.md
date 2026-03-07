@@ -9,6 +9,8 @@ Complete RSS aggregator in **Node.js** — No npm dependencies required.
 
 ## Quick Start
 
+If you are using the tool via Ostium Osint Browser, click the "Start RSS2" button to start the local server and then click the "Localhost" button to access it.
+
 ```bash
 # 1. Open a terminal in this folder
 # 2. Start the server:
