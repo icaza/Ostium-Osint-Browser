@@ -256,10 +256,19 @@ function extractReadableContent(html, baseUrl) {
     content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
       // Supprimer tous les attributs commençant par "on"
       var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+      // Supprimer les attributs javascript: dans les URL
+      cleanAttrs = cleanAttrs.replace(/\s+(?:src|href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi, '');
+      // Supprimer tout attribut iframe résiduel (ex: frameborder, allowfullscreen)
+      cleanAttrs = cleanAttrs.replace(/\s+iframe[a-z0-9_-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
       return '<' + tagName + cleanAttrs + '>';
     });
-    // Garde-fou final : si un motif de balise HTML ou de javascript: subsiste, supprimer tous les chevrons
-    if (/<\s*[a-z][\s\S]*?>/i.test(content) || /\bjavascript\s*:/i.test(content)) {
+    // Suppression défensive de fragments d'iframe éventuellement restants
+    content = content.replace(/<\s*iframe[\s\S]*?(?:>|$)/gi, '');
+    // Garde-fou final : si un motif de balise HTML, iframe résiduel ou de javascript: subsiste, supprimer tous les chevrons
+    if (/<\s*[a-z][\s\S]*?>/i.test(content) ||
+        /<\s*\/\s*iframe\b/i.test(content) ||
+        /<\s*iframe\b/i.test(content) ||
+        /\bjavascript\s*:/i.test(content)) {
       content = content.replace(/[<>]/g, '');
     }
   } while (content !== previous);
