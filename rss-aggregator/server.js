@@ -235,39 +235,79 @@ function extractReadableContent(html, baseUrl) {
   }
 
   // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
-  function sanitizeContent(html, baseUrl) {
-    let previous;
-    let current = html;
+  //
+  // Correction sécurité (CodeQL js/incomplete-multi-character-sanitization) :
+  // Les regex multi-caractères du type /<script[\s\S]*?<\/script>/gi peuvent être
+  // contournées par des payloads imbriqués (ex: <scr<script>ipt>). Pour y remédier :
+  //   a) On supprime d'abord le contenu entre balises dangereuses via une boucle
+  //      jusqu'à stabilisation (empêche la réapparition après suppression partielle).
+  //   b) On supprime ensuite toute balise ouvrante/fermante dangereuse résiduelle
+  //      en ciblant uniquement le nom de balise (pattern court, non-ambigu).
+  //   c) On supprime les attributs de gestionnaire d'événements inline (on*=...).
+  //   d) La réécriture des URLs d'images est appliquée séparément, en dehors de
+  //      la boucle de sanitisation pour ne pas interférer.
+  function removeTagAndContent(str, tagName) {
+    // Supprime <tagName ...>...</tagName> de façon itérative jusqu'à stabilisation,
+    // ce qui évite les contournements par imbrication ou injection dans le nom de balise.
+    var re = new RegExp('<' + tagName + '(?!\\w)[\\s\\S]*?<\\/' + tagName + '\\s*>', 'gi');
+    var prev;
     do {
-      previous = current;
-      current = current
-        // Scripts et styles
-        .replace(/<script[\s\S]*?<\/script[^>]*>/gi, '')
-        .replace(/<style[\s\S]*?<\/style[^>]*>/gi, '')
-        .replace(/<noscript[\s\S]*?<\/noscript[^>]*>/gi, '')
-        // Nav, footer, aside, pub
-        .replace(/<nav[\s\S]*?<\/nav[^>]*>/gi, '')
-        .replace(/<footer[\s\S]*?<\/footer[^>]*>/gi, '')
-        .replace(/<aside[\s\S]*?<\/aside[^>]*>/gi, '')
-        .replace(/<header[\s\S]*?<\/header[^>]*>/gi, '')
-        .replace(/<form[\s\S]*?<\/form[^>]*>/gi, '')
-        .replace(/<iframe[\s\S]*?<\/iframe[^>]*>/gi, '')
-        .replace(/<svg[\s\S]*?<\/svg[^>]*>/gi, '')
-        // Attributs dangereux
-        .replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
-        // Réécrire les URLs relatives des images en absolues
-        .replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
-          if (src.startsWith('//')) return pre + 'https:' + src + post;
-          if (src.startsWith('/') && baseUrl) {
-            try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
-          }
-          return m;
-        });
-    } while (current !== previous);
+      prev = str;
+      str = str.replace(re, '');
+    } while (str !== prev);
+    return str;
+  }
+
+  function removeOpenCloseTags(str, tagName) {
+    // Supprime les balises ouvrantes et fermantes résiduelles (sans leur contenu)
+    // en ciblant un seul jeton court pour éviter tout contournement multi-caractères.
+    var openRe  = new RegExp('<' + tagName + '(?!\\w)[^>]*>', 'gi');
+    var closeRe = new RegExp('<\\/' + tagName + '\\s*>', 'gi');
+    var prev;
+    do {
+      prev = str;
+      str = str.replace(openRe, '').replace(closeRe, '');
+    } while (str !== prev);
+    return str;
+  }
+
+  function sanitizeContent(html, baseUrl) {
+    var current = html;
+
+    // a) Supprimer le contenu complet des balises dangereuses (itératif)
+    var blockTags = ['script', 'style', 'noscript', 'nav', 'footer',
+                     'aside', 'header', 'form', 'iframe', 'svg'];
+    blockTags.forEach(function(tag) {
+      current = removeTagAndContent(current, tag);
+    });
+
+    // b) Supprimer les balises résiduelles éventuelles (sans contenu)
+    blockTags.forEach(function(tag) {
+      current = removeOpenCloseTags(current, tag);
+    });
+
+    // c) Supprimer les attributs de gestionnaire d'événements inline (on*=...)
+    //    Boucle jusqu'à stabilisation pour couvrir les cas imbriqués.
+    var onAttrRe = /\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi;
+    var prev;
+    do {
+      prev = current;
+      current = current.replace(onAttrRe, '');
+    } while (current !== prev);
+
+    // d) Réécrire les URLs relatives des images en absolues (hors boucle sécurité)
+    current = current.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
+      if (src.startsWith('//')) return pre + 'https:' + src + post;
+      if (src.startsWith('/') && baseUrl) {
+        try { return pre + new URL(src, baseUrl).href + post; } catch(e) {}
+      }
+      return m;
+    });
+
     return current;
   }
 
-  // Appliquer la sanitisation jusqu'à stabilisation pour éviter que des motifs dangereux réapparaissent
+  // Appliquer la sanitisation jusqu'à stabilisation globale
   (function () {
     var previous;
     var current = content;
