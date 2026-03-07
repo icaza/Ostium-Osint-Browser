@@ -1,12 +1,12 @@
 /**
  * RSS Aggregator - Serveur Node.js
- * Modules natifs uniquement — aucune dépendance npm
  */
 
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const sanitizer = require('./sanitizer');
 
 const PORT = 8888;
 const DATA_FILE     = path.join(__dirname, 'feeds.json');
@@ -234,48 +234,11 @@ function extractReadableContent(html, baseUrl) {
     content = bodyMatch ? bodyMatch[1] : html;
   }
 
-  // 7. Nettoyer le contenu HTML — supprimer les éléments parasites
-  // Boucle jusqu'à stabilité pour éviter les contournements (incomplete multi-char sanitization)
-  var previous;
-  do {
-    previous = content;
-    content = content
-      // Scripts et styles - avec variantes d'espaces pour éviter l'injection
-      .replace(/<\s*script\b[\s\S]*?<\s*\/\s*script(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*style\b[\s\S]*?<\s*\/\s*style(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*noscript\b[\s\S]*?<\s*\/\s*noscript(?:\s+[^>]*)?>/gi, '')
-      // Nav, footer, aside, pub
-      .replace(/<\s*nav\b[\s\S]*?<\s*\/\s*nav(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*footer\b[\s\S]*?<\s*\/\s*footer(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*aside\b[\s\S]*?<\s*\/\s*aside(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*header\b[\s\S]*?<\s*\/\s*header(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*form\b[\s\S]*?<\s*\/\s*form(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*iframe\b[\s\S]*?<\s*\/\s*iframe(?:\s+[^>]*)?>/gi, '')
-      .replace(/<\s*svg\b[\s\S]*?<\s*\/\s*svg(?:\s+[^>]*)?>/gi, '');
-    // Supprimer les attributs on* caractère par caractère (évite le contournement via imbrication)
-    content = content.replace(/<([a-z][a-z0-9]*)\b([^>]*)>/gi, function(tag, tagName, attrs) {
-      // Supprimer tous les attributs commençant par "on"
-      var cleanAttrs = attrs.replace(/\s+on[a-z][a-z0-9]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
-      // Supprimer les attributs javascript: dans les URL
-      cleanAttrs = cleanAttrs.replace(/\s+(?:src|href)\s*=\s*(?:"javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi, '');
-      // Supprimer tout attribut iframe résiduel (ex: frameborder, allowfullscreen)
-      cleanAttrs = cleanAttrs.replace(/\s+iframe[a-z0-9_-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
-      return '<' + tagName + cleanAttrs + '>';
-    });
-    // Suppression défensive de fragments d'iframe éventuellement restants
-    content = content.replace(/<\s*iframe[\s\S]*?(?:>|$)/gi, '');
-    // Garde-fou final : si un motif de balise HTML, iframe résiduel ou de javascript: subsiste, supprimer tous les chevrons
-    if (/<\s*[a-z][\s\S]*?>/i.test(content) ||
-        /<\s*\/\s*iframe\b/i.test(content) ||
-        /<\s*iframe\b/i.test(content) ||
-        /\bjavascript\s*:/i.test(content)) {
-      content = content.replace(/[<>]/g, '');
-    }
-  } while (content !== previous);
+  content = sanitizer.sanitizeHtml(content);
 
-
-  // Sécurité finale supplémentaire : retirer tous les chevrons restants pour empêcher toute balise HTML
-  content = content.replace(/[<>]/g, '');
+  if (heroImage) {
+    heroImage = sanitizer.sanitizeUrl(heroImage);
+  } 
 
   // Réécrire les URLs relatives des images en absolues
   content = content.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
