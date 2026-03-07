@@ -1,6 +1,5 @@
 /**
  * RSS Aggregator - Serveur Node.js
- * Modules natifs uniquement — aucune dépendance npm
  */
 
 const http = require('http');
