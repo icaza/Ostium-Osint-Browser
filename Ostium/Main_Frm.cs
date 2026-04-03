@@ -815,16 +815,16 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
             loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
 
-            RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
                 Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
-            RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
                 Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
 
             if (!File.Exists(Path.Combine(AppStart, "Messis", "config.js")))
             {
                 if (File.Exists(Path.Combine(AppStart, "Messis", "config.example.js")))
                 {
-                    RenameFileForUPDT(Path.Combine(AppStart, "Messis", "config.example.js"), Path.Combine(AppStart, "Messis", "config.js"));
+                    RFU(Path.Combine(AppStart, "Messis", "config.example.js"), Path.Combine(AppStart, "Messis", "config.js"));
                 }
             }
         }
@@ -837,9 +837,9 @@ namespace Ostium
 
         void LoadOOBaiConfig()
         {
-            RenameFileForUPDT(Path.Combine(OOBai, "_ai_model_list.txt"), Path.Combine(OOBai, "ai_model_list.txt"));
-            RenameFileForUPDT(Path.Combine(OOBai, "_agent_ai_config.json"), Path.Combine(OOBai, "agent_ai_config.json"));
-            RenameFileForUPDT(Path.Combine(OOBai, "_french_words.txt"), Path.Combine(OOBai, "french_words.txt"));
+            RFU(Path.Combine(OOBai, "_ai_model_list.txt"), Path.Combine(OOBai, "ai_model_list.txt"));
+            RFU(Path.Combine(OOBai, "_agent_ai_config.json"), Path.Combine(OOBai, "agent_ai_config.json"));
+            RFU(Path.Combine(OOBai, "_french_words.txt"), Path.Combine(OOBai, "french_words.txt"));
 
             AgentConfig.Load();
 
@@ -883,12 +883,13 @@ namespace Ostium
 
         #endregion
 
-        void RenameFileForUPDT(string sourceFileName, string targetFileName)
+        void RFU(string sourceFileName, string targetFileName)
         {
             try
             {
                 if (File.Exists(targetFileName))
                 {
+                    File.Delete(sourceFileName);
                     return;
                 }
 
@@ -4822,7 +4823,7 @@ namespace Ostium
                     if (VerifMapOpn == "off")
                     {
                         Mkmarker = GMarkerGoogleType.red_dot;
-                        OpenMaps("Paris", 12); // Adresse, Provider
+                        OpenMaps("Paris", 7); // Adresse, Provider
                         PointLoc_Lst.Items.Clear();
                         loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
                     }
@@ -9179,7 +9180,7 @@ namespace Ostium
                 return;
             }
 
-            OpenMaps(KeywordMap_Txt.Text, 12); // Adresse, Provider
+            OpenMaps(KeywordMap_Txt.Text, 7); // Adresse, Provider
         }
 
         void AddNewLoc_Btn_Click(object sender, EventArgs e)
@@ -9308,61 +9309,31 @@ namespace Ostium
                     GMap_Ctrl.MapProvider = GMapProviders.BingMap;
                     break;
                 case 2:
-                    GMap_Ctrl.MapProvider = GMapProviders.BingOSMap;
-                    break;
-                case 3:
                     GMap_Ctrl.MapProvider = GMapProviders.BingSatelliteMap;
                     break;
-                case 4:
+                case 3:
                     GMap_Ctrl.MapProvider = GMapProviders.GoogleMap;
                     break;
-                case 5:
+                case 4:
                     GMap_Ctrl.MapProvider = GMapProviders.GoogleSatelliteMap;
                     break;
-                case 6:
+                case 5:
                     GMap_Ctrl.MapProvider = GMapProviders.GoogleTerrainMap;
                     break;
-                case 7:
+                case 6:
                     GMap_Ctrl.MapProvider = GMapProviders.OpenCycleLandscapeMap;
                     break;
-                case 8:
+                case 7:
                     GMap_Ctrl.MapProvider = GMapProviders.OpenCycleMap;
                     break;
-                case 9:
+                case 8:
                     GMap_Ctrl.MapProvider = GMapProviders.OpenCycleTransportMap;
                     break;
-                case 10:
-                    GMap_Ctrl.MapProvider = GMapProviders.OpenSeaMapHybrid;
-                    break;
-                case 11:
-                    GMap_Ctrl.MapProvider = GMapProviders.OpenStreet4UMap;
-                    break;
-                case 12:
-                    GMap_Ctrl.MapProvider = GMapProviders.OpenStreetMap;
-                    break;
-                case 13:
+                case 9:
                     GMap_Ctrl.MapProvider = GMapProviders.WikiMapiaMap;
                     break;
-                case 14:
-                    GMap_Ctrl.MapProvider = GMapProviders.CzechGeographicMap;
-                    break;
-                case 15:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_Imagery_World_2D_Map;
-                    break;
-                case 16:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_StreetMap_World_2D_Map;
-                    break;
-                case 17:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Physical_Map;
-                    break;
-                case 18:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Shaded_Relief_Map;
-                    break;
-                case 19:
+                case 10:
                     GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Street_Map;
-                    break;
-                case 20:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Terrain_Base_Map;
                     break;
                 default:
                     GMap_Ctrl.MapProvider = GMapProviders.BingMap;

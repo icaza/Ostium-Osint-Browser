@@ -1,10 +1,10 @@
-# QRCodeTool v1.0.0.0
+# QRCodeTool v1.0.0.1
 
-**File create at: 22/02/2026 04:50:29**
+**File create at: 26/03/2026 02:39:33**
 
-**File Name Hash: QRCodeTool_1.0.0.0.zip**
+**File Name Hash: QRCodeTool_1.0.0.1.zip**
 
-SHA-512: `6b9a12ea6e1cae834e591b26578979b7e50cbcf8f035d397b4cefecca289946c605b579014052cfa4a8e12ba7b8027df4ba4617311faddade0749f7daf97f4c3`
+SHA-512: `c84b5d3fe1b7b49c8b696b022258bf5dc67666998d7c05a78e798bb0fd662f90efd099299d33288614cf65ed836cef94e4d2e6c74ba41b0335c0d03d7235bf41`
 
 # License
 
