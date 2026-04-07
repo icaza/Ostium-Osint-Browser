@@ -117,6 +117,7 @@ Ostium OSINT Browser is designed for professionals who analyze public informatio
 - **Windows** (7, 8, 10, 11)
 - **OpenJDK**: [Download](https://learn.microsoft.com/en-us/java/openjdk/download)
 - **Edge WebView2**: [Download](https://developer.microsoft.com/en-us/microsoft-edge/webview2/consumer/?form=MA13LH)
+- **Node.js 14+**: [Download](https://nodejs.org/)
 
 ### Quick Installation
 

@@ -345,7 +345,7 @@ var server = http.createServer(function(req, res) {
       var allItems = [];
       results.forEach(function(arr) { allItems = allItems.concat(arr); });
       allItems.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
-      jsonResp(res, allItems.slice(0, 150));
+      jsonResp(res, allItems.slice(0, 1500));
     }).catch(function(e) { jsonResp(res, { error: e.message }, 500); });
     return;
   }
