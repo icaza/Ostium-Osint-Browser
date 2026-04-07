@@ -399,18 +399,18 @@
 <div id="progress-bar"></div>
 
 <div id="topbar">
-  <a href="/return-rss" class="back-btn" title="Retour à l'agrégateur">
-    <span>←</span> Retour
+  <a href="/return-rss" class="back-btn" title="Back to the aggregator">
+    <span>←</span> Back
   </a>
   <div class="topbar-logo">Flux<em>·</em></div>
 
   <div class="topbar-right">
     <span id="font-size-label">Aa</span>
-    <button class="icon-btn" onclick="changeFontSize(-1)" title="Réduire la taille">A−</button>
-    <button class="icon-btn" onclick="changeFontSize(1)" title="Augmenter la taille">A+</button>
-    <button class="icon-btn" onclick="toggleTheme()" id="theme-btn" title="Changer le thème">☀</button>
+    <button class="icon-btn" onclick="changeFontSize(-1)" title="Reduce size">A−</button>
+    <button class="icon-btn" onclick="changeFontSize(1)" title="Increase the size">A+</button>
+    <button class="icon-btn" onclick="toggleTheme()" id="theme-btn" title="Change the theme">☀</button>
     <a id="original-link" href="#" target="_self" class="open-original">
-      ↗ Article original
+      ↗ Original article
     </a>
   </div>
 </div>
@@ -418,15 +418,15 @@
 <div id="reader-wrap">
   <div id="loader">
     <div class="spinner"></div>
-    Extraction en cours…
+    Extraction in progress…
   </div>
 
   <div id="error-state">
     <div class="err-icon">⚠</div>
-    <h2>Contenu inaccessible</h2>
-    <p id="error-msg">Impossible d'extraire le contenu de cet article.</p>
+    <h2>Content inaccessible</h2>
+    <p id="error-msg">Unable to extract the content of this article.</p>
     <a id="error-original-link" href="#" target="_self" class="open-original" style="display:inline-flex;text-decoration:none;">
-      ↗ Ouvrir l'article original
+      ↗ Open the original article
     </a>
   </div>
 
@@ -438,9 +438,9 @@
     <div id="article-desc" style="display:none"></div>
     <div id="article-content"></div>
     <div class="article-footer">
-      <p class="footer-text">Extrait depuis <strong id="footer-domain"></strong></p>
+      <p class="footer-text">Excerpt from <strong id="footer-domain"></strong></p>
       <a id="footer-link" href="#" target="_self" class="open-original" style="text-decoration:none;">
-        ↗ Lire sur le site original
+        ↗ Read on the original website
       </a>
     </div>
   </article>

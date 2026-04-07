@@ -579,8 +579,8 @@
             this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
             this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
             this.RSS2_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ConfigRSS2_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.StartRSS2node_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.RSS2local_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
             this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
@@ -798,10 +798,11 @@
             this.URL_URL_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.URL_URL_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.URL_URL_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URL_URL_Cbx.ForeColor = System.Drawing.Color.White;
+            this.URL_URL_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.URL_URL_Cbx.Name = "URL_URL_Cbx";
             this.URL_URL_Cbx.Size = new System.Drawing.Size(300, 22);
             this.URL_URL_Cbx.Sorted = true;
+            this.URL_URL_Cbx.Text = "URL Shortcut";
             this.URL_URL_Cbx.SelectedIndexChanged += new System.EventHandler(this.URL_URL_Cbx_SelectedIndexChanged);
             // 
             // URL_SAVE_Cbx
@@ -810,11 +811,12 @@
             this.URL_SAVE_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.URL_SAVE_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.URL_SAVE_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URL_SAVE_Cbx.ForeColor = System.Drawing.Color.White;
+            this.URL_SAVE_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.URL_SAVE_Cbx.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.URL_SAVE_Cbx.Name = "URL_SAVE_Cbx";
             this.URL_SAVE_Cbx.Size = new System.Drawing.Size(300, 22);
             this.URL_SAVE_Cbx.Sorted = true;
+            this.URL_SAVE_Cbx.Text = "Favorites";
             this.URL_SAVE_Cbx.SelectedIndexChanged += new System.EventHandler(this.URL_SAVE_Cbx_SelectedIndexChanged);
             // 
             // Construct_URL_Cbx
@@ -822,10 +824,11 @@
             this.Construct_URL_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Construct_URL_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Construct_URL_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Construct_URL_Cbx.ForeColor = System.Drawing.Color.White;
+            this.Construct_URL_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.Construct_URL_Cbx.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Construct_URL_Cbx.Name = "Construct_URL_Cbx";
             this.Construct_URL_Cbx.Size = new System.Drawing.Size(121, 25);
+            this.Construct_URL_Cbx.Text = "URL build";
             this.Construct_URL_Cbx.SelectedIndexChanged += new System.EventHandler(this.Construct_URL_Cbx_SelectedIndexChanged);
             // 
             // Word_URL_Builder_Txt
@@ -834,9 +837,10 @@
             this.Word_URL_Builder_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Word_URL_Builder_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Word_URL_Builder_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Word_URL_Builder_Txt.ForeColor = System.Drawing.Color.White;
+            this.Word_URL_Builder_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.Word_URL_Builder_Txt.Name = "Word_URL_Builder_Txt";
             this.Word_URL_Builder_Txt.Size = new System.Drawing.Size(100, 15);
+            this.Word_URL_Builder_Txt.Text = "Word";
             this.Word_URL_Builder_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // toolStripSeparator1
@@ -1571,9 +1575,10 @@
             this.AddOn_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.AddOn_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddOn_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOn_Cbx.ForeColor = System.Drawing.Color.White;
+            this.AddOn_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.AddOn_Cbx.Name = "AddOn_Cbx";
             this.AddOn_Cbx.Size = new System.Drawing.Size(121, 25);
+            this.AddOn_Cbx.Text = "Tools";
             this.AddOn_Cbx.SelectedIndexChanged += new System.EventHandler(this.AddOn_Cbx_SelectedIndexChanged);
             // 
             // BlockAdmenu_Mnu
@@ -2005,12 +2010,13 @@
             this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.URLbrowse_Cbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.Gold;
+            this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.URLbrowse_Cbx.FormattingEnabled = true;
             this.URLbrowse_Cbx.Location = new System.Drawing.Point(325, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
             this.URLbrowse_Cbx.Size = new System.Drawing.Size(597, 24);
             this.URLbrowse_Cbx.TabIndex = 6;
+            this.URLbrowse_Cbx.Text = "Insert a URL or search term";
             this.URLbrowse_Cbx.SelectedIndexChanged += new System.EventHandler(this.URLbrowse_Cbx_SelectedIndexChanged);
             this.URLbrowse_Cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKey_URLbrowse);
             // 
@@ -3036,7 +3042,7 @@
             this.ValueChange_Txt.Name = "ValueChange_Txt";
             this.ValueChange_Txt.Size = new System.Drawing.Size(334, 22);
             this.ValueChange_Txt.TabIndex = 11;
-            this.ValueChange_Txt.Text = "update URL and Name here";
+            this.ValueChange_Txt.Text = "Update URL and Name here";
             this.ValueChange_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ValueChange_Txt.Click += new System.EventHandler(this.ValueChange_Txt_Click);
             // 
@@ -3350,7 +3356,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3404,11 +3410,12 @@
             this.ModelName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ModelName_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.ModelName_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelName_Txt.ForeColor = System.Drawing.Color.White;
+            this.ModelName_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.ModelName_Txt.Location = new System.Drawing.Point(103, 0);
             this.ModelName_Txt.Name = "ModelName_Txt";
             this.ModelName_Txt.Size = new System.Drawing.Size(244, 23);
             this.ModelName_Txt.TabIndex = 0;
+            this.ModelName_Txt.Text = "Choose a model name";
             // 
             // label9
             // 
@@ -3558,11 +3565,12 @@
             this.Author_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Author_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.Author_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Author_Txt.ForeColor = System.Drawing.Color.White;
+            this.Author_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.Author_Txt.Location = new System.Drawing.Point(353, 0);
             this.Author_Txt.Name = "Author_Txt";
             this.Author_Txt.Size = new System.Drawing.Size(150, 23);
             this.Author_Txt.TabIndex = 1;
+            this.Author_Txt.Text = "Insert Name";
             // 
             // label6
             // 
@@ -3582,11 +3590,12 @@
             this.NameProjectwf_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameProjectwf_Txt.Dock = System.Windows.Forms.DockStyle.Left;
             this.NameProjectwf_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameProjectwf_Txt.ForeColor = System.Drawing.Color.White;
+            this.NameProjectwf_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.NameProjectwf_Txt.Location = new System.Drawing.Point(102, 0);
             this.NameProjectwf_Txt.Name = "NameProjectwf_Txt";
             this.NameProjectwf_Txt.Size = new System.Drawing.Size(195, 23);
             this.NameProjectwf_Txt.TabIndex = 0;
+            this.NameProjectwf_Txt.Text = "Insert project Name";
             // 
             // label3
             // 
@@ -3643,7 +3652,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -3716,11 +3725,12 @@
             this.AddSingleItemswf_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AddSingleItemswf_Txt.Enabled = false;
             this.AddSingleItemswf_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddSingleItemswf_Txt.ForeColor = System.Drawing.Color.White;
+            this.AddSingleItemswf_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.AddSingleItemswf_Txt.Location = new System.Drawing.Point(4, 8);
             this.AddSingleItemswf_Txt.Name = "AddSingleItemswf_Txt";
             this.AddSingleItemswf_Txt.Size = new System.Drawing.Size(228, 22);
             this.AddSingleItemswf_Txt.TabIndex = 7;
+            this.AddSingleItemswf_Txt.Text = "Insert item name";
             // 
             // panel11
             // 
@@ -6891,10 +6901,11 @@
             this.CategorieFeed_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.CategorieFeed_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CategorieFeed_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.White;
+            this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.CategorieFeed_Cbx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 0);
             this.CategorieFeed_Cbx.Name = "CategorieFeed_Cbx";
             this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 24);
+            this.CategorieFeed_Cbx.Text = "Select";
             // 
             // CreatCategorie_Btn
             // 
@@ -6918,9 +6929,8 @@
             this.NewCategory_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.NewCategory_Txt.Name = "NewCategory_Txt";
             this.NewCategory_Txt.Size = new System.Drawing.Size(150, 25);
-            this.NewCategory_Txt.Text = "new category";
+            this.NewCategory_Txt.Text = "New Category";
             this.NewCategory_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.NewCategory_Txt.Click += new System.EventHandler(this.NewCategory_Txt_Click);
             // 
             // AddFeed_Btn
             // 
@@ -6944,9 +6954,8 @@
             this.NewFeed_Txt.ForeColor = System.Drawing.Color.DimGray;
             this.NewFeed_Txt.Name = "NewFeed_Txt";
             this.NewFeed_Txt.Size = new System.Drawing.Size(150, 25);
-            this.NewFeed_Txt.Text = "new feed";
+            this.NewFeed_Txt.Text = "New Feed";
             this.NewFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.NewFeed_Txt.Click += new System.EventHandler(this.NewFeed_Txt_Click);
             // 
             // ManageFeed_Btn
             // 
@@ -7205,14 +7214,22 @@
             // 
             this.RSS2_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.RSS2_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigRSS2_Btn,
             this.StartRSS2node_Btn,
-            this.toolStripSeparator40,
             this.RSS2local_Btn});
+            this.RSS2_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
             this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RSS2_Tls.Name = "RSS2_Tls";
             this.RSS2_Tls.Size = new System.Drawing.Size(54, 20);
             this.RSS2_Tls.Text = "RSS2";
+            // 
+            // ConfigRSS2_Btn
+            // 
+            this.ConfigRSS2_Btn.Name = "ConfigRSS2_Btn";
+            this.ConfigRSS2_Btn.Size = new System.Drawing.Size(147, 22);
+            this.ConfigRSS2_Btn.Text = "Config";
+            this.ConfigRSS2_Btn.Click += new System.EventHandler(this.ConfigRSS2_Btn_Click);
             // 
             // StartRSS2node_Btn
             // 
@@ -7220,11 +7237,6 @@
             this.StartRSS2node_Btn.Size = new System.Drawing.Size(147, 22);
             this.StartRSS2node_Btn.Text = "Start RSS2";
             this.StartRSS2node_Btn.Click += new System.EventHandler(this.StartRSS2node_Btn_Click);
-            // 
-            // toolStripSeparator40
-            // 
-            this.toolStripSeparator40.Name = "toolStripSeparator40";
-            this.toolStripSeparator40.Size = new System.Drawing.Size(144, 6);
             // 
             // RSS2local_Btn
             // 
@@ -7895,6 +7907,7 @@
             this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.LatLon_Txt.Name = "LatLon_Txt";
             this.LatLon_Txt.Size = new System.Drawing.Size(200, 25);
+            this.LatLon_Txt.Text = "Coordinates";
             // 
             // toolStripLabel5
             // 
@@ -7949,6 +7962,7 @@
             this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.KeywordMap_Txt.Name = "KeywordMap_Txt";
             this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 25);
+            this.KeywordMap_Txt.Text = "Adress";
             // 
             // GoWord_Tls
             // 
@@ -8736,7 +8750,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
         private System.Windows.Forms.ToolStripDropDownButton RSS2_Tls;
         private System.Windows.Forms.ToolStripMenuItem StartRSS2node_Btn;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.ToolStripMenuItem ConfigRSS2_Btn;
         private System.Windows.Forms.ToolStripMenuItem RSS2local_Btn;
     }
 }

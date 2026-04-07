@@ -628,45 +628,45 @@
 <nav id="sidebar">
   <div class="sidebar-header">
     <div class="logo">Flux<span>·</span></div>
-    <div class="logo-sub">RSS Aggregator</div>
+    <div class="logo-sub">RSS2 Aggregator</div>
   </div>
 
   <div class="sidebar-nav">
     <div class="nav-item active" data-view="all" onclick="setView(this, 'all')">
-      <span class="icon">◈</span> Tous les flux
+      <span class="icon">◈</span> All feeds
     </div>
     <div class="nav-item" data-view="today" onclick="setView(this, 'today')">
-      <span class="icon">◷</span> Aujourd'hui
+      <span class="icon">◷</span> Today
     </div>
     <div class="nav-item" data-view="starred" onclick="setView(this, 'starred')">
       <span class="icon">◇</span> Favoris
       <span class="badge" id="starred-count" style="margin-left:auto">0</span>
     </div>
     <div class="nav-item" data-view="read" onclick="setView(this, 'read')">
-      <span class="icon">✓</span> Articles lus
+      <span class="icon">✓</span> Articles read
       <span class="badge" id="read-count" style="margin-left:auto">0</span>
     </div>
   </div>
 
   <div class="feeds-section">
-    <div class="section-label">Mes flux</div>
+    <div class="section-label">My feeds</div>
     <div id="feeds-list"></div>
-    <button class="add-btn" onclick="openModal()">＋ Ajouter un flux</button>
+    <button class="add-btn" onclick="openModal()">＋ Add a feed</button>
   </div>
 </nav>
 
 <!-- Main -->
 <main id="main">
   <div id="topbar">
-    <h2 id="page-title">Tous les flux</h2>
+    <h2 id="page-title">All feeds</h2>
     <span class="badge" id="count-badge">— articles</span>
-    <input type="text" id="search-input" placeholder="Rechercher…" oninput="filterArticles()">
-    <button class="mark-all-btn" onclick="markAllReadInView()" title="Marquer tous les articles visibles comme lus">✓ Tout marquer lu</button>
-    <button class="refresh-btn" id="refresh-btn" onclick="loadArticles()">↻ Actualiser</button>
+    <input type="text" id="search-input" placeholder="To research…" oninput="filterArticles()">
+    <button class="mark-all-btn" onclick="markAllReadInView()" title="Mark all visible articles as read">✓ Mark all read</button>
+    <button class="refresh-btn" id="refresh-btn" onclick="loadArticles()">↻ Refresh</button>
   </div>
 
   <div id="filter-bar">
-    <button class="filter-chip active" onclick="setCategory(this, 'all')">Tout</button>
+    <button class="filter-chip active" onclick="setCategory(this, 'all')">All</button>
   </div>
 
   <div id="articles-container">
@@ -676,43 +676,45 @@
   <div id="stats-bar">
     <span>Flux : <strong id="stat-feeds">0</strong></span>
     <span>Articles : <strong id="stat-articles">0</strong></span>
-    <span>Actualisé : <strong id="stat-time">jamais</strong></span>
+    <span>Updated : <strong id="stat-time">never</strong></span>
   </div>
 </main>
 
 <!-- Modal Ajout -->
 <div id="modal-overlay">
   <div id="modal">
-    <h3>Ajouter un flux RSS</h3>
+    <h3>Add an RSS feed</h3>
     <div class="form-group">
-      <label>URL du flux *</label>
+      <label>feed URL *</label>
       <input type="url" id="feed-url" placeholder="https://example.com/rss.xml">
     </div>
     <div class="form-group">
-      <label>Nom du flux</label>
-      <input type="text" id="feed-name" placeholder="Mon flux préféré">
+      <label>Feed name</label>
+      <input type="text" id="feed-name" placeholder="My favorite feed">
     </div>
     <div class="form-group">
-      <label>Catégorie</label>
+      <label>Category</label>
       <select id="feed-category">
-        <option>Général</option>
-        <option>Actualités</option>
+        <option>General</option>
+        <option>AI</option>
+        <option>News</option>
         <option>Tech</option>
         <option>Science</option>
+        <option>Security</option>
         <option>Culture</option>
         <option>Sport</option>
-        <option>Économie</option>
-        <option>Jeux vidéo</option>
+        <option>Economy</option>
+        <option>Video games</option>
         <option>Design</option>
       </select>
     </div>
     <div class="form-group">
-      <label>Couleur</label>
+      <label>Color</label>
       <div class="color-row" id="color-row"></div>
     </div>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
-      <button class="btn-primary" onclick="addFeed()">Ajouter le flux</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="addFeed()">Add the feed</button>
     </div>
   </div>
 </div>
@@ -754,7 +756,7 @@ async function loadUserData() {
     updateStarredCount();
     updateReadCount();
   } catch(e) {
-    console.warn('Impossible de charger userdata :', e.message);
+    console.warn('Unable to load userdata :', e.message);
   }
 }
 
@@ -765,19 +767,19 @@ async function loadFeedsFromAPI() {
     renderFeedsList();
     updateStarredCount();
   } catch(e) {
-    toast('Erreur chargement des flux', true);
+    toast('Error loading streams', true);
   }
 }
 
 async function loadArticles() {
   const btn = document.getElementById('refresh-btn');
   btn.disabled = true;
-  btn.textContent = '↻ Chargement…';
+  btn.textContent = '↻ Loading…';
   showLoader();
 
   try {
     const res = await fetch('/api/all');
-    if (!res.ok) throw new Error('Erreur serveur');
+    if (!res.ok) throw new Error('Server error');
     allArticles = await res.json();
     
     // Marquer les favoris et les lus
@@ -793,11 +795,11 @@ async function loadArticles() {
     document.getElementById('stat-feeds').textContent = feeds.length;
 
   } catch(e) {
-    showError(`Impossible de charger les articles : ${e.message}`);
+    showError(`Unable to load items : ${e.message}`);
   }
 
   btn.disabled = false;
-  btn.textContent = '↻ Actualiser';
+  btn.textContent = '↻ Refresh';
 }
 
 async function addFeed() {
@@ -805,12 +807,12 @@ async function addFeed() {
   const name = document.getElementById('feed-name').value.trim();
   const category = document.getElementById('feed-category').value;
 
-  if (!feedUrl) { toast('Veuillez entrer une URL', true); return; }
+  if (!feedUrl) { toast('Please enter a URL', true); return; }
 
   try {
     new URL(feedUrl);
   } catch(e) {
-    toast('URL invalide', true); return;
+    toast('Invalid URL', true); return;
   }
 
   const res = await fetch('/api/feeds', {
@@ -821,22 +823,22 @@ async function addFeed() {
 
   if (res.ok) {
     closeModal();
-    toast('Flux ajouté !');
+    toast('Added feed!');
     await loadFeedsFromAPI();
     loadArticles();
   } else {
     const err = await res.json();
-    toast(err.error || 'Erreur', true);
+    toast(err.error || 'Error', true);
   }
 }
 
 async function deleteFeed(id, e) {
   e.stopPropagation();
-  if (!confirm('Supprimer ce flux ?')) return;
+  if (!confirm('Delete this feed?')) return;
   await fetch(`/api/feeds/${id}`, { method: 'DELETE' });
   await loadFeedsFromAPI();
   loadArticles();
-  toast('Flux supprimé');
+  toast('Feed deleted');
 }
 
 // ── Rendering ─────────────────────────────────────────────────────────────
@@ -855,7 +857,7 @@ function renderFeedsList() {
         <div class="feed-name">${escHtml(feed.name)}</div>
         <div class="feed-cat">${escHtml(feed.category)}</div>
       </div>
-      <button class="feed-delete" onclick="deleteFeed(${feed.id}, event)" title="Supprimer">✕</button>
+      <button class="feed-delete" onclick="deleteFeed(${feed.id}, event)" title="Delete">✕</button>
     `;
     container.appendChild(div);
   });
@@ -884,7 +886,7 @@ function renderArticles(articles) {
   if (!articles.length) {
     grid.innerHTML = `<div class="state-center" style="grid-column:1/-1">
       <div class="state-icon">◌</div>
-      <div class="state-text">Aucun article trouvé</div>
+      <div class="state-text">No articles found</div>
     </div>`;
     return;
   }
@@ -911,10 +913,10 @@ function renderArticles(articles) {
       ${article.description ? `<div class="card-desc">${escHtml(article.description)}</div>` : ''}
       ${article.author ? `<div class="card-author">par ${escHtml(article.author)}</div>` : ''}
       <div class="card-footer-row">
-        <span class="read-label">Lire l'article →</span>
+        <span class="read-label">Read the article →</span>
         <div style="display:flex;gap:6px">
-          <button onclick="markReadFromCard(event, '${escAttr(article.link)}')" class="ext-link-btn mark-read-btn" title="Marquer comme lu">✓ Lu</button>
-          <button onclick="openOriginal(event, '${escAttr(article.link)}')" class="ext-link-btn" title="Ouvrir l'original">↗</button>
+          <button onclick="markReadFromCard(event, '${escAttr(article.link)}')" class="ext-link-btn mark-read-btn" title="Mark as read">✓ Read</button>
+          <button onclick="openOriginal(event, '${escAttr(article.link)}')" class="ext-link-btn" title="Open the original">↗</button>
         </div>
       </div>
     `;
@@ -926,7 +928,7 @@ function showLoader() {
   document.getElementById('articles-grid').innerHTML = `
     <div class="state-center" style="grid-column:1/-1">
       <div class="spinner"></div>
-      <div class="state-text">Récupération des articles…</div>
+      <div class="state-text">Retrieving items…</div>
     </div>`;
 }
 
@@ -952,7 +954,7 @@ function applyFilters() {
     const today = new Date();
     today.setHours(0,0,0,0);
     filtered = filtered.filter(a => new Date(a.date) >= today);
-    document.getElementById('page-title').textContent = 'Aujourd\'hui';
+    document.getElementById('page-title').textContent = 'Today';
   } else if (currentView === 'starred') {
     // Fusionner les articles du RSS avec les favoris persistés
     const fromRss = filtered.filter(a => a.starred);
@@ -965,12 +967,12 @@ function applyFilters() {
     document.getElementById('page-title').textContent = 'Favoris';
   } else if (currentView === 'read') {
     filtered = filtered.filter(a => a.read);
-    document.getElementById('page-title').textContent = 'Articles lus';
+    document.getElementById('page-title').textContent = 'Articles read';
   } else {
     // Vue "tous" : masquer les articles lus (sauf si recherche active)
     const query = document.getElementById('search-input').value.toLowerCase();
     if (!query) filtered = filtered.filter(a => !a.read);
-    document.getElementById('page-title').textContent = 'Tous les flux';
+    document.getElementById('page-title').textContent = 'All feeds';
   }
 
   if (currentCategory !== 'all') {
@@ -1092,7 +1094,7 @@ function markReadFromCard(e, link) {
   markRead(link);
   const card = e.target.closest('.article-card');
   if (card) dismissCard(card);
-  toast('Article marqué comme lu');
+  toast('Article marked as read');
 }
 
 function markAllReadInView() {
@@ -1132,7 +1134,7 @@ function markAllReadInView() {
       readItems = data.read || readItems;
     }).catch(e => console.warn('markAllRead save error:', e));
   }
-  toast('Tous les articles marqués comme lus');
+  toast('All articles marked as read');
 }
 
 function updateReadCount() {

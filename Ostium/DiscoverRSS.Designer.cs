@@ -32,6 +32,7 @@
             this.urlTextBox.Name = "urlTextBox";
             this.urlTextBox.Size = new System.Drawing.Size(551, 22);
             this.urlTextBox.TabIndex = 1;
+            this.urlTextBox.Text = "Enter website URL (e.g. https://example.com)";
             // 
             // titleTextBox
             // 
@@ -42,7 +43,8 @@
             this.titleTextBox.Multiline = true;
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(551, 51);
-            this.titleTextBox.TabIndex = 4;
+            this.titleTextBox.TabIndex = 0;
+            this.titleTextBox.Text = "RSS feed title will appear here";
             // 
             // DiscoverRSS_Btn
             // 

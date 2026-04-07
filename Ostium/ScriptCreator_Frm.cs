@@ -13,14 +13,12 @@ namespace Ostium
     public partial class ScriptCreator_Frm : Form
     {
         #region Var_
-
         readonly string Scripts = Application.StartupPath + @"\scripts\";
 
         readonly IcazaClass senderror = new IcazaClass();
         readonly IcazaClass openfile = new IcazaClass();
 
         readonly string AppStart = Application.StartupPath + @"\";
-
         #endregion
 
         ListBox List_Object;
