@@ -23,7 +23,7 @@ function loadUserData() {
   try {
     return JSON.parse(fs.readFileSync(USERDATA_FILE, 'utf8'));
   } catch(e) {
-    console.error('userdata.json corrompu, réinitialisation');
+    console.error('userdata.json corrupt, reset');
     fs.unlinkSync(USERDATA_FILE);
     return loadUserData();
   }
@@ -38,7 +38,7 @@ function saveUserData(data) {
 function loadFeeds() {
   if (!fs.existsSync(DATA_FILE)) {
     const defaults = [
-      { id: 1, name: 'Le Monde', url: 'https://www.lemonde.fr/rss/une.xml', category: 'Actualités', color: '#1a73e8' },
+      { id: 1, name: 'Le Monde', url: 'https://www.lemonde.fr/rss/une.xml', category: 'News', color: '#1a73e8' },
       { id: 2, name: 'Hacker News', url: 'https://news.ycombinator.com/rss', category: 'Tech', color: '#ff6600' },
       { id: 3, name: 'NASA News', url: 'https://www.nasa.gov/rss/dyn/breaking_news.rss', category: 'Science', color: '#0b3d91' },
     ];
@@ -48,7 +48,7 @@ function loadFeeds() {
   try {
     return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   } catch(e) {
-    console.error('feeds.json corrompu, réinitialisation');
+    console.error('feeds.json corrupt, reset');
     fs.unlinkSync(DATA_FILE);
     return loadFeeds();
   }
@@ -62,12 +62,12 @@ function saveFeeds(feeds) {
 
 function fetchUrl(rawUrl, redirectCount) {
   redirectCount = redirectCount || 0;
-  if (redirectCount > 5) return Promise.reject(new Error('Trop de redirections'));
+  if (redirectCount > 5) return Promise.reject(new Error('Too many redirects'));
 
   return new Promise(function(resolve, reject) {
     var parsed;
     try { parsed = new URL(rawUrl); }
-    catch(e) { return reject(new Error('URL invalide : ' + rawUrl)); }
+    catch(e) { return reject(new Error('Invalid URL : ' + rawUrl)); }
 
     var lib = parsed.protocol === 'https:' ? https : http;
     var reqPath = (parsed.pathname || '/') + (parsed.search || '');
@@ -78,7 +78,7 @@ function fetchUrl(rawUrl, redirectCount) {
       path: reqPath,
       method: 'GET',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml,application/rss+xml,*/*',
         'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
         'Cache-Control': 'no-cache',
@@ -172,7 +172,7 @@ function parseRSS(xml) {
     });
   }
   var feedTitle = extractTag(xml, 'title') || 'Feed';
-  console.log('[parse] ' + items.length + ' articles, titre: ' + stripHtml(feedTitle));
+  console.log('[parse] ' + items.length + ' items, title: ' + stripHtml(feedTitle));
   return { title: stripHtml(feedTitle), items: items.slice(0, 50) };
 }
 
@@ -300,7 +300,7 @@ var server = http.createServer(function(req, res) {
         var data = JSON.parse(body);
         if (!data.url) return jsonResp(res, { error: 'URL requise' }, 400);
         var feeds = loadFeeds();
-        var newFeed = { id: Date.now(), name: data.name || data.url, url: data.url, category: data.category || 'Général', color: data.color || '#6366f1' };
+        var newFeed = { id: Date.now(), name: data.name || data.url, url: data.url, category: data.category || 'General', color: data.color || '#6366f1' };
         feeds.push(newFeed);
         saveFeeds(feeds);
         jsonResp(res, newFeed, 201);
@@ -339,13 +339,13 @@ var server = http.createServer(function(req, res) {
             return Object.assign({}, item, { feedId: feed.id, feedName: feed.name, feedColor: feed.color, feedCategory: feed.category });
           });
         })
-        .catch(function(e) { console.error('[erreur] ' + feed.name + ' : ' + e.message); return []; });
+        .catch(function(e) { console.error('[error] ' + feed.name + ' : ' + e.message); return []; });
     });
     Promise.all(promises).then(function(results) {
       var allItems = [];
       results.forEach(function(arr) { allItems = allItems.concat(arr); });
       allItems.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
-      jsonResp(res, allItems.slice(0, 150));
+      jsonResp(res, allItems.slice(0, 1500));
     }).catch(function(e) { jsonResp(res, { error: e.message }, 500); });
     return;
   }
@@ -353,7 +353,7 @@ var server = http.createServer(function(req, res) {
   // ── GET /api/extract?url=... — NOUVEAU : extraction mode lecture
   if (pathname === '/api/extract' && req.method === 'GET') {
     var articleUrl = reqUrl.searchParams.get('url');
-    if (!articleUrl) return jsonResp(res, { error: 'URL manquante' }, 400);
+    if (!articleUrl) return jsonResp(res, { error: 'Missing URL' }, 400);
     console.log('[extract] ' + articleUrl);
     fetchUrl(articleUrl)
       .then(function(html) {
@@ -372,7 +372,7 @@ var server = http.createServer(function(req, res) {
       var html = fs.readFileSync(readerFile);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(html);
-    } catch(e) { res.writeHead(500); res.end('reader.html introuvable'); }
+    } catch(e) { res.writeHead(500); res.end('reader.html not found'); }
     return;
   }
 
@@ -383,7 +383,7 @@ var server = http.createServer(function(req, res) {
       var html = fs.readFileSync(indexFile);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(html);
-    } catch(e) { res.writeHead(500); res.end('index.html introuvable'); }
+    } catch(e) { res.writeHead(500); res.end('index.html not found'); }
     return;
   }
 
@@ -488,11 +488,11 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  jsonResp(res, { error: 'Route non trouvée : ' + pathname }, 404);
+  jsonResp(res, { error: 'Route not found : ' + pathname }, 404);
 });
 
 server.listen(PORT, function() {
-  console.log('\n✅  RSS Aggregator démarré !');
-  console.log('🌐  Ouvrez : http://localhost:' + PORT);
-  console.log('\n    Ctrl+C pour arrêter\n');
+  console.log('\n✅  RSS2 Aggregator started !');
+  console.log('🌐  Open : http://localhost:' + PORT);
+  console.log('\n    Ctrl+C to stop\n');
 });

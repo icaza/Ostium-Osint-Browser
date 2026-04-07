@@ -29,9 +29,26 @@ namespace Ostium
         public DiscoverRSS()
         {
             InitializeComponent();
-            urlTextBox.Text = "Enter website URL (e.g. https://example.com)";
-            titleTextBox.Text = "RSS feed title will appear here";
+
+            urlTextBox.Enter += new EventHandler(UrlTextBox_Enter);
+            urlTextBox.Leave += new EventHandler(UrlTextBox_Leave);
             titleTextBox.ReadOnly = true;
+        }
+
+        void UrlTextBox_Enter(object sender, EventArgs e)
+        {
+            if (urlTextBox.Text == "Enter website URL (e.g. https://example.com)")
+            {
+                urlTextBox.Text = string.Empty;
+            }
+        }
+
+        void UrlTextBox_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(urlTextBox.Text))
+            {
+                urlTextBox.Text = "Enter website URL (e.g. https://example.com)";
+            }
         }
 
         async void DiscoverRSS_Btn_Click(object sender, EventArgs e)
@@ -39,7 +56,7 @@ namespace Ostium
             CopyRSSdiscover_Btn.Enabled = false;
 
             string input = urlTextBox.Text.Trim();
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input) || input == "Enter website URL (e.g. https://example.com)")
             {
                 ShowError("Please enter a URL.");
                 return;

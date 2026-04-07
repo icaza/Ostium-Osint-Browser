@@ -185,7 +185,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "37";
+        readonly string versionNow = "38";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -499,8 +499,44 @@ namespace Ostium
             ExecuteCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ValueCMDsql_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
 
-            txtApiKey.Enter += new EventHandler(TxtApiKey_Enter);
-            txtApiKey.Leave += new EventHandler(TxtApiKey_Leave);
+            URL_URL_Cbx.Enter += new EventHandler(URL_URL_Cbx_Enter);
+            URL_URL_Cbx.Leave += new EventHandler(URL_URL_Cbx_Leave);
+            URL_SAVE_Cbx.Enter += new EventHandler(URL_SAVE_Cbx_Enter);
+            URL_SAVE_Cbx.Leave += new EventHandler(URL_SAVE_Cbx_Leave);
+            Construct_URL_Cbx.Enter += new EventHandler(Construct_URL_Cbx_Enter);
+            Construct_URL_Cbx.Leave += new EventHandler(Construct_URL_Cbx_Leave);
+            Word_URL_Builder_Txt.Enter += new EventHandler(Word_URL_Builder_Txt_Enter);
+            Word_URL_Builder_Txt.Leave += new EventHandler(Word_URL_Builder_Txt_Leave);
+            AddOn_Cbx.Enter += new EventHandler(AddOn_Cbx_Enter);
+            AddOn_Cbx.Leave += new EventHandler(AddOn_Cbx_Leave);
+            URLbrowse_Cbx.GotFocus += new EventHandler(URLbrowse_Cbx_Enter);
+            URLbrowse_Cbx.LostFocus += new EventHandler(URLbrowse_Cbx_Leave);
+            CategorieFeed_Cbx.GotFocus += new EventHandler(CategorieFeed_Cbx_Enter);
+            CategorieFeed_Cbx.LostFocus += new EventHandler(CategorieFeed_Cbx_Leave);
+            NewCategory_Txt.GotFocus += new EventHandler(NewCategory_Txt_Enter);
+            NewCategory_Txt.LostFocus += new EventHandler(NewCategory_Txt_Leave);
+            NewFeed_Txt.GotFocus += new EventHandler(NewFeed_Txt_Enter);
+            NewFeed_Txt.LostFocus += new EventHandler(NewFeed_Txt_Leave);
+            ValueChange_Txt.GotFocus += new EventHandler(ValueChange_Txt_Enter);
+            ValueChange_Txt.LostFocus += new EventHandler(ValueChange_Txt_Leave);
+            ValueCMDsql_Txt.GotFocus += new EventHandler(ValueCMDsql_Txt_Enter);
+            ValueCMDsql_Txt.LostFocus += new EventHandler(ValueCMDsql_Txt_Leave);
+            ExecuteCMDsql_Txt.GotFocus += new EventHandler(ExecuteCMDsql_Txt_Enter);
+            ExecuteCMDsql_Txt.LostFocus += new EventHandler(ExecuteCMDsql_Txt_Leave);
+            NameProjectwf_Txt.GotFocus += new EventHandler(NameProjectwf_Txt_Enter);
+            NameProjectwf_Txt.LostFocus += new EventHandler(NameProjectwf_Txt_Leave);
+            Author_Txt.GotFocus += new EventHandler(Author_Txt_Enter);
+            Author_Txt.LostFocus += new EventHandler(Author_Txt_Leave);
+            ModelName_Txt.GotFocus += new EventHandler(ModelName_Txt_Enter);
+            ModelName_Txt.LostFocus += new EventHandler(ModelName_Txt_Leave);
+            AddSingleItemswf_Txt.GotFocus += new EventHandler(AddSingleItemswf_Txt_Enter);
+            AddSingleItemswf_Txt.LostFocus += new EventHandler(AddSingleItemswf_Txt_Leave);
+            LatLon_Txt.GotFocus += new EventHandler(LatLon_Txt_Enter);
+            LatLon_Txt.LostFocus += new EventHandler(LatLon_Txt_Leave);
+            KeywordMap_Txt.GotFocus += new EventHandler(KeywordMap_Txt_Enter);
+            KeywordMap_Txt.LostFocus += new EventHandler(KeywordMap_Txt_Leave);
+            txtApiKey.GotFocus += new EventHandler(TxtApiKey_Enter);
+            txtApiKey.LostFocus += new EventHandler(TxtApiKey_Leave);
         }
         ///
         /// <summary>
@@ -608,6 +644,324 @@ namespace Ostium
             ///
             LoadConfiguration(Path.Combine(AppStart, "config.xml"));
         }
+
+        #region ButtonFocus
+        void URL_URL_Cbx_Enter(object sender, EventArgs e)
+        {
+            if (URL_URL_Cbx.Text == "URL Shortcut")
+            {
+                URL_URL_Cbx.Text = string.Empty;
+                URL_URL_Cbx.ForeColor = Color.White;
+            }
+        }
+
+        void URL_URL_Cbx_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(URL_URL_Cbx.Text))
+            {
+                URL_URL_Cbx.Text = "URL Shortcut";
+                URL_URL_Cbx.ForeColor = Color.DimGray;
+            }
+        }
+
+        void URL_SAVE_Cbx_Enter(object sender, EventArgs e)
+        {
+            if (URL_SAVE_Cbx.Text == "Favorites")
+            {
+                URL_SAVE_Cbx.Text = string.Empty;
+                URL_SAVE_Cbx.ForeColor = Color.White;
+            }
+        }
+
+        void URL_SAVE_Cbx_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(URL_SAVE_Cbx.Text))
+            {
+                URL_SAVE_Cbx.Text = "Favorites";
+                URL_SAVE_Cbx.ForeColor = Color.DimGray;
+            }
+        }
+
+        void Construct_URL_Cbx_Enter(object sender, EventArgs e)
+        {
+            if (Construct_URL_Cbx.Text == "URL build")
+            {
+                Construct_URL_Cbx.Text = string.Empty;
+                Construct_URL_Cbx.ForeColor = Color.White;
+            }
+        }
+
+        void Construct_URL_Cbx_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Construct_URL_Cbx.Text))
+            {
+                Construct_URL_Cbx.Text = "URL build";
+                Construct_URL_Cbx.ForeColor = Color.DimGray;
+            }
+        }
+
+        void Word_URL_Builder_Txt_Enter(object sender, EventArgs e)
+        {
+            if (Word_URL_Builder_Txt.Text == "Word")
+            {
+                Word_URL_Builder_Txt.Text = string.Empty;
+                Word_URL_Builder_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void Word_URL_Builder_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Word_URL_Builder_Txt.Text))
+            {
+                Word_URL_Builder_Txt.Text = "Word";
+                Word_URL_Builder_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void AddOn_Cbx_Enter(object sender, EventArgs e)
+        {
+            if (AddOn_Cbx.Text == "Tools")
+            {
+                AddOn_Cbx.Text = string.Empty;
+                AddOn_Cbx.ForeColor = Color.White;
+            }
+        }
+
+        void AddOn_Cbx_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddOn_Cbx.Text))
+            {
+                AddOn_Cbx.Text = "Tools";
+                AddOn_Cbx.ForeColor = Color.DimGray;
+            }
+        }
+
+        void URLbrowse_Cbx_Enter(object sender, EventArgs e)
+        {
+            if (URLbrowse_Cbx.Text == "Insert a URL or search term")
+            {
+                URLbrowse_Cbx.Text = string.Empty;
+                URLbrowse_Cbx.ForeColor = Color.Gold;
+            }
+        }
+
+        void URLbrowse_Cbx_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+            {
+                URLbrowse_Cbx.Text = "Insert a URL or search term";
+                URLbrowse_Cbx.ForeColor = Color.DimGray;
+            }
+        }
+
+        void CategorieFeed_Cbx_Enter(object sender, EventArgs e)
+        {
+            if (CategorieFeed_Cbx.Text == "Select")
+            {
+                CategorieFeed_Cbx.Text = string.Empty;
+                CategorieFeed_Cbx.ForeColor = Color.White;
+            }
+        }
+
+        void CategorieFeed_Cbx_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(CategorieFeed_Cbx.Text))
+            {
+                CategorieFeed_Cbx.Text = "Select";
+                CategorieFeed_Cbx.ForeColor = Color.DimGray;
+            }
+        }
+
+        void NewCategory_Txt_Enter(object sender, EventArgs e)
+        {
+            if (NewCategory_Txt.Text == "New Category")
+            {
+                NewCategory_Txt.Text = string.Empty;
+                NewCategory_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void NewCategory_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(NewCategory_Txt.Text))
+            {
+                NewCategory_Txt.Text = "New Category";
+                NewCategory_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void NewFeed_Txt_Enter(object sender, EventArgs e)
+        {
+            if (NewFeed_Txt.Text == "New Feed")
+            {
+                NewFeed_Txt.Text = string.Empty;
+                NewFeed_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void NewFeed_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(NewFeed_Txt.Text))
+            {
+                NewFeed_Txt.Text = "New Feed";
+                NewFeed_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void ValueChange_Txt_Enter(object sender, EventArgs e)
+        {
+            if (ValueChange_Txt.Text == "Update URL and Name here")
+            {
+                ValueChange_Txt.Text = string.Empty;
+                ValueChange_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void ValueChange_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ValueChange_Txt.Text))
+            {
+                ValueChange_Txt.Text = "Update URL and Name here";
+                ValueChange_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void ValueCMDsql_Txt_Enter(object sender, EventArgs e)
+        {
+            if (ValueCMDsql_Txt.Text == "url_name")
+            {
+                ValueCMDsql_Txt.Text = string.Empty;
+            }
+        }
+
+        void ValueCMDsql_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ValueCMDsql_Txt.Text))
+            {
+                ValueCMDsql_Txt.Text = "url_name";
+            }
+        }
+
+        void ExecuteCMDsql_Txt_Enter(object sender, EventArgs e)
+        {
+            if (ExecuteCMDsql_Txt.Text == "SELECT * FROM TABLE WHERE url_name LIKE '%word%';")
+            {
+                ExecuteCMDsql_Txt.Text = string.Empty;
+            }
+        }
+
+        void ExecuteCMDsql_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ExecuteCMDsql_Txt.Text))
+            {
+                ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE WHERE url_name LIKE '%word%';";
+            }
+        }
+
+        void NameProjectwf_Txt_Enter(object sender, EventArgs e)
+        {
+            if (NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                NameProjectwf_Txt.Text = string.Empty;
+                NameProjectwf_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void NameProjectwf_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            {
+                NameProjectwf_Txt.Text = "Insert project Name";
+                NameProjectwf_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void Author_Txt_Enter(object sender, EventArgs e)
+        {
+            if (Author_Txt.Text == "Insert Name")
+            {
+                Author_Txt.Text = string.Empty;
+                Author_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void Author_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Author_Txt.Text))
+            {
+                Author_Txt.Text = "Insert Name";
+                Author_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void ModelName_Txt_Enter(object sender, EventArgs e)
+        {
+            if (ModelName_Txt.Text == "Choose a model name")
+            {
+                ModelName_Txt.Text = string.Empty;
+                ModelName_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void ModelName_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ModelName_Txt.Text))
+            {
+                ModelName_Txt.Text = "Choose a model name";
+                ModelName_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void AddSingleItemswf_Txt_Enter(object sender, EventArgs e)
+        {
+            if (AddSingleItemswf_Txt.Text == "Insert item name")
+            {
+                AddSingleItemswf_Txt.Text = string.Empty;
+                AddSingleItemswf_Txt.ForeColor = Color.White;
+            }
+        }
+
+        void AddSingleItemswf_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddSingleItemswf_Txt.Text))
+            {
+                AddSingleItemswf_Txt.Text = "Insert item name";
+                AddSingleItemswf_Txt.ForeColor = Color.DimGray;
+            }
+        }
+
+        void LatLon_Txt_Enter(object sender, EventArgs e)
+        {
+            if (LatLon_Txt.Text == "Coordinates")
+            {
+                LatLon_Txt.Text = string.Empty;
+            }
+        }
+
+        void LatLon_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(LatLon_Txt.Text))
+            {
+                LatLon_Txt.Text = "Coordinates";
+            }
+        }
+
+        void KeywordMap_Txt_Enter(object sender, EventArgs e)
+        {
+            if (KeywordMap_Txt.Text == "Adress")
+            {
+                KeywordMap_Txt.Text = string.Empty;
+            }
+        }
+
+        void KeywordMap_Txt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(KeywordMap_Txt.Text))
+            {
+                KeywordMap_Txt.Text = "Adress";
+            }
+        }
+        #endregion
 
         void CreateDirectory()
         {
@@ -815,16 +1169,16 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
             loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
 
-            RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
                 Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
-            RenameFileForUPDT(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
                 Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
 
             if (!File.Exists(Path.Combine(AppStart, "Messis", "config.js")))
             {
                 if (File.Exists(Path.Combine(AppStart, "Messis", "config.example.js")))
                 {
-                    RenameFileForUPDT(Path.Combine(AppStart, "Messis", "config.example.js"), Path.Combine(AppStart, "Messis", "config.js"));
+                    RFU(Path.Combine(AppStart, "Messis", "config.example.js"), Path.Combine(AppStart, "Messis", "config.js"));
                 }
             }
         }
@@ -837,9 +1191,9 @@ namespace Ostium
 
         void LoadOOBaiConfig()
         {
-            RenameFileForUPDT(Path.Combine(OOBai, "_ai_model_list.txt"), Path.Combine(OOBai, "ai_model_list.txt"));
-            RenameFileForUPDT(Path.Combine(OOBai, "_agent_ai_config.json"), Path.Combine(OOBai, "agent_ai_config.json"));
-            RenameFileForUPDT(Path.Combine(OOBai, "_french_words.txt"), Path.Combine(OOBai, "french_words.txt"));
+            RFU(Path.Combine(OOBai, "_ai_model_list.txt"), Path.Combine(OOBai, "ai_model_list.txt"));
+            RFU(Path.Combine(OOBai, "_agent_ai_config.json"), Path.Combine(OOBai, "agent_ai_config.json"));
+            RFU(Path.Combine(OOBai, "_french_words.txt"), Path.Combine(OOBai, "french_words.txt"));
 
             AgentConfig.Load();
 
@@ -883,12 +1237,13 @@ namespace Ostium
 
         #endregion
 
-        void RenameFileForUPDT(string sourceFileName, string targetFileName)
+        void RFU(string sourceFileName, string targetFileName)
         {
             try
             {
                 if (File.Exists(targetFileName))
                 {
+                    File.Delete(sourceFileName);
                     return;
                 }
 
@@ -1981,6 +2336,9 @@ namespace Ostium
         ///
         void Go_Btn_Click(object sender, EventArgs e)
         {
+            if (URLbrowse_Cbx.Text == "Insert a URL or search term")
+                URLbrowse_Cbx.Text = "";
+
             int x;
             x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
             if (x == -1)
@@ -1992,6 +2350,9 @@ namespace Ostium
 
         void GoWebwiev_Btn_Click(object sender, EventArgs e)
         {
+            if (URLbrowse_Cbx.Text == "Insert a URL or search term")
+                URLbrowse_Cbx.Text = "";
+
             GoBrowser(URLbrowse_Cbx.Text, 1);
         }
         ///
@@ -3872,6 +4233,20 @@ namespace Ostium
             DiscovRSS.Show();
         }
 
+        void ConfigRSS2_Btn_Click(object sender, EventArgs e)
+        {
+            string dirPath = Path.Combine(AppStart, "rss-aggregator", "server.js");
+
+            if (!File.Exists(dirPath))
+            {
+                MessageBox.Show("The server.js file does not exist, go to Discord channel Ostium for fix and help!",
+                    "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(dirPath);
+        }
+
         void StartRSS2node_Btn_Click(object sender, EventArgs e)
         {
             try
@@ -4822,7 +5197,7 @@ namespace Ostium
                     if (VerifMapOpn == "off")
                     {
                         Mkmarker = GMarkerGoogleType.red_dot;
-                        OpenMaps("Paris", 12); // Adresse, Provider
+                        OpenMaps("Paris", 7); // Adresse, Provider
                         PointLoc_Lst.Items.Clear();
                         loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
                     }
@@ -4961,11 +5336,6 @@ namespace Ostium
                 JavaDisableFeed_Status.Visible = true;
 
             JavaDisable_Status.Visible = false;
-
-            NewCategory_Txt.ForeColor = Color.DimGray;
-            NewCategory_Txt.Text = "new category";
-            NewFeed_Txt.ForeColor = Color.DimGray;
-            NewFeed_Txt.Text = "new feed";
         }
 
         void CtrlTabOobai()
@@ -5708,7 +6078,7 @@ namespace Ostium
                 tlsi = Tables_Lst.SelectedItem.ToString();
 
                 Cbx_Object = URL_SAVE_Cbx;
-                Cbx_Object.Text = string.Empty;
+                Cbx_Object.Text = "Favorites";
                 Cbx_Object.Items.Clear();
 
                 if (Tables_Lst_Opt == "add")
@@ -6475,7 +6845,7 @@ namespace Ostium
         {
             try
             {
-                if (NewCategory_Txt.Text != string.Empty && NewCategory_Txt.Text != "new category")
+                if (NewCategory_Txt.Text != string.Empty && NewCategory_Txt.Text != "New Category")
                 {
                     if (!File.Exists(Path.Combine(FeedDir, NewCategory_Txt.Text)))
                     {
@@ -6485,8 +6855,6 @@ namespace Ostium
                         loadfiledir.LoadFileDirectory(FeedDir, "*", "cbxts", CategorieFeed_Cbx);
 
                         CategorieFeed_Cbx.Text = string.Empty;
-                        NewCategory_Txt.ForeColor = Color.DimGray;
-                        NewCategory_Txt.Text = "new category";
 
                         MessageBox.Show("Category create.");
                     }
@@ -6508,21 +6876,9 @@ namespace Ostium
             }
         }
 
-        void NewCategory_Txt_Click(object sender, EventArgs e)
-        {
-            NewCategory_Txt.ForeColor = Color.White;
-            NewCategory_Txt.Text = string.Empty;
-        }
-
-        void NewFeed_Txt_Click(object sender, EventArgs e)
-        {
-            NewFeed_Txt.ForeColor = Color.White;
-            NewFeed_Txt.Text = string.Empty;
-        }
-
         void AddFeed_Btn_Click(object sender, EventArgs e)
         {
-            if (NewFeed_Txt.Text != string.Empty && NewFeed_Txt.Text != "new feed")
+            if (NewFeed_Txt.Text != string.Empty && NewFeed_Txt.Text != "New Feed")
             {
                 if (CategorieFeed_Cbx.Text != string.Empty)
                 {
@@ -6533,7 +6889,7 @@ namespace Ostium
 
                     CategorieFeed_Cbx.Text = string.Empty;
                     NewFeed_Txt.ForeColor = Color.DimGray;
-                    NewFeed_Txt.Text = "new feed";
+                    NewFeed_Txt.Text = "New Feed";
                     MessageBox.Show("Feed create.");
                 }
                 else
@@ -6584,6 +6940,7 @@ namespace Ostium
                 JavaScriptFeed_Btn.Visible = false;
                 BlockAdFeed_Btn.Visible = false;
                 OpnPromptRss_Btn.Visible = false;
+                RSS2_Tls.Visible = false;
             }
             else
             {
@@ -6614,6 +6971,7 @@ namespace Ostium
                 JavaScriptFeed_Btn.Visible = true;
                 BlockAdFeed_Btn.Visible = true;
                 OpnPromptRss_Btn.Visible = true;
+                RSS2_Tls.Visible = true;
             }
         }
 
@@ -7199,7 +7557,7 @@ namespace Ostium
         {
             try
             {
-                if (AddSingleItemswf_Txt.Text == string.Empty)
+                if (AddSingleItemswf_Txt.Text == string.Empty || AddSingleItemswf_Txt.Text == "Insert item name")
                     return;
 
                 XmlDocument doc = new XmlDocument();
@@ -7219,6 +7577,8 @@ namespace Ostium
                 }
                 string header = AddSingleItemswf_Txt.Text;
                 AddSingleItemswf_Txt.Text = header.Trim(new char[] { ' ' });
+
+                AddSingleItemswf_Txt.Text = AddSingleItemswf_Txt.Text.Replace(" ", "_");
 
                 if (doc.SelectSingleNode("/Table") is XmlElement nod)
                 {
@@ -9179,7 +9539,7 @@ namespace Ostium
                 return;
             }
 
-            OpenMaps(KeywordMap_Txt.Text, 12); // Adresse, Provider
+            OpenMaps(KeywordMap_Txt.Text, 7); // Adresse, Provider
         }
 
         void AddNewLoc_Btn_Click(object sender, EventArgs e)
@@ -9308,61 +9668,31 @@ namespace Ostium
                     GMap_Ctrl.MapProvider = GMapProviders.BingMap;
                     break;
                 case 2:
-                    GMap_Ctrl.MapProvider = GMapProviders.BingOSMap;
-                    break;
-                case 3:
                     GMap_Ctrl.MapProvider = GMapProviders.BingSatelliteMap;
                     break;
-                case 4:
+                case 3:
                     GMap_Ctrl.MapProvider = GMapProviders.GoogleMap;
                     break;
-                case 5:
+                case 4:
                     GMap_Ctrl.MapProvider = GMapProviders.GoogleSatelliteMap;
                     break;
-                case 6:
+                case 5:
                     GMap_Ctrl.MapProvider = GMapProviders.GoogleTerrainMap;
                     break;
-                case 7:
+                case 6:
                     GMap_Ctrl.MapProvider = GMapProviders.OpenCycleLandscapeMap;
                     break;
-                case 8:
+                case 7:
                     GMap_Ctrl.MapProvider = GMapProviders.OpenCycleMap;
                     break;
-                case 9:
+                case 8:
                     GMap_Ctrl.MapProvider = GMapProviders.OpenCycleTransportMap;
                     break;
-                case 10:
-                    GMap_Ctrl.MapProvider = GMapProviders.OpenSeaMapHybrid;
-                    break;
-                case 11:
-                    GMap_Ctrl.MapProvider = GMapProviders.OpenStreet4UMap;
-                    break;
-                case 12:
-                    GMap_Ctrl.MapProvider = GMapProviders.OpenStreetMap;
-                    break;
-                case 13:
+                case 9:
                     GMap_Ctrl.MapProvider = GMapProviders.WikiMapiaMap;
                     break;
-                case 14:
-                    GMap_Ctrl.MapProvider = GMapProviders.CzechGeographicMap;
-                    break;
-                case 15:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_Imagery_World_2D_Map;
-                    break;
-                case 16:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_StreetMap_World_2D_Map;
-                    break;
-                case 17:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Physical_Map;
-                    break;
-                case 18:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Shaded_Relief_Map;
-                    break;
-                case 19:
+                case 10:
                     GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Street_Map;
-                    break;
-                case 20:
-                    GMap_Ctrl.MapProvider = GMapProviders.ArcGIS_World_Terrain_Base_Map;
                     break;
                 default:
                     GMap_Ctrl.MapProvider = GMapProviders.BingMap;
@@ -12976,6 +13306,9 @@ namespace Ostium
         ///
         void Agent_Fetch_Search_Click(object sender, EventArgs e)
         {
+            if (URLbrowse_Cbx.Text == "Insert a URL or search term")
+                return;
+
             if (string.IsNullOrEmpty(URLbrowse_Cbx.Text))
             {
                 URLbrowse_Cbx.BackColor = Color.Red;
