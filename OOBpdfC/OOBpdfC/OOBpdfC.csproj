@@ -13,9 +13,10 @@
     <Authors>ICAZA</Authors>
     <Company>ICAZA MEDIA</Company>
     <Platforms>AnyCPU;x64</Platforms>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
+    <Copyright>MIT</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,11 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="itext" Version="9.5.0" />
+    <PackageReference Include="itext" Version="9.6.0" />
     <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="10.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
