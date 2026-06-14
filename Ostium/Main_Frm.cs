@@ -12976,7 +12976,7 @@ namespace Ostium
 
                 if (selectedItems.Count == 0)
                 {
-                    MessageBox.Show("Aucun élément valide à traiter.",
+                    MessageBox.Show("No valid items to process!",
                                     "Information",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
