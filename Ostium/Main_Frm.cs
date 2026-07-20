@@ -4952,6 +4952,9 @@ namespace Ostium
             FileDiag = Btn + "_plantuml.svg";
             Commut = 0;
 
+            if (!File.Exists(Path.Combine(DiagramDir, Btn + "_plantuml.svg")))
+                File.Delete(Path.Combine(DiagramDir, Btn + "_plantuml.svg"));
+
             Thread CreateDiagram = new Thread(() => CreateDiagram_Thrd(Btn + "_plantuml.txt", 0));
             CreateDiagram.Start();
         }
