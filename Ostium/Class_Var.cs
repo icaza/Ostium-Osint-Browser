@@ -14,11 +14,11 @@
         public static string URL_USER_AGENT_var;
         public static string URL_USER_AGENT_SRC_PAGE_var;
         public static string URL_GOOGLEBOT_var;
+        public static string BKMKLT_var;
+        public static string SCRIPTCREATOR_var;
         public static int VOLUME_TRACK_var;
         public static int RATE_TRACK_var;
-        public static string BKMKLT_var;
         public static int COOKIES_SAVE_var;
-        public static string SCRIPTCREATOR_var;
         public static int FLOOD_HEADER_var;
 
         public static string File_Open
@@ -165,6 +165,30 @@
             }
         }
 
+        public static string BKMKLT
+        {
+            get
+            {
+                return BKMKLT_var;
+            }
+            set
+            {
+                BKMKLT_var = value;
+            }
+        }
+
+        public static string SCRIPTCREATOR
+        {
+            get
+            {
+                return SCRIPTCREATOR_var;
+            }
+            set
+            {
+                SCRIPTCREATOR_var = value;
+            }
+        }
+
         public static int VOLUME_TRACK
         {
             get
@@ -189,18 +213,6 @@
             }
         }
 
-        public static string BKMKLT
-        {
-            get
-            {
-                return BKMKLT_var;
-            }
-            set
-            {
-                BKMKLT_var = value;
-            }
-        }
-
         public static int COOKIES_SAVE
         {
             get
@@ -210,18 +222,6 @@
             set
             {
                 COOKIES_SAVE_var = value;
-            }
-        }
-
-        public static string SCRIPTCREATOR
-        {
-            get
-            {
-                return SCRIPTCREATOR_var;
-            }
-            set
-            {
-                SCRIPTCREATOR_var = value;
             }
         }
 

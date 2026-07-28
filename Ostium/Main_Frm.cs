@@ -185,7 +185,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "40";
+        readonly string versionNow = "41";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -738,7 +738,7 @@ namespace Ostium
 
         void URLbrowse_Cbx_Enter(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text == "Insert a URL or search term")
+            if (URLbrowse_Cbx.Text == "Insert a URL or search term" || string.IsNullOrEmpty(URLbrowse_Cbx.Text))
             {
                 URLbrowse_Cbx.Text = string.Empty;
                 URLbrowse_Cbx.ForeColor = Color.Gold;
@@ -2339,12 +2339,16 @@ namespace Ostium
             if (URLbrowse_Cbx.Text == "Insert a URL or search term")
                 URLbrowse_Cbx.Text = "";
 
-            int x;
-            x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
-            if (x == -1)
+            if (!string.IsNullOrEmpty(URLbrowse_Cbx.Text))
             {
-                URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                int x;
+                x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
+                if (x == -1)
+                {
+                    URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                }
             }
+
             GoBrowser(URLbrowse_Cbx.Text, 0);
         }
 
@@ -2450,6 +2454,16 @@ namespace Ostium
         {
             try
             {
+                if (!string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+                {
+                    int x;
+                    x = URLbrowse_Cbx.FindStringExact(URLbrowse_Cbx.Text);
+                    if (x == -1)
+                    {
+                        URLbrowse_Cbx.Items.Add(URLbrowse_Cbx.Text);
+                    }
+                }
+
                 webviewForm = new Webview_Frm();
                 webviewForm.Show();
             }
@@ -4951,6 +4965,9 @@ namespace Ostium
 
             FileDiag = Btn + "_plantuml.svg";
             Commut = 0;
+
+            if (!File.Exists(Path.Combine(DiagramDir, Btn + "_plantuml.svg")))
+                File.Delete(Path.Combine(DiagramDir, Btn + "_plantuml.svg"));
 
             Thread CreateDiagram = new Thread(() => CreateDiagram_Thrd(Btn + "_plantuml.txt", 0));
             CreateDiagram.Start();
