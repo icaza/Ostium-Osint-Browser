@@ -126,6 +126,11 @@ namespace Ostium
                     lstUrlDfltCnf.Clear();
                     lstUrlDfltCnf.AddRange(File.ReadAllLines(configPath));
                 }
+
+                if (lstUrlDfltCnf.Count > 3)
+                {
+                    UserAgent_Txt.Text = lstUrlDfltCnf[5];
+                }
             }
             catch (Exception ex)
             {
@@ -318,7 +323,7 @@ namespace Ostium
                 }
 
                 string userAgent = string.IsNullOrWhiteSpace(UserAgent_Txt.Text)
-                    ? "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+                    ? "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36"
                     : UserAgent_Txt.Text;
 
                 client.DefaultRequestHeaders.Remove("User-Agent");

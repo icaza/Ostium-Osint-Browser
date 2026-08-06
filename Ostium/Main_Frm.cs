@@ -185,7 +185,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "41";
+        readonly string versionNow = "42";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -1254,7 +1254,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! RenameFileForUPDT: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! RFU: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -1283,6 +1283,8 @@ namespace Ostium
         {
             try
             {
+                e.Request.Headers.RemoveHeader("Cookie");
+
                 if (IsAdsTrackersBlocked)
                 {
                     string requestUri = e.Request.Uri;
@@ -1924,6 +1926,9 @@ namespace Ostium
 
                 await WBrowse.EnsureCoreWebView2Async();
             }
+
+            if (KillCookies_Chk.Checked)
+                WBrowse.CoreWebView2.CookieManager.DeleteAllCookies();
 
             WBrowse_UpdtTitleEvent("Navigation Starting");
         }
@@ -3672,7 +3677,7 @@ namespace Ostium
         ///
         void HomePage_Btn_Click(object sender, EventArgs e)
         {
-            GoBrowser("https://veydunet.com/ostium/home.html", 0);
+            GoBrowser("https://veydunet.com/ostium/home.php", 0);
         }
 
         void Credit_Btn_Click(object sender, EventArgs e)
@@ -5619,7 +5624,10 @@ namespace Ostium
                     yn = 1;
                     break;
                 case "help":
-                    Open_Doc_Frm(Path.Combine(FileDir, "cmdc.txt"));
+                    if (File.Exists(Path.Combine(FileDir, "cmdc.txt")))
+                        Open_Doc_Frm(Path.Combine(FileDir, "cmdc.txt"));
+                    else
+                        MessageBox.Show("Help file not exist, verify your config!", "Error!");
                     break;
                 case "textlink":
                     cmdSwitch = 2;
@@ -9482,6 +9490,25 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpenGoogleEarth_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void OpenGoogleEarthWeb_Tls_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GoBrowser(lstUrlDfltCnf[10].ToString() + LatTCurrent_Status.Text + "," + LonGtCurrent_Status.Text + ",1000a,1338447.30427846d,35y,0h,0t,0r", 0);
+                CtrlTabBrowsx();
+                Control_Tab.SelectedIndex = 0;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("The url_dflt_cnf.ost file is corrupted! Go to Ostium GitHub page to download this " +
+                    "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (ArgumentException ex)
+            {
+                senderror.ErrorLog("Error! OpnGoogleMaps_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
