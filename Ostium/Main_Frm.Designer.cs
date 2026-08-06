@@ -476,6 +476,7 @@
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.KillCookies_Chk = new System.Windows.Forms.CheckBox();
             this.FloodHeader_Chk = new System.Windows.Forms.CheckBox();
             this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
             this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
@@ -642,6 +643,7 @@
             this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnBingMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGoogleEarthWeb_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
@@ -6018,18 +6020,33 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.KillCookies_Chk);
             this.groupBox6.Controls.Add(this.FloodHeader_Chk);
             this.groupBox6.Controls.Add(this.Limitsize_Chk);
             this.groupBox6.Controls.Add(this.ArchiveAdd_Lst);
             this.groupBox6.Controls.Add(this.SaveCookies_Chk);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox6.Location = new System.Drawing.Point(0, 449);
+            this.groupBox6.Location = new System.Drawing.Point(0, 370);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 143);
+            this.groupBox6.Size = new System.Drawing.Size(244, 222);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
+            // 
+            // KillCookies_Chk
+            // 
+            this.KillCookies_Chk.AutoSize = true;
+            this.KillCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KillCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KillCookies_Chk.ForeColor = System.Drawing.Color.White;
+            this.KillCookies_Chk.Location = new System.Drawing.Point(14, 158);
+            this.KillCookies_Chk.Name = "KillCookies_Chk";
+            this.KillCookies_Chk.Size = new System.Drawing.Size(176, 36);
+            this.KillCookies_Chk.TabIndex = 4;
+            this.KillCookies_Chk.Text = "Clear cookies after \r\nevery browsing session";
+            this.KillCookies_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.KillCookies_Chk.UseVisualStyleBackColor = true;
             // 
             // FloodHeader_Chk
             // 
@@ -6037,7 +6054,7 @@
             this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FloodHeader_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FloodHeader_Chk.ForeColor = System.Drawing.Color.White;
-            this.FloodHeader_Chk.Location = new System.Drawing.Point(14, 67);
+            this.FloodHeader_Chk.Location = new System.Drawing.Point(14, 81);
             this.FloodHeader_Chk.Name = "FloodHeader_Chk";
             this.FloodHeader_Chk.Size = new System.Drawing.Size(157, 20);
             this.FloodHeader_Chk.TabIndex = 3;
@@ -6052,12 +6069,12 @@
             this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
-            this.Limitsize_Chk.Location = new System.Drawing.Point(14, 21);
+            this.Limitsize_Chk.Location = new System.Drawing.Point(14, 35);
             this.Limitsize_Chk.Name = "Limitsize_Chk";
             this.Limitsize_Chk.Size = new System.Drawing.Size(217, 36);
             this.Limitsize_Chk.TabIndex = 2;
             this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\n(default is 4096)";
-            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.Limitsize_Chk.UseVisualStyleBackColor = true;
             this.Limitsize_Chk.CheckedChanged += new System.EventHandler(this.Limitsize_Chk_CheckedChanged);
             // 
@@ -6065,7 +6082,7 @@
             // 
             this.ArchiveAdd_Lst.FormattingEnabled = true;
             this.ArchiveAdd_Lst.ItemHeight = 14;
-            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(2, 177);
+            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(2, 201);
             this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
             this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 18);
             this.ArchiveAdd_Lst.TabIndex = 1;
@@ -6077,12 +6094,12 @@
             this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.SaveCookies_Chk.Location = new System.Drawing.Point(14, 99);
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(14, 113);
             this.SaveCookies_Chk.Name = "SaveCookies_Chk";
             this.SaveCookies_Chk.Size = new System.Drawing.Size(191, 36);
             this.SaveCookies_Chk.TabIndex = 0;
             this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
-            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.SaveCookies_Chk.UseVisualStyleBackColor = true;
             this.SaveCookies_Chk.CheckedChanged += new System.EventHandler(this.SaveCookies_Chk_CheckedChanged);
             // 
@@ -6100,7 +6117,7 @@
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(244, 449);
+            this.groupBox4.Size = new System.Drawing.Size(244, 370);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "config files";
@@ -6115,7 +6132,7 @@
             this.OOBai_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OOBai_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OOBai_Opt.ForeColor = System.Drawing.Color.White;
-            this.OOBai_Opt.Location = new System.Drawing.Point(14, 390);
+            this.OOBai_Opt.Location = new System.Drawing.Point(14, 318);
             this.OOBai_Opt.Name = "OOBai_Opt";
             this.OOBai_Opt.Size = new System.Drawing.Size(218, 36);
             this.OOBai_Opt.TabIndex = 24;
@@ -6133,7 +6150,7 @@
             this.MultipleDir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MultipleDir_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MultipleDir_Opt.ForeColor = System.Drawing.Color.White;
-            this.MultipleDir_Opt.Location = new System.Drawing.Point(14, 290);
+            this.MultipleDir_Opt.Location = new System.Drawing.Point(14, 233);
             this.MultipleDir_Opt.Name = "MultipleDir_Opt";
             this.MultipleDir_Opt.Size = new System.Drawing.Size(218, 36);
             this.MultipleDir_Opt.TabIndex = 23;
@@ -6151,7 +6168,7 @@
             this.Furlconstdir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Furlconstdir_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Furlconstdir_Opt.ForeColor = System.Drawing.Color.White;
-            this.Furlconstdir_Opt.Location = new System.Drawing.Point(14, 140);
+            this.Furlconstdir_Opt.Location = new System.Drawing.Point(14, 109);
             this.Furlconstdir_Opt.Name = "Furlconstdir_Opt";
             this.Furlconstdir_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furlconstdir_Opt.TabIndex = 22;
@@ -6169,7 +6186,7 @@
             this.Fgdork_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Fgdork_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fgdork_Opt.ForeColor = System.Drawing.Color.White;
-            this.Fgdork_Opt.Location = new System.Drawing.Point(14, 340);
+            this.Fgdork_Opt.Location = new System.Drawing.Point(14, 275);
             this.Fgdork_Opt.Name = "Fgdork_Opt";
             this.Fgdork_Opt.Size = new System.Drawing.Size(218, 36);
             this.Fgdork_Opt.TabIndex = 21;
@@ -6187,7 +6204,7 @@
             this.Fmultiplewin_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Fmultiplewin_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fmultiplewin_Opt.ForeColor = System.Drawing.Color.White;
-            this.Fmultiplewin_Opt.Location = new System.Drawing.Point(14, 240);
+            this.Fmultiplewin_Opt.Location = new System.Drawing.Point(14, 191);
             this.Fmultiplewin_Opt.Name = "Fmultiplewin_Opt";
             this.Fmultiplewin_Opt.Size = new System.Drawing.Size(218, 36);
             this.Fmultiplewin_Opt.TabIndex = 20;
@@ -6205,7 +6222,7 @@
             this.AddOntools_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddOntools_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddOntools_Opt.ForeColor = System.Drawing.Color.White;
-            this.AddOntools_Opt.Location = new System.Drawing.Point(14, 190);
+            this.AddOntools_Opt.Location = new System.Drawing.Point(14, 150);
             this.AddOntools_Opt.Name = "AddOntools_Opt";
             this.AddOntools_Opt.Size = new System.Drawing.Size(218, 36);
             this.AddOntools_Opt.TabIndex = 19;
@@ -6223,7 +6240,7 @@
             this.Furlconst_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Furlconst_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Furlconst_Opt.ForeColor = System.Drawing.Color.White;
-            this.Furlconst_Opt.Location = new System.Drawing.Point(14, 90);
+            this.Furlconst_Opt.Location = new System.Drawing.Point(14, 68);
             this.Furlconst_Opt.Name = "Furlconst_Opt";
             this.Furlconst_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furlconst_Opt.TabIndex = 18;
@@ -6241,7 +6258,7 @@
             this.Furldir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Furldir_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Furldir_Opt.ForeColor = System.Drawing.Color.White;
-            this.Furldir_Opt.Location = new System.Drawing.Point(14, 40);
+            this.Furldir_Opt.Location = new System.Drawing.Point(14, 26);
             this.Furldir_Opt.Name = "Furldir_Opt";
             this.Furldir_Opt.Size = new System.Drawing.Size(218, 36);
             this.Furldir_Opt.TabIndex = 17;
@@ -7744,6 +7761,7 @@
             this.OpnGoogleStreet_Tls,
             this.OpnBingMap_Tls,
             this.OpenGoogleEarth_Tls,
+            this.OpenGoogleEarthWeb_Tls,
             this.toolStripSeparator26,
             this.CopyGeoMap_Tls,
             this.toolStripSeparator28,
@@ -7836,6 +7854,13 @@
             this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(361, 22);
             this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
             this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
+            // 
+            // OpenGoogleEarthWeb_Tls
+            // 
+            this.OpenGoogleEarthWeb_Tls.Name = "OpenGoogleEarthWeb_Tls";
+            this.OpenGoogleEarthWeb_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpenGoogleEarthWeb_Tls.Text = "Open Google Earth Web";
+            this.OpenGoogleEarthWeb_Tls.Click += new System.EventHandler(this.OpenGoogleEarthWeb_Tls_Click);
             // 
             // toolStripSeparator26
             // 
@@ -8021,8 +8046,8 @@
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
             this.Controls.Add(this.Tools_TAB_3);
-            this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_0);
+            this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -8752,6 +8777,8 @@
         private System.Windows.Forms.ToolStripMenuItem StartRSS2node_Btn;
         private System.Windows.Forms.ToolStripMenuItem ConfigRSS2_Btn;
         private System.Windows.Forms.ToolStripMenuItem RSS2local_Btn;
+        private System.Windows.Forms.ToolStripMenuItem OpenGoogleEarthWeb_Tls;
+        private System.Windows.Forms.CheckBox KillCookies_Chk;
     }
 }
 
