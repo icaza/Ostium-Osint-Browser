@@ -85,6 +85,7 @@ namespace Ostium
         readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
         readonly string SVGviewerdir = Application.StartupPath + @"\SVGviewer\";
         readonly string Keeptrack = Application.StartupPath + @"\KeepTrack\";
+        readonly string InvestigationBoard = Application.StartupPath + @"\InvestigationBoard\";
         readonly string PromptViewer = Application.StartupPath + @"\PromptViewer\";
 
         string databasePath = "default_database_name";
@@ -186,7 +187,7 @@ namespace Ostium
         /// 
         readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "42";
+        readonly string versionNow = "43";
 
         readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
         int Vrfy = 0;
@@ -3797,9 +3798,31 @@ namespace Ostium
 
         void OpenKeepTrack()
         {
-            if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
+            try
             {
-                GoBrowser($"file:///{Keeptrack}Keeptrack.html", 0);
+                if (File.Exists(Path.Combine(Keeptrack, "Keeptrack.html")))
+                {
+                    GoBrowser($"file:///{Keeptrack}Keeptrack.html", 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! OpenKeepTrack: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void InvestigationBoard_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(Path.Combine(InvestigationBoard, "investigation_board.html")))
+                {
+                    GoBrowser($"file:///{InvestigationBoard}investigation_board.html", 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! InvestigationBoard_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
