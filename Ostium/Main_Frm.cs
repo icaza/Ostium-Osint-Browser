@@ -85,6 +85,7 @@ namespace Ostium
         readonly string JsonDirTable = Application.StartupPath + @"\json-files\table\";
         readonly string SVGviewerdir = Application.StartupPath + @"\SVGviewer\";
         readonly string Keeptrack = Application.StartupPath + @"\KeepTrack\";
+        readonly string PromptViewer = Application.StartupPath + @"\PromptViewer\";
 
         string databasePath = "default_database_name";
         ///
@@ -4105,6 +4106,24 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OpnNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void PromptViewer_Mnu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(Path.Combine(PromptViewer, "promptviewer.html")))
+                {
+                    GoBrowser($"file:///{PromptViewer}promptviewer.html", 0);
+
+                    CtrlTabBrowsx();
+                    Control_Tab.SelectedIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! PromptViewer_Mnu_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

@@ -134,6 +134,7 @@
             this.NetExport_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.StartNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.PromptViewer_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
             this.ConvertPDF_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator43 = new System.Windows.Forms.ToolStripSeparator();
@@ -389,6 +390,7 @@
             this.Clear_Btn = new System.Windows.Forms.Button();
             this.SpeakPrompt_Btn = new System.Windows.Forms.Button();
             this.panelHistory = new System.Windows.Forms.Panel();
+            this.PromptViewer_Btn = new System.Windows.Forms.Button();
             this.lblHistoryInfo = new System.Windows.Forms.Label();
             this.btnHistoryPrev = new System.Windows.Forms.Button();
             this.btnHistoryNext = new System.Windows.Forms.Button();
@@ -1198,6 +1200,7 @@
             this.messisPlatformToolStripMenuItem,
             this.secureFileExplorerToolStripMenuItem,
             this.netLogViewerToolStripMenuItem,
+            this.PromptViewer_Mnu,
             this.toolStripSeparator34,
             this.ConvertPDF_Btn,
             this.toolStripSeparator43,
@@ -1339,7 +1342,7 @@
             this.LogPathSFE_Btn});
             this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
             this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.secureFileExplorerToolStripMenuItem.Text = "SecureFileExplorer";
+            this.secureFileExplorerToolStripMenuItem.Text = "Secure File Explorer";
             // 
             // ConfigSFE_Btn
             // 
@@ -1378,7 +1381,7 @@
             this.OpnNLV_Btn});
             this.netLogViewerToolStripMenuItem.Name = "netLogViewerToolStripMenuItem";
             this.netLogViewerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.netLogViewerToolStripMenuItem.Text = "NetLogViewer";
+            this.netLogViewerToolStripMenuItem.Text = "Net Log Viewer";
             // 
             // ConfigNLV_Btn
             // 
@@ -1407,6 +1410,13 @@
             this.OpnNLV_Btn.Size = new System.Drawing.Size(215, 22);
             this.OpnNLV_Btn.Text = "Localhost";
             this.OpnNLV_Btn.Click += new System.EventHandler(this.OpnNLV_Btn_Click);
+            // 
+            // PromptViewer_Mnu
+            // 
+            this.PromptViewer_Mnu.Name = "PromptViewer_Mnu";
+            this.PromptViewer_Mnu.Size = new System.Drawing.Size(239, 22);
+            this.PromptViewer_Mnu.Text = "Prompt History Viewer";
+            this.PromptViewer_Mnu.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
             // 
             // toolStripSeparator34
             // 
@@ -2525,10 +2535,10 @@
             this.Title_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Title_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Title_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Title_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title_Lst.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title_Lst.ForeColor = System.Drawing.Color.White;
             this.Title_Lst.FormattingEnabled = true;
-            this.Title_Lst.ItemHeight = 14;
+            this.Title_Lst.ItemHeight = 18;
             this.Title_Lst.Location = new System.Drawing.Point(0, 0);
             this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
             this.Title_Lst.Name = "Title_Lst";
@@ -4894,6 +4904,7 @@
             // 
             this.panelHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panelHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHistory.Controls.Add(this.PromptViewer_Btn);
             this.panelHistory.Controls.Add(this.lblHistoryInfo);
             this.panelHistory.Controls.Add(this.btnHistoryPrev);
             this.panelHistory.Controls.Add(this.btnHistoryNext);
@@ -4903,11 +4914,28 @@
             this.panelHistory.Size = new System.Drawing.Size(474, 30);
             this.panelHistory.TabIndex = 17;
             // 
+            // PromptViewer_Btn
+            // 
+            this.PromptViewer_Btn.BackColor = System.Drawing.Color.BurlyWood;
+            this.PromptViewer_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PromptViewer_Btn.FlatAppearance.BorderSize = 0;
+            this.PromptViewer_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PromptViewer_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PromptViewer_Btn.ForeColor = System.Drawing.Color.White;
+            this.PromptViewer_Btn.Location = new System.Drawing.Point(3, 3);
+            this.PromptViewer_Btn.Name = "PromptViewer_Btn";
+            this.PromptViewer_Btn.Size = new System.Drawing.Size(42, 22);
+            this.PromptViewer_Btn.TabIndex = 15;
+            this.PromptViewer_Btn.Text = "⚡";
+            this.PromptViewer_Btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.PromptViewer_Btn.UseVisualStyleBackColor = false;
+            this.PromptViewer_Btn.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
+            // 
             // lblHistoryInfo
             // 
             this.lblHistoryInfo.AutoSize = true;
             this.lblHistoryInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblHistoryInfo.Location = new System.Drawing.Point(85, 8);
+            this.lblHistoryInfo.Location = new System.Drawing.Point(133, 8);
             this.lblHistoryInfo.Name = "lblHistoryInfo";
             this.lblHistoryInfo.Size = new System.Drawing.Size(81, 13);
             this.lblHistoryInfo.TabIndex = 14;
@@ -4921,7 +4949,7 @@
             this.btnHistoryPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHistoryPrev.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistoryPrev.ForeColor = System.Drawing.Color.White;
-            this.btnHistoryPrev.Location = new System.Drawing.Point(3, 3);
+            this.btnHistoryPrev.Location = new System.Drawing.Point(51, 3);
             this.btnHistoryPrev.Name = "btnHistoryPrev";
             this.btnHistoryPrev.Size = new System.Drawing.Size(35, 22);
             this.btnHistoryPrev.TabIndex = 11;
@@ -4938,7 +4966,7 @@
             this.btnHistoryNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHistoryNext.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistoryNext.ForeColor = System.Drawing.Color.White;
-            this.btnHistoryNext.Location = new System.Drawing.Point(44, 3);
+            this.btnHistoryNext.Location = new System.Drawing.Point(92, 3);
             this.btnHistoryNext.Name = "btnHistoryNext";
             this.btnHistoryNext.Size = new System.Drawing.Size(35, 22);
             this.btnHistoryNext.TabIndex = 12;
@@ -8779,6 +8807,8 @@
         private System.Windows.Forms.ToolStripMenuItem RSS2local_Btn;
         private System.Windows.Forms.ToolStripMenuItem OpenGoogleEarthWeb_Tls;
         private System.Windows.Forms.CheckBox KillCookies_Chk;
+        private System.Windows.Forms.ToolStripMenuItem PromptViewer_Mnu;
+        private System.Windows.Forms.Button PromptViewer_Btn;
     }
 }
 
