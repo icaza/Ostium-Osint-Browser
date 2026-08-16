@@ -1024,8 +1024,13 @@
                 } else if (item.type === 'image') {
                     el.classList.add('image-item');
                     const img = document.createElement('img');
-                    img.src = item.content;
-                    img.alt = 'Board image';
+                    if (isValidImageSrc(item.content)) {
+                        img.src = item.content;
+                        img.alt = 'Board image';
+                    } else {
+                        img.src = '';
+                        img.alt = 'Invalid image source';
+                    }
                     img.draggable = false;
                     el.appendChild(img);
                 } else if (item.type === 'generic') {
