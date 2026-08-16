@@ -385,6 +385,9 @@
     <Content Include="data\blocked_min.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="InvestigationBoard\investigation_board.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Languages\English.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Investigation Board</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --panel-bg: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #555;
+            --border: #d0d4d9;
+            --accent: #2b6cb0;
+            --accent-hover: #1a4f8b;
+            --shadow: 0 4px 12px rgba(0,0,0,0.15);
+            --note-bg: #fff9c4;
+            --note-text: #333;
+            --selection: #2b6cb0;
+            --toolbar-bg: #ffffff;
+            --danger: #e53e3e;
+            --ok: #38a169;
+            --link-color: #805ad5;
+            --connection-line: #805ad5;
+            --handle-color: #2b6cb0;
+        }
+
+        .dark {
+            --bg: #1a202c;
+            --panel-bg: #2d3748;
+            --text: #e2e8f0;
+            --text-secondary: #a0aec0;
+            --border: #4a5568;
+            --accent: #63b3ed;
+            --accent-hover: #90cdf4;
+            --shadow: 0 4px 12px rgba(0,0,0,0.5);
+            --note-bg: #f6e05e;
+            --note-text: #1a202c;
+            --selection: #63b3ed;
+            --toolbar-bg: #2d3748;
+            --danger: #fc8181;
+            --ok: #68d391;
+            --link-color: #b794f4;
+            --connection-line: #b794f4;
+            --handle-color: #63b3ed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Toolbar */
+        #toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--toolbar-bg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 8px;
+            z-index: 1000;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+            overflow-y: auto;
+            transition: background 0.3s;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .toolbar-separator {
+            width: 1px;
+            height: 32px;
+            background: var(--border);
+            margin: 0 6px;
+            flex-shrink: 0;
+        }
+
+        button, .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+
+            button:hover, .btn:hover {
+                background: var(--border);
+            }
+
+            button:active, .btn:active {
+                transform: scale(0.95);
+            }
+
+            button:disabled, .btn:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+                button:disabled:hover, .btn:disabled:hover {
+                    background: none;
+                }
+
+            button.primary {
+                background: var(--accent);
+                color: white;
+            }
+
+                button.primary:hover {
+                    background: var(--accent-hover);
+                }
+
+            button.danger {
+                color: var(--danger);
+            }
+
+            button.active {
+                background: var(--accent);
+                color: white;
+            }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Project indicator */
+        #project-indicator {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--bg);
+            max-width: 220px;
+            flex-shrink: 0;
+        }
+
+            #project-indicator .project-name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 160px;
+                color: var(--text);
+                font-weight: 600;
+            }
+
+            #project-indicator .dirty-dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--danger);
+                display: none;
+                flex-shrink: 0;
+            }
+
+            #project-indicator.dirty .dirty-dot {
+                display: block;
+            }
+
+        /* Main container */
+        #canvas-container {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            background: var(--bg);
+            cursor: default;
+            touch-action: none;
+            transition: background 0.3s;
+        }
+
+        /* Transformable world */
+        #world {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 0 0;
+            width: 0;
+            height: 0;
+            will-change: transform;
+        }
+
+        /* Board items */
+        .board-item {
+            position: absolute;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+            cursor: grab;
+            min-width: 60px;
+            min-height: 60px;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s;
+            will-change: transform;
+        }
+
+            .board-item.dragging {
+                cursor: grabbing;
+                opacity: 0.85;
+                z-index: 1000 !important;
+            }
+
+            .board-item.resizing {
+                z-index: 1000 !important;
+            }
+
+            .board-item.selected {
+                box-shadow: 0 0 0 2px var(--selection), var(--shadow);
+                z-index: 10;
+            }
+
+            .board-item .delete-btn {
+                position: absolute;
+                top: -12px;
+                right: -12px;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: var(--danger);
+                color: white;
+                border: 2px solid var(--panel-bg);
+                cursor: pointer;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                line-height: 1;
+                padding: 0;
+                z-index: 20;
+            }
+
+            .board-item.selected .delete-btn {
+                display: flex;
+            }
+
+            .board-item .link-handle {
+                position: absolute;
+                bottom: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: var(--handle-color);
+                border: 2px solid var(--panel-bg);
+                cursor: crosshair;
+                display: none;
+                z-index: 15;
+            }
+
+            .board-item.selected .link-handle {
+                display: block;
+            }
+
+            .board-item .resize-handle {
+                position: absolute;
+                right: -6px;
+                bottom: -6px;
+                width: 14px;
+                height: 14px;
+                border-radius: 3px;
+                background: var(--handle-color);
+                border: 2px solid var(--panel-bg);
+                cursor: nwse-resize;
+                display: none;
+                z-index: 15;
+                touch-action: none;
+            }
+
+            .board-item.selected .resize-handle {
+                display: block;
+            }
+
+        /* Note (post-it) */
+        .note {
+            background: var(--note-bg);
+            color: var(--note-text);
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
+            font-size: 16px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            transform: rotate(-1deg);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            .note:hover {
+                transform: rotate(0deg) scale(1.02);
+            }
+
+            .note.selected {
+                transform: rotate(0deg);
+            }
+
+            .note .note-text {
+                outline: none;
+                cursor: text;
+            }
+
+        /* Image */
+        .image-item {
+            background: var(--panel-bg);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+            .image-item img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                pointer-events: none;
+            }
+
+        /* Generic item (Post-it card) */
+        .generic-item {
+            background: var(--panel-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            padding: 12px;
+            overflow-y: auto;
+        }
+
+            .generic-item h4 {
+                font-size: 16px;
+                margin-bottom: 6px;
+                color: var(--text);
+            }
+
+            .generic-item p {
+                font-size: 14px;
+                color: var(--text-secondary);
+                word-wrap: break-word;
+            }
+
+        /* SVG for connections */
+        #connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: visible;
+        }
+
+        .connection-line {
+            stroke: var(--connection-line);
+            stroke-width: 2;
+            fill: none;
+            pointer-events: stroke;
+            cursor: pointer;
+        }
+
+            .connection-line:hover {
+                stroke-width: 3;
+            }
+
+            .connection-line.selected {
+                stroke: var(--danger);
+                stroke-width: 3;
+            }
+
+        /* Selection rectangle */
+        #selection-rect {
+            position: absolute;
+            border: 2px dashed var(--accent);
+            background: rgba(43, 108, 176, 0.1);
+            pointer-events: none;
+            z-index: 500;
+            display: none;
+        }
+
+        /* Empty state (no project open) */
+        #empty-state {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            z-index: 600;
+            text-align: center;
+            padding: 24px;
+        }
+
+            #empty-state.visible {
+                display: flex;
+            }
+
+            #empty-state .empty-card {
+                max-width: 420px;
+            }
+
+            #empty-state h2 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            #empty-state p {
+                color: var(--text-secondary);
+                margin-bottom: 22px;
+                line-height: 1.5;
+                font-size: 14px;
+            }
+
+            #empty-state .empty-actions {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+                #empty-state .empty-actions button {
+                    padding: 10px 18px;
+                }
+
+        /* Property panel */
+        #property-panel {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            width: 260px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 16px;
+            z-index: 900;
+            display: none;
+            transition: background 0.3s;
+        }
+
+            #property-panel.visible {
+                display: block;
+            }
+
+            #property-panel label {
+                display: block;
+                font-size: 13px;
+                color: var(--text-secondary);
+                margin-bottom: 4px;
+            }
+
+            #property-panel input[type="text"],
+            #property-panel input[type="number"],
+            #property-panel textarea,
+            #property-panel input[type="color"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 12px;
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                background: var(--bg);
+                color: var(--text);
+                font-size: 14px;
+            }
+
+            #property-panel textarea {
+                resize: vertical;
+                min-height: 80px;
+            }
+
+            #property-panel .prop-size-row {
+                display: flex;
+                gap: 8px;
+            }
+
+                #property-panel .prop-size-row > div {
+                    flex: 1;
+                }
+
+            #property-panel button {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+
+        /* Modal dialog */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .modal-overlay.active {
+                display: flex;
+            }
+
+        .modal {
+            background: var(--panel-bg);
+            color: var(--text);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+            .modal h3 {
+                margin-bottom: 16px;
+            }
+
+            .modal input, .modal textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 12px;
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                background: var(--bg);
+                color: var(--text);
+                font-size: 14px;
+            }
+
+            .modal .btn-row {
+                display: flex;
+                gap: 8px;
+                justify-content: flex-end;
+            }
+
+            .modal .hint {
+                font-size: 12px;
+                color: var(--text-secondary);
+                margin: -6px 0 12px;
+                line-height: 1.4;
+            }
+
+        /* Zoom indicator */
+        #zoom-indicator {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: var(--text);
+            box-shadow: var(--shadow);
+            z-index: 800;
+            pointer-events: none;
+            transition: background 0.3s;
+        }
+
+        /* Toast notifications */
+        #toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--panel-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 20px;
+            box-shadow: var(--shadow);
+            z-index: 3000;
+            display: none;
+            font-size: 14px;
+            max-width: 90vw;
+            text-align: center;
+            transition: opacity 0.3s;
+        }
+
+            #toast.show {
+                display: block;
+                animation: fadeInOut 2.4s forwards;
+            }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #toolbar {
+                height: auto;
+                min-height: 56px;
+                padding: 8px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            #canvas-container {
+                top: 56px;
+            }
+
+            #property-panel {
+                width: 90%;
+                right: 5%;
+                bottom: 5%;
+            }
+
+            .toolbar-group span {
+                display: none;
+            }
+
+            #project-indicator .project-name {
+                max-width: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toolbar -->
+    <div id="toolbar">
+        <div class="toolbar-group">
+            <button id="btn-add-note" title="Add a note (double-click the canvas)" aria-label="Add a note" class="primary requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" /></svg>
+                <span>Note</span>
+            </button>
+            <button id="btn-add-image" title="Add an image" aria-label="Add an image" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" /></svg>
+                <span>Image</span>
+            </button>
+            <button id="btn-add-generic" title="Add a Post-it" aria-label="Add a Post-it" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" /></svg>
+                <span>Post-it</span>
+            </button>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="toolbar-group">
+            <button id="btn-select-tool" title="Select tool (V)" aria-label="Select tool" class="active requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
+                <span>Select</span>
+            </button>
+            <button id="btn-pan-tool" title="Pan tool (H)" aria-label="Pan tool" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M18 11h-6V5h-2v6H4v2h6v6h2v-6h6v-2z" /></svg>
+                <span>Pan</span>
+            </button>
+            <button id="btn-link-mode" title="Link mode (L) - click two elements" aria-label="Link mode" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg>
+                <span>Link</span>
+            </button>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="toolbar-group">
+            <button id="btn-zoom-out" title="Zoom out" aria-label="Zoom out" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z" /></svg>
+                <span>-</span>
+            </button>
+            <button id="btn-zoom-in" title="Zoom in" aria-label="Zoom in" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z" /></svg>
+                <span>+</span>
+            </button>
+            <span id="zoom-indicator">100%</span>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="toolbar-group">
+            <span id="project-indicator" title="Current project">
+                <span class="dirty-dot" title="Unsaved changes"></span>
+                <span class="project-name">No project</span>
+            </span>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="toolbar-group">
+            <button id="btn-new-project" title="Create a new project" aria-label="Create a new project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 14h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z" /></svg>
+                <span>New</span>
+            </button>
+            <button id="btn-open-project" title="Open a project file" aria-label="Open a project file">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zM5 18v2h14v-2H5z" /></svg>
+                <span>Open</span>
+            </button>
+            <button id="btn-save" title="Save the project (Ctrl+S)" aria-label="Save the project" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" /></svg>
+                <span>Save</span>
+            </button>
+            <button id="btn-save-as" title="Save the project to a new file" aria-label="Save the project to a new file" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg>
+                <span>Save As</span>
+            </button>
+        </div>
+        <div class="toolbar-separator"></div>
+        <div class="toolbar-group">
+            <button id="btn-dark-mode" title="Toggle dark mode" aria-label="Toggle dark mode">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z" /></svg>
+                <span>Dark</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main container -->
+    <div id="canvas-container">
+        <div id="world">
+            <svg id="connections" xmlns="http://www.w3.org/2000/svg"></svg>
+            <!-- Board items are added here -->
+        </div>
+        <div id="selection-rect"></div>
+        <div id="empty-state">
+            <div class="empty-card">
+                <h2>No project open</h2>
+                <p>Create a new investigation board or open an existing project file to get started. Nothing is saved automatically to this browser &mdash; your work lives entirely in a JSON file you control.</p>
+                <div class="empty-actions">
+                    <button id="empty-new-project" class="primary">+ New Project</button>
+                    <button id="empty-open-project">Open Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property panel -->
+    <div id="property-panel" role="complementary" aria-label="Element properties">
+        <h3 style="margin-bottom:12px;">Properties</h3>
+        <label for="prop-text">Text / Content</label>
+        <textarea id="prop-text" rows="4"></textarea>
+        <label for="prop-color">Background color</label>
+        <input type="color" id="prop-color">
+        <div class="prop-size-row">
+            <div>
+                <label for="prop-width">Width (px)</label>
+                <input type="number" id="prop-width" min="60" max="4000" step="1">
+            </div>
+            <div>
+                <label for="prop-height">Height (px)</label>
+                <input type="number" id="prop-height" min="60" max="4000" step="1">
+            </div>
+        </div>
+        <button id="prop-delete" class="danger">Delete element</button>
+        <button id="prop-close">Close</button>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-new-project" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="new-project-title">
+        <div class="modal">
+            <h3 id="new-project-title">Create New Project</h3>
+            <label for="new-project-name">Project name</label>
+            <input type="text" id="new-project-name" placeholder="e.g. Smith Case File" maxlength="80" autocomplete="off">
+            <p class="hint">This creates a new JSON project file right away. If your browser supports it, you'll be asked where to save it; otherwise it will download to your usual Downloads folder.</p>
+            <div class="btn-row">
+                <button id="new-project-cancel">Cancel</button>
+                <button id="new-project-confirm" class="primary">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-image" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="add-image-title">
+        <div class="modal">
+            <h3 id="add-image-title">Add an image</h3>
+            <label for="image-url">Image URL</label>
+            <input type="text" id="image-url" placeholder="https://...">
+            <label for="image-file">or upload</label>
+            <input type="file" id="image-file" accept="image/*">
+            <div class="btn-row">
+                <button id="image-cancel">Cancel</button>
+                <button id="image-confirm" class="primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-generic" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="add-postit-title">
+        <div class="modal">
+            <h3 id="add-postit-title">Add a Post-it</h3>
+            <label for="generic-title">Title</label>
+            <input type="text" id="generic-title" placeholder="Post-it title" maxlength="300">
+            <label for="generic-desc">Description</label>
+            <textarea id="generic-desc" rows="4" placeholder="Details..."></textarea>
+            <div class="btn-row">
+                <button id="generic-cancel">Cancel</button>
+                <button id="generic-confirm" class="primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="open-file-input" accept=".json,application/json" style="display:none">
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ==================== CONSTANTS ====================
+            const MIN_ITEM_SIZE = 60;
+            const MAX_ITEM_SIZE = 4000;
+            const MAX_IMAGE_UPLOAD_BYTES = 8 * 1024 * 1024; // 8 MB
+            const AUTOSAVE_DELAY_MS = 800;
+            const ALLOWED_ITEM_TYPES = ['note', 'image', 'generic'];
+            const JSON_FILE_TYPES = [{
+                description: 'Investigation Board Project',
+                accept: { 'application/json': ['.json'] }
+            }];
+            const supportsFSAccess = 'showSaveFilePicker' in window && 'showOpenFilePicker' in window;
+
+            // ==================== GLOBAL STATE ====================
+            // Projects are stored exclusively as JSON files (via the File System
+            // Access API when available, otherwise via browser download/upload).
+            // No browser storage (localStorage/IndexedDB/cookies) is used.
+            const state = {
+                items: [],            // { id, type, x, y, width, height, content, extra, color }
+                connections: [],      // { id, from, to }
+                selectedIds: new Set(),
+                currentTool: 'select', // 'select', 'pan', 'link'
+                linkSourceId: null,
+                zoom: 1,
+                panX: 0,
+                panY: 0,
+                isDark: false,
+                nextId: 1,
+                nextConnId: 1,
+                projectName: null,
+                fileHandle: null,
+                isDirty: false,
+            };
+
+            // ==================== DOM REFERENCES ====================
+            const world = document.getElementById('world');
+            let connectionsSvg = document.getElementById('connections'); // reassigned on project load, must stay `let`
+            const canvasContainer = document.getElementById('canvas-container');
+            const selectionRect = document.getElementById('selection-rect');
+            const emptyState = document.getElementById('empty-state');
+            const propertyPanel = document.getElementById('property-panel');
+            const propText = document.getElementById('prop-text');
+            const propColor = document.getElementById('prop-color');
+            const propWidth = document.getElementById('prop-width');
+            const propHeight = document.getElementById('prop-height');
+            const zoomIndicator = document.getElementById('zoom-indicator');
+            const toast = document.getElementById('toast');
+            const projectIndicator = document.getElementById('project-indicator');
+            const projectNameLabel = projectIndicator.querySelector('.project-name');
+
+            // Buttons
+            const btnAddNote = document.getElementById('btn-add-note');
+            const btnAddImage = document.getElementById('btn-add-image');
+            const btnAddGeneric = document.getElementById('btn-add-generic');
+            const btnSelectTool = document.getElementById('btn-select-tool');
+            const btnPanTool = document.getElementById('btn-pan-tool');
+            const btnLinkMode = document.getElementById('btn-link-mode');
+            const btnZoomIn = document.getElementById('btn-zoom-in');
+            const btnZoomOut = document.getElementById('btn-zoom-out');
+            const btnNewProject = document.getElementById('btn-new-project');
+            const btnOpenProject = document.getElementById('btn-open-project');
+            const btnSave = document.getElementById('btn-save');
+            const btnSaveAs = document.getElementById('btn-save-as');
+            const btnDarkMode = document.getElementById('btn-dark-mode');
+            const openFileInput = document.getElementById('open-file-input');
+            const emptyNewProjectBtn = document.getElementById('empty-new-project');
+            const emptyOpenProjectBtn = document.getElementById('empty-open-project');
+
+            // Modals
+            const modalNewProject = document.getElementById('modal-new-project');
+            const newProjectNameInput = document.getElementById('new-project-name');
+            const newProjectConfirmBtn = document.getElementById('new-project-confirm');
+            const modalImage = document.getElementById('modal-image');
+            const modalGeneric = document.getElementById('modal-generic');
+            const imageUrlInput = document.getElementById('image-url');
+            const imageFileInput = document.getElementById('image-file');
+            const genericTitleInput = document.getElementById('generic-title');
+            const genericDescInput = document.getElementById('generic-desc');
+
+            // ==================== UTILITIES ====================
+            function generateId() {
+                let id;
+                do {
+                    id = 'item_' + (state.nextId++);
+                } while (state.items.some(i => i.id === id));
+                return id;
+            }
+
+            function generateConnId() {
+                let id;
+                do {
+                    id = 'conn_' + (state.nextConnId++);
+                } while (state.connections.some(c => c.id === id));
+                return id;
+            }
+
+            function clamp(value, min, max) {
+                return Math.min(max, Math.max(min, value));
+            }
+
+            function finiteNumber(value, fallback) {
+                const n = typeof value === 'number' ? value : parseFloat(value);
+                return Number.isFinite(n) ? n : fallback;
+            }
+
+            function showToast(message) {
+                toast.textContent = message;
+                toast.classList.remove('show');
+                void toast.offsetWidth; // reflow to restart animation
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2400);
+            }
+
+            function isValidImageSrc(src) {
+                if (typeof src !== 'string' || !src) return false;
+                if (src.startsWith('data:')) {
+                    return /^data:image\//i.test(src);
+                }
+                try {
+                    const u = new URL(src, window.location.href);
+                    return u.protocol === 'http:' || u.protocol === 'https:';
+                } catch {
+                    return false;
+                }
+            }
+
+            function sanitizeFileName(name) {
+                const cleaned = String(name || '').trim().replace(/[\\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').slice(0, 80);
+                return cleaned || 'project';
+            }
+
+            function computeNextNumericId(ids, prefix) {
+                let max = 0;
+                ids.forEach(id => {
+                    if (typeof id === 'string' && id.startsWith(prefix)) {
+                        const n = parseInt(id.slice(prefix.length), 10);
+                        if (Number.isFinite(n)) max = Math.max(max, n);
+                    }
+                });
+                return max + 1;
+            }
+
+            // ==================== ELEMENT MANAGEMENT ====================
+            function createItem(type, x, y, options = {}) {
+                const id = generateId();
+                const item = {
+                    id,
+                    type,
+                    x,
+                    y,
+                    width: clamp(options.width || 160, MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                    height: clamp(options.height || 120, MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                    content: options.content || '',
+                    extra: options.extra || {},
+                    color: options.color || (type === 'note' ? '#fff9c4' : '#ffffff'),
+                };
+                state.items.push(item);
+                renderItem(item);
+                return item;
+            }
+
+            function renderItem(item) {
+                // Remove any previous DOM node for this item
+                const existing = document.querySelector(`[data-id="${item.id}"]`);
+                if (existing) existing.remove();
+
+                const el = document.createElement('div');
+                el.className = `board-item ${item.type}-item`;
+                el.dataset.id = item.id;
+                el.style.left = item.x + 'px';
+                el.style.top = item.y + 'px';
+                el.style.width = item.width + 'px';
+                el.style.height = item.height + 'px';
+                el.style.zIndex = 1;
+
+                // Content depending on type
+                if (item.type === 'note') {
+                    el.style.backgroundColor = item.color;
+                    el.classList.add('note');
+                    const textDiv = document.createElement('div');
+                    textDiv.className = 'note-text';
+                    textDiv.textContent = item.content || 'Double-click to edit';
+                    textDiv.addEventListener('dblclick', (e) => {
+                        e.stopPropagation();
+                        startInlineEdit(textDiv, item);
+                    });
+                    el.appendChild(textDiv);
+                } else if (item.type === 'image') {
+                    el.classList.add('image-item');
+                    const img = document.createElement('img');
+                    if (isValidImageSrc(item.content)) {
+                        try {
+                            const parsedUrl = new URL(item.content, window.location.href);
+                            if (parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:') {
+                                img.src = parsedUrl.href;
+                                img.alt = 'Board image';
+                            } else {
+                                img.src = '';
+                                img.alt = 'Invalid image source';
+                            }
+                        } catch (_) {
+                            img.src = '';
+                            img.alt = 'Invalid image source';
+                        }
+                    } else {
+                        img.src = '';
+                        img.alt = 'Invalid image source';
+                    }
+                    img.draggable = false;
+                    el.appendChild(img);
+                } else if (item.type === 'generic') {
+                    el.classList.add('generic-item');
+                    el.style.backgroundColor = item.color;
+                    const title = document.createElement('h4');
+                    title.textContent = item.extra.title || 'Untitled';
+                    const desc = document.createElement('p');
+                    desc.textContent = item.extra.description || '';
+                    el.appendChild(title);
+                    el.appendChild(desc);
+                }
+
+                // Delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.title = 'Delete';
+                deleteBtn.setAttribute('aria-label', 'Delete element');
+                deleteBtn.addEventListener('mousedown', (e) => {
+                    e.stopPropagation();
+                    deleteItem(item.id);
+                });
+                deleteBtn.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                    deleteItem(item.id);
+                }, { passive: false });
+                el.appendChild(deleteBtn);
+
+                // Link handle
+                const linkHandle = document.createElement('div');
+                linkHandle.className = 'link-handle';
+                linkHandle.title = 'Create link';
+                linkHandle.setAttribute('aria-label', 'Create link from this element');
+                linkHandle.addEventListener('mousedown', (e) => {
+                    e.stopPropagation();
+                    startLinkFrom(item.id);
+                });
+                linkHandle.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                    startLinkFrom(item.id);
+                }, { passive: false });
+                el.appendChild(linkHandle);
+
+                // Resize handle
+                const resizeHandle = document.createElement('div');
+                resizeHandle.className = 'resize-handle';
+                resizeHandle.title = 'Resize';
+                resizeHandle.setAttribute('aria-label', 'Resize element');
+                resizeHandle.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    e.stopPropagation();
+                    if (!state.selectedIds.has(item.id)) selectItem(item.id, false);
+                    beginResize(e.clientX, e.clientY, item);
+                    document.addEventListener('mousemove', onResizeMouseMove);
+                    document.addEventListener('mouseup', onResizeMouseUp);
+                    e.preventDefault();
+                });
+                resizeHandle.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                    if (!state.selectedIds.has(item.id)) selectItem(item.id, false);
+                    const t = e.touches[0];
+                    beginResize(t.clientX, t.clientY, item);
+                    document.addEventListener('touchmove', onResizeTouchMove, { passive: false });
+                    document.addEventListener('touchend', onResizeTouchEnd);
+                    e.preventDefault();
+                }, { passive: false });
+                el.appendChild(resizeHandle);
+
+                // Base events
+                el.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    if (state.currentTool === 'select') {
+                        handleItemMouseDown(e, item);
+                    }
+                });
+
+                el.addEventListener('touchstart', (e) => {
+                    if (state.currentTool === 'select') {
+                        handleItemTouchStart(e, item);
+                    }
+                }, { passive: false });
+
+                world.appendChild(el);
+                item._el = el;
+
+                updateSelectionVisuals();
+            }
+
+            function updateItemPosition(item) {
+                if (item._el) {
+                    item._el.style.left = item.x + 'px';
+                    item._el.style.top = item.y + 'px';
+                }
+                updateConnections();
+            }
+
+            function updateItemSize(item) {
+                if (item._el) {
+                    item._el.style.width = item.width + 'px';
+                    item._el.style.height = item.height + 'px';
+                }
+                updateConnections();
+            }
+
+            function updateSelectionVisuals() {
+                document.querySelectorAll('.board-item').forEach(el => {
+                    const id = el.dataset.id;
+                    if (state.selectedIds.has(id)) {
+                        el.classList.add('selected');
+                    } else {
+                        el.classList.remove('selected');
+                    }
+                });
+                updatePropertyPanel();
+            }
+
+            function deleteItem(id) {
+                const index = state.items.findIndex(i => i.id === id);
+                if (index !== -1) {
+                    const item = state.items[index];
+                    if (item._el) item._el.remove();
+                    state.items.splice(index, 1);
+                    state.connections = state.connections.filter(c => c.from !== id && c.to !== id);
+                    state.selectedIds.delete(id);
+                    updateSelectionVisuals();
+                    updateConnections();
+                    markDirty();
+                }
+            }
+
+            // ==================== INLINE EDITING ====================
+            function startInlineEdit(textDiv, item) {
+                textDiv.contentEditable = 'true';
+                textDiv.focus();
+                const range = document.createRange();
+                range.selectNodeContents(textDiv);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+                const finishEdit = () => {
+                    textDiv.contentEditable = 'false';
+                    const newText = textDiv.textContent.trim();
+                    item.content = newText;
+                    textDiv.textContent = newText || 'Double-click to edit';
+                    markDirty();
+                };
+
+                textDiv.addEventListener('blur', finishEdit, { once: true });
+                textDiv.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        textDiv.blur();
+                    }
+                    if (e.key === 'Escape') {
+                        textDiv.textContent = item.content || 'Double-click to edit';
+                        textDiv.blur();
+                    }
+                });
+            }
+
+            // ==================== CONNECTIONS ====================
+            function startLinkFrom(sourceId) {
+                if (state.currentTool !== 'link') {
+                    setTool('link');
+                }
+                state.linkSourceId = sourceId;
+                showToast('Click the target element to link');
+                document.querySelectorAll('.board-item').forEach(el => {
+                    if (el.dataset.id === sourceId) {
+                        el.style.boxShadow = `0 0 0 3px ${getComputedStyle(document.documentElement).getPropertyValue('--accent')}`;
+                    }
+                });
+            }
+
+            function completeLink(targetId) {
+                if (state.linkSourceId && state.linkSourceId !== targetId) {
+                    const exists = state.connections.some(c =>
+                        (c.from === state.linkSourceId && c.to === targetId) ||
+                        (c.from === targetId && c.to === state.linkSourceId)
+                    );
+                    if (!exists) {
+                        state.connections.push({
+                            id: generateConnId(),
+                            from: state.linkSourceId,
+                            to: targetId
+                        });
+                        updateConnections();
+                        markDirty();
+                    }
+                }
+                state.linkSourceId = null;
+                document.querySelectorAll('.board-item').forEach(el => {
+                    el.style.boxShadow = '';
+                });
+            }
+
+            function updateConnections() {
+                let svgContent = '';
+                state.connections.forEach(conn => {
+                    const fromItem = state.items.find(i => i.id === conn.from);
+                    const toItem = state.items.find(i => i.id === conn.to);
+                    if (fromItem && toItem) {
+                        const x1 = fromItem.x + fromItem.width / 2;
+                        const y1 = fromItem.y + fromItem.height / 2;
+                        const x2 = toItem.x + toItem.width / 2;
+                        const y2 = toItem.y + toItem.height / 2;
+                        svgContent += `<line class="connection-line" data-id="${conn.id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />`;
+                    }
+                });
+                connectionsSvg.innerHTML = svgContent;
+                // Update SVG bounds without spreading large arrays into Math.max
+                let maxX = 0, maxY = 0;
+                state.items.forEach(i => {
+                    maxX = Math.max(maxX, i.x + i.width);
+                    maxY = Math.max(maxY, i.y + i.height);
+                });
+                connectionsSvg.setAttribute('width', Math.max(maxX + 100, 1000));
+                connectionsSvg.setAttribute('height', Math.max(maxY + 100, 1000));
+            }
+
+            // ==================== SELECTION ====================
+            function selectItem(id, additive = false) {
+                if (!additive) {
+                    state.selectedIds.clear();
+                }
+                state.selectedIds.add(id);
+                updateSelectionVisuals();
+            }
+
+            function clearSelection() {
+                state.selectedIds.clear();
+                updateSelectionVisuals();
+            }
+
+            function getSelectedItems() {
+                return state.items.filter(i => state.selectedIds.has(i.id));
+            }
+
+            // ==================== PROPERTY PANEL ====================
+            function updatePropertyPanel() {
+                const selected = getSelectedItems();
+                if (selected.length === 1) {
+                    propertyPanel.classList.add('visible');
+                    const item = selected[0];
+                    if (item.type === 'generic') {
+                        propText.value = `${item.extra.title || ''}\n${item.extra.description || ''}`;
+                    } else {
+                        propText.value = item.content || '';
+                    }
+                    propColor.value = item.color || '#ffffff';
+                    propWidth.value = Math.round(item.width);
+                    propHeight.value = Math.round(item.height);
+                    propText.disabled = false;
+                    propColor.disabled = false;
+                    propWidth.disabled = false;
+                    propHeight.disabled = false;
+                } else if (selected.length > 1) {
+                    propertyPanel.classList.add('visible');
+                    propText.value = `(${selected.length} elements selected)`;
+                    propText.disabled = true;
+                    propColor.disabled = true;
+                    propWidth.disabled = true;
+                    propHeight.disabled = true;
+                } else {
+                    propertyPanel.classList.remove('visible');
+                    propText.disabled = false;
+                    propColor.disabled = false;
+                    propWidth.disabled = false;
+                    propHeight.disabled = false;
+                }
+            }
+
+            propText.addEventListener('input', () => {
+                const selected = getSelectedItems();
+                if (selected.length === 1) {
+                    const item = selected[0];
+                    if (item.type === 'note') {
+                        item.content = propText.value;
+                        if (item._el) {
+                            const textDiv = item._el.querySelector('.note-text');
+                            if (textDiv) textDiv.textContent = propText.value || 'Double-click to edit';
+                        }
+                    } else if (item.type === 'generic') {
+                        const lines = propText.value.split('\n');
+                        const title = lines[0] || '';
+                        const description = lines.slice(1).join('\n');
+                        item.extra = { title, description };
+                        if (item._el) {
+                            const h4 = item._el.querySelector('h4');
+                            const p = item._el.querySelector('p');
+                            if (h4) h4.textContent = title || 'Untitled';
+                            if (p) p.textContent = description;
+                        }
+                    }
+                    markDirty();
+                }
+            });
+
+            propColor.addEventListener('input', () => {
+                const selected = getSelectedItems();
+                if (selected.length === 1) {
+                    const item = selected[0];
+                    item.color = propColor.value;
+                    if (item._el) {
+                        item._el.style.backgroundColor = item.color;
+                    }
+                    markDirty();
+                }
+            });
+
+            propWidth.addEventListener('input', () => {
+                const selected = getSelectedItems();
+                if (selected.length === 1) {
+                    const item = selected[0];
+                    item.width = clamp(finiteNumber(propWidth.value, item.width), MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                    updateItemSize(item);
+                    markDirty();
+                }
+            });
+
+            propHeight.addEventListener('input', () => {
+                const selected = getSelectedItems();
+                if (selected.length === 1) {
+                    const item = selected[0];
+                    item.height = clamp(finiteNumber(propHeight.value, item.height), MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                    updateItemSize(item);
+                    markDirty();
+                }
+            });
+
+            document.getElementById('prop-delete').addEventListener('click', () => {
+                const selected = [...state.selectedIds];
+                selected.forEach(id => deleteItem(id));
+                propertyPanel.classList.remove('visible');
+            });
+
+            document.getElementById('prop-close').addEventListener('click', () => {
+                propertyPanel.classList.remove('visible');
+            });
+
+            // ==================== TOOLS ====================
+            function setTool(tool) {
+                state.currentTool = tool;
+                btnSelectTool.classList.remove('active');
+                btnPanTool.classList.remove('active');
+                btnLinkMode.classList.remove('active');
+                if (tool === 'select') btnSelectTool.classList.add('active');
+                if (tool === 'pan') btnPanTool.classList.add('active');
+                if (tool === 'link') btnLinkMode.classList.add('active');
+                canvasContainer.style.cursor = tool === 'pan' ? 'grab' : 'default';
+                if (tool !== 'link') {
+                    state.linkSourceId = null;
+                    document.querySelectorAll('.board-item').forEach(el => el.style.boxShadow = '');
+                }
+            }
+
+            btnSelectTool.addEventListener('click', () => setTool('select'));
+            btnPanTool.addEventListener('click', () => setTool('pan'));
+            btnLinkMode.addEventListener('click', () => setTool('link'));
+
+            // ==================== DRAG & DROP ====================
+            let dragState = null; // { itemIds, startWorldX, startWorldY, origPositions, moved }
+
+            function handleItemMouseDown(e, item) {
+                e.stopPropagation();
+                if (e.shiftKey) {
+                    // Multi-selection
+                    if (state.selectedIds.has(item.id)) {
+                        state.selectedIds.delete(item.id);
+                    } else {
+                        state.selectedIds.add(item.id);
+                    }
+                    updateSelectionVisuals();
+                    return;
+                }
+
+                if (!state.selectedIds.has(item.id)) {
+                    selectItem(item.id, false);
+                }
+
+                const rect = canvasContainer.getBoundingClientRect();
+                const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
+                const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
+
+                dragState = {
+                    itemIds: [...state.selectedIds],
+                    startWorldX: worldX,
+                    startWorldY: worldY,
+                    origPositions: new Map(state.items.filter(i => state.selectedIds.has(i.id)).map(i => [i.id, { x: i.x, y: i.y }])),
+                    moved: false,
+                };
+
+                document.addEventListener('mousemove', onDragMouseMove);
+                document.addEventListener('mouseup', onDragMouseUp);
+                e.preventDefault();
+            }
+
+            function handleItemTouchStart(e, item) {
+                e.stopPropagation();
+                if (!state.selectedIds.has(item.id)) {
+                    selectItem(item.id, false);
+                }
+
+                const touch = e.touches[0];
+                const rect = canvasContainer.getBoundingClientRect();
+                const worldX = (touch.clientX - rect.left - state.panX) / state.zoom;
+                const worldY = (touch.clientY - rect.top - state.panY) / state.zoom;
+
+                dragState = {
+                    itemIds: [...state.selectedIds],
+                    startWorldX: worldX,
+                    startWorldY: worldY,
+                    origPositions: new Map(state.items.filter(i => state.selectedIds.has(i.id)).map(i => [i.id, { x: i.x, y: i.y }])),
+                    moved: false,
+                };
+
+                document.addEventListener('touchmove', onDragTouchMove, { passive: false });
+                document.addEventListener('touchend', onDragTouchEnd);
+                e.preventDefault();
+            }
+
+            function onDragMouseMove(e) {
+                if (!dragState) return;
+                const rect = canvasContainer.getBoundingClientRect();
+                const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
+                const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
+                const dx = worldX - dragState.startWorldX;
+                const dy = worldY - dragState.startWorldY;
+
+                if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragState.moved = true;
+
+                dragState.itemIds.forEach(id => {
+                    const item = state.items.find(i => i.id === id);
+                    const orig = dragState.origPositions.get(id);
+                    if (item && orig) {
+                        item.x = orig.x + dx;
+                        item.y = orig.y + dy;
+                        updateItemPosition(item);
+                    }
+                });
+
+                e.preventDefault();
+            }
+
+            function onDragMouseUp() {
+                document.removeEventListener('mousemove', onDragMouseMove);
+                document.removeEventListener('mouseup', onDragMouseUp);
+                if (dragState && dragState.moved) {
+                    markDirty();
+                }
+                dragState = null;
+            }
+
+            function onDragTouchMove(e) {
+                if (!dragState) return;
+                const touch = e.touches[0];
+                const rect = canvasContainer.getBoundingClientRect();
+                const worldX = (touch.clientX - rect.left - state.panX) / state.zoom;
+                const worldY = (touch.clientY - rect.top - state.panY) / state.zoom;
+                const dx = worldX - dragState.startWorldX;
+                const dy = worldY - dragState.startWorldY;
+
+                if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragState.moved = true;
+
+                dragState.itemIds.forEach(id => {
+                    const item = state.items.find(i => i.id === id);
+                    const orig = dragState.origPositions.get(id);
+                    if (item && orig) {
+                        item.x = orig.x + dx;
+                        item.y = orig.y + dy;
+                        updateItemPosition(item);
+                    }
+                });
+                e.preventDefault();
+            }
+
+            function onDragTouchEnd() {
+                document.removeEventListener('touchmove', onDragTouchMove);
+                document.removeEventListener('touchend', onDragTouchEnd);
+                if (dragState && dragState.moved) {
+                    markDirty();
+                }
+                dragState = null;
+            }
+
+            // ==================== RESIZE ====================
+            let resizeState = null; // { itemId, startClientX, startClientY, startWidth, startHeight }
+
+            function beginResize(clientX, clientY, item) {
+                if (item._el) item._el.classList.add('resizing');
+                resizeState = {
+                    itemId: item.id,
+                    startClientX: clientX,
+                    startClientY: clientY,
+                    startWidth: item.width,
+                    startHeight: item.height,
+                };
+            }
+
+            function applyResize(clientX, clientY) {
+                if (!resizeState) return;
+                const item = state.items.find(i => i.id === resizeState.itemId);
+                if (!item) return;
+                const dx = (clientX - resizeState.startClientX) / state.zoom;
+                const dy = (clientY - resizeState.startClientY) / state.zoom;
+                item.width = clamp(resizeState.startWidth + dx, MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                item.height = clamp(resizeState.startHeight + dy, MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                updateItemSize(item);
+                if (state.selectedIds.size === 1 && state.selectedIds.has(item.id)) {
+                    propWidth.value = Math.round(item.width);
+                    propHeight.value = Math.round(item.height);
+                }
+            }
+
+            function endResize() {
+                if (resizeState) {
+                    const item = state.items.find(i => i.id === resizeState.itemId);
+                    if (item && item._el) item._el.classList.remove('resizing');
+                    markDirty();
+                }
+                resizeState = null;
+            }
+
+            function onResizeMouseMove(e) {
+                if (!resizeState) return;
+                applyResize(e.clientX, e.clientY);
+                e.preventDefault();
+            }
+
+            function onResizeMouseUp() {
+                document.removeEventListener('mousemove', onResizeMouseMove);
+                document.removeEventListener('mouseup', onResizeMouseUp);
+                endResize();
+            }
+
+            function onResizeTouchMove(e) {
+                if (!resizeState) return;
+                const t = e.touches[0];
+                applyResize(t.clientX, t.clientY);
+                e.preventDefault();
+            }
+
+            function onResizeTouchEnd() {
+                document.removeEventListener('touchmove', onResizeTouchMove);
+                document.removeEventListener('touchend', onResizeTouchEnd);
+                endResize();
+            }
+
+            // ==================== LINK MODE CLICK HANDLING ====================
+            document.addEventListener('mousedown', (e) => {
+                if (state.currentTool === 'link') {
+                    const itemEl = e.target.closest('.board-item');
+                    if (itemEl) {
+                        const id = itemEl.dataset.id;
+                        if (!state.linkSourceId) {
+                            startLinkFrom(id);
+                        } else {
+                            completeLink(id);
+                        }
+                        e.stopPropagation();
+                    }
+                }
+            });
+
+            // ==================== PAN & ZOOM ====================
+            let panState = null;
+
+            canvasContainer.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                if (!state.projectName) return;
+                if (state.currentTool === 'pan' || (e.altKey && state.currentTool === 'select')) {
+                    e.preventDefault();
+                    panState = { startX: e.clientX, startY: e.clientY, origPanX: state.panX, origPanY: state.panY };
+                    document.addEventListener('mousemove', onPanMouseMove);
+                    document.addEventListener('mouseup', onPanMouseUp);
+                    canvasContainer.style.cursor = 'grabbing';
+                } else if (state.currentTool === 'select' && e.target === canvasContainer) {
+                    const rect = canvasContainer.getBoundingClientRect();
+                    const startX = (e.clientX - rect.left - state.panX) / state.zoom;
+                    const startY = (e.clientY - rect.top - state.panY) / state.zoom;
+                    selectionRect.style.display = 'block';
+                    selectionRect.dataset.startX = startX;
+                    selectionRect.dataset.startY = startY;
+                    selectionRect.style.left = (startX * state.zoom + state.panX) + 'px';
+                    selectionRect.style.top = (startY * state.zoom + state.panY) + 'px';
+                    selectionRect.style.width = '0px';
+                    selectionRect.style.height = '0px';
+                    document.addEventListener('mousemove', onSelectionMouseMove);
+                    document.addEventListener('mouseup', onSelectionMouseUp);
+                }
+            });
+
+            function onPanMouseMove(e) {
+                if (!panState) return;
+                const dx = e.clientX - panState.startX;
+                const dy = e.clientY - panState.startY;
+                state.panX = panState.origPanX + dx;
+                state.panY = panState.origPanY + dy;
+                applyTransform();
+                e.preventDefault();
+            }
+
+            function onPanMouseUp() {
+                document.removeEventListener('mousemove', onPanMouseMove);
+                document.removeEventListener('mouseup', onPanMouseUp);
+                panState = null;
+                canvasContainer.style.cursor = state.currentTool === 'pan' ? 'grab' : 'default';
+                markDirty();
+            }
+
+            // Rectangular selection
+            function onSelectionMouseMove(e) {
+                const rect = canvasContainer.getBoundingClientRect();
+                const startX = parseFloat(selectionRect.dataset.startX);
+                const startY = parseFloat(selectionRect.dataset.startY);
+                const currentX = (e.clientX - rect.left - state.panX) / state.zoom;
+                const currentY = (e.clientY - rect.top - state.panY) / state.zoom;
+
+                const left = Math.min(startX, currentX);
+                const top = Math.min(startY, currentY);
+                const width = Math.abs(currentX - startX);
+                const height = Math.abs(currentY - startY);
+
+                selectionRect.style.left = (left * state.zoom + state.panX) + 'px';
+                selectionRect.style.top = (top * state.zoom + state.panY) + 'px';
+                selectionRect.style.width = (width * state.zoom) + 'px';
+                selectionRect.style.height = (height * state.zoom) + 'px';
+                e.preventDefault();
+            }
+
+            function onSelectionMouseUp(e) {
+                document.removeEventListener('mousemove', onSelectionMouseMove);
+                document.removeEventListener('mouseup', onSelectionMouseUp);
+                selectionRect.style.display = 'none';
+
+                const startX = parseFloat(selectionRect.dataset.startX);
+                const startY = parseFloat(selectionRect.dataset.startY);
+                const rect = canvasContainer.getBoundingClientRect();
+                const endX = (e.clientX - rect.left - state.panX) / state.zoom;
+                const endY = (e.clientY - rect.top - state.panY) / state.zoom;
+                const minX = Math.min(startX, endX);
+                const maxX = Math.max(startX, endX);
+                const minY = Math.min(startY, endY);
+                const maxY = Math.max(startY, endY);
+
+                if (maxX - minX > 5 && maxY - minY > 5) {
+                    state.selectedIds.clear();
+                    state.items.forEach(item => {
+                        if (item.x < maxX && item.x + item.width > minX &&
+                            item.y < maxY && item.y + item.height > minY) {
+                            state.selectedIds.add(item.id);
+                        }
+                    });
+                }
+                updateSelectionVisuals();
+            }
+
+            // Wheel zoom
+            canvasContainer.addEventListener('wheel', (e) => {
+                if (!state.projectName) return;
+                e.preventDefault();
+                const rect = canvasContainer.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const zoomFactor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
+                const newZoom = Math.min(3, Math.max(0.2, state.zoom * zoomFactor));
+
+                state.panX = mouseX - (mouseX - state.panX) * (newZoom / state.zoom);
+                state.panY = mouseY - (mouseY - state.panY) * (newZoom / state.zoom);
+                state.zoom = newZoom;
+
+                applyTransform();
+                updateZoomIndicator();
+                markDirty();
+            }, { passive: false });
+
+            function applyTransform() {
+                world.style.transform = `translate(${state.panX}px, ${state.panY}px) scale(${state.zoom})`;
+                if (selectionRect.style.display === 'block') {
+                    const sx = parseFloat(selectionRect.dataset.startX) || 0;
+                    const sy = parseFloat(selectionRect.dataset.startY) || 0;
+                    selectionRect.style.left = (sx * state.zoom + state.panX) + 'px';
+                    selectionRect.style.top = (sy * state.zoom + state.panY) + 'px';
+                }
+            }
+
+            function updateZoomIndicator() {
+                zoomIndicator.textContent = Math.round(state.zoom * 100) + '%';
+            }
+
+            btnZoomIn.addEventListener('click', () => {
+                state.zoom = Math.min(3, state.zoom * 1.2);
+                applyTransform();
+                updateZoomIndicator();
+                markDirty();
+            });
+
+            btnZoomOut.addEventListener('click', () => {
+                state.zoom = Math.max(0.2, state.zoom / 1.2);
+                applyTransform();
+                updateZoomIndicator();
+                markDirty();
+            });
+
+            // ==================== ADDING ELEMENTS ====================
+            btnAddNote.addEventListener('click', () => {
+                if (!state.projectName) return;
+                const rect = canvasContainer.getBoundingClientRect();
+                const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                createItem('note', worldX - 80, worldY - 60, {
+                    width: 160,
+                    height: 120,
+                    content: 'New note'
+                });
+                markDirty();
+            });
+
+            canvasContainer.addEventListener('dblclick', (e) => {
+                if (!state.projectName) return;
+                if (e.target === canvasContainer || e.target === world || e.target === connectionsSvg) {
+                    const rect = canvasContainer.getBoundingClientRect();
+                    const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
+                    const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
+                    createItem('note', worldX - 80, worldY - 60, {
+                        width: 160,
+                        height: 120,
+                        content: 'Double-click to edit'
+                    });
+                    markDirty();
+                }
+            });
+
+            // Image modal
+            btnAddImage.addEventListener('click', () => {
+                if (!state.projectName) return;
+                modalImage.classList.add('active');
+                imageUrlInput.value = '';
+                imageFileInput.value = '';
+            });
+
+            document.getElementById('image-cancel').addEventListener('click', () => {
+                modalImage.classList.remove('active');
+            });
+
+            document.getElementById('image-confirm').addEventListener('click', () => {
+                const url = imageUrlInput.value.trim();
+                const file = imageFileInput.files[0];
+                if (file) {
+                    if (file.size > MAX_IMAGE_UPLOAD_BYTES) {
+                        showToast('Image is too large (max 8 MB). Try a smaller file or use a URL instead.');
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const dataUrl = e.target.result;
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                        const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                        createItem('image', worldX - 100, worldY - 75, {
+                            width: 200,
+                            height: 150,
+                            content: dataUrl
+                        });
+                        markDirty();
+                        modalImage.classList.remove('active');
+                    };
+                    reader.onerror = () => showToast('Could not read the selected image file.');
+                    reader.readAsDataURL(file);
+                } else if (url && isValidImageSrc(url)) {
+                    const rect = canvasContainer.getBoundingClientRect();
+                    const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                    const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                    createItem('image', worldX - 100, worldY - 75, {
+                        width: 200,
+                        height: 150,
+                        content: url
+                    });
+                    markDirty();
+                    modalImage.classList.remove('active');
+                } else {
+                    showToast('Enter a valid image URL or choose a file to upload.');
+                }
+            });
+
+            // Post-it (generic) modal
+            btnAddGeneric.addEventListener('click', () => {
+                if (!state.projectName) return;
+                modalGeneric.classList.add('active');
+                genericTitleInput.value = '';
+                genericDescInput.value = '';
+                genericTitleInput.focus();
+            });
+
+            document.getElementById('generic-cancel').addEventListener('click', () => {
+                modalGeneric.classList.remove('active');
+            });
+
+            document.getElementById('generic-confirm').addEventListener('click', () => {
+                const title = genericTitleInput.value.trim() || 'Untitled';
+                const desc = genericDescInput.value.trim() || '';
+                const rect = canvasContainer.getBoundingClientRect();
+                const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                createItem('generic', worldX - 80, worldY - 60, {
+                    width: 160,
+                    height: 120,
+                    extra: { title, description: desc }
+                });
+                markDirty();
+                modalGeneric.classList.remove('active');
+            });
+
+            // ==================== PROJECT DATA (VALIDATION / SERIALIZATION) ====================
+            function buildEmptyProjectTemplate(name) {
+                return {
+                    items: [],
+                    connections: [],
+                    zoom: 1,
+                    panX: 0,
+                    panY: 0,
+                    isDark: state.isDark,
+                    name,
+                };
+            }
+
+            function validateProjectData(raw) {
+                if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+                    throw new Error('the file does not contain a valid project object');
+                }
+                if (!Array.isArray(raw.items)) {
+                    throw new Error('missing or invalid "items" list');
+                }
+
+                const seenIds = new Set();
+                const items = raw.items
+                    .filter(i => i && typeof i === 'object')
+                    .map((i, idx) => {
+                        const type = ALLOWED_ITEM_TYPES.includes(i.type) ? i.type : 'note';
+                        let id = typeof i.id === 'string' && i.id ? i.id : null;
+                        if (!id || seenIds.has(id)) {
+                            id = `item_imported_${idx}_${Date.now()}`;
+                        }
+                        seenIds.add(id);
+
+                        let content = typeof i.content === 'string' ? i.content : '';
+                        if (type === 'image') {
+                            if (!isValidImageSrc(content)) content = '';
+                        } else {
+                            content = content.slice(0, 20000);
+                        }
+
+                        let extra = {};
+                        if (i.extra && typeof i.extra === 'object') {
+                            extra = {
+                                title: typeof i.extra.title === 'string' ? i.extra.title.slice(0, 300) : '',
+                                description: typeof i.extra.description === 'string' ? i.extra.description.slice(0, 5000) : '',
+                            };
+                        }
+
+                        const color = (typeof i.color === 'string' && /^#[0-9a-fA-F]{3,8}$/.test(i.color))
+                            ? i.color
+                            : (type === 'note' ? '#fff9c4' : '#ffffff');
+
+                        return {
+                            id,
+                            type,
+                            x: finiteNumber(i.x, 0),
+                            y: finiteNumber(i.y, 0),
+                            width: clamp(finiteNumber(i.width, 160), MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                            height: clamp(finiteNumber(i.height, 120), MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                            content,
+                            extra,
+                            color,
+                        };
+                    });
+
+                const idSet = new Set(items.map(i => i.id));
+                const seenConnIds = new Set();
+                const connections = Array.isArray(raw.connections)
+                    ? raw.connections
+                        .filter(c => c && idSet.has(c.from) && idSet.has(c.to) && c.from !== c.to)
+                        .map((c, idx) => {
+                            let id = typeof c.id === 'string' && c.id ? c.id : null;
+                            if (!id || seenConnIds.has(id)) {
+                                id = `conn_imported_${idx}_${Date.now()}`;
+                            }
+                            seenConnIds.add(id);
+                            return { id, from: c.from, to: c.to };
+                        })
+                    : [];
+
+                return {
+                    items,
+                    connections,
+                    zoom: clamp(finiteNumber(raw.zoom, 1), 0.2, 3),
+                    panX: finiteNumber(raw.panX, 0),
+                    panY: finiteNumber(raw.panY, 0),
+                    isDark: !!raw.isDark,
+                    name: typeof raw.name === 'string' && raw.name.trim() ? raw.name.trim() : null,
+                };
+            }
+
+            function serializeProject() {
+                return {
+                    schema: 'investigation-board',
+                    version: 1,
+                    name: state.projectName,
+                    items: state.items.map(i => ({
+                        id: i.id, type: i.type, x: i.x, y: i.y,
+                        width: i.width, height: i.height,
+                        content: i.content, extra: i.extra, color: i.color
+                    })),
+                    connections: state.connections.map(c => ({ id: c.id, from: c.from, to: c.to })),
+                    zoom: state.zoom,
+                    panX: state.panX,
+                    panY: state.panY,
+                    isDark: state.isDark,
+                };
+            }
+
+            function resetWorldDom() {
+                world.innerHTML = '<svg id="connections" xmlns="http://www.w3.org/2000/svg"></svg>';
+                connectionsSvg = document.getElementById('connections');
+            }
+
+            function applyProjectData(data, name) {
+                resetWorldDom();
+                state.items = data.items.map(i => ({ ...i }));
+                state.connections = data.connections.map(c => ({ ...c }));
+                state.selectedIds.clear();
+                state.linkSourceId = null;
+                state.zoom = data.zoom;
+                state.panX = data.panX;
+                state.panY = data.panY;
+                state.isDark = !!data.isDark;
+                state.nextId = computeNextNumericId(state.items.map(i => i.id), 'item_');
+                state.nextConnId = computeNextNumericId(state.connections.map(c => c.id), 'conn_');
+                state.projectName = name;
+                state.isDirty = false;
+                document.body.classList.toggle('dark', state.isDark);
+                state.items.forEach(item => renderItem(item));
+                updateConnections();
+                applyTransform();
+                updateZoomIndicator();
+                updatePropertyPanel();
+                updateProjectIndicator();
+                setProjectActiveUIState(true);
+            }
+
+            // ==================== PROJECT UI STATE ====================
+            function updateProjectIndicator() {
+                projectNameLabel.textContent = state.projectName || 'No project';
+                projectIndicator.classList.toggle('dirty', state.isDirty);
+                document.title = (state.projectName ? state.projectName + (state.isDirty ? ' \u2022 ' : ' \u2014 ') : '') + 'Investigation Board';
+            }
+
+            function setProjectActiveUIState(active) {
+                document.querySelectorAll('.requires-project').forEach(btn => {
+                    btn.disabled = !active;
+                });
+                emptyState.classList.toggle('visible', !active);
+            }
+
+            function confirmDiscardIfDirty() {
+                if (!state.isDirty) return true;
+                return window.confirm('You have unsaved changes in the current project. Discard them and continue?');
+            }
+
+            function markDirty() {
+                state.isDirty = true;
+                updateProjectIndicator();
+                scheduleAutosave();
+            }
+
+            let autosaveTimer = null;
+            function scheduleAutosave() {
+                if (!state.fileHandle) return; // no handle: can't autosave silently, user must Save manually
+                clearTimeout(autosaveTimer);
+                autosaveTimer = setTimeout(() => {
+                    writeProjectToDisk(true);
+                }, AUTOSAVE_DELAY_MS);
+            }
+
+            // ==================== SAVE / OPEN / NEW (JSON FILES ONLY) ====================
+            function downloadProjectFile() {
+                const data = serializeProject();
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = sanitizeFileName(state.projectName || 'project') + '.json';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+                state.isDirty = false;
+                updateProjectIndicator();
+            }
+
+            async function writeProjectToDisk(silent) {
+                if (!state.fileHandle) {
+                    downloadProjectFile();
+                    if (!silent) showToast(`Project downloaded as "${sanitizeFileName(state.projectName)}.json"`);
+                    return;
+                }
+                try {
+                    const writable = await state.fileHandle.createWritable();
+                    await writable.write(JSON.stringify(serializeProject(), null, 2));
+                    await writable.close();
+                    state.isDirty = false;
+                    updateProjectIndicator();
+                    if (!silent) showToast('Project saved');
+                } catch (err) {
+                    console.error('Save failed', err);
+                    showToast('Could not save the file. Check permissions and try again.');
+                }
+            }
+
+            let fileOpBusy = false;
+
+            async function createNewProject(rawName) {
+                const name = String(rawName || '').trim();
+                if (!name) {
+                    showToast('Please enter a project name');
+                    return;
+                }
+                const template = buildEmptyProjectTemplate(name);
+
+                if (supportsFSAccess) {
+                    let handle = null;
+                    try {
+                        handle = await window.showSaveFilePicker({
+                            suggestedName: sanitizeFileName(name) + '.json',
+                            types: JSON_FILE_TYPES,
+                        });
+                    } catch (err) {
+                        if (err && err.name === 'AbortError') {
+                            showToast('Project creation cancelled');
+                            return;
+                        }
+                        console.error(err);
+                    }
+                    if (handle) {
+                        applyProjectData(template, name);
+                        state.fileHandle = handle;
+                        await writeProjectToDisk(true);
+                        showToast(`Project "${name}" created`);
+                        return;
+                    }
+                }
+
+                // Fallback: browser without File System Access API, or picker failed
+                applyProjectData(template, name);
+                state.fileHandle = null;
+                downloadProjectFile();
+                showToast(`Project "${name}" created and downloaded as JSON`);
+            }
+
+            function loadProjectFromText(text, handle, fallbackName) {
+                let parsed;
+                try {
+                    parsed = JSON.parse(text);
+                } catch (err) {
+                    showToast('Invalid JSON file: the file could not be parsed.');
+                    return;
+                }
+                let validated;
+                try {
+                    validated = validateProjectData(parsed);
+                } catch (err) {
+                    showToast('Invalid project file: ' + (err.message || 'unrecognized format') + '.');
+                    return;
+                }
+                const name = validated.name || fallbackName || 'Untitled Project';
+                applyProjectData(validated, name);
+                state.fileHandle = handle || null;
+                showToast(`Project "${name}" loaded`);
+            }
+
+            async function openProject() {
+                if (fileOpBusy) return;
+                if (!confirmDiscardIfDirty()) return;
+                fileOpBusy = true;
+                try {
+                    if (supportsFSAccess) {
+                        let handle;
+                        try {
+                            [handle] = await window.showOpenFilePicker({ types: JSON_FILE_TYPES });
+                        } catch (err) {
+                            if (err && err.name !== 'AbortError') {
+                                console.error(err);
+                                showToast('Unable to open the file.');
+                            }
+                            return;
+                        }
+                        const file = await handle.getFile();
+                        const text = await file.text();
+                        loadProjectFromText(text, handle, stripExtension(file.name));
+                    } else {
+                        openFileInput.click();
+                    }
+                } finally {
+                    fileOpBusy = false;
+                }
+            }
+
+            function stripExtension(fileName) {
+                if (!fileName) return null;
+                const idx = fileName.lastIndexOf('.');
+                return idx > 0 ? fileName.slice(0, idx) : fileName;
+            }
+
+            openFileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                e.target.value = '';
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    loadProjectFromText(ev.target.result, null, stripExtension(file.name));
+                };
+                reader.onerror = () => showToast('Could not read the selected file.');
+                reader.readAsText(file);
+            });
+
+            function openNewProjectModal() {
+                if (!confirmDiscardIfDirty()) return;
+                newProjectNameInput.value = '';
+                modalNewProject.classList.add('active');
+                setTimeout(() => newProjectNameInput.focus(), 0);
+            }
+
+            document.getElementById('new-project-cancel').addEventListener('click', () => {
+                modalNewProject.classList.remove('active');
+            });
+
+            newProjectConfirmBtn.addEventListener('click', async () => {
+                if (fileOpBusy) return;
+                const name = newProjectNameInput.value.trim();
+                if (!name) {
+                    showToast('Please enter a project name');
+                    newProjectNameInput.focus();
+                    return;
+                }
+                fileOpBusy = true;
+                newProjectConfirmBtn.disabled = true;
+                newProjectConfirmBtn.textContent = 'Creating\u2026';
+                try {
+                    await createNewProject(name);
+                } finally {
+                    newProjectConfirmBtn.disabled = false;
+                    newProjectConfirmBtn.textContent = 'Create';
+                    modalNewProject.classList.remove('active');
+                    fileOpBusy = false;
+                }
+            });
+
+            newProjectNameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    newProjectConfirmBtn.click();
+                }
+            });
+
+            btnNewProject.addEventListener('click', openNewProjectModal);
+            emptyNewProjectBtn.addEventListener('click', openNewProjectModal);
+            btnOpenProject.addEventListener('click', openProject);
+            emptyOpenProjectBtn.addEventListener('click', openProject);
+
+            btnSave.addEventListener('click', () => {
+                if (!state.projectName) {
+                    showToast('Create or open a project first');
+                    return;
+                }
+                writeProjectToDisk(false);
+            });
+
+            btnSaveAs.addEventListener('click', async () => {
+                if (fileOpBusy) return;
+                if (!state.projectName) {
+                    showToast('Create or open a project first');
+                    return;
+                }
+                fileOpBusy = true;
+                try {
+                    if (supportsFSAccess) {
+                        try {
+                            const handle = await window.showSaveFilePicker({
+                                suggestedName: sanitizeFileName(state.projectName) + '.json',
+                                types: JSON_FILE_TYPES,
+                            });
+                            state.fileHandle = handle;
+                            await writeProjectToDisk(false);
+                        } catch (err) {
+                            if (err && err.name !== 'AbortError') {
+                                console.error(err);
+                                showToast('Unable to save the file.');
+                            }
+                        }
+                    } else {
+                        downloadProjectFile();
+                        showToast(`Project downloaded as "${sanitizeFileName(state.projectName)}.json"`);
+                    }
+                } finally {
+                    fileOpBusy = false;
+                }
+            });
+
+            // ==================== DARK MODE ====================
+            btnDarkMode.addEventListener('click', () => {
+                state.isDark = !state.isDark;
+                document.body.classList.toggle('dark', state.isDark);
+                if (state.projectName) markDirty();
+            });
+
+            // ==================== KEYBOARD SHORTCUTS ====================
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+                    e.preventDefault();
+                    if (state.projectName) {
+                        writeProjectToDisk(false);
+                    } else {
+                        showToast('Create or open a project first');
+                    }
+                    return;
+                }
+
+                if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
+                if (!state.projectName) return;
+
+                switch (e.key) {
+                    case 'v':
+                    case 'V':
+                        setTool('select');
+                        break;
+                    case 'h':
+                    case 'H':
+                        setTool('pan');
+                        break;
+                    case 'l':
+                    case 'L':
+                        setTool('link');
+                        break;
+                    case 'Delete':
+                    case 'Backspace':
+                        if (state.selectedIds.size > 0) {
+                            e.preventDefault();
+                            [...state.selectedIds].forEach(id => deleteItem(id));
+                            propertyPanel.classList.remove('visible');
+                        }
+                        break;
+                    case 'Escape':
+                        clearSelection();
+                        propertyPanel.classList.remove('visible');
+                        state.linkSourceId = null;
+                        document.querySelectorAll('.board-item').forEach(el => el.style.boxShadow = '');
+                        break;
+                }
+            });
+
+            // Warn before leaving the page with unsaved changes
+            window.addEventListener('beforeunload', (e) => {
+                if (state.isDirty) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+
+            // ==================== INITIALIZATION ====================
+            function init() {
+                applyTransform();
+                updateZoomIndicator();
+                updateProjectIndicator();
+                setProjectActiveUIState(false);
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>
