@@ -1025,8 +1025,19 @@
                     el.classList.add('image-item');
                     const img = document.createElement('img');
                     if (isValidImageSrc(item.content)) {
-                        img.src = item.content;
-                        img.alt = 'Board image';
+                        try {
+                            const parsedUrl = new URL(item.content, window.location.href);
+                            if (parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:') {
+                                img.src = parsedUrl.href;
+                                img.alt = 'Board image';
+                            } else {
+                                img.src = '';
+                                img.alt = 'Invalid image source';
+                            }
+                        } catch (_) {
+                            img.src = '';
+                            img.alt = 'Invalid image source';
+                        }
                     } else {
                         img.src = '';
                         img.alt = 'Invalid image source';
