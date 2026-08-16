@@ -2525,10 +2525,10 @@
             this.Title_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Title_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Title_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Title_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title_Lst.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title_Lst.ForeColor = System.Drawing.Color.White;
             this.Title_Lst.FormattingEnabled = true;
-            this.Title_Lst.ItemHeight = 14;
+            this.Title_Lst.ItemHeight = 18;
             this.Title_Lst.Location = new System.Drawing.Point(0, 0);
             this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
             this.Title_Lst.Name = "Title_Lst";
@@ -3358,7 +3358,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3654,7 +3654,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
