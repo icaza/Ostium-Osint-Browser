@@ -995,6 +995,42 @@
                 return item;
             }
 
+            // Fonction de résolution sécurisée d'une URL d'image
+            function resolveImageSrc(rawValue) {
+                if (typeof rawValue !== 'string') return null;
+                const value = rawValue.trim();
+                if (!value) return null;
+
+                let url;
+                try {
+                    url = new URL(value, document.baseURI);
+                } catch (_) {
+                    return null;
+                }
+
+                const protocol = url.protocol.toLowerCase();
+
+                if (protocol === 'http:' || protocol === 'https:') {
+                    return url.href;
+                }
+
+                if (protocol === 'blob:') {
+                    return url.href;
+                }
+
+                if (protocol === 'file:' && window.location.protocol === 'file:') {
+                    return url.href;
+                }
+
+                if (protocol === 'data:') {
+                    if (/^data:image\/(png|jpeg|gif|webp|avif)[;,]/i.test(url.href)) {
+                        return url.href;
+                    }
+                }
+
+                return null;
+            }
+
             function renderItem(item) {
                 // Remove any previous DOM node for this item
                 const existing = document.querySelector(`[data-id="${item.id}"]`);
@@ -1024,24 +1060,17 @@
                 } else if (item.type === 'image') {
                     el.classList.add('image-item');
                     const img = document.createElement('img');
-                    if (isValidImageSrc(item.content)) {
-                        try {
-                            const parsedUrl = new URL(item.content, window.location.href);
-                            if (parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:') {
-                                img.src = parsedUrl.href;
-                                img.alt = 'Board image';
-                            } else {
-                                img.src = item.content;
-                                img.alt = 'Board image';
-                            }
-                        } catch (_) {
-                            img.src = '';
-                            img.alt = 'Invalid image source';
-                        }
+
+                    const safeSrc = resolveImageSrc(item.content);
+                    if (safeSrc) {
+                        img.src = safeSrc;
+                        img.alt = 'Board image';
                     } else {
-                        img.src = '';
+
+                        img.removeAttribute('src');
                         img.alt = 'Invalid image source';
                     }
+
                     img.draggable = false;
                     el.appendChild(img);
                 } else if (item.type === 'generic') {
