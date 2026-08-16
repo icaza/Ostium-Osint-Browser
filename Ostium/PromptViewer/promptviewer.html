@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLM History Viewer</title>
+    <style>
+        /* ============================================================
+               CSS VARIABLES & RESET (Light / Dark)
+               ============================================================ */
+        :root {
+            --bg: #f6f9fc;
+            --surface: #ffffff;
+            --surface-hover: #f0f4f9;
+            --border: #dce3ed;
+            --text: #1a2634;
+            --text-secondary: #4a5a6e;
+            --text-muted: #8a9aa8;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --danger: #dc2626;
+            --danger-hover: #b91c1c;
+            --success: #16a34a;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: 0.2s ease;
+            --max-width: 1440px;
+            --header-bg: rgba(255, 255, 255, 0.92);
+            --toolbar-bg: rgba(255, 255, 255, 0.88);
+            --modal-overlay: rgba(0, 0, 0, 0.4);
+            --toast-bg: #1a2634;
+            --toast-color: #fff;
+            --shimmer-bg: #e2e8f0;
+        }
+
+        body.dark {
+            --bg: #111827;
+            --surface: #1f2937;
+            --surface-hover: #2d3748;
+            --border: #374151;
+            --text: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #1e293b;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --header-bg: rgba(17, 24, 39, 0.92);
+            --toolbar-bg: rgba(17, 24, 39, 0.88);
+            --modal-overlay: rgba(0, 0, 0, 0.7);
+            --toast-bg: #f1f5f9;
+            --toast-color: #111827;
+            --shimmer-bg: #2d3748;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        /* ============================================================
+               SCROLLBAR
+               ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 8px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--text-muted);
+            }
+
+        /* ============================================================
+               HEADER
+               ============================================================ */
+        .app-header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+        }
+
+            .app-header .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 700;
+                font-size: 1.25rem;
+                letter-spacing: -0.3px;
+                color: var(--text);
+                user-select: none;
+            }
+
+                .app-header .logo span {
+                    background: var(--accent);
+                    color: #fff;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    padding: 2px 10px;
+                    border-radius: 20px;
+                    letter-spacing: 0;
+                }
+
+        .header-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+            .file-upload-wrapper input[type="file"] {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+            }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: inherit;
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            transition: background var(--transition), transform 0.1s, box-shadow var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+            .btn:hover {
+                background: var(--border);
+            }
+
+            .btn:active {
+                transform: scale(0.97);
+            }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background: var(--accent-hover);
+                color: #fff;
+            }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+            .btn-success:hover {
+                background: #15803d;
+                color: #fff;
+            }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+            .btn-danger:hover {
+                background: var(--danger-hover);
+                color: #fff;
+            }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+
+            .btn-outline:hover {
+                background: var(--bg);
+            }
+
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 0.8rem;
+        }
+
+        .btn-icon {
+            padding: 8px 10px;
+            border-radius: var(--radius-sm);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--accent-light);
+            color: var(--accent);
+            letter-spacing: 0.2px;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+            color: var(--text);
+        }
+
+            .theme-toggle:hover {
+                background: var(--bg);
+            }
+
+        /* ============================================================
+               SEARCH BAR
+               ============================================================ */
+        .search-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 320px;
+            min-width: 180px;
+        }
+
+            .search-bar input,
+            .search-bar select {
+                padding: 8px 14px;
+                border: 1px solid var(--border);
+                border-radius: var(--radius-sm);
+                font-size: 0.875rem;
+                font-family: inherit;
+                background: var(--surface);
+                color: var(--text);
+                transition: border var(--transition), box-shadow var(--transition);
+                outline: none;
+                min-width: 0;
+                width: 100%;
+            }
+
+                .search-bar input:focus,
+                .search-bar select:focus {
+                    border-color: var(--accent);
+                    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+                }
+
+            .search-bar .search-input-wrap {
+                flex: 1;
+                min-width: 140px;
+                position: relative;
+            }
+
+                .search-bar .search-input-wrap input {
+                    padding-left: 36px;
+                    width: 100%;
+                }
+
+                .search-bar .search-input-wrap .search-icon {
+                    position: absolute;
+                    left: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--text-muted);
+                    font-size: 0.9rem;
+                    pointer-events: none;
+                }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .filter-group select,
+            .filter-group input {
+                padding: 6px 10px;
+                border: 1px solid var(--border);
+                border-radius: var(--radius-sm);
+                font-size: 0.8rem;
+                font-family: inherit;
+                background: var(--surface);
+                color: var(--text);
+                outline: none;
+                max-width: 130px;
+            }
+
+                .filter-group select:focus,
+                .filter-group input:focus {
+                    border-color: var(--accent);
+                }
+
+            .filter-group label {
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: var(--text-secondary);
+                white-space: nowrap;
+            }
+
+        /* ============================================================
+               TOOLBAR (stats + export)
+               ============================================================ */
+        .toolbar {
+            background: var(--toolbar-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            position: sticky;
+            top: 76px;
+            z-index: 90;
+            backdrop-filter: blur(8px);
+        }
+
+            .toolbar .stats {
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+                display: flex;
+                gap: 18px;
+                flex-wrap: wrap;
+            }
+
+                .toolbar .stats strong {
+                    color: var(--text);
+                }
+
+            .toolbar .export-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                align-items: center;
+            }
+
+                .toolbar .export-actions select {
+                    padding: 6px 10px;
+                    border: 1px solid var(--border);
+                    border-radius: var(--radius-sm);
+                    font-size: 0.8rem;
+                    font-family: inherit;
+                    background: var(--surface);
+                    color: var(--text);
+                    outline: none;
+                }
+
+        /* ============================================================
+               MAIN CONTENT
+               ============================================================ */
+        .main-content {
+            flex: 1;
+            padding: 20px 24px 40px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Empty state */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+            .empty-state .icon {
+                font-size: 4rem;
+                margin-bottom: 16px;
+                opacity: 0.6;
+            }
+
+            .empty-state h2 {
+                font-weight: 500;
+                color: var(--text-secondary);
+                margin-bottom: 8px;
+            }
+
+            .empty-state p {
+                max-width: 420px;
+            }
+
+        /* ============================================================
+               CONVERSATION CARDS (GRID)
+               ============================================================ */
+        .conv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 18px;
+            margin-top: 4px;
+        }
+
+        .conv-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 18px 20px 16px;
+            transition: border var(--transition), box-shadow var(--transition), transform 0.15s;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+            .conv-card:hover {
+                border-color: #b8c9dd;
+                box-shadow: var(--shadow);
+                transform: translateY(-2px);
+            }
+
+        body.dark .conv-card:hover {
+            border-color: #4b5563;
+        }
+
+        .conv-card.selected {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .conv-card .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+            .conv-card .card-header .checkbox-wrap {
+                padding-top: 2px;
+            }
+
+                .conv-card .card-header .checkbox-wrap input[type="checkbox"] {
+                    width: 18px;
+                    height: 18px;
+                    accent-color: var(--accent);
+                    cursor: pointer;
+                    flex-shrink: 0;
+                }
+
+        .conv-card .card-meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+            .conv-card .card-meta .timestamp {
+                font-size: 0.78rem;
+                font-weight: 500;
+                color: var(--text-secondary);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+                .conv-card .card-meta .timestamp .model-badge {
+                    font-weight: 400;
+                    background: var(--bg);
+                    padding: 0 8px;
+                    border-radius: 12px;
+                    font-size: 0.7rem;
+                    color: var(--text-secondary);
+                }
+
+            .conv-card .card-meta .tokens {
+                font-size: 0.7rem;
+                color: var(--text-muted);
+                margin-left: auto;
+            }
+
+        .conv-card .card-prompt {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 6px 0 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+            .conv-card .card-prompt strong {
+                color: var(--text);
+            }
+
+        .conv-card .card-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 6px;
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+            .conv-card .card-actions .btn {
+                font-size: 0.75rem;
+                padding: 4px 12px;
+            }
+
+        /* ============================================================
+               DETAIL MODAL
+               ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--modal-overlay);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+
+            .modal-overlay.active {
+                display: flex;
+            }
+
+            .modal-overlay .modal {
+                background: var(--surface);
+                border-radius: var(--radius);
+                max-width: 820px;
+                width: 100%;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+                animation: slideUp 0.25s ease;
+                overflow: hidden;
+            }
+
+        .modal .modal-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+            .modal .modal-header h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .modal .modal-header .close-btn {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-muted);
+                padding: 4px 8px;
+                border-radius: var(--radius-sm);
+                transition: background var(--transition);
+            }
+
+                .modal .modal-header .close-btn:hover {
+                    background: var(--bg);
+                }
+
+        .modal .modal-body {
+            padding: 20px 24px 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+            .modal .modal-body .detail-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px 20px;
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+                margin-bottom: 16px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid var(--border);
+            }
+
+                .modal .modal-body .detail-meta strong {
+                    color: var(--text);
+                }
+
+            .modal .modal-body .detail-section {
+                margin-bottom: 18px;
+            }
+
+                .modal .modal-body .detail-section h4 {
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    letter-spacing: 0.4px;
+                    margin-bottom: 6px;
+                }
+
+                .modal .modal-body .detail-section .content {
+                    background: var(--bg);
+                    padding: 14px 18px;
+                    border-radius: var(--radius-sm);
+                    font-size: 0.9rem;
+                    line-height: 1.7;
+                    white-space: pre-wrap;
+                    word-break: break-word;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    border: 1px solid var(--border);
+                }
+
+                    .modal .modal-body .detail-section .content.prompt {
+                        background: var(--surface);
+                        border-color: var(--border);
+                    }
+
+                    .modal .modal-body .detail-section .content.response {
+                        background: var(--bg);
+                        border-color: var(--border);
+                    }
+
+        .modal .modal-footer {
+            padding: 14px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            flex-shrink: 0;
+            background: var(--bg);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ============================================================
+               TOAST NOTIFICATIONS
+               ============================================================ */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 380px;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--toast-bg);
+            color: var(--toast-color);
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            pointer-events: auto;
+            animation: toastIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .toast.success {
+                background: var(--success);
+                color: #fff;
+            }
+
+            .toast.error {
+                background: var(--danger);
+                color: #fff;
+            }
+
+            .toast.info {
+                background: var(--accent);
+                color: #fff;
+            }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ============================================================
+               RESPONSIVE
+               ============================================================ */
+        @media (max-width: 768px) {
+            .app-header {
+                padding: 12px 16px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+                .app-header .logo {
+                    font-size: 1rem;
+                }
+
+            .header-actions {
+                flex-wrap: wrap;
+            }
+
+            .search-bar {
+                flex: 1 1 100%;
+            }
+
+                .search-bar .search-input-wrap {
+                    flex: 1;
+                }
+
+            .filter-group {
+                flex-wrap: wrap;
+            }
+
+                .filter-group select,
+                .filter-group input {
+                    max-width: 100%;
+                    flex: 1;
+                }
+
+            .toolbar {
+                padding: 8px 16px;
+                flex-direction: column;
+                align-items: stretch;
+                top: 120px;
+                gap: 8px;
+            }
+
+                .toolbar .stats {
+                    font-size: 0.75rem;
+                    gap: 10px;
+                }
+
+                .toolbar .export-actions {
+                    flex-wrap: wrap;
+                }
+
+            .main-content {
+                padding: 12px 12px 30px;
+            }
+
+            .conv-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .conv-card {
+                padding: 14px 16px;
+            }
+
+            .modal-overlay .modal {
+                max-height: 95vh;
+                margin: 8px;
+                border-radius: var(--radius-sm);
+            }
+
+            .modal .modal-body {
+                padding: 14px 16px;
+            }
+
+                .modal .modal-body .detail-section .content {
+                    max-height: 200px;
+                    font-size: 0.82rem;
+                    padding: 10px 14px;
+                }
+
+            .toast-container {
+                bottom: 12px;
+                right: 12px;
+                max-width: calc(100% - 24px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-header .logo {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .btn-sm {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+
+            .conv-card .card-meta .timestamp {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ============================================================
+               UTILITY
+               ============================================================ */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-8 {
+            margin-top: 8px;
+        }
+
+        .gap-4 {
+            gap: 4px;
+        }
+
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* loading shimmer */
+        .shimmer {
+            background: linear-gradient(90deg, var(--bg) 25%, var(--shimmer-bg) 50%, var(--bg) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.2s infinite;
+            border-radius: var(--radius-sm);
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .sel-count {
+            background: var(--accent);
+            color: #fff;
+            border-radius: 20px;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            line-height: 1.8;
+            display: inline-block;
+        }
+
+        /* Dark mode overrides for modal backdrop */
+        body.dark .modal-overlay {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="app-header" role="banner">
+        <div class="logo">
+            📋 History Viewer
+            <span>LLM</span>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+            <div class="file-upload-wrapper">
+                <button class="btn btn-primary" id="loadBtn">📂 Load JSON</button>
+                <input type="file" id="fileInput" accept=".json" />
+            </div>
+            <button class="btn btn-outline btn-sm" id="clearBtn" title="Clear data">✕</button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    SEARCH & FILTERS
+    ============================================================ -->
+    <div class="toolbar" id="toolbar" role="toolbar">
+        <div class="stats" id="stats">
+            <span><strong id="totalCount">0</strong> conversations</span>
+            <span>· <strong id="visibleCount">0</strong> shown</span>
+            <span>· <strong id="selectedCount">0</strong> selected</span>
+        </div>
+        <div class="export-actions">
+            <select id="exportFormat" aria-label="Export format">
+                <option value="md">Markdown (.md)</option>
+                <option value="txt">Text (.txt)</option>
+                <option value="html">HTML (.html)</option>
+                <option value="pdf">PDF (.pdf)</option>
+            </select>
+            <button class="btn btn-success btn-sm" id="exportSelectedBtn">⬇ Export selected</button>
+            <button class="btn btn-outline btn-sm" id="exportAllBtn">⬇ Export all</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SEARCH BAR (under toolbar)
+    ============================================================ -->
+    <div style="background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 24px; position: sticky; top: 128px; z-index: 85; backdrop-filter: blur(8px); background: var(--header-bg);">
+        <div class="search-bar">
+            <div class="search-input-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search conversations…" aria-label="Search" />
+            </div>
+            <div class="filter-group">
+                <label for="modelFilter">Model</label>
+                <select id="modelFilter" aria-label="Filter by model">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="dateFrom">From</label>
+                <input type="date" id="dateFrom" />
+            </div>
+            <div class="filter-group">
+                <label for="dateTo">To</label>
+                <input type="date" id="dateTo" />
+            </div>
+            <div class="filter-group">
+                <label for="tokenMin">Tokens</label>
+                <input type="number" id="tokenMin" placeholder="min" min="0" style="width:60px;" />
+                <span style="color:var(--text-muted);font-size:0.7rem;">–</span>
+                <input type="number" id="tokenMax" placeholder="max" min="0" style="width:60px;" />
+            </div>
+            <button class="btn btn-outline btn-sm" id="resetFiltersBtn">↺ Reset</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="main-content" id="mainContent">
+        <!-- Empty state -->
+        <div class="empty-state" id="emptyState">
+            <div class="icon">📄</div>
+            <h2>No conversations loaded</h2>
+            <p>Load a <strong>history.json</strong> file using the button above or by dragging &amp; dropping the file onto the page.</p>
+        </div>
+
+        <!-- Conversation grid -->
+        <div id="convGrid" class="conv-grid hidden"></div>
+    </main>
+
+    <!-- ============================================================
+    DETAIL MODAL
+    ============================================================ -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-header">
+                <h3 id="modalTitle">💬 Conversation details</h3>
+                <button class="close-btn" id="modalCloseBtn" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- dynamically filled -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline btn-sm" id="modalExportBtn">⬇ Export this conversation</button>
+                <button class="btn btn-primary btn-sm" id="modalCloseBtn2">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer" role="status" aria-live="polite"></div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <!-- jsPDF + html2canvas (with SRI for security) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/4.2.1/jspdf.umd.js"
+            integrity="sha512-27t42SSCyTBvp9kSNj1fpUITj8DTE5/fF3Ty+75/F2VwZW7i0l6p36N6qFwaKPwxRe0ENVN/Zu/VB6WW6aD2DQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        const state = {
+            conversations: [],
+            filtered: [],
+            selected: new Set(),
+            detailIndex: null,
+            loaded: false,
+            darkMode: false,
+        };
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+
+        const fileInput = $('#fileInput');
+        const loadBtn = $('#loadBtn');
+        const clearBtn = $('#clearBtn');
+        const searchInput = $('#searchInput');
+        const modelFilter = $('#modelFilter');
+        const dateFrom = $('#dateFrom');
+        const dateTo = $('#dateTo');
+        const tokenMin = $('#tokenMin');
+        const tokenMax = $('#tokenMax');
+        const resetFiltersBtn = $('#resetFiltersBtn');
+        const convGrid = $('#convGrid');
+        const emptyState = $('#emptyState');
+        const totalCount = $('#totalCount');
+        const visibleCount = $('#visibleCount');
+        const selectedCount = $('#selectedCount');
+        const exportFormat = $('#exportFormat');
+        const exportSelectedBtn = $('#exportSelectedBtn');
+        const exportAllBtn = $('#exportAllBtn');
+        const detailModal = $('#detailModal');
+        const modalBody = $('#modalBody');
+        const modalCloseBtn = $('#modalCloseBtn');
+        const modalCloseBtn2 = $('#modalCloseBtn2');
+        const modalExportBtn = $('#modalExportBtn');
+        const toastContainer = $('#toastContainer');
+        const themeToggle = $('#themeToggle');
+
+        // ============================================================
+        // UTILITY
+        // ============================================================
+        function formatDate(iso) {
+            try {
+                const d = new Date(iso);
+                return d.toLocaleString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit' });
+            } catch { return iso; }
+        }
+
+        function formatDateShort(iso) {
+            try {
+                const d = new Date(iso);
+                return d.toLocaleDateString('en-US');
+            } catch { return iso; }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function truncate(str, n = 120) {
+            if (!str) return '';
+            return str.length > n ? str.slice(0, n) + '…' : str;
+        }
+
+        function sanitizeFilename(name) {
+            return name.replace(/[^a-zA-Z0-9\-_]/g, '_').slice(0, 60);
+        }
+
+        function getTimestampFilename() {
+            return new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
+        }
+
+        function showToast(msg, type = 'info') {
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.textContent = msg;
+            toastContainer.appendChild(el);
+            setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateX(20px)';
+                setTimeout(() => el.remove(), 300);
+            }, 3200);
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        // ============================================================
+        // THEME MANAGEMENT
+        // ============================================================
+        function setTheme(dark) {
+            state.darkMode = dark;
+            document.body.classList.toggle('dark', dark);
+            themeToggle.textContent = dark ? '☀️' : '🌙';
+            themeToggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+            localStorage.setItem('llm-history-theme', dark ? 'dark' : 'light');
+        }
+
+        function toggleTheme() {
+            setTheme(!state.darkMode);
+        }
+
+        function loadThemePreference() {
+            const stored = localStorage.getItem('llm-history-theme');
+            if (stored === 'dark') {
+                setTheme(true);
+            } else if (stored === 'light') {
+                setTheme(false);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+        }
+
+        // ============================================================
+        // DATA LOADING
+        // ============================================================
+        function loadConversations(data) {
+            if (!Array.isArray(data) || data.length === 0) {
+                showToast('The file does not contain any valid conversations.', 'error');
+                return;
+            }
+            const valid = data.filter(item =>
+                item.Timestamp && (item.Prompt || item.Response)
+            );
+            if (valid.length === 0) {
+                showToast('No valid conversations found (Timestamp + Prompt/Response required).', 'error');
+                return;
+            }
+            state.conversations = valid;
+            state.selected = new Set();
+            state.loaded = true;
+            populateModelFilter();
+            applyFilters();
+            showToast(`${valid.length} conversation(s) loaded successfully.`, 'success');
+        }
+
+        function loadFromFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    loadConversations(data);
+                } catch (err) {
+                    showToast('JSON parsing error: ' + err.message, 'error');
+                }
+            };
+            reader.onerror = () => showToast('File read error.', 'error');
+            reader.readAsText(file);
+        }
+
+        // ============================================================
+        // FILTERS
+        // ============================================================
+        function populateModelFilter() {
+            const models = new Set();
+            state.conversations.forEach(c => {
+                if (c.Model) models.add(c.Model);
+            });
+            const current = modelFilter.value;
+            modelFilter.innerHTML = '<option value="">All</option>';
+            [...models].sort().forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = m;
+                modelFilter.appendChild(opt);
+            });
+            if (current && models.has(current)) modelFilter.value = current;
+        }
+
+        function applyFilters() {
+            const search = searchInput.value.trim().toLowerCase();
+            const model = modelFilter.value;
+            const from = dateFrom.value ? new Date(dateFrom.value) : null;
+            const to = dateTo.value ? new Date(dateTo.value) : null;
+            const tMin = tokenMin.value !== '' ? parseInt(tokenMin.value, 10) : null;
+            const tMax = tokenMax.value !== '' ? parseInt(tokenMax.value, 10) : null;
+
+            if (from) from.setHours(0, 0, 0, 0);
+            if (to) { to.setHours(23, 59, 59, 999); }
+
+            state.filtered = state.conversations.filter((c) => {
+                if (model && c.Model !== model) return false;
+                if (from || to) {
+                    const d = new Date(c.Timestamp);
+                    if (from && d < from) return false;
+                    if (to && d > to) return false;
+                }
+                const tokens = c.Tokens || 0;
+                if (tMin !== null && tokens < tMin) return false;
+                if (tMax !== null && tokens > tMax) return false;
+                if (search) {
+                    const prompt = (c.Prompt || '').toLowerCase();
+                    const response = (c.Response || '').toLowerCase();
+                    if (!prompt.includes(search) && !response.includes(search)) return false;
+                }
+                return true;
+            });
+
+            // Clean selected set
+            const validIndices = new Set(state.filtered.map((_, i) => i));
+            for (const idx of state.selected) {
+                if (!validIndices.has(idx)) state.selected.delete(idx);
+            }
+
+            render();
+            updateStats();
+        }
+
+        function resetFilters() {
+            searchInput.value = '';
+            modelFilter.value = '';
+            dateFrom.value = '';
+            dateTo.value = '';
+            tokenMin.value = '';
+            tokenMax.value = '';
+            applyFilters();
+        }
+
+        // ============================================================
+        // RENDER
+        // ============================================================
+        function render() {
+            const data = state.filtered;
+            if (data.length === 0) {
+                convGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                emptyState.querySelector('p').textContent =
+                    state.conversations.length === 0 ?
+                    'Load a history.json file to start.' :
+                    'No conversations match the current filters.';
+                return;
+            }
+            emptyState.classList.add('hidden');
+            convGrid.classList.remove('hidden');
+
+            let html = '';
+            data.forEach((c, idx) => {
+                const isSelected = state.selected.has(idx);
+                const ts = formatDate(c.Timestamp);
+                const model = c.Model || '—';
+                const tokens = c.Tokens || 0;
+                const promptPreview = truncate(c.Prompt || '', 140);
+                const responsePreview = truncate(c.Response || '', 140);
+
+                html += `
+                    <div class="conv-card ${isSelected ? 'selected' : ''}" data-index="${idx}">
+                        <div class="card-header">
+                            <div class="checkbox-wrap">
+                                <input type="checkbox" class="conv-select" data-index="${idx}" ${isSelected ? 'checked' : ''} aria-label="Select" />
+                            </div>
+                            <div class="card-meta">
+                                <div class="timestamp">
+                                    <span>${ts}</span>
+                                    <span class="model-badge">${escapeHtml(model)}</span>
+                                    <span class="tokens">⚡ ${tokens} tokens</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-prompt">
+                            <strong>Prompt:</strong> ${escapeHtml(promptPreview)}
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-outline btn-sm view-detail" data-index="${idx}">👁 View</button>
+                            <button class="btn btn-outline btn-sm export-single" data-index="${idx}" data-format="md">⬇ MD</button>
+                        </div>
+                    </div>
+                `;
+            });
+            convGrid.innerHTML = html;
+
+            convGrid.querySelectorAll('.conv-select').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const idx = parseInt(e.target.dataset.index, 10);
+                    if (e.target.checked) state.selected.add(idx);
+                    else state.selected.delete(idx);
+                    updateStats();
+                    render();
+                });
+            });
+
+            convGrid.querySelectorAll('.view-detail').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.index, 10);
+                    openDetail(idx);
+                });
+            });
+
+            convGrid.querySelectorAll('.export-single').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const idx = parseInt(btn.dataset.index, 10);
+                    const format = btn.dataset.format || 'md';
+                    exportSingle(idx, format);
+                });
+            });
+        }
+
+        function updateStats() {
+            totalCount.textContent = state.conversations.length;
+            visibleCount.textContent = state.filtered.length;
+            selectedCount.textContent = state.selected.size;
+            const selEl = document.querySelector('.sel-count');
+            if (state.selected.size > 0) {
+                if (!selEl) {
+                    const span = document.createElement('span');
+                    span.className = 'sel-count';
+                    span.id = 'selCountBadge';
+                    span.textContent = state.selected.size;
+                    document.querySelector('.stats').appendChild(span);
+                } else {
+                    selEl.textContent = state.selected.size;
+                }
+            } else {
+                const el = document.getElementById('selCountBadge');
+                if (el) el.remove();
+            }
+        }
+
+        // ============================================================
+        // DETAIL MODAL
+        // ============================================================
+        function openDetail(idx) {
+            const c = state.filtered[idx];
+            if (!c) return;
+            state.detailIndex = idx;
+            const ts = formatDate(c.Timestamp);
+            const model = c.Model || '—';
+            const tokens = c.Tokens || 0;
+            const prompt = c.Prompt || '(empty)';
+            const response = c.Response || '(empty)';
+
+            modalBody.innerHTML = `
+                <div class="detail-meta">
+                    <span><strong>📅</strong> ${ts}</span>
+                    <span><strong>🤖</strong> ${escapeHtml(model)}</span>
+                    <span><strong>⚡</strong> ${tokens} tokens</span>
+                </div>
+                <div class="detail-section">
+                    <h4>📝 Prompt</h4>
+                    <div class="content prompt">${escapeHtml(prompt)}</div>
+                </div>
+                <div class="detail-section">
+                    <h4>💬 Response</h4>
+                    <div class="content response">${escapeHtml(response)}</div>
+                </div>
+            `;
+            detailModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetail() {
+            detailModal.classList.remove('active');
+            document.body.style.overflow = '';
+            state.detailIndex = null;
+        }
+
+        // ============================================================
+        // EXPORT ENGINE
+        // ============================================================
+        function getConversationText(c, includeMeta = true) {
+            const ts = formatDate(c.Timestamp);
+            const model = c.Model || '—';
+            const tokens = c.Tokens || 0;
+            let parts = [];
+            if (includeMeta) {
+                parts.push(`Date: ${ts}`);
+                parts.push(`Model: ${model}`);
+                parts.push(`Tokens: ${tokens}`);
+                parts.push('');
+            }
+            parts.push('--- PROMPT ---');
+            parts.push(c.Prompt || '(empty)');
+            parts.push('');
+            parts.push('--- RESPONSE ---');
+            parts.push(c.Response || '(empty)');
+            parts.push('');
+            return parts.join('\n');
+        }
+
+        function getConversationMarkdown(c, includeMeta = true) {
+            const ts = formatDate(c.Timestamp);
+            const model = c.Model || '—';
+            const tokens = c.Tokens || 0;
+            let lines = [];
+            if (includeMeta) {
+                lines.push(`## Conversation · ${ts}`);
+                lines.push(`- **Model**: ${model}`);
+                lines.push(`- **Tokens**: ${tokens}`);
+                lines.push('');
+            }
+            lines.push('### Prompt');
+            lines.push('');
+            lines.push(c.Prompt || '(empty)');
+            lines.push('');
+            lines.push('### Response');
+            lines.push('');
+            lines.push(c.Response || '(empty)');
+            lines.push('');
+            lines.push('---');
+            lines.push('');
+            return lines.join('\n');
+        }
+
+        function getConversationHTML(c, includeMeta = true) {
+            const ts = formatDate(c.Timestamp);
+            const model = c.Model || '—';
+            const tokens = c.Tokens || 0;
+            const prompt = escapeHtml(c.Prompt || '(empty)');
+            const response = escapeHtml(c.Response || '(empty)');
+            let html = '';
+            if (includeMeta) {
+                html += `<div style="margin-bottom:12px;font-size:0.85rem;color:#4a5a6e;">`;
+                html += `<strong>📅</strong> ${ts} &nbsp;·&nbsp; <strong>🤖</strong> ${model} &nbsp;·&nbsp; <strong>⚡</strong> ${tokens} tokens`;
+                html += `</div>`;
+            }
+            html +=
+                `<div style="margin-bottom:12px;"><strong>📝 Prompt</strong><div style="background:#f0f4f9;padding:10px 14px;border-radius:6px;margin-top:4px;white-space:pre-wrap;word-break:break-word;">${prompt}</div></div>`;
+            html +=
+                `<div><strong>💬 Response</strong><div style="background:#f8fafc;padding:10px 14px;border-radius:6px;margin-top:4px;white-space:pre-wrap;word-break:break-word;">${response}</div></div>`;
+            return html;
+        }
+
+        function getFullHTML(conversations, title = 'LLM Conversations') {
+            const items = conversations.map(c => getConversationHTML(c, true)).join(
+                '<hr style="border:none;border-top:2px solid #dce3ed;margin:24px 0;" />'
+            );
+            return `<!DOCTYPE html>
+        <html lang="en">
+        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>${escapeHtml(title)}</title>
+        <style>body{font-family:system-ui,sans-serif;max-width:900px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1a2634;background:#f6f9fc;}
+        h1{font-weight:600;font-size:1.6rem;margin-bottom:8px;color:#1a2634;}
+        .meta{color:#4a5a6e;font-size:0.85rem;margin-bottom:24px;}
+        hr{margin:28px 0;border:none;border-top:2px solid #dce3ed;}
+        .conv-block{background:#fff;padding:18px 22px;border-radius:12px;border:1px solid #dce3ed;margin-bottom:18px;}
+        </style></head>
+        <body>
+        <h1>📋 ${escapeHtml(title)}</h1>
+        <div class="meta">${conversations.length} conversation(s) · Exported on ${new Date().toLocaleString('en-US')}</div>
+        ${items}
+        </body></html>`;
+        }
+
+        function exportSingle(idx, format = 'md') {
+            const c = state.filtered[idx];
+            if (!c) { showToast('Conversation not found.', 'error'); return; }
+            const baseName = `conv_${formatDateShort(c.Timestamp)}_${sanitizeFilename(c.Model || 'model')}`;
+            const ts = getTimestampFilename();
+
+            switch (format) {
+                case 'md': {
+                    const content = getConversationMarkdown(c, true);
+                    downloadFile(content, `${baseName}_${ts}.md`, 'text/markdown');
+                    showToast(`Exported ${baseName}.md`, 'success');
+                    break;
+                }
+                case 'txt': {
+                    const content = getConversationText(c, true);
+                    downloadFile(content, `${baseName}_${ts}.txt`, 'text/plain');
+                    showToast(`Exported ${baseName}.txt`, 'success');
+                    break;
+                }
+                case 'html': {
+                    const content = getFullHTML([c], `Conversation · ${formatDate(c.Timestamp)}`);
+                    downloadFile(content, `${baseName}_${ts}.html`, 'text/html');
+                    showToast(`Exported ${baseName}.html`, 'success');
+                    break;
+                }
+                case 'pdf': {
+                    exportPDF([c], `${baseName}_${ts}.pdf`);
+                    break;
+                }
+                default:
+                    showToast('Unsupported format.', 'error');
+            }
+        }
+
+        function exportBatch(indices, format = 'md') {
+            if (indices.length === 0) {
+                showToast('No conversations selected.', 'error');
+                return;
+            }
+            const convs = indices.map(i => state.filtered[i]).filter(Boolean);
+            if (convs.length === 0) { showToast('No valid conversations.', 'error'); return; }
+
+            const ts = getTimestampFilename();
+            const baseName = `conversations_${ts}`;
+
+            switch (format) {
+                case 'md': {
+                    const content = convs.map(c => getConversationMarkdown(c, true)).join('\n\n');
+                    downloadFile(content, `${baseName}.md`, 'text/markdown');
+                    showToast(`Exported ${convs.length} conversation(s) as MD.`, 'success');
+                    break;
+                }
+                case 'txt': {
+                    const content = convs.map(c => getConversationText(c, true)).join('\n\n' + '='.repeat(60) + '\n\n');
+                    downloadFile(content, `${baseName}.txt`, 'text/plain');
+                    showToast(`Exported ${convs.length} conversation(s) as TXT.`, 'success');
+                    break;
+                }
+                case 'html': {
+                    const content = getFullHTML(convs, `${convs.length} conversations`);
+                    downloadFile(content, `${baseName}.html`, 'text/html');
+                    showToast(`Exported ${convs.length} conversation(s) as HTML.`, 'success');
+                    break;
+                }
+                case 'pdf': {
+                    exportPDF(convs, `${baseName}.pdf`);
+                    break;
+                }
+                default:
+                    showToast('Unsupported format.', 'error');
+            }
+        }
+
+        function exportPDF(conversations, filename) {
+            if (typeof window.jspdf === 'undefined' || typeof html2canvas === 'undefined') {
+                showToast('PDF libraries not loaded. Check your connection.', 'error');
+                return;
+            }
+            const container = document.createElement('div');
+            container.style.cssText =
+                'position:fixed;left:-9999px;top:0;width:800px;background:#fff;padding:30px 40px;font-family:system-ui,sans-serif;color:#1a2634;line-height:1.6;';
+            container.innerHTML = getFullHTML(conversations, `${conversations.length} conversations`);
+            document.body.appendChild(container);
+
+            html2canvas(container, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                width: 800,
+                windowWidth: 800,
+            }).then(canvas => {
+                document.body.removeChild(container);
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = 210;
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                let heightLeft = pdfHeight;
+                let position = 0;
+
+                pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, pdfHeight);
+                heightLeft -= pdfHeight;
+
+                while (heightLeft > 0) {
+                    position = heightLeft - pdfHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, pdfHeight);
+                    heightLeft -= pdfHeight;
+                }
+                pdf.save(filename);
+                showToast(`Exported ${conversations.length} conversation(s) as PDF.`, 'success');
+            }).catch(err => {
+                document.body.removeChild(container);
+                showToast('Error generating PDF: ' + err.message, 'error');
+                console.error(err);
+            });
+        }
+
+        // ============================================================
+        // EVENT BINDING
+        // ============================================================
+
+        loadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                loadFromFile(e.target.files[0]);
+                fileInput.value = '';
+            }
+        });
+
+        document.addEventListener('dragover', (e) => { e.preventDefault(); });
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].name.endsWith('.json')) {
+                loadFromFile(files[0]);
+            } else if (files.length > 0) {
+                showToast('Please drop a .json file', 'error');
+            }
+        });
+
+        clearBtn.addEventListener('click', () => {
+            if (state.conversations.length === 0) return;
+            if (confirm('Clear all loaded conversations?')) {
+                state.conversations = [];
+                state.filtered = [];
+                state.selected = new Set();
+                state.loaded = false;
+                render();
+                updateStats();
+                modelFilter.innerHTML = '<option value="">All</option>';
+                showToast('Data cleared.', 'info');
+            }
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+        modelFilter.addEventListener('change', applyFilters);
+        dateFrom.addEventListener('change', applyFilters);
+        dateTo.addEventListener('change', applyFilters);
+        tokenMin.addEventListener('input', applyFilters);
+        tokenMax.addEventListener('input', applyFilters);
+        resetFiltersBtn.addEventListener('click', resetFilters);
+
+        exportSelectedBtn.addEventListener('click', () => {
+            const indices = [...state.selected];
+            if (indices.length === 0) {
+                showToast('No conversations selected.', 'error');
+                return;
+            }
+            const format = exportFormat.value;
+            exportBatch(indices, format);
+        });
+
+        exportAllBtn.addEventListener('click', () => {
+            if (state.filtered.length === 0) {
+                showToast('No conversations to export.', 'error');
+                return;
+            }
+            const format = exportFormat.value;
+            const indices = state.filtered.map((_, i) => i);
+            exportBatch(indices, format);
+        });
+
+        modalCloseBtn.addEventListener('click', closeDetail);
+        modalCloseBtn2.addEventListener('click', closeDetail);
+        detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) closeDetail();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDetail();
+        });
+
+        modalExportBtn.addEventListener('click', () => {
+            const idx = state.detailIndex;
+            if (idx === null || idx === undefined) return;
+            const format = exportFormat.value;
+            exportSingle(idx, format);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                searchInput.focus();
+                searchInput.select();
+            }
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        loadThemePreference();
+        render();
+        updateStats();
+
+        console.log('📋 LLM History Viewer ready. Load a history.json file to start.');
+
+        window.__debug = {
+            state,
+            loadConversations,
+            exportBatch,
+            exportSingle,
+            resetFilters,
+            toggleTheme,
+        };
+
+    })();
+    </script>
+
+</body>
+</html>

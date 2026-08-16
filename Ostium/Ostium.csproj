@@ -401,6 +401,7 @@
     <Content Include="Keeptrack\Keeptrack.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="PromptViewer\promptviewer.html" />
     <Content Include="scripts\scriptsl\Domain_Infos.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
