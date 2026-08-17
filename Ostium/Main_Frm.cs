@@ -189,7 +189,8 @@ namespace Ostium
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
         readonly string versionNow = "43";
 
-        readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
+        readonly string HomeUrl = Application.StartupPath + @"\filesdir\homepage.html";
+        readonly string HomeUrlRSS = Application.StartupPath + @"\filesdir\rsspage.html";
         int Vrfy = 0;
         string FileOpnJson = string.Empty;
         readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
@@ -339,8 +340,7 @@ namespace Ostium
                     {
                         try
                         {
-                            if (lstUrlDfltCnf.Count > 0)
-                                @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                            @Class_Var.URL_HOME = HomeUrl;
                         }
                         catch (ArgumentOutOfRangeException)
                         {
@@ -353,8 +353,17 @@ namespace Ostium
                         }
                     }
 
-                    if (!string.IsNullOrEmpty(@Class_Var.URL_HOME))
-                        WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(@Class_Var.URL_HOME))
+                            WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+                    }
+                    catch (UriFormatException)
+                    {
+                        MessageBox.Show("Unable to determine the format of the Ostium home page URL! Check the " +
+                            "\"Home Page\" configuration in the Ostium options; leave it blank by default if you " +
+                            "do not wish to customize the URL.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
 
                     WBrowsefeed.Source = new Uri(HomeUrlRSS);
 
@@ -558,6 +567,11 @@ namespace Ostium
             string UsrHtt = UserAgentHttp_Opt_Txt.Text;
             string GoogBo = GoogBot_Opt_Txt.Text;
 
+            if (string.IsNullOrEmpty(UrlHome_Opt_Txt.Text))
+            {
+                UrlHome_Opt_Txt.Text = HomeUrl;
+            }
+
             if (val == 0)
             {
                 if (lstUrlDfltCnf.Count > 0)
@@ -565,7 +579,7 @@ namespace Ostium
                     try
                     {
                         dbDflt = lstUrlDfltCnf[0].ToString();
-                        urlHom = lstUrlDfltCnf[1].ToString();
+                        urlHom = HomeUrl;
                         urlTra = lstUrlDfltCnf[2].ToString();
                         Search = lstUrlDfltCnf[3].ToString();
                         UsrAgt = lstUrlDfltCnf[4].ToString();
@@ -2496,7 +2510,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Opening the Home Page if configured "@Class_Var.URL_HOME" or opening the default page of the file "url_dflt_cnf.ost"
+        /// Opening the Home Page if configured "@Class_Var.URL_HOME" or opening the default page "filesdir/homepage.html"
         /// </summary>
         /// 
         void Home_Btn_Click(object sender, EventArgs e)
@@ -2505,8 +2519,7 @@ namespace Ostium
             {
                 try
                 {
-                    if (lstUrlDfltCnf.Count > 0)
-                        @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                    @Class_Var.URL_HOME = HomeUrl;
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -2519,7 +2532,16 @@ namespace Ostium
                 }
             }
 
-            WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+            try
+            {
+                WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+            }
+            catch (UriFormatException)
+            {
+                MessageBox.Show("Unable to determine the format of the Ostium home page URL! Check the " +
+                    "\"Home Page\" configuration in the Ostium options; leave it blank by default if you " +
+                    "do not wish to customize the URL.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         void OnKey_URLbrowse(object sender, KeyPressEventArgs e)

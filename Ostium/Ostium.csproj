@@ -58,7 +58,7 @@
     <StartupObject>Ostium.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Ostiumico.ico</ApplicationIcon>
+    <ApplicationIcon>Ostium.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -400,6 +400,7 @@
     <Content Include="OOBai\_ai_model_list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Ostium.ico" />
     <Content Include="Ostiumico.ico" />
     <Content Include="Keeptrack\Keeptrack.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
