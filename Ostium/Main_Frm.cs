@@ -6023,8 +6023,7 @@ namespace Ostium
                 if (strName == "OstiumE.exe")
                     aArg = "/input=\"" + fileSelect + "\"";
                 else
-                    aArg = fileSelect;
-
+                    aArg = "\"" + fileSelect + "\"";
 
                 if (fileSelect != string.Empty)
                 {
