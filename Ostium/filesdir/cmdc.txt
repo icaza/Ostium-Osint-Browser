@@ -1,0 +1,40 @@
+
+*INFOS*
+
+> version   : software version
+> config    : open config.xml file
+> id        : process ID
+
+*SCRAPING*
+
+> sourcepage    : Downloading and saving the source of the current WEB page
+> links         : retrieve all page links (first! sourcepage command)
+> word          : retrieve all word (first! sourcepage command)
+> wordwd        : retrieve all word without duplicates (first! sourcepage command)
+> textlink      : retrieve text links (first! sourcepage command)
+
+*TOOLS*
+
+> multi         : Multiple Windows
+> cookie        : Cookie record
+> addcookie     : Add cookie
+> editor        : Open Default Editor
+> index         : Open Index app
+> dns           : TXT NS MX A
+> javascript    : Enable/Disable
+> bookmark      : Open BookMarklet
+> inject        : Inject JS script
+> regex         : Inject RegEx
+> backup        : Archive Data
+> encrypt       : Encryption
+> track         : Open Keep Track Viewer
+> history-clear : Clear History
+> useragent     : Change User agent
+> googlebot     : Google Bot On/Off
+> gdork         : Google dork prompt
+> capture       : Capture WEB page
+> htmltext      : HTML to Text
+
+*CMD*
+
+> exit          : close console

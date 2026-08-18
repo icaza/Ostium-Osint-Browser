@@ -144,6 +144,9 @@ namespace Ostium
         string FileDiag = string.Empty;
         string MinifyScr = string.Empty;
         string Scriptl = "off";
+
+        int TabRss = 0;
+        int TabJson = 0;
         ///
         /// <summary>
         /// Map variables
@@ -189,7 +192,9 @@ namespace Ostium
         readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
         readonly string versionNow = "43";
 
-        readonly string HomeUrlRSS = "https://veydunet.com/ostium/rss.html";
+        readonly string HomeUrl = Application.StartupPath + @"\filesdir\homepage.html";
+        readonly string HomeUrlRSS = Application.StartupPath + @"\filesdir\rsspage.html";
+        readonly string HomeUrlJson = Application.StartupPath + @"\filesdir\jsonpage.html";
         int Vrfy = 0;
         string FileOpnJson = string.Empty;
         readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
@@ -339,8 +344,7 @@ namespace Ostium
                     {
                         try
                         {
-                            if (lstUrlDfltCnf.Count > 0)
-                                @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                            @Class_Var.URL_HOME = HomeUrl;
                         }
                         catch (ArgumentOutOfRangeException)
                         {
@@ -353,10 +357,17 @@ namespace Ostium
                         }
                     }
 
-                    if (!string.IsNullOrEmpty(@Class_Var.URL_HOME))
-                        WBrowse.Source = new Uri(@Class_Var.URL_HOME);
-
-                    WBrowsefeed.Source = new Uri(HomeUrlRSS);
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(@Class_Var.URL_HOME))
+                            WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+                    }
+                    catch (UriFormatException)
+                    {
+                        MessageBox.Show("Unable to determine the format of the Ostium home page URL! Check the " +
+                            "\"Home Page\" configuration in the Ostium options; leave it blank by default if you " +
+                            "do not wish to customize the URL.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
 
                     Tools_TAB_0.Visible = true;
                     ///
@@ -558,6 +569,11 @@ namespace Ostium
             string UsrHtt = UserAgentHttp_Opt_Txt.Text;
             string GoogBo = GoogBot_Opt_Txt.Text;
 
+            if (string.IsNullOrEmpty(UrlHome_Opt_Txt.Text))
+            {
+                UrlHome_Opt_Txt.Text = HomeUrl;
+            }
+
             if (val == 0)
             {
                 if (lstUrlDfltCnf.Count > 0)
@@ -565,7 +581,7 @@ namespace Ostium
                     try
                     {
                         dbDflt = lstUrlDfltCnf[0].ToString();
-                        urlHom = lstUrlDfltCnf[1].ToString();
+                        urlHom = HomeUrl;
                         urlTra = lstUrlDfltCnf[2].ToString();
                         Search = lstUrlDfltCnf[3].ToString();
                         UsrAgt = lstUrlDfltCnf[4].ToString();
@@ -1134,6 +1150,17 @@ namespace Ostium
 
         void LoadAdditionalFiles()
         {
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
+                Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
+                Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
+
+            RFU(Path.Combine(FileDir, "_gdork.txt"), Path.Combine(FileDir, "gdork.txt"));
+            RFU(Path.Combine(FileDir, "_url.txt"), Path.Combine(FileDir, "url.txt"));
+            RFU(Path.Combine(FileDir, "grp-frm", "_grp_frm_url_opn.txt"), Path.Combine(FileDir, "grp-frm", "grp_frm_url_opn.txt"));
+            RFU(Path.Combine(FileDir, "url-constructor", "_construct_url.txt"), Path.Combine(FileDir, "url-constructor", "construct_url.txt"));
+            RFU(Path.Combine(FileDir, "url-constructor", "_search-images.txt"), Path.Combine(FileDir, "url-constructor", "search-images.txt"));
+
             if (File.Exists(Path.Combine(FileDir, "url.txt")))
             {
                 URL_URL_Cbx.Items.Clear();
@@ -1170,11 +1197,6 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
             loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
-
-            RFU(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
-                Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
-            RFU(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
-                Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
 
             if (!File.Exists(Path.Combine(AppStart, "Messis", "config.js")))
             {
@@ -2496,7 +2518,7 @@ namespace Ostium
         }
         ///
         /// <summary>
-        /// Opening the Home Page if configured "@Class_Var.URL_HOME" or opening the default page of the file "url_dflt_cnf.ost"
+        /// Opening the Home Page if configured "@Class_Var.URL_HOME" or opening the default page "filesdir/homepage.html"
         /// </summary>
         /// 
         void Home_Btn_Click(object sender, EventArgs e)
@@ -2505,8 +2527,7 @@ namespace Ostium
             {
                 try
                 {
-                    if (lstUrlDfltCnf.Count > 0)
-                        @Class_Var.URL_HOME = lstUrlDfltCnf[1].ToString();
+                    @Class_Var.URL_HOME = HomeUrl;
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -2519,7 +2540,16 @@ namespace Ostium
                 }
             }
 
-            WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+            try
+            {
+                WBrowse.Source = new Uri(@Class_Var.URL_HOME);
+            }
+            catch (UriFormatException)
+            {
+                MessageBox.Show("Unable to determine the format of the Ostium home page URL! Check the " +
+                    "\"Home Page\" configuration in the Ostium options; leave it blank by default if you " +
+                    "do not wish to customize the URL.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         void OnKey_URLbrowse(object sender, KeyPressEventArgs e)
@@ -5268,6 +5298,13 @@ namespace Ostium
                     }
                     break;
                 case 5:
+                    if (TabJson == 0)
+                    {
+                        WbOutA.Source = new Uri(HomeUrlJson);
+                        WbOutB.Source = new Uri(HomeUrlJson);
+                        TabJson = 1;
+                    }
+
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -5375,6 +5412,12 @@ namespace Ostium
 
         void CtrlTabRSS()
         {
+            if (TabRss == 0)
+            {
+                WBrowsefeed.Source = new Uri(HomeUrlRSS);
+                TabRss = 1;
+            }        
+
             Tools_TAB_0.Visible = false;
             Tools_TAB_1.Visible = true;
             Tools_TAB_3.Visible = false;
@@ -5980,8 +6023,7 @@ namespace Ostium
                 if (strName == "OstiumE.exe")
                     aArg = "/input=\"" + fileSelect + "\"";
                 else
-                    aArg = fileSelect;
-
+                    aArg = "\"" + fileSelect + "\"";
 
                 if (fileSelect != string.Empty)
                 {

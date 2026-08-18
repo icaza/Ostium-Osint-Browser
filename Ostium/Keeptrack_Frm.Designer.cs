@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Keeptrack_Frm));
             this.label1 = new System.Windows.Forms.Label();
             this.Tags_Txt = new System.Windows.Forms.TextBox();
             this.AddTrack_Btn = new System.Windows.Forms.Button();
@@ -126,6 +127,7 @@
             this.Controls.Add(this.Tags_Txt);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Keeptrack_Frm";
             this.Opacity = 0.1D;
             this.ShowInTaskbar = false;

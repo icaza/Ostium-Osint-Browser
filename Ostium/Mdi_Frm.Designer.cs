@@ -32,6 +32,8 @@
             this.Tools_Tls = new System.Windows.Forms.ToolStrip();
             this.NewFrm_Mnu = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnListUR_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.URLlist_Cbx = new System.Windows.Forms.ToolStripComboBox();
             this.AddUrlGrp_Btn = new System.Windows.Forms.ToolStripButton();
@@ -44,12 +46,10 @@
             this.CloseAllForm_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ReplaceChild_Btn = new System.Windows.Forms.ToolStripButton();
-            this.UrlOpn_Lst = new System.Windows.Forms.ListBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.FormsCount_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.OpnListUR_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.UrlOpn_Lst = new System.Windows.Forms.ListBox();
             this.Tools_Tls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +96,23 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 30);
+            // 
+            // OpnListUR_Btn
+            // 
+            this.OpnListUR_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnListUR_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnListUR_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.OpnListUR_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnListUR_Btn.Image")));
+            this.OpnListUR_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnListUR_Btn.Name = "OpnListUR_Btn";
+            this.OpnListUR_Btn.Size = new System.Drawing.Size(77, 27);
+            this.OpnListUR_Btn.Text = "Open URL";
+            this.OpnListUR_Btn.Click += new System.EventHandler(this.OpnListUR_Btn_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 30);
             // 
             // toolStripLabel1
             // 
@@ -199,21 +216,6 @@
             this.ReplaceChild_Btn.Text = "Replace";
             this.ReplaceChild_Btn.Click += new System.EventHandler(this.ReplaceChild_Btn_Click);
             // 
-            // UrlOpn_Lst
-            // 
-            this.UrlOpn_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.UrlOpn_Lst.Dock = System.Windows.Forms.DockStyle.Left;
-            this.UrlOpn_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UrlOpn_Lst.ForeColor = System.Drawing.Color.White;
-            this.UrlOpn_Lst.FormattingEnabled = true;
-            this.UrlOpn_Lst.ItemHeight = 14;
-            this.UrlOpn_Lst.Location = new System.Drawing.Point(0, 30);
-            this.UrlOpn_Lst.Name = "UrlOpn_Lst";
-            this.UrlOpn_Lst.Size = new System.Drawing.Size(198, 431);
-            this.UrlOpn_Lst.TabIndex = 5;
-            this.UrlOpn_Lst.Visible = false;
-            this.UrlOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.UrlOpn_Lst_SelectedIndexChanged);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -239,22 +241,20 @@
             this.FormsCount_Txt.Text = "15";
             this.FormsCount_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // OpnListUR_Btn
+            // UrlOpn_Lst
             // 
-            this.OpnListUR_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnListUR_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnListUR_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.OpnListUR_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnListUR_Btn.Image")));
-            this.OpnListUR_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpnListUR_Btn.Name = "OpnListUR_Btn";
-            this.OpnListUR_Btn.Size = new System.Drawing.Size(77, 27);
-            this.OpnListUR_Btn.Text = "Open URL";
-            this.OpnListUR_Btn.Click += new System.EventHandler(this.OpnListUR_Btn_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 30);
+            this.UrlOpn_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.UrlOpn_Lst.Dock = System.Windows.Forms.DockStyle.Left;
+            this.UrlOpn_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UrlOpn_Lst.ForeColor = System.Drawing.Color.White;
+            this.UrlOpn_Lst.FormattingEnabled = true;
+            this.UrlOpn_Lst.ItemHeight = 14;
+            this.UrlOpn_Lst.Location = new System.Drawing.Point(0, 30);
+            this.UrlOpn_Lst.Name = "UrlOpn_Lst";
+            this.UrlOpn_Lst.Size = new System.Drawing.Size(198, 431);
+            this.UrlOpn_Lst.TabIndex = 5;
+            this.UrlOpn_Lst.Visible = false;
+            this.UrlOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.UrlOpn_Lst_SelectedIndexChanged);
             // 
             // Mdi_Frm
             // 

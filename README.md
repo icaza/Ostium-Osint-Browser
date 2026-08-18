@@ -1,5 +1,3 @@
-# 🔍 Ostium OSINT Browser
-
 <div align="center">
 
 ![Ostium OSINT Browser](https://img.shields.io/badge/OSINT-Browser-blue?style=for-the-badge)
@@ -8,6 +6,8 @@
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey?style=for-the-badge)
 
 **An OSINT-oriented web browser with powerful built-in tools for investigation and open-source intelligence research**
+
+![Ostium Logo](https://veydunet.com/ostium/pic/svg-ostium2.png)
 
 [📥 Download](https://github.com/icaza/Ostium-Osint-Browser/releases/) • [📖 Documentation](https://github.com/icaza/Ostium-Osint-Browser/wiki) • [🎥 Tutorials](https://youtube.com/playlist?list=PL2P_w0qK8vNugPLFuQ2ap_3Kvi00wrNBy&si=a3VF6P6szfZok3sn) • [💬 Discord](https://discord.com/channels/1213972832657350677/)
 
