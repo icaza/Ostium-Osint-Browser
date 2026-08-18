@@ -1148,6 +1148,17 @@ namespace Ostium
 
         void LoadAdditionalFiles()
         {
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
+                Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
+            RFU(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
+                Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
+
+            RFU(Path.Combine(FileDir, "_gdork.txt"), Path.Combine(FileDir, "gdork.txt"));
+            RFU(Path.Combine(FileDir, "_url.txt"), Path.Combine(FileDir, "url.txt"));
+            RFU(Path.Combine(FileDir, "grp-frm", "_grp_frm_url_opn.txt"), Path.Combine(FileDir, "grp-frm", "grp_frm_url_opn.txt"));
+            RFU(Path.Combine(FileDir, "url-constructor", "_construct_url.txt"), Path.Combine(FileDir, "url-constructor", "construct_url.txt"));
+            RFU(Path.Combine(FileDir, "url-constructor", "_search-images.txt"), Path.Combine(FileDir, "url-constructor", "search-images.txt"));
+
             if (File.Exists(Path.Combine(FileDir, "url.txt")))
             {
                 URL_URL_Cbx.Items.Clear();
@@ -1184,11 +1195,6 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(Workflow, "xml", "lst", ProjectOpn_Lst);
             loadfiledir.LoadFileDirectory(WorkflowModel, "txt", "lst", ModelList_Lst);
             loadfiledir.LoadFileDirectory(Path.Combine(Scripts, "scriptsl"), "js", "splitb", TtsButton_Sts);
-
-            RFU(Path.Combine(AppStart, "SDelete_cmd", "_Install_SecureDelete_ContextMenu.bat"),
-                Path.Combine(AppStart, "SDelete_cmd", "Install_SecureDelete_ContextMenu.bat"));
-            RFU(Path.Combine(AppStart, "SDelete_cmd", "_SDelete_cmd.bat"),
-                Path.Combine(AppStart, "SDelete_cmd", "SDelete_cmd.bat"));
 
             if (!File.Exists(Path.Combine(AppStart, "Messis", "config.js")))
             {

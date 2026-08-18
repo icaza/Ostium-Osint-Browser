@@ -1,0 +1,20 @@
+
+*PROJECT FROM A LIST OF POINTS*
+
+- line by line
+
+Location Name, Latitude, Longitude, Marker Text
+
+- example
+ 
+Name, 75.4331380719759, -89.8636150360107, Station
+
+*PROJECT FROM A LIST OF POINTS ONLY LATITUDE LONGITUDE*
+
+- line by line
+
+Latitude, Longitude
+
+- example
+
+75.4331380719759, -89.8636150360107
