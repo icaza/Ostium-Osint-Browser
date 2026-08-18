@@ -384,6 +384,7 @@
             this.ScriptTxt_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ScriptTxt_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ScriptTxt_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScriptTxt_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ScriptTxt_Txt.ForeColor = System.Drawing.Color.Lime;
             this.ScriptTxt_Txt.IndentBackColor = System.Drawing.Color.Black;
             this.ScriptTxt_Txt.IsReplaceMode = false;
@@ -518,7 +519,7 @@
             this.panel7.Size = new System.Drawing.Size(808, 5);
             this.panel7.TabIndex = 11;
             // 
-            // ScriptCreator
+            // ScriptCreator_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -538,7 +539,7 @@
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "ScriptCreator";
+            this.Name = "ScriptCreator_Frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JS Script Edit";
             this.Load += new System.EventHandler(this.ScriptCreator_Load);

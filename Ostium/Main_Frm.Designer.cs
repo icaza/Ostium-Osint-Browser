@@ -4098,7 +4098,6 @@
             this.WbOutB.Location = new System.Drawing.Point(0, 320);
             this.WbOutB.Name = "WbOutB";
             this.WbOutB.Size = new System.Drawing.Size(1126, 270);
-            this.WbOutB.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
             // 
@@ -4194,7 +4193,6 @@
             this.WbOutA.Location = new System.Drawing.Point(0, 131);
             this.WbOutA.Name = "WbOutA";
             this.WbOutA.Size = new System.Drawing.Size(1126, 164);
-            this.WbOutA.Source = new System.Uri("https://veydunet.com/ostium/ostium.html", System.UriKind.Absolute);
             this.WbOutA.TabIndex = 14;
             this.WbOutA.ZoomFactor = 1D;
             // 

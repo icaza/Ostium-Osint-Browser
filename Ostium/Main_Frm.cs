@@ -144,6 +144,9 @@ namespace Ostium
         string FileDiag = string.Empty;
         string MinifyScr = string.Empty;
         string Scriptl = "off";
+
+        int TabRss = 0;
+        int TabJson = 0;
         ///
         /// <summary>
         /// Map variables
@@ -191,6 +194,7 @@ namespace Ostium
 
         readonly string HomeUrl = Application.StartupPath + @"\filesdir\homepage.html";
         readonly string HomeUrlRSS = Application.StartupPath + @"\filesdir\rsspage.html";
+        readonly string HomeUrlJson = Application.StartupPath + @"\filesdir\jsonpage.html";
         int Vrfy = 0;
         string FileOpnJson = string.Empty;
         readonly string HighlitFile = Application.StartupPath + @"\hwcf.txt";
@@ -364,8 +368,6 @@ namespace Ostium
                             "\"Home Page\" configuration in the Ostium options; leave it blank by default if you " +
                             "do not wish to customize the URL.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-
-                    WBrowsefeed.Source = new Uri(HomeUrlRSS);
 
                     Tools_TAB_0.Visible = true;
                     ///
@@ -5296,6 +5298,13 @@ namespace Ostium
                     }
                     break;
                 case 5:
+                    if (TabJson == 0)
+                    {
+                        WbOutA.Source = new Uri(HomeUrlJson);
+                        WbOutB.Source = new Uri(HomeUrlJson);
+                        TabJson = 1;
+                    }
+
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -5403,6 +5412,12 @@ namespace Ostium
 
         void CtrlTabRSS()
         {
+            if (TabRss == 0)
+            {
+                WBrowsefeed.Source = new Uri(HomeUrlRSS);
+                TabRss = 1;
+            }        
+
             Tools_TAB_0.Visible = false;
             Tools_TAB_1.Visible = true;
             Tools_TAB_3.Visible = false;

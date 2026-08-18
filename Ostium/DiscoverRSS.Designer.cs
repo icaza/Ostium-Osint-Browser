@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiscoverRSS));
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.DiscoverRSS_Btn = new System.Windows.Forms.Button();
@@ -128,6 +129,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.titleTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DiscoverRSS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
