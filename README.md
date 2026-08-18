@@ -1,5 +1,3 @@
-# 🔍 Ostium OSINT Browser
-
 <div align="center">
 
 ![Ostium OSINT Browser](https://img.shields.io/badge/OSINT-Browser-blue?style=for-the-badge)

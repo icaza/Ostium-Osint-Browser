@@ -1,0 +1,1 @@
+javascript:window.open(`https://radar.cloudflare.com/domains/domain/${window.location.host}`)

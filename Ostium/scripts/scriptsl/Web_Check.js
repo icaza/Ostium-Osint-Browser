@@ -1,0 +1,1 @@
+javascript:window.open(`https://web-check.xyz/check/${window.location.host}`)
