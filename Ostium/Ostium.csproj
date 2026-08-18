@@ -400,8 +400,6 @@
     <Content Include="OOBai\_ai_model_list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ostium.ico" />
-    <Content Include="Ostiumico.ico" />
     <Content Include="Keeptrack\Keeptrack.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -423,7 +421,13 @@
     <Content Include="scripts\oobai\extractcontentpage.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\scriptsl\Radar_Cloudflare.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="scripts\scriptsl\Url_Extractor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\Web_Check.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SDelete_cmd\SDelete\Eula.txt">
