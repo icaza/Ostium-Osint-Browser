@@ -5508,7 +5508,10 @@ namespace Ostium
                 }
 
                 if (URLbrowse_Cbx.Items.Count != 0)
+                {
                     URLbrowse_Cbx.SelectedIndex = 0;
+                    URLbrowse_Cbx.ForeColor = Color.Gold;
+                }
             }
             catch (Exception ex)
             {

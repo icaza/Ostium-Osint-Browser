@@ -199,7 +199,7 @@ namespace Ostium
                     MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 try { Process.Start("notepad.exe", outputPath); }
-                catch {}
+                catch { }
             }
         }
 
