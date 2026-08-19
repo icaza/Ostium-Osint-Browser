@@ -15,7 +15,7 @@
         'may', 'might', 'must', 'shall', 'do', 'does', 'did', 'done',
         'doing', 'don', 'doesn', 'didn', 'isn', 'aren', 'wasn', 'weren',
         'hasn', 'haven', 'hadn', 'won', 'wouldn', 'shouldn', 'couldn',
-        'can', 'cannot', 'can\'t', 'i\'m', 'you\'re', 'he\'s', 'she\'s',
+        'cannot', 'can\'t', 'i\'m', 'you\'re', 'he\'s', 'she\'s',
         'it\'s', 'we\'re', 'they\'re', 'i\'ve', 'you\'ve', 'we\'ve',
         'they\'ve', 'i\'d', 'you\'d', 'he\'d', 'she\'d', 'we\'d', 'they\'d',
         'i\'ll', 'you\'ll', 'he\'ll', 'she\'ll', 'we\'ll', 'they\'ll'
@@ -65,12 +65,13 @@
 
     const STOP_WORDS = new Set([...STOP_WORDS_EN, ...STOP_WORDS_FR]);
 
-    const STOP_WORDS_BY_LANG = {
-        en: STOP_WORDS_EN,
-        fr: STOP_WORDS_FR,
-    };
+    //const STOP_WORDS_BY_LANG = {
+    //    en: STOP_WORDS_EN,
+    //    fr: STOP_WORDS_FR,
+    //};
 
     // ========== STATE ==========
+
     const settings = {
         removeStopWords: true,
         minLength: 3,
@@ -82,15 +83,27 @@
     let wordCloudContainer, statsContainer;
     let chkStopWords, numMinLength, numMaxWords, btnAnalyze;
     let lastText = '';
+    let cleanupDrag = null;
 
     // ========== TEXT EXTRACTION ==========
     function getPageText() {
-        return document.body.innerText || document.body.textContent || '';
+        const txt = document.body.innerText || document.body.textContent || '';
+        const MAX_CHARS = 200_000;
+        return txt.length > MAX_CHARS ? txt.slice(0, MAX_CHARS) : txt;
+    }
+
+    // ========== TOKENIZATION (with fallback) ==========
+    function tokenize(text) {
+        try {
+            return text.toLowerCase().match(/\p{L}(?:\p{L}|'|-)*/gu) || [];
+        } catch (_) {
+            return text.toLowerCase().match(/[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['-][A-Za-zÀ-ÖØ-öø-ÿ]+)*/g) || [];
+        }
     }
 
     // ========== ANALYSIS ==========
     function analyze(text) {
-        const tokens = text.toLowerCase().match(/\p{L}(?:\p{L}|'|-)*/gu) || [];
+        const tokens = tokenize(text);
         const totalTokens = tokens.length;
 
         const filteredTokens = tokens.filter(word =>
@@ -126,17 +139,20 @@
 
         const maxFreq = sorted[0][1];
         const minFreq = sorted[sorted.length - 1][1];
+        const denom = Math.max(1, maxFreq - minFreq);
 
         sorted.forEach(([word, freq]) => {
             const span = document.createElement('span');
             span.className = 'word';
             span.textContent = word;
-            span.title = `Frequency: ${freq} (${((freq / totalFiltered) * 100).toFixed(2)}%)`;
 
-            const fontSize = 12 + ((freq - minFreq) / (maxFreq - minFreq || 1)) * 60;
+            const percent = totalFiltered ? ((freq / totalFiltered) * 100).toFixed(2) : '0.00';
+            span.title = `Frequency: ${freq} (${percent}%)`;
+
+            const fontSize = 12 + ((freq - minFreq) / denom) * 60;
             span.style.fontSize = `${fontSize}px`;
 
-            const ratio = (freq - minFreq) / (maxFreq - minFreq || 1);
+            const ratio = (freq - minFreq) / denom;
             const hue = 180 + ratio * 120;
             span.style.color = `hsl(${hue}, 100%, 70%)`;
 
@@ -177,22 +193,70 @@
         renderWordCloud(analysis.sorted, analysis.totalFiltered);
     }
 
+    // ========== DRAGGABLE ==========
+    function makeDraggable(element, handle) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        let isDragging = false;
+
+        function dragMouseDown(e) {
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            isDragging = true;
+            document.addEventListener('pointerup', closeDragElement);
+            document.addEventListener('pointermove', elementDrag);
+        }
+
+        function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            element.style.top = (element.offsetTop - pos2) + 'px';
+            element.style.left = (element.offsetLeft - pos1) + 'px';
+            element.style.right = 'auto';
+        }
+
+        function closeDragElement() {
+            if (isDragging) {
+                isDragging = false;
+                document.removeEventListener('pointerup', closeDragElement);
+                document.removeEventListener('pointermove', elementDrag);
+            }
+        }
+
+        handle.addEventListener('pointerdown', dragMouseDown);
+
+        function cleanup() {
+            if (isDragging) {
+                document.removeEventListener('pointerup', closeDragElement);
+                document.removeEventListener('pointermove', elementDrag);
+                isDragging = false;
+            }
+            handle.removeEventListener('pointerdown', dragMouseDown);
+        }
+
+        return cleanup;
+    }
+
     // ========== UI CONSTRUCTION ==========
     function createUI() {
+        const randomId = 'wca-' + Math.random().toString(36).slice(2, 9);
         host = document.createElement('div');
-        host.id = 'word-cloud-extension-root';
+        host.id = randomId;
         host.style.cssText = `
       position: fixed;
       top: 20px;
       right: 20px;
       width: 380px;
       max-height: 80vh;
-      z-index: 2147483647;
+      z-index: 999999;
       font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
       letter-spacing: 0.5px;
     `;
 
-        shadowRoot = host.attachShadow({ mode: 'open' });
+        shadowRoot = host.attachShadow({ mode: 'closed' });
 
         const style = document.createElement('style');
         style.textContent = `
@@ -353,9 +417,18 @@
         title.textContent = 'Word Cloud Analyzer';
         const closeBtn = document.createElement('button');
         closeBtn.className = 'close-btn';
-        closeBtn.innerHTML = '&times;';
+        closeBtn.textContent = '×';
         closeBtn.title = 'Close';
-        closeBtn.addEventListener('click', () => host.remove());
+
+        function removeWidget() {
+            if (cleanupDrag) {
+                cleanupDrag();
+                cleanupDrag = null;
+            }
+            host.remove();
+        }
+        closeBtn.addEventListener('click', removeWidget);
+
         header.appendChild(title);
         header.appendChild(closeBtn);
 
@@ -440,45 +513,16 @@
 
         document.body.appendChild(host);
 
-        makeDraggable(host, header);
-    }
-
-    // ========== DRAGGABLE ==========
-    function makeDraggable(element, handle) {
-        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        handle.onpointerdown = dragMouseDown;
-
-        function dragMouseDown(e) {
-            e.preventDefault();
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onpointerup = closeDragElement;
-            document.onpointermove = elementDrag;
-        }
-
-        function elementDrag(e) {
-            e.preventDefault();
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            element.style.top = (element.offsetTop - pos2) + 'px';
-            element.style.left = (element.offsetLeft - pos1) + 'px';
-            element.style.right = 'auto';
-        }
-
-        function closeDragElement() {
-            document.onpointerup = null;
-            document.onpointermove = null;
-        }
+        cleanupDrag = makeDraggable(host, header);
     }
 
     // ========== INIT ==========
     function init() {
-        if (document.getElementById('word-cloud-extension-root')) {
+        if (window.__wordCloudAnalyzerRunning) {
             console.warn('Word Cloud Analyzer already running.');
             return;
         }
+        window.__wordCloudAnalyzerRunning = true;
         createUI();
         runAnalysis();
     }
