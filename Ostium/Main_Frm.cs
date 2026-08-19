@@ -49,6 +49,14 @@ namespace Ostium
 {
     public partial class Main_Frm : Form
     {
+        #region Checking_Updates
+        const string RepoOwner = "icaza";
+        const string RepoName = "Ostium-Osint-Browser";
+        const string CurrentVersion = "1.3.44";
+        readonly string tempZipPath = Path.Combine(Application.StartupPath, "update.zip");
+        readonly string extractFolder = Path.Combine(Application.StartupPath, "UpdateTemp");
+        #endregion
+
         #region Var_
         ///
         /// <summary>
@@ -189,17 +197,6 @@ namespace Ostium
         /// </summary>
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
-
-        ///
-        /// <summary>
-        /// Variable for checking updates
-        /// </summary>
-        /// 
-        const string RepoOwner = "icaza";
-        const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.3.44";
-        readonly string tempZipPath = Path.Combine(Application.StartupPath, "update.zip");
-        readonly string extractFolder = Path.Combine(Application.StartupPath, "UpdateTemp");
 
         readonly string HomeUrl = Application.StartupPath + @"\filesdir\homepage.html";
         readonly string HomeUrlRSS = Application.StartupPath + @"\filesdir\rsspage.html";
