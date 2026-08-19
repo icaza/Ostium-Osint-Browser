@@ -8001,7 +8001,7 @@ namespace Ostium
         ///
         void OpnWorkflowTools_Tls_Click(object sender, EventArgs e)
         {
-            if (NameProjectwf_Txt.Text != string.Empty)
+            if (NameProjectwf_Txt.Text != string.Empty && NameProjectwf_Txt.Text != "Insert project Name")
             {
                 Panel_Workflow.Visible = !Panel_Workflow.Visible;
             }
@@ -8119,7 +8119,7 @@ namespace Ostium
         {
             try
             {
-                if (!string.IsNullOrEmpty(ModelName_Txt.Text) && !string.IsNullOrEmpty(ModelItem_Txt.Text))
+                if (!string.IsNullOrEmpty(ModelName_Txt.Text) && !string.IsNullOrEmpty(ModelItem_Txt.Text) && ModelName_Txt.Text != "Choose a model name")
                 {
                     string header = ModelName_Txt.Text;
                     ModelName_Txt.Text = header.Trim(new char[] { ' ' });

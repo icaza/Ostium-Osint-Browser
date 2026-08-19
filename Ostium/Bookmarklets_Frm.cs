@@ -24,7 +24,6 @@ namespace Ostium
         #endregion
 
         #region Form_
-
         public Bookmarklets_Frm()
         {
             InitializeComponent();
@@ -34,7 +33,6 @@ namespace Ostium
         {
             loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);
         }
-
         #endregion
 
         void NewScript_Btn_Click(object sender, EventArgs e)
@@ -221,7 +219,6 @@ namespace Ostium
         }
 
         #region ContextMenu_
-
         void Cut_Tools_Click(object sender, EventArgs e)
         {
             SendKeys.Send("^" + "x");
@@ -246,7 +243,6 @@ namespace Ostium
         {
             SendKeys.Send("^" + "a");
         }
-
         #endregion
     }
 }
