@@ -19,9 +19,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -54,12 +56,14 @@ namespace Ostium
         /// </summary>
         ///
         readonly SpeechSynthesizer synth = new SpeechSynthesizer();
+
         ///
         /// <summary>
         /// List of default configuration URLs from the "config.xml" file, load from the "url_dflt_cnf.ost" file
         /// </summary>
         ///
         readonly List<string> lstUrlDfltCnf = new List<string>();
+
         ///
         /// <summary>
         /// Directories of the different usage files and the Database
@@ -89,6 +93,7 @@ namespace Ostium
         readonly string PromptViewer = Application.StartupPath + @"\PromptViewer\";
 
         string databasePath = "default_database_name";
+
         ///
         /// <summary>
         /// Objects
@@ -116,6 +121,7 @@ namespace Ostium
         Microsoft.Web.WebView2.WinForms.WebView2 WbOutParse;
         readonly string JsonA = Application.StartupPath + @"\json-files\out-a-json.json";
         readonly string JsonB = Application.StartupPath + @"\json-files\out-b-json.json";
+
         ///
         /// <summary>
         /// Variables
@@ -147,6 +153,7 @@ namespace Ostium
 
         int TabRss = 0;
         int TabJson = 0;
+
         ///
         /// <summary>
         /// Map variables
@@ -165,6 +172,7 @@ namespace Ostium
         GMarkerGoogleType Mkmarker = GMarkerGoogleType.red_dot; // by default
         ///
         int Commut = 0;
+
         ///
         /// <summary>
         /// DLL => "icaza.dll"
@@ -175,22 +183,23 @@ namespace Ostium
         readonly IcazaClass selectdir = new IcazaClass();
         readonly IcazaClass openfile = new IcazaClass();
         readonly ReturnSize sizedireturn = new ReturnSize();
+
         /// <summary>
         /// Message displayed when starting the creation of a Diagram
         /// </summary>
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
-        //readonly string MessageStartGeoloc = "When this window closes, the creation process begins. Please be patient, as the time depends on the number " +
-        //    "of points to be added to the file. ";
+
         ///
         /// <summary>
         /// Variable for checking updates
-        /// <param name="versionNow">Current version of the application to compare with the Http request = > "updt_ostium.html"</param>
         /// </summary>
         /// 
-        readonly string updtOnlineFile = "https://veydunet.com/2x24/sft/updt/updt_ostium.html"; // <= Change the URL to distribute your version
-        readonly string WebPageUpdate = "https://veydunet.com/ostium/update.php"; // <= Change the URL to distribute your version
-        readonly string versionNow = "43";
+        const string RepoOwner = "icaza";
+        const string RepoName = "Ostium-Osint-Browser";
+        const string CurrentVersion = "1.3.44";
+        readonly string tempZipPath = Path.Combine(Application.StartupPath, "update.zip");
+        readonly string extractFolder = Path.Combine(Application.StartupPath, "UpdateTemp");
 
         readonly string HomeUrl = Application.StartupPath + @"\filesdir\homepage.html";
         readonly string HomeUrlRSS = Application.StartupPath + @"\filesdir\rsspage.html";
@@ -370,12 +379,8 @@ namespace Ostium
                     }
 
                     Tools_TAB_0.Visible = true;
-                    ///
-                    /// Checking auto updates
-                    /// <param value="0">Message only if update available</param>
-                    /// <param value="1">Message False or True update</param>
-                    ///
-                    VerifyUPDT("Ostium", 0);
+                    
+                    VerifyUPDT(0);
 
                     WbOutParse = WbOutA;
                     WbOutJson = WbOutB;
@@ -3699,7 +3704,7 @@ namespace Ostium
         ///
         void OstUpdt_Btn_Click(object sender, EventArgs e)
         {
-            VerifyUPDT("Ostium", 1);
+            VerifyUPDT(1);
         }
         ///
         /// <param name="GoBrowser"></param>
@@ -5416,7 +5421,7 @@ namespace Ostium
             {
                 WBrowsefeed.Source = new Uri(HomeUrlRSS);
                 TabRss = 1;
-            }        
+            }
 
             Tools_TAB_0.Visible = false;
             Tools_TAB_1.Visible = true;
@@ -5508,7 +5513,10 @@ namespace Ostium
                 }
 
                 if (URLbrowse_Cbx.Items.Count != 0)
+                {
                     URLbrowse_Cbx.SelectedIndex = 0;
+                    URLbrowse_Cbx.ForeColor = Color.Gold;
+                }
             }
             catch (Exception ex)
             {
@@ -13546,52 +13554,140 @@ namespace Ostium
         #region Update_
         ///
         /// <summary>
-        /// Checking updates via Http request and comparison with the variable => "versionNow"
+        /// Checking updates
         /// </summary>
-        /// <param value="0">Auto check no announcement if update False announcement if True</param>
-        /// <param value="1">Manual check announces whether False or True</param>
         ///
-        async void VerifyUPDT(string softName, int annoncE)
+        public async Task CheckForUpdatesAsync(int Warn)
         {
-            try
+            using (HttpClient client = new HttpClient())
             {
-                bool isConnected = await CheckInternetConnectionAsync();
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubUpdate", "1.0.0"));
 
-                if (isConnected)
+                string url = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest";
+
+                try
                 {
-                    HttpClient client = new HttpClient();
-                    var response = await client.GetAsync(updtOnlineFile);
-                    string updtValue = await response.Content.ReadAsStringAsync();
+                    string jsonResponse = await client.GetStringAsync(url);
+                    using (JsonDocument doc = JsonDocument.Parse(jsonResponse))
+                    {
+                        JsonElement root = doc.RootElement;
 
-                    if (versionNow != updtValue)
-                    {
-                        AnnonceUpdate(softName);
-                    }
-                    else
-                    {
-                        if (annoncE == 1)
-                            MessageBox.Show("No update available.", softName);
+                        string latestVersion = root.GetProperty("tag_name").GetString();
+
+                        if (latestVersion != CurrentVersion)
+                        {
+                            string downloadUrl = root.GetProperty("assets")[0].GetProperty("browser_download_url").GetString();
+
+                            string message = $"A new version ({latestVersion}) is available. Do you want to download it?\n\n" +
+                                $"If you click Yes, the latest version of the application is downloaded automatically.\n\n" +
+                                $"The application will restart once the installation is complete.\n\n" +
+                                $"Important: Do not exit the application until the installation is completely finished! Be patient.";
+                            string caption = "Update";
+                            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                await DownloadUpdate(downloadUrl);
+                            }
+                        }
+                        else
+                        {
+                            if (Warn == 1)
+                                MessageBox.Show("No updates available.", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }                            
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! VerifyUPDT: ", ex.ToString(), "Main_Frm", AppStart);
+                catch (Exception ex)
+                {
+                    senderror.ErrorLog("Error! CheckForUpdatesAsync: ", ex.ToString(), "Main_Frm", AppStart);
+                }
             }
         }
 
-        void AnnonceUpdate(string softName)
+        async Task DownloadUpdate(string downloadUrl)
         {
-            var result = MessageBox.Show($"An update is available for the {softName} " +
-                $"software, open the update page now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
-                if (result == DialogResult.Yes)
-                    GoBrowser(WebPageUpdate, 0);
+                if (Directory.Exists(extractFolder)) Directory.Delete(extractFolder, true);
+                if (File.Exists(tempZipPath)) File.Delete(tempZipPath);
+
+                using (HttpClient client = new HttpClient())
+                {
+                    byte[] fileBytes = await client.GetByteArrayAsync(downloadUrl);
+                    File.WriteAllBytes(tempZipPath, fileBytes);
+                }
+
+                ZipFile.ExtractToDirectory(tempZipPath, extractFolder);
+
+                File.Delete(tempZipPath);
+
+                RunUpdateScript(Application.StartupPath, extractFolder);
             }
             catch (Exception ex)
             {
-                senderror.ErrorLog("Error! AnnonceUpdate: ", ex.ToString(), "Main_Frm", AppStart);
+                senderror.ErrorLog("Error! DownloadUpdate: ", ex.ToString(), "Main_Frm", AppStart);
+
+                try
+                {
+                    if (File.Exists(tempZipPath))
+                        File.Delete(tempZipPath);
+                    if (Directory.Exists(extractFolder))
+                        Directory.Delete(extractFolder, true);
+                }
+                catch
+                {}
+            }
+        }
+
+        static void RunUpdateScript(string appFolder, string extractFolder)
+        {
+            string appExeName = AppDomain.CurrentDomain.FriendlyName;
+            string batPath = Path.Combine(appFolder, "updater.bat");
+
+            string sourceFolder = GetActualSourceFolder(extractFolder);
+
+            string batContent = $@"
+@echo off
+timeout /t 2 /nobreak > NUL
+xcopy /Y /S /E ""{sourceFolder}\*"" ""{appFolder}""
+rmdir /S /Q ""{extractFolder}""
+start """" ""{Path.Combine(appFolder, appExeName)}""
+del ""%~f0""
+";
+
+            File.WriteAllText(batPath, batContent);
+
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = batPath,
+                UseShellExecute = true,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+            Process.Start(psi);
+
+            Environment.Exit(0);
+        }
+
+        static string GetActualSourceFolder(string extractFolder)
+        {
+            var entries = Directory.GetFileSystemEntries(extractFolder);
+
+            if (entries.Length == 1 && Directory.Exists(entries[0]))
+            {
+                return entries[0];
+            }
+
+            return extractFolder;
+        }
+
+        async void VerifyUPDT(int Warn)
+        {
+            bool isConnected = await CheckInternetConnectionAsync();
+
+            if (isConnected)
+            {
+                await CheckForUpdatesAsync(Warn);
             }
         }
 
@@ -13612,7 +13708,6 @@ namespace Ostium
                 return false;
             }
         }
-
         #endregion
     }
 
