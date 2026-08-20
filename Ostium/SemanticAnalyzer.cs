@@ -22,7 +22,6 @@ namespace SemanticAnalyzer
         #endregion
 
         #region Properties
-
         LanguageConfig CurrentLanguage { get; set; }
 
         public static readonly HashSet<string> SupportedExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -30,11 +29,9 @@ namespace SemanticAnalyzer
             ".txt", ".md", ".csv", ".xml", ".json", ".log", ".html", ".htm",
             ".rtf", ".tex", ".rst", ".yaml", ".yml", ".ini", ".cfg", ".conf"
         };
-
         #endregion
 
         #region Public Methods
-
         public async Task<SemanticAnalysisResult> AnalyzeDocumentAsync(string filePath, string languageFilePath, IProgress<int> progress = null)
         {
             ValidateInputs(filePath, languageFilePath);
@@ -69,7 +66,6 @@ namespace SemanticAnalyzer
             var markdown = GenerateMarkdownReport(result);
             await Task.Run(() => File.WriteAllText(outputPath, markdown, Encoding.UTF8));
         }
-
         #endregion
 
         #region Validation
@@ -98,7 +94,6 @@ namespace SemanticAnalyzer
         #endregion
 
         #region Document Loading
-
         async Task<string> LoadDocumentContentAsync(string filePath)
         {
             var extension = Path.GetExtension(filePath).ToLowerInvariant();
@@ -200,11 +195,9 @@ namespace SemanticAnalyzer
 
             return text.Trim();
         }
-
         #endregion
 
         #region Language Configuration
-
         async Task<LanguageConfig> LoadLanguageConfigAsync(string filePath)
         {
             try
@@ -287,11 +280,9 @@ namespace SemanticAnalyzer
 
             return dict;
         }
-
         #endregion
 
         #region Analysis
-
         SemanticAnalysisResult PerformSemanticAnalysis(string content, string fileName, IProgress<int> progress)
         {
             var result = new SemanticAnalysisResult
@@ -622,11 +613,9 @@ namespace SemanticAnalyzer
                 ? (double)result.UniqueWords / result.TotalWords
                 : 0;
         }
-
         #endregion
 
         #region Report Generation
-
         string GenerateHtmlReport(SemanticAnalysisResult result)
         {
             var html = new StringBuilder();
@@ -1365,7 +1354,6 @@ namespace SemanticAnalyzer
                 .Replace("\n", "\\n")
                 .Replace("\t", "\\t");
         }
-
         #endregion
     }
 }

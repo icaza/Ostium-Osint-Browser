@@ -34,6 +34,8 @@
 > gdork         : Google dork prompt
 > capture       : Capture WEB page
 > htmltext      : HTML to Text
+> investigation : Open Investigation Board
+> promptviewer  : Open Prompt Viewer
 
 *CMD*
 

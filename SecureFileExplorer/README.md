@@ -11,9 +11,12 @@ SecureFileExplorer is a web application for file analysis. It allows you to inde
 [.Net 9.0 SDK x64](https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.308/dotnet-sdk-9.0.308-win-x64.exe)
 - Windows OS
 
+File create at: 21/08/2026 00:39:30
+File Name Hash: SecureFileExplorer_1.0.0.9.zip (already included in Ostium)
+
 ### SHA512
 ```bash
-2396ac99f4562137184d73543c15ce0d1c68a1e50456f6f1ab34b7fdfe55af369bdb843d2f866659c3b55e8f198a2934d2f8aeadb44c45808e2ec17b8bac22b5
+39a94111d5732906d3fbf1c3df46608dd9abca1eedfaaff58eb615f2a45083c3c033add626e8152b81be48f48ebe55b8bec2c08a3503c282a5d6c3199ddf3b07
 ```
 
 ## Features
