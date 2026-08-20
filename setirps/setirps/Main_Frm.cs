@@ -15,7 +15,6 @@ namespace setirps
     public partial class Main_Frm : Form
     {
         #region Var_
-
         const int WM_NCLBUTTONDOWN = 0xA1;
         const int HT_CAPTION = 0x2;
         [DllImport("user32.dll")]
@@ -44,11 +43,9 @@ namespace setirps
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
     "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
         string FileDiag = "";
-
         #endregion
 
         #region Form_
-
         public Main_Frm()
         {
             InitializeComponent();
@@ -84,7 +81,6 @@ namespace setirps
         {
             HideScroll_Pnl.Height = Height;
         }
-
         #endregion
 
         #region Button_Sprite
@@ -961,16 +957,17 @@ namespace setirps
         {
             try
             {
-                string limitsize = "";
+                string limitsize = string.Empty;
+                string argumentsIs = string.Empty;
 
                 if (Limitsize_Chk.Checked)
                     limitsize = "-DPLANTUML_LIMIT_SIZE=8192";
 
-                string argumentsIs = "java " + limitsize + " -jar plantuml.jar " + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
+                argumentsIs = limitsize + " -jar " + DiagramDir + "plantuml.jar " + fileselect + " -tsvg " + CharsetPlant_Txt.Text;
 
                 using (Process proc = new Process())
                 {
-                    proc.StartInfo.FileName = DiagramDir + "plantuml.jar";
+                    proc.StartInfo.FileName = "java";
                     proc.StartInfo.Arguments = argumentsIs;
                     proc.StartInfo.UseShellExecute = true;
                     proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;

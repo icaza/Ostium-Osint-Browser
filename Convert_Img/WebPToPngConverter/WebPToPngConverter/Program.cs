@@ -241,7 +241,6 @@ namespace WebPToPngConverter
         {
             try
             {
-                // Create a memory stream
                 using (var stream = new MemoryStream(webpData))
                 {
                     // Use BitmapImage which can decode WebP via WIC
@@ -265,7 +264,6 @@ namespace WebPToPngConverter
 
                     try
                     {
-                        // Copy the pixels
                         bitmapImage.CopyPixels(
                             new System.Windows.Int32Rect(0, 0, width, height),
                             bitmapData.Scan0,

@@ -128,6 +128,10 @@
             this.ServerMiror_Lst = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.InsertValue_Btn = new System.Windows.Forms.Button();
+            this.ListSelectTxt_Txt = new System.Windows.Forms.TextBox();
+            this.CharsetPlant_Txt = new System.Windows.Forms.TextBox();
+            this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
             this.OpnEditor_Btn = new System.Windows.Forms.Button();
             this.OpnProject_Btn = new System.Windows.Forms.Button();
             this.SaveProject_Btn = new System.Windows.Forms.Button();
@@ -138,11 +142,7 @@
             this.NewProject_Btn = new System.Windows.Forms.Button();
             this.OpnXML_Btn = new System.Windows.Forms.Button();
             this.AppStartup_Btn = new System.Windows.Forms.Button();
-            this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
-            this.CharsetPlant_Txt = new System.Windows.Forms.TextBox();
             this.Timo = new System.Windows.Forms.Timer(this.components);
-            this.ListSelectTxt_Txt = new System.Windows.Forms.TextBox();
-            this.InsertValue_Btn = new System.Windows.Forms.Button();
             this.Tools_Tls.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.Panel_Site.SuspendLayout();
@@ -1415,6 +1415,57 @@
             this.panel2.Size = new System.Drawing.Size(877, 30);
             this.panel2.TabIndex = 19;
             // 
+            // InsertValue_Btn
+            // 
+            this.InsertValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.InsertValue_Btn.FlatAppearance.BorderSize = 0;
+            this.InsertValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.InsertValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.InsertValue_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InsertValue_Btn.ForeColor = System.Drawing.Color.White;
+            this.InsertValue_Btn.Location = new System.Drawing.Point(485, 4);
+            this.InsertValue_Btn.Name = "InsertValue_Btn";
+            this.InsertValue_Btn.Size = new System.Drawing.Size(55, 22);
+            this.InsertValue_Btn.TabIndex = 10;
+            this.InsertValue_Btn.Text = "Insert";
+            this.InsertValue_Btn.UseVisualStyleBackColor = true;
+            this.InsertValue_Btn.Click += new System.EventHandler(this.InsertValue_Btn_Click);
+            // 
+            // ListSelectTxt_Txt
+            // 
+            this.ListSelectTxt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ListSelectTxt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListSelectTxt_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListSelectTxt_Txt.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.ListSelectTxt_Txt.Location = new System.Drawing.Point(6, 8);
+            this.ListSelectTxt_Txt.Name = "ListSelectTxt_Txt";
+            this.ListSelectTxt_Txt.Size = new System.Drawing.Size(471, 14);
+            this.ListSelectTxt_Txt.TabIndex = 2;
+            // 
+            // CharsetPlant_Txt
+            // 
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.Gray;
+            this.CharsetPlant_Txt.Location = new System.Drawing.Point(772, 8);
+            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
+            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 14);
+            this.CharsetPlant_Txt.TabIndex = 1;
+            this.CharsetPlant_Txt.Text = "-charset UTF-8";
+            // 
+            // Limitsize_Chk
+            // 
+            this.Limitsize_Chk.AutoSize = true;
+            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Limitsize_Chk.ForeColor = System.Drawing.Color.Olive;
+            this.Limitsize_Chk.Location = new System.Drawing.Point(547, 8);
+            this.Limitsize_Chk.Name = "Limitsize_Chk";
+            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 17);
+            this.Limitsize_Chk.TabIndex = 0;
+            this.Limitsize_Chk.Text = "LIMIT_SIZE=8192 default is 4096\r\n";
+            this.Limitsize_Chk.UseVisualStyleBackColor = true;
+            // 
             // OpnEditor_Btn
             // 
             this.OpnEditor_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
@@ -1564,61 +1615,10 @@
             this.AppStartup_Btn.UseVisualStyleBackColor = false;
             this.AppStartup_Btn.Click += new System.EventHandler(this.AppStartup_Btn_Click);
             // 
-            // Limitsize_Chk
-            // 
-            this.Limitsize_Chk.AutoSize = true;
-            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Limitsize_Chk.ForeColor = System.Drawing.Color.Olive;
-            this.Limitsize_Chk.Location = new System.Drawing.Point(547, 8);
-            this.Limitsize_Chk.Name = "Limitsize_Chk";
-            this.Limitsize_Chk.Size = new System.Drawing.Size(218, 17);
-            this.Limitsize_Chk.TabIndex = 0;
-            this.Limitsize_Chk.Text = "LIMIT_SIZE=8192 default is 4096\r\n";
-            this.Limitsize_Chk.UseVisualStyleBackColor = true;
-            // 
-            // CharsetPlant_Txt
-            // 
-            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.Gray;
-            this.CharsetPlant_Txt.Location = new System.Drawing.Point(772, 8);
-            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
-            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 14);
-            this.CharsetPlant_Txt.TabIndex = 1;
-            this.CharsetPlant_Txt.Text = "-charset UTF-8";
-            // 
             // Timo
             // 
             this.Timo.Interval = 5000;
             this.Timo.Tick += new System.EventHandler(this.Timo_Tick);
-            // 
-            // ListSelectTxt_Txt
-            // 
-            this.ListSelectTxt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ListSelectTxt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListSelectTxt_Txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListSelectTxt_Txt.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ListSelectTxt_Txt.Location = new System.Drawing.Point(6, 8);
-            this.ListSelectTxt_Txt.Name = "ListSelectTxt_Txt";
-            this.ListSelectTxt_Txt.Size = new System.Drawing.Size(471, 14);
-            this.ListSelectTxt_Txt.TabIndex = 2;
-            // 
-            // InsertValue_Btn
-            // 
-            this.InsertValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InsertValue_Btn.FlatAppearance.BorderSize = 0;
-            this.InsertValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.InsertValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InsertValue_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InsertValue_Btn.ForeColor = System.Drawing.Color.White;
-            this.InsertValue_Btn.Location = new System.Drawing.Point(485, 4);
-            this.InsertValue_Btn.Name = "InsertValue_Btn";
-            this.InsertValue_Btn.Size = new System.Drawing.Size(55, 22);
-            this.InsertValue_Btn.TabIndex = 10;
-            this.InsertValue_Btn.Text = "Insert";
-            this.InsertValue_Btn.UseVisualStyleBackColor = true;
-            this.InsertValue_Btn.Click += new System.EventHandler(this.InsertValue_Btn_Click);
             // 
             // Main_Frm
             // 

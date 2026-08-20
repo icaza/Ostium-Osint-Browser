@@ -162,7 +162,6 @@
             this.ScriptTxt_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ScriptTxt_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ScriptTxt_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ScriptTxt_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ScriptTxt_Txt.ForeColor = System.Drawing.Color.Lime;
             this.ScriptTxt_Txt.IndentBackColor = System.Drawing.Color.Black;
             this.ScriptTxt_Txt.IsReplaceMode = false;
@@ -176,7 +175,7 @@
             this.ScriptTxt_Txt.RightBracket2 = '}';
             this.ScriptTxt_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(191)))), ((int)(((byte)(255)))));
             this.ScriptTxt_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ScriptTxt_Txt.ServiceColors")));
-            this.ScriptTxt_Txt.Size = new System.Drawing.Size(821, 404);
+            this.ScriptTxt_Txt.Size = new System.Drawing.Size(821, 399);
             this.ScriptTxt_Txt.TabIndex = 3;
             this.ScriptTxt_Txt.Zoom = 100;
             // 
@@ -500,8 +499,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1080, 499);
-            this.Controls.Add(this.panel7);
             this.Controls.Add(this.ScriptTxt_Txt);
+            this.Controls.Add(this.panel7);
             this.Controls.Add(this.UrlSite_Pnl);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel6);
