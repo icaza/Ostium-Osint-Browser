@@ -39,7 +39,13 @@ namespace ScreenCaptureTool
             {
                 Cursor = Cursors.WaitCursor;
                 Hide();
-                System.Threading.Thread.Sleep(200);
+
+                int ts = 200;
+                if (Delay_Chk.Checked)
+                    ts = 5000;
+
+                System.Threading.Thread.Sleep(ts);
+
                 Rectangle bounds = SystemInformation.VirtualScreen;
                 using (Bitmap bmp = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb))
                 {
@@ -72,7 +78,13 @@ namespace ScreenCaptureTool
             {
                 Cursor = Cursors.WaitCursor;
                 Hide();
-                System.Threading.Thread.Sleep(300);
+
+                int ts = 200;
+                if (Delay_Chk.Checked)
+                    ts = 5000;
+
+                System.Threading.Thread.Sleep(ts);
+
                 IntPtr hwnd = GetForegroundWindow();
                 if (hwnd == IntPtr.Zero)
                 {
@@ -116,7 +128,9 @@ namespace ScreenCaptureTool
             {
                 Cursor = Cursors.Cross;
                 Hide();
+
                 System.Threading.Thread.Sleep(200);
+
                 using (var selector = new RegionSelectorForm())
                 {
                     if (selector.ShowDialog() == DialogResult.OK)

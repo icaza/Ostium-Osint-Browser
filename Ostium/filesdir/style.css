@@ -4,6 +4,7 @@
 body {
     background-color: rgb(41, 44, 51);
     color: rgb(30, 144 , 255);
+    text-align: center;
 }
 a:link {
     color: 	rgb(30, 144 , 255);
@@ -26,12 +27,10 @@ a:active {
     text-decoration: underline;
     }
 .logocenter {
-    display: block;
-    margin-top: 3%;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline-block;
     width: 30%;
-    height: 30%;
+    height: auto;
+    margin-top: 3%;
 }
 .namepage {
     font: 0.8rem "Fira Sans", sans-serif;

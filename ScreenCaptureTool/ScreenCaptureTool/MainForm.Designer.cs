@@ -34,9 +34,9 @@ namespace ScreenCaptureTool
             this.btnActiveWindow = new System.Windows.Forms.Button();
             this.btnRegion = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.StatusText = new System.Windows.Forms.Label();
+            this.Delay_Chk = new System.Windows.Forms.CheckBox();
             this.tlpMain.SuspendLayout();
             this.flpButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
@@ -67,7 +67,7 @@ namespace ScreenCaptureTool
             this.flpButtons.Controls.Add(this.btnActiveWindow);
             this.flpButtons.Controls.Add(this.btnRegion);
             this.flpButtons.Controls.Add(this.btnSave);
-            this.flpButtons.Controls.Add(this.label1);
+            this.flpButtons.Controls.Add(this.Delay_Chk);
             this.flpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpButtons.Location = new System.Drawing.Point(3, 3);
             this.flpButtons.Name = "flpButtons";
@@ -134,21 +134,6 @@ namespace ScreenCaptureTool
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(475, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(290, 40);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Full Screen - CTRL+1 || Select Region - CTRL+3\r\nActive Window - CTRL+2 || Save - " +
-    "CTRL+S";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // pictureBoxPreview
             // 
             this.pictureBoxPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
@@ -174,6 +159,20 @@ namespace ScreenCaptureTool
             this.StatusText.Text = "Ready";
             this.StatusText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // Delay_Chk
+            // 
+            this.Delay_Chk.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Delay_Chk.AutoSize = true;
+            this.Delay_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Delay_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Delay_Chk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.Delay_Chk.Location = new System.Drawing.Point(475, 13);
+            this.Delay_Chk.Name = "Delay_Chk";
+            this.Delay_Chk.Size = new System.Drawing.Size(125, 20);
+            this.Delay_Chk.TabIndex = 5;
+            this.Delay_Chk.Text = "5-second delay";
+            this.Delay_Chk.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,11 +190,11 @@ namespace ScreenCaptureTool
             this.TopMost = true;
             this.tlpMain.ResumeLayout(false);
             this.flpButtons.ResumeLayout(false);
+            this.flpButtons.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
-
-        private Label label1;
+        private CheckBox Delay_Chk;
     }
 }

@@ -376,7 +376,7 @@ namespace Ostium
                     }
 
                     Tools_TAB_0.Visible = true;
-                    
+
                     VerifyUPDT(0);
 
                     WbOutParse = WbOutA;
@@ -3845,6 +3845,11 @@ namespace Ostium
 
         void InvestigationBoard_Btn_Click(object sender, EventArgs e)
         {
+            InvestigationExec();
+        }
+
+        void InvestigationExec()
+        {
             try
             {
                 if (File.Exists(Path.Combine(InvestigationBoard, "investigation_board.html")))
@@ -4165,6 +4170,11 @@ namespace Ostium
         }
 
         void PromptViewer_Mnu_Click(object sender, EventArgs e)
+        {
+            PromptViewerExec();
+        }
+
+        void PromptViewerExec()
         {
             try
             {
@@ -5607,7 +5617,6 @@ namespace Ostium
         }
 
         #region Prompt_
-
         void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Console_Cmd_Txt.SelectionStart < 2 && e.KeyChar != (char)Keys.Enter)
@@ -5803,6 +5812,12 @@ namespace Ostium
                 case "cyberchef":
                     CyberChefExec();
                     break;
+                case "investigation":
+                    InvestigationExec();
+                    break;
+                case "promptviewer":
+                    PromptViewerExec();
+                    break;
                 case "exit":
                     Console_Cmd_Txt.Visible = !Console_Cmd_Txt.Visible;
                     break;
@@ -5916,7 +5931,6 @@ namespace Ostium
             catch
             { }
         }
-
         #endregion
 
         #region File_List_Create
@@ -13591,7 +13605,7 @@ namespace Ostium
                         {
                             if (Warn == 1)
                                 MessageBox.Show("No updates available.", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }                            
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -13632,7 +13646,7 @@ namespace Ostium
                         Directory.Delete(extractFolder, true);
                 }
                 catch
-                {}
+                { }
             }
         }
 
