@@ -4131,7 +4131,7 @@ namespace Ostium
             }
         }
 
-        void OpnNLV_Btn_Click(object sender, EventArgs e)
+        void LocalhostNLV_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4189,6 +4189,87 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! PromptViewer_Mnu_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void ConfigOBE_Btn_Click(object sender, EventArgs e)
+        {
+            string filepath = Path.Combine(AppStart, "OstiumBookmarkExplorer", "app.ts");
+
+            if (!File.Exists(filepath))
+            {
+                MessageBox.Show("OstiumBookmarkExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                    "OstiumBookmarkExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(filepath);
+        }
+
+        void StartOBE_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "OstiumBookmarkExplorer", "startserver.bat");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("OstiumBookmarkExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "OstiumBookmarkExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = filepath;
+                    proc.StartInfo.Arguments = string.Empty;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "OstiumBookmarkExplorer");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! StartOBE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LocalhostOBE_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "OstiumBookmarkExplorer", "app.ts");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(filepath);
+
+                string portLine = lines.FirstOrDefault(l => l.Contains("PORT ="));
+
+                if (portLine == null)
+                {
+                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string portStr = new string(portLine
+                    .SkipWhile(c => !char.IsDigit(c))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray());
+
+                int port = int.Parse(portStr);
+
+                GoBrowser($"localhost:{port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LocalhostOBE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

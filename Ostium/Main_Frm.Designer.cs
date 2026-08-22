@@ -136,6 +136,10 @@
             this.StartNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.PromptViewer_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ostiumBookmarkExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConfigOBE_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartOBE_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.LocalhostOBE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
             this.ConvertPDF_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator43 = new System.Windows.Forms.ToolStripSeparator();
@@ -666,6 +670,7 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1202,7 +1207,9 @@
             this.messisPlatformToolStripMenuItem,
             this.secureFileExplorerToolStripMenuItem,
             this.netLogViewerToolStripMenuItem,
+            this.toolStripSeparator40,
             this.PromptViewer_Mnu,
+            this.ostiumBookmarkExplorerToolStripMenuItem,
             this.toolStripSeparator34,
             this.ConvertPDF_Btn,
             this.toolStripSeparator43,
@@ -1236,59 +1243,59 @@
             // ForceLinkParent_Btn
             // 
             this.ForceLinkParent_Btn.Name = "ForceLinkParent_Btn";
-            this.ForceLinkParent_Btn.Size = new System.Drawing.Size(239, 22);
+            this.ForceLinkParent_Btn.Size = new System.Drawing.Size(252, 22);
             this.ForceLinkParent_Btn.Text = "Force link open in Parent";
             this.ForceLinkParent_Btn.Click += new System.EventHandler(this.ForceLinkParent_Btn_Click);
             // 
             // toolStripSeparator35
             // 
             this.toolStripSeparator35.Name = "toolStripSeparator35";
-            this.toolStripSeparator35.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator35.Size = new System.Drawing.Size(249, 6);
             // 
             // OpnWorkflowTools_Tls
             // 
             this.OpnWorkflowTools_Tls.Name = "OpnWorkflowTools_Tls";
-            this.OpnWorkflowTools_Tls.Size = new System.Drawing.Size(239, 22);
+            this.OpnWorkflowTools_Tls.Size = new System.Drawing.Size(252, 22);
             this.OpnWorkflowTools_Tls.Text = "Open Workflow tools";
             this.OpnWorkflowTools_Tls.Click += new System.EventHandler(this.OpnWorkflowTools_Tls_Click);
             // 
             // KeepTrackViewer_Btn
             // 
             this.KeepTrackViewer_Btn.Name = "KeepTrackViewer_Btn";
-            this.KeepTrackViewer_Btn.Size = new System.Drawing.Size(239, 22);
+            this.KeepTrackViewer_Btn.Size = new System.Drawing.Size(252, 22);
             this.KeepTrackViewer_Btn.Text = "Keep Track Viewer";
             this.KeepTrackViewer_Btn.Click += new System.EventHandler(this.KeepTrackViewer_Btn_Click);
             // 
             // InvestigationBoard_Btn
             // 
             this.InvestigationBoard_Btn.Name = "InvestigationBoard_Btn";
-            this.InvestigationBoard_Btn.Size = new System.Drawing.Size(239, 22);
+            this.InvestigationBoard_Btn.Size = new System.Drawing.Size(252, 22);
             this.InvestigationBoard_Btn.Text = "Investigation Board";
             this.InvestigationBoard_Btn.Click += new System.EventHandler(this.InvestigationBoard_Btn_Click);
             // 
             // toolStripSeparator17
             // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator17.Size = new System.Drawing.Size(249, 6);
             // 
             // OpnEncFrm
             // 
             this.OpnEncFrm.Name = "OpnEncFrm";
-            this.OpnEncFrm.Size = new System.Drawing.Size(239, 22);
+            this.OpnEncFrm.Size = new System.Drawing.Size(252, 22);
             this.OpnEncFrm.Text = "Encryption";
             this.OpnEncFrm.Click += new System.EventHandler(this.OpnEncFrm_Click);
             // 
             // toolStripSeparator42
             // 
             this.toolStripSeparator42.Name = "toolStripSeparator42";
-            this.toolStripSeparator42.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator42.Size = new System.Drawing.Size(249, 6);
             // 
             // semanticAnalysisToolStripMenuItem
             // 
             this.semanticAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SemanticFile_Btn});
             this.semanticAnalysisToolStripMenuItem.Name = "semanticAnalysisToolStripMenuItem";
-            this.semanticAnalysisToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.semanticAnalysisToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.semanticAnalysisToolStripMenuItem.Text = "Semantic Analysis";
             // 
             // SemanticFile_Btn
@@ -1301,7 +1308,7 @@
             // toolStripSeparator31
             // 
             this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator31.Size = new System.Drawing.Size(249, 6);
             // 
             // messisPlatformToolStripMenuItem
             // 
@@ -1311,7 +1318,7 @@
             this.LocalhostMESS_Btn,
             this.LogPathMESS_Btn});
             this.messisPlatformToolStripMenuItem.Name = "messisPlatformToolStripMenuItem";
-            this.messisPlatformToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.messisPlatformToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.messisPlatformToolStripMenuItem.Text = "Messis Platform";
             // 
             // ConfigMESS_Btn
@@ -1350,7 +1357,7 @@
             this.LocalhostSFE_Btn,
             this.LogPathSFE_Btn});
             this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
-            this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.secureFileExplorerToolStripMenuItem.Text = "Secure File Explorer";
             // 
             // ConfigSFE_Btn
@@ -1389,7 +1396,7 @@
             this.StartNLV_Btn,
             this.OpnNLV_Btn});
             this.netLogViewerToolStripMenuItem.Name = "netLogViewerToolStripMenuItem";
-            this.netLogViewerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.netLogViewerToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.netLogViewerToolStripMenuItem.Text = "Net Log Viewer";
             // 
             // ConfigNLV_Btn
@@ -1418,109 +1425,140 @@
             this.OpnNLV_Btn.Name = "OpnNLV_Btn";
             this.OpnNLV_Btn.Size = new System.Drawing.Size(215, 22);
             this.OpnNLV_Btn.Text = "Localhost";
-            this.OpnNLV_Btn.Click += new System.EventHandler(this.OpnNLV_Btn_Click);
+            this.OpnNLV_Btn.Click += new System.EventHandler(this.LocalhostNLV_Btn_Click);
             // 
             // PromptViewer_Mnu
             // 
             this.PromptViewer_Mnu.Name = "PromptViewer_Mnu";
-            this.PromptViewer_Mnu.Size = new System.Drawing.Size(239, 22);
+            this.PromptViewer_Mnu.Size = new System.Drawing.Size(252, 22);
             this.PromptViewer_Mnu.Text = "Prompt History Viewer";
             this.PromptViewer_Mnu.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
+            // 
+            // ostiumBookmarkExplorerToolStripMenuItem
+            // 
+            this.ostiumBookmarkExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigOBE_Btn,
+            this.StartOBE_Btn,
+            this.LocalhostOBE_Btn});
+            this.ostiumBookmarkExplorerToolStripMenuItem.Name = "ostiumBookmarkExplorerToolStripMenuItem";
+            this.ostiumBookmarkExplorerToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
+            this.ostiumBookmarkExplorerToolStripMenuItem.Text = "Ostium Bookmark Explorer";
+            // 
+            // ConfigOBE_Btn
+            // 
+            this.ConfigOBE_Btn.Name = "ConfigOBE_Btn";
+            this.ConfigOBE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.ConfigOBE_Btn.Text = "Config";
+            this.ConfigOBE_Btn.Click += new System.EventHandler(this.ConfigOBE_Btn_Click);
+            // 
+            // StartOBE_Btn
+            // 
+            this.StartOBE_Btn.Name = "StartOBE_Btn";
+            this.StartOBE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.StartOBE_Btn.Text = "Server Start";
+            this.StartOBE_Btn.Click += new System.EventHandler(this.StartOBE_Btn_Click);
+            // 
+            // LocalhostOBE_Btn
+            // 
+            this.LocalhostOBE_Btn.Name = "LocalhostOBE_Btn";
+            this.LocalhostOBE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.LocalhostOBE_Btn.Text = "Localhost";
+            this.LocalhostOBE_Btn.Click += new System.EventHandler(this.LocalhostOBE_Btn_Click);
             // 
             // toolStripSeparator34
             // 
             this.toolStripSeparator34.Name = "toolStripSeparator34";
-            this.toolStripSeparator34.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator34.Size = new System.Drawing.Size(249, 6);
             // 
             // ConvertPDF_Btn
             // 
             this.ConvertPDF_Btn.Name = "ConvertPDF_Btn";
-            this.ConvertPDF_Btn.Size = new System.Drawing.Size(239, 22);
+            this.ConvertPDF_Btn.Size = new System.Drawing.Size(252, 22);
             this.ConvertPDF_Btn.Text = "Converting PDF";
             this.ConvertPDF_Btn.Click += new System.EventHandler(this.ConvertPDF_Btn_Click);
             // 
             // toolStripSeparator43
             // 
             this.toolStripSeparator43.Name = "toolStripSeparator43";
-            this.toolStripSeparator43.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator43.Size = new System.Drawing.Size(249, 6);
             // 
             // Download_Param
             // 
             this.Download_Param.Name = "Download_Param";
-            this.Download_Param.Size = new System.Drawing.Size(239, 22);
+            this.Download_Param.Size = new System.Drawing.Size(252, 22);
             this.Download_Param.Text = "Download";
             this.Download_Param.Click += new System.EventHandler(this.Download_Param_Click);
             // 
             // History_Param
             // 
             this.History_Param.Name = "History_Param";
-            this.History_Param.Size = new System.Drawing.Size(239, 22);
+            this.History_Param.Size = new System.Drawing.Size(252, 22);
             this.History_Param.Text = "History";
             this.History_Param.Click += new System.EventHandler(this.History_Param_Click);
             // 
             // SiteEngament_Param
             // 
             this.SiteEngament_Param.Name = "SiteEngament_Param";
-            this.SiteEngament_Param.Size = new System.Drawing.Size(239, 22);
+            this.SiteEngament_Param.Size = new System.Drawing.Size(252, 22);
             this.SiteEngament_Param.Text = "Site Engagement";
             this.SiteEngament_Param.Click += new System.EventHandler(this.SiteEngament_Param_Click);
             // 
             // ClrHistory_Param
             // 
             this.ClrHistory_Param.Name = "ClrHistory_Param";
-            this.ClrHistory_Param.Size = new System.Drawing.Size(239, 22);
+            this.ClrHistory_Param.Size = new System.Drawing.Size(252, 22);
             this.ClrHistory_Param.Text = "Clear History";
             this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(249, 6);
             // 
             // UserAgentChange_Btn
             // 
             this.UserAgentChange_Btn.Name = "UserAgentChange_Btn";
-            this.UserAgentChange_Btn.Size = new System.Drawing.Size(239, 22);
+            this.UserAgentChange_Btn.Size = new System.Drawing.Size(252, 22);
             this.UserAgentChange_Btn.Text = "Change User Agent Off";
             this.UserAgentChange_Btn.Click += new System.EventHandler(this.UserAgentChange_Btn_Click);
             // 
             // Googlebot_Btn
             // 
             this.Googlebot_Btn.Name = "Googlebot_Btn";
-            this.Googlebot_Btn.Size = new System.Drawing.Size(239, 22);
+            this.Googlebot_Btn.Size = new System.Drawing.Size(252, 22);
             this.Googlebot_Btn.Text = "Googlebot Off";
             this.Googlebot_Btn.Click += new System.EventHandler(this.Googlebot_Btn_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(249, 6);
             // 
             // EdgeURL_Param
             // 
             this.EdgeURL_Param.Name = "EdgeURL_Param";
-            this.EdgeURL_Param.Size = new System.Drawing.Size(239, 22);
+            this.EdgeURL_Param.Size = new System.Drawing.Size(252, 22);
             this.EdgeURL_Param.Text = "Edge URLs";
             this.EdgeURL_Param.Click += new System.EventHandler(this.EdgeURL_Param_Click);
             // 
             // AdvancedOption_Param
             // 
             this.AdvancedOption_Param.Name = "AdvancedOption_Param";
-            this.AdvancedOption_Param.Size = new System.Drawing.Size(239, 22);
+            this.AdvancedOption_Param.Size = new System.Drawing.Size(252, 22);
             this.AdvancedOption_Param.Text = "Advanced Options";
             this.AdvancedOption_Param.Click += new System.EventHandler(this.AdvancedOption_Param_Click);
             // 
             // DevTools_Param
             // 
             this.DevTools_Param.Name = "DevTools_Param";
-            this.DevTools_Param.Size = new System.Drawing.Size(239, 22);
+            this.DevTools_Param.Size = new System.Drawing.Size(252, 22);
             this.DevTools_Param.Text = "Dev Tools";
             this.DevTools_Param.Click += new System.EventHandler(this.DevTools_Param_Click);
             // 
             // toolStripSeparator16
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator16.Size = new System.Drawing.Size(249, 6);
             // 
             // directoryTreeExportToolStripMenuItem
             // 
@@ -1529,7 +1567,7 @@
             this.TreeXMLexport_Btn,
             this.TreeJSONexport_Btn});
             this.directoryTreeExportToolStripMenuItem.Name = "directoryTreeExportToolStripMenuItem";
-            this.directoryTreeExportToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.directoryTreeExportToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.directoryTreeExportToolStripMenuItem.Text = "Directory tree export";
             // 
             // TreeTXTexport_Btn
@@ -1556,38 +1594,38 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(249, 6);
             // 
             // System_Param
             // 
             this.System_Param.Name = "System_Param";
-            this.System_Param.Size = new System.Drawing.Size(239, 22);
+            this.System_Param.Size = new System.Drawing.Size(252, 22);
             this.System_Param.Text = "System";
             this.System_Param.Click += new System.EventHandler(this.System_Param_Click);
             // 
             // OstUpdt_Btn
             // 
             this.OstUpdt_Btn.Name = "OstUpdt_Btn";
-            this.OstUpdt_Btn.Size = new System.Drawing.Size(239, 22);
+            this.OstUpdt_Btn.Size = new System.Drawing.Size(252, 22);
             this.OstUpdt_Btn.Text = "Ostium Update";
             this.OstUpdt_Btn.Click += new System.EventHandler(this.OstUpdt_Btn_Click);
             // 
             // HomePage_Btn
             // 
             this.HomePage_Btn.Name = "HomePage_Btn";
-            this.HomePage_Btn.Size = new System.Drawing.Size(239, 22);
+            this.HomePage_Btn.Size = new System.Drawing.Size(252, 22);
             this.HomePage_Btn.Text = "Home";
             this.HomePage_Btn.Click += new System.EventHandler(this.HomePage_Btn_Click);
             // 
             // toolStripSeparator22
             // 
             this.toolStripSeparator22.Name = "toolStripSeparator22";
-            this.toolStripSeparator22.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator22.Size = new System.Drawing.Size(249, 6);
             // 
             // Credit_Btn
             // 
             this.Credit_Btn.Name = "Credit_Btn";
-            this.Credit_Btn.Size = new System.Drawing.Size(239, 22);
+            this.Credit_Btn.Size = new System.Drawing.Size(252, 22);
             this.Credit_Btn.Text = "Credits";
             this.Credit_Btn.Click += new System.EventHandler(this.Credit_Btn_Click);
             // 
@@ -8073,6 +8111,11 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            this.toolStripSeparator40.Size = new System.Drawing.Size(249, 6);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8817,6 +8860,11 @@
         private System.Windows.Forms.ToolStripMenuItem PromptViewer_Mnu;
         private System.Windows.Forms.Button PromptViewer_Btn;
         private System.Windows.Forms.ToolStripMenuItem InvestigationBoard_Btn;
+        private System.Windows.Forms.ToolStripMenuItem ostiumBookmarkExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ConfigOBE_Btn;
+        private System.Windows.Forms.ToolStripMenuItem StartOBE_Btn;
+        private System.Windows.Forms.ToolStripMenuItem LocalhostOBE_Btn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
     }
 }
 
