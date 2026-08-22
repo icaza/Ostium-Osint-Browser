@@ -52,7 +52,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.3.44";
+        const string CurrentVersion = "1.3.45";
         readonly string tempZipPath = Path.Combine(Application.StartupPath, "update.zip");
         readonly string extractFolder = Path.Combine(Application.StartupPath, "UpdateTemp");
         #endregion
