@@ -51,7 +51,7 @@ if not exist "node_modules" (
 
 echo.
 echo [INFO] Messis starting...
-echo [INFO] The application will be accessible at http://localhost:{portselect}
+echo [INFO] The application will be accessible at http://localhost:{The port selected in the configuration}
 echo [INFO] Press Ctrl+C to stop the server
 echo.
 

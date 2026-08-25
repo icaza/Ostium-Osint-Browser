@@ -2713,7 +2713,7 @@ namespace Ostium
         {
             try
             {
-                if (Word_URL_Builder_Txt.Text != string.Empty)
+                if (Word_URL_Builder_Txt.Text != string.Empty && Word_URL_Builder_Txt.Text != "Word")
                 {
                     Word_URL_Builder_Txt.Text = Word_URL_Builder_Txt.Text.Replace(" ", "%20");
                     URL_Builder(Word_URL_Builder_Txt.Text);
