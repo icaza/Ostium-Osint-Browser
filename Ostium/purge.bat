@@ -3,8 +3,13 @@ echo ========================================
 echo          Ostium cleanup script
 echo ========================================
 echo.
+echo All temporary files will be deleted.
+echo Ostium is going to be completely reset.
+echo.
 
 set /a ErrorCount=0
+
+timeout /t 3 /nobreak > NUL
 
 echo [1/8] Deleting the folder Ostium.exe.WebView2...
 if exist "Ostium.exe.WebView2" (
@@ -131,7 +136,8 @@ echo.
 if "%ErrorCount%"=="0" (
     echo [SUCCESS] All items have been cleaned or not exists
 ) else (
-    echo [ATTENTION] Errors have been detected
+    echo [WARNING] Errors detected! Manually run purge.bat again to force the deletion of temporary files.
+    start .
 )
 
 echo.

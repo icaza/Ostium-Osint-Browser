@@ -292,7 +292,6 @@ namespace Ostium
         #endregion
 
         #region Frm_
-
         public Main_Frm()
         {
             InitializeComponent();
@@ -408,10 +407,7 @@ namespace Ostium
 
                 if (ClearOnOff == "on")
                 {
-                    var result = MessageBox.Show("Delete all history? (Run purge.bat after closing Ostium, " +
-                        "for complete deletion of the WebView2 usage directory)", "Delete all history",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+                    var result = MessageBox.Show("Delete all history?", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                         ClearData(1);
                 }
@@ -430,7 +426,6 @@ namespace Ostium
                 secondForm.Location = new Point(x, y);
             }
         }
-
         #endregion
 
         void Form_EventHandler()
@@ -2352,8 +2347,22 @@ namespace Ostium
                                       CoreWebView2BrowsingDataKinds.BrowsingHistory;
                 profile.ClearBrowsingDataAsync(dataKinds);
             }
+
             if (val == 1)
-                Process.Start(AppStart);
+            {
+                string batPath = Path.Combine(AppStart, "purge.bat");
+
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = batPath,
+                    UseShellExecute = true,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Normal
+                };
+                Process.Start(psi);
+
+                Environment.Exit(0);
+            }
         }
 
         #region Control_Browser
