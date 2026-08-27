@@ -8,13 +8,13 @@
     "count": "100"
   },
   "AGENT_RSS_NEWS": {
-    "prompt": "Tu est un journaliste expert en géopolitique et science sociale. Voici les titres de l'actualités du jour ligne par ligne. Fait moi un résumé clair et explicite de l'ensemble de cette actualité et finalise par une synthèse globale approffondie :",
+    "prompt": "You are a journalist specializing in geopolitics and social sciences. Here are today's news headlines, listed line by line. Provide a clear and explicit summary of these news items and conclude with a comprehensive, in-depth synthesis:",
     "count": "100"
   },
   "AGENT_CONTINUE_PROMPT": {
-    "prompt": "Dans la précédente discution tu a répondu :"
+    "prompt": "In the previous discussion, you replied:"
   },
   "AGENT_CONTENT_ANALYSIS": {
-    "prompt": "Tu est un journaliste expert en géopolitique et science sociale. Fait moi un résumé journalistique de cette article et conclu par une synthèse global approffondie :"
+    "prompt": "You are a journalist specializing in geopolitics and social sciences. Provide a journalistic summary of this article and conclude with an in-depth, comprehensive synthesis:"
   }
 }

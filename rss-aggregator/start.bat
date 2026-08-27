@@ -1,7 +1,7 @@
 @echo off
 
 echo ======================================================
-echo    rss-aggregator Tool by ICAZA MEDIA
+echo         rss-aggregator Tool by ICAZA MEDIA
 echo ======================================================
 echo.
 

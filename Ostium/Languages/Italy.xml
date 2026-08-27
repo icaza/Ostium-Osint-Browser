@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language>
+  <Name>Italiano</Name>
+  
+  <!-- Stop words - parole comuni da escludere dall'analisi -->
+  <StopWords>
+    <!-- Articoli -->
+    <Word>il</Word>
+    <Word>lo</Word>
+    <Word>la</Word>
+    <Word>l'</Word>
+    <Word>i</Word>
+    <Word>gli</Word>
+    <Word>le</Word>
+    <Word>un</Word>
+    <Word>uno</Word>
+    <Word>una</Word>
+    <Word>un'</Word>
+    
+    <!-- Preposizioni -->
+    <Word>di</Word>
+    <Word>del</Word>
+    <Word>dello</Word>
+    <Word>della</Word>
+    <Word>dei</Word>
+    <Word>degli</Word>
+    <Word>delle</Word>
+    <Word>a</Word>
+    <Word>al</Word>
+    <Word>allo</Word>
+    <Word>alla</Word>
+    <Word>ai</Word>
+    <Word>agli</Word>
+    <Word>alle</Word>
+    <Word>da</Word>
+    <Word>dal</Word>
+    <Word>dallo</Word>
+    <Word>dalla</Word>
+    <Word>dai</Word>
+    <Word>dagli</Word>
+    <Word>dalle</Word>
+    <Word>in</Word>
+    <Word>nel</Word>
+    <Word>nello</Word>
+    <Word>nella</Word>
+    <Word>nei</Word>
+    <Word>negli</Word>
+    <Word>nelle</Word>
+    <Word>con</Word>
+    <Word>su</Word>
+    <Word>sul</Word>
+    <Word>sullo</Word>
+    <Word>sulla</Word>
+    <Word>sui</Word>
+    <Word>sugli</Word>
+    <Word>sulle</Word>
+    <Word>per</Word>
+    <Word>tra</Word>
+    <Word>fra</Word>
+    <Word>senza</Word>
+    <Word>contro</Word>
+    <Word>sopra</Word>
+    <Word>sotto</Word>
+    <Word>dentro</Word>
+    <Word>fuori</Word>
+    <Word>verso</Word>
+    <Word>durante</Word>
+    <Word>mediante</Word>
+    <Word>nonostante</Word>
+    
+    <!-- Pronomi -->
+    <Word>io</Word>
+    <Word>tu</Word>
+    <Word>lui</Word>
+    <Word>lei</Word>
+    <Word>esso</Word>
+    <Word>essa</Word>
+    <Word>noi</Word>
+    <Word>voi</Word>
+    <Word>loro</Word>
+    <Word>essi</Word>
+    <Word>esse</Word>
+    <Word>me</Word>
+    <Word>te</Word>
+    <Word>sé</Word>
+    <Word>ci</Word>
+    <Word>vi</Word>
+    <Word>si</Word>
+    <Word>mi</Word>
+    <Word>ti</Word>
+    <Word>gli</Word>
+    <Word>le</Word>
+    <Word>ne</Word>
+    <Word>mio</Word>
+    <Word>mia</Word>
+    <Word>miei</Word>
+    <Word>mie</Word>
+    <Word>tuo</Word>
+    <Word>tua</Word>
+    <Word>tuoi</Word>
+    <Word>tue</Word>
+    <Word>suo</Word>
+    <Word>sua</Word>
+    <Word>suoi</Word>
+    <Word>sue</Word>
+    <Word>nostro</Word>
+    <Word>nostra</Word>
+    <Word>nostri</Word>
+    <Word>nostre</Word>
+    <Word>vostro</Word>
+    <Word>vostra</Word>
+    <Word>vostri</Word>
+    <Word>vostre</Word>
+    <Word>loro</Word> <!-- possessivo -->
+    <Word>questo</Word>
+    <Word>questa</Word>
+    <Word>questi</Word>
+    <Word>queste</Word>
+    <Word>quello</Word>
+    <Word>quella</Word>
+    <Word>quelli</Word>
+    <Word>quelle</Word>
+    <Word>ciò</Word>
+    <Word>chi</Word>
+    <Word>che</Word>
+    <Word>cui</Word>
+    <Word>il quale</Word>
+    <Word>la quale</Word>
+    <Word>i quali</Word>
+    <Word>le quali</Word>
+    
+    <!-- Congiunzioni -->
+    <Word>e</Word>
+    <Word>ed</Word>
+    <Word>o</Word>
+    <Word>oppure</Word>
+    <Word>ma</Word>
+    <Word>però</Word>
+    <Word>bensì</Word>
+    <Word>dunque</Word>
+    <Word>quindi</Word>
+    <Word>perché</Word>
+    <Word>poiché</Word>
+    <Word>giacché</Word>
+    <Word>affinché</Word>
+    <Word>sebbene</Word>
+    <Word>benché</Word>
+    <Word>mentre</Word>
+    <Word>quando</Word>
+    <Word>appena</Word>
+    <Word>finché</Word>
+    <Word>purché</Word>
+    <Word>se</Word>
+    <Word>anche</Word>
+    <Word>neppure</Word>
+    <Word>nemmeno</Word>
+    
+    <!-- Verbi ausiliari e modali (forme comuni) -->
+    <Word>essere</Word>
+    <Word>sono</Word>
+    <Word>sei</Word>
+    <Word>è</Word>
+    <Word>siamo</Word>
+    <Word>siete</Word>
+    <Word>ero</Word>
+    <Word>eri</Word>
+    <Word>era</Word>
+    <Word>eravamo</Word>
+    <Word>eravate</Word>
+    <Word>erano</Word>
+    <Word>stato</Word>
+    <Word>stata</Word>
+    <Word>stati</Word>
+    <Word>state</Word>
+    <Word>avere</Word>
+    <Word>ho</Word>
+    <Word>hai</Word>
+    <Word>ha</Word>
+    <Word>abbiamo</Word>
+    <Word>avete</Word>
+    <Word>hanno</Word>
+    <Word>avevo</Word>
+    <Word>avevi</Word>
+    <Word>aveva</Word>
+    <Word>avevamo</Word>
+    <Word>avevate</Word>
+    <Word>avevano</Word>
+    <Word>avuto</Word>
+    <Word>dovere</Word>
+    <Word>devo</Word>
+    <Word>devi</Word>
+    <Word>deve</Word>
+    <Word>dobbiamo</Word>
+    <Word>dovete</Word>
+    <Word>devono</Word>
+    <Word>dovevo</Word>
+    <Word>dovevi</Word>
+    <Word>doveva</Word>
+    <Word>dovevamo</Word>
+    <Word>dovevate</Word>
+    <Word>dovevano</Word>
+    <Word>potere</Word>
+    <Word>posso</Word>
+    <Word>puoi</Word>
+    <Word>può</Word>
+    <Word>possiamo</Word>
+    <Word>potete</Word>
+    <Word>possono</Word>
+    <Word>potevo</Word>
+    <Word>potevi</Word>
+    <Word>poteva</Word>
+    <Word>potevamo</Word>
+    <Word>potevate</Word>
+    <Word>potevano</Word>
+    <Word>volere</Word>
+    <Word>voglio</Word>
+    <Word>vuoi</Word>
+    <Word>vuole</Word>
+    <Word>vogliamo</Word>
+    <Word>volete</Word>
+    <Word>vogliono</Word>
+    <Word>volevo</Word>
+    <Word>volevi</Word>
+    <Word>voleva</Word>
+    <Word>volevamo</Word>
+    <Word>volevate</Word>
+    <Word>volevano</Word>
+    <Word>sapere</Word>
+    <Word>so</Word>
+    <Word>sai</Word>
+    <Word>sa</Word>
+    <Word>sappiamo</Word>
+    <Word>sapete</Word>
+    <Word>sanno</Word>
+    <Word>sapevo</Word>
+    <Word>sapevi</Word>
+    <Word>sapeva</Word>
+    <Word>sapevamo</Word>
+    <Word>sapevate</Word>
+    <Word>sapevano</Word>
+    <Word>stare</Word>
+    <Word>sto</Word>
+    <Word>stai</Word>
+    <Word>sta</Word>
+    <Word>stiamo</Word>
+    <Word>state</Word>
+    <Word>stanno</Word>
+    <Word>stavo</Word>
+    <Word>stavi</Word>
+    <Word>stava</Word>
+    <Word>stavamo</Word>
+    <Word>stavate</Word>
+    <Word>stavano</Word>
+    
+    <!-- Avverbi comuni -->
+    <Word>non</Word>
+    <Word>sì</Word>
+    <Word>certo</Word>
+    <Word>molto</Word>
+    <Word>troppo</Word>
+    <Word>abbastanza</Word>
+    <Word>appena</Word>
+    <Word>anche</Word>
+    <Word>pure</Word>
+    <Word>solo</Word>
+    <Word>solamente</Word>
+    <Word>ora</Word>
+    <Word>adesso</Word>
+    <Word>poi</Word>
+    <Word>dopo</Word>
+    <Word>prima</Word>
+    <Word>qui</Word>
+    <Word>qua</Word>
+    <Word>lì</Word>
+    <Word>là</Word>
+    <Word>più</Word>
+    <Word>meno</Word>
+    <Word>almeno</Word>
+    <Word>tutto</Word>
+    <Word>tutta</Word>
+    <Word>tutti</Word>
+    <Word>tutte</Word>
+    <Word>niente</Word>
+    <Word>nulla</Word>
+    <Word>qualcosa</Word>
+    <Word>sempre</Word>
+    <Word>mai</Word>
+    <Word>spesso</Word>
+    <Word>raramente</Word>
+    <Word>ancora</Word>
+    <Word>già</Word>
+    <Word>bene</Word>
+    <Word>male</Word>
+  </StopWords>
+  
+  <!-- Analisi del sentiment -->
+  <Sentiment>
+    <Positive>
+      <!-- Emozioni positive -->
+      <Word>felice</Word>
+      <Word>contento</Word>
+      <Word>soddisfatto</Word>
+      <Word>gioia</Word>
+      <Word>allegro</Word>
+      <Word>entusiasta</Word>
+      <Word>ottimista</Word>
+      <Word>speranzoso</Word>
+      <Word>amore</Word>
+      <Word>piacere</Word>
+      
+      <!-- Qualità positive -->
+      <Word>eccellente</Word>
+      <Word>meraviglioso</Word>
+      <Word>magnifico</Word>
+      <Word>stupendo</Word>
+      <Word>fantastico</Word>
+      <Word>incredibile</Word>
+      <Word>favoloso</Word>
+      <Word>brillante</Word>
+      <Word>perfetto</Word>
+      <Word>splendido</Word>
+      <Word>notevole</Word>
+      <Word>straordinario</Word>
+      <Word>eccezionale</Word>
+      
+      <!-- Azioni positive -->
+      <Word>successo</Word>
+      <Word>trionfo</Word>
+      <Word>raggiungere</Word>
+      <Word>conseguire</Word>
+      <Word>vittoria</Word>
+      <Word>vincere</Word>
+      <Word>migliorare</Word>
+      <Word>progresso</Word>
+      <Word>creare</Word>
+      <Word>innovare</Word>
+      <Word>sviluppare</Word>
+      
+      <!-- Aggettivi positivi -->
+      <Word>buono</Word>
+      <Word>migliore</Word>
+      <Word>ottimo</Word>
+      <Word>bello</Word>
+      <Word>gradevole</Word>
+      <Word>gentile</Word>
+      <Word>amichevole</Word>
+      <Word>intelligente</Word>
+      <Word>abile</Word>
+      <Word>efficace</Word>
+      <Word>utile</Word>
+      <Word>prezioso</Word>
+    </Positive>
+    
+    <Negative>
+      <!-- Emozioni negative -->
+      <Word>triste</Word>
+      <Word>tristezza</Word>
+      <Word>infelice</Word>
+      <Word>miserabile</Word>
+      <Word>depresso</Word>
+      <Word>disperato</Word>
+      <Word>ansioso</Word>
+      <Word>preoccupato</Word>
+      <Word>paura</Word>
+      <Word>timoroso</Word>
+      <Word>arrabbiato</Word>
+      <Word>rabbia</Word>
+      <Word>frustrato</Word>
+      <Word>frustrazione</Word>
+      <Word>deluso</Word>
+      <Word>delusione</Word>
+      
+      <!-- Qualità negative -->
+      <Word>cattivo</Word>
+      <Word>peggiore</Word>
+      <Word>pessimo</Word>
+      <Word>terribile</Word>
+      <Word>orribile</Word>
+      <Word>spaventoso</Word>
+      <Word>povero</Word>
+      <Word>mediocre</Word>
+      <Word>inferiore</Word>
+      <Word>brutto</Word>
+      <Word>spiacevole</Word>
+      
+      <!-- Azioni negative -->
+      <Word>fallire</Word>
+      <Word>fallimento</Word>
+      <Word>perdere</Word>
+      <Word>perdita</Word>
+      <Word>sconfitta</Word>
+      <Word>distruggere</Word>
+      <Word>danno</Word>
+      <Word>danneggiare</Word>
+      <Word>ferire</Word>
+      <Word>criticare</Word>
+      <Word>biasimare</Word>
+      <Word>accusare</Word>
+      
+      <!-- Aggettivi negativi -->
+      <Word>difficile</Word>
+      <Word>duro</Word>
+      <Word>complesso</Word>
+      <Word>complicato</Word>
+      <Word>problematico</Word>
+      <Word>pericoloso</Word>
+      <Word>rischioso</Word>
+      <Word>inutile</Word>
+      <Word>inefficace</Word>
+      <Word>debole</Word>
+      <Word>meschino</Word>
+      <Word>crudele</Word>
+      <Word>stupido</Word>
+    </Negative>
+  </Sentiment>
+  
+  <!-- Categorie tematiche -->
+  <Categories>
+    <!-- Tecnologia -->
+    <Category name="Tecnologia">
+      <Word>computer</Word>
+      <Word>software</Word>
+      <Word>programma</Word>
+      <Word>applicazione</Word>
+      <Word>internet</Word>
+      <Word>web</Word>
+      <Word>digitale</Word>
+      <Word>dati</Word>
+      <Word>algoritmo</Word>
+      <Word>intelligenza</Word>
+      <Word>artificiale</Word>
+      <Word>automazione</Word>
+      <Word>robotica</Word>
+      <Word>elettronico</Word>
+      <Word>rete</Word>
+      <Word>server</Word>
+      <Word>cloud</Word>
+      <Word>sicurezza</Word>
+      <Word>cybersicurezza</Word>
+      <Word>tecnologia</Word>
+      <Word>innovazione</Word>
+    </Category>
+    
+    <!-- Affari / Economia -->
+    <Category name="Affari">
+      <Word>affari</Word>
+      <Word>azienda</Word>
+      <Word>impresa</Word>
+      <Word>società</Word>
+      <Word>commercio</Word>
+      <Word>mercato</Word>
+      <Word>cliente</Word>
+      <Word>vendita</Word>
+      <Word>acquisto</Word>
+      <Word>prodotto</Word>
+      <Word>servizio</Word>
+      <Word>marketing</Word>
+      <Word>pubblicità</Word>
+      <Word>strategia</Word>
+      <Word>concorrenza</Word>
+      <Word>concorrente</Word>
+      <Word>profitto</Word>
+      <Word>entrate</Word>
+      <Word>investimento</Word>
+      <Word>finanza</Word>
+      <Word>economia</Word>
+      <Word>crescita</Word>
+      <Word>sviluppo</Word>
+    </Category>
+    
+    <!-- Istruzione -->
+    <Category name="Istruzione">
+      <Word>scuola</Word>
+      <Word>università</Word>
+      <Word>istituto</Word>
+      <Word>studente</Word>
+      <Word>alunno</Word>
+      <Word>insegnante</Word>
+      <Word>professore</Word>
+      <Word>docente</Word>
+      <Word>istruzione</Word>
+      <Word>apprendimento</Word>
+      <Word>insegnamento</Word>
+      <Word>corso</Word>
+      <Word>classe</Word>
+      <Word>formazione</Word>
+      <Word>conoscenza</Word>
+      <Word>abilità</Word>
+      <Word>competenza</Word>
+      <Word>laurea</Word>
+      <Word>diploma</Word>
+      <Word>esame</Word>
+      <Word>test</Word>
+      <Word>ricerca</Word>
+      <Word>studio</Word>
+      <Word>accademico</Word>
+    </Category>
+    
+    <!-- Salute -->
+    <Category name="Salute">
+      <Word>salute</Word>
+      <Word>medico</Word>
+      <Word>medicina</Word>
+      <Word>dottore</Word>
+      <Word>medica</Word>
+      <Word>ospedale</Word>
+      <Word>clinica</Word>
+      <Word>paziente</Word>
+      <Word>trattamento</Word>
+      <Word>farmaco</Word>
+      <Word>terapia</Word>
+      <Word>malattia</Word>
+      <Word>sintomo</Word>
+      <Word>diagnosi</Word>
+      <Word>prevenzione</Word>
+      <Word>benessere</Word>
+      <Word>nutrizione</Word>
+      <Word>esercizio</Word>
+      <Word>fitness</Word>
+      <Word>sport</Word>
+    </Category>
+    
+    <!-- Ambiente -->
+    <Category name="Ambiente">
+      <Word>ambiente</Word>
+      <Word>ecologia</Word>
+      <Word>ecologico</Word>
+      <Word>natura</Word>
+      <Word>naturale</Word>
+      <Word>clima</Word>
+      <Word>meteo</Word>
+      <Word>inquinamento</Word>
+      <Word>riciclaggio</Word>
+      <Word>sostenibile</Word>
+      <Word>sostenibilità</Word>
+      <Word>energia</Word>
+      <Word>rinnovabile</Word>
+      <Word>biodiversità</Word>
+      <Word>conservazione</Word>
+      <Word>protezione</Word>
+      <Word>pianeta</Word>
+      <Word>terra</Word>
+      <Word>oceano</Word>
+      <Word>foresta</Word>
+      <Word>fauna</Word>
+    </Category>
+    
+    <!-- Società -->
+    <Category name="Società">
+      <Word>società</Word>
+      <Word>sociale</Word>
+      <Word>comunità</Word>
+      <Word>popolazione</Word>
+      <Word>cittadino</Word>
+      <Word>persone</Word>
+      <Word>cultura</Word>
+      <Word>culturale</Word>
+      <Word>tradizione</Word>
+      <Word>valore</Word>
+      <Word>uguaglianza</Word>
+      <Word>giustizia</Word>
+      <Word>diritto</Word>
+      <Word>libertà</Word>
+      <Word>democrazia</Word>
+      <Word>politico</Word>
+      <Word>politica</Word>
+      <Word>governo</Word>
+      <Word>legge</Word>
+    </Category>
+  </Categories>
+</Language>

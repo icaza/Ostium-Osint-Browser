@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language>
+  <Name>Deutsch</Name>
+  
+  <!-- Stop words - mots courants à exclure de l'analyse -->
+  <StopWords>
+    <!-- Articles -->
+    <Word>der</Word>
+    <Word>die</Word>
+    <Word>das</Word>
+    <Word>ein</Word>
+    <Word>eine</Word>
+    <Word>einer</Word>
+    <Word>eines</Word>
+    <Word>einem</Word>
+    <Word>einen</Word>
+    
+    <!-- Prépositions -->
+    <Word>von</Word>
+    <Word>zu</Word>
+    <Word>in</Word>
+    <Word>für</Word>
+    <Word>auf</Word>
+    <Word>mit</Word>
+    <Word>bei</Word>
+    <Word>durch</Word>
+    <Word>aus</Word>
+    <Word>nach</Word>
+    <Word>ohne</Word>
+    <Word>gegen</Word>
+    <Word>über</Word>
+    <Word>unter</Word>
+    <Word>zwischen</Word>
+    <Word>vor</Word>
+    <Word>hinter</Word>
+    <Word>neben</Word>
+    <Word>um</Word>
+    
+    <!-- Pronoms -->
+    <Word>ich</Word>
+    <Word>du</Word>
+    <Word>er</Word>
+    <Word>sie</Word>
+    <Word>es</Word>
+    <Word>wir</Word>
+    <Word>ihr</Word>
+    <Word>sie</Word>  <!-- ils/elles -->
+    <Word>mich</Word>
+    <Word>mir</Word>
+    <Word>dich</Word>
+    <Word>dir</Word>
+    <Word>sich</Word>
+    <Word>uns</Word>
+    <Word>euch</Word>
+    <Word>ihnen</Word>
+    <Word>ihr</Word>  <!-- leur -->
+    <Word>mein</Word>
+    <Word>dein</Word>
+    <Word>sein</Word>
+    <Word>ihr</Word>  <!-- son/sa (possessif) -->
+    <Word>unser</Word>
+    <Word>euer</Word>
+    <Word>welcher</Word>
+    <Word>welche</Word>
+    <Word>welches</Word>
+    <Word>wer</Word>
+    <Word>wen</Word>
+    <Word>wem</Word>
+    <Word>dessen</Word>
+    <Word>deren</Word>
+    <Word>dieser</Word>
+    <Word>diese</Word>
+    <Word>dieses</Word>
+    <Word>jener</Word>
+    <Word>jene</Word>
+    <Word>jenes</Word>
+    
+    <!-- Conjonctions -->
+    <Word>und</Word>
+    <Word>oder</Word>
+    <Word>aber</Word>
+    <Word>denn</Word>
+    <Word>weil</Word>
+    <Word>da</Word>
+    <Word>wenn</Word>
+    <Word>falls</Word>
+    <Word>ob</Word>
+    <Word>während</Word>
+    <Word>bevor</Word>
+    <Word>nachdem</Word>
+    <Word>sobald</Word>
+    <Word>solange</Word>
+    <Word>bis</Word>
+    <Word>seit</Word>
+    <Word>indem</Word>
+    <Word>obwohl</Word>
+    <Word>trotz</Word>
+    <Word>sowohl</Word>
+    <Word>als</Word>
+    <Word>wie</Word>
+    
+    <!-- Verbes auxiliaires et modaux -->
+    <Word>sein</Word>
+    <Word>bin</Word>
+    <Word>bist</Word>
+    <Word>ist</Word>
+    <Word>sind</Word>
+    <Word>seid</Word>
+    <Word>war</Word>
+    <Word>waren</Word>
+    <Word>gewesen</Word>
+    <Word>haben</Word>
+    <Word>habe</Word>
+    <Word>hast</Word>
+    <Word>hat</Word>
+    <Word>habt</Word>
+    <Word>hatte</Word>
+    <Word>hatten</Word>
+    <Word>gehabt</Word>
+    <Word>werden</Word>
+    <Word>werde</Word>
+    <Word>wird</Word>
+    <Word>werden</Word>  <!-- (infinitif) -->
+    <Word>wurde</Word>
+    <Word>wurden</Word>
+    <Word>geworden</Word>
+    <Word>können</Word>
+    <Word>kann</Word>
+    <Word>kannst</Word>
+    <Word>könnt</Word>
+    <Word>konnte</Word>
+    <Word>konnten</Word>
+    <Word>mögen</Word>
+    <Word>mag</Word>
+    <Word>magst</Word>
+    <Word>mögt</Word>
+    <Word>mochte</Word>
+    <Word>mochten</Word>
+    <Word>müssen</Word>
+    <Word>muss</Word>
+    <Word>musst</Word>
+    <Word>müsst</Word>
+    <Word>musste</Word>
+    <Word>mussten</Word>
+    <Word>sollen</Word>
+    <Word>soll</Word>
+    <Word>sollst</Word>
+    <Word>sollt</Word>
+    <Word>sollte</Word>
+    <Word>sollten</Word>
+    <Word>wollen</Word>
+    <Word>will</Word>
+    <Word>willst</Word>
+    <Word>wollt</Word>
+    <Word>wollte</Word>
+    <Word>wollten</Word>
+    <Word>dürfen</Word>
+    <Word>darf</Word>
+    <Word>darfst</Word>
+    <Word>dürft</Word>
+    <Word>durfte</Word>
+    <Word>durften</Word>
+    
+    <!-- Adverbes courants -->
+    <Word>nicht</Word>
+    <Word>nein</Word>
+    <Word>ja</Word>
+    <Word>sehr</Word>
+    <Word>zu</Word>   <!-- trop -->
+    <Word>auch</Word>
+    <Word>nur</Word>
+    <Word>jetzt</Word>
+    <Word>dann</Word>
+    <Word>hier</Word>
+    <Word>dort</Word>
+    <Word>mehr</Word>
+    <Word>am</Word>
+    <Word>meisten</Word>
+    <Word>alle</Word>
+    <Word>jeder</Word>
+    <Word>jede</Word>
+    <Word>jedes</Word>
+    <Word>man</Word>
+    <Word>etwas</Word>
+    <Word>nichts</Word>
+    <Word>immer</Word>
+    <Word>nie</Word>
+    <Word>oft</Word>
+    <Word>selten</Word>
+    <Word>schon</Word>
+    <Word>noch</Word>
+    <Word>erst</Word>
+    <Word>gerade</Word>
+    <Word>bald</Word>
+    <Word>früh</Word>
+    <Word>spät</Word>
+  </StopWords>
+  
+  <!-- Analyse de sentiment -->
+  <Sentiment>
+    <Positive>
+      <!-- Émotions positives -->
+      <Word>glücklich</Word>
+      <Word>Freude</Word>
+      <Word>fröhlich</Word>
+      <Word>erfreut</Word>
+      <Word>zufrieden</Word>
+      <Word>begeistert</Word>
+      <Word>optimistisch</Word>
+      <Word>hoffnungsvoll</Word>
+      <Word>Liebe</Word>
+      <Word>Glück</Word>
+      <Word>Vergnügen</Word>
+      
+      <!-- Qualités positives -->
+      <Word>exzellent</Word>
+      <Word>wunderbar</Word>
+      <Word>herrlich</Word>
+      <Word>großartig</Word>
+      <Word>fantastisch</Word>
+      <Word>erstaunlich</Word>
+      <Word>genial</Word>
+      <Word>perfekt</Word>
+      <Word>prächtig</Word>
+      <Word>bemerkenswert</Word>
+      <Word>hervorragend</Word>
+      <Word>außergewöhnlich</Word>
+      <Word>fabelhaft</Word>
+      
+      <!-- Actions positives -->
+      <Word>Erfolg</Word>
+      <Word>erfolgreich</Word>
+      <Word>erreichen</Word>
+      <Word>Leistung</Word>
+      <Word>Sieg</Word>
+      <Word>gewinnen</Word>
+      <Word>verbessern</Word>
+      <Word>Fortschritt</Word>
+      <Word>schaffen</Word>
+      <Word>entwickeln</Word>
+      <Word>innovieren</Word>
+      
+      <!-- Adjectifs positifs -->
+      <Word>gut</Word>
+      <Word>besser</Word>
+      <Word>beste</Word>
+      <Word>schön</Word>
+      <Word>liebenswürdig</Word>
+      <Word>freundlich</Word>
+      <Word>klug</Word>
+      <Word>intelligent</Word>
+      <Word>hell</Word>
+      <Word>effektiv</Word>
+      <Word>nützlich</Word>
+      <Word>wertvoll</Word>
+      <Word>kostbar</Word>
+    </Positive>
+    
+    <Negative>
+      <!-- Émotions négatives -->
+      <Word>traurig</Word>
+      <Word>Trauer</Word>
+      <Word>unglücklich</Word>
+      <Word>elend</Word>
+      <Word>deprimiert</Word>
+      <Word>verzweifelt</Word>
+      <Word>ängstlich</Word>
+      <Word>besorgt</Word>
+      <Word>Angst</Word>
+      <Word>furcht</Word>
+      <Word>wütend</Word>
+      <Word>Wut</Word>
+      <Word>frustriert</Word>
+      <Word>Frustration</Word>
+      <Word>enttäuscht</Word>
+      <Word>Enttäuschung</Word>
+      
+      <!-- Qualités négatives -->
+      <Word>schlecht</Word>
+      <Word>schlimmer</Word>
+      <Word>schlimmste</Word>
+      <Word>furchtbar</Word>
+      <Word>schrecklich</Word>
+      <Word>grässlich</Word>
+      <Word>armselig</Word>
+      <Word>minderwertig</Word>
+      <Word>hässlich</Word>
+      <Word>gemein</Word>
+      
+      <!-- Actions négatives -->
+      <Word>scheitern</Word>
+      <Word>Versagen</Word>
+      <Word>verlieren</Word>
+      <Word>Verlust</Word>
+      <Word>Niederlage</Word>
+      <Word>zerstören</Word>
+      <Word>Schaden</Word>
+      <Word>verletzen</Word>
+      <Word>kritisieren</Word>
+      <Word>vorwerfen</Word>
+      <Word>beschuldigen</Word>
+      
+      <!-- Adjectifs négatifs -->
+      <Word>schwierig</Word>
+      <Word>hart</Word>
+      <Word>komplex</Word>
+      <Word>verwickelt</Word>
+      <Word>problematisch</Word>
+      <Word>gefährlich</Word>
+      <Word>riskant</Word>
+      <Word>nutzlos</Word>
+      <Word>wirkungslos</Word>
+      <Word>schwach</Word>
+      <Word>grausam</Word>
+      <Word>dumm</Word>
+    </Negative>
+  </Sentiment>
+  
+  <!-- Catégories thématiques -->
+  <Categories>
+    <!-- Technologie -->
+    <Category name="Technologie">
+      <Word>Computer</Word>
+      <Word>Software</Word>
+      <Word>Programm</Word>
+      <Word>Anwendung</Word>
+      <Word>Internet</Word>
+      <Word>Web</Word>
+      <Word>digital</Word>
+      <Word>Daten</Word>
+      <Word>Algorithmus</Word>
+      <Word>künstlich</Word>
+      <Word>Intelligenz</Word>
+      <Word>Automatisierung</Word>
+      <Word>Robotik</Word>
+      <Word>Rechnen</Word>
+      <Word>elektronisch</Word>
+      <Word>Netzwerk</Word>
+      <Word>Server</Word>
+      <Word>Cloud</Word>
+      <Word>Sicherheit</Word>
+      <Word>Cybersicherheit</Word>
+      <Word>Technologie</Word>
+      <Word>Innovation</Word>
+    </Category>
+    
+    <!-- Commerce / Économie -->
+    <Category name="Wirtschaft">
+      <Word>Geschäft</Word>
+      <Word>Unternehmen</Word>
+      <Word>Firma</Word>
+      <Word>Konzern</Word>
+      <Word>Handel</Word>
+      <Word>Markt</Word>
+      <Word>Kunde</Word>
+      <Word>Klient</Word>
+      <Word>Verkauf</Word>
+      <Word>Kauf</Word>
+      <Word>Produkt</Word>
+      <Word>Dienstleistung</Word>
+      <Word>Marketing</Word>
+      <Word>Werbung</Word>
+      <Word>Strategie</Word>
+      <Word>Wettbewerb</Word>
+      <Word>Konkurrent</Word>
+      <Word>Profit</Word>
+      <Word>Einnahmen</Word>
+      <Word>Investition</Word>
+      <Word>Finanzen</Word>
+      <Word>Wirtschaft</Word>
+      <Word>Wachstum</Word>
+      <Word>Entwicklung</Word>
+    </Category>
+    
+    <!-- Éducation -->
+    <Category name="Bildung">
+      <Word>Schule</Word>
+      <Word>Universität</Word>
+      <Word>Hochschule</Word>
+      <Word>Student</Word>
+      <Word>Schüler</Word>
+      <Word>Lehrer</Word>
+      <Word>Professor</Word>
+      <Word>Dozent</Word>
+      <Word>Bildung</Word>
+      <Word>Lernen</Word>
+      <Word>Lehren</Word>
+      <Word>Kurs</Word>
+      <Word>Klasse</Word>
+      <Word>Training</Word>
+      <Word>Wissen</Word>
+      <Word>Fähigkeit</Word>
+      <Word>Kompetenz</Word>
+      <Word>Abschluss</Word>
+      <Word>Diplom</Word>
+      <Word>Prüfung</Word>
+      <Word>Test</Word>
+      <Word>Forschung</Word>
+      <Word>Studie</Word>
+      <Word>akademisch</Word>
+    </Category>
+    
+    <!-- Santé -->
+    <Category name="Gesundheit">
+      <Word>Gesundheit</Word>
+      <Word>medizinisch</Word>
+      <Word>Medizin</Word>
+      <Word>Arzt</Word>
+      <Word>Ärztin</Word>
+      <Word>Krankenhaus</Word>
+      <Word>Klinik</Word>
+      <Word>Patient</Word>
+      <Word>Behandlung</Word>
+      <Word>Medikament</Word>
+      <Word>Arznei</Word>
+      <Word>Therapie</Word>
+      <Word>Krankheit</Word>
+      <Word>Erkrankung</Word>
+      <Word>Symptom</Word>
+      <Word>Diagnose</Word>
+      <Word>Vorbeugung</Word>
+      <Word>Wellness</Word>
+      <Word>Ernährung</Word>
+      <Word>Bewegung</Word>
+      <Word>Fitness</Word>
+      <Word>Sport</Word>
+    </Category>
+    
+    <!-- Environnement -->
+    <Category name="Umwelt">
+      <Word>Umwelt</Word>
+      <Word>Ökologie</Word>
+      <Word>ökologisch</Word>
+      <Word>Natur</Word>
+      <Word>natürlich</Word>
+      <Word>Klima</Word>
+      <Word>Wetter</Word>
+      <Word>Verschmutzung</Word>
+      <Word>Recycling</Word>
+      <Word>nachhaltig</Word>
+      <Word>Nachhaltigkeit</Word>
+      <Word>Energie</Word>
+      <Word>erneuerbar</Word>
+      <Word>Artenvielfalt</Word>
+      <Word>Naturschutz</Word>
+      <Word>Schutz</Word>
+      <Word>Planet</Word>
+      <Word>Erde</Word>
+      <Word>Ozean</Word>
+      <Word>Wald</Word>
+      <Word>Wildtiere</Word>
+    </Category>
+    
+    <!-- Société -->
+    <Category name="Gesellschaft">
+      <Word>Gesellschaft</Word>
+      <Word>sozial</Word>
+      <Word>Gemeinschaft</Word>
+      <Word>Bevölkerung</Word>
+      <Word>Bürger</Word>
+      <Word>Menschen</Word>
+      <Word>Kultur</Word>
+      <Word>kulturell</Word>
+      <Word>Tradition</Word>
+      <Word>Wert</Word>
+      <Word>Gleichheit</Word>
+      <Word>Gerechtigkeit</Word>
+      <Word>Recht</Word>
+      <Word>Freiheit</Word>
+      <Word>Demokratie</Word>
+      <Word>politisch</Word>
+      <Word>Politik</Word>
+      <Word>Regierung</Word>
+      <Word>Gesetz</Word>
+    </Category>
+  </Categories>
+</Language>
