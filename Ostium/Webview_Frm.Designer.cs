@@ -39,6 +39,7 @@
             this.Forward_Btn = new System.Windows.Forms.Button();
             this.Back_Btn = new System.Windows.Forms.Button();
             this.Go_Btn = new System.Windows.Forms.Button();
+            this.Mute_Btn = new System.Windows.Forms.Button();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -73,6 +74,7 @@
             this.panel3.Controls.Add(this.Forward_Btn);
             this.panel3.Controls.Add(this.Back_Btn);
             this.panel3.Controls.Add(this.Go_Btn);
+            this.panel3.Controls.Add(this.Mute_Btn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -87,9 +89,9 @@
             this.URLbrowse_Cbx.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.Gold;
             this.URLbrowse_Cbx.FormattingEnabled = true;
-            this.URLbrowse_Cbx.Location = new System.Drawing.Point(297, 0);
+            this.URLbrowse_Cbx.Location = new System.Drawing.Point(328, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(445, 24);
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(414, 24);
             this.URLbrowse_Cbx.TabIndex = 6;
             // 
             // CopyURL_Btn
@@ -104,7 +106,7 @@
             this.CopyURL_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CopyURL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyURL_Btn.ForeColor = System.Drawing.Color.White;
-            this.CopyURL_Btn.Location = new System.Drawing.Point(259, 0);
+            this.CopyURL_Btn.Location = new System.Drawing.Point(290, 0);
             this.CopyURL_Btn.Name = "CopyURL_Btn";
             this.CopyURL_Btn.Size = new System.Drawing.Size(38, 24);
             this.CopyURL_Btn.TabIndex = 8;
@@ -124,7 +126,7 @@
             this.Trad_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Trad_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Trad_Btn.ForeColor = System.Drawing.Color.White;
-            this.Trad_Btn.Location = new System.Drawing.Point(212, 0);
+            this.Trad_Btn.Location = new System.Drawing.Point(243, 0);
             this.Trad_Btn.Name = "Trad_Btn";
             this.Trad_Btn.Size = new System.Drawing.Size(47, 24);
             this.Trad_Btn.TabIndex = 7;
@@ -144,7 +146,7 @@
             this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Home_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Home_Btn.ForeColor = System.Drawing.Color.White;
-            this.Home_Btn.Location = new System.Drawing.Point(159, 0);
+            this.Home_Btn.Location = new System.Drawing.Point(190, 0);
             this.Home_Btn.Name = "Home_Btn";
             this.Home_Btn.Size = new System.Drawing.Size(53, 24);
             this.Home_Btn.TabIndex = 5;
@@ -164,7 +166,7 @@
             this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Refresh_Btn.ForeColor = System.Drawing.Color.White;
-            this.Refresh_Btn.Location = new System.Drawing.Point(106, 0);
+            this.Refresh_Btn.Location = new System.Drawing.Point(137, 0);
             this.Refresh_Btn.Name = "Refresh_Btn";
             this.Refresh_Btn.Size = new System.Drawing.Size(53, 24);
             this.Refresh_Btn.TabIndex = 4;
@@ -184,7 +186,7 @@
             this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Forward_Btn.ForeColor = System.Drawing.Color.White;
-            this.Forward_Btn.Location = new System.Drawing.Point(53, 0);
+            this.Forward_Btn.Location = new System.Drawing.Point(84, 0);
             this.Forward_Btn.Name = "Forward_Btn";
             this.Forward_Btn.Size = new System.Drawing.Size(53, 24);
             this.Forward_Btn.TabIndex = 3;
@@ -204,7 +206,7 @@
             this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Back_Btn.ForeColor = System.Drawing.Color.White;
-            this.Back_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Back_Btn.Location = new System.Drawing.Point(31, 0);
             this.Back_Btn.Name = "Back_Btn";
             this.Back_Btn.Size = new System.Drawing.Size(53, 24);
             this.Back_Btn.TabIndex = 2;
@@ -230,6 +232,26 @@
             this.Go_Btn.Text = "Go";
             this.Go_Btn.UseVisualStyleBackColor = false;
             this.Go_Btn.Click += new System.EventHandler(this.Go_Btn_Click);
+            // 
+            // Mute_Btn
+            // 
+            this.Mute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Mute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Mute_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Mute_Btn.FlatAppearance.BorderSize = 0;
+            this.Mute_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.Mute_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Mute_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Mute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Mute_Btn.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mute_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.Mute_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Mute_Btn.Name = "Mute_Btn";
+            this.Mute_Btn.Size = new System.Drawing.Size(31, 24);
+            this.Mute_Btn.TabIndex = 9;
+            this.Mute_Btn.Text = "🔊";
+            this.Mute_Btn.UseVisualStyleBackColor = false;
+            this.Mute_Btn.Click += new System.EventHandler(this.Mute_Btn_Click);
             // 
             // Status_Strip
             // 
@@ -308,5 +330,6 @@
         private System.Windows.Forms.ToolStripStatusLabel URLtxt_txt;
         private System.Windows.Forms.ToolStripStatusLabel JavaScriptToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.Button Mute_Btn;
     }
 }

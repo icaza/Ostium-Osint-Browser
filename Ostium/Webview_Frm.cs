@@ -1,4 +1,5 @@
 ﻿using Microsoft.Web.WebView2.Core;
+using Ostium.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -38,7 +39,6 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
-
         void WBrowsew_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
@@ -161,11 +161,9 @@ namespace Ostium
             control.NavigationCompleted += WBrowsew_NavigationCompleted;
             control.SourceChanged += WBrowsew_SourceChanged;
         }
-
         #endregion
 
         #region Control_Browser
-
         void Go_Btn_Click(object sender, EventArgs e)
         {
             GoBrowser(URLbrowse_Cbx.Text);
@@ -297,6 +295,34 @@ namespace Ostium
             Console.Beep(1500, 400);
         }
 
+        void Mute_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                WBrowsew.CoreWebView2.IsMuted = !WBrowsew.CoreWebView2.IsMuted;
+
+                bool isDocumentPlayingAudio = WBrowsew.CoreWebView2.IsDocumentPlayingAudio;
+                bool isMuted = WBrowsew.CoreWebView2.IsMuted;
+
+                if (isDocumentPlayingAudio)
+                {
+                    if (isMuted)
+                    {
+                        Mute_Btn.Text = "🔈";
+                        Mute_Btn.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        Mute_Btn.Text = "🔊";
+                        Mute_Btn.ForeColor = Color.Lime;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! Mute_Btn_Click: " + ex.Message, "Error!");
+            }
+        }
         #endregion
 
         void JavaScriptToggle_Btn_Click(object sender, EventArgs e)

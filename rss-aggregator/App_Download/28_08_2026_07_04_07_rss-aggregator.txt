@@ -1,0 +1,4 @@
+File create at: 28/08/2026 07:04:07
+File Name Hash: rss-aggregator.zip
+
+SHA-512: ef6b5cb7ed7dc8166711f634438f0cc0f36e12d44b1fc1ec59aaca15e02fce68b55885351c4eed58ef878e92afdbc752688a0f16c2766912c52e251a788e3a4f
