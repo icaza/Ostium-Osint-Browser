@@ -68,6 +68,7 @@
             this.Script_Pnl = new System.Windows.Forms.Panel();
             this.Bookmarklet_Lst = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.OpnScriptPath_Btn = new System.Windows.Forms.ToolStripButton();
             this.UrlSite_Pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ScriptTxt_Txt)).BeginInit();
             this.Menu_Mnu.SuspendLayout();
@@ -348,7 +349,8 @@
             this.OpnJSfile_Btn,
             this.toolStripSeparator7,
             this.MinifyScript_Btn,
-            this.toolStripSeparator8});
+            this.toolStripSeparator8,
+            this.OpnScriptPath_Btn});
             this.Tls_Tls.Location = new System.Drawing.Point(0, 0);
             this.Tls_Tls.Name = "Tls_Tls";
             this.Tls_Tls.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -493,6 +495,18 @@
             this.panel1.Size = new System.Drawing.Size(10, 474);
             this.panel1.TabIndex = 13;
             // 
+            // OpnScriptPath_Btn
+            // 
+            this.OpnScriptPath_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnScriptPath_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnScriptPath_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.OpnScriptPath_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnScriptPath_Btn.Image")));
+            this.OpnScriptPath_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnScriptPath_Btn.Name = "OpnScriptPath_Btn";
+            this.OpnScriptPath_Btn.Size = new System.Drawing.Size(125, 22);
+            this.OpnScriptPath_Btn.Text = "Open scripts path";
+            this.OpnScriptPath_Btn.Click += new System.EventHandler(this.OpnScriptPath_Btn_Click);
+            // 
             // Bookmarklets_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -569,5 +583,6 @@
         private System.Windows.Forms.TextBox NameBkmklt_Txt;
         private System.Windows.Forms.ListBox Bookmarklet_Lst;
         private System.Windows.Forms.Button CopyScriptMini_Btn;
+        private System.Windows.Forms.ToolStripButton OpnScriptPath_Btn;
     }
 }

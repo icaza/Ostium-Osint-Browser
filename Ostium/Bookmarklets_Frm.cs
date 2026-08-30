@@ -2,6 +2,7 @@
 using LoadDirectory;
 using Microsoft.Ajax.Utilities;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,14 +14,12 @@ namespace Ostium
     public partial class Bookmarklets_Frm : Form
     {
         #region Var_
-
         readonly string AppStart = Application.StartupPath + @"\";
         readonly string Scripts = Application.StartupPath + @"\scripts\bookmarklet\";
 
         readonly Loaddir loadfiledir = new Loaddir();
         readonly IcazaClass openfile = new IcazaClass();
         readonly IcazaClass senderror = new IcazaClass();
-
         #endregion
 
         #region Form_
@@ -74,6 +73,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"The file cannot be opened! {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 senderror.ErrorLog("Error! OpnScript_Btn_Click: ", ex.Message, "Bookmarklets_Frm", AppStart);
             }
         }
@@ -82,46 +82,51 @@ namespace Ostium
         {
             try
             {
-                MinifyJs();
-
-                string NameFile = Scripts + NameBkmklt_Txt.Text + ".xml";
-
-                if (File.Exists(NameFile))
-                    File.Delete(NameFile);
-
-                XmlTextWriter writer = new XmlTextWriter(NameFile, Encoding.UTF8);
-                writer.WriteStartDocument(true);
-                writer.Formatting = Formatting.Indented;
-                writer.Indentation = 2;
-
-                writer.WriteStartElement("Table");
-                writer.WriteStartElement("Bkmklt");
-                writer.WriteEndElement();
-                writer.WriteEndDocument();
-                writer.Close();
-
-                XmlDocument doc = new XmlDocument();
-                XmlTextReader xmlReader = new XmlTextReader(NameFile);
-                doc.Load(xmlReader);
-
-                if (doc.SelectSingleNode("/Table/Bkmklt") is XmlElement node1)
+                if (Bookmarklet_Lst.SelectedIndex != -1 && NameBkmklt_Txt.Text != "")
                 {
-                    XmlElement elem = doc.CreateElement(NameBkmklt_Txt.Text);
-                    elem.SetAttribute("name", NameBkmklt_Txt.Text);
-                    elem.SetAttribute("desc", Description_Txt.Text);
-                    elem.SetAttribute("mini", ScriptMinify_Txt.Text);
-                    elem.InnerText = ScriptTxt_Txt.Text;
-                    node1.AppendChild(elem);
+                    MinifyJs();
+
+                    string NameFile = Scripts + NameBkmklt_Txt.Text + ".xml";
+
+                    if (File.Exists(NameFile))
+                        File.Delete(NameFile);
+
+                    XmlTextWriter writer = new XmlTextWriter(NameFile, Encoding.UTF8);
+                    writer.WriteStartDocument(true);
+                    writer.Formatting = Formatting.Indented;
+                    writer.Indentation = 2;
+
+                    writer.WriteStartElement("Table");
+                    writer.WriteStartElement("Bkmklt");
+                    writer.WriteEndElement();
+                    writer.WriteEndDocument();
+                    writer.Close();
+
+                    XmlDocument doc = new XmlDocument();
+                    XmlTextReader xmlReader = new XmlTextReader(NameFile);
+                    doc.Load(xmlReader);
+
+                    if (doc.SelectSingleNode("/Table/Bkmklt") is XmlElement node1)
+                    {
+                        XmlElement elem = doc.CreateElement(NameBkmklt_Txt.Text);
+                        elem.SetAttribute("name", NameBkmklt_Txt.Text);
+                        elem.SetAttribute("desc", Description_Txt.Text);
+                        elem.SetAttribute("mini", ScriptMinify_Txt.Text);
+                        elem.InnerText = ScriptTxt_Txt.Text;
+                        node1.AppendChild(elem);
+                    }
+
+                    xmlReader.Close();
+                    doc.Save(NameFile);
+                    Console.Beep(800, 200);
+
+                    Bookmarklet_Lst.Items.Clear();
+                    loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);
                 }
-
-                xmlReader.Close();
-                doc.Save(NameFile);
-
-                Bookmarklet_Lst.Items.Clear();
-                loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"The file cannot be opened! {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 senderror.ErrorLog("Error! SaveScript_Btn_Click: ", ex.Message, "Bookmarklets_Frm", AppStart);
             }
         }
@@ -188,14 +193,14 @@ namespace Ostium
         {
             try
             {
-                if (Bookmarklet_Lst.SelectedIndex != -1)
+                if (Bookmarklet_Lst.SelectedIndex != -1 && NameBkmklt_Txt.Text != "")
                 {
-                    string message = "Are you sure to delete a Bookmarklet?";
+                    string message = $"Are you sure to delete a Bookmarklet {Bookmarklet_Lst.Text}?";
                     string caption = "Delete";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
-                        File.Delete(Path.Combine("Scripts", "NameBkmklt_Txt.Text" + ".xml"));
+                        File.Delete(Path.Combine(Scripts, NameBkmklt_Txt.Text + ".xml"));
 
                     Bookmarklet_Lst.Items.Clear();
                     loadfiledir.LoadFileDirectory(Scripts, "xml", "lst", Bookmarklet_Lst);
@@ -216,6 +221,11 @@ namespace Ostium
                 Clipboard.SetData(DataFormats.Text, ScriptMinify_Txt.Text);
                 Console.Beep(300, 200);
             }
+        }
+
+        void OpnScriptPath_Btn_Click(object sender, EventArgs e)
+        {
+            Process.Start(Scripts);
         }
 
         #region ContextMenu_
