@@ -118,7 +118,7 @@
     background: var(--surface2);
     border-left-color: var(--accent);
   }
-  /* Curseur pointer pour indiquer que c'est cliquable */
+
   .feed-item { cursor: pointer; }
 
   .feed-dot {
@@ -354,7 +354,7 @@
     color: var(--text);
     margin-bottom: 8px;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -364,7 +364,7 @@
     color: var(--muted);
     line-height: 1.55;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -399,7 +399,7 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── Modal Ajout ── */
+  /* ── Add Modal ── */
   #modal-overlay {
     display: none;
     position: fixed;
@@ -611,7 +611,7 @@
     background: rgba(80,224,138,0.06);
   }
 
-  /* Articles lus — style atténué si visible dans vue "read" */
+  /* Read articles — dimmed style if visible in "read" view */
   .article-card.is-read {
     opacity: 0.45;
   }
@@ -726,20 +726,20 @@ const COLORS = ['#f0c040','#e05050','#50c0e0','#50e08a','#e07050','#a078e8','#f0
 let allArticles = [];
 let displayedArticles = [];
 let feeds = [];
-// Persistance côté serveur dans userdata.json (pas de localStorage)
-let starred = [];          // liste de liens
-let starredArticles = [];  // articles complets persistés
+// Server-side persistence in userdata.json (no localStorage)
+let starred = [];          // list of links
+let starredArticles = [];  // fully persisted articles
 let readItems = [];
 let currentView = 'all';
 let currentCategory = 'all';
-let currentFeedId = null;   // null = tous les flux, sinon ID du flux sélectionné
+let currentFeedId = null;   // null = all streams, otherwise the ID of the selected stream
 let selectedColor = COLORS[0];
 
 // ── Init ──────────────────────────────────────────────────────────────────
 
 window.addEventListener('DOMContentLoaded', async () => {
   buildColorPicker();
-  await loadUserData();       // Charger lus + favoris depuis le serveur
+  await loadUserData();       // Load more + favorites from the server
   await loadFeedsFromAPI();
   loadArticles();
 });
@@ -782,7 +782,7 @@ async function loadArticles() {
     if (!res.ok) throw new Error('Server error');
     allArticles = await res.json();
     
-    // Marquer les favoris et les lus
+    // Bookmark favorites and most read
     allArticles.forEach(a => {
       a.starred = starred.includes(a.link);
       a.read = readItems.includes(a.link);
@@ -945,7 +945,7 @@ function showError(msg) {
 function applyFilters() {
   let filtered = [...allArticles];
 
-  // ── Filtre par flux individuel (sidebar) ──
+  // ── Filter by individual feed (sidebar) ──
   if (currentFeedId !== null) {
     filtered = filtered.filter(a => a.feedId === currentFeedId);
     const feed = feeds.find(f => f.id === currentFeedId);
@@ -956,7 +956,7 @@ function applyFilters() {
     filtered = filtered.filter(a => new Date(a.date) >= today);
     document.getElementById('page-title').textContent = 'Today';
   } else if (currentView === 'starred') {
-    // Fusionner les articles du RSS avec les favoris persistés
+    // Merge RSS items with persisted favorites
     const fromRss = filtered.filter(a => a.starred);
     const fromRssLinks = new Set(fromRss.map(a => a.link));
     const fromStored = starredArticles
@@ -969,7 +969,7 @@ function applyFilters() {
     filtered = filtered.filter(a => a.read);
     document.getElementById('page-title').textContent = 'Articles read';
   } else {
-    // Vue "tous" : masquer les articles lus (sauf si recherche active)
+    // "All" view: hide read articles (unless a search is active)
     const query = document.getElementById('search-input').value.toLowerCase();
     if (!query) filtered = filtered.filter(a => !a.read);
     document.getElementById('page-title').textContent = 'All feeds';
@@ -995,7 +995,7 @@ function filterArticles() { applyFilters(); }
 
 function setView(el, view) {
   currentView = view;
-  currentFeedId = null;  // Désélectionner tout flux individuel
+  currentFeedId = null;  // Deselect all individual streams
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.querySelectorAll('.feed-item').forEach(n => n.classList.remove('active'));
   el.classList.add('active');
@@ -1011,16 +1011,16 @@ function setCategory(el, cat) {
 
 function setFeed(feedId) {
   if (currentFeedId === feedId) {
-    // Deuxième clic sur le même flux → revenir à "tous"
+    // Second click on the same feed → return to "all"
     currentFeedId = null;
   } else {
     currentFeedId = feedId;
-    // Désélectionner les vues nav (today/starred/read) et repasser en "all"
+    // Deselect the navigation views (today/starred/read) and switch back to "all".
     currentView = 'all';
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.querySelector('.nav-item[data-view="all"]').classList.add('active');
   }
-  // Mettre à jour le highlight dans la sidebar
+  // Update the highlight in the sidebar
   document.querySelectorAll('.feed-item').forEach(el => {
     el.classList.toggle('active', parseInt(el.dataset.feedId) === currentFeedId);
   });
@@ -1029,21 +1029,21 @@ function setFeed(feedId) {
 
 function toggleStar(e, link) {
   e.stopPropagation();
-  // Optimiste : mise à jour locale immédiate
+  // Optimistic: immediate local update
   const idx = starred.indexOf(link);
   if (idx >= 0) {
     starred.splice(idx, 1);
     starredArticles = starredArticles.filter(a => a.link !== link);
   } else {
     starred.push(link);
-    // Trouver l'article complet dans allArticles pour le sauvegarder
+    // Find the full article in allArticles to save it.
     const article = allArticles.find(a => a.link === link);
     if (article) starredArticles.push(Object.assign({}, article));
   }
   allArticles.forEach(a => { a.starred = starred.includes(a.link); });
   updateStarredCount();
   applyFilters();
-  // Persistance serveur — on envoie l'article complet
+  // Server persistence — sending the full article
   const article = allArticles.find(a => a.link === link) || { link };
   fetch('/api/userdata/starred', {
     method: 'POST',
@@ -1061,11 +1061,10 @@ function updateStarredCount() {
 
 function markRead(link) {
   if (!readItems.includes(link)) {
-    // Optimiste : mise à jour locale immédiate
     readItems.push(link);
     allArticles.forEach(a => { if (a.link === link) a.read = true; });
     updateReadCount();
-    // Persistance serveur
+    // Server persistence
     fetch('/api/userdata/read', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1077,11 +1076,10 @@ function markRead(link) {
 }
 
 function markUnread(link) {
-  // Optimiste : mise à jour locale immédiate
   readItems = readItems.filter(l => l !== link);
   allArticles.forEach(a => { if (a.link === link) a.read = false; });
   updateReadCount();
-  // Persistance serveur
+  // Server persistence
   fetch('/api/userdata/read/' + encodeURIComponent(link), {
     method: 'DELETE'
   }).then(r => r.json()).then(data => {
@@ -1114,7 +1112,7 @@ function markAllReadInView() {
     }
   });
   updateReadCount();
-  // Disparition groupée
+  // Mass disappearance
   let delay = 0;
   visibleCards.forEach(card => {
     const d = delay; delay += 40;
@@ -1124,7 +1122,7 @@ function markAllReadInView() {
       setTimeout(() => card.remove(), 260);
     }, d);
   });
-  // Persistance serveur en une seule requête batch
+  // Server persistence in a single batch request
   if (links.length) {
     fetch('/api/userdata/read', {
       method: 'POST',
@@ -1211,7 +1209,7 @@ function formatDate(iso) {
   } catch(e) { return ''; }
 }
 
-// ── Ouverture du reader ───────────────────────────────────────────────────
+// ── Opening the reader ───────────────────────────────────────────────────
 
 function openReader(article, card) {
   const params = new URLSearchParams({
@@ -1223,13 +1221,13 @@ function openReader(article, card) {
     desc:  article.description || '',
   });
   window.open('/reader.html?' + params.toString(), '_self'); // _blank 
-  // Marquer lu + animer la disparition de la carte immédiatement
+  // Mark as read + animate the card's disappearance immediately
   markRead(article.link);
   if (card) dismissCard(card);
 }
 
 function dismissCard(card) {
-  // Même animation que markReadFromCard
+  // Same animation as markReadFromCard
   card.style.transition = 'opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease 0.2s';
   card.style.opacity = '0';
   card.style.transform = 'scale(0.97)';

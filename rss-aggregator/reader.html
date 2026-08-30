@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lecture — Flux</title>
+<title>Reading — Feed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -46,7 +46,7 @@
     transition: background 0.2s, color 0.2s;
   }
 
-  /* ── Barre de progression ── */
+  /* ── Progress bar ── */
   #progress-bar {
     position: fixed;
     top: 0; left: 0;
@@ -147,14 +147,14 @@
     letter-spacing: 1px;
   }
 
-  /* ── Contenu principal ── */
+  /* ── Main content ── */
   #reader-wrap {
     max-width: var(--max-w);
     margin: 0 auto;
     padding: 48px 24px 100px;
   }
 
-  /* État de chargement */
+  /* Loading status */
   #loader {
     display: flex;
     flex-direction: column;
@@ -177,7 +177,7 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* État d'erreur */
+  /* Error state */
   #error-state {
     display: none;
     text-align: center;
@@ -190,7 +190,7 @@
   /* Article */
   #article { display: none; }
 
-  /* En-tête article */
+  /* Article header */
   .article-category {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -238,7 +238,7 @@
     flex-shrink: 0;
   }
 
-  /* Image héro */
+  /* Hero image */
   #hero-image {
     width: 100%;
     border-radius: 4px;
@@ -248,7 +248,7 @@
     object-fit: cover;
   }
 
-  /* Description/résumé */
+  /* Description/summary */
   #article-desc {
     background: var(--accent-light);
     border-left: 3px solid var(--accent);
@@ -261,7 +261,7 @@
     line-height: 1.65;
   }
 
-  /* ── Contenu extrait ── */
+  /* ── Extracted content ── */
   #article-content {
     font-size: inherit;
     line-height: inherit;
@@ -350,7 +350,7 @@
     margin: 2em 0;
   }
 
-  /* Masquer les éléments nav/pub restants */
+  /* Hide remaining nav/ad elements */
   #article-content nav,
   #article-content .advertisement,
   #article-content [class*="ad-"],
@@ -369,7 +369,7 @@
     display: none !important;
   }
 
-  /* ── Pied de page article ── */
+  /* ── Article footer ── */
   .article-footer {
     margin-top: 56px;
     padding-top: 24px;
@@ -387,7 +387,7 @@
     flex: 1;
   }
 
-  /* ── Taille police ── */
+  /* ── Font size ── */
   body.text-sm  { font-size: 16px; }
   body.text-md  { font-size: 18px; }
   body.text-lg  { font-size: 21px; }
@@ -447,7 +447,7 @@
 </div>
 
 <script>
-// ── Paramètres depuis l'URL ───────────────────────────────────────────────
+// ── Parameters from the URL ───────────────────────────────────────────────
 
 var params = new URLSearchParams(window.location.search);
 var articleUrl  = params.get('url')   || '';
@@ -471,13 +471,13 @@ function sanitizeArticleUrl(url) {
   return '';
 }
 
-// ── Thème ─────────────────────────────────────────────────────────────────
+// ── Theme ─────────────────────────────────────────────────────────────────
 
 var theme = 'light';
 var sizes = ['text-sm','text-md','text-lg','text-xl'];
 var sizeIdx = 1;
 
-// Charger les préférences depuis le serveur
+// Load preferences from the server
 fetch('/api/userdata').then(function(r) { return r.json(); }).then(function(data) {
   var prefs = data.prefs || {};
   theme = prefs.theme || 'light';
@@ -486,7 +486,7 @@ fetch('/api/userdata').then(function(r) { return r.json(); }).then(function(data
   document.getElementById('theme-btn').textContent = theme === 'dark' ? '☀' : '☾';
   applySize();
 }).catch(function() {
-  // fallback silencieux
+  // silent fallback
   applySize();
 });
 
@@ -509,7 +509,7 @@ function toggleTheme() {
   savePrefs();
 }
 
-// ── Taille de police ──────────────────────────────────────────────────────
+// ── Font size ──────────────────────────────────────────────────────
 
 function applySize() {
   document.body.className = sizes[sizeIdx];
@@ -523,7 +523,7 @@ function changeFontSize(dir) {
 
 applySize();
 
-// ── Barre de progression ──────────────────────────────────────────────────
+// ── Progress bar ──────────────────────────────────────────────────
 
 window.addEventListener('scroll', function() {
   var scrollTop = window.scrollY;
@@ -532,7 +532,7 @@ window.addEventListener('scroll', function() {
   document.getElementById('progress-bar').style.width = pct + '%';
 });
 
-// ── Lien original ─────────────────────────────────────────────────────────
+// ── Original link ─────────────────────────────────────────────────────────
 
 function setOriginalLink(url) {
   document.getElementById('original-link').href = url;
@@ -547,7 +547,7 @@ function setOriginalLink(url) {
 var safeArticleUrl = sanitizeArticleUrl(articleUrl);
 if (safeArticleUrl) setOriginalLink(safeArticleUrl);
 
-// ── Affichage de l'état initial (titre depuis RSS) ────────────────────────
+// ── Displaying initial state (title from RSS) ────────────────────────
 
 document.title = (articleTitle || 'Lecture') + ' — Flux';
 if (articleTitle) document.getElementById('article-title').textContent = articleTitle;
@@ -573,16 +573,16 @@ function renderArticle(data) {
   document.getElementById('loader').style.display = 'none';
   document.getElementById('article').style.display = 'block';
 
-  // Titre — préférer celui extrait, sinon celui du RSS
-  var title = data.title || articleTitle || 'Sans titre';
+  // Title — prefer the extracted one; otherwise, use the RSS title.
+  var title = data.title || articleTitle || 'Untitled';
   document.getElementById('article-title').textContent = title;
   document.title = title + ' — Flux';
 
-  // Source + couleur
+  // Source + color
   var sourceEl = document.getElementById('article-source');
   sourceEl.innerHTML = '<span class="source-dot" style="background:' + escHtml(feedColor) + '"></span> ' + escHtml(feedName || 'Article');
 
-  // Méta
+  // Meta
   var meta = [];
   var author = data.author || '';
   if (author) meta.push('<span class="meta-author">' + escHtml(author) + '</span>');
@@ -598,7 +598,7 @@ function renderArticle(data) {
   } catch(e) {}
   document.getElementById('article-meta').innerHTML = meta.join('');
 
-  // Image héro
+  // Image hero
   if (data.heroImage) {
     var img = document.getElementById('hero-image');
     img.src = data.heroImage;
@@ -606,7 +606,7 @@ function renderArticle(data) {
     img.onerror = function() { img.style.display = 'none'; };
   }
 
-  // Résumé/description
+  // Summary/description
   var desc = data.description || rssDesc;
   if (desc && desc.length > 30) {
     var descEl = document.getElementById('article-desc');
@@ -614,55 +614,54 @@ function renderArticle(data) {
     descEl.style.display = 'block';
   }
 
-  // Contenu principal
+  // Main content
   var contentEl = document.getElementById('article-content');
   var content = data.content || '';
 
   if (!content || content.trim().length < 100) {
-    // Pas de contenu extrait — afficher un message avec lien
+    // No extracted content — display a message with a link
     contentEl.innerHTML = [
       '<p style="color:var(--muted);font-family:var(--font-ui);font-size:15px;">',
-      'Le contenu complet de cet article n\'a pas pu être extrait automatiquement.',
-      ' Cela peut arriver pour les sites nécessitant une connexion, utilisant JavaScript intensivement,',
-      ' ou bloquant les robots.</p>',
+      'The full content of this article could not be automatically extracted..',
+      ' This can happen with sites that require a login and make extensive use of JavaScript.,',
+      ' or blocking robots.</p>',
       '<p style="color:var(--muted);font-family:var(--font-ui);font-size:15px;">',
-      'Vous pouvez lire l\'article directement sur le site original en cliquant sur le bouton ci-dessus.</p>',
+      'You can read the article directly on the original site by clicking the button above.</p>',
     ].join('');
   } else {
-    // Injecter le contenu HTML extrait, sandboxé
+    // Inject the extracted HTML content, sandboxed.
     contentEl.innerHTML = content;
 
-    // Ouvrir tous les liens dans un nouvel onglet
     var links = contentEl.querySelectorAll('a');
     links.forEach(function(a) {
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener noreferrer');
     });
 
-    // Supprimer les scripts éventuellement restants
+    // Remove any remaining scripts
     var scripts = contentEl.querySelectorAll('script, style, link');
     scripts.forEach(function(s) { s.remove(); });
   }
 }
 
-// ── Requête d'extraction ──────────────────────────────────────────────────
+// ── Extraction request ──────────────────────────────────────────────────
 
 if (!articleUrl) {
-  showError('Aucune URL d\'article fournie.');
+  showError('No article URL provided.');
 } else {
   fetch('/api/extract?url=' + encodeURIComponent(articleUrl))
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.error) {
-        // Erreur serveur : afficher quand même ce qu'on a depuis le RSS
-        console.warn('Extraction partielle :', data.error);
+        // Server error: display what we have from the RSS feed anyway
+        console.warn('Partial extraction :', data.error);
         renderArticle({ title: articleTitle, description: rssDesc, content: '' });
       } else {
         renderArticle(data);
       }
     })
     .catch(function(e) {
-      // Erreur réseau : afficher quand même les infos RSS
+      // Network error: display RSS info anyway
       renderArticle({ title: articleTitle, description: rssDesc, content: '' });
     });
 }

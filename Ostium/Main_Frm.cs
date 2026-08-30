@@ -6889,7 +6889,6 @@ namespace Ostium
         #endregion
 
         #region Feed_
-
         void Title_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Title_Lst.SelectedIndex != -1)
@@ -6905,9 +6904,17 @@ namespace Ostium
         /// <param name="LoadFeed"></param>
         /// <param value="0">Cleaning the List before loading</param>
         ///
-        void CategorieFeed_Cbx_SelectedIndexChanged(object sender, EventArgs e)
+        async void CategorieFeed_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             Tools_TAB_1.Focus();
+
+            bool isConnected = await CheckInternetConnect();
+
+            if (!isConnected)
+            {
+                MessageBox.Show("It seems you are not connected to the Internet.", "No connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             if (ManageFeed == "on")
             {
@@ -7309,11 +7316,9 @@ namespace Ostium
             WBrowsefeed.Source = new Uri(HomeUrlRSS);
             CountFeed_Status.Text = string.Empty;
         }
-
         #endregion
 
         #region Feed_Speak
-
         void LoadLang()
         {
             try
@@ -7506,7 +7511,6 @@ namespace Ostium
             catch
             { }
         }
-
         #endregion
 
         void RSSListSite_Lbl_MouseEnter(object sender, EventArgs e)
@@ -8899,11 +8903,18 @@ namespace Ostium
         #endregion
 
         #region Maps_
-
-        void OpenMaps(string adress, int provid)
+        async void OpenMaps(string adress, int provid)
         {
             try
             {
+                bool isConnected = await CheckInternetConnect();
+
+                if (!isConnected)
+                {
+                    MessageBox.Show("It seems you are not connected to the Internet.", "No connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 if (KeywordMap_Txt.Text == string.Empty)
                     KeywordMap_Txt.Text = "Here";
 
@@ -10564,7 +10575,6 @@ namespace Ostium
                 LoadRouteFromFile(MapRouteOpn);
             }
         }
-
         #endregion
 
         void TtsButton_Sts_ButtonClick(object sender, EventArgs e)
@@ -13658,7 +13668,7 @@ namespace Ostium
         /// Checking updates
         /// </summary>
         ///
-        public async Task CheckForUpdatesAsync(int Warn)
+        public async Task CheckForUpdates(int Warn)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -13784,15 +13794,17 @@ del ""%~f0""
 
         async void VerifyUPDT(int Warn)
         {
-            bool isConnected = await CheckInternetConnectionAsync();
+            bool isConnected = await CheckInternetConnect();
 
             if (isConnected)
             {
-                await CheckForUpdatesAsync(Warn);
+                await CheckForUpdates(Warn);
             }
+            else if(Warn == 1)
+                MessageBox.Show("It seems you are not connected to the Internet.", "No connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        static async Task<bool> CheckInternetConnectionAsync()
+        static async Task<bool> CheckInternetConnect()
         {
             try
             {

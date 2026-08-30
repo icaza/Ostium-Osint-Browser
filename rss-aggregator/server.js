@@ -12,7 +12,7 @@ const PORT = 8888;
 const DATA_FILE     = path.join(__dirname, 'feeds.json');
 const USERDATA_FILE = path.join(__dirname, 'userdata.json');
 
-// ── Persistance utilisateur (lus, favoris) ────────────────────────────────
+// ── User persistence (read items, favorites) ────────────────────────────────
 
 function loadUserData() {
   if (!fs.existsSync(USERDATA_FILE)) {
@@ -33,7 +33,7 @@ function saveUserData(data) {
   fs.writeFileSync(USERDATA_FILE, JSON.stringify(data, null, 2));
 }
 
-// ── Flux sauvegardés ──────────────────────────────────────────────────────
+// ── Saved feeds ──────────────────────────────────────────────────────
 
 function loadFeeds() {
   if (!fs.existsSync(DATA_FILE)) {
@@ -176,43 +176,43 @@ function parseRSS(xml) {
   return { title: stripHtml(feedTitle), items: items.slice(0, 50) };
 }
 
-// ── Extracteur de contenu (mode lecture) ─────────────────────────────────
-// Extrait le contenu principal d'une page HTML sans dépendances
+// ── Content extractor (reading mode) ─────────────────────────────────
+// Extracts the main content from an HTML page without dependencies
 
 function extractReadableContent(html, baseUrl) {
   // 1. Titre
   var titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
   var title = titleMatch ? stripHtml(titleMatch[1]) : '';
 
-  // Préférer og:title si disponible
+  // Prefer og:title if available
   var ogTitle = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
              || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i);
   if (ogTitle) title = stripHtml(ogTitle[1]);
 
-  // 2. Image principale
+  // 2. Main image
   var ogImage = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
               || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
   var heroImage = ogImage ? ogImage[1] : null;
 
-  // 3. Description/résumé
+  // 3. Description/summary
   var ogDesc = html.match(/<meta[^>]+(?:name=["']description["']|property=["']og:description["'])[^>]+content=["']([^"']+)["']/i)
              || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:name=["']description["']|property=["']og:description["'])/i);
   var description = ogDesc ? stripHtml(ogDesc[1]) : '';
 
-  // 4. Auteur
+  // 4. Author
   var authorMeta = html.match(/<meta[^>]+name=["']author["'][^>]+content=["']([^"']+)["']/i)
                 || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']author["']/i);
   var author = authorMeta ? stripHtml(authorMeta[1]) : '';
 
-  // 5. Date de publication
+  // 5. Publication date
   var dateMeta = html.match(/<meta[^>]+(?:name=["'](?:article:published_time|pubdate)["']|property=["']article:published_time["'])[^>]+content=["']([^"']+)["']/i)
                || html.match(/(?:datePublished|publishedAt|published_time)["\s:]+["']([0-9T:\-Z+]+)["']/i);
   var publishedDate = dateMeta ? dateMeta[1] : '';
 
-  // 6. Contenu principal — heuristiques par ordre de priorité
+  // 6. Main content — heuristics by priority order
   var content = '';
 
-  // Essayer les balises sémantiques connues
+  // Try known semantic tags
   var contentSelectors = [
     /<article[^>]*>([\s\S]*?)<\/article>/i,
     /<main[^>]*>([\s\S]*?)<\/main>/i,
@@ -228,7 +228,7 @@ function extractReadableContent(html, baseUrl) {
     }
   }
 
-  // Fallback : prendre le body entier
+  // Fallback : take the entire body
   if (!content) {
     var bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
     content = bodyMatch ? bodyMatch[1] : html;
@@ -240,7 +240,7 @@ function extractReadableContent(html, baseUrl) {
     heroImage = sanitizer.sanitizeUrl(heroImage);
   } 
 
-  // Réécrire les URLs relatives des images en absolues
+  // Rewrite relative image URLs to absolute
   content = content.replace(/(<img[^>]+src=["'])(?!http)([^"']+)(["'])/gi, function(m, pre, src, post) {
     if (src.startsWith('//')) return pre + 'https:' + src + post;
     if (src.startsWith('/') && baseUrl) {
@@ -275,7 +275,7 @@ function readBody(req) {
   });
 }
 
-// ── Serveur ───────────────────────────────────────────────────────────────
+// ── Server ───────────────────────────────────────────────────────────────
 
 var server = http.createServer(function(req, res) {
   var reqUrl = new URL(req.url, 'http://localhost:' + PORT);
@@ -350,7 +350,7 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── GET /api/extract?url=... — NOUVEAU : extraction mode lecture
+  // ── GET /api/extract?url=... — NEW: Reader mode extraction
   if (pathname === '/api/extract' && req.method === 'GET') {
     var articleUrl = reqUrl.searchParams.get('url');
     if (!articleUrl) return jsonResp(res, { error: 'Missing URL' }, 400);
@@ -365,7 +365,7 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── GET /reader.html — page de lecture
+  // ── GET /reader.html — reading page
   if (pathname === '/reader.html') {
     var readerFile = path.join(__dirname, 'reader.html');
     try {
@@ -376,7 +376,7 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── GET / — interface principale
+  // ── GET / — main interface
   if (pathname === '/' || pathname === '/index.html') {
     var indexFile = path.join(__dirname, 'index.html');
     try {
@@ -387,10 +387,10 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── GET /api/userdata — récupérer lus + favoris + prefs
+  // ── GET /api/userdata — retrieve read items + favorites + preferences
   if (pathname === '/api/userdata' && req.method === 'GET') {
     var ud = loadUserData();
-    // Migrer ancien format starred (strings) vers objets
+    // Migrate old starred format (strings) to objects
     if (ud.starred.length > 0 && typeof ud.starred[0] === 'string') {
       ud.starred = ud.starred.map(function(l) { return { link: l }; });
       saveUserData(ud);
@@ -403,7 +403,7 @@ var server = http.createServer(function(req, res) {
     });
   }
 
-  // ── POST /api/userdata/prefs — sauvegarder les préférences (thème, taille)
+  // ── POST /api/userdata/prefs — save preferences (theme, size)
   if (pathname === '/api/userdata/prefs' && req.method === 'POST') {
     readBody(req).then(function(body) {
       try {
@@ -417,15 +417,15 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── POST /api/userdata/starred — toggle favori (stocke l'article complet)
+  // ── POST /api/userdata/starred — toggle favorite (store the complete article)
   if (pathname === '/api/userdata/starred' && req.method === 'POST') {
     readBody(req).then(function(body) {
       try {
         var data = JSON.parse(body);
         var link = data.link;
-        if (!link) return jsonResp(res, { error: 'link requis' }, 400);
+        if (!link) return jsonResp(res, { error: 'Link required' }, 400);
         var ud = loadUserData();
-        // Migrer l'ancien format (tableau de strings) vers le nouveau (tableau d'objets)
+        // Migrate old format (array of strings) to new format (array of objects)
         if (ud.starred.length > 0 && typeof ud.starred[0] === 'string') {
           ud.starred = ud.starred.map(function(l) { return { link: l }; });
         }
@@ -433,7 +433,7 @@ var server = http.createServer(function(req, res) {
         var action;
         if (idx >= 0) { ud.starred.splice(idx, 1); action = 'removed'; }
         else {
-          // Stocker l'article complet (title, description, date, feedName, etc.)
+          // Store the complete article (title, description, date, feedName, etc.)
           var article = {
             link:         link,
             title:        data.title        || '',
@@ -449,7 +449,7 @@ var server = http.createServer(function(req, res) {
           action = 'added';
         }
         saveUserData(ud);
-        // Retourner les liens pour la compatibilité avec le front
+        // Return the links for compatibility with the front
         var starredLinks = ud.starred.map(function(s) { return s.link; });
         jsonResp(res, { action: action, starred: starredLinks, starredArticles: ud.starred });
       } catch(e) { jsonResp(res, { error: e.message }, 400); }
@@ -457,14 +457,14 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── POST /api/userdata/read — marquer lu (un ou plusieurs)
+  // ── POST /api/userdata/read — mark as read (one or more links)
   if (pathname === '/api/userdata/read' && req.method === 'POST') {
     readBody(req).then(function(body) {
       try {
         var data = JSON.parse(body);
-        // Accepte { link } ou { links: [...] }
+        // Accepts { link } or { links: [...] }
         var links = data.links || (data.link ? [data.link] : []);
-        if (!links.length) return jsonResp(res, { error: 'link(s) requis' }, 400);
+        if (!links.length) return jsonResp(res, { error: 'Link(s) required' }, 400);
         var ud = loadUserData();
         links.forEach(function(l) {
           if (!ud.read.includes(l)) ud.read.push(l);
@@ -476,7 +476,7 @@ var server = http.createServer(function(req, res) {
     return;
   }
 
-  // ── DELETE /api/userdata/read/:encoded — dé-marquer un article lu
+  // ── DELETE /api/userdata/read/:encoded — unmark a read article
   if (pathname.startsWith('/api/userdata/read/') && req.method === 'DELETE') {
     try {
       var link = decodeURIComponent(pathname.replace('/api/userdata/read/', ''));
