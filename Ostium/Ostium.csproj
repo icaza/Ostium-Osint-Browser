@@ -134,6 +134,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Octokit, Version=14.0.0.0, Culture=neutral, PublicKeyToken=0be8860aee462442, processorArchitecture=MSIL">
+      <HintPath>..\packages\Octokit.14.0.0\lib\netstandard2.0\Octokit.dll</HintPath>
+    </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=3.0.5.3129, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.config.e_sqlite3.3.0.5\lib\net471\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>

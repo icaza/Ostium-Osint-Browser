@@ -19,7 +19,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -52,9 +51,9 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.3.46";
-        readonly string tempZipPath = Path.Combine(Application.StartupPath, "update.zip");
-        readonly string extractFolder = Path.Combine(Application.StartupPath, "UpdateTemp");
+        const string CurrentVersion = "1.3.47";
+        readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "GitHubReleaseUpdater.exe");
+        readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "config.json");
         #endregion
 
         #region Var_
@@ -13656,16 +13655,11 @@ namespace Ostium
         #endregion
 
         #region Update_
-        ///
-        /// <summary>
-        /// Checking updates
-        /// </summary>
-        ///
         public async Task CheckForUpdates(int Warn)
         {
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubUpdate", "1.0.0"));
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubReleaseUpdater", "1.0.0"));
 
                 string url = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest";
 
@@ -13678,111 +13672,63 @@ namespace Ostium
 
                         string latestVersion = root.GetProperty("tag_name").GetString();
 
-                        if (latestVersion != CurrentVersion)
-                        {
-                            string downloadUrl = root.GetProperty("assets")[0].GetProperty("browser_download_url").GetString();
-
-                            string message = $"A new version ({latestVersion}) is available. Do you want to download it?\n\n" +
-                                $"If you click Yes, the latest version of the application is downloaded automatically.\n\n" +
-                                $"The application will restart once the installation is complete.\n\n" +
-                                $"Important: Do not exit the application until the installation is completely finished! Be patient.";
-                            string caption = "Update";
-                            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.Yes)
-                            {
-                                await DownloadUpdate(downloadUrl);
-                            }
-                        }
-                        else
+                        bool isNewer = IsNewerVersion(CurrentVersion, latestVersion);
+                        if (!isNewer)
                         {
                             if (Warn == 1)
-                                MessageBox.Show("No updates available.", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            {
+                                MessageBox.Show("You are already on the latest version.", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            return;
+                        }
+
+                        var result = MessageBox.Show(
+                            $"A new version ({latestVersion}) is available. Do you want to download and install it?",
+                            "Update available",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            var config = new ConfigUPDT
+                            {
+                                InstallDirectory = Application.StartupPath,
+                                RepoOwner = RepoOwner,
+                                RepoName = RepoName,
+                                CurrentVersion = CurrentVersion
+                            };
+
+                            var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+                            File.WriteAllText(configUpdtPath, json);
+
+                            ClearOnOff = "off";
+                            Process.Start(GitHubReleaseUpdater);
+                            Close();
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    senderror.ErrorLog("Error! CheckForUpdatesAsync: ", ex.ToString(), "Main_Frm", AppStart);
+                    senderror.ErrorLog("Error! CheckForUpdates: ", ex.ToString(), "Main_Frm", AppStart);
                 }
             }
         }
 
-        async Task DownloadUpdate(string downloadUrl)
+        bool IsNewerVersion(string current, string latest)
         {
-            try
-            {
-                if (Directory.Exists(extractFolder)) Directory.Delete(extractFolder, true);
-                if (File.Exists(tempZipPath)) File.Delete(tempZipPath);
+            if (string.IsNullOrEmpty(current) || string.IsNullOrEmpty(latest))
+                return true;
 
-                using (HttpClient client = new HttpClient())
-                {
-                    byte[] fileBytes = await client.GetByteArrayAsync(downloadUrl);
-                    File.WriteAllBytes(tempZipPath, fileBytes);
-                }
+            string cur = current.Trim().TrimStart('v', 'V');
+            string lat = latest.Trim().TrimStart('v', 'V');
 
-                ZipFile.ExtractToDirectory(tempZipPath, extractFolder);
+            bool curParsed = Version.TryParse(cur, out Version curVersion);
+            bool latParsed = Version.TryParse(lat, out Version latVersion);
 
-                File.Delete(tempZipPath);
+            if (curParsed && latParsed)
+                return latVersion > curVersion;
 
-                RunUpdateScript(Application.StartupPath, extractFolder);
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! DownloadUpdate: ", ex.ToString(), "Main_Frm", AppStart);
-
-                try
-                {
-                    if (File.Exists(tempZipPath))
-                        File.Delete(tempZipPath);
-                    if (Directory.Exists(extractFolder))
-                        Directory.Delete(extractFolder, true);
-                }
-                catch
-                { }
-            }
-        }
-
-        static void RunUpdateScript(string appFolder, string extractFolder)
-        {
-            string appExeName = AppDomain.CurrentDomain.FriendlyName;
-            string batPath = Path.Combine(appFolder, "updater.bat");
-
-            string sourceFolder = GetActualSourceFolder(extractFolder);
-
-            string batContent = $@"
-@echo off
-timeout /t 2 /nobreak > NUL
-xcopy /Y /S /E ""{sourceFolder}\*"" ""{appFolder}""
-rmdir /S /Q ""{extractFolder}""
-start """" ""{Path.Combine(appFolder, appExeName)}""
-del ""%~f0""
-";
-
-            File.WriteAllText(batPath, batContent);
-
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = batPath,
-                UseShellExecute = true,
-                CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-            };
-            Process.Start(psi);
-
-            Environment.Exit(0);
-        }
-
-        static string GetActualSourceFolder(string extractFolder)
-        {
-            var entries = Directory.GetFileSystemEntries(extractFolder);
-
-            if (entries.Length == 1 && Directory.Exists(entries[0]))
-            {
-                return entries[0];
-            }
-
-            return extractFolder;
+            return string.Compare(lat, cur, StringComparison.OrdinalIgnoreCase) > 0;
         }
 
         async void VerifyUPDT(int Warn)
@@ -13791,9 +13737,9 @@ del ""%~f0""
 
             if (isConnected)
             {
-                await CheckForUpdates(Warn);
+                await CheckForUpdates(Warn); 
             }
-            else if(Warn == 1)
+            else if (Warn == 1)
                 MessageBox.Show("It seems you are not connected to the Internet.", "No connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -14106,5 +14052,13 @@ del ""%~f0""
         public const int SB_VERT = 0x1;
         public const uint WM_VSCROLL = 0x115;
         public const int SB_BOTTOM = 7;
+    }
+
+    public class ConfigUPDT
+    {
+        public string InstallDirectory { get; set; }
+        public string RepoOwner { get; set; }
+        public string RepoName { get; set; }
+        public string CurrentVersion { get; set; }
     }
 }
