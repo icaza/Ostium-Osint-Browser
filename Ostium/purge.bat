@@ -3,22 +3,21 @@ echo ========================================
 echo          Ostium cleanup script
 echo ========================================
 echo.
-echo All temporary files will be deleted.
-echo Ostium is going to be completely reset.
+echo All temporary session files will be deleted.
 echo.
 
 set /a ErrorCount=0
 
 timeout /t 3 /nobreak > NUL
 
-echo [1/8] Deleting the folder Ostium.exe.WebView2...
-if exist "Ostium.exe.WebView2" (
-    rd /s /q "Ostium.exe.WebView2" 2>nul
+echo [1/8] Deleting the folder EnvironmentWebview...
+if exist "EnvironmentWebview" (
+    rd /s /q "EnvironmentWebview" 2>nul
     if errorlevel 1 (
         echo [ERROR] Unable to delete the folder
         set /a ErrorCount=%ErrorCount%+1
     ) else (
-        if not exist "Ostium.exe.WebView2" (
+        if not exist "EnvironmentWebview" (
             echo [OK] File deleted
         ) else (
             echo [ERROR] The file still exists

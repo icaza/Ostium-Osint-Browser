@@ -14,6 +14,7 @@ namespace Ostium
     public partial class Webview_Frm : Form
     {
         #region Var_
+        string userDataFolder;
         readonly string AppStart = Application.StartupPath + @"\";
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
@@ -30,7 +31,10 @@ namespace Ostium
 
         void Webview_Frm_Load(object sender, EventArgs e)
         {
+            userDataFolder = @Class_Var.USER_DATA_FOLDER;
+            InitializeEnvironment();
             WBrowsew.Source = new Uri(@Class_Var.URL_WEBVIEW);
+
             ///
             /// Loading default configuration URLs into a List
             /// 
@@ -39,6 +43,12 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
+        async void InitializeEnvironment()
+        {
+            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+            await WBrowsew.EnsureCoreWebView2Async(env);
+        }
+
         void WBrowsew_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
         {
             IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
@@ -154,7 +164,7 @@ namespace Ostium
             WBrowsew_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowsew_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        async void WBrowsew_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsew_InitializationCompleted;
             control.NavigationStarting += WBrowsew_NavigationStarting;

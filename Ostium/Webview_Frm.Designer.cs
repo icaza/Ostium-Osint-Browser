@@ -59,7 +59,6 @@
             this.WBrowsew.Location = new System.Drawing.Point(0, 24);
             this.WBrowsew.Name = "WBrowsew";
             this.WBrowsew.Size = new System.Drawing.Size(800, 404);
-            this.WBrowsew.Source = new System.Uri("http://192.168.1.36/", System.UriKind.Absolute);
             this.WBrowsew.TabIndex = 16;
             this.WBrowsew.ZoomFactor = 1D;
             // 

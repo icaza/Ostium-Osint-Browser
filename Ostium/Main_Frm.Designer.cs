@@ -213,6 +213,7 @@
             this.Forward_Btn = new System.Windows.Forms.Button();
             this.Back_Btn = new System.Windows.Forms.Button();
             this.Agent_Fetch_Search = new System.Windows.Forms.Button();
+            this.NewSeesion_Btn = new System.Windows.Forms.Button();
             this.DB_Pnl = new System.Windows.Forms.Panel();
             this.Tables_Lst = new System.Windows.Forms.ListBox();
             this.UrlName_Txt = new System.Windows.Forms.TextBox();
@@ -2063,6 +2064,7 @@
             this.panel3.Controls.Add(this.Forward_Btn);
             this.panel3.Controls.Add(this.Back_Btn);
             this.panel3.Controls.Add(this.Agent_Fetch_Search);
+            this.panel3.Controls.Add(this.NewSeesion_Btn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(203, 3);
             this.panel3.Name = "panel3";
@@ -2076,9 +2078,9 @@
             this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.URLbrowse_Cbx.FormattingEnabled = true;
-            this.URLbrowse_Cbx.Location = new System.Drawing.Point(325, 0);
+            this.URLbrowse_Cbx.Location = new System.Drawing.Point(432, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(597, 24);
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(490, 24);
             this.URLbrowse_Cbx.TabIndex = 6;
             this.URLbrowse_Cbx.Text = "Insert a URL or search term";
             this.URLbrowse_Cbx.SelectedIndexChanged += new System.EventHandler(this.URLbrowse_Cbx_SelectedIndexChanged);
@@ -2096,7 +2098,7 @@
             this.CleanSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CleanSearch_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CleanSearch_Btn.ForeColor = System.Drawing.Color.Red;
-            this.CleanSearch_Btn.Location = new System.Drawing.Point(295, 0);
+            this.CleanSearch_Btn.Location = new System.Drawing.Point(402, 0);
             this.CleanSearch_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.CleanSearch_Btn.Name = "CleanSearch_Btn";
             this.CleanSearch_Btn.Size = new System.Drawing.Size(30, 24);
@@ -2113,11 +2115,11 @@
             this.OpnPrompt_Btn.FlatAppearance.BorderSize = 0;
             this.OpnPrompt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
             this.OpnPrompt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.OpnPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.OpnPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.OpnPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpnPrompt_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnPrompt_Btn.ForeColor = System.Drawing.Color.White;
-            this.OpnPrompt_Btn.Location = new System.Drawing.Point(212, 0);
+            this.OpnPrompt_Btn.Location = new System.Drawing.Point(319, 0);
             this.OpnPrompt_Btn.MaximumSize = new System.Drawing.Size(83, 24);
             this.OpnPrompt_Btn.Name = "OpnPrompt_Btn";
             this.OpnPrompt_Btn.Size = new System.Drawing.Size(83, 24);
@@ -2198,7 +2200,7 @@
             this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Home_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Home_Btn.ForeColor = System.Drawing.Color.White;
-            this.Home_Btn.Location = new System.Drawing.Point(159, 0);
+            this.Home_Btn.Location = new System.Drawing.Point(266, 0);
             this.Home_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Home_Btn.Name = "Home_Btn";
             this.Home_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2219,7 +2221,7 @@
             this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Refresh_Btn.ForeColor = System.Drawing.Color.White;
-            this.Refresh_Btn.Location = new System.Drawing.Point(106, 0);
+            this.Refresh_Btn.Location = new System.Drawing.Point(213, 0);
             this.Refresh_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Refresh_Btn.Name = "Refresh_Btn";
             this.Refresh_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2240,7 +2242,7 @@
             this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Forward_Btn.ForeColor = System.Drawing.Color.White;
-            this.Forward_Btn.Location = new System.Drawing.Point(53, 0);
+            this.Forward_Btn.Location = new System.Drawing.Point(160, 0);
             this.Forward_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Forward_Btn.Name = "Forward_Btn";
             this.Forward_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2261,7 +2263,7 @@
             this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Back_Btn.ForeColor = System.Drawing.Color.White;
-            this.Back_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Back_Btn.Location = new System.Drawing.Point(107, 0);
             this.Back_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Back_Btn.Name = "Back_Btn";
             this.Back_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2289,6 +2291,27 @@
             this.Agent_Fetch_Search.Text = "OOBai";
             this.Agent_Fetch_Search.UseVisualStyleBackColor = false;
             this.Agent_Fetch_Search.Click += new System.EventHandler(this.Agent_Fetch_Search_Click);
+            // 
+            // NewSeesion_Btn
+            // 
+            this.NewSeesion_Btn.BackColor = System.Drawing.Color.Teal;
+            this.NewSeesion_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NewSeesion_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NewSeesion_Btn.FlatAppearance.BorderSize = 0;
+            this.NewSeesion_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.NewSeesion_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.NewSeesion_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.NewSeesion_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NewSeesion_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewSeesion_Btn.ForeColor = System.Drawing.Color.White;
+            this.NewSeesion_Btn.Location = new System.Drawing.Point(0, 0);
+            this.NewSeesion_Btn.MaximumSize = new System.Drawing.Size(107, 24);
+            this.NewSeesion_Btn.Name = "NewSeesion_Btn";
+            this.NewSeesion_Btn.Size = new System.Drawing.Size(107, 24);
+            this.NewSeesion_Btn.TabIndex = 12;
+            this.NewSeesion_Btn.Text = "New session";
+            this.NewSeesion_Btn.UseVisualStyleBackColor = false;
+            this.NewSeesion_Btn.Click += new System.EventHandler(this.NewSession_Btn_Click);
             // 
             // DB_Pnl
             // 
@@ -8865,6 +8888,7 @@
         private System.Windows.Forms.ToolStripMenuItem StartOBE_Btn;
         private System.Windows.Forms.ToolStripMenuItem LocalhostOBE_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.Button NewSeesion_Btn;
     }
 }
 

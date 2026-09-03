@@ -57,6 +57,9 @@ namespace Ostium
         #endregion
 
         #region Var_
+        string userDataFolder;
+        string sessionID;
+
         ///
         /// <summary>
         /// Initialization of the voice for Reading Feed Titles
@@ -87,7 +90,7 @@ namespace Ostium
         readonly string Workflow = Application.StartupPath + @"\workflow\";
         readonly string WorkflowModel = Application.StartupPath + @"\workflow\model\";
         readonly string DiagramDir = Application.StartupPath + @"\diagram\";
-        readonly string WebView2Dir = Application.StartupPath + @"\Ostium.exe.WebView2\";
+        //readonly string WebView2Dir = Application.StartupPath + @"\Ostium.exe.WebView2\";
         readonly string Setirps = Application.StartupPath + @"\setirps\";
         readonly string BkmkltDir = Application.StartupPath + @"\scripts\bookmarklet\";
         readonly string MapDir = Application.StartupPath + @"\map\";
@@ -295,6 +298,9 @@ namespace Ostium
         {
             InitializeComponent();
 
+            InitializeEnvironmentWebview();
+            InitializeEnvironment();
+
             _urlCache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
             WBrowse_EventHandlers(WBrowse);
@@ -406,7 +412,7 @@ namespace Ostium
 
                 if (ClearOnOff == "on")
                 {
-                    var result = MessageBox.Show("Delete all history?", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var result = MessageBox.Show("Delete all sessions history?", "Delete all history", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                         ClearData(1);
                 }
@@ -983,6 +989,7 @@ namespace Ostium
             {
                 var CreateDir = new List<string>()
                     {
+                        AppStart + "EnvironmentWebview",
                         Plugins,
                         DBdirectory,
                         FeedDir,
@@ -1296,6 +1303,24 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
+        async void InitializeEnvironment()
+        {
+            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+            await WbOutA.EnsureCoreWebView2Async(env);
+            await WbOutB.EnsureCoreWebView2Async(env);
+        }
+
+        void InitializeEnvironmentWebview()
+        {
+            CreateNameAleat();
+
+            userDataFolder = Path.Combine(Application.StartupPath, "EnvironmentWebview", Una, "WebData");
+            sessionID = Una;
+
+            Directory.CreateDirectory(userDataFolder);
+            Class_Var.USER_DATA_FOLDER = userDataFolder;
+        }
+
         /// <summary>
         /// Block Ads/Trackers
         /// </summary>
@@ -2066,8 +2091,11 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        async void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
+            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+            await WBrowse.EnsureCoreWebView2Async(env);
+
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
             control.NavigationCompleted += WBrowse_NavigationCompleted;
@@ -2251,8 +2279,11 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        async void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
+            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+            await WBrowsefeed.EnsureCoreWebView2Async(env);
+
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
             control.NavigationCompleted += WBrowsefeed_NavigationCompleted;
@@ -2365,6 +2396,11 @@ namespace Ostium
         }
 
         #region Control_Browser
+        void NewSession_Btn_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.Combine(AppStart, "Ostium.exe"));
+        }
+
         ///
         /// <summary>
         /// Opening the web page
@@ -5459,7 +5495,7 @@ namespace Ostium
                     UpdateDirectorySize(Workflow, WorkFlowDir_Lbl);
                     UpdateDirectorySize(WorkflowModel, WorkFlowModelDir_Lbl);
                     UpdateDirectorySize(Pictures, PictureDir_Lbl);
-                    UpdateDirectorySize(WebView2Dir, WebView2Dir_Lbl);
+                    UpdateDirectorySize(userDataFolder, WebView2Dir_Lbl);
                     UpdateDirectorySize(DiagramDir, DiagramDir_Lbl);
                     UpdateDirectorySize(Setirps, SpritesDir_Lbl);
                     UpdateDirectorySize(BkmkltDir, BkmkltDir_Lbl);
@@ -5896,6 +5932,9 @@ namespace Ostium
                     break;
                 case "investigation":
                     InvestigationExec();
+                    break;
+                case "sessionid":
+                    MessageBox.Show(this, sessionID, "Session ID");
                     break;
                 case "promptviewer":
                     PromptViewerExec();
@@ -8518,8 +8557,8 @@ namespace Ostium
 
         void WebView2Dir_Opn_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(WebView2Dir))
-                Process.Start(WebView2Dir);
+            if (Directory.Exists(userDataFolder))
+                Process.Start(userDataFolder);
         }
 
         void DiagramDir_Opn_Click(object sender, EventArgs e)
@@ -8557,7 +8596,6 @@ namespace Ostium
             if (Directory.Exists(Keeptrack))
                 Process.Start(Keeptrack);
         }
-
         #endregion
 
         #region Process_
@@ -10871,7 +10909,7 @@ namespace Ostium
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error!");
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
 
