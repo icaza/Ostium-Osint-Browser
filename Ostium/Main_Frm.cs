@@ -1303,13 +1303,6 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
-        async void InitializeEnvironment()
-        {
-            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
-            await WbOutA.EnsureCoreWebView2Async(env);
-            await WbOutB.EnsureCoreWebView2Async(env);
-        }
-
         void InitializeEnvironmentWebview()
         {
             CreateNameAleat();
@@ -1319,6 +1312,16 @@ namespace Ostium
 
             Directory.CreateDirectory(userDataFolder);
             Class_Var.USER_DATA_FOLDER = userDataFolder;
+        }
+
+        async void InitializeEnvironment()
+        {
+            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+
+            await WBrowse.EnsureCoreWebView2Async(env);
+            await WBrowsefeed.EnsureCoreWebView2Async(env);
+            await WbOutA.EnsureCoreWebView2Async(env);
+            await WbOutB.EnsureCoreWebView2Async(env);
         }
 
         /// <summary>
@@ -2093,9 +2096,6 @@ namespace Ostium
 
         async void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
-            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
-            await WBrowse.EnsureCoreWebView2Async(env);
-
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
             control.NavigationCompleted += WBrowse_NavigationCompleted;
@@ -2281,15 +2281,11 @@ namespace Ostium
 
         async void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
-            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
-            await WBrowsefeed.EnsureCoreWebView2Async(env);
-
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
             control.NavigationCompleted += WBrowsefeed_NavigationCompleted;
             control.SourceChanged += WBrowsefeed_SourceChanged;
         }
-
         #endregion
 
         void ReadRSSflux(string uri)
