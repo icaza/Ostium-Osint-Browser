@@ -42,6 +42,46 @@ Ostium OSINT Browser is designed for professionals who analyze public informatio
 
 ---
 
+## 📛 Ostium Multi-Session Environment
+
+**Ostium Multi-Session Environment** completely isolates your browsing activities by creating a **separate environment** for each session.
+
+### How does it work?
+
+**Complete isolation between sessions**
+
+Each environment works like an independent browser. Browsing data is not shared between environments, including:
+
+- Cookies
+- Session data
+- Cache
+- Other locally stored browsing data
+
+This ensures that one session cannot reuse data from another session.
+
+### A unique environment for every startup
+
+Every time you start **Ostium OSINT Browser**, a new environment is automatically created with a **random, unique name**.
+
+Environments are stored in the following directory:
+
+`EnvironmentWebview`
+
+You can completely delete the contents of this directory whenever you want to clean up data from previous sessions.
+
+**Important:** You do not need to manually delete previous environments to maintain session isolation. Each time Ostium OSINT Browser starts, a new and unique environment is created.
+
+### Multiple simultaneous sessions
+
+You can also run multiple sessions at the same time. Each session uses its own environment and remains **completely independent from the others**.
+
+For example, this allows you to use multiple accounts from the same service without sharing cookies or session data between them.
+
+**In summary:**  
+**1 startup = 1 new environment = 1 isolated session.**
+
+---
+
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence
