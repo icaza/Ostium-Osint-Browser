@@ -538,7 +538,6 @@
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
             this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableOpn_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.JavaDisable_Status = new System.Windows.Forms.ToolStripStatusLabel();
@@ -674,6 +673,7 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -3446,7 +3446,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3742,7 +3742,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -6118,6 +6118,9 @@
             // 
             // TrackPrevent_Cbx
             // 
+            this.TrackPrevent_Cbx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TrackPrevent_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.TrackPrevent_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TrackPrevent_Cbx.ForeColor = System.Drawing.Color.White;
@@ -6796,8 +6799,8 @@
             this.Status_Strip.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TtsButton_Sts,
+            this.TrackingLevel_Lbl,
             this.URLtxt_Status,
-            this.TableOpn_Status,
             this.TableVal_Status,
             this.CountFeed_Status,
             this.JavaDisable_Status,
@@ -6838,15 +6841,6 @@
             this.URLtxt_Status.Name = "URLtxt_Status";
             this.URLtxt_Status.Size = new System.Drawing.Size(22, 17);
             this.URLtxt_Status.Text = "url";
-            // 
-            // TableOpn_Status
-            // 
-            this.TableOpn_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.TableOpn_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableOpn_Status.ForeColor = System.Drawing.Color.ForestGreen;
-            this.TableOpn_Status.Name = "TableOpn_Status";
-            this.TableOpn_Status.Size = new System.Drawing.Size(14, 17);
-            this.TableOpn_Status.Text = "_";
             // 
             // TableVal_Status
             // 
@@ -8173,6 +8167,14 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // TrackingLevel_Lbl
+            // 
+            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8411,7 +8413,6 @@
         private System.Windows.Forms.ToolStripDropDownButton ToolsFeed_Mnu;
         private System.Windows.Forms.ToolStripMenuItem OpnFileCategory_Btn;
         private System.Windows.Forms.ToolStripMenuItem CopyURLfeed_Mnu;
-        private System.Windows.Forms.ToolStripStatusLabel TableOpn_Status;
         private System.Windows.Forms.ToolStripStatusLabel CountFeed_Status;
         private System.Windows.Forms.ToolStripMenuItem TraductPageFeed_Btn;
         private System.Windows.Forms.ListBox CountBlockFeed_Lbl;
@@ -8926,6 +8927,7 @@
         private System.Windows.Forms.Button NewSeesion_Btn;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox TrackPrevent_Cbx;
+        private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
     }
 }
 

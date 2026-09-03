@@ -52,18 +52,28 @@ namespace Ostium
             {
                 case "None":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
                 case "Basic":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: Basic";
+                    TrackingLevel_Lbl.ForeColor = Color.Yellow;
                     break;
                 case "Balanced":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: Balanced";
+                    TrackingLevel_Lbl.ForeColor = Color.Orange;
                     break;
                 case "Strict":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: Strict";
+                    TrackingLevel_Lbl.ForeColor = Color.Red;
                     break;
                 default:
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
             }
         }

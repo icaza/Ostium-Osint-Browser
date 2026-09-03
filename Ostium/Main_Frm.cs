@@ -90,7 +90,6 @@ namespace Ostium
         readonly string Workflow = Application.StartupPath + @"\workflow\";
         readonly string WorkflowModel = Application.StartupPath + @"\workflow\model\";
         readonly string DiagramDir = Application.StartupPath + @"\diagram\";
-        //readonly string WebView2Dir = Application.StartupPath + @"\Ostium.exe.WebView2\";
         readonly string Setirps = Application.StartupPath + @"\setirps\";
         readonly string BkmkltDir = Application.StartupPath + @"\scripts\bookmarklet\";
         readonly string MapDir = Application.StartupPath + @"\map\";
@@ -1323,8 +1322,8 @@ namespace Ostium
             await WbOutA.EnsureCoreWebView2Async(env);
             await WbOutB.EnsureCoreWebView2Async(env);
 
-            WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
-            WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+            WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+            WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
         }
 
         /// <summary>
@@ -4551,8 +4550,11 @@ namespace Ostium
 
         void DeleteProject_Tls_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
             string message = $"Do you want to delete the project? {NameProjectwf_Txt.Text}";
             string caption = "Delete Projet";
@@ -4605,8 +4607,11 @@ namespace Ostium
 
         void ViewXml_Tls_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
             if (File.Exists(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml")))
             {
@@ -4618,8 +4623,11 @@ namespace Ostium
 
         void EditXml_Tls_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
             if (File.Exists(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml")))
                 OpenFile_Editor(Path.Combine(Workflow, NameProjectwf_Txt.Text + ".xml"));
@@ -4629,8 +4637,11 @@ namespace Ostium
         {
             try
             {
-                if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+                if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+                {
+                    MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
+                }
 
                 string dirselect = selectdir.Dirselect();
                 if (!string.IsNullOrEmpty(dirselect))
@@ -4661,8 +4672,11 @@ namespace Ostium
         {
             try
             {
-                if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+                if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+                {
+                    MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
+                }
 
                 string dirselect = selectdir.Dirselect();
 
@@ -4705,8 +4719,11 @@ namespace Ostium
         ///
         void Diagram_Tls_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
@@ -4827,8 +4844,11 @@ namespace Ostium
         /// 
         void DiagramMindMap_Tls_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
@@ -4856,8 +4876,11 @@ namespace Ostium
         ///
         void DiagramMindMap2_Tls_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text))
+            if (string.IsNullOrEmpty(NameProjectwf_Txt.Text) || NameProjectwf_Txt.Text == "Insert project Name")
+            {
+                MessageBox.Show("Select project first!", "No project select", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
 
             if (!File.Exists(Path.Combine(DiagramDir, "plantuml.jar")))
             {
@@ -5344,8 +5367,8 @@ namespace Ostium
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
                     URLtxt_Status.Text = string.Empty;
+                    TrackingLevel_Lbl.Visible = false;
                     Text = "DataBase Url";
-                    TableOpn_Status.Visible = false;
                     CountFeed_Status.Visible = false;
                     JavaDisable_Status.Visible = false;
                     JavaDisableFeed_Status.Visible = false;
@@ -5374,8 +5397,8 @@ namespace Ostium
                     Tools_TAB_3.Visible = true;
                     Tools_TAB_4.Visible = false;
                     URLtxt_Status.Text = string.Empty;
+                    TrackingLevel_Lbl.Visible = false;
                     Text = "Workflow";
-                    TableOpn_Status.Visible = false;
                     CountFeed_Status.Visible = false;
                     JavaDisable_Status.Visible = false;
                     JavaDisableFeed_Status.Visible = false;
@@ -5399,8 +5422,8 @@ namespace Ostium
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = true;
                     URLtxt_Status.Text = string.Empty;
+                    TrackingLevel_Lbl.Visible = false;
                     Text = "Map";
-                    TableOpn_Status.Visible = false;
                     CountFeed_Status.Visible = false;
                     JavaDisable_Status.Visible = false;
                     JavaDisableFeed_Status.Visible = false;
@@ -5439,8 +5462,8 @@ namespace Ostium
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
                     URLtxt_Status.Text = string.Empty;
+                    TrackingLevel_Lbl.Visible = false;
                     Text = "Json";
-                    TableOpn_Status.Visible = false;
                     CountFeed_Status.Visible = false;
                     JavaDisable_Status.Visible = false;
                     JavaDisableFeed_Status.Visible = false;
@@ -5467,8 +5490,8 @@ namespace Ostium
                     Tools_TAB_3.Visible = false;
                     Tools_TAB_4.Visible = false;
                     URLtxt_Status.Text = string.Empty;
+                    TrackingLevel_Lbl.Visible = false;
                     Text = "Options";
-                    TableOpn_Status.Visible = false;
                     CountFeed_Status.Visible = false;
                     JavaDisable_Status.Visible = false;
                     JavaDisableFeed_Status.Visible = false;
@@ -5517,7 +5540,7 @@ namespace Ostium
                 URLtxt_Status.Text = WBrowse.Source.AbsoluteUri;
             }
             catch { }
-            TableOpn_Status.Visible = true;
+            TrackingLevel_Lbl.Visible = true;
             CountFeed_Status.Visible = false;
             DBSelectOpen_Status.Visible = false;
             TableCount_Status.Visible = false;
@@ -5553,7 +5576,7 @@ namespace Ostium
             Tools_TAB_4.Visible = false;
             Text = TmpTitleWBrowsefeed;
             URLtxt_Status.Text = WBrowsefeed.Source.AbsoluteUri;
-            TableOpn_Status.Visible = false;
+            TrackingLevel_Lbl.Visible = true;
             CountFeed_Status.Visible = true;
             DBSelectOpen_Status.Visible = false;
             TableCount_Status.Visible = false;
@@ -5582,8 +5605,8 @@ namespace Ostium
             Tools_TAB_3.Visible = false;
             Tools_TAB_4.Visible = false;
             URLtxt_Status.Text = string.Empty;
+            TrackingLevel_Lbl.Visible = false;
             Text = "OOBai";
-            TableOpn_Status.Visible = false;
             CountFeed_Status.Visible = false;
             JavaDisable_Status.Visible = false;
             JavaDisableFeed_Status.Visible = false;
@@ -6370,7 +6393,6 @@ namespace Ostium
                     DB_Pnl.Visible = false;
                 }
 
-                TableOpn_Status.Text = string.Format("Table open: {0}", tlsi);
                 TableOpen = tlsi;
             }
         }
@@ -10625,26 +10647,36 @@ namespace Ostium
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
                     Class_Var.TRACKING = "None";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
                 case "Basic":
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
                     Class_Var.TRACKING = "Basic";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: Basic";
+                    TrackingLevel_Lbl.ForeColor = Color.Yellow;
                     break;
                 case "Balanced":
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                     Class_Var.TRACKING = "Balanced";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: Balanced";
+                    TrackingLevel_Lbl.ForeColor = Color.Orange;
                     break;
                 case "Strict":
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
                     Class_Var.TRACKING = "Strict";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: Strict";
+                    TrackingLevel_Lbl.ForeColor = Color.Red;
                     break;
                 default:
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
                     Class_Var.TRACKING = "None";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
             }
         }

@@ -44,6 +44,7 @@
             this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.WBrowsew)).BeginInit();
             this.panel3.SuspendLayout();
             this.Status_Strip.SuspendLayout();
@@ -259,6 +260,7 @@
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.JavaScriptToggle_Btn,
             this.toolStripStatusLabel2,
+            this.TrackingLevel_Lbl,
             this.URLtxt_txt});
             this.Status_Strip.Location = new System.Drawing.Point(0, 428);
             this.Status_Strip.Name = "Status_Strip";
@@ -291,6 +293,14 @@
             this.URLtxt_txt.Name = "URLtxt_txt";
             this.URLtxt_txt.Size = new System.Drawing.Size(22, 17);
             this.URLtxt_txt.Text = "url";
+            // 
+            // TrackingLevel_Lbl
+            // 
+            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.Lime;
+            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
             // 
             // Webview_Frm
             // 
@@ -330,5 +340,6 @@
         private System.Windows.Forms.ToolStripStatusLabel JavaScriptToggle_Btn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.Button Mute_Btn;
+        private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
     }
 }
