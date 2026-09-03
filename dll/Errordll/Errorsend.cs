@@ -20,7 +20,7 @@ namespace Errordll
         {
             if (string.IsNullOrWhiteSpace(dir))
             {
-                throw new ArgumentException("Le répertoire ne peut pas être vide.", nameof(dir));
+                throw new ArgumentException("The directory cannot be empty.", nameof(dir));
             }
 
             if (string.IsNullOrWhiteSpace(selform))
@@ -67,11 +67,11 @@ namespace Errordll
             }
             catch (UnauthorizedAccessException ex)
             {
-                throw new UnauthorizedAccessException($"Accès refusé pour écrire dans '{path}'.", ex);
+                throw new UnauthorizedAccessException($"Access denied to write in '{path}'.", ex);
             }
             catch (IOException ex)
             {
-                throw new IOException($"Erreur d'écriture dans le fichier log '{path}'.", ex);
+                throw new IOException($"Write error in the log file '{path}'.", ex);
             }
         }
     }

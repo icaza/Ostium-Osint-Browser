@@ -2,31 +2,18 @@
 using Octokit;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Label = System.Windows.Forms.Label;
 using ProductHeaderValue = Octokit.ProductHeaderValue;
 
 namespace GitHubReleaseUpdater
 {
     public partial class MainForm : Form
     {
-        TextBox txtInstallDirectory;
-        TextBox txtRepoOwner;
-        TextBox txtRepoName;
-        TextBox txtCurrentVersion;
-        Button btnManualUpdate;
-        Button btnCheckUpdate;
-        Button btnForceUpdate;
-        ProgressBar progressBar;
-        Label lblStatus;
-        Label lblProgress;
-
         GitHubClient githubClient;
         HttpClient httpClient;
 
@@ -35,166 +22,16 @@ namespace GitHubReleaseUpdater
         public MainForm()
         {
             InitializeComponent();
-            InitializeCustomComponents();
+            InitializeEventHandler();
             LoadConfiguration();
             SetupClients();
         }
 
-        void InitializeComponent()
+        void InitializeEventHandler()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            SuspendLayout();
-            BackColor = Color.FromArgb((byte)(30), (int)(byte)(30), (int)(byte)(30));
-            ClientSize = new Size(500, 380);
-            ForeColor = Color.White;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = ((Icon)(resources.GetObject("$this.Icon")));
-            MaximizeBox = false;
-            Name = "MainForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "GitHub Release Updater";
-            Font = new Font("Verdana", 10, FontStyle.Regular);
-            ResumeLayout(false);
-
-        }
-
-        void InitializeCustomComponents()
-        {
-            Label lblInstall = new Label
-            {
-                Text = "Installation directory:",
-                Location = new Point(20, 20),
-                AutoSize = true,
-                ForeColor = Color.White
-            };
-            Label lblOwner = new Label
-            {
-                Text = "Depot owner:",
-                Location = new Point(20, 55),
-                AutoSize = true,
-                ForeColor = Color.White
-            };
-            Label lblRepo = new Label
-            {
-                Text = "Repository name:",
-                Location = new Point(20, 90),
-                AutoSize = true,
-                ForeColor = Color.White
-            };
-            Label lblVersion = new Label
-            {
-                Text = "Current version:",
-                Location = new Point(20, 125),
-                AutoSize = true,
-                ForeColor = Color.White
-            };
-
-            txtInstallDirectory = new TextBox
-            {
-                Location = new Point(200, 17),
-                Width = 260,
-                BackColor = Color.FromArgb(45, 45, 48),
-                ForeColor = Color.White,
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            txtRepoOwner = new TextBox
-            {
-                Location = new Point(200, 52),
-                Width = 260,
-                BackColor = Color.FromArgb(45, 45, 48),
-                ForeColor = Color.White,
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            txtRepoName = new TextBox
-            {
-                Location = new Point(200, 87),
-                Width = 260,
-                BackColor = Color.FromArgb(45, 45, 48),
-                ForeColor = Color.White,
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            txtCurrentVersion = new TextBox
-            {
-                Location = new Point(200, 122),
-                Width = 260,
-                BackColor = Color.FromArgb(45, 45, 48),
-                ForeColor = Color.White,
-                BorderStyle = BorderStyle.FixedSingle
-            };
-
-            btnManualUpdate = new Button
-            {
-                Text = "Update manually",
-                Location = new Point(20, 170),
-                Width = 220,
-                Height = 35,
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(45, 45, 48),
-                ForeColor = Color.White,
-                Cursor = Cursors.Hand
-            };
-            btnManualUpdate.FlatAppearance.BorderSize = 0;
             btnManualUpdate.Click += BtnManualUpdate_Click;
-
-            btnCheckUpdate = new Button
-            {
-                Text = "Check for updates",
-                Location = new Point(260, 170),
-                Width = 200,
-                Height = 35,
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(45, 45, 48),
-                ForeColor = Color.White,
-                Cursor = Cursors.Hand
-            };
-            btnCheckUpdate.FlatAppearance.BorderSize = 0;
             btnCheckUpdate.Click += BtnCheckUpdate_Click;
-
-            btnForceUpdate = new Button
-            {
-                Text = "To update",
-                Location = new Point(20, 220),
-                Width = 440,
-                Height = 40,
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(0, 122, 204),
-                ForeColor = Color.White,
-                Font = new Font("Verdana", 10, FontStyle.Bold),
-                Cursor = Cursors.Hand
-            };
-            btnForceUpdate.FlatAppearance.BorderSize = 0;
             btnForceUpdate.Click += BtnForceUpdate_Click;
-
-            progressBar = new ProgressBar
-            {
-                Location = new Point(20, 280),
-                Width = 440,
-                Height = 25,
-                Style = ProgressBarStyle.Continuous
-            };
-
-            lblStatus = new Label
-            {
-                Text = "Ready.",
-                Location = new Point(20, 315),
-                AutoSize = true,
-                ForeColor = Color.LightGray
-            };
-            lblProgress = new Label
-            {
-                Text = "",
-                Location = new Point(20, 340),
-                AutoSize = true,
-                ForeColor = Color.LightGray
-            };
-
-            Controls.AddRange(new Control[]
-            {
-                lblInstall, lblOwner, lblRepo, lblVersion,
-                txtInstallDirectory, txtRepoOwner, txtRepoName, txtCurrentVersion,
-                btnManualUpdate, btnCheckUpdate, btnForceUpdate,
-                progressBar, lblStatus, lblProgress
-            });
         }
 
         void SetupClients()

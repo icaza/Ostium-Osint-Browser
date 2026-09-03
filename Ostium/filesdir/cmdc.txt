@@ -36,6 +36,7 @@
 > htmltext      : HTML to Text
 > investigation : Open Investigation Board
 > promptviewer  : Open Prompt Viewer
+> sessionid     : Current session ID
 
 *CMD*
 

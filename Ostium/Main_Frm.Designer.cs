@@ -213,6 +213,7 @@
             this.Forward_Btn = new System.Windows.Forms.Button();
             this.Back_Btn = new System.Windows.Forms.Button();
             this.Agent_Fetch_Search = new System.Windows.Forms.Button();
+            this.NewSeesion_Btn = new System.Windows.Forms.Button();
             this.DB_Pnl = new System.Windows.Forms.Panel();
             this.Tables_Lst = new System.Windows.Forms.ListBox();
             this.UrlName_Txt = new System.Windows.Forms.TextBox();
@@ -481,6 +482,8 @@
             this.WorkFlowModelDir_Lbl = new System.Windows.Forms.Label();
             this.WorkFlowDir_Lbl = new System.Windows.Forms.Label();
             this.WorkFlowModelDir_Opn = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.TrackPrevent_Cbx = new System.Windows.Forms.ComboBox();
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -534,8 +537,8 @@
             this.panel21 = new System.Windows.Forms.Panel();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableOpn_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.JavaDisable_Status = new System.Windows.Forms.ToolStripStatusLabel();
@@ -739,6 +742,7 @@
             this.Panel_WorkspaceSize.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.PanelOptDir_Pnl.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.Panel_ConfigFiles.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1752,10 +1756,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -2063,6 +2067,7 @@
             this.panel3.Controls.Add(this.Forward_Btn);
             this.panel3.Controls.Add(this.Back_Btn);
             this.panel3.Controls.Add(this.Agent_Fetch_Search);
+            this.panel3.Controls.Add(this.NewSeesion_Btn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(203, 3);
             this.panel3.Name = "panel3";
@@ -2076,9 +2081,9 @@
             this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.DimGray;
             this.URLbrowse_Cbx.FormattingEnabled = true;
-            this.URLbrowse_Cbx.Location = new System.Drawing.Point(325, 0);
+            this.URLbrowse_Cbx.Location = new System.Drawing.Point(432, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(597, 24);
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(490, 24);
             this.URLbrowse_Cbx.TabIndex = 6;
             this.URLbrowse_Cbx.Text = "Insert a URL or search term";
             this.URLbrowse_Cbx.SelectedIndexChanged += new System.EventHandler(this.URLbrowse_Cbx_SelectedIndexChanged);
@@ -2096,7 +2101,7 @@
             this.CleanSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CleanSearch_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CleanSearch_Btn.ForeColor = System.Drawing.Color.Red;
-            this.CleanSearch_Btn.Location = new System.Drawing.Point(295, 0);
+            this.CleanSearch_Btn.Location = new System.Drawing.Point(402, 0);
             this.CleanSearch_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.CleanSearch_Btn.Name = "CleanSearch_Btn";
             this.CleanSearch_Btn.Size = new System.Drawing.Size(30, 24);
@@ -2113,11 +2118,11 @@
             this.OpnPrompt_Btn.FlatAppearance.BorderSize = 0;
             this.OpnPrompt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
             this.OpnPrompt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.OpnPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.OpnPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.OpnPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpnPrompt_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnPrompt_Btn.ForeColor = System.Drawing.Color.White;
-            this.OpnPrompt_Btn.Location = new System.Drawing.Point(212, 0);
+            this.OpnPrompt_Btn.Location = new System.Drawing.Point(319, 0);
             this.OpnPrompt_Btn.MaximumSize = new System.Drawing.Size(83, 24);
             this.OpnPrompt_Btn.Name = "OpnPrompt_Btn";
             this.OpnPrompt_Btn.Size = new System.Drawing.Size(83, 24);
@@ -2198,7 +2203,7 @@
             this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Home_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Home_Btn.ForeColor = System.Drawing.Color.White;
-            this.Home_Btn.Location = new System.Drawing.Point(159, 0);
+            this.Home_Btn.Location = new System.Drawing.Point(266, 0);
             this.Home_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Home_Btn.Name = "Home_Btn";
             this.Home_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2219,7 +2224,7 @@
             this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Refresh_Btn.ForeColor = System.Drawing.Color.White;
-            this.Refresh_Btn.Location = new System.Drawing.Point(106, 0);
+            this.Refresh_Btn.Location = new System.Drawing.Point(213, 0);
             this.Refresh_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Refresh_Btn.Name = "Refresh_Btn";
             this.Refresh_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2240,7 +2245,7 @@
             this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Forward_Btn.ForeColor = System.Drawing.Color.White;
-            this.Forward_Btn.Location = new System.Drawing.Point(53, 0);
+            this.Forward_Btn.Location = new System.Drawing.Point(160, 0);
             this.Forward_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Forward_Btn.Name = "Forward_Btn";
             this.Forward_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2261,7 +2266,7 @@
             this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Back_Btn.ForeColor = System.Drawing.Color.White;
-            this.Back_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Back_Btn.Location = new System.Drawing.Point(107, 0);
             this.Back_Btn.MaximumSize = new System.Drawing.Size(53, 24);
             this.Back_Btn.Name = "Back_Btn";
             this.Back_Btn.Size = new System.Drawing.Size(53, 24);
@@ -2289,6 +2294,27 @@
             this.Agent_Fetch_Search.Text = "OOBai";
             this.Agent_Fetch_Search.UseVisualStyleBackColor = false;
             this.Agent_Fetch_Search.Click += new System.EventHandler(this.Agent_Fetch_Search_Click);
+            // 
+            // NewSeesion_Btn
+            // 
+            this.NewSeesion_Btn.BackColor = System.Drawing.Color.Teal;
+            this.NewSeesion_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NewSeesion_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NewSeesion_Btn.FlatAppearance.BorderSize = 0;
+            this.NewSeesion_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.NewSeesion_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
+            this.NewSeesion_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.NewSeesion_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NewSeesion_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewSeesion_Btn.ForeColor = System.Drawing.Color.White;
+            this.NewSeesion_Btn.Location = new System.Drawing.Point(0, 0);
+            this.NewSeesion_Btn.MaximumSize = new System.Drawing.Size(107, 24);
+            this.NewSeesion_Btn.Name = "NewSeesion_Btn";
+            this.NewSeesion_Btn.Size = new System.Drawing.Size(107, 24);
+            this.NewSeesion_Btn.TabIndex = 12;
+            this.NewSeesion_Btn.Text = "New session";
+            this.NewSeesion_Btn.UseVisualStyleBackColor = false;
+            this.NewSeesion_Btn.Click += new System.EventHandler(this.NewSession_Btn_Click);
             // 
             // DB_Pnl
             // 
@@ -3877,7 +3903,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 23);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3914,7 +3940,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 583);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3935,7 +3961,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 583);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3950,7 +3976,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 142);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 263);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 234);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3965,7 +3991,7 @@
             this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 405);
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 376);
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
@@ -4002,7 +4028,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 435);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 406);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -4082,7 +4108,7 @@
             this.PointRoute_Lst.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PointRoute_Lst.ForeColor = System.Drawing.Color.DarkOrange;
             this.PointRoute_Lst.FormattingEnabled = true;
-            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 465);
+            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 436);
             this.PointRoute_Lst.Name = "PointRoute_Lst";
             this.PointRoute_Lst.Size = new System.Drawing.Size(200, 117);
             this.PointRoute_Lst.TabIndex = 27;
@@ -4100,7 +4126,7 @@
             this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 582);
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 553);
             this.SaveRoute_Btn.Name = "SaveRoute_Btn";
             this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveRoute_Btn.TabIndex = 25;
@@ -5659,6 +5685,7 @@
             // 
             this.Panel_WorkspaceSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Panel_WorkspaceSize.Controls.Add(this.groupBox5);
+            this.Panel_WorkspaceSize.Controls.Add(this.groupBox7);
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
@@ -5671,9 +5698,9 @@
             this.groupBox5.Controls.Add(this.PanelOptDir_Pnl);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Location = new System.Drawing.Point(0, 62);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 592);
+            this.groupBox5.Size = new System.Drawing.Size(328, 530);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -5714,7 +5741,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 571);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 509);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -6076,6 +6103,39 @@
             this.WorkFlowModelDir_Opn.TabIndex = 12;
             this.WorkFlowModelDir_Opn.Text = "Workflow Model path";
             this.WorkFlowModelDir_Opn.Click += new System.EventHandler(this.WorkFlowModelDir_Opn_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.TrackPrevent_Cbx);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.groupBox7.Location = new System.Drawing.Point(0, 0);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(328, 62);
+            this.groupBox7.TabIndex = 20;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Tracking Prevention Level";
+            // 
+            // TrackPrevent_Cbx
+            // 
+            this.TrackPrevent_Cbx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TrackPrevent_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.TrackPrevent_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TrackPrevent_Cbx.ForeColor = System.Drawing.Color.White;
+            this.TrackPrevent_Cbx.FormattingEnabled = true;
+            this.TrackPrevent_Cbx.Items.AddRange(new object[] {
+            "None",
+            "Basic",
+            "Balanced",
+            "Strict"});
+            this.TrackPrevent_Cbx.Location = new System.Drawing.Point(6, 26);
+            this.TrackPrevent_Cbx.Name = "TrackPrevent_Cbx";
+            this.TrackPrevent_Cbx.Size = new System.Drawing.Size(316, 22);
+            this.TrackPrevent_Cbx.TabIndex = 0;
+            this.TrackPrevent_Cbx.Text = "None";
+            this.TrackPrevent_Cbx.SelectedIndexChanged += new System.EventHandler(this.TrackPrevent_Cbx_SelectedIndexChanged);
             // 
             // panel26
             // 
@@ -6739,8 +6799,8 @@
             this.Status_Strip.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TtsButton_Sts,
+            this.TrackingLevel_Lbl,
             this.URLtxt_Status,
-            this.TableOpn_Status,
             this.TableVal_Status,
             this.CountFeed_Status,
             this.JavaDisable_Status,
@@ -6773,6 +6833,14 @@
             this.TtsButton_Sts.Text = "Tools";
             this.TtsButton_Sts.ToolTipText = "Choose an action";
             // 
+            // TrackingLevel_Lbl
+            // 
+            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+            // 
             // URLtxt_Status
             // 
             this.URLtxt_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -6781,15 +6849,6 @@
             this.URLtxt_Status.Name = "URLtxt_Status";
             this.URLtxt_Status.Size = new System.Drawing.Size(22, 17);
             this.URLtxt_Status.Text = "url";
-            // 
-            // TableOpn_Status
-            // 
-            this.TableOpn_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.TableOpn_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableOpn_Status.ForeColor = System.Drawing.Color.ForestGreen;
-            this.TableOpn_Status.Name = "TableOpn_Status";
-            this.TableOpn_Status.Size = new System.Drawing.Size(14, 17);
-            this.TableOpn_Status.Text = "_";
             // 
             // TableVal_Status
             // 
@@ -7991,7 +8050,7 @@
             "ArcGIS_World_Street"});
             this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
             this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 25);
-            this.GmapProvider_Cbx.Text = "GoogleSatelliteMap";
+            this.GmapProvider_Cbx.Text = "OpenCycleMap";
             this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
             // 
             // toolStripLabel3
@@ -8123,8 +8182,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_3);
+            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -8227,6 +8286,7 @@
             this.groupBox5.ResumeLayout(false);
             this.PanelOptDir_Pnl.ResumeLayout(false);
             this.PanelOptDir_Pnl.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.Panel_ConfigFiles.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -8353,7 +8413,6 @@
         private System.Windows.Forms.ToolStripDropDownButton ToolsFeed_Mnu;
         private System.Windows.Forms.ToolStripMenuItem OpnFileCategory_Btn;
         private System.Windows.Forms.ToolStripMenuItem CopyURLfeed_Mnu;
-        private System.Windows.Forms.ToolStripStatusLabel TableOpn_Status;
         private System.Windows.Forms.ToolStripStatusLabel CountFeed_Status;
         private System.Windows.Forms.ToolStripMenuItem TraductPageFeed_Btn;
         private System.Windows.Forms.ListBox CountBlockFeed_Lbl;
@@ -8865,6 +8924,10 @@
         private System.Windows.Forms.ToolStripMenuItem StartOBE_Btn;
         private System.Windows.Forms.ToolStripMenuItem LocalhostOBE_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.Button NewSeesion_Btn;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox TrackPrevent_Cbx;
+        private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
     }
 }
 

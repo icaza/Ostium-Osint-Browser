@@ -28,30 +28,22 @@ namespace LoadDirectory
             switch (objectype?.ToLower())
             {
                 case "lst":
-                    ListBox_Obj = objectsend as ListBox;
-                    if (ListBox_Obj == null)
-                        throw new ArgumentException("The object sent is not a ListBox.", nameof(objectsend));
+                    ListBox_Obj = objectsend as ListBox ?? throw new ArgumentException("The object sent is not a ListBox.", nameof(objectsend));
                     ListBox_Obj.Items.Clear();
                     break;
 
                 case "cbxts":
-                    ComboBoxTs_Obj = objectsend as ToolStripComboBox;
-                    if (ComboBoxTs_Obj == null)
-                        throw new ArgumentException("The item sent is not a ToolStripComboBox.", nameof(objectsend));
+                    ComboBoxTs_Obj = objectsend as ToolStripComboBox ?? throw new ArgumentException("The item sent is not a ToolStripComboBox.", nameof(objectsend));
                     ComboBoxTs_Obj.Items.Clear();
                     break;
 
                 case "cbx":
-                    ComboBox_Obj = objectsend as ComboBox;
-                    if (ComboBox_Obj == null)
-                        throw new ArgumentException("The item sent is not a ComboBox.", nameof(objectsend));
+                    ComboBox_Obj = objectsend as ComboBox ?? throw new ArgumentException("The item sent is not a ComboBox.", nameof(objectsend));
                     ComboBox_Obj.Items.Clear();
                     break;
 
                 case "splitb":
-                    SplitButton_Obj = objectsend as ToolStripSplitButton;
-                    if (SplitButton_Obj == null)
-                        throw new ArgumentException("The item sent is not a ToolStripSplitButton.", nameof(objectsend));
+                    SplitButton_Obj = objectsend as ToolStripSplitButton ?? throw new ArgumentException("The item sent is not a ToolStripSplitButton.", nameof(objectsend));
                     SplitButton_Obj.DropDownItems.Clear();
                     break;
 
