@@ -537,6 +537,7 @@
             this.panel21 = new System.Windows.Forms.Panel();
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
@@ -673,7 +674,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1756,10 +1756,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -3446,7 +3446,7 @@
         '\''};
             this.ModelItem_Txt.AutoIndent = false;
             this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.ModelItem_Txt.BackBrush = null;
             this.ModelItem_Txt.CharHeight = 13;
             this.ModelItem_Txt.CharWidth = 7;
@@ -3742,7 +3742,7 @@
         '\''};
             this.AddItemswf_Txt.AutoIndent = false;
             this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(25, 13);
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
             this.AddItemswf_Txt.BackBrush = null;
             this.AddItemswf_Txt.CharHeight = 13;
             this.AddItemswf_Txt.CharWidth = 7;
@@ -3903,7 +3903,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 23);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3940,7 +3940,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 583);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3961,7 +3961,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 583);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3976,7 +3976,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 142);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 263);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 234);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3991,7 +3991,7 @@
             this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 405);
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 376);
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
@@ -4028,7 +4028,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 435);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 406);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -4108,7 +4108,7 @@
             this.PointRoute_Lst.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PointRoute_Lst.ForeColor = System.Drawing.Color.DarkOrange;
             this.PointRoute_Lst.FormattingEnabled = true;
-            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 465);
+            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 436);
             this.PointRoute_Lst.Name = "PointRoute_Lst";
             this.PointRoute_Lst.Size = new System.Drawing.Size(200, 117);
             this.PointRoute_Lst.TabIndex = 27;
@@ -4126,7 +4126,7 @@
             this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 582);
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 553);
             this.SaveRoute_Btn.Name = "SaveRoute_Btn";
             this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveRoute_Btn.TabIndex = 25;
@@ -6833,6 +6833,14 @@
             this.TtsButton_Sts.Text = "Tools";
             this.TtsButton_Sts.ToolTipText = "Choose an action";
             // 
+            // TrackingLevel_Lbl
+            // 
+            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+            // 
             // URLtxt_Status
             // 
             this.URLtxt_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -8042,7 +8050,7 @@
             "ArcGIS_World_Street"});
             this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
             this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 25);
-            this.GmapProvider_Cbx.Text = "GoogleSatelliteMap";
+            this.GmapProvider_Cbx.Text = "OpenCycleMap";
             this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
             // 
             // toolStripLabel3
@@ -8167,14 +8175,6 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
-            // TrackingLevel_Lbl
-            // 
-            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
-            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
-            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8182,8 +8182,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_3);
+            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
