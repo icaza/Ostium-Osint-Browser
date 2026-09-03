@@ -1322,6 +1322,9 @@ namespace Ostium
             await WBrowsefeed.EnsureCoreWebView2Async(env);
             await WbOutA.EnsureCoreWebView2Async(env);
             await WbOutB.EnsureCoreWebView2Async(env);
+
+            WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+            WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
         }
 
         /// <summary>
@@ -10614,6 +10617,38 @@ namespace Ostium
             InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
         }
 
+        void TrackPrevent_Cbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (TrackPrevent_Cbx.Text)
+            {
+                case "None":
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    Class_Var.TRACKING = "None";
+                    break;
+                case "Basic":
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
+                    Class_Var.TRACKING = "Basic";
+                    break;
+                case "Balanced":
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
+                    Class_Var.TRACKING = "Balanced";
+                    break;
+                case "Strict":
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+                    Class_Var.TRACKING = "Strict";
+                    break;
+                default:
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    Class_Var.TRACKING = "None";
+                    break;
+            }
+        }
+
         void FloodHeader_Chk_CheckedChanged(object sender, EventArgs e)
         {
             if (FloodHeader_Chk.Checked)
@@ -10621,8 +10656,8 @@ namespace Ostium
                 @Class_Var.FLOOD_HEADER = 1;
                 FloodHeader_Chk.ForeColor = Color.Red;
 
-                MessageBox.Show("The method used against fingerprinting is aggressive; website functionality is disrupted, " +
-                    "and you are flagged as a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("The method used against fingerprinting is aggressive; The functioning of certain websites may be disrupted, " +
+                    "certain websites or services may consider you a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 if (!IsParentLinkEnabled)
                 {

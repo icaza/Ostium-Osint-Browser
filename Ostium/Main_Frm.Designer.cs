@@ -482,6 +482,8 @@
             this.WorkFlowModelDir_Lbl = new System.Windows.Forms.Label();
             this.WorkFlowDir_Lbl = new System.Windows.Forms.Label();
             this.WorkFlowModelDir_Opn = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.TrackPrevent_Cbx = new System.Windows.Forms.ComboBox();
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -740,6 +742,7 @@
             this.Panel_WorkspaceSize.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.PanelOptDir_Pnl.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.Panel_ConfigFiles.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -5682,6 +5685,7 @@
             // 
             this.Panel_WorkspaceSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.Panel_WorkspaceSize.Controls.Add(this.groupBox5);
+            this.Panel_WorkspaceSize.Controls.Add(this.groupBox7);
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
@@ -5694,9 +5698,9 @@
             this.groupBox5.Controls.Add(this.PanelOptDir_Pnl);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Location = new System.Drawing.Point(0, 62);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 592);
+            this.groupBox5.Size = new System.Drawing.Size(328, 530);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -5737,7 +5741,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 571);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 509);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -6099,6 +6103,36 @@
             this.WorkFlowModelDir_Opn.TabIndex = 12;
             this.WorkFlowModelDir_Opn.Text = "Workflow Model path";
             this.WorkFlowModelDir_Opn.Click += new System.EventHandler(this.WorkFlowModelDir_Opn_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.TrackPrevent_Cbx);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.groupBox7.Location = new System.Drawing.Point(0, 0);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(328, 62);
+            this.groupBox7.TabIndex = 20;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Tracking Prevention Level";
+            // 
+            // TrackPrevent_Cbx
+            // 
+            this.TrackPrevent_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.TrackPrevent_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TrackPrevent_Cbx.ForeColor = System.Drawing.Color.White;
+            this.TrackPrevent_Cbx.FormattingEnabled = true;
+            this.TrackPrevent_Cbx.Items.AddRange(new object[] {
+            "None",
+            "Basic",
+            "Balanced",
+            "Strict"});
+            this.TrackPrevent_Cbx.Location = new System.Drawing.Point(6, 26);
+            this.TrackPrevent_Cbx.Name = "TrackPrevent_Cbx";
+            this.TrackPrevent_Cbx.Size = new System.Drawing.Size(316, 22);
+            this.TrackPrevent_Cbx.TabIndex = 0;
+            this.TrackPrevent_Cbx.Text = "None";
+            this.TrackPrevent_Cbx.SelectedIndexChanged += new System.EventHandler(this.TrackPrevent_Cbx_SelectedIndexChanged);
             // 
             // panel26
             // 
@@ -8250,6 +8284,7 @@
             this.groupBox5.ResumeLayout(false);
             this.PanelOptDir_Pnl.ResumeLayout(false);
             this.PanelOptDir_Pnl.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.Panel_ConfigFiles.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -8889,6 +8924,8 @@
         private System.Windows.Forms.ToolStripMenuItem LocalhostOBE_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
         private System.Windows.Forms.Button NewSeesion_Btn;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox TrackPrevent_Cbx;
     }
 }
 

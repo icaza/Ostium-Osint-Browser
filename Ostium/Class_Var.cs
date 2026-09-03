@@ -3,6 +3,7 @@
     internal class Class_Var
     {
         public static string USER_DATA_FOLDER_var;
+        public static string TRACKING_var;
         public static string File_Open_var;
         public static string Text_Load_var;
         public static string DEFAULT_EDITOR_var;
@@ -31,6 +32,18 @@
             set
             {
                 USER_DATA_FOLDER_var = value;
+            }
+        }
+
+        public static string TRACKING
+        {
+            get
+            {
+                return TRACKING_var;
+            }
+            set
+            {
+                TRACKING_var = value;
             }
         }
 

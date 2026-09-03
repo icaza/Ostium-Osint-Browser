@@ -47,6 +47,25 @@ namespace Ostium
         {
             var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
             await WBrowsew.EnsureCoreWebView2Async(env);
+
+            switch (@Class_Var.TRACKING)
+            {
+                case "None":
+                    WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    break;
+                case "Basic":
+                    WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
+                    break;
+                case "Balanced":
+                    WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
+                    break;
+                case "Strict":
+                    WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+                    break;
+                default:
+                    WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                    break;
+            }
         }
 
         void WBrowsew_ContextMenuRequested(object sender, CoreWebView2ContextMenuRequestedEventArgs args)
