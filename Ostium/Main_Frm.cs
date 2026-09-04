@@ -1313,41 +1313,6 @@ namespace Ostium
             Class_Var.USER_DATA_FOLDER = userDataFolder;
         }
 
-        //async void InitializeEnvironment()
-        //{
-        //    var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
-
-        //    if (File.Exists(Path.Combine(AppStart, ".tor")))
-        //    {
-        //        env = await CoreWebView2Environment.CreateAsync(
-        //            browserExecutableFolder: null,
-        //            userDataFolder: userDataFolder,
-        //            options: new CoreWebView2EnvironmentOptions
-        //            {
-        //                AdditionalBrowserArguments =
-        //                    "--proxy-server=socks5://127.0.0.1:9050 " +
-        //                    "--force-webrtc-ip-handling-policy=disable_non_proxied_udp " +
-        //                    "--enable-features=WebRtcHideLocalIpsWithMdns " +
-        //                    "--disable-gpu "
-        //            });
-        //    }
-
-        //    await WBrowse.EnsureCoreWebView2Async(env);
-        //    await WBrowsefeed.EnsureCoreWebView2Async(env);
-        //    await WbOutA.EnsureCoreWebView2Async(env);
-        //    await WbOutB.EnsureCoreWebView2Async(env);
-
-        //    if (!File.Exists(Path.Combine(AppStart, ".tor")))
-        //    {
-        //        WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-        //        WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-        //    }
-        //    else
-        //    {
-        //        TrackPrevent_Cbx.Text = "Strict";
-        //        FloodHeader_Chk.Checked = true;
-        //    }
-        //}
         async void InitializeEnvironment()
         {
             bool torMode = File.Exists(Path.Combine(AppStart, ".tor"));
