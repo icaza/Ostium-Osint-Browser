@@ -1313,39 +1313,87 @@ namespace Ostium
             Class_Var.USER_DATA_FOLDER = userDataFolder;
         }
 
+        //async void InitializeEnvironment()
+        //{
+        //    var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+
+        //    if (File.Exists(Path.Combine(AppStart, ".tor")))
+        //    {
+        //        env = await CoreWebView2Environment.CreateAsync(
+        //            browserExecutableFolder: null,
+        //            userDataFolder: userDataFolder,
+        //            options: new CoreWebView2EnvironmentOptions
+        //            {
+        //                AdditionalBrowserArguments =
+        //                    "--proxy-server=socks5://127.0.0.1:9050 " +
+        //                    "--force-webrtc-ip-handling-policy=disable_non_proxied_udp " +
+        //                    "--enable-features=WebRtcHideLocalIpsWithMdns " +
+        //                    "--disable-gpu "
+        //            });
+        //    }
+
+        //    await WBrowse.EnsureCoreWebView2Async(env);
+        //    await WBrowsefeed.EnsureCoreWebView2Async(env);
+        //    await WbOutA.EnsureCoreWebView2Async(env);
+        //    await WbOutB.EnsureCoreWebView2Async(env);
+
+        //    if (!File.Exists(Path.Combine(AppStart, ".tor")))
+        //    {
+        //        WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+        //        WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+        //    }
+        //    else
+        //    {
+        //        TrackPrevent_Cbx.Text = "Strict";
+        //        FloodHeader_Chk.Checked = true;
+        //    }
+        //}
         async void InitializeEnvironment()
         {
-            var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
+            bool torMode = File.Exists(Path.Combine(AppStart, ".tor"));
 
-            if (File.Exists(Path.Combine(AppStart, ".tor")))
+            CoreWebView2Environment env;
+            try
             {
-                env = await CoreWebView2Environment.CreateAsync(
-                    browserExecutableFolder: null,
-                    userDataFolder: userDataFolder,
-                    options: new CoreWebView2EnvironmentOptions
-                    {
-                        AdditionalBrowserArguments =
-                            "--proxy-server=socks5://127.0.0.1:9050 " +
-                            "--force-webrtc-ip-handling-policy=disable_non_proxied_udp " +
-                            "--enable-features=WebRtcHideLocalIpsWithMdns " +
-                            "--disable-gpu "
-                    });
+                env = torMode
+                    ? await CoreWebView2Environment.CreateAsync(
+                        browserExecutableFolder: null,
+                        userDataFolder: userDataFolder,
+                        options: new CoreWebView2EnvironmentOptions
+                        {
+                            AdditionalBrowserArguments = string.Join(" ",
+                                "--proxy-server=socks5://127.0.0.1:9050",
+                                "--host-resolver-rules=\"MAP * ~NOTFOUND , EXCLUDE 127.0.0.1\"",
+                                "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+                                "--enable-features=WebRtcHideLocalIpsWithMdns",
+                                "--disable-gpu")
+                        })
+                    : await CoreWebView2Environment.CreateAsync(
+                        browserExecutableFolder: null,
+                        userDataFolder: userDataFolder);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"WebView2 initialization failed: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            await WBrowse.EnsureCoreWebView2Async(env);
-            await WBrowsefeed.EnsureCoreWebView2Async(env);
-            await WbOutA.EnsureCoreWebView2Async(env);
-            await WbOutB.EnsureCoreWebView2Async(env);
+            await Task.WhenAll(
+                WBrowse.EnsureCoreWebView2Async(env),
+                WBrowsefeed.EnsureCoreWebView2Async(env),
+                WbOutA.EnsureCoreWebView2Async(env),
+                WbOutB.EnsureCoreWebView2Async(env));
 
-            if (!File.Exists(Path.Combine(AppStart, ".tor")))
-            {
-                WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-                WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-            }
-            else
+            if (torMode)
             {
                 TrackPrevent_Cbx.Text = "Strict";
                 FloodHeader_Chk.Checked = true;
+            }
+            else
+            {
+                WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
             }
         }
 
