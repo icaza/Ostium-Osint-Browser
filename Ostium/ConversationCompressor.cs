@@ -21,7 +21,6 @@ namespace ConversationCompressor
         #endregion
 
         #region Constructor
-
         public SemanticTextCompressor()
         {
             _stopWords = LoadStopWords();
@@ -53,11 +52,9 @@ namespace ConversationCompressor
                 return new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             }
         }
-
         #endregion
 
         #region Public methods
-
         public string CompressConversation(string conversation, string contextKey = null)
         {
             ValidateInput(conversation);
@@ -101,11 +98,9 @@ namespace ConversationCompressor
 
             return BitConverter.ToString(hashBytes).Replace("-", "").Substring(0, 16);
         }
-
         #endregion
 
         #region Compression methods
-
         string PreprocessText(string text)
         {
             return Regex.Replace(text.Trim(), @"\s+", " ");
@@ -177,11 +172,9 @@ namespace ConversationCompressor
 
             return builder.ToString();
         }
-
         #endregion
 
         #region Semantic extraction algorithms
-
         List<string> TokenizeSentence(string sentence)
         {
             return Regex.Matches(sentence, @"\b[\w']+\b")
@@ -241,11 +234,9 @@ namespace ConversationCompressor
 
             return score;
         }
-
         #endregion
 
         #region Optimization methods
-
         List<SemanticUnit> EnsureNarrativeContinuity(List<SemanticUnit> importantUnits, List<SemanticUnit> allUnits)
         {
             var result = new List<SemanticUnit>(importantUnits);
@@ -319,7 +310,6 @@ namespace ConversationCompressor
 
             return ReconstructText(expandedUnits);
         }
-
         #endregion
 
         void ValidateInput(string text)
@@ -347,7 +337,6 @@ namespace ConversationCompressor
         }
 
         #region Internal structures
-
         class SemanticUnit
         {
             public string OriginalText { get; set; }
@@ -367,7 +356,6 @@ namespace ConversationCompressor
                 return OriginalText != null ? OriginalText.GetHashCode() : 0;
             }
         }
-
         #endregion
 
         public void Dispose()

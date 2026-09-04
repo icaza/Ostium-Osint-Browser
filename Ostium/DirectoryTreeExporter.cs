@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
@@ -167,9 +166,9 @@ namespace Ostium
                     }
                 }
                 catch (UnauthorizedAccessException)
-                {}
+                { }
                 catch (Exception)
-                {}
+                { }
 
                 try
                 {
@@ -205,9 +204,9 @@ namespace Ostium
                     }
                 }
                 catch (UnauthorizedAccessException)
-                {}
+                { }
                 catch (Exception)
-                {}
+                { }
 
                 return new
                 {

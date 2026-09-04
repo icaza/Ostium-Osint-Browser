@@ -51,7 +51,6 @@ namespace Ostium
         }
 
         #region Btn_
-
         void NewScript_Btn_Click(object sender, EventArgs e)
         {
             SiteUrl_Txt.Text = string.Empty;
@@ -395,11 +394,9 @@ namespace Ostium
             else
                 MessageBox.Show("The directory does not exist!", "Ostium", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         #endregion
 
         #region ContextMenu_
-
         void Cut_Tools_Click(object sender, EventArgs e)
         {
             SendKeys.Send("^" + "x");
@@ -424,7 +421,6 @@ namespace Ostium
         {
             SendKeys.Send("^" + "a");
         }
-
         #endregion
 
         void ScriptUrl_Lst_SelectedIndexChanged(object sender, EventArgs e)

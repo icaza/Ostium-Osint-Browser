@@ -319,7 +319,7 @@ namespace Ostium
         {
             try
             {
-                BeginInvoke((MethodInvoker)delegate
+                BeginInvoke((MethodInvoker)async delegate
                 {
                     CreateDirectory();
                     ///
@@ -380,7 +380,7 @@ namespace Ostium
 
                     Tools_TAB_0.Visible = true;
 
-                    VerifyUPDT(0);
+                    await VerifyUPDT(0);
 
                     WbOutParse = WbOutA;
                     WbOutJson = WbOutB;
@@ -1284,7 +1284,7 @@ namespace Ostium
             }
         }
 
-        async void UpdateDirectorySize(string directoryPath, object objectsend)
+        async Task UpdateDirectorySize(string directoryPath, object objectsend)
         {
             try
             {
@@ -1302,7 +1302,7 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
-        void InitializeEnvironmentWebview()
+        async void InitializeEnvironmentWebview()
         {
             CreateNameAleat();
 
@@ -1354,6 +1354,7 @@ namespace Ostium
             {
                 TrackPrevent_Cbx.Text = "Strict";
                 FloodHeader_Chk.Checked = true;
+                GoWebwiev_Btn.Enabled = false;
             }
             else
             {
@@ -2026,32 +2027,32 @@ namespace Ostium
         /// <param name="ScriptInject()">checking if a script is registered and executed for the current URL</param>
         /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         /// 
-        void WBrowse_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        async void WBrowse_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             @Class_Var.URL_URI = WBrowse.Source.AbsoluteUri;
 
             if (SaveCookies_Chk.Checked)
-                GetCookie(WBrowse.Source.AbsoluteUri);
+                await GetCookie(WBrowse.Source.AbsoluteUri);
 
             WBrowse_UpdtTitleEvent("Navigation Completed");
 
-            ScripInj();
+            await ScripInj();
 
             if (IsTimelineEnabled)
             {
                 var logger = new VisitLogger(Path.Combine(Keeptrack, FileTimeLineName));
                 logger.LogVisit(WBrowse.Source.AbsoluteUri, "No tag");
 
-                FaviconLoad();
+                await FaviconLoad();
             }
         }
 
-        async void ScripInj()
+        async Task ScripInj()
         {
             await ScriptInject();
         }
 
-        async void FaviconLoad()
+        async Task FaviconLoad()
         {
             var downloader = new FaviconDownloader();
 
@@ -2098,7 +2099,7 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("DocumentTitleChanged");
         }
 
-        void NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+        void WBrowse_NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
         {
             if (IsTimelineEnabled || IsParentLinkEnabled)
             {
@@ -2121,7 +2122,7 @@ namespace Ostium
             WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
             WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
             WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
-            WBrowse.CoreWebView2.NewWindowRequested += NewWindow_Requested;
+            WBrowse.CoreWebView2.NewWindowRequested += WBrowse_NewWindow_Requested;
 
             WBrowse.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
             WBrowse.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
@@ -2289,10 +2290,10 @@ namespace Ostium
         ///
         /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         ///
-        void WBrowsefeed_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        async void WBrowsefeed_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             if (SaveCookies_Chk.Checked)
-                GetCookie(WBrowse.Source.AbsoluteUri);
+                await GetCookie(WBrowse.Source.AbsoluteUri);
 
             WBrowsefeed_UpdtTitleEvent("Navigation Completed");
         }
@@ -2317,6 +2318,15 @@ namespace Ostium
             WBrowsefeed_UpdtTitleEvent("DocumentTitleChanged");
         }
 
+        void WBrowsefeed_NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+        {
+            if (IsParentLinkEnabled)
+            {
+                e.Handled = true; // Force _parent Links
+                WBrowse.CoreWebView2.Navigate(e.Uri);
+            }
+        }
+
         void WBrowsefeed_InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (!e.IsSuccess)
@@ -2331,6 +2341,7 @@ namespace Ostium
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
             WBrowsefeed.CoreWebView2.ContextMenuRequested += Wbrowsefeed_ContextMenuRequested;
+            WBrowsefeed.CoreWebView2.NewWindowRequested += WBrowsefeed_NewWindow_Requested;
 
             WBrowsefeed.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
             WBrowsefeed.CoreWebView2.WebResourceRequested += WBrowse_WebResourceRequested;
@@ -2363,7 +2374,7 @@ namespace Ostium
             }
         }
 
-        async void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
@@ -2526,7 +2537,7 @@ namespace Ostium
         /// <param value="file:///">Local file opening</param>
         /// <param name="URIopn">URL open in wBrowser "TAB BROWSx"</param>
         /// 
-        void GoBrowser(string inputUrl, int WebviewRedirect)
+        async void GoBrowser(string inputUrl, int WebviewRedirect)
         {
             try
             {
@@ -2574,7 +2585,7 @@ namespace Ostium
 
                     if (WebviewRedirect == 2)
                     {
-                        Agent_Web_Search(inputUrl);
+                        await Agent_Web_Search(inputUrl);
                         return;
                     }
 
@@ -2592,7 +2603,7 @@ namespace Ostium
                 }
                 else if (WebviewRedirect == 2)
                 {
-                    AgentFetchSearch(Convert.ToString(uri));
+                    await AgentFetchSearch(Convert.ToString(uri));
                 }
             }
             catch (Exception ex)
@@ -3349,12 +3360,12 @@ namespace Ostium
                 Open_Source_Frm(Path.Combine(FileDir, "gdork.txt"));
         }
 
-        void WebpageToPng_Btn_Click(object sender, EventArgs e)
+        async void WebpageToPng_Btn_Click(object sender, EventArgs e)
         {
-            WebpageCapture();
+           await WebpageCapture();
         }
 
-        async void WebpageCapture()
+        async Task WebpageCapture()
         {
             try
             {
@@ -3685,7 +3696,7 @@ namespace Ostium
             OpnFileOpt(HighlitFile);
         }
 
-        void HiglitInject_Btn_Click(object sender, EventArgs e)
+        async void HiglitInject_Btn_Click(object sender, EventArgs e)
         {
             using (var reader = new StreamReader(HighlitFile))
             {
@@ -3693,12 +3704,12 @@ namespace Ostium
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    ColorWord(values[0], values[1]);
+                    await ColorWord(values[0], values[1]);
                 }
             }
         }
 
-        async void ColorWord(string valword, string valcolor)
+        async Task ColorWord(string valword, string valcolor)
         {
             try
             {
@@ -3823,9 +3834,9 @@ namespace Ostium
         /// <param value="0">Message only if update available</param>
         /// <param value="1">False or True update message</param>
         ///
-        void OstUpdt_Btn_Click(object sender, EventArgs e)
+        async void OstUpdt_Btn_Click(object sender, EventArgs e)
         {
-            VerifyUPDT(1);
+            await VerifyUPDT(1);
         }
         ///
         /// <param name="GoBrowser"></param>
@@ -3861,12 +3872,12 @@ namespace Ostium
             }
         }
 
-        void SemanticFile_Btn_Click(object sender, EventArgs e)
+        async void SemanticFile_Btn_Click(object sender, EventArgs e)
         {
-            SemanticFile();
+            await SemanticFile();
         }
 
-        async void SemanticFile()
+        async Task SemanticFile()
         {
             try
             {
@@ -5433,7 +5444,7 @@ namespace Ostium
         }
         #endregion
 
-        void Control_Tab_Click(object sender, EventArgs e)
+        async void Control_Tab_Click(object sender, EventArgs e)
         {
             switch (Control_Tab.SelectedIndex)
             {
@@ -5526,7 +5537,7 @@ namespace Ostium
                     if (VerifMapOpn == "off")
                     {
                         Mkmarker = GMarkerGoogleType.red_dot;
-                        OpenMaps("Paris", 7); // Adresse, Provider
+                        await OpenMaps("Paris", 7); // Adresse, Provider
                         PointLoc_Lst.Items.Clear();
                         loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
                     }
@@ -5591,21 +5602,21 @@ namespace Ostium
                     MaxHistoryEntry_Status.Visible = false;
                     Agent_RSS_Cnt_Status.Visible = false;
 
-                    UpdateDirectorySize(AppStart, OstiumDir_Lbl);
-                    UpdateDirectorySize(Plugins, AddOnDir_Lbl);
-                    UpdateDirectorySize(DBdirectory, DatabseDir_Lbl);
-                    UpdateDirectorySize(FeedDir, FeedDir_Lbl);
-                    UpdateDirectorySize(Scripts, ScriptDir_Lbl);
-                    UpdateDirectorySize(Workflow, WorkFlowDir_Lbl);
-                    UpdateDirectorySize(WorkflowModel, WorkFlowModelDir_Lbl);
-                    UpdateDirectorySize(Pictures, PictureDir_Lbl);
-                    UpdateDirectorySize(userDataFolder, WebView2Dir_Lbl);
-                    UpdateDirectorySize(DiagramDir, DiagramDir_Lbl);
-                    UpdateDirectorySize(Setirps, SpritesDir_Lbl);
-                    UpdateDirectorySize(BkmkltDir, BkmkltDir_Lbl);
-                    UpdateDirectorySize(MapDir, MapDir_Lbl);
-                    UpdateDirectorySize(JsonDir, JsonDir_Lbl);
-                    UpdateDirectorySize(Keeptrack, KeepTrackDir_Lbl);
+                    await UpdateDirectorySize(AppStart, OstiumDir_Lbl);
+                    await UpdateDirectorySize(Plugins, AddOnDir_Lbl);
+                    await UpdateDirectorySize(DBdirectory, DatabseDir_Lbl);
+                    await UpdateDirectorySize(FeedDir, FeedDir_Lbl);
+                    await UpdateDirectorySize(Scripts, ScriptDir_Lbl);
+                    await UpdateDirectorySize(Workflow, WorkFlowDir_Lbl);
+                    await UpdateDirectorySize(WorkflowModel, WorkFlowModelDir_Lbl);
+                    await UpdateDirectorySize(Pictures, PictureDir_Lbl);
+                    await UpdateDirectorySize(userDataFolder, WebView2Dir_Lbl);
+                    await UpdateDirectorySize(DiagramDir, DiagramDir_Lbl);
+                    await UpdateDirectorySize(Setirps, SpritesDir_Lbl);
+                    await UpdateDirectorySize(BkmkltDir, BkmkltDir_Lbl);
+                    await UpdateDirectorySize(MapDir, MapDir_Lbl);
+                    await UpdateDirectorySize(JsonDir, JsonDir_Lbl);
+                    await UpdateDirectorySize(Keeptrack, KeepTrackDir_Lbl);
                     break;
             }
         }
@@ -5758,7 +5769,7 @@ namespace Ostium
         /// carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
         /// </summary>
         /// 
-        async void Download_Source_Page()
+        async Task Download_Source_Page()
         {
             try
             {
@@ -5839,7 +5850,7 @@ namespace Ostium
         }
 
         #region Prompt_
-        void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
+        async void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Console_Cmd_Txt.SelectionStart < 2 && e.KeyChar != (char)Keys.Enter)
             {
@@ -5850,7 +5861,7 @@ namespace Ostium
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                ProcessCommand();
+                await ProcessCommand();
             }
         }
 
@@ -5869,7 +5880,7 @@ namespace Ostium
             }
         }
 
-        void ProcessCommand()
+        async Task ProcessCommand()
         {
             string input = Console_Cmd_Txt.Text.Trim();
 
@@ -5877,7 +5888,7 @@ namespace Ostium
             {
                 string command = input.Substring(2);
 
-                CMD_Console(command);
+                await CMD_Console(command);
                 _commandHistory.Add(command);
                 _historyIndex = _commandHistory.Count;
             }
@@ -5915,7 +5926,7 @@ namespace Ostium
         /// <param value="0">CMD_Console_Exec False</param>
         /// <param value="1">CMD_Console_Exec True</param>
         /// 
-        void CMD_Console(string Cmd)
+        async Task CMD_Console(string Cmd)
         {
             int yn = 0;
             int cmdSwitch = 0;
@@ -5930,7 +5941,7 @@ namespace Ostium
                     MessageBox.Show(SoftVersion);
                     break;
                 case "sourcepage":
-                    Download_Source_Page();
+                    await Download_Source_Page();
                     break;
                 case "links":
                     cmdSwitch = 0;
@@ -5965,7 +5976,7 @@ namespace Ostium
                     GoogleDork();
                     break;
                 case "capture":
-                    WebpageCapture();
+                    await WebpageCapture();
                     break;
                 case "htmltext":
                     htmlTextFrm = new HtmlText_Frm();
@@ -6029,7 +6040,7 @@ namespace Ostium
                     GoogleBot();
                     break;
                 case "semantic":
-                    SemanticFile();
+                    await SemanticFile();
                     break;
                 case "cyberchef":
                     CyberChefExec();
@@ -7487,7 +7498,7 @@ namespace Ostium
             }
         }
 
-        void ReadArticle_Btn_Click(object sender, EventArgs e)
+        async void ReadArticle_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -7501,7 +7512,7 @@ namespace Ostium
                     LoadLang();
 
                 WbrowseSelect = WBrowsefeed;
-                ExtractReadArticle();
+                await ExtractReadArticle();
             }
             catch (Exception ex)
             {
@@ -7509,7 +7520,7 @@ namespace Ostium
             }
         }
 
-        async void ExtractReadArticle()
+        async Task ExtractReadArticle()
         {
             try
             {
@@ -7742,7 +7753,7 @@ namespace Ostium
         /// </summary>
         /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
         /// 
-        async void GetCookie(string URLs)
+        async Task GetCookie(string URLs)
         {
             try
             {
@@ -8842,11 +8853,9 @@ namespace Ostium
         {
             LoadStatWorkflow();
         }
-
         #endregion
 
         #region Invoke_Feed
-
         void CountBlockSite_Invk(string xswitch)
         {
             switch (xswitch)
@@ -8901,7 +8910,6 @@ namespace Ostium
                     break;
             }
         }
-
         #endregion
 
         #region Invoke_Diagram
@@ -8920,11 +8928,9 @@ namespace Ostium
             else if (Commut == 1)
                 GoBrowser("file:///" + value, 1);
         }
-
         #endregion
 
         #region Bkmklt
-
         void OpnBookmark_Btn_Click(object sender, EventArgs e)
         {
             BookMarklet();
@@ -8992,18 +8998,18 @@ namespace Ostium
             }
         }
 
-        void InjectBkmklt_Btn_Click(object sender, EventArgs e)
+        async void InjectBkmklt_Btn_Click(object sender, EventArgs e)
         {
             if (Bookmarklet_Lst.SelectedIndex != -1)
             {
                 if (Scriptl == "off")
-                    InjectBkmklt(MinifyScr);
+                    await InjectBkmklt(MinifyScr);
                 else
-                    InjectScriptl(Scripts + @"scriptsl\" + Bookmarklet_Lst.SelectedItem.ToString());
+                    await InjectScriptl(Scripts + @"scriptsl\" + Bookmarklet_Lst.SelectedItem.ToString());
             }
         }
 
-        async void InjectBkmklt(string Bkmklt)
+        async Task InjectBkmklt(string Bkmklt)
         {
             try
             {
@@ -9015,7 +9021,7 @@ namespace Ostium
             }
         }
 
-        async void InjectScriptl(string Scriptpath)
+        async Task InjectScriptl(string Scriptpath)
         {
             try
             {
@@ -9032,11 +9038,10 @@ namespace Ostium
         {
             PanelBkmklt_Pnl.Visible = false;
         }
-
         #endregion
 
         #region Maps_
-        async void OpenMaps(string adress, int provid)
+        async Task OpenMaps(string adress, int provid)
         {
             try
             {
@@ -9911,7 +9916,7 @@ namespace Ostium
             }
         }
 
-        void GoWord_Tls_Click(object sender, EventArgs e)
+        async void GoWord_Tls_Click(object sender, EventArgs e)
         {
             if (KeywordMap_Txt.Text == string.Empty)
             {
@@ -9921,7 +9926,7 @@ namespace Ostium
                 return;
             }
 
-            OpenMaps(KeywordMap_Txt.Text, 7); // Adresse, Provider
+            await OpenMaps(KeywordMap_Txt.Text, 7); // Adresse, Provider
         }
 
         void AddNewLoc_Btn_Click(object sender, EventArgs e)
@@ -10715,10 +10720,10 @@ namespace Ostium
             GoBrowser(URLtxt_Status.Text, 1);
         }
 
-        void TtsButton_Sts_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        async void TtsButton_Sts_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string scriptEx = e.ClickedItem.Text;
-            InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
+            await InjectScriptl(Path.Combine(Scripts, "scriptsl", scriptEx));
         }
 
         void TrackPrevent_Cbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -10851,7 +10856,7 @@ namespace Ostium
             SavefileShowDiag(jsonPath, "files (*.*)|*.*");
         }
 
-        void GetJson_Btn_Click(object sender, EventArgs e)
+        async void GetJson_Btn_Click(object sender, EventArgs e)
         {
             if (JsonUri_Txt.Text == string.Empty)
             {
@@ -10879,7 +10884,7 @@ namespace Ostium
                 }
             }
 
-            GetAsync(JsonUri_Txt.Text);
+            await GetAsync(JsonUri_Txt.Text);
         }
 
         void ParseJson_Btn_Click(object sender, EventArgs e)
@@ -11030,7 +11035,7 @@ namespace Ostium
                 GoBrowser("file:///" + JsonDirTable + TableJson_Lst.SelectedItem.ToString(), 1);
         }
 
-        async void GetAsync(string Urijson)
+        async Task GetAsync(string Urijson)
         {
             try
             {
@@ -11595,7 +11600,6 @@ namespace Ostium
         }
 
         #region Invoke_Json
-
         void ValAdd_Invk(string result)
         {
             string Jselect;
@@ -11619,13 +11623,11 @@ namespace Ostium
         {
             GoBrowser("file:///" + val, 1);
         }
-
         #endregion
 
         #region OOBai UI Agent and more
 
         #region Initialization
-
         void InitializeHttpClient()
         {
             try
@@ -11664,11 +11666,9 @@ namespace Ostium
                 lblStatus.ForeColor = Color.White;
             }
         }
-
         #endregion
 
         #region Settings Management   
-
         void LoadSettings()
         {
             if (!File.Exists(Config_OOBai))
@@ -11747,11 +11747,9 @@ namespace Ostium
             ModeSelectl_Cbx.Text = "deepseek-v3.1:671b-cloud";
             txtApiKey.Text = "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
         }
-
         #endregion
 
         #region History Management
-
         void LoadHistory()
         {
             string maxHistoryValue = AgentConfig.Get("MAX_HISTORY_ENTRIES", "count");
@@ -11870,11 +11868,9 @@ namespace Ostium
 
             UpdateHistoryButtons();
         }
-
         #endregion
 
         #region Templates Management
-
         void LoadTemplates()
         {
             _templates = new List<PromptTemplate>();
@@ -11948,11 +11944,9 @@ namespace Ostium
             if (cmbTemplates.Items.Count > 0)
                 cmbTemplates.SelectedIndex = 0;
         }
-
         #endregion
 
         #region HTTP Request
-
         async void BtnSend_Click(object sender, EventArgs e)
         {
             ChatHost = "local";
@@ -12178,7 +12172,6 @@ namespace Ostium
             ShowMessage(errorMessage, MessageType.Error);
             AppendErrorDetails(errorContent);
         }
-
         #endregion
 
         #region UI Display Methods
@@ -12346,11 +12339,9 @@ namespace Ostium
             Agent_RSS_News_Promptsend.Enabled = enabled;
             SpeakPrompt_Btn.Enabled = enabled;
         }
-
         #endregion
 
         #region Button Event Handlers
-
         void BtnCancel_Click(object sender, EventArgs e)
         {
             var cts = _cancellationTokenSource;
@@ -12494,11 +12485,9 @@ namespace Ostium
                 Send_Btn.PerformClick();
             }
         }
-
         #endregion
 
         #region Helper Methods
-
         void ClearResponse()
         {
             rtbResponse.Clear();
@@ -12523,11 +12512,9 @@ namespace Ostium
             catch
             { }
         }
-
         #endregion
 
         #region Web Search Functionality
-
         async void BtnWebSearch_Click(object sender, EventArgs e)
         {
             await PerformWebSearchAsync();
@@ -12793,11 +12780,9 @@ namespace Ostium
 
             return sb.ToString();
         }
-
         #endregion
 
         #region Web Fetch
-
         async void SearchURLOnly_Click(object sender, EventArgs e)
         {
             await PerformWebFetchAsync();
@@ -13006,11 +12991,9 @@ namespace Ostium
             AppendFormattedText("\n═══════════════════════════════════════════════════\n",
                 Color.DarkBlue, FontStyle.Bold, 10);
         }
-
         #endregion
 
         #region Cloud Chat Functionality
-
         async void CloudModelChat_Click(object sender, EventArgs e)
         {
             ChatHost = "cloud";
@@ -13294,7 +13277,6 @@ namespace Ostium
                 AppendErrorDetails(errorContent);
             }
         }
-
         #endregion
 
         void ModeSelectl_Cbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -13311,21 +13293,21 @@ namespace Ostium
         /// <param value="0">Using the configuration file prompt message.</param>
         /// <param value="1">Using the custom prompt message.</param>
         /// 
-        void Agent_RSS_News_Local_Click(object sender, EventArgs e)
+        async void Agent_RSS_News_Local_Click(object sender, EventArgs e)
         {
             ChatHost = "local";
             WbrowseSelect = WBrowsefeed;
-            Agent_RSS_News(0);
+            await Agent_RSS_News(0);
         }
 
-        void Agent_RSS_News_Cloud_Click(object sender, EventArgs e)
+        async void Agent_RSS_News_Cloud_Click(object sender, EventArgs e)
         {
             ChatHost = "cloud";
             WbrowseSelect = WBrowsefeed;
-            Agent_RSS_News(0);
+            await Agent_RSS_News(0);
         }
 
-        void Agent_RSS_News_Promptsend_Click(object sender, EventArgs e)
+        async void Agent_RSS_News_Promptsend_Click(object sender, EventArgs e)
         {
             if (collectedItemsTitleRss == null || collectedItemsTitleRss.Count == 0)
             {
@@ -13354,12 +13336,12 @@ namespace Ostium
 
                     AGENT_RSS_NEWS_PROMPT = promptsend;
                     WbrowseSelect = WBrowsefeed;
-                    Agent_RSS_News(1);
+                    await Agent_RSS_News(1);
                 }
             }
         }
 
-        void OpnPromptRss_Btn_Click(object sender, EventArgs e)
+        async void OpnPromptRss_Btn_Click(object sender, EventArgs e)
         {
             if (Title_Lst.SelectedIndex == -1)
             {
@@ -13368,10 +13350,10 @@ namespace Ostium
             }
 
             WbrowseSelect = WBrowsefeed;
-            Agent_ExtractScript_Promptsend(1);
+            await Agent_ExtractScript_Promptsend(1);
         }
 
-        async void Agent_RSS_News(int value)
+        async Task Agent_RSS_News(int value)
         {
             try
             {
@@ -13576,10 +13558,10 @@ namespace Ostium
             }
         }
 
-        void OpnPrompt_Btn_Click(object sender, EventArgs e)
+        async void OpnPrompt_Btn_Click(object sender, EventArgs e)
         {
             WbrowseSelect = WBrowse;
-            Agent_ExtractScript_Promptsend(1);
+            await Agent_ExtractScript_Promptsend(1);
         }
 
         async void Agent_ExtractScript()
@@ -13588,11 +13570,11 @@ namespace Ostium
 
             if (!string.IsNullOrEmpty(content))
             {
-                StartWebPageAnalyse(0, content);
+                await StartWebPageAnalyse(0, content);
             }
         }
 
-        async void Agent_ExtractScript_Promptsend(int value)
+        async Task Agent_ExtractScript_Promptsend(int value)
         {
             using (var form = new PromptSend_Frm())
             {
@@ -13617,7 +13599,7 @@ namespace Ostium
 
                     if (!string.IsNullOrEmpty(content))
                     {
-                        StartWebPageAnalyse(value, content);
+                        await StartWebPageAnalyse(value, content);
                     }
                 }
             }
@@ -13690,7 +13672,7 @@ namespace Ostium
         /// <param value="0">Using the configuration file prompt message.</param>
         /// <param value="1">Using the custom prompt message.</param>
         ///
-        async void StartWebPageAnalyse(int value, string content)
+        async Task StartWebPageAnalyse(int value, string content)
         {
             CtrlTabOobai();
             Control_Tab.SelectedIndex = 6;
@@ -13719,9 +13701,9 @@ namespace Ostium
         /// </summary>
         /// <param Task="Fetches a single web page by URL and returns its content."></param>
         ///
-        void Agent_Web_Fetch_Btn_Click(object sender, EventArgs e)
+        async void Agent_Web_Fetch_Btn_Click(object sender, EventArgs e)
         {
-            AgentFetchSearch(WBrowse.Source.AbsoluteUri);
+            await AgentFetchSearch(WBrowse.Source.AbsoluteUri);
         }
         ///
         /// <summary>
@@ -13753,7 +13735,7 @@ namespace Ostium
             GoBrowser(URLbrowse_Cbx.Text, 2);
         }
 
-        async void AgentFetchSearch(string Uri)
+        async Task AgentFetchSearch(string Uri)
         {
             CtrlTabOobai();
             Control_Tab.SelectedIndex = 6;
@@ -13763,7 +13745,7 @@ namespace Ostium
             await PerformWebFetchAsync();
         }
 
-        async void Agent_Web_Search(string word)
+        async Task Agent_Web_Search(string word)
         {
             CtrlTabOobai();
             Control_Tab.SelectedIndex = 6;
@@ -13917,7 +13899,7 @@ namespace Ostium
             return string.Compare(lat, cur, StringComparison.OrdinalIgnoreCase) > 0;
         }
 
-        async void VerifyUPDT(int Warn)
+        async Task VerifyUPDT(int Warn)
         {
             bool isConnected = await CheckInternetConnect();
 
