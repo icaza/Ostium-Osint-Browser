@@ -40,6 +40,7 @@ public class FloodHeader
         await EnableWebGL1ProtectionAsync(fakeRenderer, fakeVendor);
         await EnableCanvasProtectionAsync();
         await EnableAudioContextProtectionAsync();
+        await EnableFontsProtectionAsync();
         await EnableWebRTCAndBatteryAndSpeechProtectionAsync();
         await EnableAdvancedFingerprintProtectionAsync();
     }
@@ -797,6 +798,43 @@ public class FloodHeader
             };
 
             console.log('[Fingerprint Defender] Audio fingerprint modified');
+        })();
+        ";
+
+        await webView.AddScriptToExecuteOnDocumentCreatedAsync(script);
+    }
+
+    public async Task EnableFontsProtectionAsync()
+    {
+        string script = @"
+        (function() {
+            const originalGetOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth').get;
+            const originalGetOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight').get;
+            const originalGetBoundingClientRect = Element.prototype.getBoundingClientRect;
+
+            // Slight falsification of measurements to confuse fingerprinting algorithms
+            // A slight variation or a fixed value is introduced for suspected text elements
+            Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+                get: function() {
+                    const width = originalGetOffsetWidth.call(this);
+                    // If the element is used for covert fingerprinting (often off-screen or tiny)
+                    if (this.style.fontFamily && (this.style.position === 'absolute' || width === 0)) {
+                        return 100; // Returns a fixed value to hide the actual font size
+                    }
+                    return width;
+                }
+            });
+
+            Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+                get: function() {
+                    const height = originalGetOffsetHeight.call(this);
+                    if (this.style.fontFamily && (this.style.position === 'absolute' || height === 0)) {
+                        return 20;
+                    }
+                    return height;
+                }
+            });
+            console.log('[Fingerprint Defender] Font protection active');
         })();
         ";
 

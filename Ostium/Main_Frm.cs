@@ -1317,13 +1317,36 @@ namespace Ostium
         {
             var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
 
+            if (File.Exists(Path.Combine(AppStart, ".tor")))
+            {
+                env = await CoreWebView2Environment.CreateAsync(
+                    browserExecutableFolder: null,
+                    userDataFolder: userDataFolder,
+                    options: new CoreWebView2EnvironmentOptions
+                    {
+                        AdditionalBrowserArguments =
+                            "--proxy-server=socks5://127.0.0.1:9050 " +
+                            "--force-webrtc-ip-handling-policy=disable_non_proxied_udp " +
+                            "--enable-features=WebRtcHideLocalIpsWithMdns " +
+                            "--disable-gpu "
+                    });
+            }
+
             await WBrowse.EnsureCoreWebView2Async(env);
             await WBrowsefeed.EnsureCoreWebView2Async(env);
             await WbOutA.EnsureCoreWebView2Async(env);
             await WbOutB.EnsureCoreWebView2Async(env);
 
-            WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-            WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+            if (!File.Exists(Path.Combine(AppStart, ".tor")))
+            {
+                WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+            }
+            else
+            {
+                TrackPrevent_Cbx.Text = "Strict";
+                FloodHeader_Chk.Checked = true;
+            }
         }
 
         /// <summary>
@@ -2080,6 +2103,8 @@ namespace Ostium
                 return;
             }
 
+            WBrowse.CoreWebView2.PermissionRequested += WBrowse_PermissionRequested;
+
             WBrowse.CoreWebView2.HistoryChanged += WBrowse_HistoryChanged;
             WBrowse.CoreWebView2.DocumentTitleChanged += WBrowse_DocumentTitleChanged;
             WBrowse.CoreWebView2.ContextMenuRequested += WBrowse_ContextMenuRequested;
@@ -2102,6 +2127,27 @@ namespace Ostium
             control.NavigationStarting += WBrowse_NavigationStarting;
             control.NavigationCompleted += WBrowse_NavigationCompleted;
             control.SourceChanged += WBrowse_SourceChanged;
+        }
+
+        void WBrowse_PermissionRequested(object sender, CoreWebView2PermissionRequestedEventArgs e)
+        {
+            var sensitivePermissions = new[]
+            {
+                CoreWebView2PermissionKind.Geolocation,
+                CoreWebView2PermissionKind.LocalFonts,
+                CoreWebView2PermissionKind.Microphone,
+                CoreWebView2PermissionKind.Camera,
+                CoreWebView2PermissionKind.ClipboardRead,
+                CoreWebView2PermissionKind.Notifications,
+                CoreWebView2PermissionKind.Autoplay,
+                CoreWebView2PermissionKind.FileReadWrite
+            };
+
+            if (Enumerable.Contains(sensitivePermissions, e.PermissionKind))
+            {
+                e.State = CoreWebView2PermissionState.Deny;
+                e.Handled = true;
+            }
         }
 
         // Wbrowsefeed
@@ -2267,6 +2313,8 @@ namespace Ostium
                 return;
             }
 
+            WBrowsefeed.CoreWebView2.PermissionRequested += WBrowsefeed_PermissionRequested;
+
             WBrowsefeed.CoreWebView2.HistoryChanged += WBrowsefeed_HistoryChanged;
             WBrowsefeed.CoreWebView2.DocumentTitleChanged += WBrowsefeed_DocumentTitleChanged;
             WBrowsefeed.CoreWebView2.ContextMenuRequested += Wbrowsefeed_ContextMenuRequested;
@@ -2279,6 +2327,27 @@ namespace Ostium
             WBrowsefeed.CoreWebView2.Settings.IsScriptEnabled = true;
 
             WBrowsefeed_UpdtTitleEvent("Initialization Completed succeeded");
+        }
+
+        void WBrowsefeed_PermissionRequested(object sender, CoreWebView2PermissionRequestedEventArgs e)
+        {
+            var sensitivePermissions = new[]
+            {
+                CoreWebView2PermissionKind.Geolocation,
+                CoreWebView2PermissionKind.LocalFonts,
+                CoreWebView2PermissionKind.Microphone,
+                CoreWebView2PermissionKind.Camera,
+                CoreWebView2PermissionKind.ClipboardRead,
+                CoreWebView2PermissionKind.Notifications,
+                CoreWebView2PermissionKind.Autoplay,
+                CoreWebView2PermissionKind.FileReadWrite
+            };
+
+            if (Enumerable.Contains(sensitivePermissions, e.PermissionKind))
+            {
+                e.State = CoreWebView2PermissionState.Deny;
+                e.Handled = true;
+            }
         }
 
         async void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
@@ -10688,8 +10757,11 @@ namespace Ostium
                 @Class_Var.FLOOD_HEADER = 1;
                 FloodHeader_Chk.ForeColor = Color.Red;
 
-                MessageBox.Show("The method used against fingerprinting is aggressive; The functioning of certain websites may be disrupted, " +
-                    "certain websites or services may consider you a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (!File.Exists(Path.Combine(AppStart, ".tor")))
+                {
+                    MessageBox.Show("The method used against fingerprinting is aggressive; The functioning of certain websites may be disrupted, " +
+                        "certain websites or services may consider you a robot.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
                 if (!IsParentLinkEnabled)
                 {
@@ -13838,7 +13910,7 @@ namespace Ostium
 
             if (isConnected)
             {
-                await CheckForUpdates(Warn); 
+                await CheckForUpdates(Warn);
             }
             else if (Warn == 1)
                 MessageBox.Show("It seems you are not connected to the Internet.", "No connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
