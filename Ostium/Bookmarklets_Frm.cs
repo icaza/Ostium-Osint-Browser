@@ -82,7 +82,7 @@ namespace Ostium
         {
             try
             {
-                if (Bookmarklet_Lst.SelectedIndex != -1 && NameBkmklt_Txt.Text != "")
+                if (NameBkmklt_Txt.Text != "")
                 {
                     MinifyJs();
 

@@ -60,25 +60,13 @@ namespace Ostium
         string userDataFolder;
         string sessionID;
 
-        ///
-        /// <summary>
-        /// Initialization of the voice for Reading Feed Titles
-        /// </summary>
-        ///
+        // Initialization of the voice for Reading Feed Titles
         readonly SpeechSynthesizer synth = new SpeechSynthesizer();
 
-        ///
-        /// <summary>
-        /// List of default configuration URLs from the "config.xml" file, load from the "url_dflt_cnf.ost" file
-        /// </summary>
-        ///
+        // List of default configuration URLs from the "config.xml" file, load from the "url_dflt_cnf.ost" file
         readonly List<string> lstUrlDfltCnf = new List<string>();
 
-        ///
-        /// <summary>
-        /// Directories of the different usage files and the Database
-        /// </summary>
-        /// 
+        // Directories of the different usage files and the Database
         readonly string AppStart = Application.StartupPath + @"\";
         readonly string Plugins = Application.StartupPath + @"\add-on\";
         readonly string DBdirectory = Application.StartupPath + @"\database\";
@@ -103,11 +91,7 @@ namespace Ostium
 
         string databasePath = "default_database_name";
 
-        ///
-        /// <summary>
-        /// Objects
-        /// </summary>
-        /// 
+        // Objects
         Webview_Frm webviewForm;
         HtmlText_Frm htmlTextFrm;
         Mdi_Frm mdiFrm;
@@ -131,11 +115,7 @@ namespace Ostium
         readonly string JsonA = Application.StartupPath + @"\json-files\out-a-json.json";
         readonly string JsonB = Application.StartupPath + @"\json-files\out-b-json.json";
 
-        ///
-        /// <summary>
-        /// Variables
-        /// </summary>
-        /// 
+        // Variables
         readonly string SoftVersion = string.Empty;
         string ClearOnOff = "on";
         string NameUriDB = string.Empty;
@@ -163,11 +143,7 @@ namespace Ostium
         int TabRss = 0;
         int TabJson = 0;
 
-        ///
-        /// <summary>
-        /// Map variables
-        /// </summary>
-        /// 
+        // Map variables
         int MapZoom = 1;
         string CrossCenter = "on";
         string VerifMapOpn = "off";
@@ -182,20 +158,14 @@ namespace Ostium
         ///
         int Commut = 0;
 
-        ///
-        /// <summary>
-        /// DLL => "icaza.dll"
-        /// </summary>
-        /// 
+        // DLL => "icaza.dll"
         readonly IcazaClass senderror = new IcazaClass();
         readonly Loaddir loadfiledir = new Loaddir();
         readonly IcazaClass selectdir = new IcazaClass();
         readonly IcazaClass openfile = new IcazaClass();
         readonly ReturnSize sizedireturn = new ReturnSize();
 
-        /// <summary>
-        /// Message displayed when starting the creation of a Diagram
-        /// </summary>
+        // Message displayed when starting the creation of a Diagram
         readonly string MessageStartDiagram = "When this window closes, the diagram creation process begins, be patient the time depends on the file size " +
             "and structure. In case of blockage! use Debug in the menu to kill the javaw process. Feel free to join the Discord channel for help.";
 
@@ -1354,7 +1324,11 @@ namespace Ostium
             {
                 TrackPrevent_Cbx.Text = "Strict";
                 FloodHeader_Chk.Checked = true;
+
                 GoWebwiev_Btn.Enabled = false;
+                TableParse_Btn.Enabled = false;
+                TableNode_Btn.Enabled = false;
+                OpnTableList_Btn.Enabled = false;
             }
             else
             {
@@ -1363,9 +1337,7 @@ namespace Ostium
             }
         }
 
-        /// <summary>
-        /// Block Ads/Trackers
-        /// </summary>
+        // Block Ads/Trackers
         void WBrowse_WebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
         {
             try
@@ -1950,9 +1922,7 @@ namespace Ostium
             menuList.Insert(menuList.Count, newItem7);
             menuList.Insert(menuList.Count, newItem8);
         }
-        ///
-        /// <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
-        /// 
+        // <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
         void WBrowse_UpdtTitleEvent(string message)
         {
             string currentDocumentTitle = WBrowse?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
@@ -2073,9 +2043,7 @@ namespace Ostium
             }
         }
 
-        ///
-        /// <param name="URLtxt_txt">Saving current URL in Textbox for reuse</param>
-        ///
+        // <param name="URLtxt_txt">Saving current URL in Textbox for reuse</param>
         void WBrowse_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
             URLtxt_Status.Text = WBrowse.Source.AbsoluteUri;
@@ -2088,9 +2056,7 @@ namespace Ostium
             Forward_Btn.Enabled = WBrowse.CoreWebView2.CanGoForward;
             WBrowse_UpdtTitleEvent("History Changed");
         }
-        ///
-        /// <param name="NameUriDB">URL Title variable for addition to the DataBase</param>
-        /// 
+        // <param name="NameUriDB">URL Title variable for addition to the DataBase</param>
         void WBrowse_DocumentTitleChanged(object sender, object e)
         {
             Text = WBrowse.CoreWebView2.DocumentTitle;
@@ -2287,9 +2253,7 @@ namespace Ostium
 
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
         }
-        ///
-        /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
-        ///
+        // <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         async void WBrowsefeed_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             if (SaveCookies_Chk.Checked)
@@ -2297,9 +2261,7 @@ namespace Ostium
 
             WBrowsefeed_UpdtTitleEvent("Navigation Completed");
         }
-        ///
-        /// <param name="URLtxt_txt">Saving current URL in Textbox for reuse</param>
-        /// 
+        // <param name="URLtxt_txt">Saving current URL in Textbox for reuse</param>
         void WBrowsefeed_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
             URLtxt_Status.Text = WBrowsefeed.Source.AbsoluteUri;
@@ -3327,11 +3289,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! AddOn_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Loading the selected URL constructor file located in the “filesdir/url-constructor” directory
-        /// </summary>
-        ///
+        // Loading the selected URL constructor file located in the “filesdir/url-constructor” directory
         void Construct_URL_Cbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -3345,10 +3303,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Construct_URL_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Opening in the "OpenSource_Frm" window of the file "filesdir/gdork.txt" (Google Dork) if file exists True
-        ///
+        // Opening in the "OpenSource_Frm" window of the file "filesdir/gdork.txt" (Google Dork) if file exists True
         void GoogleDork_Btn_Click(object sender, EventArgs e)
         {
             GoogleDork();
@@ -5763,12 +5718,8 @@ namespace Ostium
                 senderror.ErrorLog("Error! Construct_URL: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-        ///
-        /// <summary>
-        /// Downloading and saving the source of the current WEB page overwriting the previous, only remote files. This operation is 
-        /// carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
-        /// </summary>
-        /// 
+        // Downloading and saving the source of the current WEB page overwriting the previous, only remote files. This operation is 
+        // carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
         async Task Download_Source_Page()
         {
             try
@@ -6170,7 +6121,6 @@ namespace Ostium
         #endregion
 
         #region File_List_Create
-
         void File_Write(string fileName, string content)
         {
             try
@@ -6260,7 +6210,6 @@ namespace Ostium
 
             OpenFile_Editor(dirPath);
         }
-
         #endregion
 
         void OpenFile_Editor(string fileSelect)
@@ -6412,7 +6361,6 @@ namespace Ostium
                 senderror.ErrorLog("Error! DatabasePnl: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-
         void AddTable_Btn_Click(object sender, EventArgs e)
         {
             TableName_Txt.Text = Regex.Replace(TableName_Txt.Text, "[^a-zA-Z]", string.Empty);
@@ -6578,7 +6526,6 @@ namespace Ostium
                 senderror.ErrorLog("Error! Sqlite_Read: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-
         ///
         /// <summary>
         /// Loading database URL in wBrowser or in the "DataValue_Opn" Textbox of the "TAB Data" section
@@ -6617,7 +6564,6 @@ namespace Ostium
                 senderror.ErrorLog("Error! Sqlite_ReadUri: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-
         #endregion
 
         #region Database_Organiz
@@ -7030,7 +6976,6 @@ namespace Ostium
             else
                 Db_OrderLst_Btn.ForeColor = Color.White;
         }
-
         #endregion
 
         #region Feed_
@@ -7748,7 +7693,6 @@ namespace Ostium
 
         #endregion
         ///
-        /// <summary>
         /// Cookies save
         /// </summary>
         /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True, by default is False</param>
@@ -8946,6 +8890,8 @@ namespace Ostium
                     loadfiledir.LoadFileDirectory(BkmkltDir, "xml", "lst", Bookmarklet_Lst);
 
                 PanelBkmklt_Pnl.Visible = !PanelBkmklt_Pnl.Visible;
+
+                Desc_Lbl.Text = "";
             }
             catch (Exception ex)
             {
@@ -10803,7 +10749,6 @@ namespace Ostium
         }
 
         #region Json_
-
         void JsonOpnFile_Btn_Click(object sender, EventArgs e)
         {
             string fileopen = openfile.Fileselect(AppStart, "json files (*.json)|*.json|All files (*.*)|*.*", 2);
@@ -11589,7 +11534,6 @@ namespace Ostium
                 e.Handled = true;
             }
         }
-
         #endregion
 
         void ClearObject_Keypress(object sender, EventArgs e)
@@ -11626,7 +11570,6 @@ namespace Ostium
         #endregion
 
         #region OOBai UI Agent and more
-
         #region Initialization
         void InitializeHttpClient()
         {
@@ -13819,7 +13762,6 @@ namespace Ostium
         {
             GoBrowser($"https://ollama.com/library/{ModeSelectl_Cbx.Text}", 1);
         }
-
         #endregion
 
         #region Update_
