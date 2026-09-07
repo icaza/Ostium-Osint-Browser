@@ -29,7 +29,7 @@ namespace ConversationCompressor
 
         static HashSet<string> LoadStopWords()
         {
-            string filePath = Application.StartupPath + @"\OOBai\french_words.txt";
+            string filePath = Application.StartupPath + @"\OOBai\default_words.txt";
 
             try
             {

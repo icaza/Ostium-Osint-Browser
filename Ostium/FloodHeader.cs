@@ -918,7 +918,7 @@ public class FloodHeader
             const originalMatchMedia = window.matchMedia;
             window.matchMedia = function(query) {
                 const result = originalMatchMedia.apply(this, arguments);
-                // Certains fingerprinters utilisent les media queries
+                // Some fingerprinters use media queries
                 if (query.includes('prefers-color-scheme')) {
                     return { matches: false, media: query };
                 }

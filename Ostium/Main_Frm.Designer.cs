@@ -6838,8 +6838,8 @@
             this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
-            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
-            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(161, 17);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
             // 
             // URLtxt_Status
             // 

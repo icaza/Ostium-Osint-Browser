@@ -8,6 +8,7 @@ using Icaza;
 using LoadDirectory;
 using Microsoft.VisualBasic;
 using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ostium.Properties;
@@ -25,7 +26,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Security.AccessControl;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.ServiceModel.Syndication;
 using System.Speech.Synthesis;
 using System.Text;
@@ -267,9 +270,6 @@ namespace Ostium
         {
             InitializeComponent();
 
-            InitializeEnvironmentWebview();
-            InitializeEnvironment();
-
             _urlCache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
             WBrowse_EventHandlers(WBrowse);
@@ -291,6 +291,9 @@ namespace Ostium
             {
                 BeginInvoke((MethodInvoker)async delegate
                 {
+                    await InitializeEnvironmentWebview();
+                    await InitializeEnvironment();
+
                     CreateDirectory();
                     ///
                     /// Loading default URLs into a List
@@ -1190,6 +1193,8 @@ namespace Ostium
             RFU(Path.Combine(OOBai, "_ai_model_list.txt"), Path.Combine(OOBai, "ai_model_list.txt"));
             RFU(Path.Combine(OOBai, "_agent_ai_config.json"), Path.Combine(OOBai, "agent_ai_config.json"));
             RFU(Path.Combine(OOBai, "_french_words.txt"), Path.Combine(OOBai, "french_words.txt"));
+            RFU(Path.Combine(OOBai, "_english_words.txt"), Path.Combine(OOBai, "english_words.txt"));
+            RFU(Path.Combine(OOBai, "_default_words.txt"), Path.Combine(OOBai, "default_words.txt"));
 
             AgentConfig.Load();
 
@@ -1272,68 +1277,113 @@ namespace Ostium
         }
 
         #region Browser_Event Handler
-        async void InitializeEnvironmentWebview()
+        async Task InitializeEnvironmentWebview()
         {
             CreateNameAleat();
 
             userDataFolder = Path.Combine(Application.StartupPath, "EnvironmentWebview", Una, "WebData");
             sessionID = Una;
 
-            Directory.CreateDirectory(userDataFolder);
+            ValidateWebViewDataFolder(userDataFolder);
             Class_Var.USER_DATA_FOLDER = userDataFolder;
         }
 
-        async void InitializeEnvironment()
+        public async Task InitializeEnvironment()
         {
             bool torMode = File.Exists(Path.Combine(AppStart, ".tor"));
 
             CoreWebView2Environment env;
             try
             {
-                env = torMode
-                    ? await CoreWebView2Environment.CreateAsync(
-                        browserExecutableFolder: null,
-                        userDataFolder: userDataFolder,
-                        options: new CoreWebView2EnvironmentOptions
-                        {
-                            AdditionalBrowserArguments = string.Join(" ",
-                                "--proxy-server=socks5://127.0.0.1:9050",
-                                "--host-resolver-rules=\"MAP * ~NOTFOUND , EXCLUDE 127.0.0.1\"",
-                                "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
-                                "--enable-features=WebRtcHideLocalIpsWithMdns",
-                                "--disable-gpu")
-                        })
-                    : await CoreWebView2Environment.CreateAsync(
-                        browserExecutableFolder: null,
-                        userDataFolder: userDataFolder);
+                var options = new CoreWebView2EnvironmentOptions();
+
+                if (torMode)
+                {
+                    string hostResolverRules = "MAP * ~NOTFOUND , EXCLUDE 127.0.0.1";
+
+                    var args = new[]
+                    {
+                    "--proxy-server=socks5://127.0.0.1:9050",
+                    $"--host-resolver-rules=\\\"{hostResolverRules}\\\"",
+                    "--dns-prefetch-disable",
+                    "--disable-features=DnsOverHttps",             // try to disable DoH
+                    "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+                    "--enable-features=WebRtcHideLocalIpsWithMdns",
+                    "--disable-gpu"
+                };
+
+                    options.AdditionalBrowserArguments = string.Join(" ", args);
+                }
+
+                env = await CoreWebView2Environment.CreateAsync(
+                    browserExecutableFolder: null,
+                    userDataFolder: userDataFolder,
+                    options: options);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"WebView2 initialization failed: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"WebView2 initialization failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            await Task.WhenAll(
-                WBrowse.EnsureCoreWebView2Async(env),
-                WBrowsefeed.EnsureCoreWebView2Async(env),
-                WbOutA.EnsureCoreWebView2Async(env),
-                WbOutB.EnsureCoreWebView2Async(env));
-
-            if (torMode)
+            try
             {
-                TrackPrevent_Cbx.Text = "Strict";
-                FloodHeader_Chk.Checked = true;
-
-                GoWebwiev_Btn.Enabled = false;
-                TableParse_Btn.Enabled = false;
-                TableNode_Btn.Enabled = false;
-                OpnTableList_Btn.Enabled = false;
+                await Task.WhenAll(
+                    SafeEnsureCoreWebView2Async(WBrowse, env),
+                    SafeEnsureCoreWebView2Async(WBrowsefeed, env),
+                    SafeEnsureCoreWebView2Async(WbOutA, env),
+                    SafeEnsureCoreWebView2Async(WbOutB, env));
             }
-            else
+            catch (Exception ex)
             {
-                WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-                WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
+                MessageBox.Show($"Unable to initialize the embedded browser.: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Explicitly apply the tracking level to the profile.
+            try
+            {
+                if (torMode)
+                {
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel =
+                        CoreWebView2TrackingPreventionLevel.Strict;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel =
+                        CoreWebView2TrackingPreventionLevel.Strict;
+
+                    TrackPrevent_Cbx.Text = "Strict";
+                    FloodHeader_Chk.Checked = true;
+
+                    GoWebwiev_Btn.Enabled = false;
+                    TableParse_Btn.Enabled = false;
+                    TableNode_Btn.Enabled = false;
+                    OpnTableList_Btn.Enabled = false;
+                }
+                else
+                {
+                    TrackPrevent_Cbx.Text = "Balanced";
+
+                    var level = CoreWebView2TrackingPreventionLevel.Balanced;
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = level;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = level;
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Unable to set tracking prevention level: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        async Task SafeEnsureCoreWebView2Async(WebView2 control, CoreWebView2Environment env)
+        {
+            if (control == null) throw new ArgumentNullException(nameof(control));
+            try
+            {
+                await control.EnsureCoreWebView2Async(env).ConfigureAwait(true);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog($"Failed to initialize WebView2 control {control.Name}: ", ex.ToString(), "Main_Frm", AppStart);
+                throw;
             }
         }
 
@@ -1922,6 +1972,7 @@ namespace Ostium
             menuList.Insert(menuList.Count, newItem7);
             menuList.Insert(menuList.Count, newItem8);
         }
+
         // <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
         void WBrowse_UpdtTitleEvent(string message)
         {
@@ -2056,6 +2107,7 @@ namespace Ostium
             Forward_Btn.Enabled = WBrowse.CoreWebView2.CanGoForward;
             WBrowse_UpdtTitleEvent("History Changed");
         }
+
         // <param name="NameUriDB">URL Title variable for addition to the DataBase</param>
         void WBrowse_DocumentTitleChanged(object sender, object e)
         {
@@ -2101,7 +2153,7 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        async void WBrowse_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        async void WBrowse_EventHandlers(WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowse_InitializationCompleted;
             control.NavigationStarting += WBrowse_NavigationStarting;
@@ -2253,6 +2305,7 @@ namespace Ostium
 
             WBrowsefeed_UpdtTitleEvent("Navigation Starting");
         }
+
         // <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         async void WBrowsefeed_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
@@ -2261,6 +2314,7 @@ namespace Ostium
 
             WBrowsefeed_UpdtTitleEvent("Navigation Completed");
         }
+
         // <param name="URLtxt_txt">Saving current URL in Textbox for reuse</param>
         void WBrowsefeed_SourceChanged(object sender, CoreWebView2SourceChangedEventArgs e)
         {
@@ -2336,7 +2390,7 @@ namespace Ostium
             }
         }
 
-        void WBrowsefeed_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowsefeed_EventHandlers(WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsefeed_InitializationCompleted;
             control.NavigationStarting += WBrowsefeed_NavigationStarting;
@@ -2344,6 +2398,34 @@ namespace Ostium
             control.SourceChanged += WBrowsefeed_SourceChanged;
         }
         #endregion
+
+        void ValidateWebViewDataFolder(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path)) throw new ArgumentException(nameof(path));
+
+            var dir = Directory.CreateDirectory(path);
+
+            try
+            {
+                // Restrict permissions: grant full access to the current user only
+                var ds = dir.GetAccessControl();
+                var currentUser = WindowsIdentity.GetCurrent().User;
+                var rule = new FileSystemAccessRule(currentUser,
+                    FileSystemRights.FullControl,
+                    InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
+                    PropagationFlags.None,
+                    AccessControlType.Allow);
+
+                // Delete inherited/public rules if necessary (be careful with shared environments).
+                ds.SetAccessRuleProtection(isProtected: true, preserveInheritance: false);
+                ds.ResetAccessRule(rule);
+                dir.SetAccessControl(ds);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Failed to restrict userDataFolder ACLs: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
 
         void ReadRSSflux(string uri)
         {
@@ -3317,7 +3399,7 @@ namespace Ostium
 
         async void WebpageToPng_Btn_Click(object sender, EventArgs e)
         {
-           await WebpageCapture();
+            await WebpageCapture();
         }
 
         async Task WebpageCapture()
@@ -5718,6 +5800,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Construct_URL: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         // Downloading and saving the source of the current WEB page overwriting the previous, only remote files. This operation is 
         // carried out in order to respond to certain analysis operations according to demand, without having to multiply queries
         async Task Download_Source_Page()
@@ -10680,28 +10763,28 @@ namespace Ostium
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
                     Class_Var.TRACKING = "None";
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
                     TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
                 case "Basic":
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
                     Class_Var.TRACKING = "Basic";
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: Basic";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: BASIC";
                     TrackingLevel_Lbl.ForeColor = Color.Yellow;
                     break;
                 case "Balanced":
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                     Class_Var.TRACKING = "Balanced";
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: Balanced";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: BALANCED";
                     TrackingLevel_Lbl.ForeColor = Color.Orange;
                     break;
                 case "Strict":
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
                     Class_Var.TRACKING = "Strict";
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: Strict";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: STRICT";
                     TrackingLevel_Lbl.ForeColor = Color.Red;
                     break;
                 default:

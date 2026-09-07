@@ -356,6 +356,7 @@
     <None Include="Languages\README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="OOBai\README.md" />
     <None Include="OOBai\_agent_ai_config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -455,6 +456,10 @@
     <Content Include="Languages\Spanish.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="OOBai\_default_words.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OOBai\_english_words.txt" />
     <Content Include="OOBai\_french_words.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
