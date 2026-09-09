@@ -8182,9 +8182,9 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
+            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
-            this.Controls.Add(this.Tools_TAB_0);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -113,15 +113,14 @@ namespace Ostium
         DiscoverRSS DiscovRSS;
 
         // Json
-        Microsoft.Web.WebView2.WinForms.WebView2 WbOutJson;
-        Microsoft.Web.WebView2.WinForms.WebView2 WbOutParse;
+        WebView2 WbOutJson;
+        WebView2 WbOutParse;
         readonly string JsonA = Application.StartupPath + @"\json-files\out-a-json.json";
         readonly string JsonB = Application.StartupPath + @"\json-files\out-b-json.json";
 
         // Variables
         readonly string SoftVersion = string.Empty;
         string ClearOnOff = "on";
-        string NameUriDB = string.Empty;
         readonly string UnshortURLval = string.Empty;
         string Una = string.Empty;
         string TableOpen = string.Empty;
@@ -272,9 +271,6 @@ namespace Ostium
 
             _urlCache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
-            WBrowse_EventHandlers(WBrowse);
-            WBrowsefeed_EventHandlers(WBrowsefeed);
-
             Form_EventHandler();
 
             Assembly thisAssem = typeof(Program).Assembly;
@@ -293,6 +289,8 @@ namespace Ostium
                 {
                     await InitializeEnvironmentWebview();
                     await InitializeEnvironment();
+                    WBrowse_EventHandlers(WBrowse);
+                    WBrowsefeed_EventHandlers(WBrowsefeed);
 
                     CreateDirectory();
                     ///
@@ -1345,26 +1343,27 @@ namespace Ostium
             {
                 if (torMode)
                 {
-                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel =
-                        CoreWebView2TrackingPreventionLevel.Strict;
-                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel =
-                        CoreWebView2TrackingPreventionLevel.Strict;
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
 
                     TrackPrevent_Cbx.Text = "Strict";
                     FloodHeader_Chk.Checked = true;
-
                     GoWebwiev_Btn.Enabled = false;
-                    TableParse_Btn.Enabled = false;
-                    TableNode_Btn.Enabled = false;
-                    OpnTableList_Btn.Enabled = false;
+                    UnshortUrl_Btn.Enabled = false;
+                    HTMLtxt_Btn.Enabled = false;
+                    OpnGroupFrm_Btn.Enabled = false;
+
+                    TabPage page1 = Control_Tab.TabPages[1];
+                    Control_Tab.TabPages.Remove(page1);
+                    TabPage page4 = Control_Tab.TabPages[4];
+                    Control_Tab.TabPages.Remove(page4);
                 }
                 else
                 {
                     TrackPrevent_Cbx.Text = "Balanced";
 
-                    var level = CoreWebView2TrackingPreventionLevel.Balanced;
-                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = level;
-                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = level;
+                    WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
+                    WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                 }
             }
             catch (Exception ex)
@@ -2108,12 +2107,9 @@ namespace Ostium
             WBrowse_UpdtTitleEvent("History Changed");
         }
 
-        // <param name="NameUriDB">URL Title variable for addition to the DataBase</param>
         void WBrowse_DocumentTitleChanged(object sender, object e)
         {
             Text = WBrowse.CoreWebView2.DocumentTitle;
-            NameUriDB = WBrowse.CoreWebView2.DocumentTitle;
-
             WBrowse_UpdtTitleEvent("DocumentTitleChanged");
         }
 
@@ -5483,15 +5479,15 @@ namespace Ostium
 
         async void Control_Tab_Click(object sender, EventArgs e)
         {
-            switch (Control_Tab.SelectedIndex)
+            switch (Control_Tab.SelectedTab.Name)
             {
-                case 0:
+                case "Browser_Tab":
                     CtrlTabBrowsx();
                     break;
-                case 1:
+                case "Rss_Tab":
                     CtrlTabRSS();
                     break;
-                case 2:
+                case "Data_Tab":
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -5521,7 +5517,7 @@ namespace Ostium
 
                     loadfiledir.LoadFileDirectory(DBdirectory, "*", "lst", DataBaze_Lst);
                     break;
-                case 3:
+                case "Workflow_Tab":
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = true;
@@ -5546,7 +5542,7 @@ namespace Ostium
                     MaxHistoryEntry_Status.Visible = false;
                     Agent_RSS_Cnt_Status.Visible = false;
                     break;
-                case 4:
+                case "Map_Tab":
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -5579,7 +5575,7 @@ namespace Ostium
                         loadfiledir.LoadFileDirectory(MapDir, "xml", "lst", PointLoc_Lst);
                     }
                     break;
-                case 5:
+                case "Json_Tab":
                     if (TabJson == 0)
                     {
                         WbOutA.Source = new Uri(HomeUrlJson);
@@ -5611,10 +5607,10 @@ namespace Ostium
                     MaxHistoryEntry_Status.Visible = false;
                     Agent_RSS_Cnt_Status.Visible = false;
                     break;
-                case 6:
+                case "OOBai_Tab":
                     CtrlTabOobai();
                     break;
-                case 7:
+                case "Options_Tab":
                     Tools_TAB_0.Visible = false;
                     Tools_TAB_1.Visible = false;
                     Tools_TAB_3.Visible = false;
@@ -6428,7 +6424,7 @@ namespace Ostium
                     DB_Pnl.Location = new Point(PtX, PtY);
                     DB_Pnl.Visible = true;
 
-                    UrlName_Txt.Text = NameUriDB;
+                    UrlName_Txt.Text = WBrowse.CoreWebView2.DocumentTitle;
                     URLadd_Lbl.Text = WBrowse.Source.AbsoluteUri;
 
                     OpnAllTable();
@@ -10746,7 +10742,10 @@ namespace Ostium
 
         void TtsButton_Sts_ButtonClick(object sender, EventArgs e)
         {
-            GoBrowser(URLtxt_Status.Text, 1);
+            bool torMode = File.Exists(Path.Combine(AppStart, ".tor"));
+
+            if (!torMode)
+                GoBrowser(URLtxt_Status.Text, 1);
         }
 
         async void TtsButton_Sts_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
