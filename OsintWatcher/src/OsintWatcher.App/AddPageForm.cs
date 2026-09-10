@@ -20,7 +20,7 @@ public sealed class AddPageForm : Form
     {
         Text = existing is null ? "Add monitored page" : "Edit monitored page";
         Width = 460;
-        Height = 440;
+        Height = 340;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         StartPosition = FormStartPosition.CenterParent;
         MaximizeBox = false;
@@ -41,11 +41,11 @@ public sealed class AddPageForm : Form
         DarkTheme.StyleTextBox(_labelBox);
         DarkTheme.StyleTextBox(_caseBox);
         DarkTheme.StyleComboBox(_modeBox);
-        _modeBox.Items.AddRange(new object[] { "Manual", "Randomized interval" });
+        _modeBox.Items.AddRange(["Manual", "Randomized interval"]);
         _modeBox.SelectedIndex = 0;
         _intervalBox.Minimum = 1; _intervalBox.Maximum = 10080; _intervalBox.Value = 60;
         _jitterBox.Minimum = 0; _jitterBox.Maximum = 90; _jitterBox.Value = 30;
-        _allowPrivateBox.Text = "Allow private / internal targets (disables SSRF guard)";
+        _allowPrivateBox.Text = "Allow private / internal targets \r(disables SSRF guard)";
         _allowPrivateBox.ForeColor = DarkTheme.Brick;
         _allowPrivateBox.AutoSize = true;
 
@@ -58,9 +58,9 @@ public sealed class AddPageForm : Form
         layout.Controls.Add(_allowPrivateBox, 1, layout.RowCount);
         layout.RowCount++;
 
-        var buttonPanel = new FlowLayoutPanel { Dock = DockStyle.Bottom, FlowDirection = FlowDirection.RightToLeft, Padding = new Padding(16), Height = 52 };
-        var ok = new Button { Text = existing is null ? "Add" : "Save", DialogResult = DialogResult.OK, Width = 90 };
-        var cancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Width = 90 };
+        var buttonPanel = new FlowLayoutPanel { Dock = DockStyle.Bottom, FlowDirection = FlowDirection.RightToLeft, Padding = new Padding(0, 0, 15, 10), Height = 52 };
+        var ok = new Button { Text = existing is null ? "Add" : "Save", DialogResult = DialogResult.OK, Width = 90, AutoSize = true };
+        var cancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Width = 90, AutoSize = true };
         DarkTheme.StyleButton(ok, primary: true);
         DarkTheme.StyleButton(cancel);
         buttonPanel.Controls.Add(ok);
