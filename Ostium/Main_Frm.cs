@@ -287,10 +287,11 @@ namespace Ostium
             {
                 BeginInvoke((MethodInvoker)async delegate
                 {
-                    await InitializeEnvironmentWebview();
-                    await InitializeEnvironment();
                     WBrowse_EventHandlers(WBrowse);
                     WBrowsefeed_EventHandlers(WBrowsefeed);
+
+                    await InitializeEnvironmentWebview();
+                    await InitializeEnvironment();
 
                     CreateDirectory();
                     ///
@@ -364,6 +365,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Main_Frm_Load: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Cleanup request when closing the application
@@ -523,6 +525,7 @@ namespace Ostium
             txtApiKey.GotFocus += new EventHandler(TxtApiKey_Enter);
             txtApiKey.LostFocus += new EventHandler(TxtApiKey_Leave);
         }
+
         ///
         /// <summary>
         /// Creation of the "config.xml" configuration file
@@ -2476,6 +2479,7 @@ namespace Ostium
                 return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             }
         }
+
         ///
         /// <summary>
         /// Clear all Data history
@@ -5750,6 +5754,7 @@ namespace Ostium
             MaxHistoryEntry_Status.Visible = true;
             Agent_RSS_Cnt_Status.Visible = true;
         }
+
         ///
         /// <summary>
         /// URL construction from a list loaded with the URL construction file selected and created a temporary file
