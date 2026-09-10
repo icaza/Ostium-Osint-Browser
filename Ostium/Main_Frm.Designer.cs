@@ -505,6 +505,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.OsintWatcher_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.Redlist_Txt = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
@@ -674,6 +676,9 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OsintWatcher_Link = new System.Windows.Forms.Label();
+            this.CyberChef_Link = new System.Windows.Forms.Label();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -905,6 +910,7 @@
             this.Editor_Btn,
             this.toolStripSeparator3,
             this.CyberChef_Btn,
+            this.OsintWatcher_Btn,
             this.toolStripSeparator15,
             this.OpnDirectory_Btn,
             this.IndexDir_Btn,
@@ -6438,6 +6444,10 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label37);
             this.PanelGrpOpt_Pnl.Controls.Add(this.Redlist_Txt);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label26);
             this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Opt_Txt);
@@ -6464,8 +6474,30 @@
             this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
+            this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // OsintWatcher_Opt_Txt
+            // 
+            this.OsintWatcher_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OsintWatcher_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OsintWatcher_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.OsintWatcher_Opt_Txt.Location = new System.Drawing.Point(9, 595);
+            this.OsintWatcher_Opt_Txt.Name = "OsintWatcher_Opt_Txt";
+            this.OsintWatcher_Opt_Txt.Size = new System.Drawing.Size(675, 22);
+            this.OsintWatcher_Opt_Txt.TabIndex = 24;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.ForeColor = System.Drawing.Color.White;
+            this.label37.Location = new System.Drawing.Point(6, 574);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(136, 14);
+            this.label37.TabIndex = 23;
+            this.label37.Text = "Path Osint Watcher";
             // 
             // Redlist_Txt
             // 
@@ -6473,7 +6505,7 @@
             this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Redlist_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Redlist_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.Redlist_Txt.Location = new System.Drawing.Point(9, 597);
+            this.Redlist_Txt.Location = new System.Drawing.Point(9, 658);
             this.Redlist_Txt.Name = "Redlist_Txt";
             this.Redlist_Txt.Size = new System.Drawing.Size(675, 22);
             this.Redlist_Txt.TabIndex = 22;
@@ -6482,7 +6514,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(6, 576);
+            this.label26.Location = new System.Drawing.Point(6, 637);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(120, 14);
             this.label26.TabIndex = 21;
@@ -6524,7 +6556,7 @@
             this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 659);
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 722);
             this.ArchiveAdd_Txt.Multiline = true;
             this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
             this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
@@ -6534,7 +6566,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 637);
+            this.label31.Location = new System.Drawing.Point(4, 700);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(402, 14);
             this.label31.TabIndex = 16;
@@ -7360,7 +7392,7 @@
             this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
             this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 22);
             this.OpnPromptRss_Btn.Text = "Prompt";
             this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
             // 
@@ -7375,7 +7407,7 @@
             this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
             this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RSS2_Tls.Name = "RSS2_Tls";
-            this.RSS2_Tls.Size = new System.Drawing.Size(54, 20);
+            this.RSS2_Tls.Size = new System.Drawing.Size(54, 22);
             this.RSS2_Tls.Text = "RSS2";
             // 
             // ConfigRSS2_Btn
@@ -8175,6 +8207,40 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // OsintWatcher_Btn
+            // 
+            this.OsintWatcher_Btn.Enabled = false;
+            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
+            this.OsintWatcher_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OsintWatcher_Btn.Text = "Osint Watcher";
+            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
+            // 
+            // OsintWatcher_Link
+            // 
+            this.OsintWatcher_Link.AutoSize = true;
+            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.OsintWatcher_Link.Location = new System.Drawing.Point(148, 574);
+            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
+            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
+            this.OsintWatcher_Link.TabIndex = 25;
+            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
+            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
+            // 
+            // CyberChef_Link
+            // 
+            this.CyberChef_Link.AutoSize = true;
+            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.CyberChef_Link.Location = new System.Drawing.Point(122, 513);
+            this.CyberChef_Link.Name = "CyberChef_Link";
+            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
+            this.CyberChef_Link.TabIndex = 26;
+            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
+            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8928,6 +8994,11 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox TrackPrevent_Cbx;
         private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
+        private System.Windows.Forms.TextBox OsintWatcher_Opt_Txt;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.ToolStripMenuItem OsintWatcher_Btn;
+        private System.Windows.Forms.Label CyberChef_Link;
+        private System.Windows.Forms.Label OsintWatcher_Link;
     }
 }
 

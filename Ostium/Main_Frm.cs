@@ -459,6 +459,7 @@ namespace Ostium
             GoogBot_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             DefaultEditor_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            OsintWatcher_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
@@ -473,6 +474,7 @@ namespace Ostium
             GoogBot_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             DefaultEditor_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             CyberChef_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            OsintWatcher_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ArchiveAdd_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonUri_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonVal_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
@@ -577,6 +579,7 @@ namespace Ostium
                 DefaultEditor_Opt_Txt.Text = Path.Combine(AppStart, "OstiumE.exe");
                 Redlist_Txt.Text = Path.Combine(AppStart, "data", BlockedUrl);
                 CyberChef_Opt_Txt.Text = "";
+                OsintWatcher_Opt_Txt.Text = "";
                 ArchiveAdd_Txt.Text = "";
 
                 var ArchiveDir = new List<string>()
@@ -618,6 +621,7 @@ namespace Ostium
                 writer.WriteElementString("URL_GOOGLEBOT_VAR", GoogBo);
                 writer.WriteElementString("DEFAULT_EDITOR_VAR", DefaultEditor_Opt_Txt.Text);
                 writer.WriteElementString("CYBERCHEF_VAR", CyberChef_Opt_Txt.Text);
+                writer.WriteElementString("OSINTWATCHER_VAR", OsintWatcher_Opt_Txt.Text);
                 writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
@@ -1069,6 +1073,13 @@ namespace Ostium
                                     CyberChef_Btn.Enabled = true;
                                 else
                                     CyberChef_Btn.Enabled = false;
+                                break;
+                            case "OSINTWATCHER_VAR":
+                                OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                                    OsintWatcher_Btn.Enabled = true;
+                                else
+                                    OsintWatcher_Btn.Enabled = false;
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -3612,14 +3623,48 @@ namespace Ostium
                 }
                 else
                 {
-                    MessageBox.Show("CyberChef is not downloaded; you must download it and place the " +
-                        "directory in the root directory. See the Wiki on GitHub for setup instructions!",
+                    MessageBox.Show("CyberChef is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
                         "CyberChef not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! CyberChefExec: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void OsintWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            OsintWatcherExec();
+        }
+
+        void OsintWatcherExec()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                {
+                    if (File.Exists(OsintWatcher_Opt_Txt.Text))
+                    {
+                        Process.Start(OsintWatcher_Opt_Txt.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Osint Watcher is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!", 
+                        "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! OsintWatcherExec: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -3866,6 +3911,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! ArchiveDirectory_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// Checking for updates (manual)
         /// <param value="0">Message only if update available</param>
@@ -3875,6 +3921,7 @@ namespace Ostium
         {
             await VerifyUPDT(1);
         }
+
         ///
         /// <param name="GoBrowser"></param>
         /// <param name="WebviewRedirect"></param>
@@ -6079,6 +6126,9 @@ namespace Ostium
                     break;
                 case "cyberchef":
                     CyberChefExec();
+                    break;
+                case "osintwatcher":
+                    OsintWatcherExec();
                     break;
                 case "investigation":
                     InvestigationExec();
@@ -13958,6 +14008,23 @@ namespace Ostium
             }
         }
         #endregion
+
+        void CyberChef_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/gchq/CyberChef");
+        }
+
+        void OsintWatcher_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/icaza/Ostium-Osint-Browser/tree/master/OsintWatcher/EXE");
+        }
+
+        void Tools_Link(string url)
+        {
+            GoBrowser(url, 0);
+            CtrlTabBrowsx();
+            Control_Tab.SelectedIndex = 0;
+        }
     }
 
     public class ProgressForm : Form
