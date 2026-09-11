@@ -505,6 +505,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.OsintWatcher_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.Redlist_Txt = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.CyberChef_Opt_Txt = new System.Windows.Forms.TextBox();
@@ -674,6 +676,9 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OsintWatcher_Link = new System.Windows.Forms.Label();
+            this.CyberChef_Link = new System.Windows.Forms.Label();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -905,6 +910,7 @@
             this.Editor_Btn,
             this.toolStripSeparator3,
             this.CyberChef_Btn,
+            this.OsintWatcher_Btn,
             this.toolStripSeparator15,
             this.OpnDirectory_Btn,
             this.IndexDir_Btn,
@@ -1756,10 +1762,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -3903,7 +3909,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 23);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3940,7 +3946,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 583);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3961,7 +3967,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 583);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -3976,7 +3982,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 142);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 234);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 263);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -3991,7 +3997,7 @@
             this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 376);
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 405);
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
@@ -4028,7 +4034,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 406);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 435);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -4108,7 +4114,7 @@
             this.PointRoute_Lst.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PointRoute_Lst.ForeColor = System.Drawing.Color.DarkOrange;
             this.PointRoute_Lst.FormattingEnabled = true;
-            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 436);
+            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 465);
             this.PointRoute_Lst.Name = "PointRoute_Lst";
             this.PointRoute_Lst.Size = new System.Drawing.Size(200, 117);
             this.PointRoute_Lst.TabIndex = 27;
@@ -4126,7 +4132,7 @@
             this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 553);
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 582);
             this.SaveRoute_Btn.Name = "SaveRoute_Btn";
             this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveRoute_Btn.TabIndex = 25;
@@ -6438,6 +6444,10 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label37);
             this.PanelGrpOpt_Pnl.Controls.Add(this.Redlist_Txt);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label26);
             this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Opt_Txt);
@@ -6464,8 +6474,30 @@
             this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
+            this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // OsintWatcher_Opt_Txt
+            // 
+            this.OsintWatcher_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OsintWatcher_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OsintWatcher_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.OsintWatcher_Opt_Txt.Location = new System.Drawing.Point(9, 595);
+            this.OsintWatcher_Opt_Txt.Name = "OsintWatcher_Opt_Txt";
+            this.OsintWatcher_Opt_Txt.Size = new System.Drawing.Size(675, 22);
+            this.OsintWatcher_Opt_Txt.TabIndex = 24;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.ForeColor = System.Drawing.Color.White;
+            this.label37.Location = new System.Drawing.Point(6, 574);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(136, 14);
+            this.label37.TabIndex = 23;
+            this.label37.Text = "Path Osint Watcher";
             // 
             // Redlist_Txt
             // 
@@ -6473,7 +6505,7 @@
             this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Redlist_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Redlist_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.Redlist_Txt.Location = new System.Drawing.Point(9, 597);
+            this.Redlist_Txt.Location = new System.Drawing.Point(9, 658);
             this.Redlist_Txt.Name = "Redlist_Txt";
             this.Redlist_Txt.Size = new System.Drawing.Size(675, 22);
             this.Redlist_Txt.TabIndex = 22;
@@ -6482,7 +6514,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(6, 576);
+            this.label26.Location = new System.Drawing.Point(6, 637);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(120, 14);
             this.label26.TabIndex = 21;
@@ -6524,7 +6556,7 @@
             this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 659);
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 722);
             this.ArchiveAdd_Txt.Multiline = true;
             this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
             this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
@@ -6534,7 +6566,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 637);
+            this.label31.Location = new System.Drawing.Point(4, 700);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(402, 14);
             this.label31.TabIndex = 16;
@@ -6838,8 +6870,8 @@
             this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
-            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
-            this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(161, 17);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
             // 
             // URLtxt_Status
             // 
@@ -7360,7 +7392,7 @@
             this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
             this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 22);
             this.OpnPromptRss_Btn.Text = "Prompt";
             this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
             // 
@@ -7375,7 +7407,7 @@
             this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
             this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RSS2_Tls.Name = "RSS2_Tls";
-            this.RSS2_Tls.Size = new System.Drawing.Size(54, 20);
+            this.RSS2_Tls.Size = new System.Drawing.Size(54, 22);
             this.RSS2_Tls.Text = "RSS2";
             // 
             // ConfigRSS2_Btn
@@ -8175,6 +8207,40 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // OsintWatcher_Btn
+            // 
+            this.OsintWatcher_Btn.Enabled = false;
+            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
+            this.OsintWatcher_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OsintWatcher_Btn.Text = "Osint Watcher";
+            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
+            // 
+            // OsintWatcher_Link
+            // 
+            this.OsintWatcher_Link.AutoSize = true;
+            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.OsintWatcher_Link.Location = new System.Drawing.Point(148, 574);
+            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
+            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
+            this.OsintWatcher_Link.TabIndex = 25;
+            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
+            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
+            // 
+            // CyberChef_Link
+            // 
+            this.CyberChef_Link.AutoSize = true;
+            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.CyberChef_Link.Location = new System.Drawing.Point(122, 513);
+            this.CyberChef_Link.Name = "CyberChef_Link";
+            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
+            this.CyberChef_Link.TabIndex = 26;
+            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
+            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8182,8 +8248,8 @@
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
-            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_0);
+            this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -8928,6 +8994,11 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox TrackPrevent_Cbx;
         private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
+        private System.Windows.Forms.TextBox OsintWatcher_Opt_Txt;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.ToolStripMenuItem OsintWatcher_Btn;
+        private System.Windows.Forms.Label CyberChef_Link;
+        private System.Windows.Forms.Label OsintWatcher_Link;
     }
 }
 

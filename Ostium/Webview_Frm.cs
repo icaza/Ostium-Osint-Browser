@@ -1,5 +1,4 @@
 ﻿using Microsoft.Web.WebView2.Core;
-using Ostium.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -48,31 +48,33 @@ namespace Ostium
             var env = await CoreWebView2Environment.CreateAsync(browserExecutableFolder: null, userDataFolder: userDataFolder);
             await WBrowsew.EnsureCoreWebView2Async(env);
 
+            await WBrowsew.EnsureCoreWebView2Async(env);
+
             switch (@Class_Var.TRACKING)
             {
                 case "None":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
                     TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
                 case "Basic":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Basic;
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: Basic";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: BASIC";
                     TrackingLevel_Lbl.ForeColor = Color.Yellow;
                     break;
                 case "Balanced":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: Balanced";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: BALANCED";
                     TrackingLevel_Lbl.ForeColor = Color.Orange;
                     break;
                 case "Strict":
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: Strict";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: STRICT";
                     TrackingLevel_Lbl.ForeColor = Color.Red;
                     break;
                 default:
                     WBrowsew.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.None;
-                    TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+                    TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
                     TrackingLevel_Lbl.ForeColor = Color.Lime;
                     break;
             }
@@ -145,10 +147,10 @@ namespace Ostium
         /// </summary>
         /// <param name="GetCookie">Save all cookies in the cookie.txt file at the root if SaveCookies_Chk checked = True</param>
         /// 
-        void WBrowsew_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        async void WBrowsew_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
             if (Class_Var.COOKIES_SAVE == 1)
-                GetCookie(WBrowsew.Source.AbsoluteUri);
+                await GetCookie(WBrowsew.Source.AbsoluteUri);
 
             WBrowsew_UpdtTitleEvent("Navigation Completed");
         }
@@ -414,7 +416,7 @@ namespace Ostium
         /// </summary>
         /// <param value="URLs">Saved cookies only if SaveCookies_Chk checked = True,  by default is False</param>
         /// 
-        async void GetCookie(string URLs)
+        async Task GetCookie(string URLs)
         {
             try
             {

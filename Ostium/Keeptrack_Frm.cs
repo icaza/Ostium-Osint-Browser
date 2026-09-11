@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -78,7 +79,7 @@ namespace Ostium
             Opacity = 0.3;
         }
 
-        void AddTrack_Btn_Click(object sender, EventArgs e)
+        async void AddTrack_Btn_Click(object sender, EventArgs e)
         {
             if (TrackRecord_Cbx.Text == string.Empty)
                 return;
@@ -92,7 +93,7 @@ namespace Ostium
             var logger = new VisitLogger(Path.Combine(Keeptrack, TrackRecord_Cbx.Text));
             logger.LogVisit(@Class_Var.URL_URI, Tags_Txt.Text);
 
-            FaviconLoad();
+            await FaviconLoad();
 
             Console.Beep(800, 200);
         }
@@ -102,7 +103,7 @@ namespace Ostium
             return !string.IsNullOrEmpty(filePath) && Path.GetExtension(filePath).Equals(".csv", StringComparison.OrdinalIgnoreCase);
         }
 
-        async void FaviconLoad()
+        async Task FaviconLoad()
         {
             var downloader = new FaviconDownloader();
 

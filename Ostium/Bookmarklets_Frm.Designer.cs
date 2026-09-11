@@ -65,10 +65,10 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.MinifyScript_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnScriptPath_Btn = new System.Windows.Forms.ToolStripButton();
             this.Script_Pnl = new System.Windows.Forms.Panel();
             this.Bookmarklet_Lst = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.OpnScriptPath_Btn = new System.Windows.Forms.ToolStripButton();
             this.UrlSite_Pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ScriptTxt_Txt)).BeginInit();
             this.Menu_Mnu.SuspendLayout();
@@ -163,6 +163,7 @@
             this.ScriptTxt_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ScriptTxt_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.ScriptTxt_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScriptTxt_Txt.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.ScriptTxt_Txt.ForeColor = System.Drawing.Color.Lime;
             this.ScriptTxt_Txt.IndentBackColor = System.Drawing.Color.Black;
             this.ScriptTxt_Txt.IsReplaceMode = false;
@@ -460,6 +461,18 @@
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
             // 
+            // OpnScriptPath_Btn
+            // 
+            this.OpnScriptPath_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnScriptPath_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnScriptPath_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.OpnScriptPath_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnScriptPath_Btn.Image")));
+            this.OpnScriptPath_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnScriptPath_Btn.Name = "OpnScriptPath_Btn";
+            this.OpnScriptPath_Btn.Size = new System.Drawing.Size(125, 22);
+            this.OpnScriptPath_Btn.Text = "Open scripts path";
+            this.OpnScriptPath_Btn.Click += new System.EventHandler(this.OpnScriptPath_Btn_Click);
+            // 
             // Script_Pnl
             // 
             this.Script_Pnl.BackColor = System.Drawing.Color.Black;
@@ -494,18 +507,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(10, 474);
             this.panel1.TabIndex = 13;
-            // 
-            // OpnScriptPath_Btn
-            // 
-            this.OpnScriptPath_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnScriptPath_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnScriptPath_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.OpnScriptPath_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnScriptPath_Btn.Image")));
-            this.OpnScriptPath_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpnScriptPath_Btn.Name = "OpnScriptPath_Btn";
-            this.OpnScriptPath_Btn.Size = new System.Drawing.Size(125, 22);
-            this.OpnScriptPath_Btn.Text = "Open scripts path";
-            this.OpnScriptPath_Btn.Click += new System.EventHandler(this.OpnScriptPath_Btn_Click);
             // 
             // Bookmarklets_Frm
             // 

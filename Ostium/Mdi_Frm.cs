@@ -24,7 +24,6 @@ namespace Ostium
         #endregion
 
         #region Form_
-
         public Mdi_Frm()
         {
             InitializeComponent();
@@ -73,7 +72,6 @@ namespace Ostium
 
             OpnNewForm(@Class_Var.URL_HOME);
         }
-
         #endregion
 
         void URLlist_Cbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -256,7 +254,6 @@ namespace Ostium
         }
 
         #region Window_
-
         void Cascade_Btn_Click(object sender, EventArgs e)
         {
             VerifPosChild = 1;
@@ -304,7 +301,6 @@ namespace Ostium
             foreach (Form webviewForm in MdiChildren)
                 webviewForm.Close();
         }
-
         #endregion
 
         void UrlOpn_Lst_SelectedIndexChanged(object sender, EventArgs e)
