@@ -82,6 +82,14 @@ For example, this allows you to use multiple accounts from the same service with
 
 ---
 
+## 🟢 OSTIUM OSINT Watcher
+
+### Evidence-grade change detection for web pages, built for OSINT investigators.
+
+Register a list of pages, run a check whenever you need one (or let the app check on a randomized interval), and get a verdict — modified, unchanged, or unreachable — backed by layered cryptographic fingerprints and a line-level diff, not a single fragile hash. Native Windows app, fully offline data storage. [More](https://github.com/icaza/Ostium-Osint-Browser/tree/OOBAI26/OsintWatcher)
+
+---
+
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence

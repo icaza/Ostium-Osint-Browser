@@ -54,7 +54,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.48";
+        const string CurrentVersion = "1.4.49";
         readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "GitHubReleaseUpdater.exe");
         readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "config.json");
         #endregion
