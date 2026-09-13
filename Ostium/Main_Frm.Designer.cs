@@ -88,6 +88,7 @@
             this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -505,6 +506,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.CyberChef_Link = new System.Windows.Forms.Label();
+            this.OsintWatcher_Link = new System.Windows.Forms.Label();
             this.OsintWatcher_Opt_Txt = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.Redlist_Txt = new System.Windows.Forms.TextBox();
@@ -676,9 +679,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OsintWatcher_Link = new System.Windows.Forms.Label();
-            this.CyberChef_Link = new System.Windows.Forms.Label();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -1063,6 +1063,14 @@
             this.CyberChef_Btn.Size = new System.Drawing.Size(245, 22);
             this.CyberChef_Btn.Text = "CyberChef";
             this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
+            // 
+            // OsintWatcher_Btn
+            // 
+            this.OsintWatcher_Btn.Enabled = false;
+            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
+            this.OsintWatcher_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OsintWatcher_Btn.Text = "Osint Watcher";
+            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
             // 
             // toolStripSeparator15
             // 
@@ -6478,6 +6486,32 @@
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
+            // CyberChef_Link
+            // 
+            this.CyberChef_Link.AutoSize = true;
+            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.CyberChef_Link.Location = new System.Drawing.Point(122, 513);
+            this.CyberChef_Link.Name = "CyberChef_Link";
+            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
+            this.CyberChef_Link.TabIndex = 26;
+            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
+            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
+            // 
+            // OsintWatcher_Link
+            // 
+            this.OsintWatcher_Link.AutoSize = true;
+            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.OsintWatcher_Link.Location = new System.Drawing.Point(148, 574);
+            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
+            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
+            this.OsintWatcher_Link.TabIndex = 25;
+            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
+            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
+            // 
             // OsintWatcher_Opt_Txt
             // 
             this.OsintWatcher_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -8206,40 +8240,6 @@
             this.UndoRoutePoint_Btn.Text = "Undo Route Point";
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
-            // 
-            // OsintWatcher_Btn
-            // 
-            this.OsintWatcher_Btn.Enabled = false;
-            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
-            this.OsintWatcher_Btn.Size = new System.Drawing.Size(245, 22);
-            this.OsintWatcher_Btn.Text = "Osint Watcher";
-            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
-            // 
-            // OsintWatcher_Link
-            // 
-            this.OsintWatcher_Link.AutoSize = true;
-            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.OsintWatcher_Link.Location = new System.Drawing.Point(148, 574);
-            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
-            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
-            this.OsintWatcher_Link.TabIndex = 25;
-            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
-            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
-            // 
-            // CyberChef_Link
-            // 
-            this.CyberChef_Link.AutoSize = true;
-            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.CyberChef_Link.Location = new System.Drawing.Point(122, 513);
-            this.CyberChef_Link.Name = "CyberChef_Link";
-            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
-            this.CyberChef_Link.TabIndex = 26;
-            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
-            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
             // 
             // Main_Frm
             // 

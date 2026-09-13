@@ -475,7 +475,7 @@
     <Content Include="scripts\scriptsl\AlienVault.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="scripts\scriptsl\CensysPlatform.js">
+    <Content Include="scripts\scriptsl\Censys_Platform.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\scriptsl\CRT.js">

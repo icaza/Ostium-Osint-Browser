@@ -1366,6 +1366,10 @@ namespace Ostium
                     UnshortUrl_Btn.Enabled = false;
                     HTMLtxt_Btn.Enabled = false;
                     OpnGroupFrm_Btn.Enabled = false;
+                    FetchDomainInfo_Btn.Enabled = false;
+                    OstUpdt_Btn.Enabled = false;
+                    Agent_Fetch_Search.Enabled = false;
+                    Agent_Web_Fetch_Btn.Enabled = false;
 
                     TabPage page1 = Control_Tab.TabPages[1];
                     Control_Tab.TabPages.Remove(page1);
