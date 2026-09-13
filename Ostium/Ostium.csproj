@@ -472,6 +472,15 @@
     <Content Include="PromptViewer\promptviewer.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\scriptsl\AlienVault.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\CensysPlatform.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\CRT.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="scripts\scriptsl\Domain_Infos.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -490,7 +499,13 @@
     <Content Include="scripts\scriptsl\Radar_Cloudflare.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\scriptsl\Urlscan.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="scripts\scriptsl\Url_Extractor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\scriptsl\VirusTotal.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\scriptsl\Web_Check.js">

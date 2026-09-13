@@ -1,3 +1,10 @@
+/**
+ * @file World_Cloud_Analyzer.js
+ * @author ICAZA <github.wildly512@passinbox.com>
+ * @version 1.0
+ * @description World Cloud Analyzer.
+ */
+
 (() => {
     'use strict';
 
