@@ -62,6 +62,7 @@ namespace Ostium
         #region Var_
         string userDataFolder;
         string sessionID;
+        readonly string RestartFile = Path.Combine(Application.StartupPath, "restartsession.oob");
 
         // Initialization of the voice for Reading Feed Titles
         readonly SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -1291,10 +1292,26 @@ namespace Ostium
         #region Browser_Event Handler
         async Task InitializeEnvironmentWebview()
         {
-            CreateNameAleat();
+            bool restartSession = File.Exists(RestartFile);
 
-            userDataFolder = Path.Combine(Application.StartupPath, "EnvironmentWebview", Una, "WebData");
-            sessionID = Una;
+            if (restartSession)
+            {
+                using (StreamReader sr = new StreamReader(RestartFile))
+                {
+                    userDataFolder = sr.ReadToEnd();
+                }
+                MessageBox.Show("You are starting from an existing session. If that is not what you intended, " +
+                    "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                File.Delete(RestartFile);
+            }
+            else
+            {
+                CreateNameAleat();
+
+                userDataFolder = Path.Combine(Application.StartupPath, "EnvironmentWebview", Una, "WebData");
+                sessionID = Una;
+            }
 
             ValidateWebViewDataFolder(userDataFolder);
             Class_Var.USER_DATA_FOLDER = userDataFolder;
@@ -1379,7 +1396,6 @@ namespace Ostium
                 else
                 {
                     TrackPrevent_Cbx.Text = "Balanced";
-
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                     WBrowsefeed.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Balanced;
                 }
@@ -3875,6 +3891,12 @@ namespace Ostium
                 JavaScriptToggle_Btn.Text = "JavaScript Disabled";
                 JavaScriptToggle_Btn.ForeColor = Color.Red;
             }
+        }
+
+        void RestartSession_Btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(Path.Combine(AppStart, "RestartSession.exe")))
+                Process.Start(Path.Combine(AppStart, "RestartSession.exe"));
         }
 
         void ArchiveDirectory_Btn_Click(object sender, EventArgs e)
@@ -7830,6 +7852,7 @@ namespace Ostium
         }
 
         #endregion
+
         ///
         /// Cookies save
         /// </summary>
@@ -8795,7 +8818,6 @@ namespace Ostium
         #endregion
 
         #region Process_
-
         void VerifProcessRun_Btn_Click(object sender, EventArgs e)
         {
             VerifyProcess("javaw");
@@ -8852,8 +8874,8 @@ namespace Ostium
                 senderror.ErrorLog($"Error! VerifyProcess: {ProcessVerif} ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
-
         #endregion
+
         ///
         /// <summary>
         /// Checks if the plantUML javaw process is TRUE if False diagram display
