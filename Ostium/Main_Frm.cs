@@ -294,7 +294,8 @@ namespace Ostium
                     await InitializeEnvironmentWebview();
                     await InitializeEnvironment();
 
-                    CreateDirectory();
+                    await CreateDirectory();
+
                     ///
                     /// Loading default URLs into a List
                     ///
@@ -308,6 +309,7 @@ namespace Ostium
                         MessageBox.Show("The url_dflt_cnf.ost file is missing! Go to Ostium GitHub page to download this " +
                             "missing file or reinstall Ostium.", "File missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
+
                     ///
                     /// Loading configuration
                     /// <param name="CreateConfigFile"></param>
@@ -318,9 +320,10 @@ namespace Ostium
                         LoadConfiguration(Path.Combine(AppStart, "config.xml"));
                     else
                         CreateConfigFile(0);
+
                     ///
                     /// Web URL Home page wBrowser Tab => index and wBrowser Tab => feed
-                    /// If empty loading from default URL file
+                    /// If empty loading from default URL file (local file)
                     ///
                     if (string.IsNullOrEmpty(@Class_Var.URL_HOME))
                     {
@@ -961,7 +964,7 @@ namespace Ostium
         }
         #endregion
 
-        void CreateDirectory()
+        async Task CreateDirectory()
         {
             try
             {
@@ -989,7 +992,7 @@ namespace Ostium
 
                 for (int i = 0; i < CreateDir.Count; i++)
                 {
-                    DirectoryCreate(CreateDir[i].ToString());
+                    await DirectoryCreate(CreateDir[i].ToString());
                 }
             }
             catch (Exception ex)
@@ -998,7 +1001,7 @@ namespace Ostium
             }
         }
 
-        void DirectoryCreate(string dir)
+        async Task DirectoryCreate(string dir)
         {
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
@@ -2925,14 +2928,14 @@ namespace Ostium
         /// </summary>
         /// <param name="Construct_URL">Creation of URL with the nickname or search word</param>
         /// 
-        void Word_URL_Builder_Btn_Click(object sender, EventArgs e)
+        async void Word_URL_Builder_Btn_Click(object sender, EventArgs e)
         {
             try
             {
                 if (Word_URL_Builder_Txt.Text != string.Empty && Word_URL_Builder_Txt.Text != "Word")
                 {
                     Word_URL_Builder_Txt.Text = Word_URL_Builder_Txt.Text.Replace(" ", "%20");
-                    URL_Builder(Word_URL_Builder_Txt.Text);
+                    await URL_Builder(Word_URL_Builder_Txt.Text);
                     Console.Beep(800, 200);
                 }
                 else
@@ -5864,7 +5867,7 @@ namespace Ostium
         /// </summary>
         /// <param name="replace_query">Replacement value with the searched nickname/word</param>
         /// 
-        void URL_Builder(string searchQuery)
+        async Task URL_Builder(string searchQuery)
         {
             try
             {
