@@ -511,7 +511,7 @@
     <Content Include="scripts\scriptsl\Web_Check.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="scripts\scriptsl\World_Cloud_Analyzer.js">
+    <Content Include="scripts\scriptsl\Word_Cloud_Analyzer.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SDelete_cmd\SDelete\Eula.txt">

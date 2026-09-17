@@ -2600,6 +2600,7 @@ namespace Ostium
 
             GoBrowser(URLbrowse_Cbx.Text, 1);
         }
+
         ///
         /// <summary>
         /// Checking the URL and reformatting then opening the web page or searching the web
@@ -2686,6 +2687,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! GoBrowser: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// <param name="New Tab">Webview_Frm</param>
@@ -2728,6 +2730,7 @@ namespace Ostium
         {
             WBrowse.Reload();
         }
+
         ///
         /// <summary>
         /// Opening the Home Page if configured "@Class_Var.URL_HOME" or opening the default page "filesdir/homepage.html"
@@ -2786,6 +2789,7 @@ namespace Ostium
             //    WBrowse.Source = new Uri(@URLbrowse_Cbx.Text);
             //}
         }
+
         ///
         /// <summary>
         /// Opening URL of the “filesdir/url.txt” file loaded in CBX
@@ -2863,6 +2867,7 @@ namespace Ostium
                 Close();
             }
         }
+
         ///
         /// <summary>
         /// Modification of the user-agent by a "GoogleBot" type agent if configured in "Class_Var.URL_USER_AGENT" or by the default agent in the file
@@ -2913,6 +2918,7 @@ namespace Ostium
                 Close();
             }
         }
+
         ///
         /// <summary>
         /// Reformatting of the nickname/word entered in "Word_Construct_URL_Txt" before sending to => Construct_URL for URL construction
@@ -2984,6 +2990,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! CopyURL_Mnu_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Translation of the web page via the default translation site of the file "url_dflt_cnf.ost"
@@ -3021,6 +3028,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! TraductPage_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         /// <summary>
         /// Unshorten URL
         /// </summary>
@@ -3028,7 +3036,7 @@ namespace Ostium
         /// <param name="e"></param>
         async void UnshortUrl_Btn_Click(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text != string.Empty)
+            if (URLbrowse_Cbx.Text != string.Empty && URLbrowse_Cbx.Text != "Insert a URL or search term")
             {
                 await StartUnshortUrlAsync(URLbrowse_Cbx.Text);
             }
@@ -4917,6 +4925,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! ExportJson_Tls_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of a Json data diagram of a WorkFlow XML project with plantUML.jar (#Model 1)
@@ -4963,6 +4972,7 @@ namespace Ostium
             Thread CreateDiagram = new Thread(() => CreateDiagram_Thrd(NameProjectwf_Txt.Text + ".txt", 0));
             CreateDiagram.Start();
         }
+
         ///
         /// <summary>
         /// Converting the WorkFlow project XML file to Json format or converting the XML file for conversion to an SVG diagram
@@ -5008,6 +5018,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! ConvertJson: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of Json data diagram with plantUML.jar (#Model 1)
@@ -5048,6 +5059,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! CreateDiagram_Thrd: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of a MindMap diagram of a WorkFlow XML project with plantUML.jar (#Model 2)
@@ -5080,6 +5092,7 @@ namespace Ostium
             Thread CreateDiagramMinMapFile = new Thread(() => CreateDiagramMinMapFile_Thrd(1));
             CreateDiagramMinMapFile.Start();
         }
+
         ///
         /// <summary>
         /// Creation of a MindMap diagram of a WorkFlow XML project with plantUML.jar (#Model 3)
@@ -5113,6 +5126,7 @@ namespace Ostium
             Thread CreateDiagramMinMapFile = new Thread(() => CreateDiagramMinMapFile_Thrd(0));
             CreateDiagramMinMapFile.Start();
         }
+
         ///
         /// <summary>
         /// Creation of a MindMap diagram of a WorkFlow XML project with plantUML.jar (#Model 2) or (#Model 3)
@@ -5231,6 +5245,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! CreateDiagramMinMapFile: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of a Json diagram from a Json file with plantUML.jar
@@ -5298,6 +5313,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! OpnJsonFile_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of a Json diagram from an XML file with plantUML.jar
@@ -5351,6 +5367,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! OpnXMLFile_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of a Json diagram from a plantUML format file with plantUML.jar
@@ -5425,6 +5442,7 @@ namespace Ostium
             CtrlTabBrowsx();
             Control_Tab.SelectedIndex = 0;
         }
+
         ///
         /// <summary>
         /// Export of the created diagram
@@ -6035,6 +6053,7 @@ namespace Ostium
                 Console_Cmd_Txt.Select(Console_Cmd_Txt.Text.Length, 0);
             }
         }
+
         ///
         /// <summary>
         /// Executing commands in the console
@@ -6190,6 +6209,7 @@ namespace Ostium
                 Thr_CMDConsoleExec.Start();
             }
         }
+
         ///
         /// <summary>
         /// Command regEX preformatted or random
@@ -6306,6 +6326,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! File_Write: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of List file
@@ -6459,6 +6480,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! URL_SAVE_Cbx_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Displays the database URL section in add mode
@@ -6479,6 +6501,7 @@ namespace Ostium
             label7.Visible = true;
             UrlName_Txt.Visible = true;
         }
+
         ///
         /// <summary>
         /// Displays the database URL section in reading mode
@@ -6498,6 +6521,7 @@ namespace Ostium
             UrlName_Txt.Visible = false;
             URLadd_Lbl.Visible = false;
         }
+
         ///
         /// <summary>
         /// Displays the database URL section
@@ -6546,6 +6570,7 @@ namespace Ostium
                 MessageBox.Show("Insert name Table first!", string.Empty);
             }
         }
+
         ///
         /// <summary>
         /// Opening a database category or adding a URL
@@ -6608,6 +6633,7 @@ namespace Ostium
                 TableOpen = tlsi;
             }
         }
+
         ///
         /// <summary>
         /// Opening all categories of the database and display
@@ -6621,6 +6647,7 @@ namespace Ostium
 
             Sqlite_Read("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1", "name", "lst");
         }
+
         ///
         /// <summary>
         /// Execution of mysql commands
@@ -6656,6 +6683,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Sqlite_Cmd: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Reading from the database
@@ -6697,6 +6725,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! Sqlite_Read: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Loading database URL in wBrowser or in the "DataValue_Opn" Textbox of the "TAB Data" section
@@ -7155,6 +7184,7 @@ namespace Ostium
             if (Title_Lst.SelectedIndex != -1)
                 WBrowsefeed.Source = new Uri(Link_Lst.Items[Title_Lst.SelectedIndex].ToString());
         }
+
         ///
         /// <summary>
         /// Loading the RSS feed category into List or administering the RSS feed category file
@@ -7226,6 +7256,7 @@ namespace Ostium
                 Title_Lst.SetSelected(value, true);
             }
         }
+
         ///
         /// <summary>
         /// Loading the list of Flows
@@ -8123,6 +8154,7 @@ namespace Ostium
             ModelDelete_Btn.Enabled = true;
             ModelEdit_Btn.Enabled = true;
         }
+
         ///
         /// <summary>
         /// Loading the Timeline and Items
@@ -8179,6 +8211,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! ProjectOpn_Lst_SelectedIndexChanged: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Adding a record to the WorkFlow project XML file from the text box or clipboard
@@ -8210,6 +8243,7 @@ namespace Ostium
                 }
             }
         }
+
         ///
         /// <summary>
         /// Remove spaces and line breaks and send to => "AddDataWorkflow"
@@ -8262,6 +8296,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! FormatValue: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Addition of data in Item of the WorkFlow project
@@ -8363,6 +8398,7 @@ namespace Ostium
             else
                 ForceLinkParent_Btn.ForeColor = Color.Black;
         }
+
         ///
         /// <summary>
         /// Displaying the data addition section of WorkFlow projects in "TAB BROWSx"
@@ -8382,6 +8418,7 @@ namespace Ostium
                     MessageBox.Show("Open Workflow project first!");
             }
         }
+
         ///
         /// <summary>
         /// Displaying WorkFlow project item data
@@ -8394,6 +8431,7 @@ namespace Ostium
         {
             StatWorkflow_Lst.ClearSelected();
         }
+
         ///
         /// <summary>
         /// Loading Items
@@ -8437,6 +8475,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! LoadItemKeyword_Thr: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Display of recovered data statistics
@@ -8479,6 +8518,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! LoadStatWorkflow: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Creation of Model file for adding WorkFlow project Items
@@ -8919,6 +8959,7 @@ namespace Ostium
             URLbrowse_Cbx.Text = value;
             URLtxt_Status.Text = $"Unshorten URL => {value}";
         }
+
         ///
         /// <summary>
         /// Dump creation and filling of List
@@ -8959,6 +9000,7 @@ namespace Ostium
             Workflow_Lst.Items.Add(value);
             AddItemswf_Txt.AppendText(value + "\r\n");
         }
+
         ///
         /// <summary>
         /// Displaying WorkFlow open project statistics
@@ -9201,6 +9243,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! NewProject_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         ///
         /// <summary>
         /// Create a new project from a list of points
@@ -9247,6 +9290,7 @@ namespace Ostium
                 }
             });
         }
+
         ///
         /// <summary>Create XML location from a list</summary>
         /// <param name="fileopn">Project create</param>
@@ -9597,7 +9641,7 @@ namespace Ostium
             }
         }
 
-        void ExportGPX_Tls_Click(object sender, EventArgs e)
+        async void ExportGPX_Tls_Click(object sender, EventArgs e)
         {
             string strExt = Path.GetExtension(MapRouteOpn);
             if (strExt != ".txt")
@@ -9620,7 +9664,7 @@ namespace Ostium
                         return;
                 }
 
-                CreateGpxFromCoordinates(MapRouteOpn, outputFile);
+                await CreateGpxFromCoordinates(MapRouteOpn, outputFile);
             }
         }
 
@@ -9768,7 +9812,7 @@ namespace Ostium
             loadfiledir.LoadFileDirectory(MapDirGpx, "*", "lst", PointLoc_Lst);
         }
 
-        void OpnGPXRoute_Tls_Click(object sender, EventArgs e)
+        async void OpnGPXRoute_Tls_Click(object sender, EventArgs e)
         {
             try
             {
@@ -9785,15 +9829,15 @@ namespace Ostium
 
                     if (strExt == ".kml")
                     {
-                        LoadKmlFile(fileopen);
+                        await LoadKmlFile(fileopen);
                     }
                     else if (strExt == ".gpx")
                     {
-                        LoadGpxFile(fileopen);
+                        await LoadGpxFile(fileopen);
                     }
                     else if (strExt == ".geojson" || strExt == ".json")
                     {
-                        LoadGeoJsonFile(fileopen);
+                        await LoadGeoJsonFile(fileopen);
                     }
 
                     UndoRoutePoint_Btn.Visible = false;
@@ -10046,7 +10090,7 @@ namespace Ostium
             await OpenMaps(KeywordMap_Txt.Text, 7); // Adresse, Provider
         }
 
-        void AddNewLoc_Btn_Click(object sender, EventArgs e)
+        async void AddNewLoc_Btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -10058,8 +10102,10 @@ namespace Ostium
 
                 CreateNameAleat();
                 LocationName_Txt.Text = "Pts_" + Una;
-                AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Status.Text, LonGtCurrent_Status.Text, TextMarker_Txt.Text);
-                OpnLocationPoints();
+
+                await AddNewLocPoints(LocationName_Txt.Text, LatTCurrent_Status.Text, LonGtCurrent_Status.Text, TextMarker_Txt.Text);
+
+                await OpnLocationPoints();
                 Console.Beep(1000, 400);
             }
             catch (Exception ex)
@@ -10068,7 +10114,7 @@ namespace Ostium
             }
         }
 
-        void AddNewLocPoints(string locationname, string lat, string lon, string txtmarker)
+        async Task AddNewLocPoints(string locationname, string lat, string lon, string txtmarker)
         {
             if (lat == string.Empty || lon == string.Empty)
                 return;
@@ -10204,7 +10250,7 @@ namespace Ostium
             }
         }
 
-        void GoLatLong(string lat, string lon, string txtmarker)
+        async Task GoLatLong(string lat, string lon, string txtmarker)
         {
             try
             {
@@ -10250,7 +10296,7 @@ namespace Ostium
             ZoomValMap_Lbl.Text = GMap_Ctrl.Zoom.ToString();
         }
 
-        void PointLoc_Lst_SelectedIndexChanged(object sender, EventArgs e)
+        async void PointLoc_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (PointLoc_Lst.SelectedIndex != -1)
             {
@@ -10275,7 +10321,7 @@ namespace Ostium
                         SaveRoute_Btn.Visible = false;
                         SaveGPX_Btn.Visible = false;
 
-                        OpnLocationPoints();
+                        await OpnLocationPoints();
                     }
                 }
                 else if (LocatRoute == "route")
@@ -10297,7 +10343,7 @@ namespace Ostium
                         history.Clear();
                         PointRoute_Lst.Items.Clear();
                         PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
-                        LoadRouteFromFile(MapRouteOpn);
+                        await LoadRouteFromFile(MapRouteOpn);
                     }
                 }
                 else if (LocatRoute == "routegpx")
@@ -10319,11 +10365,11 @@ namespace Ostium
                         AddNewLoc_Btn.Visible = false;
 
                         if (strExt == ".gpx")
-                            LoadGpxFile(MapRouteOpn);
+                            await LoadGpxFile(MapRouteOpn);
                         else if (strExt == ".kml")
-                            LoadKmlFile(MapRouteOpn);
+                            await LoadKmlFile(MapRouteOpn);
                         else if (strExt == ".geojson" || strExt == ".json")
-                            LoadGeoJsonFile(MapRouteOpn);
+                            await LoadGeoJsonFile(MapRouteOpn);
                     }
                 }
 
@@ -10353,7 +10399,7 @@ namespace Ostium
             }
         }
 
-        void OpnLocationPoints()
+        async Task OpnLocationPoints()
         {
             try
             {
@@ -10371,7 +10417,7 @@ namespace Ostium
                             lon = reader.GetAttribute("longitude");
                             txtmarker = reader.GetAttribute("textmarker");
 
-                            GoLatLong(lat, lon, txtmarker);
+                            await GoLatLong(lat, lon, txtmarker);
                         }
                     }
                 }
@@ -10475,7 +10521,7 @@ namespace Ostium
             Open_Doc_Frm(Path.Combine(FileDir, "map_points.txt"));
         }
 
-        void Gmap_MouseClick(object sender, MouseEventArgs e)
+        async void Gmap_MouseClick(object sender, MouseEventArgs e)
         {
             if (SaveRoute_Btn.Text == "Save route On")
             {
@@ -10496,12 +10542,12 @@ namespace Ostium
 
                     PointRoute_Lst.Items.Clear();
                     PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
-                    LoadRouteFromFile(MapRouteOpn);
+                    await LoadRouteFromFile(MapRouteOpn);
                 }
             }
         }
 
-        void LoadRouteFromFile(string filePath)
+        async Task LoadRouteFromFile(string filePath)
         {
             GMapOverlay routes = new GMapOverlay("routes");
             List<PointLatLng> points = new List<PointLatLng>();
@@ -10542,7 +10588,7 @@ namespace Ostium
             }
         }
 
-        void LoadKmlFile(string filePath)
+        async Task LoadKmlFile(string filePath)
         {
             try
             {
@@ -10598,7 +10644,7 @@ namespace Ostium
             }
         }
 
-        void LoadGpxFile(string filePath)
+        async Task LoadGpxFile(string filePath)
         {
             try
             {
@@ -10633,7 +10679,7 @@ namespace Ostium
             }
         }
 
-        void LoadGeoJsonFile(string filePath)
+        async Task LoadGeoJsonFile(string filePath)
         {
             try
             {
@@ -10652,16 +10698,16 @@ namespace Ostium
                         switch (geometryType)
                         {
                             case "Point":
-                                AddPoint(overlay, geometry);
+                                await AddPoint(overlay, geometry);
                                 break;
                             case "LineString":
-                                AddLineString(overlay, geometry);
+                                await AddLineString(overlay, geometry);
                                 break;
                             case "Polygon":
-                                AddPolygon(overlay, geometry);
+                                await AddPolygon(overlay, geometry);
                                 break;
                             case "MultiPolygon":
-                                AddMultiPolygon(overlay, geometry);
+                                await AddMultiPolygon(overlay, geometry);
                                 break;
                         }
                     }
@@ -10681,7 +10727,7 @@ namespace Ostium
             }
         }
 
-        void AddPoint(GMapOverlay overlay, JToken geometry)
+        async Task AddPoint(GMapOverlay overlay, JToken geometry)
         {
             var coordinates = geometry["coordinates"];
             double lon = coordinates[0].Value<double>();
@@ -10692,7 +10738,7 @@ namespace Ostium
             TextMarker_Txt.Text = string.Empty;
         }
 
-        void AddLineString(GMapOverlay overlay, JToken geometry)
+        async Task AddLineString(GMapOverlay overlay, JToken geometry)
         {
             var coordinates = geometry["coordinates"] as JArray;
             List<PointLatLng> points = new List<PointLatLng>();
@@ -10711,7 +10757,7 @@ namespace Ostium
             TextMarker_Txt.Text = Convert.ToString(route.Distance);
         }
 
-        void AddPolygon(GMapOverlay overlay, JToken geometry)
+        async Task AddPolygon(GMapOverlay overlay, JToken geometry)
         {
             var coordinates = geometry["coordinates"][0] as JArray;
             List<PointLatLng> points = new List<PointLatLng>();
@@ -10731,7 +10777,7 @@ namespace Ostium
             TextMarker_Txt.Text = string.Empty;
         }
 
-        void AddMultiPolygon(GMapOverlay overlay, JToken geometry)
+        async Task AddMultiPolygon(GMapOverlay overlay, JToken geometry)
         {
             var polygons = geometry["coordinates"] as JArray;
             foreach (var polygonCoords in polygons)
@@ -10755,7 +10801,7 @@ namespace Ostium
             }
         }
 
-        void CreateGpxFromCoordinates(string inputFile, string outputFile)
+        async Task CreateGpxFromCoordinates(string inputFile, string outputFile)
         {
             try
             {
@@ -10803,7 +10849,7 @@ namespace Ostium
             }
         }
 
-        void UndoRoutePoint_Btn_Click(object sender, EventArgs e)
+        async void UndoRoutePoint_Btn_Click(object sender, EventArgs e)
         {
             if (history.Count > 0)
             {
@@ -10827,7 +10873,7 @@ namespace Ostium
                 PointRoute_Lst.Items.Clear();
                 PointRoute_Lst.Items.AddRange(File.ReadAllLines(MapRouteOpn));
 
-                LoadRouteFromFile(MapRouteOpn);
+                await LoadRouteFromFile(MapRouteOpn);
             }
         }
         #endregion
