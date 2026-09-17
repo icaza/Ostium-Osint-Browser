@@ -3678,7 +3678,7 @@ namespace Ostium
                 else
                 {
                     MessageBox.Show("Osint Watcher is not downloaded; you need to download it and enter the path in the options. " +
-                        "Check the GitHub wiki for installation instructions!", 
+                        "Check the GitHub wiki for installation instructions!",
                         "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -4197,8 +4197,15 @@ namespace Ostium
             try
             {
                 string dirPath = Path.Combine(AppStart, "Messis", "logs");
-                if (Directory.Exists(dirPath))
-                    Process.Start(dirPath);
+
+                if (!Directory.Exists(dirPath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                Process.Start(dirPath);
             }
             catch (Exception ex)
             {
@@ -4317,10 +4324,14 @@ namespace Ostium
         {
             try
             {
-                if (Directory.Exists(Path.Combine(AppStart, "SecureFileExplorer", "logs")))
+                if (!Directory.Exists(Path.Combine(AppStart, "SecureFileExplorer", "logs")))
                 {
-                    Process.Start(Path.Combine(AppStart, "SecureFileExplorer", "logs"));
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
+
+                Process.Start(Path.Combine(AppStart, "SecureFileExplorer", "logs"));
             }
             catch (Exception ex)
             {
@@ -12896,6 +12907,8 @@ namespace Ostium
 
         async Task PerformWebFetchAsync()
         {
+            var url = txtPrompt.Text.Trim();
+
             if (string.IsNullOrWhiteSpace(txtPrompt.Text))
             {
                 ShowMessage("⚠ Please enter a URL", MessageType.Warning);
@@ -12918,8 +12931,6 @@ namespace Ostium
                 txtApiKey.Focus();
                 return;
             }
-
-            var url = txtPrompt.Text.Trim();
 
             if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
                 !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
@@ -13809,6 +13820,9 @@ namespace Ostium
         ///
         async void Agent_Web_Fetch_Btn_Click(object sender, EventArgs e)
         {
+            if (WBrowse.Source?.AbsoluteUri.Contains("file:///") == true || WBrowse.Source?.AbsoluteUri.Contains("edge://") == true)
+                return;
+
             await AgentFetchSearch(WBrowse.Source.AbsoluteUri);
         }
         ///
@@ -13820,10 +13834,7 @@ namespace Ostium
         ///
         void Agent_Fetch_Search_Click(object sender, EventArgs e)
         {
-            if (URLbrowse_Cbx.Text == "Insert a URL or search term")
-                return;
-
-            if (string.IsNullOrEmpty(URLbrowse_Cbx.Text))
+            if (string.IsNullOrEmpty(URLbrowse_Cbx.Text) || URLbrowse_Cbx.Text == "Insert a URL or search term")
             {
                 URLbrowse_Cbx.BackColor = Color.Red;
                 MessageBox.Show("Insert value!");
