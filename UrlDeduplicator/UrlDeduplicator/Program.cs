@@ -31,7 +31,6 @@ namespace UrlDeduplicator
 
         static int Main(string[] args)
         {
-            // Force en-US everywhere: number formatting, dates, and all messages.
             var enUs = CultureInfo.GetCultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = enUs;
             Thread.CurrentThread.CurrentUICulture = enUs;
@@ -71,7 +70,7 @@ namespace UrlDeduplicator
         static void PrintHeader()
         {
             Console.WriteLine("========================================");
-            Console.WriteLine("        URL Deduplicator (.NET)");
+            Console.WriteLine("        OSTIUM URL Deduplicator");
             Console.WriteLine("========================================");
             Console.WriteLine("Removes duplicate URLs from a large text file.");
             Console.WriteLine();
@@ -93,8 +92,6 @@ namespace UrlDeduplicator
                 return null;
             }
 
-            // Allow paths pasted with surrounding quotes (common when copied from
-            // Windows Explorer's "Copy as path").
             path = path.Trim().Trim('"');
 
             if (!File.Exists(path))
@@ -134,8 +131,6 @@ namespace UrlDeduplicator
             Console.WriteLine("Processing...");
             Console.WriteLine();
 
-            // Pre-size the set when we already know the line count, to avoid
-            // internal resizes/rehashing while the file is being processed.
             var seen = totalLines > 0 && totalLines < int.MaxValue
                 ? new HashSet<string>((int)Math.Min(totalLines, 4_000_000), StringComparer.Ordinal)
                 : new HashSet<string>(StringComparer.Ordinal);
@@ -220,7 +215,6 @@ namespace UrlDeduplicator
                 }
             }
 
-            // Count a final unterminated line (file doesn't end with a newline).
             if (sawAnyBytes && !lastByteWasNewline)
             {
                 count++;
@@ -249,7 +243,6 @@ namespace UrlDeduplicator
             line.Append('/').Append(total.ToString("N0", CultureInfo.InvariantCulture)).Append(" lines");
             line.Append("  ").Append(linesPerSecond.ToString("N0", CultureInfo.InvariantCulture)).Append(" lines/sec");
 
-            // Pad to a fixed width so shorter redraws fully overwrite longer ones.
             Console.Write(line.ToString().PadRight(100));
         }
 

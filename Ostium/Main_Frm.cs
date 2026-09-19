@@ -54,7 +54,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.49";
+        const string CurrentVersion = "1.4.50";
         readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "GitHubReleaseUpdater.exe");
         readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "config.json");
         #endregion
@@ -1317,7 +1317,7 @@ namespace Ostium
                 sessionID = Una;
             }
 
-            ValidateWebViewDataFolder(userDataFolder);
+            await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
             Class_Var.USER_DATA_FOLDER = userDataFolder;
         }
 

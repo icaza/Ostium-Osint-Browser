@@ -55,7 +55,7 @@ namespace RestartSession
             }
         }
 
-        async void SessionPathList_SelectedIndexChanged(object sender, EventArgs e)
+        void SessionPathList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SessionPathList.SelectedIndex != -1)
             {
@@ -63,7 +63,7 @@ namespace RestartSession
             }
         }
 
-        async Task CreateRestartFile()
+        void CreateRestartFile()
         {
             if (SessionPathList.SelectedIndex == -1)
             {
@@ -104,7 +104,7 @@ namespace RestartSession
 
         async void RestartSessionBtn_Click(object sender, EventArgs e)
         {
-            await CreateRestartFile();
+            await Task.Run(() => CreateRestartFile());
         }
 
         void CancelRestartBtn_Click(object sender, EventArgs e)
