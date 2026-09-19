@@ -38,6 +38,7 @@
             this.lblOwner = new System.Windows.Forms.Label();
             this.lblRepo = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.btnCreateConfig = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtInstallDirectory
@@ -87,7 +88,7 @@
             this.btnManualUpdate.FlatAppearance.BorderSize = 0;
             this.btnManualUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnManualUpdate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManualUpdate.Location = new System.Drawing.Point(13, 177);
+            this.btnManualUpdate.Location = new System.Drawing.Point(13, 210);
             this.btnManualUpdate.Name = "btnManualUpdate";
             this.btnManualUpdate.Size = new System.Drawing.Size(210, 33);
             this.btnManualUpdate.TabIndex = 4;
@@ -101,7 +102,7 @@
             this.btnCheckUpdate.FlatAppearance.BorderSize = 0;
             this.btnCheckUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheckUpdate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckUpdate.Location = new System.Drawing.Point(242, 177);
+            this.btnCheckUpdate.Location = new System.Drawing.Point(242, 210);
             this.btnCheckUpdate.Name = "btnCheckUpdate";
             this.btnCheckUpdate.Size = new System.Drawing.Size(210, 33);
             this.btnCheckUpdate.TabIndex = 5;
@@ -115,7 +116,7 @@
             this.btnForceUpdate.FlatAppearance.BorderSize = 0;
             this.btnForceUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForceUpdate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnForceUpdate.Location = new System.Drawing.Point(13, 226);
+            this.btnForceUpdate.Location = new System.Drawing.Point(13, 259);
             this.btnForceUpdate.Name = "btnForceUpdate";
             this.btnForceUpdate.Size = new System.Drawing.Size(439, 33);
             this.btnForceUpdate.TabIndex = 6;
@@ -124,7 +125,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(13, 269);
+            this.progressBar.Location = new System.Drawing.Point(13, 302);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(439, 15);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -135,7 +136,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.LightGray;
-            this.lblStatus.Location = new System.Drawing.Point(13, 297);
+            this.lblStatus.Location = new System.Drawing.Point(13, 330);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(49, 14);
             this.lblStatus.TabIndex = 8;
@@ -146,7 +147,7 @@
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgress.ForeColor = System.Drawing.Color.LightGray;
-            this.lblProgress.Location = new System.Drawing.Point(12, 328);
+            this.lblProgress.Location = new System.Drawing.Point(12, 373);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(0, 14);
             this.lblProgress.TabIndex = 9;
@@ -191,10 +192,26 @@
             this.lblVersion.TabIndex = 13;
             this.lblVersion.Text = "Current version:";
             // 
+            // btnCreateConfig
+            // 
+            this.btnCreateConfig.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnCreateConfig.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateConfig.FlatAppearance.BorderSize = 0;
+            this.btnCreateConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateConfig.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateConfig.Location = new System.Drawing.Point(13, 161);
+            this.btnCreateConfig.Name = "btnCreateConfig";
+            this.btnCreateConfig.Size = new System.Drawing.Size(439, 33);
+            this.btnCreateConfig.TabIndex = 14;
+            this.btnCreateConfig.Text = "Create a configuration file";
+            this.btnCreateConfig.UseVisualStyleBackColor = false;
+            this.btnCreateConfig.Click += new System.EventHandler(this.BtnCreateConfig_Click);
+            // 
             // MainForm
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(465, 360);
+            this.ClientSize = new System.Drawing.Size(465, 400);
+            this.Controls.Add(this.btnCreateConfig);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblRepo);
             this.Controls.Add(this.lblOwner);
@@ -237,6 +254,7 @@
         private System.Windows.Forms.Label lblOwner;
         private System.Windows.Forms.Label lblRepo;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnCreateConfig;
     }
 }
 

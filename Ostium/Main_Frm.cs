@@ -55,8 +55,8 @@ namespace Ostium
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
         const string CurrentVersion = "1.4.50";
-        readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "GitHubReleaseUpdater.exe");
-        readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "config.json");
+        readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2");
+        readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2", "config.json");
         #endregion
 
         #region Var_
@@ -13993,7 +13993,7 @@ namespace Ostium
         {
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubReleaseUpdater", "1.0.0"));
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubReleaseUpdater", "1.0.1"));
 
                 string url = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest";
 
@@ -14036,8 +14036,9 @@ namespace Ostium
                             File.WriteAllText(configUpdtPath, json);
 
                             ClearOnOff = "off";
-                            Process.Start(GitHubReleaseUpdater);
-                            Close();
+
+                            string dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp", "GitHubReleaseUpdaterV2");
+                            await Task.Run(() => CopyDirectory(GitHubReleaseUpdater, dirPath, true));
                         }
                     }
                 }
@@ -14046,6 +14047,34 @@ namespace Ostium
                     senderror.ErrorLog("Error! CheckForUpdates: ", ex.ToString(), "Main_Frm", AppStart);
                 }
             }
+        }
+
+        void CopyDirectory(string sourceDir, string destDir, bool overwrite)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDir);
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Source directory not found: {sourceDir}");
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            Directory.CreateDirectory(destDir);
+
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destDir, file.Name);
+                file.CopyTo(targetFilePath, overwrite);
+            }
+
+            foreach (DirectoryInfo subDir in dirs)
+            {
+                string newDestDir = Path.Combine(destDir, subDir.Name);
+                CopyDirectory(subDir.FullName, newDestDir, overwrite);
+            }
+
+            string dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
+                "Temp", "GitHubReleaseUpdaterV2", "GitHubReleaseUpdater.exe");
+
+            Process.Start(dirPath);
+            Close();
         }
 
         bool IsNewerVersion(string current, string latest)
