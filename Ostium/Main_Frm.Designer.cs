@@ -88,6 +88,7 @@
             this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +108,7 @@
             this.HiglitAddWord_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.HiglitInject_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.RestartSession_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.ArchiveDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolsOp_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
             this.ForceLinkParent_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -505,6 +507,8 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.CyberChef_Link = new System.Windows.Forms.Label();
+            this.OsintWatcher_Link = new System.Windows.Forms.Label();
             this.OsintWatcher_Opt_Txt = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.Redlist_Txt = new System.Windows.Forms.TextBox();
@@ -676,9 +680,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OsintWatcher_Link = new System.Windows.Forms.Label();
-            this.CyberChef_Link = new System.Windows.Forms.Label();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -924,6 +925,7 @@
             this.RegexCmd_Btn,
             this.Highlit_Mnu,
             this.toolStripSeparator11,
+            this.RestartSession_Btn,
             this.ArchiveDirectory_Btn});
             this.Tools_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tools_Mnu.ForeColor = System.Drawing.Color.White;
@@ -936,174 +938,182 @@
             // CopyURL_Mnu
             // 
             this.CopyURL_Mnu.Name = "CopyURL_Mnu";
-            this.CopyURL_Mnu.Size = new System.Drawing.Size(245, 22);
+            this.CopyURL_Mnu.Size = new System.Drawing.Size(281, 22);
             this.CopyURL_Mnu.Text = "Copy URL";
             this.CopyURL_Mnu.Click += new System.EventHandler(this.CopyURL_Mnu_Click);
             // 
             // Agent_Web_Fetch_Btn
             // 
             this.Agent_Web_Fetch_Btn.Name = "Agent_Web_Fetch_Btn";
-            this.Agent_Web_Fetch_Btn.Size = new System.Drawing.Size(245, 22);
+            this.Agent_Web_Fetch_Btn.Size = new System.Drawing.Size(281, 22);
             this.Agent_Web_Fetch_Btn.Text = "OOBai [Agent Web Fetch]";
             this.Agent_Web_Fetch_Btn.Click += new System.EventHandler(this.Agent_Web_Fetch_Btn_Click);
             // 
             // TraductPage_Btn
             // 
             this.TraductPage_Btn.Name = "TraductPage_Btn";
-            this.TraductPage_Btn.Size = new System.Drawing.Size(245, 22);
+            this.TraductPage_Btn.Size = new System.Drawing.Size(281, 22);
             this.TraductPage_Btn.Text = "Traduct Page";
             this.TraductPage_Btn.Click += new System.EventHandler(this.TraductPage_Btn_Click);
             // 
             // UnshortUrl_Btn
             // 
             this.UnshortUrl_Btn.Name = "UnshortUrl_Btn";
-            this.UnshortUrl_Btn.Size = new System.Drawing.Size(245, 22);
+            this.UnshortUrl_Btn.Size = new System.Drawing.Size(281, 22);
             this.UnshortUrl_Btn.Text = "Unshorten URL";
             this.UnshortUrl_Btn.Click += new System.EventHandler(this.UnshortUrl_Btn_Click);
             // 
             // WebpageToPng_Btn
             // 
             this.WebpageToPng_Btn.Name = "WebpageToPng_Btn";
-            this.WebpageToPng_Btn.Size = new System.Drawing.Size(245, 22);
+            this.WebpageToPng_Btn.Size = new System.Drawing.Size(281, 22);
             this.WebpageToPng_Btn.Text = "Webpage to Png";
             this.WebpageToPng_Btn.Click += new System.EventHandler(this.WebpageToPng_Btn_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(278, 6);
             // 
             // HTMLtxt_Btn
             // 
             this.HTMLtxt_Btn.Name = "HTMLtxt_Btn";
-            this.HTMLtxt_Btn.Size = new System.Drawing.Size(245, 22);
+            this.HTMLtxt_Btn.Size = new System.Drawing.Size(281, 22);
             this.HTMLtxt_Btn.Text = "HTML Text";
             this.HTMLtxt_Btn.Click += new System.EventHandler(this.HTMLtxt_Btn_Click);
             // 
             // OpnGroupFrm_Btn
             // 
             this.OpnGroupFrm_Btn.Name = "OpnGroupFrm_Btn";
-            this.OpnGroupFrm_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OpnGroupFrm_Btn.Size = new System.Drawing.Size(281, 22);
             this.OpnGroupFrm_Btn.Text = "Multiple Windows";
             this.OpnGroupFrm_Btn.Click += new System.EventHandler(this.OpnGroupFrm_Btn_Click);
             // 
             // GoogleDork_Btn
             // 
             this.GoogleDork_Btn.Name = "GoogleDork_Btn";
-            this.GoogleDork_Btn.Size = new System.Drawing.Size(245, 22);
+            this.GoogleDork_Btn.Size = new System.Drawing.Size(281, 22);
             this.GoogleDork_Btn.Text = "Google Dork";
             this.GoogleDork_Btn.Click += new System.EventHandler(this.GoogleDork_Btn_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(278, 6);
             // 
             // Cookie_Btn
             // 
             this.Cookie_Btn.Name = "Cookie_Btn";
-            this.Cookie_Btn.Size = new System.Drawing.Size(245, 22);
+            this.Cookie_Btn.Size = new System.Drawing.Size(281, 22);
             this.Cookie_Btn.Text = "Cookie";
             this.Cookie_Btn.Click += new System.EventHandler(this.Cookie_Btn_Click);
             // 
             // SetCookie_Btn
             // 
             this.SetCookie_Btn.Name = "SetCookie_Btn";
-            this.SetCookie_Btn.Size = new System.Drawing.Size(245, 22);
+            this.SetCookie_Btn.Size = new System.Drawing.Size(281, 22);
             this.SetCookie_Btn.Text = "Add or Update Cookie";
             this.SetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
             // 
             // toolStripSeparator18
             // 
             this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator18.Size = new System.Drawing.Size(278, 6);
             // 
             // OpnFilOnEditor_Btn
             // 
             this.OpnFilOnEditor_Btn.Name = "OpnFilOnEditor_Btn";
-            this.OpnFilOnEditor_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OpnFilOnEditor_Btn.Size = new System.Drawing.Size(281, 22);
             this.OpnFilOnEditor_Btn.Text = "Open File";
             this.OpnFilOnEditor_Btn.Click += new System.EventHandler(this.OpnFilOnEditor_Btn_Click);
             // 
             // OpenListLink_Btn
             // 
             this.OpenListLink_Btn.Name = "OpenListLink_Btn";
-            this.OpenListLink_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OpenListLink_Btn.Size = new System.Drawing.Size(281, 22);
             this.OpenListLink_Btn.Text = "Open Links List";
             this.OpenListLink_Btn.Click += new System.EventHandler(this.OpenListLink_Btn_Click);
             // 
             // Memo_Btn
             // 
             this.Memo_Btn.Name = "Memo_Btn";
-            this.Memo_Btn.Size = new System.Drawing.Size(245, 22);
+            this.Memo_Btn.Size = new System.Drawing.Size(281, 22);
             this.Memo_Btn.Text = "Memo";
             this.Memo_Btn.Click += new System.EventHandler(this.Memo_Btn_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(278, 6);
             // 
             // Editor_Btn
             // 
             this.Editor_Btn.Name = "Editor_Btn";
-            this.Editor_Btn.Size = new System.Drawing.Size(245, 22);
+            this.Editor_Btn.Size = new System.Drawing.Size(281, 22);
             this.Editor_Btn.Text = "Editor";
             this.Editor_Btn.Click += new System.EventHandler(this.Editor_Btn_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(278, 6);
             // 
             // CyberChef_Btn
             // 
             this.CyberChef_Btn.Enabled = false;
             this.CyberChef_Btn.Name = "CyberChef_Btn";
-            this.CyberChef_Btn.Size = new System.Drawing.Size(245, 22);
+            this.CyberChef_Btn.Size = new System.Drawing.Size(281, 22);
             this.CyberChef_Btn.Text = "CyberChef";
             this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
+            // 
+            // OsintWatcher_Btn
+            // 
+            this.OsintWatcher_Btn.Enabled = false;
+            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
+            this.OsintWatcher_Btn.Size = new System.Drawing.Size(281, 22);
+            this.OsintWatcher_Btn.Text = "Osint Watcher";
+            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
             // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator15.Size = new System.Drawing.Size(278, 6);
             // 
             // OpnDirectory_Btn
             // 
             this.OpnDirectory_Btn.Name = "OpnDirectory_Btn";
-            this.OpnDirectory_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OpnDirectory_Btn.Size = new System.Drawing.Size(281, 22);
             this.OpnDirectory_Btn.Text = "Open Directory";
             this.OpnDirectory_Btn.Click += new System.EventHandler(this.OpnDirectory_Btn_Click);
             // 
             // IndexDir_Btn
             // 
             this.IndexDir_Btn.Name = "IndexDir_Btn";
-            this.IndexDir_Btn.Size = new System.Drawing.Size(245, 22);
+            this.IndexDir_Btn.Size = new System.Drawing.Size(281, 22);
             this.IndexDir_Btn.Text = "Index";
             this.IndexDir_Btn.Click += new System.EventHandler(this.IndexDir_Btn_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(278, 6);
             // 
             // FetchDomainInfo_Btn
             // 
             this.FetchDomainInfo_Btn.Name = "FetchDomainInfo_Btn";
-            this.FetchDomainInfo_Btn.Size = new System.Drawing.Size(245, 22);
+            this.FetchDomainInfo_Btn.Size = new System.Drawing.Size(281, 22);
             this.FetchDomainInfo_Btn.Text = "TXT NS MX A";
             this.FetchDomainInfo_Btn.Click += new System.EventHandler(this.FetchDomainInfo_Btn_Click);
             // 
             // toolStripSeparator33
             // 
             this.toolStripSeparator33.Name = "toolStripSeparator33";
-            this.toolStripSeparator33.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator33.Size = new System.Drawing.Size(278, 6);
             // 
             // JavaScriptToggle_Btn
             // 
             this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
-            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(245, 22);
+            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(281, 22);
             this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
             this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
             // 
@@ -1115,7 +1125,7 @@
             this.toolStripSeparator32,
             this.OpnScriptl_Btn});
             this.Bkmkl_Mnu.Name = "Bkmkl_Mnu";
-            this.Bkmkl_Mnu.Size = new System.Drawing.Size(245, 22);
+            this.Bkmkl_Mnu.Size = new System.Drawing.Size(281, 22);
             this.Bkmkl_Mnu.Text = "Bookmarklet";
             // 
             // OpnBokmark_Btn
@@ -1147,21 +1157,21 @@
             // InjectScript_Btn
             // 
             this.InjectScript_Btn.Name = "InjectScript_Btn";
-            this.InjectScript_Btn.Size = new System.Drawing.Size(245, 22);
+            this.InjectScript_Btn.Size = new System.Drawing.Size(281, 22);
             this.InjectScript_Btn.Text = "InjectScript";
             this.InjectScript_Btn.Click += new System.EventHandler(this.InjectScript_Btn_Click);
             // 
             // OpenScriptEdit_Btn
             // 
             this.OpenScriptEdit_Btn.Name = "OpenScriptEdit_Btn";
-            this.OpenScriptEdit_Btn.Size = new System.Drawing.Size(245, 22);
+            this.OpenScriptEdit_Btn.Size = new System.Drawing.Size(281, 22);
             this.OpenScriptEdit_Btn.Text = "JS Script edit";
             this.OpenScriptEdit_Btn.Click += new System.EventHandler(this.OpenScriptEdit_Btn_Click);
             // 
             // RegexCmd_Btn
             // 
             this.RegexCmd_Btn.Name = "RegexCmd_Btn";
-            this.RegexCmd_Btn.Size = new System.Drawing.Size(245, 22);
+            this.RegexCmd_Btn.Size = new System.Drawing.Size(281, 22);
             this.RegexCmd_Btn.Text = "Regex";
             this.RegexCmd_Btn.Click += new System.EventHandler(this.RegexCmd_Btn_Click);
             // 
@@ -1171,7 +1181,7 @@
             this.HiglitAddWord_Btn,
             this.HiglitInject_Btn});
             this.Highlit_Mnu.Name = "Highlit_Mnu";
-            this.Highlit_Mnu.Size = new System.Drawing.Size(245, 22);
+            this.Highlit_Mnu.Size = new System.Drawing.Size(281, 22);
             this.Highlit_Mnu.Text = "Highlight";
             // 
             // HiglitAddWord_Btn
@@ -1191,12 +1201,19 @@
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(278, 6);
+            // 
+            // RestartSession_Btn
+            // 
+            this.RestartSession_Btn.Name = "RestartSession_Btn";
+            this.RestartSession_Btn.Size = new System.Drawing.Size(281, 22);
+            this.RestartSession_Btn.Text = "Restart a Session or create one";
+            this.RestartSession_Btn.Click += new System.EventHandler(this.RestartSession_Btn_Click);
             // 
             // ArchiveDirectory_Btn
             // 
             this.ArchiveDirectory_Btn.Name = "ArchiveDirectory_Btn";
-            this.ArchiveDirectory_Btn.Size = new System.Drawing.Size(245, 22);
+            this.ArchiveDirectory_Btn.Size = new System.Drawing.Size(281, 22);
             this.ArchiveDirectory_Btn.Text = "Backup";
             this.ArchiveDirectory_Btn.Click += new System.EventHandler(this.ArchiveDirectory_Btn_Click);
             // 
@@ -6478,6 +6495,32 @@
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
+            // CyberChef_Link
+            // 
+            this.CyberChef_Link.AutoSize = true;
+            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.CyberChef_Link.Location = new System.Drawing.Point(122, 513);
+            this.CyberChef_Link.Name = "CyberChef_Link";
+            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
+            this.CyberChef_Link.TabIndex = 26;
+            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
+            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
+            // 
+            // OsintWatcher_Link
+            // 
+            this.OsintWatcher_Link.AutoSize = true;
+            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.OsintWatcher_Link.Location = new System.Drawing.Point(148, 574);
+            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
+            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
+            this.OsintWatcher_Link.TabIndex = 25;
+            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
+            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
+            // 
             // OsintWatcher_Opt_Txt
             // 
             this.OsintWatcher_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -7392,7 +7435,7 @@
             this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
             this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 22);
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
             this.OpnPromptRss_Btn.Text = "Prompt";
             this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
             // 
@@ -7407,7 +7450,7 @@
             this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
             this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RSS2_Tls.Name = "RSS2_Tls";
-            this.RSS2_Tls.Size = new System.Drawing.Size(54, 22);
+            this.RSS2_Tls.Size = new System.Drawing.Size(54, 20);
             this.RSS2_Tls.Text = "RSS2";
             // 
             // ConfigRSS2_Btn
@@ -8207,40 +8250,6 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
-            // OsintWatcher_Btn
-            // 
-            this.OsintWatcher_Btn.Enabled = false;
-            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
-            this.OsintWatcher_Btn.Size = new System.Drawing.Size(245, 22);
-            this.OsintWatcher_Btn.Text = "Osint Watcher";
-            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
-            // 
-            // OsintWatcher_Link
-            // 
-            this.OsintWatcher_Link.AutoSize = true;
-            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.OsintWatcher_Link.Location = new System.Drawing.Point(148, 574);
-            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
-            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
-            this.OsintWatcher_Link.TabIndex = 25;
-            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
-            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
-            // 
-            // CyberChef_Link
-            // 
-            this.CyberChef_Link.AutoSize = true;
-            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.CyberChef_Link.Location = new System.Drawing.Point(122, 513);
-            this.CyberChef_Link.Name = "CyberChef_Link";
-            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
-            this.CyberChef_Link.TabIndex = 26;
-            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
-            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8999,6 +9008,7 @@
         private System.Windows.Forms.ToolStripMenuItem OsintWatcher_Btn;
         private System.Windows.Forms.Label CyberChef_Link;
         private System.Windows.Forms.Label OsintWatcher_Link;
+        private System.Windows.Forms.ToolStripMenuItem RestartSession_Btn;
     }
 }
 

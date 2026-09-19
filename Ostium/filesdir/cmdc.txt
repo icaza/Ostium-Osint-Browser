@@ -4,6 +4,7 @@
 > version   : software version
 > config    : open config.xml file
 > id        : process ID
+> sessionid : Name of the current session
 
 *SCRAPING*
 

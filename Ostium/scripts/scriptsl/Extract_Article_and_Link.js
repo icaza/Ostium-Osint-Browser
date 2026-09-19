@@ -16,13 +16,6 @@
         containerMaxHeight: '85vh'
     };
 
-    // Utility: Sanitize text to prevent XSS
-    function sanitizeText(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
     // Utility: Validate URL
     function isValidUrl(url) {
         try {
@@ -41,8 +34,8 @@
         // Title
         const title = document.createElement('h3');
         title.textContent = tableType === 'paragraphs' ? 
-            `📄 Paragraphes (${data.length})` : 
-            `🔗 Liens (${data.length})`;
+            `📄 Paragraphs (${data.length})` :
+            `🔗 Links (${data.length})`;
         title.style.margin = '10px 0';
         title.style.fontSize = '16px';
         title.style.color = '#333';
@@ -51,7 +44,7 @@
         // Search/Filter input
         const filterInput = document.createElement('input');
         filterInput.type = 'text';
-        filterInput.placeholder = `Filtrer les ${tableType === 'paragraphs' ? 'paragraphes' : 'liens'}...`;
+        filterInput.placeholder = `Filter the ${tableType === 'paragraphs' ? 'paragraphs' : 'lins'}...`;
         filterInput.style.width = '100%';
         filterInput.style.padding = '8px';
         filterInput.style.marginBottom = '10px';
@@ -132,8 +125,8 @@
             });
 
             title.textContent = tableType === 'paragraphs' ? 
-                `📄 Paragraphes (${visibleCount}/${data.length})` : 
-                `🔗 Liens (${visibleCount}/${data.length})`;
+                `📄 Paragraphs (${visibleCount}/${data.length})` : 
+                `🔗 Links (${visibleCount}/${data.length})`;
         });
 
         wrapper.appendChild(table);
@@ -175,15 +168,15 @@
         const timestamp = new Date().toISOString().split('T')[0];
 
         if (format === 'csv') {
-            content = 'Type,Contenu,URL\n';
+            content = 'Type,Content,URL\n';
             paragraphs.forEach(p => {
                 const text = p.text.replace(/"/g, '""');
                 const url = p.url || '';
-                content += `"Paragraphe","${text}","${url}"\n`;
+                content += `"Paragraph","${text}","${url}"\n`;
             });
             links.forEach(l => {
                 const url = l.url.replace(/"/g, '""');
-                content += `"Lien","${url}","${url}"\n`;
+                content += `"Link","${url}","${url}"\n`;
             });
         } else if (format === 'json') {
             content = JSON.stringify({
@@ -280,7 +273,7 @@
         `;
 
         const headerTitle = document.createElement('h2');
-        headerTitle.textContent = '📊 Extracteur de Contenu';
+        headerTitle.textContent = '📊 Content Extractor';
         headerTitle.style.cssText = 'margin: 0; font-size: 18px; font-weight: 600;';
         header.appendChild(headerTitle);
 
@@ -367,8 +360,8 @@
             return [link];
         });
 
-        content.appendChild(createTable(['Contenu'], paragraphData, 'paragraphs'));
-        content.appendChild(createTable(['Lien'], linkData, 'links'));
+        content.appendChild(createTable(['Content'], paragraphData, 'paragraphs'));
+        content.appendChild(createTable(['Link'], linkData, 'links'));
 
         container.appendChild(content);
         document.body.appendChild(container);

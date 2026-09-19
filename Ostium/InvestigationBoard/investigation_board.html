@@ -735,6 +735,10 @@
                 <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg>
                 <span>Save As</span>
             </button>
+            <button id="btn-export-svg" title="Export current project to SVG" aria-label="Export to SVG" class="requires-project">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" /></svg>
+                <span>SVG</span>
+            </button>
         </div>
         <div class="toolbar-separator"></div>
         <div class="toolbar-group">
@@ -897,6 +901,7 @@
             const btnOpenProject = document.getElementById('btn-open-project');
             const btnSave = document.getElementById('btn-save');
             const btnSaveAs = document.getElementById('btn-save-as');
+            const btnExportSvg = document.getElementById('btn-export-svg');
             const btnDarkMode = document.getElementById('btn-dark-mode');
             const openFileInput = document.getElementById('open-file-input');
             const emptyNewProjectBtn = document.getElementById('empty-new-project');
@@ -2280,6 +2285,134 @@
                     fileOpBusy = false;
                 }
             });
+
+            // ==================== SVG EXPORT ====================
+            function escapeXml(unsafe) {
+                return String(unsafe || '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&apos;');
+            }
+
+            function exportProjectAsSvg() {
+                if (!state.projectName) {
+                    showToast('Create or open a project first');
+                    return;
+                }
+
+                const padding = 50;
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+
+                if (state.items.length === 0) {
+                    minX = 0;
+                    minY = 0;
+                    maxX = 800;
+                    maxY = 600;
+                } else {
+                    state.items.forEach(item => {
+                        minX = Math.min(minX, item.x);
+                        minY = Math.min(minY, item.y);
+                        maxX = Math.max(maxX, item.x + item.width);
+                        maxY = Math.max(maxY, item.y + item.height);
+                    });
+                }
+
+                const vx = minX - padding;
+                const vy = minY - padding;
+                const totalW = Math.max(100, Math.round((maxX - minX) + padding * 2));
+                const totalH = Math.max(100, Math.round((maxY - minY) + padding * 2));
+
+                const isDark = state.isDark;
+                const bgColor = isDark ? '#1a202c' : '#f0f2f5';
+                const panelBg = isDark ? '#2d3748' : '#ffffff';
+                const textColor = isDark ? '#e2e8f0' : '#1a1a1a';
+                const textSecondary = isDark ? '#a0aec0' : '#555555';
+                const connColor = isDark ? '#b794f4' : '#805ad5';
+                const borderColor = isDark ? '#4a5568' : '#d0d4d9';
+
+                let svg = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+                svg += `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="${vx} ${vy} ${totalW} ${totalH}" width="${totalW}" height="${totalH}">\n`;
+                svg += `  <defs>\n`;
+                svg += `    <filter id="board-shadow" x="-15%" y="-15%" width="130%" height="130%">\n`;
+                svg += `      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="${isDark ? '0.45' : '0.15'}" />\n`;
+                svg += `    </filter>\n`;
+                svg += `  </defs>\n`;
+                svg += `  <!-- Background -->\n`;
+                svg += `  <rect x="${vx}" y="${vy}" width="${totalW}" height="${totalH}" fill="${bgColor}" />\n`;
+
+                // Render connections
+                svg += `  <!-- Connections -->\n`;
+                svg += `  <g class="connections">\n`;
+                state.connections.forEach(conn => {
+                    const fromItem = state.items.find(i => i.id === conn.from);
+                    const toItem = state.items.find(i => i.id === conn.to);
+                    if (fromItem && toItem) {
+                        const x1 = fromItem.x + fromItem.width / 2;
+                        const y1 = fromItem.y + fromItem.height / 2;
+                        const x2 = toItem.x + toItem.width / 2;
+                        const y2 = toItem.y + toItem.height / 2;
+                        svg += `    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${connColor}" stroke-width="2" stroke-linecap="round" />\n`;
+                    }
+                });
+                svg += `  </g>\n`;
+
+                // Render items
+                svg += `  <!-- Board Items -->\n`;
+                svg += `  <g class="board-items">\n`;
+                state.items.forEach(item => {
+                    if (item.type === 'note') {
+                        const noteColor = item.color || '#fff9c4';
+                        const noteTextColor = isDark ? '#1a202c' : '#333333';
+                        svg += `    <g class="note" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
+                        svg += `      <rect width="${item.width}" height="${item.height}" rx="4" ry="4" fill="${noteColor}" stroke="rgba(0,0,0,0.1)" stroke-width="1" />\n`;
+                        svg += `      <foreignObject width="${item.width}" height="${item.height}">\n`;
+                        svg += `        <div xmlns="http://www.w3.org/1999/xhtml" style="padding:15px; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; font-size:16px; line-height:1.4; color:${noteTextColor}; word-wrap:break-word; white-space:pre-wrap; box-sizing:border-box; height:100%; overflow:hidden;">${escapeXml(item.content || '')}</div>\n`;
+                        svg += `      </foreignObject>\n`;
+                        svg += `    </g>\n`;
+                    } else if (item.type === 'image') {
+                        const safeSrc = resolveImageSrc(item.content) || '';
+                        svg += `    <g class="image-item" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
+                        svg += `      <clipPath id="clip-${item.id}">\n`;
+                        svg += `        <rect width="${item.width}" height="${item.height}" rx="6" ry="6" />\n`;
+                        svg += `      </clipPath>\n`;
+                        svg += `      <rect width="${item.width}" height="${item.height}" rx="6" ry="6" fill="${panelBg}" stroke="${borderColor}" stroke-width="1" />\n`;
+                        if (safeSrc) {
+                            svg += `      <image href="${escapeXml(safeSrc)}" x="0" y="0" width="${item.width}" height="${item.height}" preserveAspectRatio="xMidYMid meet" clip-path="url(#clip-${item.id})" />\n`;
+                        }
+                        svg += `    </g>\n`;
+                    } else if (item.type === 'generic') {
+                        const itemBg = item.color || panelBg;
+                        const title = (item.extra && item.extra.title) ? item.extra.title : 'Untitled';
+                        const desc = (item.extra && item.extra.description) ? item.extra.description : '';
+                        svg += `    <g class="generic-item" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
+                        svg += `      <rect width="${item.width}" height="${item.height}" rx="8" ry="8" fill="${itemBg}" stroke="${borderColor}" stroke-width="1" />\n`;
+                        svg += `      <foreignObject width="${item.width}" height="${item.height}">\n`;
+                        svg += `        <div xmlns="http://www.w3.org/1999/xhtml" style="padding:12px; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; color:${textColor}; box-sizing:border-box; height:100%; overflow:hidden;">\n`;
+                        svg += `          <h4 style="margin:0 0 6px 0; font-size:16px; font-weight:600; color:${textColor};">${escapeXml(title)}</h4>\n`;
+                        svg += `          <p style="margin:0; font-size:14px; color:${textSecondary}; word-wrap:break-word; white-space:pre-wrap;">${escapeXml(desc)}</p>\n`;
+                        svg += `        </div>\n`;
+                        svg += `      </foreignObject>\n`;
+                        svg += `    </g>\n`;
+                    }
+                });
+                svg += `  </g>\n`;
+                svg += `</svg>`;
+
+                const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = sanitizeFileName(state.projectName || 'project') + '.svg';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+                showToast(`Project exported as "${sanitizeFileName(state.projectName)}.svg"`);
+            }
+
+            btnExportSvg.addEventListener('click', exportProjectAsSvg);
 
             // ==================== DARK MODE ====================
             btnDarkMode.addEventListener('click', () => {
