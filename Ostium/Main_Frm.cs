@@ -1302,6 +1302,7 @@ namespace Ostium
                 using (StreamReader sr = new StreamReader(RestartFile))
                 {
                     userDataFolder = sr.ReadToEnd();
+                    sessionID = userDataFolder;
                 }
                 MessageBox.Show("You are starting from an existing session. If that is not what you intended, " +
                     "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
