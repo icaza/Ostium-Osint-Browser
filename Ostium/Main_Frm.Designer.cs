@@ -88,7 +88,6 @@
             this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OsintWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -682,6 +681,11 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OsintWatcher_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.MonitorWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.LocalhostWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConfigWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -913,7 +917,7 @@
             this.Editor_Btn,
             this.toolStripSeparator3,
             this.CyberChef_Btn,
-            this.OsintWatcher_Btn,
+            this.OsintWatcher_Mnu,
             this.toolStripSeparator15,
             this.OpnDirectory_Btn,
             this.IndexDir_Btn,
@@ -1068,14 +1072,6 @@
             this.CyberChef_Btn.Text = "CyberChef";
             this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
             // 
-            // OsintWatcher_Btn
-            // 
-            this.OsintWatcher_Btn.Enabled = false;
-            this.OsintWatcher_Btn.Name = "OsintWatcher_Btn";
-            this.OsintWatcher_Btn.Size = new System.Drawing.Size(281, 22);
-            this.OsintWatcher_Btn.Text = "Osint Watcher";
-            this.OsintWatcher_Btn.Click += new System.EventHandler(this.OsintWatcher_Btn_Click);
-            // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
@@ -1133,26 +1129,26 @@
             // OpnBokmark_Btn
             // 
             this.OpnBokmark_Btn.Name = "OpnBokmark_Btn";
-            this.OpnBokmark_Btn.Size = new System.Drawing.Size(161, 22);
+            this.OpnBokmark_Btn.Size = new System.Drawing.Size(180, 22);
             this.OpnBokmark_Btn.Text = "Open";
             this.OpnBokmark_Btn.Click += new System.EventHandler(this.OpnBookmark_Btn_Click);
             // 
             // CreateBookmark_Btn
             // 
             this.CreateBookmark_Btn.Name = "CreateBookmark_Btn";
-            this.CreateBookmark_Btn.Size = new System.Drawing.Size(161, 22);
+            this.CreateBookmark_Btn.Size = new System.Drawing.Size(180, 22);
             this.CreateBookmark_Btn.Text = "Create";
             this.CreateBookmark_Btn.Click += new System.EventHandler(this.CreateBokmark_Btn_Click);
             // 
             // toolStripSeparator32
             // 
             this.toolStripSeparator32.Name = "toolStripSeparator32";
-            this.toolStripSeparator32.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator32.Size = new System.Drawing.Size(177, 6);
             // 
             // OpnScriptl_Btn
             // 
             this.OpnScriptl_Btn.Name = "OpnScriptl_Btn";
-            this.OpnScriptl_Btn.Size = new System.Drawing.Size(161, 22);
+            this.OpnScriptl_Btn.Size = new System.Drawing.Size(180, 22);
             this.OpnScriptl_Btn.Text = "File Script JS";
             this.OpnScriptl_Btn.Click += new System.EventHandler(this.OpnScriptl_Btn_Click);
             // 
@@ -1483,33 +1479,33 @@
             // ConfigOBE_Btn
             // 
             this.ConfigOBE_Btn.Name = "ConfigOBE_Btn";
-            this.ConfigOBE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.ConfigOBE_Btn.Size = new System.Drawing.Size(159, 22);
             this.ConfigOBE_Btn.Text = "Config";
             this.ConfigOBE_Btn.Click += new System.EventHandler(this.ConfigOBE_Btn_Click);
             // 
             // StartOBE_Btn
             // 
             this.StartOBE_Btn.Name = "StartOBE_Btn";
-            this.StartOBE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.StartOBE_Btn.Size = new System.Drawing.Size(159, 22);
             this.StartOBE_Btn.Text = "Server Start";
             this.StartOBE_Btn.Click += new System.EventHandler(this.StartOBE_Btn_Click);
             // 
             // LocalhostOBE_Btn
             // 
             this.LocalhostOBE_Btn.Name = "LocalhostOBE_Btn";
-            this.LocalhostOBE_Btn.Size = new System.Drawing.Size(180, 22);
+            this.LocalhostOBE_Btn.Size = new System.Drawing.Size(159, 22);
             this.LocalhostOBE_Btn.Text = "Localhost";
             this.LocalhostOBE_Btn.Click += new System.EventHandler(this.LocalhostOBE_Btn_Click);
             // 
             // toolStripSeparator41
             // 
             this.toolStripSeparator41.Name = "toolStripSeparator41";
-            this.toolStripSeparator41.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator41.Size = new System.Drawing.Size(156, 6);
             // 
             // DenoUpdate_Btn
             // 
             this.DenoUpdate_Btn.Name = "DenoUpdate_Btn";
-            this.DenoUpdate_Btn.Size = new System.Drawing.Size(180, 22);
+            this.DenoUpdate_Btn.Size = new System.Drawing.Size(159, 22);
             this.DenoUpdate_Btn.Text = "Deno Update";
             this.DenoUpdate_Btn.Click += new System.EventHandler(this.DenoUpdate_Btn_Click);
             // 
@@ -4192,7 +4188,7 @@
             this.Json_Tab.ForeColor = System.Drawing.Color.White;
             this.Json_Tab.Location = new System.Drawing.Point(4, 23);
             this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Json_Tab.TabIndex = 10;
             this.Json_Tab.Text = "JSON";
             // 
@@ -4205,7 +4201,7 @@
             this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbOutB.Location = new System.Drawing.Point(0, 320);
             this.WbOutB.Name = "WbOutB";
-            this.WbOutB.Size = new System.Drawing.Size(1126, 241);
+            this.WbOutB.Size = new System.Drawing.Size(1126, 270);
             this.WbOutB.TabIndex = 15;
             this.WbOutB.ZoomFactor = 1D;
             // 
@@ -4395,7 +4391,7 @@
             this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
             this.JsonList_Pnl.Name = "JsonList_Pnl";
-            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 455);
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 484);
             this.JsonList_Pnl.TabIndex = 8;
             this.JsonList_Pnl.Visible = false;
             // 
@@ -4410,7 +4406,7 @@
             this.TableJson_Lst.ItemHeight = 14;
             this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
             this.TableJson_Lst.Name = "TableJson_Lst";
-            this.TableJson_Lst.Size = new System.Drawing.Size(200, 423);
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 452);
             this.TableJson_Lst.TabIndex = 25;
             this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
             // 
@@ -4723,7 +4719,7 @@
             this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 561);
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 590);
             this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
             this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
             this.JsonUsrAgt_Txt.TabIndex = 0;
@@ -5716,7 +5712,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 23);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -5728,7 +5724,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 563);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 592);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -5739,7 +5735,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 62);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 501);
+            this.groupBox5.Size = new System.Drawing.Size(328, 530);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -5780,7 +5776,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 480);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 509);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -6182,7 +6178,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 563);
+            this.panel26.Size = new System.Drawing.Size(10, 592);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
@@ -6192,7 +6188,7 @@
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 563);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 592);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
             // groupBox6
@@ -6206,7 +6202,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox6.Location = new System.Drawing.Point(0, 370);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 193);
+            this.groupBox6.Size = new System.Drawing.Size(244, 222);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
@@ -6449,7 +6445,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 563);
+            this.panel25.Size = new System.Drawing.Size(10, 592);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -6459,7 +6455,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 563);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 592);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -6469,7 +6465,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 530);
+            this.groupBox3.Size = new System.Drawing.Size(714, 559);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -6508,7 +6504,7 @@
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
             this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 509);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
             // CyberChef_Link
@@ -6805,7 +6801,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 530);
+            this.panel27.Location = new System.Drawing.Point(0, 559);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -6852,7 +6848,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 573);
+            this.panel24.Location = new System.Drawing.Point(10, 602);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -6872,7 +6868,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 583);
+            this.panel22.Size = new System.Drawing.Size(10, 612);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -6881,7 +6877,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 583);
+            this.panel21.Size = new System.Drawing.Size(10, 612);
             this.panel21.TabIndex = 20;
             // 
             // Status_Strip
@@ -7451,7 +7447,7 @@
             this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
             this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 22);
             this.OpnPromptRss_Btn.Text = "Prompt";
             this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
             // 
@@ -7466,7 +7462,7 @@
             this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
             this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RSS2_Tls.Name = "RSS2_Tls";
-            this.RSS2_Tls.Size = new System.Drawing.Size(54, 20);
+            this.RSS2_Tls.Size = new System.Drawing.Size(54, 22);
             this.RSS2_Tls.Text = "RSS2";
             // 
             // ConfigRSS2_Btn
@@ -8266,6 +8262,46 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // OsintWatcher_Mnu
+            // 
+            this.OsintWatcher_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigWatcher_Btn,
+            this.MonitorWatcher_Btn,
+            this.ReportWatcher_Btn,
+            this.LocalhostWatcher_Btn});
+            this.OsintWatcher_Mnu.Enabled = false;
+            this.OsintWatcher_Mnu.Name = "OsintWatcher_Mnu";
+            this.OsintWatcher_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.OsintWatcher_Mnu.Text = "Osint Watcher";
+            // 
+            // MonitorWatcher_Btn
+            // 
+            this.MonitorWatcher_Btn.Name = "MonitorWatcher_Btn";
+            this.MonitorWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.MonitorWatcher_Btn.Text = "Monitor App";
+            this.MonitorWatcher_Btn.Click += new System.EventHandler(this.MonitorWatcher_Btn_Click);
+            // 
+            // ReportWatcher_Btn
+            // 
+            this.ReportWatcher_Btn.Name = "ReportWatcher_Btn";
+            this.ReportWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ReportWatcher_Btn.Text = "Start Reports Viewer";
+            this.ReportWatcher_Btn.Click += new System.EventHandler(this.ReportWatcher_Btn_Click);
+            // 
+            // LocalhostWatcher_Btn
+            // 
+            this.LocalhostWatcher_Btn.Name = "LocalhostWatcher_Btn";
+            this.LocalhostWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.LocalhostWatcher_Btn.Text = "Localhost";
+            this.LocalhostWatcher_Btn.Click += new System.EventHandler(this.LocalhostWatcher_Btn_Click);
+            // 
+            // ConfigWatcher_Btn
+            // 
+            this.ConfigWatcher_Btn.Name = "ConfigWatcher_Btn";
+            this.ConfigWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ConfigWatcher_Btn.Text = "Config";
+            this.ConfigWatcher_Btn.Click += new System.EventHandler(this.ConfigWatcher_Btn_Click);
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -9021,12 +9057,16 @@
         private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
         private System.Windows.Forms.TextBox OsintWatcher_Opt_Txt;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.ToolStripMenuItem OsintWatcher_Btn;
         private System.Windows.Forms.Label CyberChef_Link;
         private System.Windows.Forms.Label OsintWatcher_Link;
         private System.Windows.Forms.ToolStripMenuItem RestartSession_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
         private System.Windows.Forms.ToolStripMenuItem DenoUpdate_Btn;
+        private System.Windows.Forms.ToolStripMenuItem OsintWatcher_Mnu;
+        private System.Windows.Forms.ToolStripMenuItem MonitorWatcher_Btn;
+        private System.Windows.Forms.ToolStripMenuItem ReportWatcher_Btn;
+        private System.Windows.Forms.ToolStripMenuItem LocalhostWatcher_Btn;
+        private System.Windows.Forms.ToolStripMenuItem ConfigWatcher_Btn;
     }
 }
 

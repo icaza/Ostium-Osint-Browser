@@ -1081,9 +1081,9 @@ namespace Ostium
                             case "OSINTWATCHER_VAR":
                                 OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
                                 if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
-                                    OsintWatcher_Btn.Enabled = true;
+                                    OsintWatcher_Mnu.Enabled = true;
                                 else
-                                    OsintWatcher_Btn.Enabled = false;
+                                    OsintWatcher_Mnu.Enabled = false;
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -3666,9 +3666,95 @@ namespace Ostium
             }
         }
 
-        void OsintWatcher_Btn_Click(object sender, EventArgs e)
+        void ConfigWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            string dirPath = Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher_ReportsViewer", "server.js");
+
+            if (!File.Exists(dirPath))
+            {
+                MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                    "OsintWatcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(dirPath);
+        }
+
+        void MonitorWatcher_Btn_Click(object sender, EventArgs e)
         {
             OsintWatcherExec();
+        }
+
+        void ReportWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                {
+                    string PathReportViewer = Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher_ReportsViewer");
+
+                    if (Directory.Exists(PathReportViewer))
+                    {
+                        if (File.Exists(Path.Combine(PathReportViewer, "start.bat")))
+                            Process.Start(Path.Combine(PathReportViewer, "start.bat"));
+                        else
+                            MessageBox.Show("The file start.bat does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Osint Watcher is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ReportWatcher_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LocalhostWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher_ReportsViewer", "server.js");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "OsintWatcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(filepath);
+
+                string portLine = lines.FirstOrDefault(l => l.Contains("const PORT = process.env.PORT ? Number(process.env.PORT) :"));
+
+                if (portLine == null)
+                {
+                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string portStr = new string(portLine
+                    .SkipWhile(c => !char.IsDigit(c))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray());
+
+                int port = int.Parse(portStr);
+
+                GoBrowser($"http://localhost:{port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LocalhostMESS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void OsintWatcherExec()
@@ -3677,9 +3763,12 @@ namespace Ostium
             {
                 if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
                 {
-                    if (File.Exists(OsintWatcher_Opt_Txt.Text))
+                    if (Directory.Exists(OsintWatcher_Opt_Txt.Text))
                     {
-                        Process.Start(OsintWatcher_Opt_Txt.Text);
+                        if (File.Exists(Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher.exe")))
+                            Process.Start(Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher.exe"));
+                        else
+                            MessageBox.Show("The file OsintWatcher.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
