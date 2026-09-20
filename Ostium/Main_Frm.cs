@@ -4541,6 +4541,35 @@ namespace Ostium
             }
         }
 
+        void DenoUpdate_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "OstiumBookmarkExplorer", "deno.exe");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("OstiumBookmarkExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "OstiumBookmarkExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = "cmd.exe";
+                    proc.StartInfo.Arguments = $"/k \"{filepath}\" upgrade";
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "OstiumBookmarkExplorer");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! DenoUpdate_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void ConvertPDF_Btn_Click(object sender, EventArgs e)
         {
             if (!File.Exists(Path.Combine(AppStart, "OOBpdfC", "OOBpdfC.exe")))
