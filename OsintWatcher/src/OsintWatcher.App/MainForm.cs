@@ -12,6 +12,7 @@ public sealed class MainForm : Form
 {
     #region "Var_"
     readonly string _workspaceRoot;
+    readonly string _PathReport;
     readonly EncryptedStore _store;
     readonly SecureHttpFetcher _fetcher;
     readonly MonitoringEngine _engine;
@@ -30,6 +31,7 @@ public sealed class MainForm : Form
     public MainForm()
     {
         _workspaceRoot = Path.Combine(Application.StartupPath, "OsintWatcher");
+        _PathReport = Path.Combine(Application.StartupPath, "Reports_");
         _store = new EncryptedStore(_workspaceRoot);
         _fetcher = new SecureHttpFetcher();
         _engine = new MonitoringEngine(_fetcher, _store);
@@ -58,6 +60,7 @@ public sealed class MainForm : Form
     Button _btnAdd = null!, _btnEdit = null!, _btnRemove = null!, _btnRunSelected = null!, _btnRunAll = null!, _btnVerify = null!;
     ComboBox _exportFormatBox = null!;
     Button _btnExport = null!;
+    CheckBox _AutoSaveReport = null!;
 
     void BuildLayout()
     {
@@ -84,10 +87,12 @@ public sealed class MainForm : Form
         _exportFormatBox.SelectedIndex = 0;
         _btnExport = MakeButton("Export…");
 
+        _AutoSaveReport = new CheckBox { Text = "Auto Save Report", AutoSize = true, Margin = new Padding(10, 10, 10, 0) };
+
         toolbar.Controls.AddRange(
         [
             _btnAdd, _btnEdit, _btnRemove, _btnRunSelected, _btnRunAll, _btnVerify,
-            _exportFormatBox, _btnExport
+            _exportFormatBox, _btnExport, _AutoSaveReport
         ]);
 
         var split = new SplitContainer
@@ -276,8 +281,11 @@ public sealed class MainForm : Form
             Filter = $"{exporter.DisplayName}|*.{exporter.FileExtension}",
             FileName = $"osint-watcher-report.{exporter.FileExtension}"
         };
+
         if (save.ShowDialog(this) != DialogResult.OK) return;
+
         File.WriteAllBytes(save.FileName, exporter.Export(report));
+
         SetStatus($"Exported {exporter.DisplayName} to {save.FileName}");
     }
 
@@ -338,6 +346,14 @@ public sealed class MainForm : Form
         }
 
         _dashboard1.CoreWebView2.NavigateToString(html);
+
+        if (_AutoSaveReport.Checked)
+        {
+            if (!Directory.Exists(_PathReport)) Directory.CreateDirectory(_PathReport);
+            string Una = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + "_" + Guid.NewGuid().ToString("N");
+            var exporter = _exporters[0];
+            File.WriteAllBytes(Path.Combine(_PathReport, Una + ".html"), exporter.Export(report));
+        }
     }
 
     void SetStatus(string text) => _statusLabel.Text = text;

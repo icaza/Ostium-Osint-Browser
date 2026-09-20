@@ -117,27 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAMDAAAAEAIADxAwAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAwAAAAMAgGAAAAVwL5hwAAAAFz
-        UkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADhklEQVRoQ+2XTUhU
-        URiGz+jo6IxOOmowQdAiQoiQIPqhRUVhbSKKFhJEBbVpEbhICISEIsGFYERQmxZFCzdilCQVLVwYErmI
-        IKJFEBE4OuLPqOPf9L63c+E6Xu89d5y59wrzwOH+zDBz3u9833u+E9gRj2fEFqZEXrcsRQFeUxTgNUUB
-        XqO8D+xaXhYHMewYCQbFLwy3UBJwY25OdMzOyid7vkHAYCgk3mLwvpAoCRgdHxfbV1flkzO4Gv0Q8qZA
-        YpQE/Bkbk3eb429pqXgNIQMYI2Vl8u3mcFWAEYphig2Wl4thDPvqMsczAUaSJSWamFcYTsX4QoCRaYh5
-        BxFMsyFcU4GA/MQc3wkwQjF3q6pEb0WFfLMe1wR8gQP1VlaKtE1EdbbB9Vrm50UskxH76+vl2/W4IoCT
-        PxuLySd1aLqfJibEgbq6/y9McKWVYOTNCCG6Tdzhl5a0+2xYzEM2duuKALO0OZNOi8+I7kAyKfomJ8VX
-        bJYPp6fFqcVF+Q01lATQs/PJbkT9MSYbM+zuw4h0AkV7Z2ZGPJ2aUt75lQT0hMPyLj9cXVhYkzJXamq0
-        cQ+OcxL5/hsB64QQFZQEPEcOH0URPoMQVRexohE5r0Ovf49hpCsS0VJMpXNSrgE2Ze2I0GFE6BH+gB6d
-        Kz8NTR134Wz0IIUV0sjxLMbwh50QcAgrwiufncLOVIcOFMlyoBMoZAZMJUg5h5E/zpV4sYFFWsG0uV1d
-        rdlkfGVFPEHRNuJKIZx8Nwr8AX5bhZwFOMHM419C+GmkYw8mShEfYKk/EgnNSjuQqsZVsiLvAphS3ZiU
-        cfkvwHXM+A63YcHSefY0NGg77j60Df2y92GlHDEUvBlKrYQV93HUvIYjpw4tkIXOdLiEXuYmPqOnf0Ta
-        jDo4xHDnOS6dqNmiDclZAJedk6fdGdEF6FDILYhoQiSDJqm0EWyjea7mCc6qmB0LYEQuY0JtGFETm+NR
-        8XxtrXwqPI5qYC9agD70Lox89uTpKMz9FuyobqK0AnSRtlRKXEfUzXZHtsut0eiaDcotbAXQl9mX7ETO
-        Z8Pc7EJ7wRbDKywFsGM8t4EF8hDO1iLfnapTLAWYncTo8+3YRVU3mkLjqIi5ex6DJ/tl8kRJAIvzIqyR
-        /YtKg+UmlrOhNbJXacbkeWLyI5Y1wA6R/YqfsVwBv0+e+Cuhc6AowGuKArymKMBbhPgH+zJH1GHeea8A
-        AAAASUVORK5CYII=
-</value>
-  </data>
 </root>

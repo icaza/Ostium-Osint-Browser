@@ -69,9 +69,17 @@ namespace UrlDeduplicator
 
         static void PrintHeader()
         {
-            Console.WriteLine("========================================");
-            Console.WriteLine("        OSTIUM URL Deduplicator");
-            Console.WriteLine("========================================");
+            Console.WriteLine("===============================================================================");
+            Console.WriteLine("    _    _      _ _____           _             _ _           _             ");
+            Console.WriteLine(@"   | |  | |    | |  __ \         | |           | (_)         | |            ");
+            Console.WriteLine("   | |  | |_ __| | |  | | ___  __| |_   _ _ __ | |_  ___ __ _| |_ ___  _ __ ");
+            Console.WriteLine(@"   | |  | | '__| | |  | |/ _ \/ _` | | | | '_ \| | |/ __/ _` | __/ _ \| '__|");
+            Console.WriteLine("   | |__| | |  | | |__| |  __/ (_| | |_| | |_) | | | (_| (_| | || (_) | |   ");
+            Console.WriteLine(@"    \____/|_|  |_|_____/ \___|\__,_|\__,_| .__/|_|_|\___\__,_|\__\___/|_|   ");
+            Console.WriteLine("                                         | |                                ");
+            Console.WriteLine("                                         |_| Ostium Osint Browser           ");
+            Console.WriteLine("===============================================================================");
+            Console.WriteLine();
             Console.WriteLine("Removes duplicate URLs from a large text file.");
             Console.WriteLine();
         }
