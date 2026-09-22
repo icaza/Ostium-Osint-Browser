@@ -1,9 +1,9 @@
 # Ostium Osint Watcher
 
-File create at: 20/09/2026 03:43:19
-File Name Hash: OsintWatcher_1.0.1.zip
+File create at: 20/09/2026 20:17:33
+File Name Hash: OsintWatcher_1.0.2.zip
 
-SHA-512: 40141416086c23a8a585168c3c0c4b8962e86a72db79cbe032dd713f0d2a9056529bec2f1b0c4d4c862b419a5a862941fafa706df45d78bb3bb03ca689c238a1
+SHA-512: c51a3afdf70c7cb56c5a2cc67d753c3d42ee85c2a2c63e8d728c2eefe276166e0a664eac1694eb3be9e9737d8e2d31f8038a18f12d4583f968643e065ab4eed6
 
 ## Installation
 

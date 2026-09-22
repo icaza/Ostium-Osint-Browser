@@ -66,6 +66,9 @@ namespace GitHubReleaseUpdater
 
         void BtnCreateConfig_Click(object sender, EventArgs e)
         {
+            if (!ValidateInputs())
+                return;
+
             try
             {
                 var conf = new AppConfig
