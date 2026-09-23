@@ -88,6 +88,11 @@
             this.Editor_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CyberChef_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OsintWatcher_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConfigWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.MonitorWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.LocalhostWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnDirectory_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexDir_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -681,11 +686,6 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
-            this.OsintWatcher_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.MonitorWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ReportWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.LocalhostWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.ConfigWatcher_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -805,7 +805,7 @@
             this.Console_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Console_Btn.Name = "Console_Btn";
             this.Console_Btn.Size = new System.Drawing.Size(23, 22);
-            this.Console_Btn.Text = "Prompt";
+            this.Console_Btn.Text = "Console prompt";
             this.Console_Btn.Click += new System.EventHandler(this.Console_Btn_Click);
             // 
             // Mute_Btn
@@ -1072,6 +1072,46 @@
             this.CyberChef_Btn.Text = "CyberChef";
             this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
             // 
+            // OsintWatcher_Mnu
+            // 
+            this.OsintWatcher_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigWatcher_Btn,
+            this.MonitorWatcher_Btn,
+            this.ReportWatcher_Btn,
+            this.LocalhostWatcher_Btn});
+            this.OsintWatcher_Mnu.Enabled = false;
+            this.OsintWatcher_Mnu.Name = "OsintWatcher_Mnu";
+            this.OsintWatcher_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.OsintWatcher_Mnu.Text = "Osint Watcher";
+            // 
+            // ConfigWatcher_Btn
+            // 
+            this.ConfigWatcher_Btn.Name = "ConfigWatcher_Btn";
+            this.ConfigWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ConfigWatcher_Btn.Text = "Config";
+            this.ConfigWatcher_Btn.Click += new System.EventHandler(this.ConfigWatcher_Btn_Click);
+            // 
+            // MonitorWatcher_Btn
+            // 
+            this.MonitorWatcher_Btn.Name = "MonitorWatcher_Btn";
+            this.MonitorWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.MonitorWatcher_Btn.Text = "Monitor App";
+            this.MonitorWatcher_Btn.Click += new System.EventHandler(this.MonitorWatcher_Btn_Click);
+            // 
+            // ReportWatcher_Btn
+            // 
+            this.ReportWatcher_Btn.Name = "ReportWatcher_Btn";
+            this.ReportWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ReportWatcher_Btn.Text = "Start Reports Viewer";
+            this.ReportWatcher_Btn.Click += new System.EventHandler(this.ReportWatcher_Btn_Click);
+            // 
+            // LocalhostWatcher_Btn
+            // 
+            this.LocalhostWatcher_Btn.Name = "LocalhostWatcher_Btn";
+            this.LocalhostWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.LocalhostWatcher_Btn.Text = "Localhost";
+            this.LocalhostWatcher_Btn.Click += new System.EventHandler(this.LocalhostWatcher_Btn_Click);
+            // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
@@ -1129,26 +1169,26 @@
             // OpnBokmark_Btn
             // 
             this.OpnBokmark_Btn.Name = "OpnBokmark_Btn";
-            this.OpnBokmark_Btn.Size = new System.Drawing.Size(180, 22);
+            this.OpnBokmark_Btn.Size = new System.Drawing.Size(161, 22);
             this.OpnBokmark_Btn.Text = "Open";
             this.OpnBokmark_Btn.Click += new System.EventHandler(this.OpnBookmark_Btn_Click);
             // 
             // CreateBookmark_Btn
             // 
             this.CreateBookmark_Btn.Name = "CreateBookmark_Btn";
-            this.CreateBookmark_Btn.Size = new System.Drawing.Size(180, 22);
+            this.CreateBookmark_Btn.Size = new System.Drawing.Size(161, 22);
             this.CreateBookmark_Btn.Text = "Create";
             this.CreateBookmark_Btn.Click += new System.EventHandler(this.CreateBokmark_Btn_Click);
             // 
             // toolStripSeparator32
             // 
             this.toolStripSeparator32.Name = "toolStripSeparator32";
-            this.toolStripSeparator32.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator32.Size = new System.Drawing.Size(158, 6);
             // 
             // OpnScriptl_Btn
             // 
             this.OpnScriptl_Btn.Name = "OpnScriptl_Btn";
-            this.OpnScriptl_Btn.Size = new System.Drawing.Size(180, 22);
+            this.OpnScriptl_Btn.Size = new System.Drawing.Size(161, 22);
             this.OpnScriptl_Btn.Text = "File Script JS";
             this.OpnScriptl_Btn.Click += new System.EventHandler(this.OpnScriptl_Btn_Click);
             // 
@@ -1791,10 +1831,10 @@
             this.Control_Tab.Controls.Add(this.Options_Tab);
             this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 29);
             this.Control_Tab.Name = "Control_Tab";
             this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 610);
             this.Control_Tab.TabIndex = 13;
             this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
             // 
@@ -1814,7 +1854,7 @@
             this.Browser_Tab.Location = new System.Drawing.Point(4, 23);
             this.Browser_Tab.Name = "Browser_Tab";
             this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 612);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 583);
             this.Browser_Tab.TabIndex = 1;
             this.Browser_Tab.Text = "BROWSx";
             // 
@@ -1827,7 +1867,7 @@
             this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowse.Location = new System.Drawing.Point(203, 30);
             this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 461);
+            this.WBrowse.Size = new System.Drawing.Size(920, 432);
             this.WBrowse.TabIndex = 0;
             this.WBrowse.ZoomFactor = 1D;
             // 
@@ -1847,7 +1887,7 @@
             this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
             this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
             this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 491);
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 462);
             this.Cookie_Pnl.Name = "Cookie_Pnl";
             this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
@@ -1981,7 +2021,7 @@
             this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
             this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 556);
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 527);
             this.PanelBkmklt_Pnl.TabIndex = 11;
             this.PanelBkmklt_Pnl.Visible = false;
             // 
@@ -1990,7 +2030,7 @@
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
             this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 528);
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 499);
             this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
             this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
             this.PanelButtonBkmklt_Pnl.TabIndex = 10;
@@ -2044,7 +2084,7 @@
             this.Bookmarklet_Lst.ItemHeight = 14;
             this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
             this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 452);
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 423);
             this.Bookmarklet_Lst.TabIndex = 9;
             this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
             // 
@@ -2490,7 +2530,7 @@
             this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
             this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 583);
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 554);
             this.Panel_Workflow.TabIndex = 8;
             this.Panel_Workflow.Visible = false;
             // 
@@ -2504,7 +2544,7 @@
             this.WorkflowItem_Lst.ItemHeight = 16;
             this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
             this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 239);
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 210);
             this.WorkflowItem_Lst.Sorted = true;
             this.WorkflowItem_Lst.TabIndex = 9;
             this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
@@ -2515,7 +2555,7 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 266);
+            this.label5.Location = new System.Drawing.Point(0, 237);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 9;
@@ -2527,7 +2567,7 @@
             this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 290);
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 261);
             this.AddTextWorkflow_Txt.Multiline = true;
             this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
             this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -2550,7 +2590,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 392);
+            this.label1.Location = new System.Drawing.Point(0, 363);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 11;
@@ -2562,7 +2602,7 @@
             this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 416);
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 387);
             this.AddTNoteWorkflow_Txt.Multiline = true;
             this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
             this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
@@ -2574,7 +2614,7 @@
             this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 518);
+            this.label23.Location = new System.Drawing.Point(0, 489);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(200, 24);
             this.label23.TabIndex = 12;
@@ -2586,7 +2626,7 @@
             this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 542);
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 513);
             this.AddUrlWorkflow_Txt.Multiline = true;
             this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
             this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
@@ -2600,7 +2640,7 @@
             this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 586);
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 557);
             this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
             this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
             this.Console_Cmd_Txt.TabIndex = 2;
@@ -2618,7 +2658,7 @@
             this.Rss_Tab.Controls.Add(this.Speak_Pnl);
             this.Rss_Tab.Location = new System.Drawing.Point(4, 23);
             this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Rss_Tab.TabIndex = 6;
             this.Rss_Tab.Text = "RSS";
             // 
@@ -2639,7 +2679,7 @@
             // 
             this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 533);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 562);
             this.splitContain_Rss.SplitterDistance = 227;
             this.splitContain_Rss.TabIndex = 5;
             // 
@@ -2693,7 +2733,7 @@
             this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
             this.WBrowsefeed.Name = "WBrowsefeed";
-            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 533);
+            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 562);
             this.WBrowsefeed.TabIndex = 4;
             this.WBrowsefeed.ZoomFactor = 1D;
             // 
@@ -2898,7 +2938,7 @@
             this.Data_Tab.Location = new System.Drawing.Point(4, 23);
             this.Data_Tab.Name = "Data_Tab";
             this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Data_Tab.TabIndex = 5;
             this.Data_Tab.Text = "DATA";
             // 
@@ -2910,7 +2950,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 482);
+            this.panel1.Size = new System.Drawing.Size(1320, 511);
             this.panel1.TabIndex = 6;
             // 
             // DataValue_Lst
@@ -2924,7 +2964,7 @@
             this.DataValue_Lst.ItemHeight = 14;
             this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
             this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 482);
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 511);
             this.DataValue_Lst.TabIndex = 5;
             this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
             // 
@@ -2938,7 +2978,7 @@
             this.DataTable_Lst.ItemHeight = 14;
             this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
             this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 482);
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 511);
             this.DataTable_Lst.TabIndex = 4;
             this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
             // 
@@ -2953,7 +2993,7 @@
             this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
             this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
             this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 482);
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 511);
             this.DataBaze_Lst.TabIndex = 1;
             this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
             // 
@@ -3350,7 +3390,7 @@
             this.Workflow_Tab.ForeColor = System.Drawing.Color.White;
             this.Workflow_Tab.Location = new System.Drawing.Point(4, 23);
             this.Workflow_Tab.Name = "Workflow_Tab";
-            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Workflow_Tab.TabIndex = 7;
             this.Workflow_Tab.Text = "WORKFLOW";
             // 
@@ -3367,7 +3407,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 583);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 612);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
             // groupBox2
@@ -3377,9 +3417,9 @@
             this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 294);
+            this.groupBox2.Location = new System.Drawing.Point(3, 309);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(348, 286);
+            this.groupBox2.Size = new System.Drawing.Size(348, 300);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select model";
@@ -3395,7 +3435,7 @@
             this.ModelList_Lst.ItemHeight = 14;
             this.ModelList_Lst.Location = new System.Drawing.Point(3, 18);
             this.ModelList_Lst.Name = "ModelList_Lst";
-            this.ModelList_Lst.Size = new System.Drawing.Size(342, 235);
+            this.ModelList_Lst.Size = new System.Drawing.Size(342, 249);
             this.ModelList_Lst.TabIndex = 0;
             this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
             // 
@@ -3404,7 +3444,7 @@
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
             this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
             this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 253);
+            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 267);
             this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
             this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(342, 30);
             this.PanelWrkButtonModel_Pnl.TabIndex = 20;
@@ -3460,7 +3500,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 285);
+            this.groupBox1.Size = new System.Drawing.Size(348, 300);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create a model";
@@ -3496,7 +3536,7 @@
             this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
-            this.ModelItem_Txt.Size = new System.Drawing.Size(342, 179);
+            this.ModelItem_Txt.Size = new System.Drawing.Size(342, 194);
             this.ModelItem_Txt.TabIndex = 15;
             this.ModelItem_Txt.Zoom = 100;
             // 
@@ -3565,7 +3605,7 @@
             this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModelCreate_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModelCreate_Btn.ForeColor = System.Drawing.Color.White;
-            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 252);
+            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 267);
             this.ModelCreate_Btn.Name = "ModelCreate_Btn";
             this.ModelCreate_Btn.Size = new System.Drawing.Size(342, 30);
             this.ModelCreate_Btn.TabIndex = 18;
@@ -3579,7 +3619,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel13.Location = new System.Drawing.Point(1076, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(5, 583);
+            this.panel13.Size = new System.Drawing.Size(5, 612);
             this.panel13.TabIndex = 26;
             // 
             // panel12
@@ -3588,7 +3628,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(712, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 583);
+            this.panel12.Size = new System.Drawing.Size(10, 612);
             this.panel12.TabIndex = 24;
             // 
             // Itemwf_Cbx
@@ -3608,7 +3648,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel17.Location = new System.Drawing.Point(523, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(189, 583);
+            this.panel17.Size = new System.Drawing.Size(189, 612);
             this.panel17.TabIndex = 28;
             // 
             // StatWorkflow_Lst
@@ -3622,7 +3662,7 @@
             this.StatWorkflow_Lst.ItemHeight = 14;
             this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
             this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
-            this.StatWorkflow_Lst.Size = new System.Drawing.Size(189, 573);
+            this.StatWorkflow_Lst.Size = new System.Drawing.Size(189, 602);
             this.StatWorkflow_Lst.TabIndex = 19;
             this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
             // 
@@ -3640,7 +3680,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(513, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 583);
+            this.panel16.Size = new System.Drawing.Size(10, 612);
             this.panel16.TabIndex = 27;
             // 
             // panel2
@@ -3655,7 +3695,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(10, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(503, 583);
+            this.panel2.Size = new System.Drawing.Size(503, 612);
             this.panel2.TabIndex = 15;
             // 
             // ProjectOpn_Lst
@@ -3668,7 +3708,7 @@
             this.ProjectOpn_Lst.ItemHeight = 14;
             this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 36);
             this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
-            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 156);
+            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 185);
             this.ProjectOpn_Lst.TabIndex = 2;
             this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
             // 
@@ -3746,7 +3786,7 @@
             // 
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 192);
+            this.panel4.Location = new System.Drawing.Point(0, 221);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(503, 33);
             this.panel4.TabIndex = 13;
@@ -3787,7 +3827,7 @@
             this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9F);
             this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
             this.AddItemswf_Txt.IsReplaceMode = false;
-            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 225);
+            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 254);
             this.AddItemswf_Txt.Name = "AddItemswf_Txt";
             this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
             this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -3807,7 +3847,7 @@
             this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateXMLwf_btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.White;
-            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 515);
+            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 544);
             this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
             this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
             this.CreateXMLwf_btn.TabIndex = 4;
@@ -3820,7 +3860,7 @@
             this.panel7.Controls.Add(this.AddItemwf_Btn);
             this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 546);
+            this.panel7.Location = new System.Drawing.Point(0, 575);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(503, 37);
             this.panel7.TabIndex = 16;
@@ -3862,7 +3902,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 583);
+            this.panel11.Size = new System.Drawing.Size(10, 612);
             this.panel11.TabIndex = 23;
             // 
             // panel19
@@ -3875,7 +3915,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel19.Location = new System.Drawing.Point(1081, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(245, 583);
+            this.panel19.Size = new System.Drawing.Size(245, 612);
             this.panel19.TabIndex = 29;
             // 
             // TmpFile_Txt
@@ -3897,7 +3937,7 @@
             this.Timeline_Lst.ItemHeight = 14;
             this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
             this.Timeline_Lst.Name = "Timeline_Lst";
-            this.Timeline_Lst.Size = new System.Drawing.Size(245, 550);
+            this.Timeline_Lst.Size = new System.Drawing.Size(245, 579);
             this.Timeline_Lst.TabIndex = 22;
             this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
             // 
@@ -3912,7 +3952,7 @@
             this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetTimeline_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 560);
+            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 589);
             this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
             this.ResetTimeline_Btn.Size = new System.Drawing.Size(245, 23);
             this.ResetTimeline_Btn.TabIndex = 24;
@@ -3938,7 +3978,7 @@
             this.Map_Tab.ForeColor = System.Drawing.Color.White;
             this.Map_Tab.Location = new System.Drawing.Point(4, 23);
             this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Map_Tab.TabIndex = 9;
             this.Map_Tab.Text = "MAP";
             // 
@@ -3975,7 +4015,7 @@
             this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 583);
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
             this.GMap_Ctrl.TabIndex = 1;
             this.GMap_Ctrl.Zoom = 1D;
             // 
@@ -3996,7 +4036,7 @@
             this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
             this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 583);
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
             this.Map_Cmd_Pnl.TabIndex = 0;
             this.Map_Cmd_Pnl.Visible = false;
             // 
@@ -4011,7 +4051,7 @@
             this.PointLoc_Lst.ItemHeight = 14;
             this.PointLoc_Lst.Location = new System.Drawing.Point(0, 142);
             this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 234);
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 263);
             this.PointLoc_Lst.TabIndex = 18;
             this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
             // 
@@ -4026,7 +4066,7 @@
             this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 376);
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 405);
             this.SaveGPX_Btn.Name = "SaveGPX_Btn";
             this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveGPX_Btn.TabIndex = 26;
@@ -4063,7 +4103,7 @@
             this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 406);
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 435);
             this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
             this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
             this.AddNewLoc_Btn.TabIndex = 17;
@@ -4143,7 +4183,7 @@
             this.PointRoute_Lst.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PointRoute_Lst.ForeColor = System.Drawing.Color.DarkOrange;
             this.PointRoute_Lst.FormattingEnabled = true;
-            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 436);
+            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 465);
             this.PointRoute_Lst.Name = "PointRoute_Lst";
             this.PointRoute_Lst.Size = new System.Drawing.Size(200, 117);
             this.PointRoute_Lst.TabIndex = 27;
@@ -4161,7 +4201,7 @@
             this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 553);
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 582);
             this.SaveRoute_Btn.Name = "SaveRoute_Btn";
             this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
             this.SaveRoute_Btn.TabIndex = 25;
@@ -4908,7 +4948,7 @@
             this.OOBai_Tab.Controls.Add(this.Panel_Left_Oobai);
             this.OOBai_Tab.Location = new System.Drawing.Point(4, 23);
             this.OOBai_Tab.Name = "OOBai_Tab";
-            this.OOBai_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.OOBai_Tab.Size = new System.Drawing.Size(1326, 612);
             this.OOBai_Tab.TabIndex = 11;
             this.OOBai_Tab.Text = "OOBai";
             // 
@@ -4923,7 +4963,7 @@
             this.Panel_Right_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Right_Oobai.Location = new System.Drawing.Point(631, 0);
             this.Panel_Right_Oobai.Name = "Panel_Right_Oobai";
-            this.Panel_Right_Oobai.Size = new System.Drawing.Size(695, 583);
+            this.Panel_Right_Oobai.Size = new System.Drawing.Size(695, 612);
             this.Panel_Right_Oobai.TabIndex = 14;
             // 
             // Panel_Right_Middle_Oobai
@@ -4932,7 +4972,7 @@
             this.Panel_Right_Middle_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Right_Middle_Oobai.Location = new System.Drawing.Point(0, 128);
             this.Panel_Right_Middle_Oobai.Name = "Panel_Right_Middle_Oobai";
-            this.Panel_Right_Middle_Oobai.Size = new System.Drawing.Size(695, 415);
+            this.Panel_Right_Middle_Oobai.Size = new System.Drawing.Size(695, 444);
             this.Panel_Right_Middle_Oobai.TabIndex = 26;
             // 
             // rtbResponse
@@ -4945,7 +4985,7 @@
             this.rtbResponse.Location = new System.Drawing.Point(0, 0);
             this.rtbResponse.Name = "rtbResponse";
             this.rtbResponse.ReadOnly = true;
-            this.rtbResponse.Size = new System.Drawing.Size(695, 415);
+            this.rtbResponse.Size = new System.Drawing.Size(695, 444);
             this.rtbResponse.TabIndex = 4;
             this.rtbResponse.Text = "";
             // 
@@ -4960,7 +5000,7 @@
             // panel36
             // 
             this.panel36.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel36.Location = new System.Drawing.Point(0, 543);
+            this.panel36.Location = new System.Drawing.Point(0, 572);
             this.panel36.Name = "panel36";
             this.panel36.Size = new System.Drawing.Size(695, 5);
             this.panel36.TabIndex = 24;
@@ -4973,7 +5013,7 @@
             this.Panel_Right_Bottom_Oobai.Controls.Add(this.Copy_Btn);
             this.Panel_Right_Bottom_Oobai.Controls.Add(this.Export_Btn);
             this.Panel_Right_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Right_Bottom_Oobai.Location = new System.Drawing.Point(0, 548);
+            this.Panel_Right_Bottom_Oobai.Location = new System.Drawing.Point(0, 577);
             this.Panel_Right_Bottom_Oobai.Name = "Panel_Right_Bottom_Oobai";
             this.Panel_Right_Bottom_Oobai.Size = new System.Drawing.Size(695, 30);
             this.Panel_Right_Bottom_Oobai.TabIndex = 23;
@@ -5122,7 +5162,7 @@
             // panel37
             // 
             this.panel37.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel37.Location = new System.Drawing.Point(0, 578);
+            this.panel37.Location = new System.Drawing.Point(0, 607);
             this.panel37.Name = "panel37";
             this.panel37.Size = new System.Drawing.Size(695, 5);
             this.panel37.TabIndex = 25;
@@ -5296,7 +5336,7 @@
             this.panel39.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel39.Location = new System.Drawing.Point(624, 0);
             this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(7, 583);
+            this.panel39.Size = new System.Drawing.Size(7, 612);
             this.panel39.TabIndex = 24;
             // 
             // Panel_Left_Oobai
@@ -5312,7 +5352,7 @@
             this.Panel_Left_Oobai.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_Left_Oobai.Location = new System.Drawing.Point(0, 0);
             this.Panel_Left_Oobai.Name = "Panel_Left_Oobai";
-            this.Panel_Left_Oobai.Size = new System.Drawing.Size(624, 583);
+            this.Panel_Left_Oobai.Size = new System.Drawing.Size(624, 612);
             this.Panel_Left_Oobai.TabIndex = 23;
             // 
             // Panel_Middle_Top_Oobai
@@ -5321,7 +5361,7 @@
             this.Panel_Middle_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Middle_Top_Oobai.Location = new System.Drawing.Point(0, 128);
             this.Panel_Middle_Top_Oobai.Name = "Panel_Middle_Top_Oobai";
-            this.Panel_Middle_Top_Oobai.Size = new System.Drawing.Size(624, 386);
+            this.Panel_Middle_Top_Oobai.Size = new System.Drawing.Size(624, 415);
             this.Panel_Middle_Top_Oobai.TabIndex = 25;
             // 
             // txtPrompt
@@ -5335,13 +5375,13 @@
             this.txtPrompt.Multiline = true;
             this.txtPrompt.Name = "txtPrompt";
             this.txtPrompt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtPrompt.Size = new System.Drawing.Size(624, 386);
+            this.txtPrompt.Size = new System.Drawing.Size(624, 415);
             this.txtPrompt.TabIndex = 3;
             // 
             // panel41
             // 
             this.panel41.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel41.Location = new System.Drawing.Point(0, 514);
+            this.panel41.Location = new System.Drawing.Point(0, 543);
             this.panel41.Name = "panel41";
             this.panel41.Size = new System.Drawing.Size(624, 5);
             this.panel41.TabIndex = 31;
@@ -5419,7 +5459,7 @@
             this.Panel_Middle_BottomT_Oobai.Controls.Add(this.ClearPrompt_Btn);
             this.Panel_Middle_BottomT_Oobai.Controls.Add(this.Cancel_Btn);
             this.Panel_Middle_BottomT_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Middle_BottomT_Oobai.Location = new System.Drawing.Point(0, 519);
+            this.Panel_Middle_BottomT_Oobai.Location = new System.Drawing.Point(0, 548);
             this.Panel_Middle_BottomT_Oobai.Name = "Panel_Middle_BottomT_Oobai";
             this.Panel_Middle_BottomT_Oobai.Size = new System.Drawing.Size(624, 25);
             this.Panel_Middle_BottomT_Oobai.TabIndex = 27;
@@ -5647,7 +5687,7 @@
             // panel35
             // 
             this.panel35.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel35.Location = new System.Drawing.Point(0, 544);
+            this.panel35.Location = new System.Drawing.Point(0, 573);
             this.panel35.Name = "panel35";
             this.panel35.Size = new System.Drawing.Size(624, 5);
             this.panel35.TabIndex = 28;
@@ -5658,7 +5698,7 @@
             this.Panel_Left_Bottom_Oobai.Controls.Add(this.WebCloud);
             this.Panel_Left_Bottom_Oobai.Controls.Add(this.panel34);
             this.Panel_Left_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Left_Bottom_Oobai.Location = new System.Drawing.Point(0, 549);
+            this.Panel_Left_Bottom_Oobai.Location = new System.Drawing.Point(0, 578);
             this.Panel_Left_Bottom_Oobai.Name = "Panel_Left_Bottom_Oobai";
             this.Panel_Left_Bottom_Oobai.Size = new System.Drawing.Size(624, 34);
             this.Panel_Left_Bottom_Oobai.TabIndex = 26;
@@ -8261,46 +8301,6 @@
             this.UndoRoutePoint_Btn.Text = "Undo Route Point";
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
-            // 
-            // OsintWatcher_Mnu
-            // 
-            this.OsintWatcher_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ConfigWatcher_Btn,
-            this.MonitorWatcher_Btn,
-            this.ReportWatcher_Btn,
-            this.LocalhostWatcher_Btn});
-            this.OsintWatcher_Mnu.Enabled = false;
-            this.OsintWatcher_Mnu.Name = "OsintWatcher_Mnu";
-            this.OsintWatcher_Mnu.Size = new System.Drawing.Size(281, 22);
-            this.OsintWatcher_Mnu.Text = "Osint Watcher";
-            // 
-            // MonitorWatcher_Btn
-            // 
-            this.MonitorWatcher_Btn.Name = "MonitorWatcher_Btn";
-            this.MonitorWatcher_Btn.Size = new System.Drawing.Size(213, 22);
-            this.MonitorWatcher_Btn.Text = "Monitor App";
-            this.MonitorWatcher_Btn.Click += new System.EventHandler(this.MonitorWatcher_Btn_Click);
-            // 
-            // ReportWatcher_Btn
-            // 
-            this.ReportWatcher_Btn.Name = "ReportWatcher_Btn";
-            this.ReportWatcher_Btn.Size = new System.Drawing.Size(213, 22);
-            this.ReportWatcher_Btn.Text = "Start Reports Viewer";
-            this.ReportWatcher_Btn.Click += new System.EventHandler(this.ReportWatcher_Btn_Click);
-            // 
-            // LocalhostWatcher_Btn
-            // 
-            this.LocalhostWatcher_Btn.Name = "LocalhostWatcher_Btn";
-            this.LocalhostWatcher_Btn.Size = new System.Drawing.Size(213, 22);
-            this.LocalhostWatcher_Btn.Text = "Localhost";
-            this.LocalhostWatcher_Btn.Click += new System.EventHandler(this.LocalhostWatcher_Btn_Click);
-            // 
-            // ConfigWatcher_Btn
-            // 
-            this.ConfigWatcher_Btn.Name = "ConfigWatcher_Btn";
-            this.ConfigWatcher_Btn.Size = new System.Drawing.Size(213, 22);
-            this.ConfigWatcher_Btn.Text = "Config";
-            this.ConfigWatcher_Btn.Click += new System.EventHandler(this.ConfigWatcher_Btn_Click);
             // 
             // Main_Frm
             // 

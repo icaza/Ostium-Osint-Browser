@@ -261,7 +261,7 @@ namespace Ostium
         string ChatHost = "local";
         string QuestionOnly = "";
 
-        Microsoft.Web.WebView2.WinForms.WebView2 WbrowseSelect;
+        WebView2 WbrowseSelect;
         ContextMenuStrip contextMenuResponse;
         #endregion
 
@@ -6108,7 +6108,7 @@ namespace Ostium
             Una = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + "_" + Guid.NewGuid().ToString("N");
         }
 
-        #region Prompt_
+        #region Console Prompt_
         async void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Console_Cmd_Txt.SelectionStart < 2 && e.KeyChar != (char)Keys.Enter)
@@ -6312,7 +6312,8 @@ namespace Ostium
                     InvestigationExec();
                     break;
                 case "sessionid":
-                    MessageBox.Show(this, sessionID, "Session ID");
+                    string extractID = await Task.Run(() => ExtractSessionID(sessionID));
+                    MessageBox.Show(this, extractID, "Session ID");
                     break;
                 case "promptviewer":
                     PromptViewerExec();
@@ -6432,6 +6433,26 @@ namespace Ostium
             { }
         }
         #endregion
+
+        string ExtractSessionID(string path)
+        {
+            string startPath = AppStart + @"EnvironmentWebview\";
+            const string endPath = @"\WebData";
+
+            int indexStart = path.IndexOf(startPath, StringComparison.OrdinalIgnoreCase);
+            if (indexStart == -1)
+            {
+                return sessionID;
+            }
+
+            indexStart += startPath.Length;
+
+            int indexEnd = path.IndexOf(endPath, indexStart, StringComparison.OrdinalIgnoreCase);
+            if (indexEnd == -1)
+                throw new Exception("The segment '\\WebData' was not found.");
+
+            return path.Substring(indexStart, indexEnd - indexStart);
+        }
 
         #region File_List_Create
         void File_Write(string fileName, string content)
@@ -14188,7 +14209,7 @@ namespace Ostium
                 CopyDirectory(subDir.FullName, newDestDir, overwrite);
             }
 
-            string dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), 
+            string dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "Temp", "GitHubReleaseUpdaterV2", "GitHubReleaseUpdater.exe");
 
             Process.Start(dirPath);
