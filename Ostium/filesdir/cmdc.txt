@@ -4,7 +4,7 @@
 > version   : software version
 > config    : open config.xml file
 > id        : process ID
-> sessionid : Name of the current session
+> sessionid : Current session ID
 
 *SCRAPING*
 
@@ -37,7 +37,6 @@
 > htmltext      : HTML to Text
 > investigation : Open Investigation Board
 > promptviewer  : Open Prompt Viewer
-> sessionid     : Current session ID
 
 *CMD*
 

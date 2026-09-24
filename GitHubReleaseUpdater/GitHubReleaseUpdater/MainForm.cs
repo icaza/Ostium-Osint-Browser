@@ -64,6 +64,34 @@ namespace GitHubReleaseUpdater
             }
         }
 
+        void BtnCreateConfig_Click(object sender, EventArgs e)
+        {
+            if (!ValidateInputs())
+                return;
+
+            try
+            {
+                var conf = new AppConfig
+                {
+                    InstallDirectory = txtInstallDirectory.Text,
+                    RepoOwner = txtRepoOwner.Text,
+                    RepoName = txtRepoName.Text,
+                    CurrentVersion = txtCurrentVersion.Text
+                };
+
+                var newJson = JsonConvert.SerializeObject(conf, Formatting.Indented);
+                File.WriteAllText(configPath, newJson);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error create configuration: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                MessageBox.Show("The configuration file has been successfully created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         async void BtnManualUpdate_Click(object sender, EventArgs e)
         {
             string owner = txtRepoOwner.Text.Trim();

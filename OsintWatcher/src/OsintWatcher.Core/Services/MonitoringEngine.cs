@@ -15,17 +15,11 @@ public sealed class CheckOutcome
 /// next due time with jitter so requests don't fall into a fixed, easily fingerprinted
 /// pattern from the target's point of view.
 /// </summary>
-public sealed class MonitoringEngine
+public sealed class MonitoringEngine(SecureHttpFetcher fetcher, EncryptedStore store)
 {
-    private readonly SecureHttpFetcher _fetcher;
-    private readonly EncryptedStore _store;
+    private readonly SecureHttpFetcher _fetcher = fetcher;
+    private readonly EncryptedStore _store = store;
     private readonly Random _rng = new();
-
-    public MonitoringEngine(SecureHttpFetcher fetcher, EncryptedStore store)
-    {
-        _fetcher = fetcher;
-        _store = store;
-    }
 
     public async Task<CheckOutcome> RunCheckAsync(MonitoredPage page, CancellationToken ct = default)
     {

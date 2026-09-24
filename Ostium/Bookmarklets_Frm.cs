@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -78,13 +79,13 @@ namespace Ostium
             }
         }
 
-        void SaveScript_Btn_Click(object sender, EventArgs e)
+        async void SaveScript_Btn_Click(object sender, EventArgs e)
         {
             try
             {
                 if (NameBkmklt_Txt.Text != "")
                 {
-                    MinifyJs();
+                    await Task.Run(() => MinifyJs());
 
                     string NameFile = Scripts + NameBkmklt_Txt.Text + ".xml";
 
@@ -151,9 +152,9 @@ namespace Ostium
             }
         }
 
-        void MinifyScript_Btn_Click(object sender, EventArgs e)
+        async void MinifyScript_Btn_Click(object sender, EventArgs e)
         {
-            MinifyJs();
+            await Task.Run(() => MinifyJs());
         }
 
         void MinifyJs()

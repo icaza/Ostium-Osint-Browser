@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>OSINT Watcher — Reports</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='48' x='10' font-size='48' fill='%236b8cff'%3E%E2%97%88%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <!-- ===================== Sidebar ===================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">◈</div>
+      <div class="brand-text">
+        <div class="brand-title">OSINT Watcher</div>
+        <div class="brand-sub">Reports Viewer</div>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input id="search" type="search" placeholder="Search reports…  (Ctrl+K)" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="toolbar">
+      <span id="count" class="count">—</span>
+      <button id="refresh" class="btn-icon" title="Refresh (R)" aria-label="Refresh">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav id="list" class="list" aria-label="Reports"></nav>
+
+    <footer class="sidebar-footer">
+      <span id="status" class="status">Connecting…</span>
+    </footer>
+  </aside>
+
+  <!-- ===================== Viewer ===================== -->
+  <main class="viewer">
+    <header class="viewer-header">
+      <div class="viewer-title">
+        <span id="viewer-name">No report selected</span>
+      </div>
+      <div class="viewer-actions">
+        <button id="open-external" class="btn-icon" title="Open in new tab"
+                aria-label="Open in new tab" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <path d="M15 3h6v6"/><path d="M10 14 21 3"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="viewer-body">
+      <!-- Empty state: visible by default -->
+      <div id="empty" class="empty">
+        <div class="empty-icon">◈</div>
+        <h2>Select a report</h2>
+        <p>Choose a report from the sidebar to preview it here.</p>
+        <div class="empty-hints">
+          <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+          <span><kbd>Ctrl</kbd>+<kbd>K</kbd> search</span>
+          <span><kbd>R</kbd> refresh</span>
+        </div>
+      </div>
+      <!-- iframe: hidden by default via .hidden class -->
+      <iframe id="frame" class="frame hidden"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"></iframe>
+    </div>
+  </main>
+
+</div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>

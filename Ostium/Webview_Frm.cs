@@ -24,6 +24,7 @@ namespace Ostium
         public Webview_Frm()
         {
             InitializeComponent();
+
             WBrowsew_EventHandlers(WBrowsew);
 
             URLbrowse_Cbx.KeyPress += new KeyPressEventHandler(OnKey_URLbrowse);
@@ -32,7 +33,9 @@ namespace Ostium
         void Webview_Frm_Load(object sender, EventArgs e)
         {
             userDataFolder = @Class_Var.USER_DATA_FOLDER;
+
             InitializeEnvironment();
+
             WBrowsew.Source = new Uri(@Class_Var.URL_WEBVIEW);
 
             ///
@@ -195,7 +198,7 @@ namespace Ostium
             WBrowsew_UpdtTitleEvent("Initialization Completed succeeded");
         }
 
-        async void WBrowsew_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
+        void WBrowsew_EventHandlers(Microsoft.Web.WebView2.WinForms.WebView2 control)
         {
             control.CoreWebView2InitializationCompleted += WBrowsew_InitializationCompleted;
             control.NavigationStarting += WBrowsew_NavigationStarting;
@@ -410,6 +413,7 @@ namespace Ostium
                 GoBrowser(URLbrowse_Cbx.Text);
             }
         }
+
         ///
         /// <summary>
         /// Cookies save

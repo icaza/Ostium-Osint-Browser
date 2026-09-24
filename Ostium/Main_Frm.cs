@@ -54,9 +54,9 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.50";
-        readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "GitHubReleaseUpdater.exe");
-        readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdater", "config.json");
+        const string CurrentVersion = "1.4.51";
+        readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2");
+        readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2", "config.json");
         #endregion
 
         #region Var_
@@ -261,7 +261,7 @@ namespace Ostium
         string ChatHost = "local";
         string QuestionOnly = "";
 
-        Microsoft.Web.WebView2.WinForms.WebView2 WbrowseSelect;
+        WebView2 WbrowseSelect;
         ContextMenuStrip contextMenuResponse;
         #endregion
 
@@ -1081,9 +1081,9 @@ namespace Ostium
                             case "OSINTWATCHER_VAR":
                                 OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
                                 if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
-                                    OsintWatcher_Btn.Enabled = true;
+                                    OsintWatcher_Mnu.Enabled = true;
                                 else
-                                    OsintWatcher_Btn.Enabled = false;
+                                    OsintWatcher_Mnu.Enabled = false;
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -3666,9 +3666,95 @@ namespace Ostium
             }
         }
 
-        void OsintWatcher_Btn_Click(object sender, EventArgs e)
+        void ConfigWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            string dirPath = Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher_ReportsViewer", "server.js");
+
+            if (!File.Exists(dirPath))
+            {
+                MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                    "OsintWatcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(dirPath);
+        }
+
+        void MonitorWatcher_Btn_Click(object sender, EventArgs e)
         {
             OsintWatcherExec();
+        }
+
+        void ReportWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                {
+                    string PathReportViewer = Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher_ReportsViewer");
+
+                    if (Directory.Exists(PathReportViewer))
+                    {
+                        if (File.Exists(Path.Combine(PathReportViewer, "start.bat")))
+                            Process.Start(Path.Combine(PathReportViewer, "start.bat"));
+                        else
+                            MessageBox.Show("The file start.bat does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Osint Watcher is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ReportWatcher_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void LocalhostWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher_ReportsViewer", "server.js");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                        "OsintWatcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(filepath);
+
+                string portLine = lines.FirstOrDefault(l => l.Contains("const PORT = process.env.PORT ? Number(process.env.PORT) :"));
+
+                if (portLine == null)
+                {
+                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string portStr = new string(portLine
+                    .SkipWhile(c => !char.IsDigit(c))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray());
+
+                int port = int.Parse(portStr);
+
+                GoBrowser($"http://localhost:{port}", 0);
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! LocalhostMESS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void OsintWatcherExec()
@@ -3677,9 +3763,12 @@ namespace Ostium
             {
                 if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
                 {
-                    if (File.Exists(OsintWatcher_Opt_Txt.Text))
+                    if (Directory.Exists(OsintWatcher_Opt_Txt.Text))
                     {
-                        Process.Start(OsintWatcher_Opt_Txt.Text);
+                        if (File.Exists(Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher.exe")))
+                            Process.Start(Path.Combine(OsintWatcher_Opt_Txt.Text, "OsintWatcher.exe"));
+                        else
+                            MessageBox.Show("The file OsintWatcher.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -4538,6 +4627,35 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! LocalhostOBE_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void DenoUpdate_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filepath = Path.Combine(AppStart, "OstiumBookmarkExplorer", "deno.exe");
+
+                if (!File.Exists(filepath))
+                {
+                    MessageBox.Show("OstiumBookmarkExplorer is not install, go to Discord channel Ostium for fix and help. is not started!",
+                        "OstiumBookmarkExplorer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = "cmd.exe";
+                    proc.StartInfo.Arguments = $"/k \"{filepath}\" upgrade";
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "OstiumBookmarkExplorer");
+                    proc.StartInfo.RedirectStandardOutput = false;
+                    proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! DenoUpdate_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -5990,7 +6108,7 @@ namespace Ostium
             Una = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff") + "_" + Guid.NewGuid().ToString("N");
         }
 
-        #region Prompt_
+        #region Console Prompt_
         async void Console_Cmd_Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Console_Cmd_Txt.SelectionStart < 2 && e.KeyChar != (char)Keys.Enter)
@@ -6194,7 +6312,8 @@ namespace Ostium
                     InvestigationExec();
                     break;
                 case "sessionid":
-                    MessageBox.Show(this, sessionID, "Session ID");
+                    string extractID = await Task.Run(() => ExtractSessionID(sessionID));
+                    MessageBox.Show(this, extractID, "Session ID");
                     break;
                 case "promptviewer":
                     PromptViewerExec();
@@ -6314,6 +6433,26 @@ namespace Ostium
             { }
         }
         #endregion
+
+        string ExtractSessionID(string path)
+        {
+            string startPath = AppStart + @"EnvironmentWebview\";
+            const string endPath = @"\WebData";
+
+            int indexStart = path.IndexOf(startPath, StringComparison.OrdinalIgnoreCase);
+            if (indexStart == -1)
+            {
+                return sessionID;
+            }
+
+            indexStart += startPath.Length;
+
+            int indexEnd = path.IndexOf(endPath, indexStart, StringComparison.OrdinalIgnoreCase);
+            if (indexEnd == -1)
+                throw new Exception("The segment '\\WebData' was not found.");
+
+            return path.Substring(indexStart, indexEnd - indexStart);
+        }
 
         #region File_List_Create
         void File_Write(string fileName, string content)
@@ -13993,7 +14132,7 @@ namespace Ostium
         {
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubReleaseUpdater", "1.0.0"));
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("GitHubReleaseUpdater", "1.0.1"));
 
                 string url = $"https://api.github.com/repos/{RepoOwner}/{RepoName}/releases/latest";
 
@@ -14036,8 +14175,9 @@ namespace Ostium
                             File.WriteAllText(configUpdtPath, json);
 
                             ClearOnOff = "off";
-                            Process.Start(GitHubReleaseUpdater);
-                            Close();
+
+                            string dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp", "GitHubReleaseUpdaterV2");
+                            await Task.Run(() => CopyDirectory(GitHubReleaseUpdater, dirPath, true));
                         }
                     }
                 }
@@ -14046,6 +14186,34 @@ namespace Ostium
                     senderror.ErrorLog("Error! CheckForUpdates: ", ex.ToString(), "Main_Frm", AppStart);
                 }
             }
+        }
+
+        void CopyDirectory(string sourceDir, string destDir, bool overwrite)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDir);
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Source directory not found: {sourceDir}");
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            Directory.CreateDirectory(destDir);
+
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destDir, file.Name);
+                file.CopyTo(targetFilePath, overwrite);
+            }
+
+            foreach (DirectoryInfo subDir in dirs)
+            {
+                string newDestDir = Path.Combine(destDir, subDir.Name);
+                CopyDirectory(subDir.FullName, newDestDir, overwrite);
+            }
+
+            string dirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "Temp", "GitHubReleaseUpdaterV2", "GitHubReleaseUpdater.exe");
+
+            Process.Start(dirPath);
+            Close();
         }
 
         bool IsNewerVersion(string current, string latest)
