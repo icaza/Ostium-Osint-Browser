@@ -3789,6 +3789,35 @@ namespace Ostium
             }
         }
 
+        void ReportsPathWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                {
+                    if (Directory.Exists(OsintWatcher_Opt_Txt.Text))
+                    {
+                        Process.Start(Path.Combine(OsintWatcher_Opt_Txt.Text, "Reports_"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Osint Watcher is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ReportsPathWatcher_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void OpenEdit()
         {
             if (File.Exists(Class_Var.DEFAULT_EDITOR))
