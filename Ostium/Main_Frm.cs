@@ -14413,6 +14413,11 @@ namespace Ostium
             Tools_Link("https://github.com/icaza/Ostium-Osint-Browser/tree/master/OsintWatcher/EXE");
         }
 
+        void WebToMarkdown_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/icaza/WebToMarkdown");
+        }
+
         void Tools_Link(string url)
         {
             GoBrowser(url, 0);
