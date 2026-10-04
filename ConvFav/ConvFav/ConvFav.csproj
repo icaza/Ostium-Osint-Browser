@@ -7,17 +7,17 @@
     <Nullable>disable</Nullable>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <Company>ICAZA MEDIA</Company>
-    <Authors>ICAZA MEDIA</Authors>
+    <Authors>ICAZA</Authors>
     <Description>Import your favorite links Edge, Chrome, firefox to Ostium database.</Description>
     <Copyright>ICAZA MEDIA</Copyright>
     <PackageProjectUrl>https://veydunet.com</PackageProjectUrl>
-    <AssemblyVersion>1.0.4</AssemblyVersion>
-    <FileVersion>1.0.4</FileVersion>
     <PackageIcon>favoriteico.png</PackageIcon>
     <ApplicationIcon>favoriteico.ico</ApplicationIcon>
     <StartupObject>Program</StartupObject>
     <PlatformTarget>x64</PlatformTarget>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5</AssemblyVersion>
+    <FileVersion>1.0.5</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="33.1.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.13.0" />
     <PackageReference Include="SourceGear.sqlite3" Version="3.53.4" />
     <PackageReference Include="System.Data.SQLite" Version="2.0.4" />
   </ItemGroup>

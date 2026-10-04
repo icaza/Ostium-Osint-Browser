@@ -464,6 +464,7 @@ namespace Ostium
             DefaultEditor_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             OsintWatcher_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            WebToMarkdown_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
@@ -479,6 +480,7 @@ namespace Ostium
             DefaultEditor_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             CyberChef_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             OsintWatcher_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            WebToMarkdown_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ArchiveAdd_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonUri_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonVal_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
@@ -584,6 +586,7 @@ namespace Ostium
                 Redlist_Txt.Text = Path.Combine(AppStart, "data", BlockedUrl);
                 CyberChef_Opt_Txt.Text = "";
                 OsintWatcher_Opt_Txt.Text = "";
+                WebToMarkdown_Opt_Txt.Text = "";
                 ArchiveAdd_Txt.Text = "";
 
                 var ArchiveDir = new List<string>()
@@ -626,6 +629,7 @@ namespace Ostium
                 writer.WriteElementString("DEFAULT_EDITOR_VAR", DefaultEditor_Opt_Txt.Text);
                 writer.WriteElementString("CYBERCHEF_VAR", CyberChef_Opt_Txt.Text);
                 writer.WriteElementString("OSINTWATCHER_VAR", OsintWatcher_Opt_Txt.Text);
+                writer.WriteElementString("WEBTOMARKDOWN_VAR", WebToMarkdown_Opt_Txt.Text);
                 writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
@@ -1079,11 +1083,24 @@ namespace Ostium
                                     CyberChef_Btn.Enabled = false;
                                 break;
                             case "OSINTWATCHER_VAR":
-                                OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
-                                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
-                                    OsintWatcher_Mnu.Enabled = true;
-                                else
-                                    OsintWatcher_Mnu.Enabled = false;
+                                if (!File.Exists(Path.Combine(AppStart, ".tor")))
+                                {
+                                    OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                    if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                                        OsintWatcher_Mnu.Enabled = true;
+                                    else
+                                        OsintWatcher_Mnu.Enabled = false;
+                                }
+                                break;
+                            case "WEBTOMARKDOWN_VAR":
+                                if (!File.Exists(Path.Combine(AppStart, ".tor")))
+                                {
+                                    WebToMarkdown_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                    if (!string.IsNullOrEmpty(WebToMarkdown_Opt_Txt.Text))
+                                        WebToMarkedown_Btn.Enabled = true;
+                                    else
+                                        WebToMarkedown_Btn.Enabled = false;
+                                }
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -1336,16 +1353,35 @@ namespace Ostium
 
                     var args = new[]
                     {
-                    "--proxy-server=socks5://127.0.0.1:9050",
-                    $"--host-resolver-rules=\\\"{hostResolverRules}\\\"",
-                    "--dns-prefetch-disable",
-                    "--disable-features=DnsOverHttps",             // try to disable DoH
-                    "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
-                    "--enable-features=WebRtcHideLocalIpsWithMdns",
-                    "--disable-gpu"
-                };
+                        // Proxy
+                        "--proxy-server=socks5://127.0.0.1:9050",
+                        "--proxy-bypass-list=\"localhost;127.0.0.1;::1\"",
+
+                        // DNS
+                        $"--host-resolver-rules=\"{hostResolverRules}\"",
+                        "--dns-prefetch-disable",
+                        "--disable-features=DnsOverHttps,NetworkPrediction",
+                        "--disable-quic",
+
+                        // WebRTC
+                        "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+
+                        // Background services
+                        "--disable-background-networking",
+                        "--disable-sync",
+                        "--no-pings",
+                        "--disable-domain-reliability", //
+                        "--disable-breakpad",
+                        "--disable-crash-reporter",
+                        "--disable-metrics",
+                        "--no-first-run",
+                        "--no-default-browser-check",
+                        "--disable-extensions",
+                        "--disable-plugins"                        
+                    };
 
                     options.AdditionalBrowserArguments = string.Join(" ", args);
+                    options.Language = "en-US";
                 }
 
                 env = await CoreWebView2Environment.CreateAsync(
@@ -1391,6 +1427,8 @@ namespace Ostium
                     OstUpdt_Btn.Enabled = false;
                     Agent_Fetch_Search.Enabled = false;
                     Agent_Web_Fetch_Btn.Enabled = false;
+                    OsintWatcher_Mnu.Enabled = false;
+                    WebToMarkedown_Btn.Enabled = false;
 
                     TabPage page1 = Control_Tab.TabPages[1];
                     Control_Tab.TabPages.Remove(page1);
@@ -2062,6 +2100,11 @@ namespace Ostium
             if (UserAgentOnOff == "on")
             {
                 settings.UserAgent = UserAgentSelect;
+            }
+
+            if (e.Uri.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) && File.Exists(Path.Combine(AppStart, ".tor")))
+            {
+                e.Cancel = true;
             }
 
             if (FloodHeader_Chk.Checked)
@@ -3536,6 +3579,73 @@ namespace Ostium
             else
             {
                 throw new Exception("Error: 'data' field is missing in devData response.");
+            }
+        }
+
+        void WebToMarkedown_Btn_Click(object sender, EventArgs e)
+        {
+            WebToMarkdownExec();
+        }
+
+        void WebToMarkdownExec()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(WebToMarkdown_Opt_Txt.Text))
+                {
+                    string FileExec = Path.Combine(WebToMarkdown_Opt_Txt.Text, "WebToMarkdown.exe");
+
+                    if (Directory.Exists(WebToMarkdown_Opt_Txt.Text))
+                    {
+                        if (File.Exists(FileExec))
+                        {
+                            string message, title;
+                            object ValueInsert;
+                            message = $"Insert URL and extracts the rendered DOM and writes a Markdown report.\n" +
+                                      $"\nex. https:\\\\example.com --resume";
+                            title = "Web To Markdown";
+                            ValueInsert = Interaction.InputBox(message, title);
+                            string ValueUpdate = Convert.ToString(ValueInsert);
+                            if (ValueUpdate != "")
+                            {
+                                try
+                                {
+                                    using (Process proc = new Process())
+                                    {
+                                        proc.StartInfo.FileName = FileExec;
+                                        proc.StartInfo.Arguments = ValueUpdate;
+                                        proc.StartInfo.UseShellExecute = true;
+                                        proc.StartInfo.WorkingDirectory = WebToMarkdown_Opt_Txt.Text;
+                                        proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                        proc.Start();
+                                        proc.Close();
+                                    }
+                                }
+                                catch (InvalidOperationException ex)
+                                {
+                                    MessageBox.Show(this, ex.Message, "Web To Markdown Fails! Check the log file logs_/app.log");
+                                }
+                            }
+                        }
+                        else
+                            MessageBox.Show("The file WebToMarkdown.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "WebToMarkedown not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("WebToMarkedown is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "WebToMarkedown not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! OsintWatcherExec: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 

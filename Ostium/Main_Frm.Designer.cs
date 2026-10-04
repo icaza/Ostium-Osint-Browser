@@ -73,6 +73,7 @@
             this.TraductPage_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.UnshortUrl_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.WebpageToPng_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.WebToMarkedown_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.HTMLtxt_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnGroupFrm_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -687,6 +688,9 @@
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
             this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.label38 = new System.Windows.Forms.Label();
+            this.WebToMarkdown_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.Tools_TAB_0.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
@@ -903,6 +907,7 @@
             this.TraductPage_Btn,
             this.UnshortUrl_Btn,
             this.WebpageToPng_Btn,
+            this.WebToMarkedown_Btn,
             this.toolStripSeparator8,
             this.HTMLtxt_Btn,
             this.OpnGroupFrm_Btn,
@@ -976,6 +981,14 @@
             this.WebpageToPng_Btn.Size = new System.Drawing.Size(281, 22);
             this.WebpageToPng_Btn.Text = "Webpage to Png";
             this.WebpageToPng_Btn.Click += new System.EventHandler(this.WebpageToPng_Btn_Click);
+            // 
+            // WebToMarkedown_Btn
+            // 
+            this.WebToMarkedown_Btn.Enabled = false;
+            this.WebToMarkedown_Btn.Name = "WebToMarkedown_Btn";
+            this.WebToMarkedown_Btn.Size = new System.Drawing.Size(281, 22);
+            this.WebToMarkedown_Btn.Text = "WebToMarkedown";
+            this.WebToMarkedown_Btn.Click += new System.EventHandler(this.WebToMarkedown_Btn_Click);
             // 
             // toolStripSeparator8
             // 
@@ -5761,7 +5774,7 @@
             this.Options_Tab.ForeColor = System.Drawing.Color.White;
             this.Options_Tab.Location = new System.Drawing.Point(4, 23);
             this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 583);
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 612);
             this.Options_Tab.TabIndex = 8;
             this.Options_Tab.Text = "OPTIONS";
             // 
@@ -5773,7 +5786,7 @@
             this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
             this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 563);
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 592);
             this.Panel_WorkspaceSize.TabIndex = 26;
             // 
             // groupBox5
@@ -5784,7 +5797,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox5.Location = new System.Drawing.Point(0, 62);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 501);
+            this.groupBox5.Size = new System.Drawing.Size(328, 530);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Workspace Size";
@@ -5825,7 +5838,7 @@
             this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 480);
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 509);
             this.PanelOptDir_Pnl.TabIndex = 24;
             // 
             // KeepTrackDir_Lbl
@@ -6227,7 +6240,7 @@
             this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel26.Location = new System.Drawing.Point(978, 10);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 563);
+            this.panel26.Size = new System.Drawing.Size(10, 592);
             this.panel26.TabIndex = 27;
             // 
             // Panel_ConfigFiles
@@ -6237,7 +6250,7 @@
             this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
             this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 563);
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 592);
             this.Panel_ConfigFiles.TabIndex = 28;
             // 
             // groupBox6
@@ -6251,7 +6264,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox6.Location = new System.Drawing.Point(0, 370);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 193);
+            this.groupBox6.Size = new System.Drawing.Size(244, 222);
             this.groupBox6.TabIndex = 19;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "other";
@@ -6494,7 +6507,7 @@
             this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel25.Location = new System.Drawing.Point(724, 10);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 563);
+            this.panel25.Size = new System.Drawing.Size(10, 592);
             this.panel25.TabIndex = 25;
             // 
             // Panel_ConfigXml
@@ -6504,7 +6517,7 @@
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
             this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 563);
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 592);
             this.Panel_ConfigXml.TabIndex = 24;
             // 
             // groupBox3
@@ -6514,7 +6527,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 530);
+            this.groupBox3.Size = new System.Drawing.Size(714, 559);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -6522,6 +6535,9 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label38);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.WebToMarkdown_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label39);
             this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Link);
             this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Link);
             this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Opt_Txt);
@@ -6553,7 +6569,7 @@
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
             this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 509);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
             // 
             // CyberChef_Link
@@ -6609,7 +6625,7 @@
             this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Redlist_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Redlist_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.Redlist_Txt.Location = new System.Drawing.Point(9, 658);
+            this.Redlist_Txt.Location = new System.Drawing.Point(9, 717);
             this.Redlist_Txt.Name = "Redlist_Txt";
             this.Redlist_Txt.Size = new System.Drawing.Size(675, 22);
             this.Redlist_Txt.TabIndex = 22;
@@ -6618,7 +6634,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(6, 637);
+            this.label26.Location = new System.Drawing.Point(6, 696);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(120, 14);
             this.label26.TabIndex = 21;
@@ -6660,7 +6676,7 @@
             this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 722);
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 781);
             this.ArchiveAdd_Txt.Multiline = true;
             this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
             this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
@@ -6670,7 +6686,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 700);
+            this.label31.Location = new System.Drawing.Point(4, 759);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(402, 14);
             this.label31.TabIndex = 16;
@@ -6850,7 +6866,7 @@
             this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
             this.panel27.Controls.Add(this.ResetConfig_Btn);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 530);
+            this.panel27.Location = new System.Drawing.Point(0, 559);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(714, 33);
             this.panel27.TabIndex = 17;
@@ -6897,7 +6913,7 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 573);
+            this.panel24.Location = new System.Drawing.Point(10, 602);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(1306, 10);
             this.panel24.TabIndex = 23;
@@ -6917,7 +6933,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel22.Location = new System.Drawing.Point(1316, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 583);
+            this.panel22.Size = new System.Drawing.Size(10, 612);
             this.panel22.TabIndex = 21;
             // 
             // panel21
@@ -6926,7 +6942,7 @@
             this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel21.Location = new System.Drawing.Point(0, 0);
             this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 583);
+            this.panel21.Size = new System.Drawing.Size(10, 612);
             this.panel21.TabIndex = 20;
             // 
             // Status_Strip
@@ -8311,6 +8327,39 @@
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label38.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label38.Location = new System.Drawing.Point(168, 635);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(216, 14);
+            this.label38.TabIndex = 29;
+            this.label38.Text = "Link to WebToMarkdown (GitHub)";
+            // 
+            // WebToMarkdown_Opt_Txt
+            // 
+            this.WebToMarkdown_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.WebToMarkdown_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebToMarkdown_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebToMarkdown_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.WebToMarkdown_Opt_Txt.Location = new System.Drawing.Point(9, 656);
+            this.WebToMarkdown_Opt_Txt.Name = "WebToMarkdown_Opt_Txt";
+            this.WebToMarkdown_Opt_Txt.Size = new System.Drawing.Size(675, 22);
+            this.WebToMarkdown_Opt_Txt.TabIndex = 28;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.ForeColor = System.Drawing.Color.White;
+            this.label39.Location = new System.Drawing.Point(6, 635);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(156, 14);
+            this.label39.TabIndex = 27;
+            this.label39.Text = "Path WebToMarkdown";
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -9077,6 +9126,10 @@
         private System.Windows.Forms.ToolStripMenuItem LocalhostWatcher_Btn;
         private System.Windows.Forms.ToolStripMenuItem ConfigWatcher_Btn;
         private System.Windows.Forms.ToolStripMenuItem ReportsPathWatcher_Btn;
+        private System.Windows.Forms.ToolStripMenuItem WebToMarkedown_Btn;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox WebToMarkdown_Opt_Txt;
+        private System.Windows.Forms.Label label39;
     }
 }
 
