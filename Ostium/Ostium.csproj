@@ -385,6 +385,9 @@
     <None Include="SDelete_cmd\Uninstall_SecureDelete_ContextMenu.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="_Start_Secure_Container.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="url_dflt_cnf.ost">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -62,6 +62,7 @@ namespace Ostium
         #region Var_
         string userDataFolder;
         string sessionID;
+        string secureContainer = Application.StartupPath + @"\";
         readonly string RestartFile = Path.Combine(Application.StartupPath, "restartsession.oob");
 
         // Initialization of the voice for Reading Feed Titles
@@ -266,8 +267,11 @@ namespace Ostium
         #endregion
 
         #region Frm_
-        public Main_Frm()
+        public Main_Frm(string args)
         {
+            if (!string.IsNullOrEmpty(args))
+                secureContainer = args;
+
             InitializeComponent();
 
             _urlCache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -974,7 +978,7 @@ namespace Ostium
             {
                 var CreateDir = new List<string>()
                     {
-                        AppStart + "EnvironmentWebview",
+                        secureContainer + "EnvironmentWebview",
                         Plugins,
                         DBdirectory,
                         FeedDir,
@@ -1169,6 +1173,8 @@ namespace Ostium
             RFU(Path.Combine(FileDir, "url-constructor", "_construct_url.txt"), Path.Combine(FileDir, "url-constructor", "construct_url.txt"));
             RFU(Path.Combine(FileDir, "url-constructor", "_search-images.txt"), Path.Combine(FileDir, "url-constructor", "search-images.txt"));
 
+            RFU(Path.Combine(AppStart, "_Start_Secure_Container.bat"), Path.Combine(AppStart, "Start_Secure_Container.bat"));
+
             if (File.Exists(Path.Combine(FileDir, "url.txt")))
             {
                 URL_URL_Cbx.Items.Clear();
@@ -1330,7 +1336,7 @@ namespace Ostium
             {
                 CreateNameAleat();
 
-                userDataFolder = Path.Combine(Application.StartupPath, "EnvironmentWebview", Una, "WebData");
+                userDataFolder = Path.Combine(secureContainer, "EnvironmentWebview", Una, "WebData");
                 sessionID = Una;
             }
 
@@ -6575,7 +6581,7 @@ namespace Ostium
 
         string ExtractSessionID(string path)
         {
-            string startPath = AppStart + @"EnvironmentWebview\";
+            string startPath = Path.Combine(secureContainer , "EnvironmentWebview");
             const string endPath = @"\WebData";
 
             int indexStart = path.IndexOf(startPath, StringComparison.OrdinalIgnoreCase);

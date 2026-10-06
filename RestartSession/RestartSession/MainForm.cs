@@ -7,7 +7,7 @@ namespace RestartSession
 {
     public partial class MainForm : Form
     {
-        readonly string AppStart = Path.Combine(Application.StartupPath, "EnvironmentWebview");
+        string AppStart = Path.Combine(Application.StartupPath, "EnvironmentWebview");
         readonly string RestartFile = Path.Combine(Application.StartupPath, "restartsession.oob");
         string IdSession = "";
 
@@ -81,6 +81,26 @@ namespace RestartSession
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             Close();
+        }
+
+        async void SelectPathEnvBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fB = new FolderBrowserDialog()
+            {
+                RootFolder = Environment.SpecialFolder.Desktop,
+                Description = "Select directory"
+            };
+            fB.ShowDialog();
+            if (string.IsNullOrEmpty(fB.SelectedPath))
+                return;
+            else
+            {
+                EnvWebviewPATH.Text = fB.SelectedPath;
+                AppStart = EnvWebviewPATH.Text;
+                await LoadPathAsync(EnvWebviewPATH.Text);
+            }
+
+            fB.Dispose();
         }
 
         async void CreateSessionBtn_Click(object sender, EventArgs e)
