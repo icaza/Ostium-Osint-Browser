@@ -38,20 +38,27 @@ namespace RestartSession
 
         async Task LoadPathAsync(string path)
         {
-            SessionPathList.Items.Clear();
-
-            if (!Directory.Exists(path))
+            try
             {
-                MessageBox.Show("The EnvironmentWebview directory does not exist!", "Not exist", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                SessionPathList.Items.Clear();
+
+                if (!Directory.Exists(path))
+                {
+                    MessageBox.Show("The EnvironmentWebview directory does not exist! You can continue; it will be created automatically.",
+                        "Not exist", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var rep = await Task.Run(() => Directory.GetDirectories(path));
+
+                foreach (var doss in rep)
+                {
+                    SessionPathList.Items.Add(Path.GetFileName(doss));
+                }
             }
-
-
-            var rep = await Task.Run(() => Directory.GetDirectories(path));
-
-            foreach (var doss in rep)
+            catch (Exception ex)
             {
-                SessionPathList.Items.Add(Path.GetFileName(doss));
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
 
@@ -65,60 +72,89 @@ namespace RestartSession
 
         void CreateRestartFile()
         {
-            if (SessionPathList.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("Select a session first.", "Select", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+                if (SessionPathList.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Select a session first.", "Select", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-            using (StreamWriter file_create = new StreamWriter(RestartFile))
+                using (StreamWriter file_create = new StreamWriter(RestartFile))
+                {
+                    file_create.Write(IdSession);
+                }
+                MessageBox.Show("Upon the next restart, Ostium will use the selected session. This behavior occurs only once; " +
+                    "to repeat the process, you must configure the restart for the desired session again. Otherwise, Ostium will " +
+                    "restart using a new, unique session. You can reuse the sessions as long as you do not delete them.", "Restart session",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Close();
+            }
+            catch (Exception ex)
             {
-                file_create.Write(IdSession);
+                MessageBox.Show(ex.Message, "Error!");
             }
-            MessageBox.Show("Upon the next restart, Ostium will use the selected session. This behavior occurs only once; " +
-                "to repeat the process, you must configure the restart for the desired session again. Otherwise, Ostium will " +
-                "restart using a new, unique session. You can reuse the sessions as long as you do not delete them.", "Restart session",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            Close();
         }
 
         async void SelectPathEnvBtn_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fB = new FolderBrowserDialog()
+            try
             {
-                RootFolder = Environment.SpecialFolder.Desktop,
-                Description = "Select directory"
-            };
-            fB.ShowDialog();
-            if (string.IsNullOrEmpty(fB.SelectedPath))
-                return;
-            else
-            {
-                EnvWebviewPATH.Text = fB.SelectedPath;
-                AppStart = EnvWebviewPATH.Text;
-                await LoadPathAsync(EnvWebviewPATH.Text);
-            }
+                FolderBrowserDialog fB = new FolderBrowserDialog()
+                {
+                    RootFolder = Environment.SpecialFolder.Desktop,
+                    Description = "Select directory"
+                };
+                fB.ShowDialog();
+                if (string.IsNullOrEmpty(fB.SelectedPath))
+                    return;
+                else
+                {
+                    if (fB.SelectedPath != Path.Combine(fB.SelectedPath, "EnvironmentWebview"))
+                    {
+                        string addEnv = Path.Combine(fB.SelectedPath, "EnvironmentWebview");
+                        Directory.CreateDirectory(addEnv);
+                        EnvWebviewPATH.Text = addEnv;
+                    }
+                    else
+                        EnvWebviewPATH.Text = fB.SelectedPath;
 
-            fB.Dispose();
+                    AppStart = EnvWebviewPATH.Text;
+                    await LoadPathAsync(EnvWebviewPATH.Text);
+                }
+
+                fB.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
+            }
         }
 
         async void CreateSessionBtn_Click(object sender, EventArgs e)
         {
-            if (InputSessionName.Text == "Choose a session name..." || string.IsNullOrEmpty(InputSessionName.Text))
-                return;
-
-            if (!Directory.Exists(Path.Combine(AppStart, InputSessionName.Text)))
+            try
             {
-                Directory.CreateDirectory(Path.Combine(AppStart, InputSessionName.Text));
+                if (InputSessionName.Text == "Choose a session name..." || string.IsNullOrEmpty(InputSessionName.Text))
+                    return;
 
-                await LoadPathAsync(AppStart);
+                if (!Directory.Exists(Path.Combine(AppStart, InputSessionName.Text)))
+                {
+                    Directory.CreateDirectory(Path.Combine(AppStart, InputSessionName.Text));
 
-                InputSessionName.Text = "Choose a session name...";
+                    await LoadPathAsync(AppStart);
+
+                    InputSessionName.Text = "Choose a session name...";
+                }
+                else
+                {
+                    MessageBox.Show("The name already exists!", "Name exists", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("The name already exists!", "Name exists", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
 
@@ -129,10 +165,17 @@ namespace RestartSession
 
         void CancelRestartBtn_Click(object sender, EventArgs e)
         {
-            if (File.Exists(RestartFile))
+            try
             {
-                File.Delete(RestartFile);
-                MessageBox.Show("The session restart was cancelled.", "Cancel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (File.Exists(RestartFile))
+                {
+                    File.Delete(RestartFile);
+                    MessageBox.Show("The session restart was cancelled.", "Cancel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!");
             }
         }
     }

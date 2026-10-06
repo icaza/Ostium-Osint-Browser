@@ -1011,8 +1011,15 @@ namespace Ostium
 
         async Task DirectoryCreate(string dir)
         {
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
+            try
+            {
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DirectoryCreate: " + ex.Message, "Error!");
+            }
         }
 
         #region LoadConfiguration_
@@ -1318,30 +1325,48 @@ namespace Ostium
         #region Browser_Event Handler
         async Task InitializeEnvironmentWebview()
         {
-            bool restartSession = File.Exists(RestartFile);
-
-            if (restartSession)
+            try
             {
-                using (StreamReader sr = new StreamReader(RestartFile))
+                bool restartSession = File.Exists(RestartFile);
+
+                if (restartSession)
                 {
-                    userDataFolder = sr.ReadToEnd();
-                    sessionID = userDataFolder;
+                    using (StreamReader sr = new StreamReader(RestartFile))
+                    {
+                        userDataFolder = sr.ReadToEnd();
+                        sessionID = userDataFolder;
+                    }
+
+                    MessageBox.Show("You are trying to start from an old session. If that is not what you intended, " +
+                        "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (File.Exists(RestartFile))
+                        File.Delete(RestartFile);
                 }
-                MessageBox.Show("You are starting from an existing session. If that is not what you intended, " +
-                    "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    CreateNameAleat();
+                    userDataFolder = Path.Combine(secureContainer, "EnvironmentWebview", Una, "WebData");
+                    sessionID = Una;
+                }
 
-                File.Delete(RestartFile);
+                await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
+                Class_Var.USER_DATA_FOLDER = userDataFolder;
             }
-            else
+            catch (Exception ex)
             {
-                CreateNameAleat();
+                MessageBox.Show(ex.Message + " .The default directory will be used.", "Error!");
 
+                CreateNameAleat();
                 userDataFolder = Path.Combine(secureContainer, "EnvironmentWebview", Una, "WebData");
                 sessionID = Una;
-            }
 
-            await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
-            Class_Var.USER_DATA_FOLDER = userDataFolder;
+                await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
+                Class_Var.USER_DATA_FOLDER = userDataFolder;
+
+                if (File.Exists(RestartFile))
+                    File.Delete(RestartFile);
+            }
         }
 
         public async Task InitializeEnvironment()
@@ -1383,7 +1408,7 @@ namespace Ostium
                         "--no-first-run",
                         "--no-default-browser-check",
                         "--disable-extensions",
-                        "--disable-plugins"                        
+                        "--disable-plugins"
                     };
 
                     options.AdditionalBrowserArguments = string.Join(" ", args);
@@ -6581,7 +6606,7 @@ namespace Ostium
 
         string ExtractSessionID(string path)
         {
-            string startPath = Path.Combine(secureContainer , "EnvironmentWebview");
+            string startPath = Path.Combine(secureContainer, @"EnvironmentWebview\");
             const string endPath = @"\WebData";
 
             int indexStart = path.IndexOf(startPath, StringComparison.OrdinalIgnoreCase);

@@ -5921,9 +5921,9 @@
             this.OstiumDir_Opn.ForeColor = System.Drawing.Color.White;
             this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
             this.OstiumDir_Opn.Name = "OstiumDir_Opn";
-            this.OstiumDir_Opn.Size = new System.Drawing.Size(87, 14);
+            this.OstiumDir_Opn.Size = new System.Drawing.Size(88, 14);
             this.OstiumDir_Opn.TabIndex = 0;
-            this.OstiumDir_Opn.Text = "path Ostium";
+            this.OstiumDir_Opn.Text = "Ostium Path";
             this.OstiumDir_Opn.Click += new System.EventHandler(this.OstiumDir_Opn_Click);
             // 
             // BkmkltDir_Lbl
@@ -6104,9 +6104,9 @@
             this.WebView2Dir_Opn.ForeColor = System.Drawing.Color.White;
             this.WebView2Dir_Opn.Location = new System.Drawing.Point(8, 383);
             this.WebView2Dir_Opn.Name = "WebView2Dir_Opn";
-            this.WebView2Dir_Opn.Size = new System.Drawing.Size(79, 14);
+            this.WebView2Dir_Opn.Size = new System.Drawing.Size(113, 14);
             this.WebView2Dir_Opn.TabIndex = 16;
-            this.WebView2Dir_Opn.Text = "WebView2";
+            this.WebView2Dir_Opn.Text = "WebView2 Path";
             this.WebView2Dir_Opn.Click += new System.EventHandler(this.WebView2Dir_Opn_Click);
             // 
             // DatabseDir_Lbl
@@ -6604,7 +6604,7 @@
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(156, 14);
             this.label39.TabIndex = 27;
-            this.label39.Text = "Path WebToMarkdown";
+            this.label39.Text = "WebToMarkdown Path";
             // 
             // CyberChef_Link
             // 
@@ -6651,7 +6651,7 @@
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(136, 14);
             this.label37.TabIndex = 23;
-            this.label37.Text = "Path Osint Watcher";
+            this.label37.Text = "Osint Watcher Path";
             // 
             // Redlist_Txt
             // 
@@ -6693,7 +6693,7 @@
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(110, 14);
             this.label25.TabIndex = 19;
-            this.label25.Text = "Path CyberChef";
+            this.label25.Text = "CyberChef Path";
             // 
             // label32
             // 
