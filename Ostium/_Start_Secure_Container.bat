@@ -1,15 +1,15 @@
 @echo off
 setlocal
 
-set VERACRYPT=C:\Users\icaza\Documents\Ostium\VeraCrypt\VeraCrypt-x64.exe
-set CONTAINER=C:\Users\icaza\Documents\Ostium\EnvironmentWebview.hc
+set VERACRYPT=C:\...\VeraCrypt-x64.exe
+set CONTAINER=C:\...\EnvironmentWebview.hc
 set DRIVE=X:\\
-set OSTIUM=C:\Users\icaza\Documents\DEV2026\Ostium\Ostium\bin\x64\Debug\Ostium.exe
+set OSTIUM=C:\...\Ostium.exe
 
 echo.
-echo ==========================================
-echo      Ostium - EnvironmentWebview
-echo ==========================================
+echo ================================================================
+echo                   OPEN ENCRYPTED VIRTUAL DISK
+echo ================================================================
 echo.
 
 if not exist "%VERACRYPT%" (
@@ -78,13 +78,32 @@ echo.
 REM Launching Ostium and waiting for it to close
 start "" /wait "%OSTIUM%" %DRIVE%
 
+cls
+echo ================================================================
+echo                 CLOSING ENCRYPTED VIRTUAL DISK
+echo ================================================================
 echo.
-echo Ostium is finished..
+echo   This session created the encrypted virtual disk %DRIVE%
 echo.
-echo If you close this session while other sessions remain open on the virtual disk, you must 
-echo manually unmount the volume. Do not unmount a virtual disk while sessions are open.
+echo   Do you want to dismount it now?
 echo.
-choice /C YN /N /M "Do you want to unmount %DRIVE% now? [Y/N] : "
+echo   [Y] YES : if no other Ostium Osint session is open.
+echo.
+echo   [N] NO  : if other sessions are still using this disk.
+echo       Dismounting it would make them malfunction.
+echo.
+echo ----------------------------------------------------------------
+echo.
+echo   AT THE END OF YOUR LAST SESSION, dismount it yourself:
+echo.
+echo   Method 1: in VeraCrypt, select %DRIVE% then click "Dismount".
+echo.
+echo   Method 2: from the command line:
+echo     "%VERACRYPT%" /q /d %DRIVE%
+echo.
+echo   While it stays mounted, your data remains accessible.
+echo.
+choice /c YN /n /m "Your choice: [Y] Yes, dismount / [N] No, keep mounted: "
 
 if errorlevel 2 goto KEEP_MOUNTED
 if errorlevel 1 goto UNMOUNT_VOLUME

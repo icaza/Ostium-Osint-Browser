@@ -54,7 +54,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.51";
+        const string CurrentVersion = "1.4.52";
         readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2");
         readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2", "config.json");
         #endregion
@@ -6647,22 +6647,18 @@ namespace Ostium
 
         string ExtractSessionID(string path)
         {
-            string startPath = Path.Combine(secureContainer, @"EnvironmentWebview\");
-            const string endPath = @"\WebData";
+            string[] parts = path.Split(new[] { '\\', '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-            int indexStart = path.IndexOf(startPath, StringComparison.OrdinalIgnoreCase);
-            if (indexStart == -1)
+            for (int i = 0; i < parts.Length - 2; i++)
             {
-                return sessionID;
+                if (parts[i].Equals("EnvironmentWebview", StringComparison.OrdinalIgnoreCase) &&
+                    parts[i + 2].Equals("WebData", StringComparison.OrdinalIgnoreCase))
+                {
+                    return parts[i + 1];
+                }
             }
 
-            indexStart += startPath.Length;
-
-            int indexEnd = path.IndexOf(endPath, indexStart, StringComparison.OrdinalIgnoreCase);
-            if (indexEnd == -1)
-                throw new Exception("The segment '\\WebData' was not found.");
-
-            return path.Substring(indexStart, indexEnd - indexStart);
+            return sessionID;
         }
 
         #region File_List_Create
