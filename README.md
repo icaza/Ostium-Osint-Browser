@@ -69,7 +69,7 @@ Environments are stored in the following directory:
 
 You can completely delete the contents of this directory whenever you want to clean up data from previous sessions.
 
-**Important:** You do not need to manually delete previous environments to maintain session isolation. Each time Ostium OSINT Browser starts, a new and unique environment is created.
+**⚠️ Important!** You do not need to manually delete previous environments to maintain session isolation. Each time Ostium OSINT Browser starts, a new and unique environment is created.
 
 ### Multiple simultaneous sessions
 
@@ -82,7 +82,20 @@ For example, this allows you to use multiple accounts from the same service with
 
 With the [RestartSession](https://github.com/icaza/Ostium-Osint-Browser/tree/master/RestartSession) tool (accessible via the Tools menu or directly at the root of Ostium), you can resume an existing session or assign it a custom name. This is useful when conducting an investigation and needing to preserve your search history.
 
-Important: each session is independent. If you modify advanced browser settings, those changes apply only to the current session; they do not carry over to other sessions. Therefore, to ensure a change takes effect, make it within the relevant session.
+**⚠️ Important!** each session is independent. If you modify advanced browser settings, those changes apply only to the current session; they do not carry over to other sessions. Therefore, to ensure a change takes effect, make it within the relevant session.
+---
+
+## 🔒 Encrypted Virtual Disk (VeraCrypt)
+
+**Enhanced Protection:** Seamless integration of the open-source tool **VeraCrypt** to isolate and encrypt the Ostium workspace. [Download link](https://veracrypt.io/en/Downloads.html) - [GitHub](https://github.com/veracrypt/VeraCrypt)
+
+**Data Privacy:** The `EnvironmentWebview` working directory (cookies, history, and session data) is hosted within an encrypted container (`.hc`).
+
+**Automated Launch:** Automatic volume mounting, Ostium startup, and secure unmounting upon closure, managed by the `Start_Secure_Container.bat` script.
+
+**Flexibility:** Option to choose between a standard session (`Ostium.exe`) and a highly secure session on an encrypted disk at any time.
+
+More information on usage [EN](Create_an_Encrypted_Virtual_Disk_with_VeraCrypt.md) [FR](Créer_un_disque_virtuel_chiffré_avec_VeraCrypt.md)
 ---
 
 ## 🟢 OSTIUM OSINT Watcher
@@ -288,6 +301,7 @@ A big thank you to all contributors and open-source projects that make Ostium OS
 - The Chromium team
 - Microsoft for Edge WebView2
 - The OSINT community
+- VeraCrypt
 - All our testers and users
 
 ---

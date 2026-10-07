@@ -1,10 +1,10 @@
 @echo off
 setlocal
 
-set VERACRYPT=C:\...\VeraCrypt-x64.exe
-set CONTAINER=C:\...\renamefile.hc
+set VERACRYPT=C:\Users\icaza\Documents\Ostium\VeraCrypt\VeraCrypt-x64.exe
+set CONTAINER=C:\Users\icaza\Documents\Ostium\EnvironmentWebview.hc
 set DRIVE=X:\\
-set OSTIUM=C:\...\Ostium.exe
+set OSTIUM=C:\Users\icaza\Documents\DEV2026\Ostium\Ostium\bin\x64\Debug\Ostium.exe
 
 echo.
 echo ==========================================
@@ -35,6 +35,11 @@ if not exist "%OSTIUM%" (
 REM Check that X is not already in use
 if exist "%DRIVE%\" (
     echo ERROR : The drive %DRIVE% is already in use.
+    echo.
+    echo To start a new session on the virtual disk, use the RestartSession tool, select the EnvironmentWebview directory 
+    echo on the virtual disk, then choose an existing session or create a new one; then click the RESTART SESSION button.
+    echo Finally, click the New Session button on the Ostium toolbar or restart Ostium if the program is not running.
+    echo.
     pause
     exit /b 1
 )
@@ -76,6 +81,16 @@ start "" /wait "%OSTIUM%" %DRIVE%
 echo.
 echo Ostium is finished..
 echo.
+echo If you close this session while other sessions remain open on the virtual disk, you must 
+echo manually unmount the volume. Do not unmount a virtual disk while sessions are open.
+echo.
+choice /C YN /N /M "Do you want to unmount %DRIVE% now? [Y/N] : "
+
+if errorlevel 2 goto KEEP_MOUNTED
+if errorlevel 1 goto UNMOUNT_VOLUME
+
+:UNMOUNT_VOLUME
+
 echo Unmount %DRIVE%...
 
 "%VERACRYPT%" /q /d %DRIVE%
@@ -106,5 +121,16 @@ echo Volume successfully unmounted.
 echo.
 echo Operation complete.
 
+goto END
+
+:KEEP_MOUNTED
+
+echo.
+echo Volume %DRIVE% will remain mounted.
+echo Close all other Ostium sessions before unmounting the volume.
+echo.
+echo Operation complete.
+
+:END
 endlocal
 exit /b 0

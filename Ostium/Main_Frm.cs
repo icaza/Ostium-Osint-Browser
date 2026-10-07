@@ -292,10 +292,11 @@ namespace Ostium
             {
                 BeginInvoke((MethodInvoker)async delegate
                 {
+                    await InitializeEnvironmentWebview();
+                    
                     WBrowse_EventHandlers(WBrowse);
                     WBrowsefeed_EventHandlers(WBrowsefeed);
 
-                    await InitializeEnvironmentWebview();
                     await InitializeEnvironment();
 
                     await CreateDirectory();
@@ -4925,6 +4926,46 @@ namespace Ostium
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsefeed.Source.AbsoluteUri);
             WBrowsefeed.Source = new Uri(@formatURI);
+        }
+
+        void SaveTitleRSS_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Title_Lst.Items.Count > 0)
+                {
+                    Stream isData;
+                    SaveFileDialog saveFD = new SaveFileDialog
+                    {
+                        InitialDirectory = AppStart,
+                        Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                        FilterIndex = 2,
+                        RestoreDirectory = true
+                    };
+
+                    if (saveFD.ShowDialog() == DialogResult.OK)
+                    {
+                        if ((isData = saveFD.OpenFile()) != null)
+                        {
+                            using (StreamWriter SW = new StreamWriter(isData))
+                            {
+                                foreach (string itm in Title_Lst.Items)
+                                {
+                                    SW.WriteLine(itm);
+                                }
+                            }
+
+                            isData.Close();
+
+                            Console.Beep(1200, 200);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! SaveTitleRSS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void JavaScriptFeed_Btn_Click(object sender, EventArgs e)
