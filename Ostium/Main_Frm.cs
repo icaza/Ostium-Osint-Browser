@@ -54,7 +54,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.51";
+        const string CurrentVersion = "1.4.52";
         readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2");
         readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2", "config.json");
         #endregion
@@ -62,6 +62,7 @@ namespace Ostium
         #region Var_
         string userDataFolder;
         string sessionID;
+        string secureContainer = Application.StartupPath + @"\";
         readonly string RestartFile = Path.Combine(Application.StartupPath, "restartsession.oob");
 
         // Initialization of the voice for Reading Feed Titles
@@ -266,8 +267,11 @@ namespace Ostium
         #endregion
 
         #region Frm_
-        public Main_Frm()
+        public Main_Frm(string args)
         {
+            if (!string.IsNullOrEmpty(args))
+                secureContainer = args;
+
             InitializeComponent();
 
             _urlCache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -288,10 +292,11 @@ namespace Ostium
             {
                 BeginInvoke((MethodInvoker)async delegate
                 {
+                    await InitializeEnvironmentWebview();
+                    
                     WBrowse_EventHandlers(WBrowse);
                     WBrowsefeed_EventHandlers(WBrowsefeed);
 
-                    await InitializeEnvironmentWebview();
                     await InitializeEnvironment();
 
                     await CreateDirectory();
@@ -464,6 +469,7 @@ namespace Ostium
             DefaultEditor_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             OsintWatcher_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            WebToMarkdown_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
@@ -479,6 +485,7 @@ namespace Ostium
             DefaultEditor_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             CyberChef_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             OsintWatcher_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            WebToMarkdown_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ArchiveAdd_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonUri_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonVal_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
@@ -584,6 +591,7 @@ namespace Ostium
                 Redlist_Txt.Text = Path.Combine(AppStart, "data", BlockedUrl);
                 CyberChef_Opt_Txt.Text = "";
                 OsintWatcher_Opt_Txt.Text = "";
+                WebToMarkdown_Opt_Txt.Text = "";
                 ArchiveAdd_Txt.Text = "";
 
                 var ArchiveDir = new List<string>()
@@ -626,6 +634,7 @@ namespace Ostium
                 writer.WriteElementString("DEFAULT_EDITOR_VAR", DefaultEditor_Opt_Txt.Text);
                 writer.WriteElementString("CYBERCHEF_VAR", CyberChef_Opt_Txt.Text);
                 writer.WriteElementString("OSINTWATCHER_VAR", OsintWatcher_Opt_Txt.Text);
+                writer.WriteElementString("WEBTOMARKDOWN_VAR", WebToMarkdown_Opt_Txt.Text);
                 writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
@@ -970,7 +979,7 @@ namespace Ostium
             {
                 var CreateDir = new List<string>()
                     {
-                        AppStart + "EnvironmentWebview",
+                        secureContainer + "EnvironmentWebview",
                         Plugins,
                         DBdirectory,
                         FeedDir,
@@ -1003,8 +1012,15 @@ namespace Ostium
 
         async Task DirectoryCreate(string dir)
         {
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
+            try
+            {
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DirectoryCreate: " + ex.Message, "Error!");
+            }
         }
 
         #region LoadConfiguration_
@@ -1079,11 +1095,24 @@ namespace Ostium
                                     CyberChef_Btn.Enabled = false;
                                 break;
                             case "OSINTWATCHER_VAR":
-                                OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
-                                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
-                                    OsintWatcher_Mnu.Enabled = true;
-                                else
-                                    OsintWatcher_Mnu.Enabled = false;
+                                if (!File.Exists(Path.Combine(AppStart, ".tor")))
+                                {
+                                    OsintWatcher_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                    if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                                        OsintWatcher_Mnu.Enabled = true;
+                                    else
+                                        OsintWatcher_Mnu.Enabled = false;
+                                }
+                                break;
+                            case "WEBTOMARKDOWN_VAR":
+                                if (!File.Exists(Path.Combine(AppStart, ".tor")))
+                                {
+                                    WebToMarkdown_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                    if (!string.IsNullOrEmpty(WebToMarkdown_Opt_Txt.Text))
+                                        WebToMarkedown_Btn.Enabled = true;
+                                    else
+                                        WebToMarkedown_Btn.Enabled = false;
+                                }
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -1151,6 +1180,8 @@ namespace Ostium
             RFU(Path.Combine(FileDir, "grp-frm", "_grp_frm_url_opn.txt"), Path.Combine(FileDir, "grp-frm", "grp_frm_url_opn.txt"));
             RFU(Path.Combine(FileDir, "url-constructor", "_construct_url.txt"), Path.Combine(FileDir, "url-constructor", "construct_url.txt"));
             RFU(Path.Combine(FileDir, "url-constructor", "_search-images.txt"), Path.Combine(FileDir, "url-constructor", "search-images.txt"));
+
+            RFU(Path.Combine(AppStart, "_Start_Secure_Container.bat"), Path.Combine(AppStart, "Start_Secure_Container.bat"));
 
             if (File.Exists(Path.Combine(FileDir, "url.txt")))
             {
@@ -1295,30 +1326,48 @@ namespace Ostium
         #region Browser_Event Handler
         async Task InitializeEnvironmentWebview()
         {
-            bool restartSession = File.Exists(RestartFile);
-
-            if (restartSession)
+            try
             {
-                using (StreamReader sr = new StreamReader(RestartFile))
+                bool restartSession = File.Exists(RestartFile);
+
+                if (restartSession)
                 {
-                    userDataFolder = sr.ReadToEnd();
-                    sessionID = userDataFolder;
+                    using (StreamReader sr = new StreamReader(RestartFile))
+                    {
+                        userDataFolder = sr.ReadToEnd();
+                        sessionID = userDataFolder;
+                    }
+
+                    MessageBox.Show("You are trying to start from an old session. If that is not what you intended, " +
+                        "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (File.Exists(RestartFile))
+                        File.Delete(RestartFile);
                 }
-                MessageBox.Show("You are starting from an existing session. If that is not what you intended, " +
-                    "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    CreateNameAleat();
+                    userDataFolder = Path.Combine(secureContainer, "EnvironmentWebview", Una, "WebData");
+                    sessionID = Una;
+                }
 
-                File.Delete(RestartFile);
+                await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
+                Class_Var.USER_DATA_FOLDER = userDataFolder;
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message + " .The default directory will be used.", "Error!");
+
                 CreateNameAleat();
-
-                userDataFolder = Path.Combine(Application.StartupPath, "EnvironmentWebview", Una, "WebData");
+                userDataFolder = Path.Combine(secureContainer, "EnvironmentWebview", Una, "WebData");
                 sessionID = Una;
-            }
 
-            await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
-            Class_Var.USER_DATA_FOLDER = userDataFolder;
+                await Task.Run(() => ValidateWebViewDataFolder(userDataFolder));
+                Class_Var.USER_DATA_FOLDER = userDataFolder;
+
+                if (File.Exists(RestartFile))
+                    File.Delete(RestartFile);
+            }
         }
 
         public async Task InitializeEnvironment()
@@ -1336,16 +1385,35 @@ namespace Ostium
 
                     var args = new[]
                     {
-                    "--proxy-server=socks5://127.0.0.1:9050",
-                    $"--host-resolver-rules=\\\"{hostResolverRules}\\\"",
-                    "--dns-prefetch-disable",
-                    "--disable-features=DnsOverHttps",             // try to disable DoH
-                    "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
-                    "--enable-features=WebRtcHideLocalIpsWithMdns",
-                    "--disable-gpu"
-                };
+                        // Proxy
+                        "--proxy-server=socks5://127.0.0.1:9050",
+                        "--proxy-bypass-list=\"localhost;127.0.0.1;::1\"",
+
+                        // DNS
+                        $"--host-resolver-rules=\"{hostResolverRules}\"",
+                        "--dns-prefetch-disable",
+                        "--disable-features=DnsOverHttps,NetworkPrediction",
+                        "--disable-quic",
+
+                        // WebRTC
+                        "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
+
+                        // Background services
+                        "--disable-background-networking",
+                        "--disable-sync",
+                        "--no-pings",
+                        "--disable-domain-reliability", //
+                        "--disable-breakpad",
+                        "--disable-crash-reporter",
+                        "--disable-metrics",
+                        "--no-first-run",
+                        "--no-default-browser-check",
+                        "--disable-extensions",
+                        "--disable-plugins"
+                    };
 
                     options.AdditionalBrowserArguments = string.Join(" ", args);
+                    options.Language = "en-US";
                 }
 
                 env = await CoreWebView2Environment.CreateAsync(
@@ -1391,6 +1459,8 @@ namespace Ostium
                     OstUpdt_Btn.Enabled = false;
                     Agent_Fetch_Search.Enabled = false;
                     Agent_Web_Fetch_Btn.Enabled = false;
+                    OsintWatcher_Mnu.Enabled = false;
+                    WebToMarkedown_Btn.Enabled = false;
 
                     TabPage page1 = Control_Tab.TabPages[1];
                     Control_Tab.TabPages.Remove(page1);
@@ -2062,6 +2132,11 @@ namespace Ostium
             if (UserAgentOnOff == "on")
             {
                 settings.UserAgent = UserAgentSelect;
+            }
+
+            if (e.Uri.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) && File.Exists(Path.Combine(AppStart, ".tor")))
+            {
+                e.Cancel = true;
             }
 
             if (FloodHeader_Chk.Checked)
@@ -3539,6 +3614,73 @@ namespace Ostium
             }
         }
 
+        void WebToMarkedown_Btn_Click(object sender, EventArgs e)
+        {
+            WebToMarkdownExec();
+        }
+
+        void WebToMarkdownExec()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(WebToMarkdown_Opt_Txt.Text))
+                {
+                    string FileExec = Path.Combine(WebToMarkdown_Opt_Txt.Text, "WebToMarkdown.exe");
+
+                    if (Directory.Exists(WebToMarkdown_Opt_Txt.Text))
+                    {
+                        if (File.Exists(FileExec))
+                        {
+                            string message, title;
+                            object ValueInsert;
+                            message = $"Insert URL and extracts the rendered DOM and writes a Markdown report.\n" +
+                                      $"\nex. https:\\\\example.com --resume";
+                            title = "Web To Markdown";
+                            ValueInsert = Interaction.InputBox(message, title);
+                            string ValueUpdate = Convert.ToString(ValueInsert);
+                            if (ValueUpdate != "")
+                            {
+                                try
+                                {
+                                    using (Process proc = new Process())
+                                    {
+                                        proc.StartInfo.FileName = FileExec;
+                                        proc.StartInfo.Arguments = ValueUpdate;
+                                        proc.StartInfo.UseShellExecute = true;
+                                        proc.StartInfo.WorkingDirectory = WebToMarkdown_Opt_Txt.Text;
+                                        proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                        proc.Start();
+                                        proc.Close();
+                                    }
+                                }
+                                catch (InvalidOperationException ex)
+                                {
+                                    MessageBox.Show(this, ex.Message, "Web To Markdown Fails! Check the log file logs_/app.log");
+                                }
+                            }
+                        }
+                        else
+                            MessageBox.Show("The file WebToMarkdown.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "WebToMarkedown not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("WebToMarkedown is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "WebToMarkedown not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! OsintWatcherExec: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         void HTMLtxt_Btn_Click(object sender, EventArgs e)
         {
             htmlTextFrm = new HtmlText_Frm();
@@ -3786,6 +3928,35 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! OsintWatcherExec: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void ReportsPathWatcher_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(OsintWatcher_Opt_Txt.Text))
+                {
+                    if (Directory.Exists(OsintWatcher_Opt_Txt.Text))
+                    {
+                        Process.Start(Path.Combine(OsintWatcher_Opt_Txt.Text, "Reports_"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Osint Watcher is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "Osint Watcher not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! ReportsPathWatcher_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -4755,6 +4926,46 @@ namespace Ostium
 
             string formatURI = Regex.Replace(Class_Var.URL_TRAD_WEBPAGE, "replace_query", WBrowsefeed.Source.AbsoluteUri);
             WBrowsefeed.Source = new Uri(@formatURI);
+        }
+
+        void SaveTitleRSS_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Title_Lst.Items.Count > 0)
+                {
+                    Stream isData;
+                    SaveFileDialog saveFD = new SaveFileDialog
+                    {
+                        InitialDirectory = AppStart,
+                        Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                        FilterIndex = 2,
+                        RestoreDirectory = true
+                    };
+
+                    if (saveFD.ShowDialog() == DialogResult.OK)
+                    {
+                        if ((isData = saveFD.OpenFile()) != null)
+                        {
+                            using (StreamWriter SW = new StreamWriter(isData))
+                            {
+                                foreach (string itm in Title_Lst.Items)
+                                {
+                                    SW.WriteLine(itm);
+                                }
+                            }
+
+                            isData.Close();
+
+                            Console.Beep(1200, 200);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! SaveTitleRSS_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void JavaScriptFeed_Btn_Click(object sender, EventArgs e)
@@ -6436,22 +6647,18 @@ namespace Ostium
 
         string ExtractSessionID(string path)
         {
-            string startPath = AppStart + @"EnvironmentWebview\";
-            const string endPath = @"\WebData";
+            string[] parts = path.Split(new[] { '\\', '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-            int indexStart = path.IndexOf(startPath, StringComparison.OrdinalIgnoreCase);
-            if (indexStart == -1)
+            for (int i = 0; i < parts.Length - 2; i++)
             {
-                return sessionID;
+                if (parts[i].Equals("EnvironmentWebview", StringComparison.OrdinalIgnoreCase) &&
+                    parts[i + 2].Equals("WebData", StringComparison.OrdinalIgnoreCase))
+                {
+                    return parts[i + 1];
+                }
             }
 
-            indexStart += startPath.Length;
-
-            int indexEnd = path.IndexOf(endPath, indexStart, StringComparison.OrdinalIgnoreCase);
-            if (indexEnd == -1)
-                throw new Exception("The segment '\\WebData' was not found.");
-
-            return path.Substring(indexStart, indexEnd - indexStart);
+            return sessionID;
         }
 
         #region File_List_Create
@@ -14272,6 +14479,11 @@ namespace Ostium
         void OsintWatcher_Link_Click(object sender, EventArgs e)
         {
             Tools_Link("https://github.com/icaza/Ostium-Osint-Browser/tree/master/OsintWatcher/EXE");
+        }
+
+        void WebToMarkdown_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/icaza/WebToMarkdown");
         }
 
         void Tools_Link(string url)

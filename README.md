@@ -13,8 +13,6 @@
 
 </div>
 
----
-
 ## 🎯 About
 
 Ostium OSINT Browser is a specialized web browser designed for digital investigation professionals, cybersecurity experts, and open-source intelligence (OSINT) analysts. Built on the open-source Chromium project and powered by Microsoft Edge WebView2, it provides a secure, feature-rich platform for your research.
@@ -27,8 +25,6 @@ Ostium OSINT Browser is a specialized web browser designed for digital investiga
 - **🔄 Always Up-to-Date**: Automatic updates via Edge WebView2
 - **🎓 Accessible**: Designed for both professionals and beginners
 
----
-
 ## 💼 Target Users
 
 Ostium OSINT Browser is designed for professionals who analyze public information on the Internet while preserving their anonymity and security:
@@ -39,8 +35,6 @@ Ostium OSINT Browser is designed for professionals who analyze public informatio
 - **📰 Journalists**: Fact-checking and in-depth investigations
 - **🏢 Businesses**: Strategic intelligence and reputation protection
 - **🎓 Researchers**: Academic studies and data analysis
-
----
 
 ## 📛 Ostium Multi-Session Environment
 
@@ -69,7 +63,7 @@ Environments are stored in the following directory:
 
 You can completely delete the contents of this directory whenever you want to clean up data from previous sessions.
 
-**Important:** You do not need to manually delete previous environments to maintain session isolation. Each time Ostium OSINT Browser starts, a new and unique environment is created.
+Note: It is not necessary to manually delete previous environments to ensure session isolation. A new and unique environment is created each time Ostium OSINT Browser is launched.
 
 ### Multiple simultaneous sessions
 
@@ -82,16 +76,25 @@ For example, this allows you to use multiple accounts from the same service with
 
 With the [RestartSession](https://github.com/icaza/Ostium-Osint-Browser/tree/master/RestartSession) tool (accessible via the Tools menu or directly at the root of Ostium), you can resume an existing session or assign it a custom name. This is useful when conducting an investigation and needing to preserve your search history.
 
-Important: each session is independent. If you modify advanced browser settings, those changes apply only to the current session; they do not carry over to other sessions. Therefore, to ensure a change takes effect, make it within the relevant session.
----
+**⚠️ Important!** each session is independent. If you modify advanced browser settings, those changes apply only to the current session; they do not carry over to other sessions. Therefore, to ensure a change takes effect, make it within the relevant session.
+
+## 🔒 Encrypted Virtual Disk (VeraCrypt)
+
+**Enhanced Protection:** Seamless integration of the open-source tool **VeraCrypt** to isolate and encrypt the Ostium workspace. [Download link](https://veracrypt.io/en/Downloads.html) - [GitHub](https://github.com/veracrypt/VeraCrypt)
+
+**Data Privacy:** The `EnvironmentWebview` working directory (cookies, history, and session data) is hosted within an encrypted container (`.hc`).
+
+**Automated Launch:** Automatic volume mounting, Ostium startup, and secure unmounting upon closure, managed by the `Start_Secure_Container.bat` script.
+
+**Flexibility:** Option to choose between a standard session (`Ostium.exe`) and a highly secure session on an encrypted disk at any time.
+
+More information on usage [EN](Create_an_Encrypted_Virtual_Disk_with_VeraCrypt.md) [FR](Créer_un_disque_virtuel_chiffré_avec_VeraCrypt.md)
 
 ## 🟢 OSTIUM OSINT Watcher
 
 ### Evidence-grade change detection for web pages, built for OSINT investigators.
 
 Register a list of pages, run a check whenever you need one (or let the app check on a randomized interval), and get a verdict — modified, unchanged, or unreachable — backed by layered cryptographic fingerprints and a line-level diff, not a single fragile hash. Native Windows app, fully offline data storage. [More](https://github.com/icaza/Ostium-Osint-Browser/tree/OOBAI26/OsintWatcher)
-
----
 
 ## ✨ Main Features
 
@@ -159,8 +162,6 @@ Register a list of pages, run a check whenever you need one (or let the app chec
 - Local CyberChef
 - Customizable editor
 
----
-
 ## 🚀 Installation
 
 ### Prerequisites
@@ -178,8 +179,6 @@ Register a list of pages, run a check whenever you need one (or let the app chec
 
 **No complex installation required!**
 
----
-
 ## 📚 Documentation
 
 Each tool has its own documentation page with video tutorial.
@@ -188,8 +187,6 @@ Each tool has its own documentation page with video tutorial.
 - [🏠 Wiki Homepage](https://github.com/icaza/Ostium-Osint-Browser/wiki)
 - [🛠️ Complete Tools List](https://github.com/icaza/Ostium-Osint-Browser/wiki/Tools)
 - [🎥 YouTube Playlist](https://youtube.com/playlist?list=PL2P_w0qK8vNugPLFuQ2ap_3Kvi00wrNBy&si=a3VF6P6szfZok3sn)
-
----
 
 ## 🔒 Privacy and Security
 
@@ -204,8 +201,6 @@ Your privacy is our top priority:
 
 Upon closing, you can choose to completely erase your history while preserving essential investigation data.
 
----
-
 ## 🛠️ Technologies Used
 
 Ostium OSINT Browser relies on proven open-source technologies:
@@ -218,26 +213,10 @@ Ostium OSINT Browser relies on proven open-source technologies:
 
 [View all dependencies](https://github.com/icaza/Ostium-Osint-Browser/network/dependencies)
 
----
-
-## 🤝 Contributing
-
-Ostium OSINT Browser is an actively developed open-source project. Your contributions are welcome!
-
-### How to Contribute?
-
-1. 🍴 Fork the project
-2. 🌿 Create your branch (`git checkout -b feature/AmazingFeature`)
-3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
-5. 🔃 Open a Pull Request
-
 ### Report a Bug or Suggest a Feature
 
 - [Open an issue](https://github.com/icaza/Ostium-Osint-Browser/issues)
 - [Join Discord](https://discord.com/channels/1213972832657350677/)
-
----
 
 ## 📜 License
 
@@ -247,8 +226,6 @@ This project uses several open-source components under different licenses:
 - **Chromium**: BSD License
 - See [DEPENDENCIES](https://github.com/icaza/Ostium-Osint-Browser/network/dependencies) for more details
 
----
-
 ## 📞 Support & Contact
 
 - 🌐 **Website**: [veydunet.com/product/ostium-osint-browser/](https://veydunet.com/product/ostium-osint-browser/)
@@ -256,8 +233,6 @@ This project uses several open-source components under different licenses:
 - 🎥 **YouTube**: [Video Tutorials](https://youtube.com/playlist?list=PL2P_w0qK8vNugPLFuQ2ap_3Kvi00wrNBy&si=a3VF6P6szfZok3sn)
 - 💬 **Discord**: [Help and Suggestions](https://discord.com/channels/1213972832657350677/)
 - 📧 **Contact**: [Via website](https://veydunet.com/contact/)
-
----
 
 ## 🎯 Roadmap
 
@@ -272,14 +247,10 @@ Ostium OSINT Browser is in active development. Many features are planned:
 
 **Stay tuned for upcoming updates!**
 
----
-
 ## ⚠️ Disclaimer
 
 **Legal notice** : Ostium OSINT Browser is intended for legal and ethical OSINT investigations only.
 Users are responsible for complying with applicable laws.
-
----
 
 ## 🙏 Acknowledgments
 
@@ -288,9 +259,8 @@ A big thank you to all contributors and open-source projects that make Ostium OS
 - The Chromium team
 - Microsoft for Edge WebView2
 - The OSINT community
+- VeraCrypt
 - All our testers and users
-
----
 
 ## ⭐ Support the Project
 
@@ -301,8 +271,6 @@ If Ostium OSINT Browser helps you in your work, feel free to:
 - 💬 **Contribute** to development
 - 📝 **Suggest** improvements
 - 🐛 **Report** bugs
-
----
 
 <div align="center">
 
