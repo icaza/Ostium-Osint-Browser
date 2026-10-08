@@ -1109,9 +1109,9 @@ namespace Ostium
                                 {
                                     WebToMarkdown_Opt_Txt.Text = Convert.ToString(reader.ReadString());
                                     if (!string.IsNullOrEmpty(WebToMarkdown_Opt_Txt.Text))
-                                        WebToMarkedown_Btn.Enabled = true;
+                                        WebToMarkedown_Mnu.Enabled = true;
                                     else
-                                        WebToMarkedown_Btn.Enabled = false;
+                                        WebToMarkedown_Mnu.Enabled = false;
                                 }
                                 break;
                             case "REDLIST_VAR":
@@ -1460,7 +1460,7 @@ namespace Ostium
                     Agent_Fetch_Search.Enabled = false;
                     Agent_Web_Fetch_Btn.Enabled = false;
                     OsintWatcher_Mnu.Enabled = false;
-                    WebToMarkedown_Btn.Enabled = false;
+                    WebToMarkedown_Mnu.Enabled = false;
 
                     TabPage page1 = Control_Tab.TabPages[1];
                     Control_Tab.TabPages.Remove(page1);
@@ -3614,9 +3614,52 @@ namespace Ostium
             }
         }
 
-        void WebToMarkedown_Btn_Click(object sender, EventArgs e)
+        void WebToMarkedownConf_Btn_Click(object sender, EventArgs e)
         {
-            WebToMarkdownExec();
+            string dirPath = Path.Combine(WebToMarkdown_Opt_Txt.Text, "config.json");
+
+            if (!File.Exists(dirPath))
+            {
+                MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
+                    "WebToMarkdown", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFile_Editor(dirPath);
+        }
+
+        async void WebToMarkedown_Btn_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() => WebToMarkdownExec());
+        }
+
+        void WebToMarkedownReport_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(WebToMarkdown_Opt_Txt.Text))
+                {
+                    if (Directory.Exists(Path.Combine(WebToMarkdown_Opt_Txt.Text, "reports_")))
+                    {
+                        Process.Start(Path.Combine(WebToMarkdown_Opt_Txt.Text, "reports_"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "WebToMarkdown not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("WebToMarkdown is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "WebToMarkdown not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WebToMarkedownReport_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
         }
 
         void WebToMarkdownExec()
