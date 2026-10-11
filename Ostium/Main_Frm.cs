@@ -470,6 +470,7 @@ namespace Ostium
             CyberChef_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             OsintWatcher_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             WebToMarkdown_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            WarcArchiver_Opt_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             URL_SAVE_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
             Construct_URL_Cbx.KeyPress += new KeyPressEventHandler(Object_Keypress);
@@ -486,6 +487,7 @@ namespace Ostium
             CyberChef_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             OsintWatcher_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             WebToMarkdown_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
+            WarcArchiver_Opt_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             ArchiveAdd_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonUri_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
             JsonVal_Txt.DoubleClick += new EventHandler(ClearObject_Keypress);
@@ -592,6 +594,7 @@ namespace Ostium
                 CyberChef_Opt_Txt.Text = "";
                 OsintWatcher_Opt_Txt.Text = "";
                 WebToMarkdown_Opt_Txt.Text = "";
+                WarcArchiver_Opt_Txt.Text = "";
                 ArchiveAdd_Txt.Text = "";
 
                 var ArchiveDir = new List<string>()
@@ -635,6 +638,7 @@ namespace Ostium
                 writer.WriteElementString("CYBERCHEF_VAR", CyberChef_Opt_Txt.Text);
                 writer.WriteElementString("OSINTWATCHER_VAR", OsintWatcher_Opt_Txt.Text);
                 writer.WriteElementString("WEBTOMARKDOWN_VAR", WebToMarkdown_Opt_Txt.Text);
+                writer.WriteElementString("WARCARCHIVER_VAR", WarcArchiver_Opt_Txt.Text);
                 writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
@@ -1112,6 +1116,16 @@ namespace Ostium
                                         WebToMarkedown_Mnu.Enabled = true;
                                     else
                                         WebToMarkedown_Mnu.Enabled = false;
+                                }
+                                break;
+                            case "WARCARCHIVER_VAR":
+                                if (!File.Exists(Path.Combine(AppStart, ".tor")))
+                                {
+                                    WarcArchiver_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                    if (!string.IsNullOrEmpty(WarcArchiver_Opt_Txt.Text))
+                                        WarcArchiver_Mnu.Enabled = true;
+                                    else
+                                        WarcArchiver_Mnu.Enabled = false;
                                 }
                                 break;
                             case "REDLIST_VAR":
@@ -4000,6 +4014,72 @@ namespace Ostium
             catch (Exception ex)
             {
                 senderror.ErrorLog("Error! ReportsPathWatcher_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void WarcArchiver_Btn_Click(object sender, EventArgs e)
+        {
+            WarcArchiver();
+        }
+
+        void WarcArchiver()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(WarcArchiver_Opt_Txt.Text))
+                {
+                    if (Directory.Exists(WarcArchiver_Opt_Txt.Text))
+                    {
+                        if (File.Exists(Path.Combine(WarcArchiver_Opt_Txt.Text, "WarcArchiver.exe")))
+                            Process.Start(Path.Combine(WarcArchiver_Opt_Txt.Text, "WarcArchiver.exe"));
+                        else
+                            MessageBox.Show("The file WarcArchiver.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "WARC Archiver not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("WARC Archiver is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "WARC Archiver not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WarcArchiverExec: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
+        void WarcExplorer_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(WarcArchiver_Opt_Txt.Text))
+                {
+                    if (File.Exists(Path.Combine(WarcArchiver_Opt_Txt.Text, "app", "index.html")))
+                    {
+                        GoBrowser($"file:///{Path.Combine(WarcArchiver_Opt_Txt.Text, "app", "index.html")}", 0);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "Webdata Warc Explorer not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Webdata Warc Explorer is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "Webdata Warc Explorer not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WarcExplorer_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
 
@@ -14527,6 +14607,11 @@ namespace Ostium
         void WebToMarkdown_Link_Click(object sender, EventArgs e)
         {
             Tools_Link("https://github.com/icaza/WebToMarkdown");
+        }
+
+        void WarcArchiver_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/icaza/WARC-Archiver");
         }
 
         void Tools_Link(string url)
