@@ -54,7 +54,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.52";
+        const string CurrentVersion = "1.4.53";
         readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2");
         readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2", "config.json");
         #endregion
@@ -1352,7 +1352,9 @@ namespace Ostium
                         sessionID = userDataFolder;
                     }
 
-                    MessageBox.Show("You are trying to start from an old session. If that is not what you intended, " +
+                    string extractID = await Task.Run(() => ExtractSessionID(sessionID));
+
+                    MessageBox.Show($"You are trying to start from an old session [{extractID}]. If that is not what you intended, " +
                         "restart Ostium.", "Session restart", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     if (File.Exists(RestartFile))
@@ -7029,6 +7031,7 @@ namespace Ostium
                 senderror.ErrorLog("Error! DatabasePnl: ", ex.ToString(), "Main_Frm", AppStart);
             }
         }
+
         void AddTable_Btn_Click(object sender, EventArgs e)
         {
             TableName_Txt.Text = Regex.Replace(TableName_Txt.Text, "[^a-zA-Z]", string.Empty);
@@ -7263,6 +7266,7 @@ namespace Ostium
                             ChangeDBdefault(DataBaze_Opn.Text);
                             databasePath = DBdirectory + DataBaze_Opn.Text;
                             DB_Default_Txt.Text = DataBaze_Opn.Text;
+                            DB_Default_Opt_Txt.Text = DataBaze_Opn.Text;
                         }
                     }
                     else

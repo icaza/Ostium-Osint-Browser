@@ -110,7 +110,7 @@ OstiumIAtrad is a lightweight Windows desktop app that translates text using a s
 
 ## 🟢 Web To Markdown
 
-### Windows command-line web extraction utility built with C# 10+ / .NET 10 and Microsoft WebView2.
+### Windows command-line web extraction utility.
 
 Windows command-line web extraction utility. The process has no visible console or GUI. It accepts a URL, renders the page with WebView2, extracts the rendered DOM rather than the HTML source, and writes a Markdown report into reports_. [More](https://github.com/icaza/WebToMarkdown)
 
