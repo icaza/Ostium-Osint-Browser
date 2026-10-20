@@ -96,6 +96,24 @@ More information on usage [EN](Create_an_Encrypted_Virtual_Disk_with_VeraCrypt.m
 
 Register a list of pages, run a check whenever you need one (or let the app check on a randomized interval), and get a verdict — modified, unchanged, or unreachable — backed by layered cryptographic fingerprints and a line-level diff, not a single fragile hash. Native Windows app, fully offline data storage. [More](https://github.com/icaza/Ostium-Osint-Browser/tree/OOBAI26/OsintWatcher)
 
+## 🟢 WARC Archiver
+
+### WARC Archiver — Web archiving with evidentiary value.
+
+A Windows desktop application that preserves a web page and everything it loads as a standards-based WARC 1.1 archive (ISO 28500), fingerprints it with SHA-256 and SHA-512, records the capture in a tamper-evident audit log, and can sign the evidence with an X.509 certificate. A built-in verifier re-checks everything independently. [More](https://github.com/icaza/WARC-Archiver)
+
+## 🟢 OstiumIAtrad
+
+### Local, AI-assisted text translation for Windows — nothing ever leaves your PC.
+
+OstiumIAtrad is a lightweight Windows desktop app that translates text using a small AI language model running entirely on your own machine or local network — through Ollama, LM Studio, or any other OpenAI-compatible local server. No cloud API keys, no per-word pricing, no text ever sent over the internet. [More](https://github.com/icaza/OstiumIAtrad)
+
+## 🟢 Web To Markdown
+
+### Windows command-line web extraction utility.
+
+Windows command-line web extraction utility. The process has no visible console or GUI. It accepts a URL, renders the page with WebView2, extracts the rendered DOM rather than the HTML source, and writes a Markdown report into reports_. [More](https://github.com/icaza/WebToMarkdown)
+
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence
@@ -259,7 +277,9 @@ A big thank you to all contributors and open-source projects that make Ostium OS
 - The Chromium team
 - Microsoft for Edge WebView2
 - The OSINT community
+- GCHQ UK's intelligence, security and cyber agency
 - VeraCrypt
+- National Library Of Norway
 - All our testers and users
 
 ## ⭐ Support the Project
