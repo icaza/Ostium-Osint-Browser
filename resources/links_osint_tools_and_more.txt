@@ -120,7 +120,7 @@ https://archive.org/web/
 https://duckduckgo.com/
 https://www.whois.net/
 http://pdfmyurl.com/
-https://www.alexa.com/topsites
+https://netapi.com/top-1-mln-websites/
 https://trends.google.com/trends/?geo=US
 https://ahrefs.com/blog/google-advanced-search-operators/
 https://moz.com/blog/mastering-google-search-operators-in-67-steps
