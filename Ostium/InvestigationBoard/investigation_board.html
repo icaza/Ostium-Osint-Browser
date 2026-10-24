@@ -74,7 +74,7 @@
             display: flex;
             align-items: center;
             padding: 0 12px;
-            gap: 8px;
+            /* gap: 8px; */
             z-index: 1000;
             box-shadow: 0 1px 4px rgba(0,0,0,0.05);
             flex-wrap: wrap;
@@ -380,26 +380,59 @@
             top: 0;
             left: 0;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
             overflow: visible;
+        }
+
+        .connection-group {
+            pointer-events: auto;
         }
 
         .connection-line {
             stroke: var(--connection-line);
-            stroke-width: 2;
+            stroke-width: 2.5px;
             fill: none;
             pointer-events: stroke;
             cursor: pointer;
+            transition: stroke-width 0.2s;
         }
 
             .connection-line:hover {
-                stroke-width: 3;
+                stroke-width: 4;
             }
 
             .connection-line.selected {
                 stroke: var(--danger);
-                stroke-width: 3;
+                stroke-width: 4;
             }
+
+        .connection-label {
+            cursor: pointer;
+            pointer-events: all;
+            user-select: none;
+        }
+
+        .connection-label-bg {
+            fill: var(--panel-bg);
+            stroke: var(--connection-line);
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+            pointer-events: all;
+            transition: stroke-width 0.2s, stroke 0.2s;
+        }
+
+        .connection-label:hover .connection-label-bg {
+            stroke-width: 2.5px;
+            stroke: var(--accent);
+        }
+
+        .connection-label-text {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            fill: var(--text);
+            pointer-events: none;
+        }
 
         /* Selection rectangle */
         #selection-rect {
@@ -501,19 +534,25 @@
                 min-height: 80px;
             }
 
-            #property-panel .prop-size-row {
-                display: flex;
-                gap: 8px;
+            #property-panel input[type="color"] {
+                height: 38px;
+                padding: 2px 4px;
+                cursor: pointer;
             }
 
-                #property-panel .prop-size-row > div {
-                    flex: 1;
-                }
+        .prop-size-row {
+            display: flex;
+            gap: 8px;
+        }
 
-            #property-panel button {
-                width: 100%;
-                margin-bottom: 8px;
+            .prop-size-row > div {
+                flex: 1;
             }
+
+        #property-panel button {
+            width: 100%;
+            margin-bottom: 8px;
+        }
 
         /* Modal dialog */
         .modal-overlay {
@@ -549,6 +588,13 @@
                 margin-bottom: 16px;
             }
 
+            .modal label {
+                display: block;
+                font-size: 13px;
+                color: var(--text-secondary);
+                margin-bottom: 4px;
+            }
+
             .modal input, .modal textarea {
                 width: 100%;
                 padding: 10px;
@@ -559,6 +605,12 @@
                 color: var(--text);
                 font-size: 14px;
             }
+
+                .modal input[type="color"] {
+                    height: 40px;
+                    padding: 2px 4px;
+                    cursor: pointer;
+                }
 
             .modal .btn-row {
                 display: flex;
@@ -773,6 +825,18 @@
         <h3 style="margin-bottom:12px;">Properties</h3>
         <label for="prop-text">Text / Content</label>
         <textarea id="prop-text" rows="4"></textarea>
+        <div id="prop-font-group">
+            <div class="prop-size-row">
+                <div>
+                    <label for="prop-font-size">Font size (px)</label>
+                    <input type="number" id="prop-font-size" min="8" max="120" step="1" value="16">
+                </div>
+                <div>
+                    <label for="prop-font-color">Font color</label>
+                    <input type="color" id="prop-font-color" value="#333333">
+                </div>
+            </div>
+        </div>
         <label for="prop-color">Background color</label>
         <input type="color" id="prop-color">
         <div class="prop-size-row">
@@ -824,9 +888,34 @@
             <input type="text" id="generic-title" placeholder="Post-it title" maxlength="300">
             <label for="generic-desc">Description</label>
             <textarea id="generic-desc" rows="4" placeholder="Details..."></textarea>
+            <div class="prop-size-row">
+                <div>
+                    <label for="generic-font-size">Font size (px)</label>
+                    <input type="number" id="generic-font-size" min="8" max="120" step="1" value="14">
+                </div>
+                <div>
+                    <label for="generic-font-color">Font color</label>
+                    <input type="color" id="generic-font-color" value="#1a1a1a">
+                </div>
+            </div>
+            <label for="generic-bg-color">Background color</label>
+            <input type="color" id="generic-bg-color" value="#ffffff">
             <div class="btn-row">
                 <button id="generic-cancel">Cancel</button>
                 <button id="generic-confirm" class="primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-link" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="link-modal-title">
+        <div class="modal">
+            <h3 id="link-modal-title">Link Relation</h3>
+            <label for="link-label-input">Relation label (e.g. Accomplice, Witness, Financial...)</label>
+            <input type="text" id="link-label-input" placeholder="Relation name (optional)" maxlength="100" autocomplete="off">
+            <div class="btn-row">
+                <button id="link-modal-delete" class="danger" style="display:none; margin-right:auto;">Delete Link</button>
+                <button id="link-modal-cancel">Cancel</button>
+                <button id="link-modal-confirm" class="primary">Confirm</button>
             </div>
         </div>
     </div>
@@ -836,1654 +925,1958 @@
     <div id="toast" role="status" aria-live="polite"></div>
 
     <script>
-        (function() {
-            'use strict';
+                (function() {
+                    'use strict';
 
-            // ==================== CONSTANTS ====================
-            const MIN_ITEM_SIZE = 60;
-            const MAX_ITEM_SIZE = 4000;
-            const MAX_IMAGE_UPLOAD_BYTES = 8 * 1024 * 1024; // 8 MB
-            const AUTOSAVE_DELAY_MS = 800;
-            const ALLOWED_ITEM_TYPES = ['note', 'image', 'generic'];
-            const JSON_FILE_TYPES = [{
-                description: 'Investigation Board Project',
-                accept: { 'application/json': ['.json'] }
-            }];
-            const supportsFSAccess = 'showSaveFilePicker' in window && 'showOpenFilePicker' in window;
+                    // ==================== CONSTANTS ====================
+                    const MIN_ITEM_SIZE = 60;
+                    const MAX_ITEM_SIZE = 4000;
+                    const MAX_IMAGE_UPLOAD_BYTES = 8 * 1024 * 1024; // 8 MB
+                    const AUTOSAVE_DELAY_MS = 800;
+                    const ALLOWED_ITEM_TYPES = ['note', 'image', 'generic'];
+                    const JSON_FILE_TYPES = [{
+                        description: 'Investigation Board Project',
+                        accept: { 'application/json': ['.json'] }
+                    }];
+                    const supportsFSAccess = 'showSaveFilePicker' in window && 'showOpenFilePicker' in window;
 
-            // ==================== GLOBAL STATE ====================
-            // Projects are stored exclusively as JSON files (via the File System
-            // Access API when available, otherwise via browser download/upload).
-            // No browser storage (localStorage/IndexedDB/cookies) is used.
-            const state = {
-                items: [],            // { id, type, x, y, width, height, content, extra, color }
-                connections: [],      // { id, from, to }
-                selectedIds: new Set(),
-                currentTool: 'select', // 'select', 'pan', 'link'
-                linkSourceId: null,
-                zoom: 1,
-                panX: 0,
-                panY: 0,
-                isDark: false,
-                nextId: 1,
-                nextConnId: 1,
-                projectName: null,
-                fileHandle: null,
-                isDirty: false,
-            };
+                    // ==================== GLOBAL STATE ====================
+                    // Projects are stored exclusively as JSON files (via the File System
+                    // Access API when available, otherwise via browser download/upload).
+                    // No browser storage (localStorage/IndexedDB/cookies) is used.
+                    const state = {
+                        items: [],            // { id, type, x, y, width, height, content, extra, color, fontSize, textColor }
+                        connections: [],      // { id, from, to, label }
+                        selectedIds: new Set(),
+                        currentTool: 'select', // 'select', 'pan', 'link'
+                        linkSourceId: null,
+                        pendingLink: null,    // { from, to } or { editingConnId }
+                        zoom: 1,
+                        panX: 0,
+                        panY: 0,
+                        isDark: false,
+                        nextId: 1,
+                        nextConnId: 1,
+                        projectName: null,
+                        fileHandle: null,
+                        isDirty: false,
+                    };
 
-            // ==================== DOM REFERENCES ====================
-            const world = document.getElementById('world');
-            let connectionsSvg = document.getElementById('connections'); // reassigned on project load, must stay `let`
-            const canvasContainer = document.getElementById('canvas-container');
-            const selectionRect = document.getElementById('selection-rect');
-            const emptyState = document.getElementById('empty-state');
-            const propertyPanel = document.getElementById('property-panel');
-            const propText = document.getElementById('prop-text');
-            const propColor = document.getElementById('prop-color');
-            const propWidth = document.getElementById('prop-width');
-            const propHeight = document.getElementById('prop-height');
-            const zoomIndicator = document.getElementById('zoom-indicator');
-            const toast = document.getElementById('toast');
-            const projectIndicator = document.getElementById('project-indicator');
-            const projectNameLabel = projectIndicator.querySelector('.project-name');
+                    // ==================== DOM REFERENCES ====================
+                    const world = document.getElementById('world');
+                    let connectionsSvg = document.getElementById('connections'); // reassigned on project load, must stay `let`
+                    const canvasContainer = document.getElementById('canvas-container');
+                    const selectionRect = document.getElementById('selection-rect');
+                    const emptyState = document.getElementById('empty-state');
+                    const propertyPanel = document.getElementById('property-panel');
+                    const propText = document.getElementById('prop-text');
+                    const propFontGroup = document.getElementById('prop-font-group');
+                    const propFontSize = document.getElementById('prop-font-size');
+                    const propFontColor = document.getElementById('prop-font-color');
+                    const propColor = document.getElementById('prop-color');
+                    const propWidth = document.getElementById('prop-width');
+                    const propHeight = document.getElementById('prop-height');
+                    const zoomIndicator = document.getElementById('zoom-indicator');
+                    const toast = document.getElementById('toast');
+                    const projectIndicator = document.getElementById('project-indicator');
+                    const projectNameLabel = projectIndicator.querySelector('.project-name');
 
-            // Buttons
-            const btnAddNote = document.getElementById('btn-add-note');
-            const btnAddImage = document.getElementById('btn-add-image');
-            const btnAddGeneric = document.getElementById('btn-add-generic');
-            const btnSelectTool = document.getElementById('btn-select-tool');
-            const btnPanTool = document.getElementById('btn-pan-tool');
-            const btnLinkMode = document.getElementById('btn-link-mode');
-            const btnZoomIn = document.getElementById('btn-zoom-in');
-            const btnZoomOut = document.getElementById('btn-zoom-out');
-            const btnNewProject = document.getElementById('btn-new-project');
-            const btnOpenProject = document.getElementById('btn-open-project');
-            const btnSave = document.getElementById('btn-save');
-            const btnSaveAs = document.getElementById('btn-save-as');
-            const btnExportSvg = document.getElementById('btn-export-svg');
-            const btnDarkMode = document.getElementById('btn-dark-mode');
-            const openFileInput = document.getElementById('open-file-input');
-            const emptyNewProjectBtn = document.getElementById('empty-new-project');
-            const emptyOpenProjectBtn = document.getElementById('empty-open-project');
+                    // Buttons
+                    const btnAddNote = document.getElementById('btn-add-note');
+                    const btnAddImage = document.getElementById('btn-add-image');
+                    const btnAddGeneric = document.getElementById('btn-add-generic');
+                    const btnSelectTool = document.getElementById('btn-select-tool');
+                    const btnPanTool = document.getElementById('btn-pan-tool');
+                    const btnLinkMode = document.getElementById('btn-link-mode');
+                    const btnZoomIn = document.getElementById('btn-zoom-in');
+                    const btnZoomOut = document.getElementById('btn-zoom-out');
+                    const btnNewProject = document.getElementById('btn-new-project');
+                    const btnOpenProject = document.getElementById('btn-open-project');
+                    const btnSave = document.getElementById('btn-save');
+                    const btnSaveAs = document.getElementById('btn-save-as');
+                    const btnExportSvg = document.getElementById('btn-export-svg');
+                    const btnDarkMode = document.getElementById('btn-dark-mode');
+                    const openFileInput = document.getElementById('open-file-input');
+                    const emptyNewProjectBtn = document.getElementById('empty-new-project');
+                    const emptyOpenProjectBtn = document.getElementById('empty-open-project');
 
-            // Modals
-            const modalNewProject = document.getElementById('modal-new-project');
-            const newProjectNameInput = document.getElementById('new-project-name');
-            const newProjectConfirmBtn = document.getElementById('new-project-confirm');
-            const modalImage = document.getElementById('modal-image');
-            const modalGeneric = document.getElementById('modal-generic');
-            const imageUrlInput = document.getElementById('image-url');
-            const imageFileInput = document.getElementById('image-file');
-            const genericTitleInput = document.getElementById('generic-title');
-            const genericDescInput = document.getElementById('generic-desc');
+                    // Modals
+                    const modalNewProject = document.getElementById('modal-new-project');
+                    const newProjectNameInput = document.getElementById('new-project-name');
+                    const newProjectConfirmBtn = document.getElementById('new-project-confirm');
+                    const modalImage = document.getElementById('modal-image');
+                    const modalGeneric = document.getElementById('modal-generic');
+                    const imageUrlInput = document.getElementById('image-url');
+                    const imageFileInput = document.getElementById('image-file');
+                    const genericTitleInput = document.getElementById('generic-title');
+                    const genericDescInput = document.getElementById('generic-desc');
+                    const genericFontSizeInput = document.getElementById('generic-font-size');
+                    const genericFontColorInput = document.getElementById('generic-font-color');
+                    const genericBgColorInput = document.getElementById('generic-bg-color');
+                    const modalLink = document.getElementById('modal-link');
+                    const linkModalTitle = document.getElementById('link-modal-title');
+                    const linkLabelInput = document.getElementById('link-label-input');
+                    const linkModalConfirmBtn = document.getElementById('link-modal-confirm');
+                    const linkModalCancelBtn = document.getElementById('link-modal-cancel');
+                    const linkModalDeleteBtn = document.getElementById('link-modal-delete');
 
-            // ==================== UTILITIES ====================
-            function generateId() {
-                let id;
-                do {
-                    id = 'item_' + (state.nextId++);
-                } while (state.items.some(i => i.id === id));
-                return id;
-            }
-
-            function generateConnId() {
-                let id;
-                do {
-                    id = 'conn_' + (state.nextConnId++);
-                } while (state.connections.some(c => c.id === id));
-                return id;
-            }
-
-            function clamp(value, min, max) {
-                return Math.min(max, Math.max(min, value));
-            }
-
-            function finiteNumber(value, fallback) {
-                const n = typeof value === 'number' ? value : parseFloat(value);
-                return Number.isFinite(n) ? n : fallback;
-            }
-
-            function showToast(message) {
-                toast.textContent = message;
-                toast.classList.remove('show');
-                void toast.offsetWidth; // reflow to restart animation
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2400);
-            }
-
-            function isValidImageSrc(src) {
-                if (typeof src !== 'string' || !src) return false;
-                if (src.startsWith('data:')) {
-                    return /^data:image\//i.test(src);
-                }
-                try {
-                    const u = new URL(src, window.location.href);
-                    return u.protocol === 'http:' || u.protocol === 'https:';
-                } catch {
-                    return false;
-                }
-            }
-
-            function sanitizeFileName(name) {
-                const cleaned = String(name || '').trim().replace(/[\\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').slice(0, 80);
-                return cleaned || 'project';
-            }
-
-            function computeNextNumericId(ids, prefix) {
-                let max = 0;
-                ids.forEach(id => {
-                    if (typeof id === 'string' && id.startsWith(prefix)) {
-                        const n = parseInt(id.slice(prefix.length), 10);
-                        if (Number.isFinite(n)) max = Math.max(max, n);
-                    }
-                });
-                return max + 1;
-            }
-
-            // ==================== ELEMENT MANAGEMENT ====================
-            function createItem(type, x, y, options = {}) {
-                const id = generateId();
-                const item = {
-                    id,
-                    type,
-                    x,
-                    y,
-                    width: clamp(options.width || 160, MIN_ITEM_SIZE, MAX_ITEM_SIZE),
-                    height: clamp(options.height || 120, MIN_ITEM_SIZE, MAX_ITEM_SIZE),
-                    content: options.content || '',
-                    extra: options.extra || {},
-                    color: options.color || (type === 'note' ? '#fff9c4' : '#ffffff'),
-                };
-                state.items.push(item);
-                renderItem(item);
-                return item;
-            }
-
-            function resolveImageSrc(rawValue) {
-                if (typeof rawValue !== 'string') return null;
-                const value = rawValue.trim();
-                if (!value) return null;
-
-                let url;
-                try {
-                    url = new URL(value, document.baseURI);
-                } catch (_) {
-                    return null;
-                }
-
-                const protocol = url.protocol.toLowerCase();
-
-                if (protocol === 'http:' || protocol === 'https:') {
-                    return url.href;
-                }
-
-                if (protocol === 'blob:') {
-                    return url.href;
-                }
-
-                if (protocol === 'file:' && window.location.protocol === 'file:') {
-                    return url.href;
-                }
-
-                if (protocol === 'data:') {
-                    if (/^data:image\/(png|jpeg|gif|webp|avif)[;,]/i.test(url.href)) {
-                        return url.href;
-                    }
-                }
-
-                return null;
-            }
-
-            function renderItem(item) {
-                // Remove any previous DOM node for this item
-                const existing = document.querySelector(`[data-id="${item.id}"]`);
-                if (existing) existing.remove();
-
-                const el = document.createElement('div');
-                el.className = `board-item ${item.type}-item`;
-                el.dataset.id = item.id;
-                el.style.left = item.x + 'px';
-                el.style.top = item.y + 'px';
-                el.style.width = item.width + 'px';
-                el.style.height = item.height + 'px';
-                el.style.zIndex = 1;
-
-                // Content depending on type
-                if (item.type === 'note') {
-                    el.style.backgroundColor = item.color;
-                    el.classList.add('note');
-                    const textDiv = document.createElement('div');
-                    textDiv.className = 'note-text';
-                    textDiv.textContent = item.content || 'Double-click to edit';
-                    textDiv.addEventListener('dblclick', (e) => {
-                        e.stopPropagation();
-                        startInlineEdit(textDiv, item);
-                    });
-                    el.appendChild(textDiv);
-                } else if (item.type === 'image') {
-                    el.classList.add('image-item');
-                    const img = document.createElement('img');
-
-                    const safeSrc = resolveImageSrc(item.content);
-                    if (safeSrc) {
-                        img.src = safeSrc;
-                        img.alt = 'Board image';
-                    } else {
-
-                        img.removeAttribute('src');
-                        img.alt = 'Invalid image source';
+                    // ==================== UTILITIES ====================
+                    function generateId() {
+                        let id;
+                        do {
+                            id = 'item_' + (state.nextId++);
+                        } while (state.items.some(i => i.id === id));
+                        return id;
                     }
 
-                    img.draggable = false;
-                    el.appendChild(img);
-                } else if (item.type === 'generic') {
-                    el.classList.add('generic-item');
-                    el.style.backgroundColor = item.color;
-                    const title = document.createElement('h4');
-                    title.textContent = item.extra.title || 'Untitled';
-                    const desc = document.createElement('p');
-                    desc.textContent = item.extra.description || '';
-                    el.appendChild(title);
-                    el.appendChild(desc);
-                }
-
-                // Delete button
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'delete-btn';
-                deleteBtn.innerHTML = '&times;';
-                deleteBtn.title = 'Delete';
-                deleteBtn.setAttribute('aria-label', 'Delete element');
-                deleteBtn.addEventListener('mousedown', (e) => {
-                    e.stopPropagation();
-                    deleteItem(item.id);
-                });
-                deleteBtn.addEventListener('touchstart', (e) => {
-                    e.stopPropagation();
-                    deleteItem(item.id);
-                }, { passive: false });
-                el.appendChild(deleteBtn);
-
-                // Link handle
-                const linkHandle = document.createElement('div');
-                linkHandle.className = 'link-handle';
-                linkHandle.title = 'Create link';
-                linkHandle.setAttribute('aria-label', 'Create link from this element');
-                linkHandle.addEventListener('mousedown', (e) => {
-                    e.stopPropagation();
-                    startLinkFrom(item.id);
-                });
-                linkHandle.addEventListener('touchstart', (e) => {
-                    e.stopPropagation();
-                    startLinkFrom(item.id);
-                }, { passive: false });
-                el.appendChild(linkHandle);
-
-                // Resize handle
-                const resizeHandle = document.createElement('div');
-                resizeHandle.className = 'resize-handle';
-                resizeHandle.title = 'Resize';
-                resizeHandle.setAttribute('aria-label', 'Resize element');
-                resizeHandle.addEventListener('mousedown', (e) => {
-                    if (e.button !== 0) return;
-                    e.stopPropagation();
-                    if (!state.selectedIds.has(item.id)) selectItem(item.id, false);
-                    beginResize(e.clientX, e.clientY, item);
-                    document.addEventListener('mousemove', onResizeMouseMove);
-                    document.addEventListener('mouseup', onResizeMouseUp);
-                    e.preventDefault();
-                });
-                resizeHandle.addEventListener('touchstart', (e) => {
-                    e.stopPropagation();
-                    if (!state.selectedIds.has(item.id)) selectItem(item.id, false);
-                    const t = e.touches[0];
-                    beginResize(t.clientX, t.clientY, item);
-                    document.addEventListener('touchmove', onResizeTouchMove, { passive: false });
-                    document.addEventListener('touchend', onResizeTouchEnd);
-                    e.preventDefault();
-                }, { passive: false });
-                el.appendChild(resizeHandle);
-
-                // Base events
-                el.addEventListener('mousedown', (e) => {
-                    if (e.button !== 0) return;
-                    if (state.currentTool === 'select') {
-                        handleItemMouseDown(e, item);
+                    function generateConnId() {
+                        let id;
+                        do {
+                            id = 'conn_' + (state.nextConnId++);
+                        } while (state.connections.some(c => c.id === id));
+                        return id;
                     }
-                });
 
-                el.addEventListener('touchstart', (e) => {
-                    if (state.currentTool === 'select') {
-                        handleItemTouchStart(e, item);
+                    function clamp(value, min, max) {
+                        return Math.min(max, Math.max(min, value));
                     }
-                }, { passive: false });
 
-                world.appendChild(el);
-                item._el = el;
-
-                updateSelectionVisuals();
-            }
-
-            function updateItemPosition(item) {
-                if (item._el) {
-                    item._el.style.left = item.x + 'px';
-                    item._el.style.top = item.y + 'px';
-                }
-                updateConnections();
-            }
-
-            function updateItemSize(item) {
-                if (item._el) {
-                    item._el.style.width = item.width + 'px';
-                    item._el.style.height = item.height + 'px';
-                }
-                updateConnections();
-            }
-
-            function updateSelectionVisuals() {
-                document.querySelectorAll('.board-item').forEach(el => {
-                    const id = el.dataset.id;
-                    if (state.selectedIds.has(id)) {
-                        el.classList.add('selected');
-                    } else {
-                        el.classList.remove('selected');
+                    function finiteNumber(value, fallback) {
+                        const n = typeof value === 'number' ? value : parseFloat(value);
+                        return Number.isFinite(n) ? n : fallback;
                     }
-                });
-                updatePropertyPanel();
-            }
 
-            function deleteItem(id) {
-                const index = state.items.findIndex(i => i.id === id);
-                if (index !== -1) {
-                    const item = state.items[index];
-                    if (item._el) item._el.remove();
-                    state.items.splice(index, 1);
-                    state.connections = state.connections.filter(c => c.from !== id && c.to !== id);
-                    state.selectedIds.delete(id);
-                    updateSelectionVisuals();
-                    updateConnections();
-                    markDirty();
-                }
-            }
-
-            // ==================== INLINE EDITING ====================
-            function startInlineEdit(textDiv, item) {
-                textDiv.contentEditable = 'true';
-                textDiv.focus();
-                const range = document.createRange();
-                range.selectNodeContents(textDiv);
-                const selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
-
-                const finishEdit = () => {
-                    textDiv.contentEditable = 'false';
-                    const newText = textDiv.textContent.trim();
-                    item.content = newText;
-                    textDiv.textContent = newText || 'Double-click to edit';
-                    markDirty();
-                };
-
-                textDiv.addEventListener('blur', finishEdit, { once: true });
-                textDiv.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        textDiv.blur();
+                    function showToast(message) {
+                        toast.textContent = message;
+                        toast.classList.remove('show');
+                        void toast.offsetWidth; // reflow to restart animation
+                        toast.classList.add('show');
+                        setTimeout(() => toast.classList.remove('show'), 2400);
                     }
-                    if (e.key === 'Escape') {
-                        textDiv.textContent = item.content || 'Double-click to edit';
-                        textDiv.blur();
-                    }
-                });
-            }
 
-            // ==================== CONNECTIONS ====================
-            function startLinkFrom(sourceId) {
-                if (state.currentTool !== 'link') {
-                    setTool('link');
-                }
-                state.linkSourceId = sourceId;
-                showToast('Click the target element to link');
-                document.querySelectorAll('.board-item').forEach(el => {
-                    if (el.dataset.id === sourceId) {
-                        el.style.boxShadow = `0 0 0 3px ${getComputedStyle(document.documentElement).getPropertyValue('--accent')}`;
+                    function isValidImageSrc(src) {
+                        if (typeof src !== 'string' || !src) return false;
+                        if (src.startsWith('data:')) {
+                            return /^data:image\//i.test(src);
+                        }
+                        try {
+                            const u = new URL(src, window.location.href);
+                            return u.protocol === 'http:' || u.protocol === 'https:';
+                        } catch {
+                            return false;
+                        }
                     }
-                });
-            }
 
-            function completeLink(targetId) {
-                if (state.linkSourceId && state.linkSourceId !== targetId) {
-                    const exists = state.connections.some(c =>
-                        (c.from === state.linkSourceId && c.to === targetId) ||
-                        (c.from === targetId && c.to === state.linkSourceId)
-                    );
-                    if (!exists) {
-                        state.connections.push({
-                            id: generateConnId(),
-                            from: state.linkSourceId,
-                            to: targetId
+                    function sanitizeFileName(name) {
+                        const cleaned = String(name || '').trim().replace(/[\\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').slice(0, 80);
+                        return cleaned || 'project';
+                    }
+
+                    function computeNextNumericId(ids, prefix) {
+                        let max = 0;
+                        ids.forEach(id => {
+                            if (typeof id === 'string' && id.startsWith(prefix)) {
+                                const n = parseInt(id.slice(prefix.length), 10);
+                                if (Number.isFinite(n)) max = Math.max(max, n);
+                            }
                         });
+                        return max + 1;
+                    }
+
+                    // ==================== ELEMENT MANAGEMENT ====================
+                    function createItem(type, x, y, options = {}) {
+                        const id = generateId();
+                        const item = {
+                            id,
+                            type,
+                            x,
+                            y,
+                            width: clamp(options.width || 160, MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                            height: clamp(options.height || 120, MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                            content: options.content || '',
+                            extra: options.extra || {},
+                            color: options.color || (type === 'note' ? '#fff9c4' : '#ffffff'),
+                            fontSize: typeof options.fontSize === 'number' ? options.fontSize : (type === 'note' ? 16 : 14),
+                            textColor: options.textColor || (type === 'note' ? '#333333' : null),
+                        };
+                        state.items.push(item);
+                        renderItem(item);
+                        return item;
+                    }
+
+                    function resolveImageSrc(rawValue) {
+                        if (typeof rawValue !== 'string') return null;
+                        const value = rawValue.trim();
+                        if (!value) return null;
+
+                        let url;
+                        try {
+                            url = new URL(value, document.baseURI);
+                        } catch (_) {
+                            return null;
+                        }
+
+                        const protocol = url.protocol.toLowerCase();
+
+                        if (protocol === 'http:' || protocol === 'https:') {
+                            return url.href;
+                        }
+
+                        if (protocol === 'blob:') {
+                            return url.href;
+                        }
+
+                        if (protocol === 'file:' && window.location.protocol === 'file:') {
+                            return url.href;
+                        }
+
+                        if (protocol === 'data:') {
+                            if (/^data:image\/(png|jpeg|gif|webp|avif)[;,]/i.test(url.href)) {
+                                return url.href;
+                            }
+                        }
+
+                        return null;
+                    }
+
+                    function renderItem(item) {
+                        // Remove any previous DOM node for this item
+                        const existing = document.querySelector(`[data-id="${item.id}"]`);
+                        if (existing) existing.remove();
+
+                        const el = document.createElement('div');
+                        el.className = `board-item ${item.type}-item`;
+                        el.dataset.id = item.id;
+                        el.style.left = item.x + 'px';
+                        el.style.top = item.y + 'px';
+                        el.style.width = item.width + 'px';
+                        el.style.height = item.height + 'px';
+                        el.style.zIndex = 1;
+
+                        // Content depending on type
+                        if (item.type === 'note') {
+                            el.style.backgroundColor = item.color;
+                            if (item.fontSize) el.style.fontSize = item.fontSize + 'px';
+                            if (item.textColor) el.style.color = item.textColor;
+                            el.classList.add('note');
+                            const textDiv = document.createElement('div');
+                            textDiv.className = 'note-text';
+                            textDiv.textContent = item.content || 'Double-click to edit';
+                            textDiv.addEventListener('dblclick', (e) => {
+                                e.stopPropagation();
+                                startInlineEdit(textDiv, item);
+                            });
+                            el.appendChild(textDiv);
+                        } else if (item.type === 'image') {
+                            el.classList.add('image-item');
+                            const img = document.createElement('img');
+
+                            const safeSrc = resolveImageSrc(item.content);
+                            if (safeSrc) {
+                                img.src = safeSrc;
+                                img.alt = 'Board image';
+                            } else {
+
+                                img.removeAttribute('src');
+                                img.alt = 'Invalid image source';
+                            }
+
+                            img.draggable = false;
+                            el.appendChild(img);
+                        } else if (item.type === 'generic') {
+                            el.classList.add('generic-item');
+                            el.style.backgroundColor = item.color;
+                            if (item.fontSize) el.style.fontSize = item.fontSize + 'px';
+                            if (item.textColor) el.style.color = item.textColor;
+                            const title = document.createElement('h4');
+                            title.textContent = item.extra.title || 'Untitled';
+                            if (item.fontSize) title.style.fontSize = Math.round(item.fontSize * 1.15) + 'px';
+                            if (item.textColor) title.style.color = item.textColor;
+                            const desc = document.createElement('p');
+                            desc.textContent = item.extra.description || '';
+                            if (item.fontSize) desc.style.fontSize = item.fontSize + 'px';
+                            if (item.textColor) desc.style.color = item.textColor;
+                            el.appendChild(title);
+                            el.appendChild(desc);
+                        }
+
+                        // Delete button
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-btn';
+                        deleteBtn.innerHTML = '&times;';
+                        deleteBtn.title = 'Delete';
+                        deleteBtn.setAttribute('aria-label', 'Delete element');
+                        deleteBtn.addEventListener('mousedown', (e) => {
+                            e.stopPropagation();
+                            deleteItem(item.id);
+                        });
+                        deleteBtn.addEventListener('touchstart', (e) => {
+                            e.stopPropagation();
+                            deleteItem(item.id);
+                        }, { passive: false });
+                        el.appendChild(deleteBtn);
+
+                        // Link handle
+                        const linkHandle = document.createElement('div');
+                        linkHandle.className = 'link-handle';
+                        linkHandle.title = 'Create link';
+                        linkHandle.setAttribute('aria-label', 'Create link from this element');
+                        linkHandle.addEventListener('mousedown', (e) => {
+                            e.stopPropagation();
+                            startLinkFrom(item.id);
+                        });
+                        linkHandle.addEventListener('touchstart', (e) => {
+                            e.stopPropagation();
+                            startLinkFrom(item.id);
+                        }, { passive: false });
+                        el.appendChild(linkHandle);
+
+                        // Resize handle
+                        const resizeHandle = document.createElement('div');
+                        resizeHandle.className = 'resize-handle';
+                        resizeHandle.title = 'Resize';
+                        resizeHandle.setAttribute('aria-label', 'Resize element');
+                        resizeHandle.addEventListener('mousedown', (e) => {
+                            if (e.button !== 0) return;
+                            e.stopPropagation();
+                            if (!state.selectedIds.has(item.id)) selectItem(item.id, false);
+                            beginResize(e.clientX, e.clientY, item);
+                            document.addEventListener('mousemove', onResizeMouseMove);
+                            document.addEventListener('mouseup', onResizeMouseUp);
+                            e.preventDefault();
+                        });
+                        resizeHandle.addEventListener('touchstart', (e) => {
+                            e.stopPropagation();
+                            if (!state.selectedIds.has(item.id)) selectItem(item.id, false);
+                            const t = e.touches[0];
+                            beginResize(t.clientX, t.clientY, item);
+                            document.addEventListener('touchmove', onResizeTouchMove, { passive: false });
+                            document.addEventListener('touchend', onResizeTouchEnd);
+                            e.preventDefault();
+                        }, { passive: false });
+                        el.appendChild(resizeHandle);
+
+                        // Base events
+                        el.addEventListener('mousedown', (e) => {
+                            if (e.button !== 0) return;
+                            if (state.currentTool === 'select') {
+                                handleItemMouseDown(e, item);
+                            }
+                        });
+
+                        el.addEventListener('touchstart', (e) => {
+                            if (state.currentTool === 'select') {
+                                handleItemTouchStart(e, item);
+                            }
+                        }, { passive: false });
+
+                        world.appendChild(el);
+                        item._el = el;
+
+                        updateSelectionVisuals();
+                    }
+
+                    function updateItemPosition(item) {
+                        if (item._el) {
+                            item._el.style.left = item.x + 'px';
+                            item._el.style.top = item.y + 'px';
+                        }
                         updateConnections();
+                    }
+
+                    function updateItemSize(item) {
+                        if (item._el) {
+                            item._el.style.width = item.width + 'px';
+                            item._el.style.height = item.height + 'px';
+                        }
+                        updateConnections();
+                    }
+
+                    function updateSelectionVisuals() {
+                        document.querySelectorAll('.board-item').forEach(el => {
+                            const id = el.dataset.id;
+                            if (state.selectedIds.has(id)) {
+                                el.classList.add('selected');
+                            } else {
+                                el.classList.remove('selected');
+                            }
+                        });
+                        updatePropertyPanel();
+                    }
+
+                    function deleteItem(id) {
+                        const index = state.items.findIndex(i => i.id === id);
+                        if (index !== -1) {
+                            const item = state.items[index];
+                            if (item._el) item._el.remove();
+                            state.items.splice(index, 1);
+                            state.connections = state.connections.filter(c => c.from !== id && c.to !== id);
+                            state.selectedIds.delete(id);
+                            updateSelectionVisuals();
+                            updateConnections();
+                            markDirty();
+                        }
+                    }
+
+                    // ==================== INLINE EDITING ====================
+                    function startInlineEdit(textDiv, item) {
+                        textDiv.contentEditable = 'true';
+                        textDiv.focus();
+                        const range = document.createRange();
+                        range.selectNodeContents(textDiv);
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+
+                        const finishEdit = () => {
+                            textDiv.contentEditable = 'false';
+                            const newText = textDiv.textContent.trim();
+                            item.content = newText;
+                            textDiv.textContent = newText || 'Double-click to edit';
+                            markDirty();
+                        };
+
+                        textDiv.addEventListener('blur', finishEdit, { once: true });
+                        textDiv.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                textDiv.blur();
+                            }
+                            if (e.key === 'Escape') {
+                                textDiv.textContent = item.content || 'Double-click to edit';
+                                textDiv.blur();
+                            }
+                        });
+                    }
+
+                    // ==================== CONNECTIONS ====================
+                    function startLinkFrom(sourceId) {
+                        if (state.currentTool !== 'link') {
+                            setTool('link');
+                        }
+                        state.linkSourceId = sourceId;
+                        showToast('Click the target element to link');
+                        document.querySelectorAll('.board-item').forEach(el => {
+                            if (el.dataset.id === sourceId) {
+                                el.style.boxShadow = `0 0 0 3px ${getComputedStyle(document.documentElement).getPropertyValue('--accent')}`;
+                            }
+                        });
+                    }
+
+                    function completeLink(targetId) {
+                        if (state.linkSourceId && state.linkSourceId !== targetId) {
+                            const fromId = state.linkSourceId;
+                            const exists = state.connections.some(c =>
+                                (c.from === fromId && c.to === targetId) ||
+                                (c.from === targetId && c.to === fromId)
+                            );
+                            if (!exists) {
+                                openLinkModalForNew(fromId, targetId);
+                            } else {
+                                showToast('These elements are already linked');
+                            }
+                        }
+                        state.linkSourceId = null;
+                        document.querySelectorAll('.board-item').forEach(el => {
+                            el.style.boxShadow = '';
+                        });
+                    }
+
+                    function openLinkModalForNew(fromId, toId) {
+                        state.pendingLink = { from: fromId, to: toId };
+                        linkModalTitle.textContent = 'Link Relation';
+                        linkLabelInput.value = '';
+                        linkModalDeleteBtn.style.display = 'none';
+                        modalLink.classList.add('active');
+                        setTimeout(() => linkLabelInput.focus(), 0);
+                    }
+
+                    function openLinkModalForEdit(connId) {
+                        const conn = state.connections.find(c => c.id === connId);
+                        if (!conn) return;
+                        state.pendingLink = { editingConnId: connId };
+                        linkModalTitle.textContent = 'Edit Link Relation';
+                        linkLabelInput.value = conn.label || '';
+                        linkModalDeleteBtn.style.display = 'inline-block';
+                        modalLink.classList.add('active');
+                        setTimeout(() => {
+                            linkLabelInput.focus();
+                            linkLabelInput.select();
+                        }, 0);
+                    }
+
+                    linkModalConfirmBtn.addEventListener('click', () => {
+                        if (!state.pendingLink) return;
+                        const label = linkLabelInput.value.trim();
+                        if (state.pendingLink.from) {
+                            state.connections.push({
+                                id: generateConnId(),
+                                from: state.pendingLink.from,
+                                to: state.pendingLink.to,
+                                label: label
+                            });
+                            updateConnections();
+                            markDirty();
+                            showToast(label ? `Link "${label}" created` : 'Link created');
+                        } else if (state.pendingLink.editingConnId) {
+                            const conn = state.connections.find(c => c.id === state.pendingLink.editingConnId);
+                            if (conn) {
+                                conn.label = label;
+                                updateConnections();
+                                markDirty();
+                                showToast('Link relation updated');
+                            }
+                        }
+                        state.pendingLink = null;
+                        modalLink.classList.remove('active');
+                    });
+
+                    linkModalCancelBtn.addEventListener('click', () => {
+                        state.pendingLink = null;
+                        modalLink.classList.remove('active');
+                    });
+
+                    linkModalDeleteBtn.addEventListener('click', () => {
+                        if (state.pendingLink && state.pendingLink.editingConnId) {
+                            const connId = state.pendingLink.editingConnId;
+                            state.connections = state.connections.filter(c => c.id !== connId);
+                            updateConnections();
+                            markDirty();
+                            showToast('Link deleted');
+                        }
+                        state.pendingLink = null;
+                        modalLink.classList.remove('active');
+                    });
+
+                    linkLabelInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            linkModalConfirmBtn.click();
+                        } else if (e.key === 'Escape') {
+                            linkModalCancelBtn.click();
+                        }
+                    });
+
+                    document.addEventListener('click', (e) => {
+                        if (state.currentTool !== 'select') return;
+                        const target = e.target.closest('.connection-line, .connection-label, .connection-group');
+                        if (target) {
+                            const connId = target.getAttribute('data-id');
+                            if (connId) {
+                                e.stopPropagation();
+                                openLinkModalForEdit(connId);
+                            }
+                        }
+                    });
+
+                    function getRectEdgeIntersection(rect, targetX, targetY) {
+                        const cx = rect.x + rect.width / 2;
+                        const cy = rect.y + rect.height / 2;
+                        const dx = targetX - cx;
+                        const dy = targetY - cy;
+
+                        if (Math.abs(dx) < 1e-6 && Math.abs(dy) < 1e-6) {
+                            return { x: cx, y: cy };
+                        }
+
+                        const halfW = rect.width / 2;
+                        const halfH = rect.height / 2;
+
+                        const tx = Math.abs(dx) > 1e-6 ? halfW / Math.abs(dx) : Infinity;
+                        const ty = Math.abs(dy) > 1e-6 ? halfH / Math.abs(dy) : Infinity;
+
+                        const t = Math.min(tx, ty);
+                        if (t >= 1) {
+                            return { x: targetX, y: targetY };
+                        }
+
+                        return {
+                            x: cx + dx * t,
+                            y: cy + dy * t
+                        };
+                    }
+
+                    function updateConnections() {
+                        let svgContent = '';
+                        state.connections.forEach(conn => {
+                            const fromItem = state.items.find(i => i.id === conn.from);
+                            const toItem = state.items.find(i => i.id === conn.to);
+                            if (fromItem && toItem) {
+                                const cx1 = fromItem.x + fromItem.width / 2;
+                                const cy1 = fromItem.y + fromItem.height / 2;
+                                const cx2 = toItem.x + toItem.width / 2;
+                                const cy2 = toItem.y + toItem.height / 2;
+
+                                const p1 = getRectEdgeIntersection(fromItem, cx2, cy2);
+                                const p2 = getRectEdgeIntersection(toItem, cx1, cy1);
+
+                                svgContent += `<g class="connection-group" data-id="${conn.id}">`;
+                                svgContent += `<line class="connection-line" data-id="${conn.id}" x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" />`;
+                                if (conn.label) {
+                                    const midX = (p1.x + p2.x) / 2;
+                                    const midY = (p1.y + p2.y) / 2;
+                                    const badgeW = Math.max(36, Math.round(conn.label.length * 7.5 + 20));
+                                    const badgeH = 22;
+                                    svgContent += `<g class="connection-label" data-id="${conn.id}" transform="translate(${midX}, ${midY})">`;
+                                    svgContent += `<rect class="connection-label-bg" data-id="${conn.id}" x="${-badgeW/2}" y="${-badgeH/2}" width="${badgeW}" height="${badgeH}" rx="4" ry="4" />`;
+                                    svgContent += `<text class="connection-label-text" data-id="${conn.id}" x="0" y="0" text-anchor="middle" dominant-baseline="central">${escapeXml(conn.label)}</text>`;
+                                    svgContent += `</g>`;
+                                }
+                                svgContent += `</g>`;
+                            }
+                        });
+                        connectionsSvg.innerHTML = svgContent;
+                        // Update SVG bounds without spreading large arrays into Math.max
+                        let maxX = 0, maxY = 0;
+                        state.items.forEach(i => {
+                            maxX = Math.max(maxX, i.x + i.width);
+                            maxY = Math.max(maxY, i.y + i.height);
+                        });
+                        connectionsSvg.setAttribute('width', Math.max(maxX + 100, 1000));
+                        connectionsSvg.setAttribute('height', Math.max(maxY + 100, 1000));
+                    }
+
+                    // ==================== SELECTION ====================
+                    function selectItem(id, additive = false) {
+                        if (!additive) {
+                            state.selectedIds.clear();
+                        }
+                        state.selectedIds.add(id);
+                        updateSelectionVisuals();
+                    }
+
+                    function clearSelection() {
+                        state.selectedIds.clear();
+                        updateSelectionVisuals();
+                    }
+
+                    function getSelectedItems() {
+                        return state.items.filter(i => state.selectedIds.has(i.id));
+                    }
+
+                    // ==================== PROPERTY PANEL ====================
+                    function updatePropertyPanel() {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            propertyPanel.classList.add('visible');
+                            const item = selected[0];
+                            if (item.type === 'generic') {
+                                propText.value = `${item.extra.title || ''}\n${item.extra.description || ''}`;
+                            } else {
+                                propText.value = item.content || '';
+                            }
+                            propColor.value = item.color || '#ffffff';
+                            propWidth.value = Math.round(item.width);
+                            propHeight.value = Math.round(item.height);
+                            propText.disabled = false;
+                            propColor.disabled = false;
+                            propWidth.disabled = false;
+                            propHeight.disabled = false;
+
+                            if (item.type === 'image') {
+                                propFontGroup.style.display = 'none';
+                            } else {
+                                propFontGroup.style.display = 'block';
+                                propFontSize.value = item.fontSize || (item.type === 'note' ? 16 : 14);
+                                propFontColor.value = item.textColor || (item.type === 'note' ? '#333333' : (state.isDark ? '#e2e8f0' : '#1a1a1a'));
+                                propFontSize.disabled = false;
+                                propFontColor.disabled = false;
+                            }
+                        } else if (selected.length > 1) {
+                            propertyPanel.classList.add('visible');
+                            propText.value = `(${selected.length} elements selected)`;
+                            propText.disabled = true;
+                            propColor.disabled = true;
+                            propWidth.disabled = true;
+                            propHeight.disabled = true;
+                            propFontGroup.style.display = 'block';
+                            propFontSize.disabled = true;
+                            propFontColor.disabled = true;
+                        } else {
+                            propertyPanel.classList.remove('visible');
+                            propText.disabled = false;
+                            propColor.disabled = false;
+                            propWidth.disabled = false;
+                            propHeight.disabled = false;
+                            propFontSize.disabled = false;
+                            propFontColor.disabled = false;
+                        }
+                    }
+
+                    propFontSize.addEventListener('input', () => {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            const item = selected[0];
+                            const val = parseInt(propFontSize.value, 10);
+                            if (Number.isFinite(val) && val >= 6 && val <= 300) {
+                                item.fontSize = val;
+                                if (item.type === 'note') {
+                                    if (item._el) item._el.style.fontSize = val + 'px';
+                                } else if (item.type === 'generic') {
+                                    if (item._el) {
+                                        item._el.style.fontSize = val + 'px';
+                                        const h4 = item._el.querySelector('h4');
+                                        const p = item._el.querySelector('p');
+                                        if (h4) h4.style.fontSize = Math.round(val * 1.15) + 'px';
+                                        if (p) p.style.fontSize = val + 'px';
+                                    }
+                                }
+                                markDirty();
+                            }
+                        }
+                    });
+
+                    propFontColor.addEventListener('input', () => {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            const item = selected[0];
+                            item.textColor = propFontColor.value;
+                            if (item.type === 'note') {
+                                if (item._el) item._el.style.color = item.textColor;
+                            } else if (item.type === 'generic') {
+                                if (item._el) {
+                                    item._el.style.color = item.textColor;
+                                    const h4 = item._el.querySelector('h4');
+                                    const p = item._el.querySelector('p');
+                                    if (h4) h4.style.color = item.textColor;
+                                    if (p) p.style.color = item.textColor;
+                                }
+                            }
+                            markDirty();
+                        }
+                    });
+
+                    propText.addEventListener('input', () => {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            const item = selected[0];
+                            if (item.type === 'note') {
+                                item.content = propText.value;
+                                if (item._el) {
+                                    const textDiv = item._el.querySelector('.note-text');
+                                    if (textDiv) textDiv.textContent = propText.value || 'Double-click to edit';
+                                }
+                            } else if (item.type === 'generic') {
+                                const lines = propText.value.split('\n');
+                                const title = lines[0] || '';
+                                const description = lines.slice(1).join('\n');
+                                item.extra = { title, description };
+                                if (item._el) {
+                                    const h4 = item._el.querySelector('h4');
+                                    const p = item._el.querySelector('p');
+                                    if (h4) h4.textContent = title || 'Untitled';
+                                    if (p) p.textContent = description;
+                                }
+                            }
+                            markDirty();
+                        }
+                    });
+
+                    propColor.addEventListener('input', () => {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            const item = selected[0];
+                            item.color = propColor.value;
+                            if (item._el) {
+                                item._el.style.backgroundColor = item.color;
+                            }
+                            markDirty();
+                        }
+                    });
+
+                    propWidth.addEventListener('input', () => {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            const item = selected[0];
+                            item.width = clamp(finiteNumber(propWidth.value, item.width), MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                            updateItemSize(item);
+                            markDirty();
+                        }
+                    });
+
+                    propHeight.addEventListener('input', () => {
+                        const selected = getSelectedItems();
+                        if (selected.length === 1) {
+                            const item = selected[0];
+                            item.height = clamp(finiteNumber(propHeight.value, item.height), MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                            updateItemSize(item);
+                            markDirty();
+                        }
+                    });
+
+                    document.getElementById('prop-delete').addEventListener('click', () => {
+                        const selected = [...state.selectedIds];
+                        selected.forEach(id => deleteItem(id));
+                        propertyPanel.classList.remove('visible');
+                    });
+
+                    document.getElementById('prop-close').addEventListener('click', () => {
+                        propertyPanel.classList.remove('visible');
+                    });
+
+                    // ==================== TOOLS ====================
+                    function setTool(tool) {
+                        state.currentTool = tool;
+                        btnSelectTool.classList.remove('active');
+                        btnPanTool.classList.remove('active');
+                        btnLinkMode.classList.remove('active');
+                        if (tool === 'select') btnSelectTool.classList.add('active');
+                        if (tool === 'pan') btnPanTool.classList.add('active');
+                        if (tool === 'link') btnLinkMode.classList.add('active');
+                        canvasContainer.style.cursor = tool === 'pan' ? 'grab' : 'default';
+                        if (tool !== 'link') {
+                            state.linkSourceId = null;
+                            document.querySelectorAll('.board-item').forEach(el => el.style.boxShadow = '');
+                        }
+                    }
+
+                    btnSelectTool.addEventListener('click', () => setTool('select'));
+                    btnPanTool.addEventListener('click', () => setTool('pan'));
+                    btnLinkMode.addEventListener('click', () => setTool('link'));
+
+                    // ==================== DRAG & DROP ====================
+                    let dragState = null; // { itemIds, startWorldX, startWorldY, origPositions, moved }
+
+                    function handleItemMouseDown(e, item) {
+                        e.stopPropagation();
+                        if (e.shiftKey) {
+                            // Multi-selection
+                            if (state.selectedIds.has(item.id)) {
+                                state.selectedIds.delete(item.id);
+                            } else {
+                                state.selectedIds.add(item.id);
+                            }
+                            updateSelectionVisuals();
+                            return;
+                        }
+
+                        if (!state.selectedIds.has(item.id)) {
+                            selectItem(item.id, false);
+                        }
+
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
+                        const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
+
+                        dragState = {
+                            itemIds: [...state.selectedIds],
+                            startWorldX: worldX,
+                            startWorldY: worldY,
+                            origPositions: new Map(state.items.filter(i => state.selectedIds.has(i.id)).map(i => [i.id, { x: i.x, y: i.y }])),
+                            moved: false,
+                        };
+
+                        document.addEventListener('mousemove', onDragMouseMove);
+                        document.addEventListener('mouseup', onDragMouseUp);
+                        e.preventDefault();
+                    }
+
+                    function handleItemTouchStart(e, item) {
+                        e.stopPropagation();
+                        if (!state.selectedIds.has(item.id)) {
+                            selectItem(item.id, false);
+                        }
+
+                        const touch = e.touches[0];
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const worldX = (touch.clientX - rect.left - state.panX) / state.zoom;
+                        const worldY = (touch.clientY - rect.top - state.panY) / state.zoom;
+
+                        dragState = {
+                            itemIds: [...state.selectedIds],
+                            startWorldX: worldX,
+                            startWorldY: worldY,
+                            origPositions: new Map(state.items.filter(i => state.selectedIds.has(i.id)).map(i => [i.id, { x: i.x, y: i.y }])),
+                            moved: false,
+                        };
+
+                        document.addEventListener('touchmove', onDragTouchMove, { passive: false });
+                        document.addEventListener('touchend', onDragTouchEnd);
+                        e.preventDefault();
+                    }
+
+                    function onDragMouseMove(e) {
+                        if (!dragState) return;
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
+                        const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
+                        const dx = worldX - dragState.startWorldX;
+                        const dy = worldY - dragState.startWorldY;
+
+                        if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragState.moved = true;
+
+                        dragState.itemIds.forEach(id => {
+                            const item = state.items.find(i => i.id === id);
+                            const orig = dragState.origPositions.get(id);
+                            if (item && orig) {
+                                item.x = orig.x + dx;
+                                item.y = orig.y + dy;
+                                updateItemPosition(item);
+                            }
+                        });
+
+                        e.preventDefault();
+                    }
+
+                    function onDragMouseUp() {
+                        document.removeEventListener('mousemove', onDragMouseMove);
+                        document.removeEventListener('mouseup', onDragMouseUp);
+                        if (dragState && dragState.moved) {
+                            markDirty();
+                        }
+                        dragState = null;
+                    }
+
+                    function onDragTouchMove(e) {
+                        if (!dragState) return;
+                        const touch = e.touches[0];
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const worldX = (touch.clientX - rect.left - state.panX) / state.zoom;
+                        const worldY = (touch.clientY - rect.top - state.panY) / state.zoom;
+                        const dx = worldX - dragState.startWorldX;
+                        const dy = worldY - dragState.startWorldY;
+
+                        if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragState.moved = true;
+
+                        dragState.itemIds.forEach(id => {
+                            const item = state.items.find(i => i.id === id);
+                            const orig = dragState.origPositions.get(id);
+                            if (item && orig) {
+                                item.x = orig.x + dx;
+                                item.y = orig.y + dy;
+                                updateItemPosition(item);
+                            }
+                        });
+                        e.preventDefault();
+                    }
+
+                    function onDragTouchEnd() {
+                        document.removeEventListener('touchmove', onDragTouchMove);
+                        document.removeEventListener('touchend', onDragTouchEnd);
+                        if (dragState && dragState.moved) {
+                            markDirty();
+                        }
+                        dragState = null;
+                    }
+
+                    // ==================== RESIZE ====================
+                    let resizeState = null; // { itemId, startClientX, startClientY, startWidth, startHeight }
+
+                    function beginResize(clientX, clientY, item) {
+                        if (item._el) item._el.classList.add('resizing');
+                        resizeState = {
+                            itemId: item.id,
+                            startClientX: clientX,
+                            startClientY: clientY,
+                            startWidth: item.width,
+                            startHeight: item.height,
+                        };
+                    }
+
+                    function applyResize(clientX, clientY) {
+                        if (!resizeState) return;
+                        const item = state.items.find(i => i.id === resizeState.itemId);
+                        if (!item) return;
+                        const dx = (clientX - resizeState.startClientX) / state.zoom;
+                        const dy = (clientY - resizeState.startClientY) / state.zoom;
+                        item.width = clamp(resizeState.startWidth + dx, MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                        item.height = clamp(resizeState.startHeight + dy, MIN_ITEM_SIZE, MAX_ITEM_SIZE);
+                        updateItemSize(item);
+                        if (state.selectedIds.size === 1 && state.selectedIds.has(item.id)) {
+                            propWidth.value = Math.round(item.width);
+                            propHeight.value = Math.round(item.height);
+                        }
+                    }
+
+                    function endResize() {
+                        if (resizeState) {
+                            const item = state.items.find(i => i.id === resizeState.itemId);
+                            if (item && item._el) item._el.classList.remove('resizing');
+                            markDirty();
+                        }
+                        resizeState = null;
+                    }
+
+                    function onResizeMouseMove(e) {
+                        if (!resizeState) return;
+                        applyResize(e.clientX, e.clientY);
+                        e.preventDefault();
+                    }
+
+                    function onResizeMouseUp() {
+                        document.removeEventListener('mousemove', onResizeMouseMove);
+                        document.removeEventListener('mouseup', onResizeMouseUp);
+                        endResize();
+                    }
+
+                    function onResizeTouchMove(e) {
+                        if (!resizeState) return;
+                        const t = e.touches[0];
+                        applyResize(t.clientX, t.clientY);
+                        e.preventDefault();
+                    }
+
+                    function onResizeTouchEnd() {
+                        document.removeEventListener('touchmove', onResizeTouchMove);
+                        document.removeEventListener('touchend', onResizeTouchEnd);
+                        endResize();
+                    }
+
+                    // ==================== LINK MODE CLICK HANDLING ====================
+                    document.addEventListener('mousedown', (e) => {
+                        if (state.currentTool === 'link') {
+                            const itemEl = e.target.closest('.board-item');
+                            if (itemEl) {
+                                const id = itemEl.dataset.id;
+                                if (!state.linkSourceId) {
+                                    startLinkFrom(id);
+                                } else {
+                                    completeLink(id);
+                                }
+                                e.stopPropagation();
+                            }
+                        }
+                    });
+
+                    // ==================== PAN & ZOOM ====================
+                    let panState = null;
+
+                    canvasContainer.addEventListener('mousedown', (e) => {
+                        if (e.button !== 0) return;
+                        if (!state.projectName) return;
+                        if (state.currentTool === 'pan' || (e.altKey && state.currentTool === 'select')) {
+                            e.preventDefault();
+                            panState = { startX: e.clientX, startY: e.clientY, origPanX: state.panX, origPanY: state.panY };
+                            document.addEventListener('mousemove', onPanMouseMove);
+                            document.addEventListener('mouseup', onPanMouseUp);
+                            canvasContainer.style.cursor = 'grabbing';
+                        } else if (state.currentTool === 'select' && e.target === canvasContainer) {
+                            const rect = canvasContainer.getBoundingClientRect();
+                            const startX = (e.clientX - rect.left - state.panX) / state.zoom;
+                            const startY = (e.clientY - rect.top - state.panY) / state.zoom;
+                            selectionRect.style.display = 'block';
+                            selectionRect.dataset.startX = startX;
+                            selectionRect.dataset.startY = startY;
+                            selectionRect.style.left = (startX * state.zoom + state.panX) + 'px';
+                            selectionRect.style.top = (startY * state.zoom + state.panY) + 'px';
+                            selectionRect.style.width = '0px';
+                            selectionRect.style.height = '0px';
+                            document.addEventListener('mousemove', onSelectionMouseMove);
+                            document.addEventListener('mouseup', onSelectionMouseUp);
+                        }
+                    });
+
+                    function onPanMouseMove(e) {
+                        if (!panState) return;
+                        const dx = e.clientX - panState.startX;
+                        const dy = e.clientY - panState.startY;
+                        state.panX = panState.origPanX + dx;
+                        state.panY = panState.origPanY + dy;
+                        applyTransform();
+                        e.preventDefault();
+                    }
+
+                    function onPanMouseUp() {
+                        document.removeEventListener('mousemove', onPanMouseMove);
+                        document.removeEventListener('mouseup', onPanMouseUp);
+                        panState = null;
+                        canvasContainer.style.cursor = state.currentTool === 'pan' ? 'grab' : 'default';
                         markDirty();
                     }
-                }
-                state.linkSourceId = null;
-                document.querySelectorAll('.board-item').forEach(el => {
-                    el.style.boxShadow = '';
-                });
-            }
 
-            function updateConnections() {
-                let svgContent = '';
-                state.connections.forEach(conn => {
-                    const fromItem = state.items.find(i => i.id === conn.from);
-                    const toItem = state.items.find(i => i.id === conn.to);
-                    if (fromItem && toItem) {
-                        const x1 = fromItem.x + fromItem.width / 2;
-                        const y1 = fromItem.y + fromItem.height / 2;
-                        const x2 = toItem.x + toItem.width / 2;
-                        const y2 = toItem.y + toItem.height / 2;
-                        svgContent += `<line class="connection-line" data-id="${conn.id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />`;
+                    // Rectangular selection
+                    function onSelectionMouseMove(e) {
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const startX = parseFloat(selectionRect.dataset.startX);
+                        const startY = parseFloat(selectionRect.dataset.startY);
+                        const currentX = (e.clientX - rect.left - state.panX) / state.zoom;
+                        const currentY = (e.clientY - rect.top - state.panY) / state.zoom;
+
+                        const left = Math.min(startX, currentX);
+                        const top = Math.min(startY, currentY);
+                        const width = Math.abs(currentX - startX);
+                        const height = Math.abs(currentY - startY);
+
+                        selectionRect.style.left = (left * state.zoom + state.panX) + 'px';
+                        selectionRect.style.top = (top * state.zoom + state.panY) + 'px';
+                        selectionRect.style.width = (width * state.zoom) + 'px';
+                        selectionRect.style.height = (height * state.zoom) + 'px';
+                        e.preventDefault();
                     }
-                });
-                connectionsSvg.innerHTML = svgContent;
-                // Update SVG bounds without spreading large arrays into Math.max
-                let maxX = 0, maxY = 0;
-                state.items.forEach(i => {
-                    maxX = Math.max(maxX, i.x + i.width);
-                    maxY = Math.max(maxY, i.y + i.height);
-                });
-                connectionsSvg.setAttribute('width', Math.max(maxX + 100, 1000));
-                connectionsSvg.setAttribute('height', Math.max(maxY + 100, 1000));
-            }
 
-            // ==================== SELECTION ====================
-            function selectItem(id, additive = false) {
-                if (!additive) {
-                    state.selectedIds.clear();
-                }
-                state.selectedIds.add(id);
-                updateSelectionVisuals();
-            }
+                    function onSelectionMouseUp(e) {
+                        document.removeEventListener('mousemove', onSelectionMouseMove);
+                        document.removeEventListener('mouseup', onSelectionMouseUp);
+                        selectionRect.style.display = 'none';
 
-            function clearSelection() {
-                state.selectedIds.clear();
-                updateSelectionVisuals();
-            }
+                        const startX = parseFloat(selectionRect.dataset.startX);
+                        const startY = parseFloat(selectionRect.dataset.startY);
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const endX = (e.clientX - rect.left - state.panX) / state.zoom;
+                        const endY = (e.clientY - rect.top - state.panY) / state.zoom;
+                        const minX = Math.min(startX, endX);
+                        const maxX = Math.max(startX, endX);
+                        const minY = Math.min(startY, endY);
+                        const maxY = Math.max(startY, endY);
 
-            function getSelectedItems() {
-                return state.items.filter(i => state.selectedIds.has(i.id));
-            }
-
-            // ==================== PROPERTY PANEL ====================
-            function updatePropertyPanel() {
-                const selected = getSelectedItems();
-                if (selected.length === 1) {
-                    propertyPanel.classList.add('visible');
-                    const item = selected[0];
-                    if (item.type === 'generic') {
-                        propText.value = `${item.extra.title || ''}\n${item.extra.description || ''}`;
-                    } else {
-                        propText.value = item.content || '';
-                    }
-                    propColor.value = item.color || '#ffffff';
-                    propWidth.value = Math.round(item.width);
-                    propHeight.value = Math.round(item.height);
-                    propText.disabled = false;
-                    propColor.disabled = false;
-                    propWidth.disabled = false;
-                    propHeight.disabled = false;
-                } else if (selected.length > 1) {
-                    propertyPanel.classList.add('visible');
-                    propText.value = `(${selected.length} elements selected)`;
-                    propText.disabled = true;
-                    propColor.disabled = true;
-                    propWidth.disabled = true;
-                    propHeight.disabled = true;
-                } else {
-                    propertyPanel.classList.remove('visible');
-                    propText.disabled = false;
-                    propColor.disabled = false;
-                    propWidth.disabled = false;
-                    propHeight.disabled = false;
-                }
-            }
-
-            propText.addEventListener('input', () => {
-                const selected = getSelectedItems();
-                if (selected.length === 1) {
-                    const item = selected[0];
-                    if (item.type === 'note') {
-                        item.content = propText.value;
-                        if (item._el) {
-                            const textDiv = item._el.querySelector('.note-text');
-                            if (textDiv) textDiv.textContent = propText.value || 'Double-click to edit';
+                        if (maxX - minX > 5 && maxY - minY > 5) {
+                            state.selectedIds.clear();
+                            state.items.forEach(item => {
+                                if (item.x < maxX && item.x + item.width > minX &&
+                                    item.y < maxY && item.y + item.height > minY) {
+                                    state.selectedIds.add(item.id);
+                                }
+                            });
                         }
-                    } else if (item.type === 'generic') {
-                        const lines = propText.value.split('\n');
-                        const title = lines[0] || '';
-                        const description = lines.slice(1).join('\n');
-                        item.extra = { title, description };
-                        if (item._el) {
-                            const h4 = item._el.querySelector('h4');
-                            const p = item._el.querySelector('p');
-                            if (h4) h4.textContent = title || 'Untitled';
-                            if (p) p.textContent = description;
+                        updateSelectionVisuals();
+                    }
+
+                    // Wheel zoom
+                    canvasContainer.addEventListener('wheel', (e) => {
+                        if (!state.projectName) return;
+                        e.preventDefault();
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+
+                        const zoomFactor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
+                        const newZoom = Math.min(3, Math.max(0.2, state.zoom * zoomFactor));
+
+                        state.panX = mouseX - (mouseX - state.panX) * (newZoom / state.zoom);
+                        state.panY = mouseY - (mouseY - state.panY) * (newZoom / state.zoom);
+                        state.zoom = newZoom;
+
+                        applyTransform();
+                        updateZoomIndicator();
+                        markDirty();
+                    }, { passive: false });
+
+                    function applyTransform() {
+                        world.style.transform = `translate(${state.panX}px, ${state.panY}px) scale(${state.zoom})`;
+                        if (selectionRect.style.display === 'block') {
+                            const sx = parseFloat(selectionRect.dataset.startX) || 0;
+                            const sy = parseFloat(selectionRect.dataset.startY) || 0;
+                            selectionRect.style.left = (sx * state.zoom + state.panX) + 'px';
+                            selectionRect.style.top = (sy * state.zoom + state.panY) + 'px';
                         }
                     }
-                    markDirty();
-                }
-            });
 
-            propColor.addEventListener('input', () => {
-                const selected = getSelectedItems();
-                if (selected.length === 1) {
-                    const item = selected[0];
-                    item.color = propColor.value;
-                    if (item._el) {
-                        item._el.style.backgroundColor = item.color;
+                    function updateZoomIndicator() {
+                        zoomIndicator.textContent = Math.round(state.zoom * 100) + '%';
                     }
-                    markDirty();
-                }
-            });
 
-            propWidth.addEventListener('input', () => {
-                const selected = getSelectedItems();
-                if (selected.length === 1) {
-                    const item = selected[0];
-                    item.width = clamp(finiteNumber(propWidth.value, item.width), MIN_ITEM_SIZE, MAX_ITEM_SIZE);
-                    updateItemSize(item);
-                    markDirty();
-                }
-            });
-
-            propHeight.addEventListener('input', () => {
-                const selected = getSelectedItems();
-                if (selected.length === 1) {
-                    const item = selected[0];
-                    item.height = clamp(finiteNumber(propHeight.value, item.height), MIN_ITEM_SIZE, MAX_ITEM_SIZE);
-                    updateItemSize(item);
-                    markDirty();
-                }
-            });
-
-            document.getElementById('prop-delete').addEventListener('click', () => {
-                const selected = [...state.selectedIds];
-                selected.forEach(id => deleteItem(id));
-                propertyPanel.classList.remove('visible');
-            });
-
-            document.getElementById('prop-close').addEventListener('click', () => {
-                propertyPanel.classList.remove('visible');
-            });
-
-            // ==================== TOOLS ====================
-            function setTool(tool) {
-                state.currentTool = tool;
-                btnSelectTool.classList.remove('active');
-                btnPanTool.classList.remove('active');
-                btnLinkMode.classList.remove('active');
-                if (tool === 'select') btnSelectTool.classList.add('active');
-                if (tool === 'pan') btnPanTool.classList.add('active');
-                if (tool === 'link') btnLinkMode.classList.add('active');
-                canvasContainer.style.cursor = tool === 'pan' ? 'grab' : 'default';
-                if (tool !== 'link') {
-                    state.linkSourceId = null;
-                    document.querySelectorAll('.board-item').forEach(el => el.style.boxShadow = '');
-                }
-            }
-
-            btnSelectTool.addEventListener('click', () => setTool('select'));
-            btnPanTool.addEventListener('click', () => setTool('pan'));
-            btnLinkMode.addEventListener('click', () => setTool('link'));
-
-            // ==================== DRAG & DROP ====================
-            let dragState = null; // { itemIds, startWorldX, startWorldY, origPositions, moved }
-
-            function handleItemMouseDown(e, item) {
-                e.stopPropagation();
-                if (e.shiftKey) {
-                    // Multi-selection
-                    if (state.selectedIds.has(item.id)) {
-                        state.selectedIds.delete(item.id);
-                    } else {
-                        state.selectedIds.add(item.id);
-                    }
-                    updateSelectionVisuals();
-                    return;
-                }
-
-                if (!state.selectedIds.has(item.id)) {
-                    selectItem(item.id, false);
-                }
-
-                const rect = canvasContainer.getBoundingClientRect();
-                const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
-                const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
-
-                dragState = {
-                    itemIds: [...state.selectedIds],
-                    startWorldX: worldX,
-                    startWorldY: worldY,
-                    origPositions: new Map(state.items.filter(i => state.selectedIds.has(i.id)).map(i => [i.id, { x: i.x, y: i.y }])),
-                    moved: false,
-                };
-
-                document.addEventListener('mousemove', onDragMouseMove);
-                document.addEventListener('mouseup', onDragMouseUp);
-                e.preventDefault();
-            }
-
-            function handleItemTouchStart(e, item) {
-                e.stopPropagation();
-                if (!state.selectedIds.has(item.id)) {
-                    selectItem(item.id, false);
-                }
-
-                const touch = e.touches[0];
-                const rect = canvasContainer.getBoundingClientRect();
-                const worldX = (touch.clientX - rect.left - state.panX) / state.zoom;
-                const worldY = (touch.clientY - rect.top - state.panY) / state.zoom;
-
-                dragState = {
-                    itemIds: [...state.selectedIds],
-                    startWorldX: worldX,
-                    startWorldY: worldY,
-                    origPositions: new Map(state.items.filter(i => state.selectedIds.has(i.id)).map(i => [i.id, { x: i.x, y: i.y }])),
-                    moved: false,
-                };
-
-                document.addEventListener('touchmove', onDragTouchMove, { passive: false });
-                document.addEventListener('touchend', onDragTouchEnd);
-                e.preventDefault();
-            }
-
-            function onDragMouseMove(e) {
-                if (!dragState) return;
-                const rect = canvasContainer.getBoundingClientRect();
-                const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
-                const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
-                const dx = worldX - dragState.startWorldX;
-                const dy = worldY - dragState.startWorldY;
-
-                if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragState.moved = true;
-
-                dragState.itemIds.forEach(id => {
-                    const item = state.items.find(i => i.id === id);
-                    const orig = dragState.origPositions.get(id);
-                    if (item && orig) {
-                        item.x = orig.x + dx;
-                        item.y = orig.y + dy;
-                        updateItemPosition(item);
-                    }
-                });
-
-                e.preventDefault();
-            }
-
-            function onDragMouseUp() {
-                document.removeEventListener('mousemove', onDragMouseMove);
-                document.removeEventListener('mouseup', onDragMouseUp);
-                if (dragState && dragState.moved) {
-                    markDirty();
-                }
-                dragState = null;
-            }
-
-            function onDragTouchMove(e) {
-                if (!dragState) return;
-                const touch = e.touches[0];
-                const rect = canvasContainer.getBoundingClientRect();
-                const worldX = (touch.clientX - rect.left - state.panX) / state.zoom;
-                const worldY = (touch.clientY - rect.top - state.panY) / state.zoom;
-                const dx = worldX - dragState.startWorldX;
-                const dy = worldY - dragState.startWorldY;
-
-                if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragState.moved = true;
-
-                dragState.itemIds.forEach(id => {
-                    const item = state.items.find(i => i.id === id);
-                    const orig = dragState.origPositions.get(id);
-                    if (item && orig) {
-                        item.x = orig.x + dx;
-                        item.y = orig.y + dy;
-                        updateItemPosition(item);
-                    }
-                });
-                e.preventDefault();
-            }
-
-            function onDragTouchEnd() {
-                document.removeEventListener('touchmove', onDragTouchMove);
-                document.removeEventListener('touchend', onDragTouchEnd);
-                if (dragState && dragState.moved) {
-                    markDirty();
-                }
-                dragState = null;
-            }
-
-            // ==================== RESIZE ====================
-            let resizeState = null; // { itemId, startClientX, startClientY, startWidth, startHeight }
-
-            function beginResize(clientX, clientY, item) {
-                if (item._el) item._el.classList.add('resizing');
-                resizeState = {
-                    itemId: item.id,
-                    startClientX: clientX,
-                    startClientY: clientY,
-                    startWidth: item.width,
-                    startHeight: item.height,
-                };
-            }
-
-            function applyResize(clientX, clientY) {
-                if (!resizeState) return;
-                const item = state.items.find(i => i.id === resizeState.itemId);
-                if (!item) return;
-                const dx = (clientX - resizeState.startClientX) / state.zoom;
-                const dy = (clientY - resizeState.startClientY) / state.zoom;
-                item.width = clamp(resizeState.startWidth + dx, MIN_ITEM_SIZE, MAX_ITEM_SIZE);
-                item.height = clamp(resizeState.startHeight + dy, MIN_ITEM_SIZE, MAX_ITEM_SIZE);
-                updateItemSize(item);
-                if (state.selectedIds.size === 1 && state.selectedIds.has(item.id)) {
-                    propWidth.value = Math.round(item.width);
-                    propHeight.value = Math.round(item.height);
-                }
-            }
-
-            function endResize() {
-                if (resizeState) {
-                    const item = state.items.find(i => i.id === resizeState.itemId);
-                    if (item && item._el) item._el.classList.remove('resizing');
-                    markDirty();
-                }
-                resizeState = null;
-            }
-
-            function onResizeMouseMove(e) {
-                if (!resizeState) return;
-                applyResize(e.clientX, e.clientY);
-                e.preventDefault();
-            }
-
-            function onResizeMouseUp() {
-                document.removeEventListener('mousemove', onResizeMouseMove);
-                document.removeEventListener('mouseup', onResizeMouseUp);
-                endResize();
-            }
-
-            function onResizeTouchMove(e) {
-                if (!resizeState) return;
-                const t = e.touches[0];
-                applyResize(t.clientX, t.clientY);
-                e.preventDefault();
-            }
-
-            function onResizeTouchEnd() {
-                document.removeEventListener('touchmove', onResizeTouchMove);
-                document.removeEventListener('touchend', onResizeTouchEnd);
-                endResize();
-            }
-
-            // ==================== LINK MODE CLICK HANDLING ====================
-            document.addEventListener('mousedown', (e) => {
-                if (state.currentTool === 'link') {
-                    const itemEl = e.target.closest('.board-item');
-                    if (itemEl) {
-                        const id = itemEl.dataset.id;
-                        if (!state.linkSourceId) {
-                            startLinkFrom(id);
-                        } else {
-                            completeLink(id);
-                        }
-                        e.stopPropagation();
-                    }
-                }
-            });
-
-            // ==================== PAN & ZOOM ====================
-            let panState = null;
-
-            canvasContainer.addEventListener('mousedown', (e) => {
-                if (e.button !== 0) return;
-                if (!state.projectName) return;
-                if (state.currentTool === 'pan' || (e.altKey && state.currentTool === 'select')) {
-                    e.preventDefault();
-                    panState = { startX: e.clientX, startY: e.clientY, origPanX: state.panX, origPanY: state.panY };
-                    document.addEventListener('mousemove', onPanMouseMove);
-                    document.addEventListener('mouseup', onPanMouseUp);
-                    canvasContainer.style.cursor = 'grabbing';
-                } else if (state.currentTool === 'select' && e.target === canvasContainer) {
-                    const rect = canvasContainer.getBoundingClientRect();
-                    const startX = (e.clientX - rect.left - state.panX) / state.zoom;
-                    const startY = (e.clientY - rect.top - state.panY) / state.zoom;
-                    selectionRect.style.display = 'block';
-                    selectionRect.dataset.startX = startX;
-                    selectionRect.dataset.startY = startY;
-                    selectionRect.style.left = (startX * state.zoom + state.panX) + 'px';
-                    selectionRect.style.top = (startY * state.zoom + state.panY) + 'px';
-                    selectionRect.style.width = '0px';
-                    selectionRect.style.height = '0px';
-                    document.addEventListener('mousemove', onSelectionMouseMove);
-                    document.addEventListener('mouseup', onSelectionMouseUp);
-                }
-            });
-
-            function onPanMouseMove(e) {
-                if (!panState) return;
-                const dx = e.clientX - panState.startX;
-                const dy = e.clientY - panState.startY;
-                state.panX = panState.origPanX + dx;
-                state.panY = panState.origPanY + dy;
-                applyTransform();
-                e.preventDefault();
-            }
-
-            function onPanMouseUp() {
-                document.removeEventListener('mousemove', onPanMouseMove);
-                document.removeEventListener('mouseup', onPanMouseUp);
-                panState = null;
-                canvasContainer.style.cursor = state.currentTool === 'pan' ? 'grab' : 'default';
-                markDirty();
-            }
-
-            // Rectangular selection
-            function onSelectionMouseMove(e) {
-                const rect = canvasContainer.getBoundingClientRect();
-                const startX = parseFloat(selectionRect.dataset.startX);
-                const startY = parseFloat(selectionRect.dataset.startY);
-                const currentX = (e.clientX - rect.left - state.panX) / state.zoom;
-                const currentY = (e.clientY - rect.top - state.panY) / state.zoom;
-
-                const left = Math.min(startX, currentX);
-                const top = Math.min(startY, currentY);
-                const width = Math.abs(currentX - startX);
-                const height = Math.abs(currentY - startY);
-
-                selectionRect.style.left = (left * state.zoom + state.panX) + 'px';
-                selectionRect.style.top = (top * state.zoom + state.panY) + 'px';
-                selectionRect.style.width = (width * state.zoom) + 'px';
-                selectionRect.style.height = (height * state.zoom) + 'px';
-                e.preventDefault();
-            }
-
-            function onSelectionMouseUp(e) {
-                document.removeEventListener('mousemove', onSelectionMouseMove);
-                document.removeEventListener('mouseup', onSelectionMouseUp);
-                selectionRect.style.display = 'none';
-
-                const startX = parseFloat(selectionRect.dataset.startX);
-                const startY = parseFloat(selectionRect.dataset.startY);
-                const rect = canvasContainer.getBoundingClientRect();
-                const endX = (e.clientX - rect.left - state.panX) / state.zoom;
-                const endY = (e.clientY - rect.top - state.panY) / state.zoom;
-                const minX = Math.min(startX, endX);
-                const maxX = Math.max(startX, endX);
-                const minY = Math.min(startY, endY);
-                const maxY = Math.max(startY, endY);
-
-                if (maxX - minX > 5 && maxY - minY > 5) {
-                    state.selectedIds.clear();
-                    state.items.forEach(item => {
-                        if (item.x < maxX && item.x + item.width > minX &&
-                            item.y < maxY && item.y + item.height > minY) {
-                            state.selectedIds.add(item.id);
-                        }
+                    btnZoomIn.addEventListener('click', () => {
+                        state.zoom = Math.min(3, state.zoom * 1.2);
+                        applyTransform();
+                        updateZoomIndicator();
+                        markDirty();
                     });
-                }
-                updateSelectionVisuals();
-            }
 
-            // Wheel zoom
-            canvasContainer.addEventListener('wheel', (e) => {
-                if (!state.projectName) return;
-                e.preventDefault();
-                const rect = canvasContainer.getBoundingClientRect();
-                const mouseX = e.clientX - rect.left;
-                const mouseY = e.clientY - rect.top;
-
-                const zoomFactor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
-                const newZoom = Math.min(3, Math.max(0.2, state.zoom * zoomFactor));
-
-                state.panX = mouseX - (mouseX - state.panX) * (newZoom / state.zoom);
-                state.panY = mouseY - (mouseY - state.panY) * (newZoom / state.zoom);
-                state.zoom = newZoom;
-
-                applyTransform();
-                updateZoomIndicator();
-                markDirty();
-            }, { passive: false });
-
-            function applyTransform() {
-                world.style.transform = `translate(${state.panX}px, ${state.panY}px) scale(${state.zoom})`;
-                if (selectionRect.style.display === 'block') {
-                    const sx = parseFloat(selectionRect.dataset.startX) || 0;
-                    const sy = parseFloat(selectionRect.dataset.startY) || 0;
-                    selectionRect.style.left = (sx * state.zoom + state.panX) + 'px';
-                    selectionRect.style.top = (sy * state.zoom + state.panY) + 'px';
-                }
-            }
-
-            function updateZoomIndicator() {
-                zoomIndicator.textContent = Math.round(state.zoom * 100) + '%';
-            }
-
-            btnZoomIn.addEventListener('click', () => {
-                state.zoom = Math.min(3, state.zoom * 1.2);
-                applyTransform();
-                updateZoomIndicator();
-                markDirty();
-            });
-
-            btnZoomOut.addEventListener('click', () => {
-                state.zoom = Math.max(0.2, state.zoom / 1.2);
-                applyTransform();
-                updateZoomIndicator();
-                markDirty();
-            });
-
-            // ==================== ADDING ELEMENTS ====================
-            btnAddNote.addEventListener('click', () => {
-                if (!state.projectName) return;
-                const rect = canvasContainer.getBoundingClientRect();
-                const worldX = (rect.width / 2 - state.panX) / state.zoom;
-                const worldY = (rect.height / 2 - state.panY) / state.zoom;
-                createItem('note', worldX - 80, worldY - 60, {
-                    width: 160,
-                    height: 120,
-                    content: 'New note'
-                });
-                markDirty();
-            });
-
-            canvasContainer.addEventListener('dblclick', (e) => {
-                if (!state.projectName) return;
-                if (e.target === canvasContainer || e.target === world || e.target === connectionsSvg) {
-                    const rect = canvasContainer.getBoundingClientRect();
-                    const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
-                    const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
-                    createItem('note', worldX - 80, worldY - 60, {
-                        width: 160,
-                        height: 120,
-                        content: 'Double-click to edit'
+                    btnZoomOut.addEventListener('click', () => {
+                        state.zoom = Math.max(0.2, state.zoom / 1.2);
+                        applyTransform();
+                        updateZoomIndicator();
+                        markDirty();
                     });
-                    markDirty();
-                }
-            });
 
-            // Image modal
-            btnAddImage.addEventListener('click', () => {
-                if (!state.projectName) return;
-                modalImage.classList.add('active');
-                imageUrlInput.value = '';
-                imageFileInput.value = '';
-            });
-
-            document.getElementById('image-cancel').addEventListener('click', () => {
-                modalImage.classList.remove('active');
-            });
-
-            document.getElementById('image-confirm').addEventListener('click', () => {
-                const url = imageUrlInput.value.trim();
-                const file = imageFileInput.files[0];
-                if (file) {
-                    if (file.size > MAX_IMAGE_UPLOAD_BYTES) {
-                        showToast('Image is too large (max 8 MB). Try a smaller file or use a URL instead.');
-                        return;
-                    }
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const dataUrl = e.target.result;
+                    // ==================== ADDING ELEMENTS ====================
+                    btnAddNote.addEventListener('click', () => {
+                        if (!state.projectName) return;
                         const rect = canvasContainer.getBoundingClientRect();
                         const worldX = (rect.width / 2 - state.panX) / state.zoom;
                         const worldY = (rect.height / 2 - state.panY) / state.zoom;
-                        createItem('image', worldX - 100, worldY - 75, {
-                            width: 200,
-                            height: 150,
-                            content: dataUrl
+                        const item = createItem('note', worldX - 80, worldY - 60, {
+                            width: 160,
+                            height: 120,
+                            content: 'New note'
                         });
+                        selectItem(item.id, false);
                         markDirty();
-                        modalImage.classList.remove('active');
-                    };
-                    reader.onerror = () => showToast('Could not read the selected image file.');
-                    reader.readAsDataURL(file);
-                } else if (url && isValidImageSrc(url)) {
-                    const rect = canvasContainer.getBoundingClientRect();
-                    const worldX = (rect.width / 2 - state.panX) / state.zoom;
-                    const worldY = (rect.height / 2 - state.panY) / state.zoom;
-                    createItem('image', worldX - 100, worldY - 75, {
-                        width: 200,
-                        height: 150,
-                        content: url
                     });
-                    markDirty();
-                    modalImage.classList.remove('active');
-                } else {
-                    showToast('Enter a valid image URL or choose a file to upload.');
-                }
-            });
 
-            // Post-it (generic) modal
-            btnAddGeneric.addEventListener('click', () => {
-                if (!state.projectName) return;
-                modalGeneric.classList.add('active');
-                genericTitleInput.value = '';
-                genericDescInput.value = '';
-                genericTitleInput.focus();
-            });
-
-            document.getElementById('generic-cancel').addEventListener('click', () => {
-                modalGeneric.classList.remove('active');
-            });
-
-            document.getElementById('generic-confirm').addEventListener('click', () => {
-                const title = genericTitleInput.value.trim() || 'Untitled';
-                const desc = genericDescInput.value.trim() || '';
-                const rect = canvasContainer.getBoundingClientRect();
-                const worldX = (rect.width / 2 - state.panX) / state.zoom;
-                const worldY = (rect.height / 2 - state.panY) / state.zoom;
-                createItem('generic', worldX - 80, worldY - 60, {
-                    width: 160,
-                    height: 120,
-                    extra: { title, description: desc }
-                });
-                markDirty();
-                modalGeneric.classList.remove('active');
-            });
-
-            // ==================== PROJECT DATA (VALIDATION / SERIALIZATION) ====================
-            function buildEmptyProjectTemplate(name) {
-                return {
-                    items: [],
-                    connections: [],
-                    zoom: 1,
-                    panX: 0,
-                    panY: 0,
-                    isDark: state.isDark,
-                    name,
-                };
-            }
-
-            function validateProjectData(raw) {
-                if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
-                    throw new Error('the file does not contain a valid project object');
-                }
-                if (!Array.isArray(raw.items)) {
-                    throw new Error('missing or invalid "items" list');
-                }
-
-                const seenIds = new Set();
-                const items = raw.items
-                    .filter(i => i && typeof i === 'object')
-                    .map((i, idx) => {
-                        const type = ALLOWED_ITEM_TYPES.includes(i.type) ? i.type : 'note';
-                        let id = typeof i.id === 'string' && i.id ? i.id : null;
-                        if (!id || seenIds.has(id)) {
-                            id = `item_imported_${idx}_${Date.now()}`;
+                    canvasContainer.addEventListener('dblclick', (e) => {
+                        if (!state.projectName) return;
+                        if (e.target === canvasContainer || e.target === world || e.target === connectionsSvg) {
+                            const rect = canvasContainer.getBoundingClientRect();
+                            const worldX = (e.clientX - rect.left - state.panX) / state.zoom;
+                            const worldY = (e.clientY - rect.top - state.panY) / state.zoom;
+                            const item = createItem('note', worldX - 80, worldY - 60, {
+                                width: 160,
+                                height: 120,
+                                content: 'Double-click to edit'
+                            });
+                            selectItem(item.id, false);
+                            markDirty();
                         }
-                        seenIds.add(id);
+                    });
 
-                        let content = typeof i.content === 'string' ? i.content : '';
-                        if (type === 'image') {
-                            if (!isValidImageSrc(content)) content = '';
-                        } else {
-                            content = content.slice(0, 20000);
-                        }
+                    // Image modal
+                    btnAddImage.addEventListener('click', () => {
+                        if (!state.projectName) return;
+                        modalImage.classList.add('active');
+                        imageUrlInput.value = '';
+                        imageFileInput.value = '';
+                    });
 
-                        let extra = {};
-                        if (i.extra && typeof i.extra === 'object') {
-                            extra = {
-                                title: typeof i.extra.title === 'string' ? i.extra.title.slice(0, 300) : '',
-                                description: typeof i.extra.description === 'string' ? i.extra.description.slice(0, 5000) : '',
+                    document.getElementById('image-cancel').addEventListener('click', () => {
+                        modalImage.classList.remove('active');
+                    });
+
+                    document.getElementById('image-confirm').addEventListener('click', () => {
+                        const url = imageUrlInput.value.trim();
+                        const file = imageFileInput.files[0];
+                        if (file) {
+                            if (file.size > MAX_IMAGE_UPLOAD_BYTES) {
+                                showToast('Image is too large (max 8 MB). Try a smaller file or use a URL instead.');
+                                return;
+                            }
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                const dataUrl = e.target.result;
+                                const rect = canvasContainer.getBoundingClientRect();
+                                const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                                const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                                const item = createItem('image', worldX - 100, worldY - 75, {
+                                    width: 200,
+                                    height: 150,
+                                    content: dataUrl
+                                });
+                                selectItem(item.id, false);
+                                markDirty();
+                                modalImage.classList.remove('active');
                             };
+                            reader.onerror = () => showToast('Could not read the selected image file.');
+                            reader.readAsDataURL(file);
+                        } else if (url && isValidImageSrc(url)) {
+                            const rect = canvasContainer.getBoundingClientRect();
+                            const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                            const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                            const item = createItem('image', worldX - 100, worldY - 75, {
+                                width: 200,
+                                height: 150,
+                                content: url
+                            });
+                            selectItem(item.id, false);
+                            markDirty();
+                            modalImage.classList.remove('active');
+                        } else {
+                            showToast('Enter a valid image URL or choose a file to upload.');
+                        }
+                    });
+
+                    // Post-it (generic) modal
+                    btnAddGeneric.addEventListener('click', () => {
+                        if (!state.projectName) return;
+                        modalGeneric.classList.add('active');
+                        genericTitleInput.value = '';
+                        genericDescInput.value = '';
+                        genericFontSizeInput.value = '14';
+                        genericFontColorInput.value = state.isDark ? '#e2e8f0' : '#1a1a1a';
+                        genericBgColorInput.value = state.isDark ? '#2d3748' : '#ffffff';
+                        genericTitleInput.focus();
+                    });
+
+                    document.getElementById('generic-cancel').addEventListener('click', () => {
+                        modalGeneric.classList.remove('active');
+                    });
+
+                    document.getElementById('generic-confirm').addEventListener('click', () => {
+                        const title = genericTitleInput.value.trim() || 'Untitled';
+                        const desc = genericDescInput.value.trim() || '';
+                        const fontSize = parseInt(genericFontSizeInput.value, 10) || 14;
+                        const textColor = genericFontColorInput.value || (state.isDark ? '#e2e8f0' : '#1a1a1a');
+                        const bgColor = genericBgColorInput.value || (state.isDark ? '#2d3748' : '#ffffff');
+                        const rect = canvasContainer.getBoundingClientRect();
+                        const worldX = (rect.width / 2 - state.panX) / state.zoom;
+                        const worldY = (rect.height / 2 - state.panY) / state.zoom;
+                        const item = createItem('generic', worldX - 80, worldY - 60, {
+                            width: 160,
+                            height: 120,
+                            color: bgColor,
+                            fontSize: fontSize,
+                            textColor: textColor,
+                            extra: { title, description: desc }
+                        });
+                        selectItem(item.id, false);
+                        markDirty();
+                        modalGeneric.classList.remove('active');
+                    });
+
+                    // ==================== PROJECT DATA (VALIDATION / SERIALIZATION) ====================
+                    function buildEmptyProjectTemplate(name) {
+                        return {
+                            items: [],
+                            connections: [],
+                            zoom: 1,
+                            panX: 0,
+                            panY: 0,
+                            isDark: state.isDark,
+                            name,
+                        };
+                    }
+
+                    function validateProjectData(raw) {
+                        if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+                            throw new Error('the file does not contain a valid project object');
+                        }
+                        if (!Array.isArray(raw.items)) {
+                            throw new Error('missing or invalid "items" list');
                         }
 
-                        const color = (typeof i.color === 'string' && /^#[0-9a-fA-F]{3,8}$/.test(i.color))
-                            ? i.color
-                            : (type === 'note' ? '#fff9c4' : '#ffffff');
+                        const seenIds = new Set();
+                        const items = raw.items
+                            .filter(i => i && typeof i === 'object')
+                            .map((i, idx) => {
+                                const type = ALLOWED_ITEM_TYPES.includes(i.type) ? i.type : 'note';
+                                let id = typeof i.id === 'string' && i.id ? i.id : null;
+                                if (!id || seenIds.has(id)) {
+                                    id = `item_imported_${idx}_${Date.now()}`;
+                                }
+                                seenIds.add(id);
+
+                                let content = typeof i.content === 'string' ? i.content : '';
+                                if (type === 'image') {
+                                    if (!isValidImageSrc(content)) content = '';
+                                } else {
+                                    content = content.slice(0, 20000);
+                                }
+
+                                let extra = {};
+                                if (i.extra && typeof i.extra === 'object') {
+                                    extra = {
+                                        title: typeof i.extra.title === 'string' ? i.extra.title.slice(0, 300) : '',
+                                        description: typeof i.extra.description === 'string' ? i.extra.description.slice(0, 5000) : '',
+                                    };
+                                }
+
+                                const color = (typeof i.color === 'string' && /^#[0-9a-fA-F]{3,8}$/.test(i.color))
+                                    ? i.color
+                                    : (type === 'note' ? '#fff9c4' : '#ffffff');
+
+                                const fontSize = (typeof i.fontSize === 'number' && i.fontSize >= 6 && i.fontSize <= 300)
+                                    ? Math.round(i.fontSize)
+                                    : (type === 'note' ? 16 : 14);
+
+                                const textColor = (typeof i.textColor === 'string' && /^#[0-9a-fA-F]{3,8}$/.test(i.textColor))
+                                    ? i.textColor
+                                    : null;
+
+                                return {
+                                    id,
+                                    type,
+                                    x: finiteNumber(i.x, 0),
+                                    y: finiteNumber(i.y, 0),
+                                    width: clamp(finiteNumber(i.width, 160), MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                                    height: clamp(finiteNumber(i.height, 120), MIN_ITEM_SIZE, MAX_ITEM_SIZE),
+                                    content,
+                                    extra,
+                                    color,
+                                    fontSize,
+                                    textColor,
+                                };
+                            });
+
+                        const idSet = new Set(items.map(i => i.id));
+                        const seenConnIds = new Set();
+                        const connections = Array.isArray(raw.connections)
+                            ? raw.connections
+                                .filter(c => c && idSet.has(c.from) && idSet.has(c.to) && c.from !== c.to)
+                                .map((c, idx) => {
+                                    let id = typeof c.id === 'string' && c.id ? c.id : null;
+                                    if (!id || seenConnIds.has(id)) {
+                                        id = `conn_imported_${idx}_${Date.now()}`;
+                                    }
+                                    seenConnIds.add(id);
+                                    const label = typeof c.label === 'string' ? c.label.slice(0, 100) : '';
+                                    return { id, from: c.from, to: c.to, label };
+                                })
+                            : [];
 
                         return {
-                            id,
-                            type,
-                            x: finiteNumber(i.x, 0),
-                            y: finiteNumber(i.y, 0),
-                            width: clamp(finiteNumber(i.width, 160), MIN_ITEM_SIZE, MAX_ITEM_SIZE),
-                            height: clamp(finiteNumber(i.height, 120), MIN_ITEM_SIZE, MAX_ITEM_SIZE),
-                            content,
-                            extra,
-                            color,
+                            items,
+                            connections,
+                            zoom: clamp(finiteNumber(raw.zoom, 1), 0.2, 3),
+                            panX: finiteNumber(raw.panX, 0),
+                            panY: finiteNumber(raw.panY, 0),
+                            isDark: !!raw.isDark,
+                            name: typeof raw.name === 'string' && raw.name.trim() ? raw.name.trim() : null,
                         };
-                    });
-
-                const idSet = new Set(items.map(i => i.id));
-                const seenConnIds = new Set();
-                const connections = Array.isArray(raw.connections)
-                    ? raw.connections
-                        .filter(c => c && idSet.has(c.from) && idSet.has(c.to) && c.from !== c.to)
-                        .map((c, idx) => {
-                            let id = typeof c.id === 'string' && c.id ? c.id : null;
-                            if (!id || seenConnIds.has(id)) {
-                                id = `conn_imported_${idx}_${Date.now()}`;
-                            }
-                            seenConnIds.add(id);
-                            return { id, from: c.from, to: c.to };
-                        })
-                    : [];
-
-                return {
-                    items,
-                    connections,
-                    zoom: clamp(finiteNumber(raw.zoom, 1), 0.2, 3),
-                    panX: finiteNumber(raw.panX, 0),
-                    panY: finiteNumber(raw.panY, 0),
-                    isDark: !!raw.isDark,
-                    name: typeof raw.name === 'string' && raw.name.trim() ? raw.name.trim() : null,
-                };
-            }
-
-            function serializeProject() {
-                return {
-                    schema: 'investigation-board',
-                    version: 1,
-                    name: state.projectName,
-                    items: state.items.map(i => ({
-                        id: i.id, type: i.type, x: i.x, y: i.y,
-                        width: i.width, height: i.height,
-                        content: i.content, extra: i.extra, color: i.color
-                    })),
-                    connections: state.connections.map(c => ({ id: c.id, from: c.from, to: c.to })),
-                    zoom: state.zoom,
-                    panX: state.panX,
-                    panY: state.panY,
-                    isDark: state.isDark,
-                };
-            }
-
-            function resetWorldDom() {
-                world.innerHTML = '<svg id="connections" xmlns="http://www.w3.org/2000/svg"></svg>';
-                connectionsSvg = document.getElementById('connections');
-            }
-
-            function applyProjectData(data, name) {
-                resetWorldDom();
-                state.items = data.items.map(i => ({ ...i }));
-                state.connections = data.connections.map(c => ({ ...c }));
-                state.selectedIds.clear();
-                state.linkSourceId = null;
-                state.zoom = data.zoom;
-                state.panX = data.panX;
-                state.panY = data.panY;
-                state.isDark = !!data.isDark;
-                state.nextId = computeNextNumericId(state.items.map(i => i.id), 'item_');
-                state.nextConnId = computeNextNumericId(state.connections.map(c => c.id), 'conn_');
-                state.projectName = name;
-                state.isDirty = false;
-                document.body.classList.toggle('dark', state.isDark);
-                state.items.forEach(item => renderItem(item));
-                updateConnections();
-                applyTransform();
-                updateZoomIndicator();
-                updatePropertyPanel();
-                updateProjectIndicator();
-                setProjectActiveUIState(true);
-            }
-
-            // ==================== PROJECT UI STATE ====================
-            function updateProjectIndicator() {
-                projectNameLabel.textContent = state.projectName || 'No project';
-                projectIndicator.classList.toggle('dirty', state.isDirty);
-                document.title = (state.projectName ? state.projectName + (state.isDirty ? ' \u2022 ' : ' \u2014 ') : '') + 'Investigation Board';
-            }
-
-            function setProjectActiveUIState(active) {
-                document.querySelectorAll('.requires-project').forEach(btn => {
-                    btn.disabled = !active;
-                });
-                emptyState.classList.toggle('visible', !active);
-            }
-
-            function confirmDiscardIfDirty() {
-                if (!state.isDirty) return true;
-                return window.confirm('You have unsaved changes in the current project. Discard them and continue?');
-            }
-
-            function markDirty() {
-                state.isDirty = true;
-                updateProjectIndicator();
-                scheduleAutosave();
-            }
-
-            let autosaveTimer = null;
-            function scheduleAutosave() {
-                if (!state.fileHandle) return; // no handle: can't autosave silently, user must Save manually
-                clearTimeout(autosaveTimer);
-                autosaveTimer = setTimeout(() => {
-                    writeProjectToDisk(true);
-                }, AUTOSAVE_DELAY_MS);
-            }
-
-            // ==================== SAVE / OPEN / NEW (JSON FILES ONLY) ====================
-            function downloadProjectFile() {
-                const data = serializeProject();
-                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = sanitizeFileName(state.projectName || 'project') + '.json';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                URL.revokeObjectURL(url);
-                state.isDirty = false;
-                updateProjectIndicator();
-            }
-
-            async function writeProjectToDisk(silent) {
-                if (!state.fileHandle) {
-                    downloadProjectFile();
-                    if (!silent) showToast(`Project downloaded as "${sanitizeFileName(state.projectName)}.json"`);
-                    return;
-                }
-                try {
-                    const writable = await state.fileHandle.createWritable();
-                    await writable.write(JSON.stringify(serializeProject(), null, 2));
-                    await writable.close();
-                    state.isDirty = false;
-                    updateProjectIndicator();
-                    if (!silent) showToast('Project saved');
-                } catch (err) {
-                    console.error('Save failed', err);
-                    showToast('Could not save the file. Check permissions and try again.');
-                }
-            }
-
-            let fileOpBusy = false;
-
-            async function createNewProject(rawName) {
-                const name = String(rawName || '').trim();
-                if (!name) {
-                    showToast('Please enter a project name');
-                    return;
-                }
-                const template = buildEmptyProjectTemplate(name);
-
-                if (supportsFSAccess) {
-                    let handle = null;
-                    try {
-                        handle = await window.showSaveFilePicker({
-                            suggestedName: sanitizeFileName(name) + '.json',
-                            types: JSON_FILE_TYPES,
-                        });
-                    } catch (err) {
-                        if (err && err.name === 'AbortError') {
-                            showToast('Project creation cancelled');
-                            return;
-                        }
-                        console.error(err);
                     }
-                    if (handle) {
-                        applyProjectData(template, name);
-                        state.fileHandle = handle;
-                        await writeProjectToDisk(true);
-                        showToast(`Project "${name}" created`);
-                        return;
+
+                    function serializeProject() {
+                        return {
+                            schema: 'investigation-board',
+                            version: 1,
+                            name: state.projectName,
+                            items: state.items.map(i => ({
+                                id: i.id, type: i.type, x: i.x, y: i.y,
+                                width: i.width, height: i.height,
+                                content: i.content, extra: i.extra, color: i.color,
+                                fontSize: i.fontSize, textColor: i.textColor
+                            })),
+                            connections: state.connections.map(c => ({ id: c.id, from: c.from, to: c.to, label: c.label || '' })),
+                            zoom: state.zoom,
+                            panX: state.panX,
+                            panY: state.panY,
+                            isDark: state.isDark,
+                        };
                     }
-                }
 
-                // Fallback: browser without File System Access API, or picker failed
-                applyProjectData(template, name);
-                state.fileHandle = null;
-                downloadProjectFile();
-                showToast(`Project "${name}" created and downloaded as JSON`);
-            }
-
-            function loadProjectFromText(text, handle, fallbackName) {
-                let parsed;
-                try {
-                    parsed = JSON.parse(text);
-                } catch (err) {
-                    showToast('Invalid JSON file: the file could not be parsed.');
-                    return;
-                }
-                let validated;
-                try {
-                    validated = validateProjectData(parsed);
-                } catch (err) {
-                    showToast('Invalid project file: ' + (err.message || 'unrecognized format') + '.');
-                    return;
-                }
-                const name = validated.name || fallbackName || 'Untitled Project';
-                applyProjectData(validated, name);
-                state.fileHandle = handle || null;
-                showToast(`Project "${name}" loaded`);
-            }
-
-            async function openProject() {
-                if (fileOpBusy) return;
-                if (!confirmDiscardIfDirty()) return;
-                fileOpBusy = true;
-                try {
-                    if (supportsFSAccess) {
-                        let handle;
-                        try {
-                            [handle] = await window.showOpenFilePicker({ types: JSON_FILE_TYPES });
-                        } catch (err) {
-                            if (err && err.name !== 'AbortError') {
-                                console.error(err);
-                                showToast('Unable to open the file.');
-                            }
-                            return;
-                        }
-                        const file = await handle.getFile();
-                        const text = await file.text();
-                        loadProjectFromText(text, handle, stripExtension(file.name));
-                    } else {
-                        openFileInput.click();
+                    function resetWorldDom() {
+                        world.innerHTML = '<svg id="connections" xmlns="http://www.w3.org/2000/svg"></svg>';
+                        connectionsSvg = document.getElementById('connections');
                     }
-                } finally {
-                    fileOpBusy = false;
-                }
-            }
 
-            function stripExtension(fileName) {
-                if (!fileName) return null;
-                const idx = fileName.lastIndexOf('.');
-                return idx > 0 ? fileName.slice(0, idx) : fileName;
-            }
-
-            openFileInput.addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                e.target.value = '';
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    loadProjectFromText(ev.target.result, null, stripExtension(file.name));
-                };
-                reader.onerror = () => showToast('Could not read the selected file.');
-                reader.readAsText(file);
-            });
-
-            function openNewProjectModal() {
-                if (!confirmDiscardIfDirty()) return;
-                newProjectNameInput.value = '';
-                modalNewProject.classList.add('active');
-                setTimeout(() => newProjectNameInput.focus(), 0);
-            }
-
-            document.getElementById('new-project-cancel').addEventListener('click', () => {
-                modalNewProject.classList.remove('active');
-            });
-
-            newProjectConfirmBtn.addEventListener('click', async () => {
-                if (fileOpBusy) return;
-                const name = newProjectNameInput.value.trim();
-                if (!name) {
-                    showToast('Please enter a project name');
-                    newProjectNameInput.focus();
-                    return;
-                }
-                fileOpBusy = true;
-                newProjectConfirmBtn.disabled = true;
-                newProjectConfirmBtn.textContent = 'Creating\u2026';
-                try {
-                    await createNewProject(name);
-                } finally {
-                    newProjectConfirmBtn.disabled = false;
-                    newProjectConfirmBtn.textContent = 'Create';
-                    modalNewProject.classList.remove('active');
-                    fileOpBusy = false;
-                }
-            });
-
-            newProjectNameInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    newProjectConfirmBtn.click();
-                }
-            });
-
-            btnNewProject.addEventListener('click', openNewProjectModal);
-            emptyNewProjectBtn.addEventListener('click', openNewProjectModal);
-            btnOpenProject.addEventListener('click', openProject);
-            emptyOpenProjectBtn.addEventListener('click', openProject);
-
-            btnSave.addEventListener('click', () => {
-                if (!state.projectName) {
-                    showToast('Create or open a project first');
-                    return;
-                }
-                writeProjectToDisk(false);
-            });
-
-            btnSaveAs.addEventListener('click', async () => {
-                if (fileOpBusy) return;
-                if (!state.projectName) {
-                    showToast('Create or open a project first');
-                    return;
-                }
-                fileOpBusy = true;
-                try {
-                    if (supportsFSAccess) {
-                        try {
-                            const handle = await window.showSaveFilePicker({
-                                suggestedName: sanitizeFileName(state.projectName) + '.json',
-                                types: JSON_FILE_TYPES,
-                            });
-                            state.fileHandle = handle;
-                            await writeProjectToDisk(false);
-                        } catch (err) {
-                            if (err && err.name !== 'AbortError') {
-                                console.error(err);
-                                showToast('Unable to save the file.');
-                            }
-                        }
-                    } else {
-                        downloadProjectFile();
-                        showToast(`Project downloaded as "${sanitizeFileName(state.projectName)}.json"`);
-                    }
-                } finally {
-                    fileOpBusy = false;
-                }
-            });
-
-            // ==================== SVG EXPORT ====================
-            function escapeXml(unsafe) {
-                return String(unsafe || '')
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/"/g, '&quot;')
-                    .replace(/'/g, '&apos;');
-            }
-
-            function exportProjectAsSvg() {
-                if (!state.projectName) {
-                    showToast('Create or open a project first');
-                    return;
-                }
-
-                const padding = 50;
-                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-
-                if (state.items.length === 0) {
-                    minX = 0;
-                    minY = 0;
-                    maxX = 800;
-                    maxY = 600;
-                } else {
-                    state.items.forEach(item => {
-                        minX = Math.min(minX, item.x);
-                        minY = Math.min(minY, item.y);
-                        maxX = Math.max(maxX, item.x + item.width);
-                        maxY = Math.max(maxY, item.y + item.height);
-                    });
-                }
-
-                const vx = minX - padding;
-                const vy = minY - padding;
-                const totalW = Math.max(100, Math.round((maxX - minX) + padding * 2));
-                const totalH = Math.max(100, Math.round((maxY - minY) + padding * 2));
-
-                const isDark = state.isDark;
-                const bgColor = isDark ? '#1a202c' : '#f0f2f5';
-                const panelBg = isDark ? '#2d3748' : '#ffffff';
-                const textColor = isDark ? '#e2e8f0' : '#1a1a1a';
-                const textSecondary = isDark ? '#a0aec0' : '#555555';
-                const connColor = isDark ? '#b794f4' : '#805ad5';
-                const borderColor = isDark ? '#4a5568' : '#d0d4d9';
-
-                let svg = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-                svg += `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="${vx} ${vy} ${totalW} ${totalH}" width="${totalW}" height="${totalH}">\n`;
-                svg += `  <defs>\n`;
-                svg += `    <filter id="board-shadow" x="-15%" y="-15%" width="130%" height="130%">\n`;
-                svg += `      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="${isDark ? '0.45' : '0.15'}" />\n`;
-                svg += `    </filter>\n`;
-                svg += `  </defs>\n`;
-                svg += `  <!-- Background -->\n`;
-                svg += `  <rect x="${vx}" y="${vy}" width="${totalW}" height="${totalH}" fill="${bgColor}" />\n`;
-
-                // Render connections
-                svg += `  <!-- Connections -->\n`;
-                svg += `  <g class="connections">\n`;
-                state.connections.forEach(conn => {
-                    const fromItem = state.items.find(i => i.id === conn.from);
-                    const toItem = state.items.find(i => i.id === conn.to);
-                    if (fromItem && toItem) {
-                        const x1 = fromItem.x + fromItem.width / 2;
-                        const y1 = fromItem.y + fromItem.height / 2;
-                        const x2 = toItem.x + toItem.width / 2;
-                        const y2 = toItem.y + toItem.height / 2;
-                        svg += `    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${connColor}" stroke-width="2" stroke-linecap="round" />\n`;
-                    }
-                });
-                svg += `  </g>\n`;
-
-                // Render items
-                svg += `  <!-- Board Items -->\n`;
-                svg += `  <g class="board-items">\n`;
-                state.items.forEach(item => {
-                    if (item.type === 'note') {
-                        const noteColor = item.color || '#fff9c4';
-                        const noteTextColor = isDark ? '#1a202c' : '#333333';
-                        svg += `    <g class="note" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
-                        svg += `      <rect width="${item.width}" height="${item.height}" rx="4" ry="4" fill="${noteColor}" stroke="rgba(0,0,0,0.1)" stroke-width="1" />\n`;
-                        svg += `      <foreignObject width="${item.width}" height="${item.height}">\n`;
-                        svg += `        <div xmlns="http://www.w3.org/1999/xhtml" style="padding:15px; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; font-size:16px; line-height:1.4; color:${noteTextColor}; word-wrap:break-word; white-space:pre-wrap; box-sizing:border-box; height:100%; overflow:hidden;">${escapeXml(item.content || '')}</div>\n`;
-                        svg += `      </foreignObject>\n`;
-                        svg += `    </g>\n`;
-                    } else if (item.type === 'image') {
-                        const safeSrc = resolveImageSrc(item.content) || '';
-                        svg += `    <g class="image-item" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
-                        svg += `      <clipPath id="clip-${item.id}">\n`;
-                        svg += `        <rect width="${item.width}" height="${item.height}" rx="6" ry="6" />\n`;
-                        svg += `      </clipPath>\n`;
-                        svg += `      <rect width="${item.width}" height="${item.height}" rx="6" ry="6" fill="${panelBg}" stroke="${borderColor}" stroke-width="1" />\n`;
-                        if (safeSrc) {
-                            svg += `      <image href="${escapeXml(safeSrc)}" x="0" y="0" width="${item.width}" height="${item.height}" preserveAspectRatio="xMidYMid meet" clip-path="url(#clip-${item.id})" />\n`;
-                        }
-                        svg += `    </g>\n`;
-                    } else if (item.type === 'generic') {
-                        const itemBg = item.color || panelBg;
-                        const title = (item.extra && item.extra.title) ? item.extra.title : 'Untitled';
-                        const desc = (item.extra && item.extra.description) ? item.extra.description : '';
-                        svg += `    <g class="generic-item" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
-                        svg += `      <rect width="${item.width}" height="${item.height}" rx="8" ry="8" fill="${itemBg}" stroke="${borderColor}" stroke-width="1" />\n`;
-                        svg += `      <foreignObject width="${item.width}" height="${item.height}">\n`;
-                        svg += `        <div xmlns="http://www.w3.org/1999/xhtml" style="padding:12px; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; color:${textColor}; box-sizing:border-box; height:100%; overflow:hidden;">\n`;
-                        svg += `          <h4 style="margin:0 0 6px 0; font-size:16px; font-weight:600; color:${textColor};">${escapeXml(title)}</h4>\n`;
-                        svg += `          <p style="margin:0; font-size:14px; color:${textSecondary}; word-wrap:break-word; white-space:pre-wrap;">${escapeXml(desc)}</p>\n`;
-                        svg += `        </div>\n`;
-                        svg += `      </foreignObject>\n`;
-                        svg += `    </g>\n`;
-                    }
-                });
-                svg += `  </g>\n`;
-                svg += `</svg>`;
-
-                const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = sanitizeFileName(state.projectName || 'project') + '.svg';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                URL.revokeObjectURL(url);
-                showToast(`Project exported as "${sanitizeFileName(state.projectName)}.svg"`);
-            }
-
-            btnExportSvg.addEventListener('click', exportProjectAsSvg);
-
-            // ==================== DARK MODE ====================
-            btnDarkMode.addEventListener('click', () => {
-                state.isDark = !state.isDark;
-                document.body.classList.toggle('dark', state.isDark);
-                if (state.projectName) markDirty();
-            });
-
-            // ==================== KEYBOARD SHORTCUTS ====================
-            document.addEventListener('keydown', (e) => {
-                if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
-                    e.preventDefault();
-                    if (state.projectName) {
-                        writeProjectToDisk(false);
-                    } else {
-                        showToast('Create or open a project first');
-                    }
-                    return;
-                }
-
-                if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
-                if (!state.projectName) return;
-
-                switch (e.key) {
-                    case 'v':
-                    case 'V':
-                        setTool('select');
-                        break;
-                    case 'h':
-                    case 'H':
-                        setTool('pan');
-                        break;
-                    case 'l':
-                    case 'L':
-                        setTool('link');
-                        break;
-                    case 'Delete':
-                    case 'Backspace':
-                        if (state.selectedIds.size > 0) {
-                            e.preventDefault();
-                            [...state.selectedIds].forEach(id => deleteItem(id));
-                            propertyPanel.classList.remove('visible');
-                        }
-                        break;
-                    case 'Escape':
-                        clearSelection();
-                        propertyPanel.classList.remove('visible');
+                    function applyProjectData(data, name) {
+                        resetWorldDom();
+                        state.items = data.items.map(i => ({ ...i }));
+                        state.connections = data.connections.map(c => ({ ...c }));
+                        state.selectedIds.clear();
                         state.linkSourceId = null;
-                        document.querySelectorAll('.board-item').forEach(el => el.style.boxShadow = '');
-                        break;
-                }
-            });
+                        state.zoom = data.zoom;
+                        state.panX = data.panX;
+                        state.panY = data.panY;
+                        state.isDark = !!data.isDark;
+                        state.nextId = computeNextNumericId(state.items.map(i => i.id), 'item_');
+                        state.nextConnId = computeNextNumericId(state.connections.map(c => c.id), 'conn_');
+                        state.projectName = name;
+                        state.isDirty = false;
+                        document.body.classList.toggle('dark', state.isDark);
+                        state.items.forEach(item => renderItem(item));
+                        updateConnections();
+                        applyTransform();
+                        updateZoomIndicator();
+                        updatePropertyPanel();
+                        updateProjectIndicator();
+                        setProjectActiveUIState(true);
+                    }
 
-            // Warn before leaving the page with unsaved changes
-            window.addEventListener('beforeunload', (e) => {
-                if (state.isDirty) {
-                    e.preventDefault();
-                    e.returnValue = '';
-                }
-            });
+                    // ==================== PROJECT UI STATE ====================
+                    function updateProjectIndicator() {
+                        projectNameLabel.textContent = state.projectName || 'No project';
+                        projectIndicator.classList.toggle('dirty', state.isDirty);
+                        document.title = (state.projectName ? state.projectName + (state.isDirty ? ' \u2022 ' : ' \u2014 ') : '') + 'Investigation Board';
+                    }
 
-            // ==================== INITIALIZATION ====================
-            function init() {
-                applyTransform();
-                updateZoomIndicator();
-                updateProjectIndicator();
-                setProjectActiveUIState(false);
-            }
+                    function setProjectActiveUIState(active) {
+                        document.querySelectorAll('.requires-project').forEach(btn => {
+                            btn.disabled = !active;
+                        });
+                        emptyState.classList.toggle('visible', !active);
+                    }
 
-            init();
-        })();
+                    function confirmDiscardIfDirty() {
+                        if (!state.isDirty) return true;
+                        return window.confirm('You have unsaved changes in the current project. Discard them and continue?');
+                    }
+
+                    function markDirty() {
+                        state.isDirty = true;
+                        updateProjectIndicator();
+                        scheduleAutosave();
+                    }
+
+                    let autosaveTimer = null;
+                    function scheduleAutosave() {
+                        if (!state.fileHandle) return; // no handle: can't autosave silently, user must Save manually
+                        clearTimeout(autosaveTimer);
+                        autosaveTimer = setTimeout(() => {
+                            writeProjectToDisk(true);
+                        }, AUTOSAVE_DELAY_MS);
+                    }
+
+                    // ==================== SAVE / OPEN / NEW (JSON FILES ONLY) ====================
+                    function downloadProjectFile() {
+                        const data = serializeProject();
+                        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = sanitizeFileName(state.projectName || 'project') + '.json';
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
+                        state.isDirty = false;
+                        updateProjectIndicator();
+                    }
+
+                    async function verifyFileHandlePermission(fileHandle, readWrite = true) {
+                        if (!fileHandle) return false;
+                        const options = {};
+                        if (readWrite) options.mode = 'readwrite';
+                        try {
+                            if (fileHandle.queryPermission) {
+                                const status = await fileHandle.queryPermission(options);
+                                if (status === 'granted') return true;
+                            }
+                            if (fileHandle.requestPermission) {
+                                const status = await fileHandle.requestPermission(options);
+                                return status === 'granted';
+                            }
+                        } catch (err) {
+                            console.warn('Permission query/request error:', err);
+                        }
+                        return false;
+                    }
+
+                    async function writeProjectToDisk(silent) {
+                        if (!state.fileHandle) {
+                            downloadProjectFile();
+                            if (!silent) showToast(`Project downloaded as "${sanitizeFileName(state.projectName)}.json"`);
+                            return;
+                        }
+                        try {
+                            if (state.fileHandle.queryPermission) {
+                                let status = await state.fileHandle.queryPermission({ mode: 'readwrite' });
+                                if (status !== 'granted') {
+                                    if (silent) return; // avoid unprompted request during autosave
+                                    status = await state.fileHandle.requestPermission({ mode: 'readwrite' });
+                                    if (status !== 'granted') {
+                                        showToast('Write permission not granted. Use "Save As" or grant permissions.');
+                                        return;
+                                    }
+                                }
+                            }
+                            const writable = await state.fileHandle.createWritable();
+                            await writable.write(JSON.stringify(serializeProject(), null, 2));
+                            await writable.close();
+                            state.isDirty = false;
+                            updateProjectIndicator();
+                            if (!silent) showToast('Project saved');
+                        } catch (err) {
+                            console.error('Save failed', err);
+                            if (!silent && err && (err.name === 'NotAllowedError' || err.name === 'SecurityError')) {
+                                try {
+                                    if (state.fileHandle.requestPermission) {
+                                        const req = await state.fileHandle.requestPermission({ mode: 'readwrite' });
+                                        if (req === 'granted') {
+                                            const writable = await state.fileHandle.createWritable();
+                                            await writable.write(JSON.stringify(serializeProject(), null, 2));
+                                            await writable.close();
+                                            state.isDirty = false;
+                                            updateProjectIndicator();
+                                            showToast('Project saved');
+                                            return;
+                                        }
+                                    }
+                                } catch (retryErr) {
+                                    console.error('Retry save failed', retryErr);
+                                }
+                            }
+                            showToast('Could not save the file. Check permissions and try again.');
+                        }
+                    }
+
+                    let fileOpBusy = false;
+
+                    async function createNewProject(rawName) {
+                        const name = String(rawName || '').trim();
+                        if (!name) {
+                            showToast('Please enter a project name');
+                            return;
+                        }
+                        const template = buildEmptyProjectTemplate(name);
+
+                        if (supportsFSAccess) {
+                            let handle = null;
+                            try {
+                                handle = await window.showSaveFilePicker({
+                                    suggestedName: sanitizeFileName(name) + '.json',
+                                    types: JSON_FILE_TYPES,
+                                });
+                            } catch (err) {
+                                if (err && err.name === 'AbortError') {
+                                    showToast('Project creation cancelled');
+                                    return;
+                                }
+                                console.error(err);
+                            }
+                            if (handle) {
+                                applyProjectData(template, name);
+                                state.fileHandle = handle;
+                                await writeProjectToDisk(true);
+                                showToast(`Project "${name}" created`);
+                                return;
+                            }
+                        }
+
+                        // Fallback: browser without File System Access API, or picker failed
+                        applyProjectData(template, name);
+                        state.fileHandle = null;
+                        downloadProjectFile();
+                        showToast(`Project "${name}" created and downloaded as JSON`);
+                    }
+
+                    function loadProjectFromText(text, handle, fallbackName) {
+                        let parsed;
+                        try {
+                            parsed = JSON.parse(text);
+                        } catch (err) {
+                            showToast('Invalid JSON file: the file could not be parsed.');
+                            return;
+                        }
+                        let validated;
+                        try {
+                            validated = validateProjectData(parsed);
+                        } catch (err) {
+                            showToast('Invalid project file: ' + (err.message || 'unrecognized format') + '.');
+                            return;
+                        }
+                        const name = validated.name || fallbackName || 'Untitled Project';
+                        applyProjectData(validated, name);
+                        state.fileHandle = handle || null;
+                        showToast(`Project "${name}" loaded`);
+                    }
+
+                    async function openProject() {
+                        if (fileOpBusy) return;
+                        if (!confirmDiscardIfDirty()) return;
+                        fileOpBusy = true;
+                        try {
+                            if (supportsFSAccess) {
+                                let handle;
+                                try {
+                                    [handle] = await window.showOpenFilePicker({ types: JSON_FILE_TYPES });
+                                } catch (err) {
+                                    if (err && err.name !== 'AbortError') {
+                                        console.error(err);
+                                        showToast('Unable to open the file.');
+                                    }
+                                    return;
+                                }
+                                if (handle) {
+                                    // Request readwrite permissions immediately while user gesture is active from the open file picker
+                                    await verifyFileHandlePermission(handle, true);
+                                }
+                                const file = await handle.getFile();
+                                const text = await file.text();
+                                loadProjectFromText(text, handle, stripExtension(file.name));
+                            } else {
+                                openFileInput.click();
+                            }
+                        } finally {
+                            fileOpBusy = false;
+                        }
+                    }
+
+                    function stripExtension(fileName) {
+                        if (!fileName) return null;
+                        const idx = fileName.lastIndexOf('.');
+                        return idx > 0 ? fileName.slice(0, idx) : fileName;
+                    }
+
+                    openFileInput.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                        e.target.value = '';
+                        if (!file) return;
+                        const reader = new FileReader();
+                        reader.onload = (ev) => {
+                            loadProjectFromText(ev.target.result, null, stripExtension(file.name));
+                        };
+                        reader.onerror = () => showToast('Could not read the selected file.');
+                        reader.readAsText(file);
+                    });
+
+                    function openNewProjectModal() {
+                        if (!confirmDiscardIfDirty()) return;
+                        newProjectNameInput.value = '';
+                        modalNewProject.classList.add('active');
+                        setTimeout(() => newProjectNameInput.focus(), 0);
+                    }
+
+                    document.getElementById('new-project-cancel').addEventListener('click', () => {
+                        modalNewProject.classList.remove('active');
+                    });
+
+                    newProjectConfirmBtn.addEventListener('click', async () => {
+                        if (fileOpBusy) return;
+                        const name = newProjectNameInput.value.trim();
+                        if (!name) {
+                            showToast('Please enter a project name');
+                            newProjectNameInput.focus();
+                            return;
+                        }
+                        fileOpBusy = true;
+                        newProjectConfirmBtn.disabled = true;
+                        newProjectConfirmBtn.textContent = 'Creating\u2026';
+                        try {
+                            await createNewProject(name);
+                        } finally {
+                            newProjectConfirmBtn.disabled = false;
+                            newProjectConfirmBtn.textContent = 'Create';
+                            modalNewProject.classList.remove('active');
+                            fileOpBusy = false;
+                        }
+                    });
+
+                    newProjectNameInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            newProjectConfirmBtn.click();
+                        }
+                    });
+
+                    btnNewProject.addEventListener('click', openNewProjectModal);
+                    emptyNewProjectBtn.addEventListener('click', openNewProjectModal);
+                    btnOpenProject.addEventListener('click', openProject);
+                    emptyOpenProjectBtn.addEventListener('click', openProject);
+
+                    btnSave.addEventListener('click', () => {
+                        if (!state.projectName) {
+                            showToast('Create or open a project first');
+                            return;
+                        }
+                        writeProjectToDisk(false);
+                    });
+
+                    btnSaveAs.addEventListener('click', async () => {
+                        if (fileOpBusy) return;
+                        if (!state.projectName) {
+                            showToast('Create or open a project first');
+                            return;
+                        }
+                        fileOpBusy = true;
+                        try {
+                            if (supportsFSAccess) {
+                                try {
+                                    const handle = await window.showSaveFilePicker({
+                                        suggestedName: sanitizeFileName(state.projectName) + '.json',
+                                        types: JSON_FILE_TYPES,
+                                    });
+                                    state.fileHandle = handle;
+                                    await writeProjectToDisk(false);
+                                } catch (err) {
+                                    if (err && err.name !== 'AbortError') {
+                                        console.error(err);
+                                        showToast('Unable to save the file.');
+                                    }
+                                }
+                            } else {
+                                downloadProjectFile();
+                                showToast(`Project downloaded as "${sanitizeFileName(state.projectName)}.json"`);
+                            }
+                        } finally {
+                            fileOpBusy = false;
+                        }
+                    });
+
+                    // ==================== SVG EXPORT ====================
+                    function escapeXml(unsafe) {
+                        return String(unsafe || '')
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&apos;');
+                    }
+
+                    function exportProjectAsSvg() {
+                        if (!state.projectName) {
+                            showToast('Create or open a project first');
+                            return;
+                        }
+
+                        const padding = 50;
+                        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+
+                        if (state.items.length === 0) {
+                            minX = 0;
+                            minY = 0;
+                            maxX = 800;
+                            maxY = 600;
+                        } else {
+                            state.items.forEach(item => {
+                                minX = Math.min(minX, item.x);
+                                minY = Math.min(minY, item.y);
+                                maxX = Math.max(maxX, item.x + item.width);
+                                maxY = Math.max(maxY, item.y + item.height);
+                            });
+                        }
+
+                        const vx = minX - padding;
+                        const vy = minY - padding;
+                        const totalW = Math.max(100, Math.round((maxX - minX) + padding * 2));
+                        const totalH = Math.max(100, Math.round((maxY - minY) + padding * 2));
+
+                        const isDark = state.isDark;
+                        const bgColor = isDark ? '#1a202c' : '#f0f2f5';
+                        const panelBg = isDark ? '#2d3748' : '#ffffff';
+                        const textColor = isDark ? '#e2e8f0' : '#1a1a1a';
+                        const textSecondary = isDark ? '#a0aec0' : '#555555';
+                        const connColor = isDark ? '#b794f4' : '#805ad5';
+                        const borderColor = isDark ? '#4a5568' : '#d0d4d9';
+
+                        let svg = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+                        svg += `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="${vx} ${vy} ${totalW} ${totalH}" width="${totalW}" height="${totalH}">\n`;
+                        svg += `  <defs>\n`;
+                        svg += `    <filter id="board-shadow" x="-15%" y="-15%" width="130%" height="130%">\n`;
+                        svg += `      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="${isDark ? '0.45' : '0.15'}" />\n`;
+                        svg += `    </filter>\n`;
+                        svg += `  </defs>\n`;
+                        svg += `  <!-- Background -->\n`;
+                        svg += `  <rect x="${vx}" y="${vy}" width="${totalW}" height="${totalH}" fill="${bgColor}" />\n`;
+
+                        // Render connections
+                        svg += `  <!-- Connections -->\n`;
+                        svg += `  <g class="connections">\n`;
+                        state.connections.forEach(conn => {
+                            const fromItem = state.items.find(i => i.id === conn.from);
+                            const toItem = state.items.find(i => i.id === conn.to);
+                            if (fromItem && toItem) {
+                                const cx1 = fromItem.x + fromItem.width / 2;
+                                const cy1 = fromItem.y + fromItem.height / 2;
+                                const cx2 = toItem.x + toItem.width / 2;
+                                const cy2 = toItem.y + toItem.height / 2;
+
+                                const p1 = getRectEdgeIntersection(fromItem, cx2, cy2);
+                                const p2 = getRectEdgeIntersection(toItem, cx1, cy1);
+
+                                svg += `    <line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="${connColor}" stroke-width="2" stroke-linecap="round" />\n`;
+                                if (conn.label) {
+                                    const midX = (p1.x + p2.x) / 2;
+                                    const midY = (p1.y + p2.y) / 2;
+                                    const labelWidth = Math.max(36, Math.round(conn.label.length * 7.5 + 20));
+                                    svg += `    <g transform="translate(${midX}, ${midY})">\n`;
+                                    svg += `      <rect x="${-labelWidth / 2}" y="-11" width="${labelWidth}" height="22" rx="4" ry="4" fill="${panelBg}" stroke="${connColor}" stroke-width="1" />\n`;
+                                    svg += `      <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="${textColor}">${escapeXml(conn.label)}</text>\n`;
+                                    svg += `    </g>\n`;
+                                }
+                            }
+                        });
+                        svg += `  </g>\n`;
+
+                        // Render items
+                        svg += `  <!-- Board Items -->\n`;
+                        svg += `  <g class="board-items">\n`;
+                        state.items.forEach(item => {
+                            if (item.type === 'note') {
+                                const noteColor = item.color || '#fff9c4';
+                                const noteTextColor = item.textColor || (isDark ? '#1a202c' : '#333333');
+                                const noteFontSize = item.fontSize || 16;
+                                svg += `    <g class="note" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
+                                svg += `      <rect width="${item.width}" height="${item.height}" rx="4" ry="4" fill="${noteColor}" stroke="rgba(0,0,0,0.1)" stroke-width="1" />\n`;
+                                svg += `      <foreignObject width="${item.width}" height="${item.height}">\n`;
+                                svg += `        <div xmlns="http://www.w3.org/1999/xhtml" style="padding:15px; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; font-size:${noteFontSize}px; line-height:1.4; color:${noteTextColor}; word-wrap:break-word; white-space:pre-wrap; box-sizing:border-box; height:100%; overflow:hidden;">${escapeXml(item.content || '')}</div>\n`;
+                                svg += `      </foreignObject>\n`;
+                                svg += `    </g>\n`;
+                            } else if (item.type === 'image') {
+                                const safeSrc = resolveImageSrc(item.content) || '';
+                                svg += `    <g class="image-item" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
+                                svg += `      <clipPath id="clip-${item.id}">\n`;
+                                svg += `        <rect width="${item.width}" height="${item.height}" rx="6" ry="6" />\n`;
+                                svg += `      </clipPath>\n`;
+                                svg += `      <rect width="${item.width}" height="${item.height}" rx="6" ry="6" fill="${panelBg}" stroke="${borderColor}" stroke-width="1" />\n`;
+                                if (safeSrc) {
+                                    svg += `      <image href="${escapeXml(safeSrc)}" x="0" y="0" width="${item.width}" height="${item.height}" preserveAspectRatio="xMidYMid meet" clip-path="url(#clip-${item.id})" />\n`;
+                                }
+                                svg += `    </g>\n`;
+                            } else if (item.type === 'generic') {
+                                const itemBg = item.color || panelBg;
+                                const title = (item.extra && item.extra.title) ? item.extra.title : 'Untitled';
+                                const desc = (item.extra && item.extra.description) ? item.extra.description : '';
+                                const itemTextColor = item.textColor || textColor;
+                                const itemDescColor = item.textColor || textSecondary;
+                                const itemFontSize = item.fontSize || 14;
+                                const titleFontSize = Math.round(itemFontSize * 1.15);
+                                svg += `    <g class="generic-item" transform="translate(${item.x}, ${item.y})" filter="url(#board-shadow)">\n`;
+                                svg += `      <rect width="${item.width}" height="${item.height}" rx="8" ry="8" fill="${itemBg}" stroke="${borderColor}" stroke-width="1" />\n`;
+                                svg += `      <foreignObject width="${item.width}" height="${item.height}">\n`;
+                                svg += `        <div xmlns="http://www.w3.org/1999/xhtml" style="padding:12px; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; color:${itemTextColor}; box-sizing:border-box; height:100%; overflow:hidden;">\n`;
+                                svg += `          <h4 style="margin:0 0 6px 0; font-size:${titleFontSize}px; font-weight:600; color:${itemTextColor};">${escapeXml(title)}</h4>\n`;
+                                svg += `          <p style="margin:0; font-size:${itemFontSize}px; color:${itemDescColor}; word-wrap:break-word; white-space:pre-wrap;">${escapeXml(desc)}</p>\n`;
+                                svg += `        </div>\n`;
+                                svg += `      </foreignObject>\n`;
+                                svg += `    </g>\n`;
+                            }
+                        });
+                        svg += `  </g>\n`;
+                        svg += `</svg>`;
+
+                        const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = sanitizeFileName(state.projectName || 'project') + '.svg';
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
+                        showToast(`Project exported as "${sanitizeFileName(state.projectName)}.svg"`);
+                    }
+
+                    btnExportSvg.addEventListener('click', exportProjectAsSvg);
+
+                    // ==================== DARK MODE ====================
+                    btnDarkMode.addEventListener('click', () => {
+                        state.isDark = !state.isDark;
+                        document.body.classList.toggle('dark', state.isDark);
+                        if (state.projectName) markDirty();
+                    });
+
+                    // ==================== KEYBOARD SHORTCUTS ====================
+                    document.addEventListener('keydown', (e) => {
+                        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+                            e.preventDefault();
+                            if (state.projectName) {
+                                writeProjectToDisk(false);
+                            } else {
+                                showToast('Create or open a project first');
+                            }
+                            return;
+                        }
+
+                        if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
+                        if (!state.projectName) return;
+
+                        switch (e.key) {
+                            case 'v':
+                            case 'V':
+                                setTool('select');
+                                break;
+                            case 'h':
+                            case 'H':
+                                setTool('pan');
+                                break;
+                            case 'l':
+                            case 'L':
+                                setTool('link');
+                                break;
+                            case 'Delete':
+                            case 'Backspace':
+                                if (state.selectedIds.size > 0) {
+                                    e.preventDefault();
+                                    [...state.selectedIds].forEach(id => deleteItem(id));
+                                    propertyPanel.classList.remove('visible');
+                                }
+                                break;
+                            case 'Escape':
+                                clearSelection();
+                                propertyPanel.classList.remove('visible');
+                                state.linkSourceId = null;
+                                document.querySelectorAll('.board-item').forEach(el => el.style.boxShadow = '');
+                                break;
+                        }
+                    });
+
+                    // Warn before leaving the page with unsaved changes
+                    window.addEventListener('beforeunload', (e) => {
+                        if (state.isDirty) {
+                            e.preventDefault();
+                            e.returnValue = '';
+                        }
+                    });
+
+                    // ==================== INITIALIZATION ====================
+                    function init() {
+                        applyTransform();
+                        updateZoomIndicator();
+                        updateProjectIndicator();
+                        setProjectActiveUIState(false);
+                    }
+
+                    init();
+                })();
     </script>
 </body>
 </html>

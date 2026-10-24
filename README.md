@@ -114,6 +114,10 @@ OstiumIAtrad is a lightweight Windows desktop app that translates text using a s
 
 Windows command-line web extraction utility. The process has no visible console or GUI. It accepts a URL, renders the page with WebView2, extracts the rendered DOM rather than the HTML source, and writes a Markdown report into reports_. [More](https://github.com/icaza/WebToMarkdown)
 
+## 🟢 IAnon
+
+IAnon is a Windows application that runs locally using Ollama, designed to rewrite text to mask distinctive linguistic patterns while preserving meaning and factual content. IAnon alters the writing style to make stylometric analysis more difficult, thereby protecting the author's identity. [More](https://github.com/icaza/IAnon)
+
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence
