@@ -23,6 +23,7 @@
     <Company>ICAZA MEDIA</Company>
     <Copyright>MIT</Copyright>
     <Version>1.0.5</Version>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

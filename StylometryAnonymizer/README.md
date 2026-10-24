@@ -1,7 +1,13 @@
-# StylometryAnonymizer
-
 [![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-blue.svg)](https://dotnet.microsoft.com/download/dotnet-framework)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/icaza/Ostium-Osint-Browser/blob/feature%2314/StylometryAnonymizer/LICENSE.txt)
+
+# 🚀 Voir aussi la nouvelle app IAnon (Multilingue)
+
+IAnon modifie le style rédactionnel avec l'IA en local via Ollama pour rendre l'analyse stylométrique plus complexe, protégeant ainsi l'identité de l'auteur. [plus d'infos](https://github.com/icaza/IAnon)
+
+---
+
+# StylometryAnonymizer
 
 **StylometryAnonymizer** est conçue pour générer des variations de texte en français tout en préservant le sens original. L'outil modifie le style d'écriture pour rendre l'analyse stylométrique plus difficile, protégeant ainsi l'identité de l'auteur.
 

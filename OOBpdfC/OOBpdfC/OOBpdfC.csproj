@@ -17,6 +17,7 @@
     <AssemblyVersion>1.0.7</AssemblyVersion>
     <FileVersion>1.0.7</FileVersion>
     <Copyright>MIT</Copyright>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
