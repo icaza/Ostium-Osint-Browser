@@ -14605,7 +14605,7 @@ namespace Ostium
 
         void OsintWatcher_Link_Click(object sender, EventArgs e)
         {
-            Tools_Link("https://github.com/icaza/Ostium-Osint-Browser/tree/master/OsintWatcher/EXE");
+            Tools_Link("https://github.com/icaza/OsintWatcher");
         }
 
         void WebToMarkdown_Link_Click(object sender, EventArgs e)
