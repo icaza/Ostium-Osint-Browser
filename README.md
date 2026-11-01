@@ -118,6 +118,10 @@ Windows command-line web extraction utility. The process has no visible console 
 
 IAnon is a Windows application that runs locally using Ollama, designed to rewrite text to mask distinctive linguistic patterns while preserving meaning and factual content. IAnon alters the writing style to make stylometric analysis more difficult, thereby protecting the author's identity. [More](https://github.com/icaza/IAnon)
 
+## 🟢 EvidenceCollector
+
+This tool is an open-source software solution designed to meet the technical requirements of the AFNOR NF Z67-147 standard. Fully functional and developed to ensure optimal technical reliability, this software serves as a collection aid. [More](https://github.com/icaza/EvidenceCollector)
+
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence

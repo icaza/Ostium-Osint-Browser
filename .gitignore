@@ -37,6 +37,7 @@ bld/
 Install/
 bckp/
 ctn/
+TaskManager/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

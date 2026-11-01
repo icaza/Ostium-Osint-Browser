@@ -64,7 +64,7 @@ namespace Ostium
         string sessionID;
         string secureContainer = Application.StartupPath + @"\";
         readonly string RestartFile = Path.Combine(Application.StartupPath, "restartsession.oob");
-
+        bool torMode = false;
         // Initialization of the voice for Reading Feed Titles
         readonly SpeechSynthesizer synth = new SpeechSynthesizer();
 
@@ -292,8 +292,16 @@ namespace Ostium
             {
                 BeginInvoke((MethodInvoker)async delegate
                 {
+                    // =============================================================================================================
+                    //      To enable Tor mode (experimental), create a file named .tor in the application's root directory.                    
+                    //      Important! Even with a solid set of flags, WebView2 is not "Tor Browser"; the current Tor
+                    //      implementation is experimental, and WebView2 is not an isolated browser environment like Tor Browser.
+                    // =============================================================================================================
+
+                    torMode = File.Exists(Path.Combine(AppStart, ".tor"));
+
                     await InitializeEnvironmentWebview();
-                    
+
                     WBrowse_EventHandlers(WBrowse);
                     WBrowsefeed_EventHandlers(WBrowsefeed);
 
@@ -1388,7 +1396,10 @@ namespace Ostium
 
         public async Task InitializeEnvironment()
         {
-            bool torMode = File.Exists(Path.Combine(AppStart, ".tor"));
+            // =============================================================================================================
+            //      Important! Even with a solid set of flags, WebView2 is not "Tor Browser"; the current Tor
+            //      implementation is experimental, and WebView2 is not an isolated browser environment like Tor Browser.
+            // =============================================================================================================
 
             CoreWebView2Environment env;
             try
@@ -1397,38 +1408,10 @@ namespace Ostium
 
                 if (torMode)
                 {
-                    string hostResolverRules = "MAP * ~NOTFOUND , EXCLUDE 127.0.0.1";
+                    // Load external Tor browser arguments |-> TorArguments.conf
+                    options.AdditionalBrowserArguments = LoadTorBrowserArguments("TorArguments.conf");
 
-                    var args = new[]
-                    {
-                        // Proxy
-                        "--proxy-server=socks5://127.0.0.1:9050",
-                        "--proxy-bypass-list=\"localhost;127.0.0.1;::1\"",
-
-                        // DNS
-                        $"--host-resolver-rules=\"{hostResolverRules}\"",
-                        "--dns-prefetch-disable",
-                        "--disable-features=DnsOverHttps,NetworkPrediction",
-                        "--disable-quic",
-
-                        // WebRTC
-                        "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
-
-                        // Background services
-                        "--disable-background-networking",
-                        "--disable-sync",
-                        "--no-pings",
-                        "--disable-domain-reliability", //
-                        "--disable-breakpad",
-                        "--disable-crash-reporter",
-                        "--disable-metrics",
-                        "--no-first-run",
-                        "--no-default-browser-check",
-                        "--disable-extensions",
-                        "--disable-plugins"
-                    };
-
-                    options.AdditionalBrowserArguments = string.Join(" ", args);
+                    // Set browser language
                     options.Language = "en-US";
                 }
 
@@ -1460,6 +1443,10 @@ namespace Ostium
             // Explicitly apply the tracking level to the profile.
             try
             {
+                // ======================================================================================
+                //      WebView2 is not "Tor Browser"; the current Tor implementation is experimental,
+                //      and WebView2 is not an isolated browser environment like Tor Browser.
+                // ======================================================================================
                 if (torMode)
                 {
                     WBrowse.CoreWebView2.Profile.PreferredTrackingPreventionLevel = CoreWebView2TrackingPreventionLevel.Strict;
@@ -1477,11 +1464,16 @@ namespace Ostium
                     Agent_Web_Fetch_Btn.Enabled = false;
                     OsintWatcher_Mnu.Enabled = false;
                     WebToMarkedown_Mnu.Enabled = false;
+                    IndexDir_Btn.Enabled = false;
+                    PlantUml_Mnu.Enabled = false;
+                    Console_Btn.Enabled = false;
 
                     TabPage page1 = Control_Tab.TabPages[1];
                     Control_Tab.TabPages.Remove(page1);
                     TabPage page4 = Control_Tab.TabPages[4];
                     Control_Tab.TabPages.Remove(page4);
+                    TabPage page3 = Control_Tab.TabPages[3];
+                    Control_Tab.TabPages.Remove(page3);
                 }
                 else
                 {
@@ -1540,6 +1532,31 @@ namespace Ostium
                         catch
                         {
                             senderror.ErrorLog("Error! WBrowse_WebResourceRequested: ", $"[BLOCKED - Fallback] {requestUri}", "Main_Frm", AppStart);
+                        }
+                    }
+                }
+
+                // ======================================================================================
+                //      WebView2 is not "Tor Browser"; the current Tor implementation is experimental,
+                //      and WebView2 is not an isolated browser environment like Tor Browser.
+                // ======================================================================================
+                if (torMode)
+                {
+                    if (Uri.TryCreate(e.Request.Uri, UriKind.Absolute, out var uri))
+                    {
+                        if (uri.Scheme == Uri.UriSchemeFile ||
+                            uri.Scheme == "javascript" ||
+                            uri.Scheme == "data" ||
+                            uri.Scheme == "blob" ||
+                            uri.Scheme == "ws" ||
+                            uri.Scheme == "wss" ||
+                            uri.Scheme == "about")
+                        {
+                            e.Response = WBrowse.CoreWebView2.Environment.CreateWebResourceResponse(
+                                new MemoryStream(Encoding.UTF8.GetBytes("Tor strict mode: only HTTP/HTTPS allowed; local or non-web requests are blocked.")),
+                                403,
+                                "Forbidden",
+                                "Content-Type: text/plain;charset=utf-8");
                         }
                     }
                 }
@@ -2099,9 +2116,22 @@ namespace Ostium
         // <param name="TmpTitleWBrowse">Application Title variable when TAB change</param>
         void WBrowse_UpdtTitleEvent(string message)
         {
-            string currentDocumentTitle = WBrowse?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
-            Text = currentDocumentTitle + " [" + message + "]";
-            TmpTitleWBrowse = Text;
+            // ======================================================================================
+            //      WebView2 is not "Tor Browser"; the current Tor implementation is experimental,
+            //      and WebView2 is not an isolated browser environment like Tor Browser.
+            // ======================================================================================
+            if (!torMode)
+            {
+                string currentDocumentTitle = WBrowse?.CoreWebView2?.DocumentTitle ?? "Uninitialized";
+                Text = currentDocumentTitle + " [" + message + "]";
+                TmpTitleWBrowse = Text;
+            }
+            else
+            {
+                string currentDocumentTitle = "Uninitialized";
+                Text = currentDocumentTitle + " [" + message + "]";
+                TmpTitleWBrowse = Text;
+            }
         }
         ///
         /// <summary>
@@ -2150,9 +2180,30 @@ namespace Ostium
                 settings.UserAgent = UserAgentSelect;
             }
 
-            if (e.Uri.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) && File.Exists(Path.Combine(AppStart, ".tor")))
+            if (e.Uri.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) && torMode)
             {
                 e.Cancel = true;
+            }
+
+            // ======================================================================================
+            //      WebView2 is not "Tor Browser"; the current Tor implementation is experimental,
+            //      and WebView2 is not an isolated browser environment like Tor Browser.
+            // ======================================================================================
+            if (torMode)
+            {
+                if (Uri.TryCreate(e.Uri, UriKind.Absolute, out var uri))
+                {
+                    if (uri.Scheme == Uri.UriSchemeFile ||
+                        uri.Scheme == "javascript" ||
+                        uri.Scheme == "data" ||
+                        uri.Scheme == "blob" ||
+                        uri.Scheme == "ws" ||
+                        uri.Scheme == "wss" ||
+                        uri.Scheme == "about")
+                    {
+                        e.Cancel = true;
+                    }
+                }
             }
 
             if (FloodHeader_Chk.Checked)
@@ -2244,7 +2295,11 @@ namespace Ostium
 
         void WBrowse_NewWindow_Requested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
         {
-            if (IsTimelineEnabled || IsParentLinkEnabled)
+            // ======================================================================================
+            //      WebView2 is not "Tor Browser"; the current Tor implementation is experimental,
+            //      and WebView2 is not an isolated browser environment like Tor Browser.
+            // ======================================================================================
+            if (IsTimelineEnabled || IsParentLinkEnabled || torMode)
             {
                 e.Handled = true; // Force _parent Links
                 WBrowse.CoreWebView2.Navigate(e.Uri);
@@ -2307,8 +2362,64 @@ namespace Ostium
             }
         }
 
-        // Wbrowsefeed
+        private static string LoadTorBrowserArguments(string confFile)
+        {
+            string configPath = Path.Combine(Application.StartupPath, confFile);
 
+            if (!File.Exists(configPath))
+            {
+                throw new FileNotFoundException(
+                    "Tor arguments configuration file not found.",
+                    configPath
+                );
+            }
+
+            List<string> activeArguments = new List<string>();
+
+            string[] lines = File.ReadAllLines(configPath);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i].Trim();
+
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                if (line.StartsWith("//", StringComparison.Ordinal))
+                    continue;
+
+                if (line.StartsWith("#", StringComparison.Ordinal))
+                    continue;
+
+                if (!line.StartsWith("--", StringComparison.Ordinal))
+                {
+                    throw new FormatException(string.Format("Invalid argument in {0} at line {1}: {2}", confFile, i + 1, line));
+                }
+
+                activeArguments.Add(line);
+            }
+
+            // Safety check: Tor mode must have an active proxy
+            bool hasProxy = activeArguments.Exists(
+                argument => argument.StartsWith(
+                    "--proxy-server=",
+                    StringComparison.OrdinalIgnoreCase
+                )
+            );
+
+            if (!hasProxy)
+            {
+                throw new InvalidOperationException("Tor mode requires an active --proxy-server argument. " + $"Check {confFile}.");
+            }
+
+            // Build Chromium command-line arguments
+            return string.Join(" ", activeArguments);
+        }
+        //
+        //
+        // Wbrowsefeed
+        //
+        //
         void WBrowsefeed_WebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
         {
             try

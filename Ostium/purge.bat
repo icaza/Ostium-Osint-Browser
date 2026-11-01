@@ -8,7 +8,7 @@ echo.
 
 set /a ErrorCount=0
 
-timeout /t 3 /nobreak > NUL
+timeout /t 5 /nobreak > NUL
 
 echo [1/9] Deleting the folder EnvironmentWebview...
 if exist "EnvironmentWebview" (
