@@ -4710,18 +4710,18 @@
                         
                         2025-04-30](https://tikface.com/)
 
-## tiktok.einzzcookie.org
+## einzzcookie.org
 
 - [TikTok Stalker
                             Platform-SaaS • Free
                         
                     
                     
-                        An OSINT tool for real-time monitoring of TikTok user activity, including like/unlike tracking, profile analysis, and video metadata extraction. https://tiktok.einzzcookie.org/
+                        An OSINT tool for real-time monitoring of TikTok user activity, including like/unlike tracking, profile analysis, and video metadata extraction. https://einzzcookie.org/
                         
                             SOCMINT > TikTok 
                         
-                        2026-06-08](https://tiktok.einzzcookie.org/)
+                        2026-06-08](https://einzzcookie.org/)
 
 ## tirexdel.github.io
 
