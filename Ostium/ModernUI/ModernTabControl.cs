@@ -1,8 +1,8 @@
 ﻿// ---------------------------------------------------------------------------
 //  Ostium - ModernTabControl
-//  TabControl dessine entierement (fond sombre, onglet actif surligne, survol).
-//  Remplace System.Windows.Forms.TabControl dans Main_Frm.Designer.cs :
-//  toutes les proprietes / evenements habituels restent disponibles.
+//  A fully custom-drawn TabControl (dark background, highlighted active tab, hover effects).
+//  Replaces System.Windows.Forms.TabControl in Main_Frm.Designer.cs:
+//  all standard properties and events remain available.
 // ---------------------------------------------------------------------------
 using System;
 using System.Drawing;
@@ -28,7 +28,7 @@ namespace Ostium.ModernUI
             DoubleBuffered = true;
         }
 
-        /// <summary>Hauteur de la bande contenant les onglets.</summary>
+        /// <summary>Height of the strip containing the tabs.</summary>
         private int StripHeight
         {
             get { return ItemSize.Height + 3; }
@@ -36,20 +36,20 @@ namespace Ostium.ModernUI
 
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
-            // Tout est dessine dans OnPaint (evite le scintillement).
+            // Everything is drawn within OnPaint (this avoids flickering).
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
 
-            // Fond general (identique aux pages pour que le cadre de 4 px autour d'elles soit invisible)
+            // General background (identical to the pages so that the 4 px frame around them is invisible)
             using (SolidBrush body = new SolidBrush(ModernPalette.Bg))
             {
                 g.FillRectangle(body, ClientRectangle);
             }
 
-            // Bande des onglets
+            // Tab bar
             Rectangle strip = new Rectangle(0, 0, Width, StripHeight);
             using (SolidBrush stripBrush = new SolidBrush(ModernPalette.Sidebar))
             {

@@ -1,18 +1,18 @@
 ﻿// ---------------------------------------------------------------------------
 //  Ostium - Main_Frm.Theme.cs
-//  Partie complementaire de Main_Frm : branchement du theme moderne.
-//  Aucun code existant n'est modifie : ces methodes sont appelees uniquement
-//  par les evenements declares dans Main_Frm.Designer.cs.
+//  Supplementary part of Main_Frm: integration of the modern theme.
+//  No existing code is modified; these methods are called exclusively
+//  by the events declared in Main_Frm.Designer.cs.
 // ---------------------------------------------------------------------------
+using Ostium.ModernUI;
 using System;
 using System.Windows.Forms;
-using Ostium.ModernUI;
 
 namespace Ostium
 {
     partial class Main_Frm
     {
-        /// <summary>Applique le theme (barre de titre sombre, ListBox, barres de defilement...).</summary>
+        /// <summary>Applies the theme (dark title bar, ListBox, scroll bars, etc.).</summary>
         private void ModernTheme_HandleCreated(object sender, EventArgs e)
         {
             ModernTheme.Apply(this);

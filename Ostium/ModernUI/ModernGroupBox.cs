@@ -1,7 +1,7 @@
 ﻿// ---------------------------------------------------------------------------
 //  Ostium - ModernGroupBox
-//  GroupBox sombre : bordure fine arrondie et legende qui interrompt la ligne.
-//  Remplace System.Windows.Forms.GroupBox dans Main_Frm.Designer.cs.
+//  Dark GroupBox: features a thin, rounded border with a legend that interrupts the line.
+//  Replaces System.Windows.Forms.GroupBox in Main_Frm.Designer.cs.
 // ---------------------------------------------------------------------------
 using System;
 using System.Drawing;
@@ -54,7 +54,7 @@ namespace Ostium.ModernUI
 
             if (textSize.Width > 0)
             {
-                // La legende "coupe" la bordure : on repeint le fond derriere le texte.
+                // The legend "cuts" into the border: the background behind the text is repainted.
                 Rectangle gap = new Rectangle(8, 0, textSize.Width + 8, textSize.Height);
                 using (SolidBrush back = new SolidBrush(BackColor))
                 {

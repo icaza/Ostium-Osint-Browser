@@ -1,13 +1,13 @@
 ﻿// ---------------------------------------------------------------------------
 //  Ostium - Modern dark theme
-//  Fichier complementaire du Main_Frm.Designer.cs (C# 7.3 / .NET Framework 4.8.1)
+//  Supplementary file for Main_Frm.Designer.cs (C# 7.3 / .NET Framework 4.8.1)
 //
-//  Contenu :
-//    - ModernPalette            : palette de couleurs partagee
-//    - ModernTheme              : application du theme a l'execution (barre de titre sombre,
-//                                 barres de defilement sombres, ListBox modernes, info-bulles)
-//    - ModernToolStripRenderer  : rendu moderne (plat, coins arrondis) des ToolStrip / menus
-//    - ModernColorTable         : table de couleurs associee
+//  Contents:
+//    - ModernPalette            : shared color palette
+//    - ModernTheme              : runtime theme application (dark title bar,
+//                                 dark scrollbars, modern ListBoxes, tooltips)
+//    - ModernToolStripRenderer  : modern rendering (flat, rounded corners) for ToolStrips / menus
+//    - ModernColorTable         : associated color table
 // ---------------------------------------------------------------------------
 using System;
 using System.Drawing;
@@ -49,7 +49,7 @@ namespace Ostium.ModernUI
         }
     }
 
-    /// <summary>Applique le theme moderne a une fenetre et a tous ses controles.</summary>
+    /// <summary>Apply the modern theme to a window and all its controls.</summary>
     public static class ModernTheme
     {
         private static readonly object Marker = new object();
@@ -58,12 +58,12 @@ namespace Ostium.ModernUI
         private static Font _toolTipFont;
 
         // -------------------------------------------------------------------
-        //  Point d'entree
+        //  Entry point
         // -------------------------------------------------------------------
 
         /// <summary>
-        /// A appeler une seule fois (ex. depuis l'evenement HandleCreated de la fenetre).
-        /// Sans danger si appele plusieurs fois.
+        /// To be called only once (e.g., from the window's HandleCreated event). 
+        /// Safe to call multiple times.
         /// </summary>
         public static void Apply(Form form)
         {
@@ -108,9 +108,9 @@ namespace Ostium.ModernUI
         }
 
         /// <summary>
-        /// Les menus deroulants (ToolStripDropDown) ne sont pas des enfants du formulaire :
-        /// on leur donne ici le fond / la couleur de texte sombres, et on theme les controles
-        /// heberges (ToolStripComboBox, ToolStripTextBox...).
+        /// Drop-down menus (ToolStripDropDown) are not children of the form:
+        /// here, we assign them a dark background and text color, and apply a theme to the
+        /// hosted controls (ToolStripComboBox, ToolStripTextBox, etc.).
         /// </summary>
         private static void ThemifyItems(ToolStripItemCollection items)
         {
@@ -141,7 +141,7 @@ namespace Ostium.ModernUI
         }
 
         // -------------------------------------------------------------------
-        //  Parametres natifs (Win32) : barre de titre, barres de defilement
+        //  Native (Win32) settings: title bar, scroll bars
         // -------------------------------------------------------------------
 
         private static void ApplyNative(Control c)
@@ -189,21 +189,21 @@ namespace Ostium.ModernUI
             }
             catch (DllNotFoundException) { }
             catch (EntryPointNotFoundException) { }
-            catch (Exception) { /* le theme est purement cosmetique : ne jamais bloquer l'application */ }
+            catch (Exception) { /* The theme is purely cosmetic: it should never block the application. */ }
         }
 
         private static void ApplyWindowChrome(Form form)
         {
             IntPtr handle = form.Handle;
 
-            // Barre de titre sombre (Windows 10 2004+ : attribut 20 ; builds plus anciens : 19)
+            // Dark title bar (Windows 10 2004+: attribute 20; older builds) : 19)
             int dark = 1;
             if (NativeMethods.DwmSetWindowAttribute(handle, NativeMethods.DWMWA_USE_IMMERSIVE_DARK_MODE, ref dark, sizeof(int)) != 0)
             {
                 NativeMethods.DwmSetWindowAttribute(handle, NativeMethods.DWMWA_USE_IMMERSIVE_DARK_MODE_OLD, ref dark, sizeof(int));
             }
 
-            // Windows 11 : couleurs de la barre de titre alignees sur l'interface (sans effet sur Windows 10)
+            // Windows 11 : title bar colors aligned with the interface (no effect on Windows 10)
             int caption = ToColorRef(ModernPalette.Sidebar);
             int border = ToColorRef(ModernPalette.Border);
             int text = ToColorRef(ModernPalette.Text);
@@ -218,7 +218,7 @@ namespace Ostium.ModernUI
         }
 
         // -------------------------------------------------------------------
-        //  ListBox : lignes plus aeriennes, selection moderne
+        //  ListBox : sleeker lines, modern selection
         // -------------------------------------------------------------------
 
         private static void StyleListBox(ListBox lb)
@@ -260,7 +260,7 @@ namespace Ostium.ModernUI
         }
 
         // -------------------------------------------------------------------
-        //  Info-bulles (ToolTip en OwnerDraw)
+        //  Tooltips (ToolTip in OwnerDraw)
         // -------------------------------------------------------------------
 
         private static Font ToolTipFont
@@ -272,7 +272,7 @@ namespace Ostium.ModernUI
             }
         }
 
-        /// <summary>A brancher sur ToolTip.Popup (ToolTip.OwnerDraw = true).</summary>
+        /// <summary>To be connected to ToolTip.Popup (ToolTip.OwnerDraw = true).</summary>
         public static void ToolTipPopup(ToolTip toolTip, PopupEventArgs e)
         {
             string text = e.AssociatedControl != null ? toolTip.GetToolTip(e.AssociatedControl) : string.Empty;
@@ -280,7 +280,7 @@ namespace Ostium.ModernUI
             e.ToolTipSize = new Size(size.Width + 18, size.Height + 12);
         }
 
-        /// <summary>A brancher sur ToolTip.Draw (ToolTip.OwnerDraw = true).</summary>
+        /// <summary>To be connected to ToolTip.Draw (ToolTip.OwnerDraw = true).</summary>
         public static void ToolTipDraw(DrawToolTipEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -344,7 +344,7 @@ namespace Ostium.ModernUI
     }
 
     // =======================================================================
-    //  Rendu des ToolStrip / menus / barre d'etat
+    //  Rendering of ToolStrips / menus / status bar
     // =======================================================================
 
     internal sealed class ModernToolStripRenderer : ToolStripProfessionalRenderer
@@ -359,7 +359,7 @@ namespace Ostium.ModernUI
             ToolStripDropDown dropDown = e.ToolStrip as ToolStripDropDown;
             if (dropDown != null && dropDown.ForeColor == Control.DefaultForeColor)
             {
-                // Menu cree dynamiquement apres l'application du theme : texte clair sur fond sombre.
+                // Menu created dynamically after the theme is applied: light text on a dark background.
                 dropDown.ForeColor = ModernPalette.Text;
             }
 
@@ -392,7 +392,7 @@ namespace Ostium.ModernUI
 
         protected override void OnRenderImageMargin(ToolStripRenderEventArgs e)
         {
-            // Pas de colonne d'icones distincte : le fond du menu est uniforme.
+            //No separate column for icons: the menu background is uniform.
         }
 
         protected override void OnRenderGrip(ToolStripGripRenderEventArgs e)
@@ -508,7 +508,7 @@ namespace Ostium.ModernUI
         {
             if (e.Item != null && !e.Item.Enabled)
             {
-                // Le rendu de base force un gris systeme illisible sur fond sombre.
+                // The default rendering forces a system gray that is unreadable against a dark background.
                 TextRenderer.DrawText(e.Graphics, e.Text, e.TextFont, e.TextRectangle, ModernPalette.Disabled, e.TextFormat);
                 return;
             }
@@ -523,7 +523,7 @@ namespace Ostium.ModernUI
         {
             if (!item.Enabled) return;
 
-            // Fond personnalise (ex. bouton d'accent) : different de la couleur de la barre.
+            // Custom background (e.g., accent button): different from the bar color.
             Color custom = Color.Empty;
             if (item.Owner != null && item.BackColor != item.Owner.BackColor && !item.BackColor.IsEmpty)
             {
