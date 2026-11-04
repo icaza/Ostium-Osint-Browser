@@ -54,7 +54,7 @@ namespace Ostium
         #region Checking_Updates
         const string RepoOwner = "icaza";
         const string RepoName = "Ostium-Osint-Browser";
-        const string CurrentVersion = "1.4.53";
+        const string CurrentVersion = "2.0.0";
         readonly string GitHubReleaseUpdater = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2");
         readonly string configUpdtPath = Path.Combine(Application.StartupPath, "GitHubReleaseUpdaterV2", "config.json");
         #endregion
@@ -427,8 +427,6 @@ namespace Ostium
             FormClosing += new FormClosingEventHandler(Main_Frm_FormClosed);
             LocationChanged += new EventHandler(Main_Frm_LocationChanged);
             CategorieFeed_Cbx.SelectedIndexChanged += new EventHandler(CategorieFeed_Cbx_SelectedIndexChanged);
-            RSSListSite_Lbl.MouseEnter += new EventHandler(RSSListSite_Lbl_MouseEnter);
-            RSSListSite_Lbl.MouseLeave += new EventHandler(RSSListSite_Lbl_Leave);
             ThemDiag_Cbx.SelectedIndexChanged += new EventHandler(ThemDiag_Cbx_SelectedIndexChanged);
             GMap_Ctrl.OnPositionChanged += new PositionChanged(GMap_Ctrl_OnPositionChanged);
             GMap_Ctrl.OnMapZoomChanged += new MapZoomChanged(GMap_Ctrl_OnMapZoomChanged);
@@ -7824,8 +7822,6 @@ namespace Ostium
                 Title_Lst.Items.Clear();
                 Link_Lst.Items.Clear();
 
-                MSenter();
-
                 Thread Thr_RssFeed = new Thread(() => LoadFeed(0));
                 Thr_RssFeed.Start();
 
@@ -7834,12 +7830,12 @@ namespace Ostium
             }
         }
 
-        void CountBlockSite_Lbl_SelectedIndexChanged(object sender, EventArgs e)
+        void CountBlockSite_Lst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (RSSListSite_Lbl.SelectedIndex != -1)
+            if (RSSListSite_Lst.SelectedIndex != -1)
             {
-                CountBlockFeed_Lbl.Items[RSSListSite_Lbl.SelectedIndex].ToString();
-                int value = Convert.ToInt32(CountBlockFeed_Lbl.Items[RSSListSite_Lbl.SelectedIndex].ToString());
+                CountBlockFeed_Lst.Items[RSSListSite_Lst.SelectedIndex].ToString();
+                int value = Convert.ToInt32(CountBlockFeed_Lst.Items[RSSListSite_Lst.SelectedIndex].ToString());
 
                 Title_Lst.SetSelected(value, true);
             }
@@ -7856,7 +7852,6 @@ namespace Ostium
         /// <param name="ItemLinkAdd">Added title URL in Link_Lst</param>
         /// <param name="CountFeed">Display of the number of titles in "Title_Lst"</param>
         /// <param name="AllTrue">Enable elements</param>
-        /// <param name="Msleave">Overlaying the RSS feed site window on top</param>
         ///       
         async void LoadFeed(int startIndex)
         {
@@ -7888,7 +7883,6 @@ namespace Ostium
                 {
                     CountBlockSite_Invk("CountFeed");
                     CountBlockSite_Invk("AllTrue");
-                    CountBlockSite_Invk("Msleave");
                 }));
             }
             catch (Exception ex)
@@ -8392,29 +8386,6 @@ namespace Ostium
             { }
         }
         #endregion
-
-        void RSSListSite_Lbl_MouseEnter(object sender, EventArgs e)
-        {
-            MSenter();
-        }
-
-        void RSSListSite_Lbl_Leave(object sender, EventArgs e)
-        {
-            MSleave();
-        }
-
-        void MSenter()
-        {
-            RSSListSite_Lbl.BringToFront();
-            RSSListSite_Lbl.Width = 250;
-            RSSListSite_Lbl.Visible = true;
-        }
-
-        void MSleave()
-        {
-            RSSListSite_Lbl.SendToBack();
-            RSSListSite_Lbl.Width = 50;
-        }
 
         void TxtApiKey_Enter(object sender, EventArgs e)
         {
@@ -9606,16 +9577,16 @@ namespace Ostium
             switch (xswitch)
             {
                 case "Clear":
-                    RSSListSite_Lbl.Items.Clear();
-                    CountBlockFeed_Lbl.Items.Clear();
+                    RSSListSite_Lst.Items.Clear();
+                    CountBlockFeed_Lst.Items.Clear();
                     collectedItemsTitleRss.Clear();
                     break;
                 case "Disable":
-                    RSSListSite_Lbl.Enabled = false;
+                    RSSListSite_Lst.Enabled = false;
                     break;
                 case "AllTrue":
                     CategorieFeed_Cbx.Enabled = true;
-                    RSSListSite_Lbl.Enabled = true;
+                    RSSListSite_Lst.Enabled = true;
                     CreatCategorie_Btn.Enabled = true;
                     AddFeed_Btn.Enabled = true;
                     CollapseTitleFeed_Btn.Enabled = true;
@@ -9632,10 +9603,10 @@ namespace Ostium
                 case "FeedTitle":
                     CountFeed_Status.Text = TitleFeed;
                     string trimmedTitleFeed = TitleFeed.Trim();
-                    RSSListSite_Lbl.Items.Add(trimmedTitleFeed);
+                    RSSListSite_Lst.Items.Add(trimmedTitleFeed);
                     break;
                 case "ListCount":
-                    CountBlockFeed_Lbl.Items.Add(Title_Lst.Items.Count);
+                    CountBlockFeed_Lst.Items.Add(Title_Lst.Items.Count);
                     break;
                 case "ItemTitleAdd":
                     Title_Lst.Items.Add(AddTitleItem);
@@ -9646,10 +9617,6 @@ namespace Ostium
                     break;
                 case "CountFeed":
                     CountFeed_Status.Text = "Count Feed: " + Title_Lst.Items.Count;
-                    break;
-                case "Msleave":
-                    RSSListSite_Lbl.SendToBack();
-                    RSSListSite_Lbl.Width = 50;
                     break;
                 default:
                     break;

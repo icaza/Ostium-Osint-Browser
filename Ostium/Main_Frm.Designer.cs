@@ -57,6 +57,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Frm));
+            this.ModernToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.CloseSetCookie_Btn = new System.Windows.Forms.Button();
+            this.CleanSearch_Btn = new System.Windows.Forms.Button();
+            this.Go_Btn = new System.Windows.Forms.Button();
+            this.Home_Btn = new System.Windows.Forms.Button();
+            this.Refresh_Btn = new System.Windows.Forms.Button();
+            this.Forward_Btn = new System.Windows.Forms.Button();
+            this.Back_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0 = new System.Windows.Forms.ToolStrip();
             this.Console_Btn = new System.Windows.Forms.ToolStripButton();
             this.Mute_Btn = new System.Windows.Forms.ToolStripButton();
@@ -193,7 +201,148 @@
             this.AddURL_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnURL_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Control_Tab = new System.Windows.Forms.TabControl();
+            this.Status_Strip = new System.Windows.Forms.StatusStrip();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.JavaDisable_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.JavaDisableFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.DBSelectOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.RecordsCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ProjectMapOpn_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LatTCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LonGtCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.FileOpnJson_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MaxHistoryEntry_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Agent_RSS_Cnt_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
+            this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.CategorieFeed_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.CreatCategorie_Btn = new System.Windows.Forms.ToolStripButton();
+            this.NewCategory_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.AddFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.NewFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.ManageFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteCatfeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Separator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteURLfeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Separator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.CollapseTitleFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.GoFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.GoFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolsFeed_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CopyURLfeed_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnFileCategory_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.TraductPageFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator45 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveTitleRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
+            this.ReadArticle_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
+            this.DiscoverRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
+            this.oOBaiAgentRssNewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Agent_RSS_News_Local = new System.Windows.Forms.ToolStripMenuItem();
+            this.Agent_RSS_News_Cloud = new System.Windows.Forms.ToolStripMenuItem();
+            this.Agent_RSS_News_Promptsend = new System.Windows.Forms.ToolStripMenuItem();
+            this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
+            this.RSS2_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ConfigRSS2_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartRSS2node_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.RSS2local_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
+            this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
+            this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
+            this.ViewXml_Tls = new System.Windows.Forms.ToolStripButton();
+            this.EditXml_Tls = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ExportXml_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportJson_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateDiagram_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Diagram_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiagramMindMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiagramMindMap2_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportDiag_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnSprites_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
+            this.File_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.OpnJsonFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnXMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnPlantUMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.ThemDiag_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.DeleteProject_Tls = new System.Windows.Forms.ToolStripButton();
+            this.Debug_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.VerifProcessRun_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.KillProcess_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUmlLUpdate_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.Timo = new System.Windows.Forms.Timer(this.components);
+            this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
+            this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportGPX_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnDirMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
+            this.DelProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolsMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.OpnListLocation_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRouteGpx_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
+            this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnBingMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGoogleEarthWeb_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
+            this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.NegativeModeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
+            this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.KeywordMap_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.GoWord_Tls = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Control_Tab = new Ostium.ModernUI.ModernTabControl();
             this.Browser_Tab = new System.Windows.Forms.TabPage();
             this.WBrowse = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.Cookie_Pnl = new System.Windows.Forms.Panel();
@@ -201,7 +350,6 @@
             this.ScriptUrl_Lst = new System.Windows.Forms.ListBox();
             this.SourcePage_Txt = new System.Windows.Forms.TextBox();
             this.ConstructURL_Lst = new System.Windows.Forms.ListBox();
-            this.CloseSetCookie_Btn = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -219,15 +367,9 @@
             this.Source_Page_Lst = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.URLbrowse_Cbx = new System.Windows.Forms.ComboBox();
-            this.CleanSearch_Btn = new System.Windows.Forms.Button();
             this.OpnPrompt_Btn = new System.Windows.Forms.Button();
             this.AddURLink_Btn = new System.Windows.Forms.Button();
-            this.Go_Btn = new System.Windows.Forms.Button();
             this.GoWebwiev_Btn = new System.Windows.Forms.Button();
-            this.Home_Btn = new System.Windows.Forms.Button();
-            this.Refresh_Btn = new System.Windows.Forms.Button();
-            this.Forward_Btn = new System.Windows.Forms.Button();
-            this.Back_Btn = new System.Windows.Forms.Button();
             this.Agent_Fetch_Search = new System.Windows.Forms.Button();
             this.NewSeesion_Btn = new System.Windows.Forms.Button();
             this.DB_Pnl = new System.Windows.Forms.Panel();
@@ -252,8 +394,8 @@
             this.Rss_Tab = new System.Windows.Forms.TabPage();
             this.splitContain_Rss = new System.Windows.Forms.SplitContainer();
             this.Title_Lst = new System.Windows.Forms.ListBox();
-            this.RSSListSite_Lbl = new System.Windows.Forms.ListBox();
-            this.CountBlockFeed_Lbl = new System.Windows.Forms.ListBox();
+            this.RSSListSite_Lst = new System.Windows.Forms.ListBox();
+            this.CountBlockFeed_Lst = new System.Windows.Forms.ListBox();
             this.WBrowsefeed = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.Link_Lst = new System.Windows.Forms.ListBox();
             this.ListFeed_Lst = new System.Windows.Forms.ListBox();
@@ -299,12 +441,12 @@
             this.Db_Delete_Table_Btn = new System.Windows.Forms.Button();
             this.Workflow_Tab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new Ostium.ModernUI.ModernGroupBox();
             this.ModelList_Lst = new System.Windows.Forms.ListBox();
             this.PanelWrkButtonModel_Pnl = new System.Windows.Forms.Panel();
             this.ModelDelete_Btn = new System.Windows.Forms.Button();
             this.ModelEdit_Btn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new Ostium.ModernUI.ModernGroupBox();
             this.ModelItem_Txt = new FastColoredTextBoxNS.FastColoredTextBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
@@ -466,7 +608,7 @@
             this.panel34 = new System.Windows.Forms.Panel();
             this.Options_Tab = new System.Windows.Forms.TabPage();
             this.Panel_WorkspaceSize = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new Ostium.ModernUI.ModernGroupBox();
             this.PanelOptDir_Pnl = new System.Windows.Forms.Panel();
             this.KeepTrackDir_Lbl = new System.Windows.Forms.Label();
             this.KeepTrackDir_Opn = new System.Windows.Forms.Label();
@@ -498,17 +640,17 @@
             this.WorkFlowModelDir_Lbl = new System.Windows.Forms.Label();
             this.WorkFlowDir_Lbl = new System.Windows.Forms.Label();
             this.WorkFlowModelDir_Opn = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new Ostium.ModernUI.ModernGroupBox();
             this.TrackPrevent_Cbx = new System.Windows.Forms.ComboBox();
             this.panel26 = new System.Windows.Forms.Panel();
             this.Panel_ConfigFiles = new System.Windows.Forms.Panel();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new Ostium.ModernUI.ModernGroupBox();
             this.KillCookies_Chk = new System.Windows.Forms.CheckBox();
             this.FloodHeader_Chk = new System.Windows.Forms.CheckBox();
             this.Limitsize_Chk = new System.Windows.Forms.CheckBox();
             this.ArchiveAdd_Lst = new System.Windows.Forms.ListBox();
             this.SaveCookies_Chk = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new Ostium.ModernUI.ModernGroupBox();
             this.OOBai_Opt = new System.Windows.Forms.Button();
             this.MultipleDir_Opt = new System.Windows.Forms.Button();
             this.Furlconstdir_Opt = new System.Windows.Forms.Button();
@@ -519,7 +661,7 @@
             this.Furldir_Opt = new System.Windows.Forms.Button();
             this.panel25 = new System.Windows.Forms.Panel();
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new Ostium.ModernUI.ModernGroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
             this.WarcArchiver_Link = new System.Windows.Forms.Label();
             this.WarcArchiver_Opt_Txt = new System.Windows.Forms.TextBox();
@@ -561,148 +703,11 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.Status_Strip = new System.Windows.Forms.StatusStrip();
-            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
-            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.JavaDisable_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.JavaDisableFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DBSelectOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.RecordsCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ProjectMapOpn_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.LatTCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
-            this.LonGtCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.FileOpnJson_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MaxHistoryEntry_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Agent_RSS_Cnt_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
-            this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.CategorieFeed_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.CreatCategorie_Btn = new System.Windows.Forms.ToolStripButton();
-            this.NewCategory_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.AddFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.NewFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.ManageFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteCatfeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Separator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteURLfeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Separator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.CollapseTitleFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.GoFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
-            this.ToolsFeed_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.CopyURLfeed_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnFileCategory_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.TraductPageFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator45 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaveTitleRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
-            this.ReadArticle_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
-            this.DiscoverRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
-            this.oOBaiAgentRssNewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Agent_RSS_News_Local = new System.Windows.Forms.ToolStripMenuItem();
-            this.Agent_RSS_News_Cloud = new System.Windows.Forms.ToolStripMenuItem();
-            this.Agent_RSS_News_Promptsend = new System.Windows.Forms.ToolStripMenuItem();
-            this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
-            this.RSS2_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ConfigRSS2_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.StartRSS2node_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.RSS2local_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
-            this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
-            this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
-            this.ViewXml_Tls = new System.Windows.Forms.ToolStripButton();
-            this.EditXml_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ExportXml_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportJson_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateDiagram_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Diagram_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.DiagramMindMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.DiagramMindMap2_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportDiag_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnSprites_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
-            this.File_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.OpnJsonFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnXMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnPlantUMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.ThemDiag_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.DeleteProject_Tls = new System.Windows.Forms.ToolStripButton();
-            this.Debug_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.VerifProcessRun_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.KillProcess_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlantUmlLUpdate_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.Timo = new System.Windows.Forms.Timer(this.components);
-            this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
-            this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
-            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportGPX_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnDirMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
-            this.DelProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolsMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.OpnListLocation_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnListRouteGpx_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
-            this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnBingMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenGoogleEarthWeb_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
-            this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
-            this.NegativeModeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.KeywordMap_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoWord_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
             this.Tools_TAB_0.SuspendLayout();
+            this.Status_Strip.SuspendLayout();
+            this.Tools_TAB_1.SuspendLayout();
+            this.Tools_TAB_3.SuspendLayout();
+            this.Tools_TAB_4.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WBrowse)).BeginInit();
@@ -778,16 +783,171 @@
             this.groupBox3.SuspendLayout();
             this.PanelGrpOpt_Pnl.SuspendLayout();
             this.panel27.SuspendLayout();
-            this.Status_Strip.SuspendLayout();
-            this.Tools_TAB_1.SuspendLayout();
-            this.Tools_TAB_3.SuspendLayout();
-            this.Tools_TAB_4.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // ModernToolTip
+            // 
+            this.ModernToolTip.AutoPopDelay = 8000;
+            this.ModernToolTip.InitialDelay = 400;
+            this.ModernToolTip.OwnerDraw = true;
+            this.ModernToolTip.ReshowDelay = 100;
+            this.ModernToolTip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.ModernToolTip_Draw);
+            this.ModernToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.ModernToolTip_Popup);
+            // 
+            // CloseSetCookie_Btn
+            // 
+            this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
+            this.CloseSetCookie_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseSetCookie_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseSetCookie_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.CloseSetCookie_Btn.Location = new System.Drawing.Point(8, 28);
+            this.CloseSetCookie_Btn.Name = "CloseSetCookie_Btn";
+            this.CloseSetCookie_Btn.Size = new System.Drawing.Size(22, 22);
+            this.CloseSetCookie_Btn.TabIndex = 7;
+            this.CloseSetCookie_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.CloseSetCookie_Btn, "Close");
+            this.CloseSetCookie_Btn.UseVisualStyleBackColor = false;
+            this.CloseSetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
+            // 
+            // CleanSearch_Btn
+            // 
+            this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
+            this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.CleanSearch_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CleanSearch_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.CleanSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CleanSearch_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CleanSearch_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.CleanSearch_Btn.Location = new System.Drawing.Point(402, 0);
+            this.CleanSearch_Btn.MaximumSize = new System.Drawing.Size(53, 24);
+            this.CleanSearch_Btn.Name = "CleanSearch_Btn";
+            this.CleanSearch_Btn.Size = new System.Drawing.Size(30, 24);
+            this.CleanSearch_Btn.TabIndex = 9;
+            this.CleanSearch_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.CleanSearch_Btn, "Clear");
+            this.CleanSearch_Btn.UseVisualStyleBackColor = false;
+            this.CleanSearch_Btn.Click += new System.EventHandler(this.CleanSearch_Btn_Click);
+            // 
+            // Go_Btn
+            // 
+            this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Go_Btn.FlatAppearance.BorderSize = 0;
+            this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Go_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Go_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Go_Btn.Location = new System.Drawing.Point(946, 0);
+            this.Go_Btn.MaximumSize = new System.Drawing.Size(58, 24);
+            this.Go_Btn.Name = "Go_Btn";
+            this.Go_Btn.Size = new System.Drawing.Size(58, 24);
+            this.Go_Btn.TabIndex = 1;
+            this.Go_Btn.Text = "Go";
+            this.ModernToolTip.SetToolTip(this.Go_Btn, "Go");
+            this.Go_Btn.UseVisualStyleBackColor = false;
+            this.Go_Btn.Click += new System.EventHandler(this.Go_Btn_Click);
+            // 
+            // Home_Btn
+            // 
+            this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Home_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Home_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Home_Btn.FlatAppearance.BorderSize = 0;
+            this.Home_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Home_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Home_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Home_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Home_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Home_Btn.Location = new System.Drawing.Point(266, 0);
+            this.Home_Btn.MaximumSize = new System.Drawing.Size(53, 24);
+            this.Home_Btn.Name = "Home_Btn";
+            this.Home_Btn.Size = new System.Drawing.Size(53, 24);
+            this.Home_Btn.TabIndex = 5;
+            this.Home_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.Home_Btn, "Home");
+            this.Home_Btn.UseVisualStyleBackColor = false;
+            this.Home_Btn.Click += new System.EventHandler(this.Home_Btn_Click);
+            // 
+            // Refresh_Btn
+            // 
+            this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Refresh_Btn.FlatAppearance.BorderSize = 0;
+            this.Refresh_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Refresh_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Refresh_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Refresh_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Refresh_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Refresh_Btn.Location = new System.Drawing.Point(213, 0);
+            this.Refresh_Btn.MaximumSize = new System.Drawing.Size(53, 24);
+            this.Refresh_Btn.Name = "Refresh_Btn";
+            this.Refresh_Btn.Size = new System.Drawing.Size(53, 24);
+            this.Refresh_Btn.TabIndex = 4;
+            this.Refresh_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.Refresh_Btn, "Refresh");
+            this.Refresh_Btn.UseVisualStyleBackColor = false;
+            this.Refresh_Btn.Click += new System.EventHandler(this.Refresh_Btn_Click);
+            // 
+            // Forward_Btn
+            // 
+            this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Forward_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Forward_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Forward_Btn.FlatAppearance.BorderSize = 0;
+            this.Forward_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Forward_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Forward_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Forward_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Forward_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Forward_Btn.Location = new System.Drawing.Point(160, 0);
+            this.Forward_Btn.MaximumSize = new System.Drawing.Size(53, 24);
+            this.Forward_Btn.Name = "Forward_Btn";
+            this.Forward_Btn.Size = new System.Drawing.Size(53, 24);
+            this.Forward_Btn.TabIndex = 3;
+            this.Forward_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.Forward_Btn, "Forward");
+            this.Forward_Btn.UseVisualStyleBackColor = false;
+            this.Forward_Btn.Click += new System.EventHandler(this.Forward_Btn_Click);
+            // 
+            // Back_Btn
+            // 
+            this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Back_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Back_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Back_Btn.FlatAppearance.BorderSize = 0;
+            this.Back_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Back_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Back_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Back_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Back_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Back_Btn.Location = new System.Drawing.Point(107, 0);
+            this.Back_Btn.MaximumSize = new System.Drawing.Size(53, 24);
+            this.Back_Btn.Name = "Back_Btn";
+            this.Back_Btn.Size = new System.Drawing.Size(53, 24);
+            this.Back_Btn.TabIndex = 2;
+            this.Back_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.Back_Btn, "Back");
+            this.Back_Btn.UseVisualStyleBackColor = false;
+            this.Back_Btn.Click += new System.EventHandler(this.Back_Btn_Click);
             // 
             // Tools_TAB_0
             // 
-            this.Tools_TAB_0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tools_TAB_0.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_0.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tools_TAB_0.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Tools_TAB_0.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Console_Btn,
@@ -808,9 +968,8 @@
             this.OpnURL_Btn});
             this.Tools_TAB_0.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_0.Name = "Tools_TAB_0";
-            this.Tools_TAB_0.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
-            this.Tools_TAB_0.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.Tools_TAB_0.Size = new System.Drawing.Size(1334, 29);
+            this.Tools_TAB_0.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.Tools_TAB_0.Size = new System.Drawing.Size(1334, 34);
             this.Tools_TAB_0.TabIndex = 12;
             this.Tools_TAB_0.Visible = false;
             // 
@@ -820,7 +979,7 @@
             this.Console_Btn.Image = global::Ostium.Properties.Resources.cmdprompt;
             this.Console_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Console_Btn.Name = "Console_Btn";
-            this.Console_Btn.Size = new System.Drawing.Size(23, 22);
+            this.Console_Btn.Size = new System.Drawing.Size(23, 25);
             this.Console_Btn.Text = "Console prompt";
             this.Console_Btn.Click += new System.EventHandler(this.Console_Btn_Click);
             // 
@@ -830,19 +989,19 @@
             this.Mute_Btn.Image = global::Ostium.Properties.Resources.Unmute;
             this.Mute_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Mute_Btn.Name = "Mute_Btn";
-            this.Mute_Btn.Size = new System.Drawing.Size(23, 22);
+            this.Mute_Btn.Size = new System.Drawing.Size(23, 25);
             this.Mute_Btn.Text = "Mute/Unmute";
             this.Mute_Btn.Click += new System.EventHandler(this.Mute_Btn_Click);
             // 
             // URL_URL_Cbx
             // 
             this.URL_URL_Cbx.AutoSize = false;
-            this.URL_URL_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.URL_URL_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.URL_URL_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URL_URL_Cbx.ForeColor = System.Drawing.Color.DimGray;
+            this.URL_URL_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.URL_URL_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.URL_URL_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URL_URL_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.URL_URL_Cbx.Name = "URL_URL_Cbx";
-            this.URL_URL_Cbx.Size = new System.Drawing.Size(300, 22);
+            this.URL_URL_Cbx.Size = new System.Drawing.Size(300, 23);
             this.URL_URL_Cbx.Sorted = true;
             this.URL_URL_Cbx.Text = "URL Shortcut";
             this.URL_URL_Cbx.SelectedIndexChanged += new System.EventHandler(this.URL_URL_Cbx_SelectedIndexChanged);
@@ -850,36 +1009,36 @@
             // URL_SAVE_Cbx
             // 
             this.URL_SAVE_Cbx.AutoSize = false;
-            this.URL_SAVE_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.URL_SAVE_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.URL_SAVE_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URL_SAVE_Cbx.ForeColor = System.Drawing.Color.DimGray;
+            this.URL_SAVE_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.URL_SAVE_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.URL_SAVE_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URL_SAVE_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.URL_SAVE_Cbx.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.URL_SAVE_Cbx.Name = "URL_SAVE_Cbx";
-            this.URL_SAVE_Cbx.Size = new System.Drawing.Size(300, 22);
+            this.URL_SAVE_Cbx.Size = new System.Drawing.Size(300, 23);
             this.URL_SAVE_Cbx.Sorted = true;
             this.URL_SAVE_Cbx.Text = "Favorites";
             this.URL_SAVE_Cbx.SelectedIndexChanged += new System.EventHandler(this.URL_SAVE_Cbx_SelectedIndexChanged);
             // 
             // Construct_URL_Cbx
             // 
-            this.Construct_URL_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Construct_URL_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Construct_URL_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Construct_URL_Cbx.ForeColor = System.Drawing.Color.DimGray;
+            this.Construct_URL_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Construct_URL_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.Construct_URL_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Construct_URL_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.Construct_URL_Cbx.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.Construct_URL_Cbx.Name = "Construct_URL_Cbx";
-            this.Construct_URL_Cbx.Size = new System.Drawing.Size(121, 25);
+            this.Construct_URL_Cbx.Size = new System.Drawing.Size(121, 28);
             this.Construct_URL_Cbx.Text = "URL build";
             this.Construct_URL_Cbx.SelectedIndexChanged += new System.EventHandler(this.Construct_URL_Cbx_SelectedIndexChanged);
             // 
             // Word_URL_Builder_Txt
             // 
             this.Word_URL_Builder_Txt.AutoSize = false;
-            this.Word_URL_Builder_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Word_URL_Builder_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.Word_URL_Builder_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Word_URL_Builder_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Word_URL_Builder_Txt.ForeColor = System.Drawing.Color.DimGray;
+            this.Word_URL_Builder_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Word_URL_Builder_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.Word_URL_Builder_Txt.Name = "Word_URL_Builder_Txt";
             this.Word_URL_Builder_Txt.Size = new System.Drawing.Size(100, 15);
             this.Word_URL_Builder_Txt.Text = "Word";
@@ -888,17 +1047,17 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // Word_Construct_URL_Btn
             // 
             this.Word_Construct_URL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Word_Construct_URL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Word_Construct_URL_Btn.ForeColor = System.Drawing.Color.White;
+            this.Word_Construct_URL_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Word_Construct_URL_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Word_Construct_URL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Word_Construct_URL_Btn.Image")));
             this.Word_Construct_URL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Word_Construct_URL_Btn.Name = "Word_Construct_URL_Btn";
-            this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 22);
+            this.Word_Construct_URL_Btn.Size = new System.Drawing.Size(23, 25);
             this.Word_Construct_URL_Btn.Text = "B";
             this.Word_Construct_URL_Btn.ToolTipText = "URL Builder";
             this.Word_Construct_URL_Btn.Click += new System.EventHandler(this.Word_URL_Builder_Btn_Click);
@@ -906,11 +1065,11 @@
             // toolStripSeparator36
             // 
             this.toolStripSeparator36.Name = "toolStripSeparator36";
-            this.toolStripSeparator36.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator36.Size = new System.Drawing.Size(6, 28);
             // 
             // Tools_Mnu
             // 
-            this.Tools_Mnu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Tools_Mnu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.Tools_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.Tools_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyURL_Mnu,
@@ -951,46 +1110,46 @@
             this.toolStripSeparator11,
             this.RestartSession_Btn,
             this.ArchiveDirectory_Btn});
-            this.Tools_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_Mnu.ForeColor = System.Drawing.Color.White;
+            this.Tools_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Tools_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("Tools_Mnu.Image")));
             this.Tools_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Tools_Mnu.Name = "Tools_Mnu";
-            this.Tools_Mnu.Size = new System.Drawing.Size(55, 22);
+            this.Tools_Mnu.Size = new System.Drawing.Size(48, 25);
             this.Tools_Mnu.Text = "Tools";
             // 
             // CopyURL_Mnu
             // 
             this.CopyURL_Mnu.Name = "CopyURL_Mnu";
-            this.CopyURL_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.CopyURL_Mnu.Size = new System.Drawing.Size(234, 22);
             this.CopyURL_Mnu.Text = "Copy URL";
             this.CopyURL_Mnu.Click += new System.EventHandler(this.CopyURL_Mnu_Click);
             // 
             // Agent_Web_Fetch_Btn
             // 
             this.Agent_Web_Fetch_Btn.Name = "Agent_Web_Fetch_Btn";
-            this.Agent_Web_Fetch_Btn.Size = new System.Drawing.Size(281, 22);
+            this.Agent_Web_Fetch_Btn.Size = new System.Drawing.Size(234, 22);
             this.Agent_Web_Fetch_Btn.Text = "OOBai [Agent Web Fetch]";
             this.Agent_Web_Fetch_Btn.Click += new System.EventHandler(this.Agent_Web_Fetch_Btn_Click);
             // 
             // TraductPage_Btn
             // 
             this.TraductPage_Btn.Name = "TraductPage_Btn";
-            this.TraductPage_Btn.Size = new System.Drawing.Size(281, 22);
+            this.TraductPage_Btn.Size = new System.Drawing.Size(234, 22);
             this.TraductPage_Btn.Text = "Traduct Page";
             this.TraductPage_Btn.Click += new System.EventHandler(this.TraductPage_Btn_Click);
             // 
             // UnshortUrl_Btn
             // 
             this.UnshortUrl_Btn.Name = "UnshortUrl_Btn";
-            this.UnshortUrl_Btn.Size = new System.Drawing.Size(281, 22);
+            this.UnshortUrl_Btn.Size = new System.Drawing.Size(234, 22);
             this.UnshortUrl_Btn.Text = "Unshorten URL";
             this.UnshortUrl_Btn.Click += new System.EventHandler(this.UnshortUrl_Btn_Click);
             // 
             // WebpageToPng_Btn
             // 
             this.WebpageToPng_Btn.Name = "WebpageToPng_Btn";
-            this.WebpageToPng_Btn.Size = new System.Drawing.Size(281, 22);
+            this.WebpageToPng_Btn.Size = new System.Drawing.Size(234, 22);
             this.WebpageToPng_Btn.Text = "Webpage to Png";
             this.WebpageToPng_Btn.Click += new System.EventHandler(this.WebpageToPng_Btn_Click);
             // 
@@ -1002,123 +1161,123 @@
             this.WebToMarkedownReport_Btn});
             this.WebToMarkedown_Mnu.Enabled = false;
             this.WebToMarkedown_Mnu.Name = "WebToMarkedown_Mnu";
-            this.WebToMarkedown_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.WebToMarkedown_Mnu.Size = new System.Drawing.Size(234, 22);
             this.WebToMarkedown_Mnu.Text = "Web To Markedown";
             // 
             // WebToMarkedownConf_Btn
             // 
             this.WebToMarkedownConf_Btn.Name = "WebToMarkedownConf_Btn";
-            this.WebToMarkedownConf_Btn.Size = new System.Drawing.Size(125, 22);
+            this.WebToMarkedownConf_Btn.Size = new System.Drawing.Size(114, 22);
             this.WebToMarkedownConf_Btn.Text = "Config";
             this.WebToMarkedownConf_Btn.Click += new System.EventHandler(this.WebToMarkedownConf_Btn_Click);
             // 
             // WebToMarkedown_Btn
             // 
             this.WebToMarkedown_Btn.Name = "WebToMarkedown_Btn";
-            this.WebToMarkedown_Btn.Size = new System.Drawing.Size(125, 22);
+            this.WebToMarkedown_Btn.Size = new System.Drawing.Size(114, 22);
             this.WebToMarkedown_Btn.Text = "Open";
             this.WebToMarkedown_Btn.Click += new System.EventHandler(this.WebToMarkedown_Btn_Click);
             // 
             // WebToMarkedownReport_Btn
             // 
             this.WebToMarkedownReport_Btn.Name = "WebToMarkedownReport_Btn";
-            this.WebToMarkedownReport_Btn.Size = new System.Drawing.Size(125, 22);
+            this.WebToMarkedownReport_Btn.Size = new System.Drawing.Size(114, 22);
             this.WebToMarkedownReport_Btn.Text = "Reports";
             this.WebToMarkedownReport_Btn.Click += new System.EventHandler(this.WebToMarkedownReport_Btn_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(231, 6);
             // 
             // HTMLtxt_Btn
             // 
             this.HTMLtxt_Btn.Name = "HTMLtxt_Btn";
-            this.HTMLtxt_Btn.Size = new System.Drawing.Size(281, 22);
+            this.HTMLtxt_Btn.Size = new System.Drawing.Size(234, 22);
             this.HTMLtxt_Btn.Text = "HTML Text";
             this.HTMLtxt_Btn.Click += new System.EventHandler(this.HTMLtxt_Btn_Click);
             // 
             // OpnGroupFrm_Btn
             // 
             this.OpnGroupFrm_Btn.Name = "OpnGroupFrm_Btn";
-            this.OpnGroupFrm_Btn.Size = new System.Drawing.Size(281, 22);
+            this.OpnGroupFrm_Btn.Size = new System.Drawing.Size(234, 22);
             this.OpnGroupFrm_Btn.Text = "Multiple Windows";
             this.OpnGroupFrm_Btn.Click += new System.EventHandler(this.OpnGroupFrm_Btn_Click);
             // 
             // GoogleDork_Btn
             // 
             this.GoogleDork_Btn.Name = "GoogleDork_Btn";
-            this.GoogleDork_Btn.Size = new System.Drawing.Size(281, 22);
+            this.GoogleDork_Btn.Size = new System.Drawing.Size(234, 22);
             this.GoogleDork_Btn.Text = "Google Dork";
             this.GoogleDork_Btn.Click += new System.EventHandler(this.GoogleDork_Btn_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(231, 6);
             // 
             // Cookie_Btn
             // 
             this.Cookie_Btn.Name = "Cookie_Btn";
-            this.Cookie_Btn.Size = new System.Drawing.Size(281, 22);
+            this.Cookie_Btn.Size = new System.Drawing.Size(234, 22);
             this.Cookie_Btn.Text = "Cookie";
             this.Cookie_Btn.Click += new System.EventHandler(this.Cookie_Btn_Click);
             // 
             // SetCookie_Btn
             // 
             this.SetCookie_Btn.Name = "SetCookie_Btn";
-            this.SetCookie_Btn.Size = new System.Drawing.Size(281, 22);
+            this.SetCookie_Btn.Size = new System.Drawing.Size(234, 22);
             this.SetCookie_Btn.Text = "Add or Update Cookie";
             this.SetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
             // 
             // toolStripSeparator18
             // 
             this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator18.Size = new System.Drawing.Size(231, 6);
             // 
             // OpnFilOnEditor_Btn
             // 
             this.OpnFilOnEditor_Btn.Name = "OpnFilOnEditor_Btn";
-            this.OpnFilOnEditor_Btn.Size = new System.Drawing.Size(281, 22);
+            this.OpnFilOnEditor_Btn.Size = new System.Drawing.Size(234, 22);
             this.OpnFilOnEditor_Btn.Text = "Open File";
             this.OpnFilOnEditor_Btn.Click += new System.EventHandler(this.OpnFilOnEditor_Btn_Click);
             // 
             // OpenListLink_Btn
             // 
             this.OpenListLink_Btn.Name = "OpenListLink_Btn";
-            this.OpenListLink_Btn.Size = new System.Drawing.Size(281, 22);
+            this.OpenListLink_Btn.Size = new System.Drawing.Size(234, 22);
             this.OpenListLink_Btn.Text = "Open Links List";
             this.OpenListLink_Btn.Click += new System.EventHandler(this.OpenListLink_Btn_Click);
             // 
             // Memo_Btn
             // 
             this.Memo_Btn.Name = "Memo_Btn";
-            this.Memo_Btn.Size = new System.Drawing.Size(281, 22);
+            this.Memo_Btn.Size = new System.Drawing.Size(234, 22);
             this.Memo_Btn.Text = "Memo";
             this.Memo_Btn.Click += new System.EventHandler(this.Memo_Btn_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(231, 6);
             // 
             // Editor_Btn
             // 
             this.Editor_Btn.Name = "Editor_Btn";
-            this.Editor_Btn.Size = new System.Drawing.Size(281, 22);
+            this.Editor_Btn.Size = new System.Drawing.Size(234, 22);
             this.Editor_Btn.Text = "Editor";
             this.Editor_Btn.Click += new System.EventHandler(this.Editor_Btn_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(231, 6);
             // 
             // CyberChef_Btn
             // 
             this.CyberChef_Btn.Enabled = false;
             this.CyberChef_Btn.Name = "CyberChef_Btn";
-            this.CyberChef_Btn.Size = new System.Drawing.Size(281, 22);
+            this.CyberChef_Btn.Size = new System.Drawing.Size(234, 22);
             this.CyberChef_Btn.Text = "CyberChef";
             this.CyberChef_Btn.Click += new System.EventHandler(this.CyberChef_Btn_Click);
             // 
@@ -1132,41 +1291,41 @@
             this.ReportsPathWatcher_Btn});
             this.OsintWatcher_Mnu.Enabled = false;
             this.OsintWatcher_Mnu.Name = "OsintWatcher_Mnu";
-            this.OsintWatcher_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.OsintWatcher_Mnu.Size = new System.Drawing.Size(234, 22);
             this.OsintWatcher_Mnu.Text = "Osint Watcher";
             // 
             // ConfigWatcher_Btn
             // 
             this.ConfigWatcher_Btn.Name = "ConfigWatcher_Btn";
-            this.ConfigWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ConfigWatcher_Btn.Size = new System.Drawing.Size(181, 22);
             this.ConfigWatcher_Btn.Text = "Config";
             this.ConfigWatcher_Btn.Click += new System.EventHandler(this.ConfigWatcher_Btn_Click);
             // 
             // MonitorWatcher_Btn
             // 
             this.MonitorWatcher_Btn.Name = "MonitorWatcher_Btn";
-            this.MonitorWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.MonitorWatcher_Btn.Size = new System.Drawing.Size(181, 22);
             this.MonitorWatcher_Btn.Text = "Monitor App";
             this.MonitorWatcher_Btn.Click += new System.EventHandler(this.MonitorWatcher_Btn_Click);
             // 
             // ReportWatcher_Btn
             // 
             this.ReportWatcher_Btn.Name = "ReportWatcher_Btn";
-            this.ReportWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ReportWatcher_Btn.Size = new System.Drawing.Size(181, 22);
             this.ReportWatcher_Btn.Text = "Start Reports Viewer";
             this.ReportWatcher_Btn.Click += new System.EventHandler(this.ReportWatcher_Btn_Click);
             // 
             // LocalhostWatcher_Btn
             // 
             this.LocalhostWatcher_Btn.Name = "LocalhostWatcher_Btn";
-            this.LocalhostWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.LocalhostWatcher_Btn.Size = new System.Drawing.Size(181, 22);
             this.LocalhostWatcher_Btn.Text = "Localhost";
             this.LocalhostWatcher_Btn.Click += new System.EventHandler(this.LocalhostWatcher_Btn_Click);
             // 
             // ReportsPathWatcher_Btn
             // 
             this.ReportsPathWatcher_Btn.Name = "ReportsPathWatcher_Btn";
-            this.ReportsPathWatcher_Btn.Size = new System.Drawing.Size(213, 22);
+            this.ReportsPathWatcher_Btn.Size = new System.Drawing.Size(181, 22);
             this.ReportsPathWatcher_Btn.Text = "Reports Path";
             this.ReportsPathWatcher_Btn.Click += new System.EventHandler(this.ReportsPathWatcher_Btn_Click);
             // 
@@ -1177,63 +1336,63 @@
             this.WarcExplorer_Btn});
             this.WarcArchiver_Mnu.Enabled = false;
             this.WarcArchiver_Mnu.Name = "WarcArchiver_Mnu";
-            this.WarcArchiver_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.WarcArchiver_Mnu.Size = new System.Drawing.Size(234, 22);
             this.WarcArchiver_Mnu.Text = "WARC Archiver";
             // 
             // WarcArchiver_Btn
             // 
             this.WarcArchiver_Btn.Name = "WarcArchiver_Btn";
-            this.WarcArchiver_Btn.Size = new System.Drawing.Size(202, 22);
+            this.WarcArchiver_Btn.Size = new System.Drawing.Size(174, 22);
             this.WarcArchiver_Btn.Text = "Start WarcArchiver";
             this.WarcArchiver_Btn.Click += new System.EventHandler(this.WarcArchiver_Btn_Click);
             // 
             // WarcExplorer_Btn
             // 
             this.WarcExplorer_Btn.Name = "WarcExplorer_Btn";
-            this.WarcExplorer_Btn.Size = new System.Drawing.Size(202, 22);
+            this.WarcExplorer_Btn.Size = new System.Drawing.Size(174, 22);
             this.WarcExplorer_Btn.Text = "Warc Explorer";
             this.WarcExplorer_Btn.Click += new System.EventHandler(this.WarcExplorer_Btn_Click);
             // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator15.Size = new System.Drawing.Size(231, 6);
             // 
             // OpnDirectory_Btn
             // 
             this.OpnDirectory_Btn.Name = "OpnDirectory_Btn";
-            this.OpnDirectory_Btn.Size = new System.Drawing.Size(281, 22);
+            this.OpnDirectory_Btn.Size = new System.Drawing.Size(234, 22);
             this.OpnDirectory_Btn.Text = "Open Directory";
             this.OpnDirectory_Btn.Click += new System.EventHandler(this.OpnDirectory_Btn_Click);
             // 
             // IndexDir_Btn
             // 
             this.IndexDir_Btn.Name = "IndexDir_Btn";
-            this.IndexDir_Btn.Size = new System.Drawing.Size(281, 22);
+            this.IndexDir_Btn.Size = new System.Drawing.Size(234, 22);
             this.IndexDir_Btn.Text = "Index";
             this.IndexDir_Btn.Click += new System.EventHandler(this.IndexDir_Btn_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(231, 6);
             // 
             // FetchDomainInfo_Btn
             // 
             this.FetchDomainInfo_Btn.Name = "FetchDomainInfo_Btn";
-            this.FetchDomainInfo_Btn.Size = new System.Drawing.Size(281, 22);
+            this.FetchDomainInfo_Btn.Size = new System.Drawing.Size(234, 22);
             this.FetchDomainInfo_Btn.Text = "TXT NS MX A";
             this.FetchDomainInfo_Btn.Click += new System.EventHandler(this.FetchDomainInfo_Btn_Click);
             // 
             // toolStripSeparator33
             // 
             this.toolStripSeparator33.Name = "toolStripSeparator33";
-            this.toolStripSeparator33.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator33.Size = new System.Drawing.Size(231, 6);
             // 
             // JavaScriptToggle_Btn
             // 
             this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
-            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(281, 22);
+            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(234, 22);
             this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
             this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
             // 
@@ -1245,53 +1404,53 @@
             this.toolStripSeparator32,
             this.OpnScriptl_Btn});
             this.Bkmkl_Mnu.Name = "Bkmkl_Mnu";
-            this.Bkmkl_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.Bkmkl_Mnu.Size = new System.Drawing.Size(234, 22);
             this.Bkmkl_Mnu.Text = "Bookmarklet";
             // 
             // OpnBokmark_Btn
             // 
             this.OpnBokmark_Btn.Name = "OpnBokmark_Btn";
-            this.OpnBokmark_Btn.Size = new System.Drawing.Size(161, 22);
+            this.OpnBokmark_Btn.Size = new System.Drawing.Size(141, 22);
             this.OpnBokmark_Btn.Text = "Open";
             this.OpnBokmark_Btn.Click += new System.EventHandler(this.OpnBookmark_Btn_Click);
             // 
             // CreateBookmark_Btn
             // 
             this.CreateBookmark_Btn.Name = "CreateBookmark_Btn";
-            this.CreateBookmark_Btn.Size = new System.Drawing.Size(161, 22);
+            this.CreateBookmark_Btn.Size = new System.Drawing.Size(141, 22);
             this.CreateBookmark_Btn.Text = "Create";
             this.CreateBookmark_Btn.Click += new System.EventHandler(this.CreateBokmark_Btn_Click);
             // 
             // toolStripSeparator32
             // 
             this.toolStripSeparator32.Name = "toolStripSeparator32";
-            this.toolStripSeparator32.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator32.Size = new System.Drawing.Size(138, 6);
             // 
             // OpnScriptl_Btn
             // 
             this.OpnScriptl_Btn.Name = "OpnScriptl_Btn";
-            this.OpnScriptl_Btn.Size = new System.Drawing.Size(161, 22);
+            this.OpnScriptl_Btn.Size = new System.Drawing.Size(141, 22);
             this.OpnScriptl_Btn.Text = "File Script JS";
             this.OpnScriptl_Btn.Click += new System.EventHandler(this.OpnScriptl_Btn_Click);
             // 
             // InjectScript_Btn
             // 
             this.InjectScript_Btn.Name = "InjectScript_Btn";
-            this.InjectScript_Btn.Size = new System.Drawing.Size(281, 22);
+            this.InjectScript_Btn.Size = new System.Drawing.Size(234, 22);
             this.InjectScript_Btn.Text = "InjectScript";
             this.InjectScript_Btn.Click += new System.EventHandler(this.InjectScript_Btn_Click);
             // 
             // OpenScriptEdit_Btn
             // 
             this.OpenScriptEdit_Btn.Name = "OpenScriptEdit_Btn";
-            this.OpenScriptEdit_Btn.Size = new System.Drawing.Size(281, 22);
+            this.OpenScriptEdit_Btn.Size = new System.Drawing.Size(234, 22);
             this.OpenScriptEdit_Btn.Text = "JS Script edit";
             this.OpenScriptEdit_Btn.Click += new System.EventHandler(this.OpenScriptEdit_Btn_Click);
             // 
             // RegexCmd_Btn
             // 
             this.RegexCmd_Btn.Name = "RegexCmd_Btn";
-            this.RegexCmd_Btn.Size = new System.Drawing.Size(281, 22);
+            this.RegexCmd_Btn.Size = new System.Drawing.Size(234, 22);
             this.RegexCmd_Btn.Text = "Regex";
             this.RegexCmd_Btn.Click += new System.EventHandler(this.RegexCmd_Btn_Click);
             // 
@@ -1301,39 +1460,39 @@
             this.HiglitAddWord_Btn,
             this.HiglitInject_Btn});
             this.Highlit_Mnu.Name = "Highlit_Mnu";
-            this.Highlit_Mnu.Size = new System.Drawing.Size(281, 22);
+            this.Highlit_Mnu.Size = new System.Drawing.Size(234, 22);
             this.Highlit_Mnu.Text = "Highlight";
             // 
             // HiglitAddWord_Btn
             // 
             this.HiglitAddWord_Btn.Name = "HiglitAddWord_Btn";
-            this.HiglitAddWord_Btn.Size = new System.Drawing.Size(152, 22);
+            this.HiglitAddWord_Btn.Size = new System.Drawing.Size(135, 22);
             this.HiglitAddWord_Btn.Text = "Word";
             this.HiglitAddWord_Btn.Click += new System.EventHandler(this.HiglitAddWord_Btn_Click);
             // 
             // HiglitInject_Btn
             // 
             this.HiglitInject_Btn.Name = "HiglitInject_Btn";
-            this.HiglitInject_Btn.Size = new System.Drawing.Size(152, 22);
+            this.HiglitInject_Btn.Size = new System.Drawing.Size(135, 22);
             this.HiglitInject_Btn.Text = "Inject Color";
             this.HiglitInject_Btn.Click += new System.EventHandler(this.HiglitInject_Btn_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(231, 6);
             // 
             // RestartSession_Btn
             // 
             this.RestartSession_Btn.Name = "RestartSession_Btn";
-            this.RestartSession_Btn.Size = new System.Drawing.Size(281, 22);
+            this.RestartSession_Btn.Size = new System.Drawing.Size(234, 22);
             this.RestartSession_Btn.Text = "Restart a Session or create one";
             this.RestartSession_Btn.Click += new System.EventHandler(this.RestartSession_Btn_Click);
             // 
             // ArchiveDirectory_Btn
             // 
             this.ArchiveDirectory_Btn.Name = "ArchiveDirectory_Btn";
-            this.ArchiveDirectory_Btn.Size = new System.Drawing.Size(281, 22);
+            this.ArchiveDirectory_Btn.Size = new System.Drawing.Size(234, 22);
             this.ArchiveDirectory_Btn.Text = "Backup";
             this.ArchiveDirectory_Btn.Click += new System.EventHandler(this.ArchiveDirectory_Btn_Click);
             // 
@@ -1379,83 +1538,83 @@
             this.HomePage_Btn,
             this.toolStripSeparator22,
             this.Credit_Btn});
-            this.ToolsOp_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsOp_Mnu.ForeColor = System.Drawing.Color.White;
+            this.ToolsOp_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsOp_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.ToolsOp_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsOp_Mnu.Image")));
             this.ToolsOp_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolsOp_Mnu.Name = "ToolsOp_Mnu";
-            this.ToolsOp_Mnu.Size = new System.Drawing.Size(41, 22);
-            this.ToolsOp_Mnu.Text = "°°°";
+            this.ToolsOp_Mnu.Size = new System.Drawing.Size(35, 25);
+            this.ToolsOp_Mnu.Text = "•••";
             // 
             // ForceLinkParent_Btn
             // 
             this.ForceLinkParent_Btn.Name = "ForceLinkParent_Btn";
-            this.ForceLinkParent_Btn.Size = new System.Drawing.Size(239, 22);
+            this.ForceLinkParent_Btn.Size = new System.Drawing.Size(205, 22);
             this.ForceLinkParent_Btn.Text = "Force link open in Parent";
             this.ForceLinkParent_Btn.Click += new System.EventHandler(this.ForceLinkParent_Btn_Click);
             // 
             // toolStripSeparator35
             // 
             this.toolStripSeparator35.Name = "toolStripSeparator35";
-            this.toolStripSeparator35.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator35.Size = new System.Drawing.Size(202, 6);
             // 
             // OpnWorkflowTools_Tls
             // 
             this.OpnWorkflowTools_Tls.Name = "OpnWorkflowTools_Tls";
-            this.OpnWorkflowTools_Tls.Size = new System.Drawing.Size(239, 22);
+            this.OpnWorkflowTools_Tls.Size = new System.Drawing.Size(205, 22);
             this.OpnWorkflowTools_Tls.Text = "Open Workflow tools";
             this.OpnWorkflowTools_Tls.Click += new System.EventHandler(this.OpnWorkflowTools_Tls_Click);
             // 
             // KeepTrackViewer_Btn
             // 
             this.KeepTrackViewer_Btn.Name = "KeepTrackViewer_Btn";
-            this.KeepTrackViewer_Btn.Size = new System.Drawing.Size(239, 22);
+            this.KeepTrackViewer_Btn.Size = new System.Drawing.Size(205, 22);
             this.KeepTrackViewer_Btn.Text = "Keep Track Viewer";
             this.KeepTrackViewer_Btn.Click += new System.EventHandler(this.KeepTrackViewer_Btn_Click);
             // 
             // InvestigationBoard_Btn
             // 
             this.InvestigationBoard_Btn.Name = "InvestigationBoard_Btn";
-            this.InvestigationBoard_Btn.Size = new System.Drawing.Size(239, 22);
+            this.InvestigationBoard_Btn.Size = new System.Drawing.Size(205, 22);
             this.InvestigationBoard_Btn.Text = "Investigation Board";
             this.InvestigationBoard_Btn.Click += new System.EventHandler(this.InvestigationBoard_Btn_Click);
             // 
             // toolStripSeparator17
             // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator17.Size = new System.Drawing.Size(202, 6);
             // 
             // OpnEncFrm
             // 
             this.OpnEncFrm.Name = "OpnEncFrm";
-            this.OpnEncFrm.Size = new System.Drawing.Size(239, 22);
+            this.OpnEncFrm.Size = new System.Drawing.Size(205, 22);
             this.OpnEncFrm.Text = "Encryption";
             this.OpnEncFrm.Click += new System.EventHandler(this.OpnEncFrm_Click);
             // 
             // toolStripSeparator42
             // 
             this.toolStripSeparator42.Name = "toolStripSeparator42";
-            this.toolStripSeparator42.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator42.Size = new System.Drawing.Size(202, 6);
             // 
             // semanticAnalysisToolStripMenuItem
             // 
             this.semanticAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SemanticFile_Btn});
             this.semanticAnalysisToolStripMenuItem.Name = "semanticAnalysisToolStripMenuItem";
-            this.semanticAnalysisToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.semanticAnalysisToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.semanticAnalysisToolStripMenuItem.Text = "Semantic Analysis";
             // 
             // SemanticFile_Btn
             // 
             this.SemanticFile_Btn.Name = "SemanticFile_Btn";
-            this.SemanticFile_Btn.Size = new System.Drawing.Size(218, 22);
+            this.SemanticFile_Btn.Size = new System.Drawing.Size(187, 22);
             this.SemanticFile_Btn.Text = "Semantic file analysis";
             this.SemanticFile_Btn.Click += new System.EventHandler(this.SemanticFile_Btn_Click);
             // 
             // toolStripSeparator31
             // 
             this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator31.Size = new System.Drawing.Size(202, 6);
             // 
             // messisPlatformToolStripMenuItem
             // 
@@ -1465,34 +1624,34 @@
             this.LocalhostMESS_Btn,
             this.LogPathMESS_Btn});
             this.messisPlatformToolStripMenuItem.Name = "messisPlatformToolStripMenuItem";
-            this.messisPlatformToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.messisPlatformToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.messisPlatformToolStripMenuItem.Text = "Messis Platform";
             // 
             // ConfigMESS_Btn
             // 
             this.ConfigMESS_Btn.Name = "ConfigMESS_Btn";
-            this.ConfigMESS_Btn.Size = new System.Drawing.Size(156, 22);
+            this.ConfigMESS_Btn.Size = new System.Drawing.Size(135, 22);
             this.ConfigMESS_Btn.Text = "Config";
             this.ConfigMESS_Btn.Click += new System.EventHandler(this.ConfigMESS_Btn_Click);
             // 
             // StartMESS_Btn
             // 
             this.StartMESS_Btn.Name = "StartMESS_Btn";
-            this.StartMESS_Btn.Size = new System.Drawing.Size(156, 22);
+            this.StartMESS_Btn.Size = new System.Drawing.Size(135, 22);
             this.StartMESS_Btn.Text = "Server Start";
             this.StartMESS_Btn.Click += new System.EventHandler(this.StartMESS_Btn_Click);
             // 
             // LocalhostMESS_Btn
             // 
             this.LocalhostMESS_Btn.Name = "LocalhostMESS_Btn";
-            this.LocalhostMESS_Btn.Size = new System.Drawing.Size(156, 22);
+            this.LocalhostMESS_Btn.Size = new System.Drawing.Size(135, 22);
             this.LocalhostMESS_Btn.Text = "Localhost";
             this.LocalhostMESS_Btn.Click += new System.EventHandler(this.LocalhostMESS_Btn_Click);
             // 
             // LogPathMESS_Btn
             // 
             this.LogPathMESS_Btn.Name = "LogPathMESS_Btn";
-            this.LogPathMESS_Btn.Size = new System.Drawing.Size(156, 22);
+            this.LogPathMESS_Btn.Size = new System.Drawing.Size(135, 22);
             this.LogPathMESS_Btn.Text = "Log Path";
             this.LogPathMESS_Btn.Click += new System.EventHandler(this.LogPathMESS_Btn_Click);
             // 
@@ -1504,34 +1663,34 @@
             this.LocalhostSFE_Btn,
             this.LogPathSFE_Btn});
             this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
-            this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.secureFileExplorerToolStripMenuItem.Text = "Secure File Explorer";
             // 
             // ConfigSFE_Btn
             // 
             this.ConfigSFE_Btn.Name = "ConfigSFE_Btn";
-            this.ConfigSFE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.ConfigSFE_Btn.Size = new System.Drawing.Size(135, 22);
             this.ConfigSFE_Btn.Text = "Config";
             this.ConfigSFE_Btn.Click += new System.EventHandler(this.ConfigSFE_Btn_Click);
             // 
             // StartSFE_Btn
             // 
             this.StartSFE_Btn.Name = "StartSFE_Btn";
-            this.StartSFE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.StartSFE_Btn.Size = new System.Drawing.Size(135, 22);
             this.StartSFE_Btn.Text = "Server Start";
             this.StartSFE_Btn.Click += new System.EventHandler(this.StartSFE_Btn_Click);
             // 
             // LocalhostSFE_Btn
             // 
             this.LocalhostSFE_Btn.Name = "LocalhostSFE_Btn";
-            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.LocalhostSFE_Btn.Size = new System.Drawing.Size(135, 22);
             this.LocalhostSFE_Btn.Text = "Localhost";
             this.LocalhostSFE_Btn.Click += new System.EventHandler(this.LocalhostSFE_Btn_Click);
             // 
             // LogPathSFE_Btn
             // 
             this.LogPathSFE_Btn.Name = "LogPathSFE_Btn";
-            this.LogPathSFE_Btn.Size = new System.Drawing.Size(156, 22);
+            this.LogPathSFE_Btn.Size = new System.Drawing.Size(135, 22);
             this.LogPathSFE_Btn.Text = "Log Path";
             this.LogPathSFE_Btn.Click += new System.EventHandler(this.LogPathSFE_Btn_Click);
             // 
@@ -1543,46 +1702,46 @@
             this.StartNLV_Btn,
             this.OpnNLV_Btn});
             this.netLogViewerToolStripMenuItem.Name = "netLogViewerToolStripMenuItem";
-            this.netLogViewerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.netLogViewerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.netLogViewerToolStripMenuItem.Text = "Net Log Viewer";
             // 
             // ConfigNLV_Btn
             // 
             this.ConfigNLV_Btn.Name = "ConfigNLV_Btn";
-            this.ConfigNLV_Btn.Size = new System.Drawing.Size(215, 22);
+            this.ConfigNLV_Btn.Size = new System.Drawing.Size(186, 22);
             this.ConfigNLV_Btn.Text = "Config";
             this.ConfigNLV_Btn.Click += new System.EventHandler(this.ConfigNLV_Btn_Click);
             // 
             // NetExport_Btn
             // 
             this.NetExport_Btn.Name = "NetExport_Btn";
-            this.NetExport_Btn.Size = new System.Drawing.Size(215, 22);
+            this.NetExport_Btn.Size = new System.Drawing.Size(186, 22);
             this.NetExport_Btn.Text = "Capture Network Log";
             this.NetExport_Btn.Click += new System.EventHandler(this.NetExport_Btn_Click);
             // 
             // StartNLV_Btn
             // 
             this.StartNLV_Btn.Name = "StartNLV_Btn";
-            this.StartNLV_Btn.Size = new System.Drawing.Size(215, 22);
+            this.StartNLV_Btn.Size = new System.Drawing.Size(186, 22);
             this.StartNLV_Btn.Text = "Server Start";
             this.StartNLV_Btn.Click += new System.EventHandler(this.StartNLV_Btn_Click);
             // 
             // OpnNLV_Btn
             // 
             this.OpnNLV_Btn.Name = "OpnNLV_Btn";
-            this.OpnNLV_Btn.Size = new System.Drawing.Size(215, 22);
+            this.OpnNLV_Btn.Size = new System.Drawing.Size(186, 22);
             this.OpnNLV_Btn.Text = "Localhost";
             this.OpnNLV_Btn.Click += new System.EventHandler(this.LocalhostNLV_Btn_Click);
             // 
             // toolStripSeparator40
             // 
             this.toolStripSeparator40.Name = "toolStripSeparator40";
-            this.toolStripSeparator40.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator40.Size = new System.Drawing.Size(202, 6);
             // 
             // PromptViewer_Mnu
             // 
             this.PromptViewer_Mnu.Name = "PromptViewer_Mnu";
-            this.PromptViewer_Mnu.Size = new System.Drawing.Size(239, 22);
+            this.PromptViewer_Mnu.Size = new System.Drawing.Size(205, 22);
             this.PromptViewer_Mnu.Text = "Prompt History Viewer";
             this.PromptViewer_Mnu.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
             // 
@@ -1595,136 +1754,136 @@
             this.toolStripSeparator41,
             this.DenoUpdate_Btn});
             this.ostiumBookmarkExplorerToolStripMenuItem.Name = "ostiumBookmarkExplorerToolStripMenuItem";
-            this.ostiumBookmarkExplorerToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.ostiumBookmarkExplorerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.ostiumBookmarkExplorerToolStripMenuItem.Text = "Bookmark Explorer";
             // 
             // ConfigOBE_Btn
             // 
             this.ConfigOBE_Btn.Name = "ConfigOBE_Btn";
-            this.ConfigOBE_Btn.Size = new System.Drawing.Size(159, 22);
+            this.ConfigOBE_Btn.Size = new System.Drawing.Size(144, 22);
             this.ConfigOBE_Btn.Text = "Config";
             this.ConfigOBE_Btn.Click += new System.EventHandler(this.ConfigOBE_Btn_Click);
             // 
             // StartOBE_Btn
             // 
             this.StartOBE_Btn.Name = "StartOBE_Btn";
-            this.StartOBE_Btn.Size = new System.Drawing.Size(159, 22);
+            this.StartOBE_Btn.Size = new System.Drawing.Size(144, 22);
             this.StartOBE_Btn.Text = "Server Start";
             this.StartOBE_Btn.Click += new System.EventHandler(this.StartOBE_Btn_Click);
             // 
             // LocalhostOBE_Btn
             // 
             this.LocalhostOBE_Btn.Name = "LocalhostOBE_Btn";
-            this.LocalhostOBE_Btn.Size = new System.Drawing.Size(159, 22);
+            this.LocalhostOBE_Btn.Size = new System.Drawing.Size(144, 22);
             this.LocalhostOBE_Btn.Text = "Localhost";
             this.LocalhostOBE_Btn.Click += new System.EventHandler(this.LocalhostOBE_Btn_Click);
             // 
             // toolStripSeparator41
             // 
             this.toolStripSeparator41.Name = "toolStripSeparator41";
-            this.toolStripSeparator41.Size = new System.Drawing.Size(156, 6);
+            this.toolStripSeparator41.Size = new System.Drawing.Size(141, 6);
             // 
             // DenoUpdate_Btn
             // 
             this.DenoUpdate_Btn.Name = "DenoUpdate_Btn";
-            this.DenoUpdate_Btn.Size = new System.Drawing.Size(159, 22);
+            this.DenoUpdate_Btn.Size = new System.Drawing.Size(144, 22);
             this.DenoUpdate_Btn.Text = "Deno Update";
             this.DenoUpdate_Btn.Click += new System.EventHandler(this.DenoUpdate_Btn_Click);
             // 
             // toolStripSeparator34
             // 
             this.toolStripSeparator34.Name = "toolStripSeparator34";
-            this.toolStripSeparator34.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator34.Size = new System.Drawing.Size(202, 6);
             // 
             // ConvertPDF_Btn
             // 
             this.ConvertPDF_Btn.Name = "ConvertPDF_Btn";
-            this.ConvertPDF_Btn.Size = new System.Drawing.Size(239, 22);
+            this.ConvertPDF_Btn.Size = new System.Drawing.Size(205, 22);
             this.ConvertPDF_Btn.Text = "Converting PDF";
             this.ConvertPDF_Btn.Click += new System.EventHandler(this.ConvertPDF_Btn_Click);
             // 
             // toolStripSeparator43
             // 
             this.toolStripSeparator43.Name = "toolStripSeparator43";
-            this.toolStripSeparator43.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator43.Size = new System.Drawing.Size(202, 6);
             // 
             // Download_Param
             // 
             this.Download_Param.Name = "Download_Param";
-            this.Download_Param.Size = new System.Drawing.Size(239, 22);
+            this.Download_Param.Size = new System.Drawing.Size(205, 22);
             this.Download_Param.Text = "Download";
             this.Download_Param.Click += new System.EventHandler(this.Download_Param_Click);
             // 
             // History_Param
             // 
             this.History_Param.Name = "History_Param";
-            this.History_Param.Size = new System.Drawing.Size(239, 22);
+            this.History_Param.Size = new System.Drawing.Size(205, 22);
             this.History_Param.Text = "History";
             this.History_Param.Click += new System.EventHandler(this.History_Param_Click);
             // 
             // SiteEngament_Param
             // 
             this.SiteEngament_Param.Name = "SiteEngament_Param";
-            this.SiteEngament_Param.Size = new System.Drawing.Size(239, 22);
+            this.SiteEngament_Param.Size = new System.Drawing.Size(205, 22);
             this.SiteEngament_Param.Text = "Site Engagement";
             this.SiteEngament_Param.Click += new System.EventHandler(this.SiteEngament_Param_Click);
             // 
             // ClrHistory_Param
             // 
             this.ClrHistory_Param.Name = "ClrHistory_Param";
-            this.ClrHistory_Param.Size = new System.Drawing.Size(239, 22);
+            this.ClrHistory_Param.Size = new System.Drawing.Size(205, 22);
             this.ClrHistory_Param.Text = "Clear History";
             this.ClrHistory_Param.Click += new System.EventHandler(this.ClrHistory_Param_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(202, 6);
             // 
             // UserAgentChange_Btn
             // 
             this.UserAgentChange_Btn.Name = "UserAgentChange_Btn";
-            this.UserAgentChange_Btn.Size = new System.Drawing.Size(239, 22);
+            this.UserAgentChange_Btn.Size = new System.Drawing.Size(205, 22);
             this.UserAgentChange_Btn.Text = "Change User Agent Off";
             this.UserAgentChange_Btn.Click += new System.EventHandler(this.UserAgentChange_Btn_Click);
             // 
             // Googlebot_Btn
             // 
             this.Googlebot_Btn.Name = "Googlebot_Btn";
-            this.Googlebot_Btn.Size = new System.Drawing.Size(239, 22);
+            this.Googlebot_Btn.Size = new System.Drawing.Size(205, 22);
             this.Googlebot_Btn.Text = "Googlebot Off";
             this.Googlebot_Btn.Click += new System.EventHandler(this.Googlebot_Btn_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(202, 6);
             // 
             // EdgeURL_Param
             // 
             this.EdgeURL_Param.Name = "EdgeURL_Param";
-            this.EdgeURL_Param.Size = new System.Drawing.Size(239, 22);
+            this.EdgeURL_Param.Size = new System.Drawing.Size(205, 22);
             this.EdgeURL_Param.Text = "Edge URLs";
             this.EdgeURL_Param.Click += new System.EventHandler(this.EdgeURL_Param_Click);
             // 
             // AdvancedOption_Param
             // 
             this.AdvancedOption_Param.Name = "AdvancedOption_Param";
-            this.AdvancedOption_Param.Size = new System.Drawing.Size(239, 22);
+            this.AdvancedOption_Param.Size = new System.Drawing.Size(205, 22);
             this.AdvancedOption_Param.Text = "Advanced Options";
             this.AdvancedOption_Param.Click += new System.EventHandler(this.AdvancedOption_Param_Click);
             // 
             // DevTools_Param
             // 
             this.DevTools_Param.Name = "DevTools_Param";
-            this.DevTools_Param.Size = new System.Drawing.Size(239, 22);
+            this.DevTools_Param.Size = new System.Drawing.Size(205, 22);
             this.DevTools_Param.Text = "Dev Tools";
             this.DevTools_Param.Click += new System.EventHandler(this.DevTools_Param_Click);
             // 
             // toolStripSeparator16
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator16.Size = new System.Drawing.Size(202, 6);
             // 
             // directoryTreeExportToolStripMenuItem
             // 
@@ -1733,76 +1892,76 @@
             this.TreeXMLexport_Btn,
             this.TreeJSONexport_Btn});
             this.directoryTreeExportToolStripMenuItem.Name = "directoryTreeExportToolStripMenuItem";
-            this.directoryTreeExportToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.directoryTreeExportToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.directoryTreeExportToolStripMenuItem.Text = "Directory tree export";
             // 
             // TreeTXTexport_Btn
             // 
             this.TreeTXTexport_Btn.Name = "TreeTXTexport_Btn";
-            this.TreeTXTexport_Btn.Size = new System.Drawing.Size(158, 22);
+            this.TreeTXTexport_Btn.Size = new System.Drawing.Size(141, 22);
             this.TreeTXTexport_Btn.Text = "TXT export";
             this.TreeTXTexport_Btn.Click += new System.EventHandler(this.TreeExport_Btn_Click);
             // 
             // TreeXMLexport_Btn
             // 
             this.TreeXMLexport_Btn.Name = "TreeXMLexport_Btn";
-            this.TreeXMLexport_Btn.Size = new System.Drawing.Size(158, 22);
+            this.TreeXMLexport_Btn.Size = new System.Drawing.Size(141, 22);
             this.TreeXMLexport_Btn.Text = "XML export";
             this.TreeXMLexport_Btn.Click += new System.EventHandler(this.TreeExport_Btn_Click);
             // 
             // TreeJSONexport_Btn
             // 
             this.TreeJSONexport_Btn.Name = "TreeJSONexport_Btn";
-            this.TreeJSONexport_Btn.Size = new System.Drawing.Size(158, 22);
+            this.TreeJSONexport_Btn.Size = new System.Drawing.Size(141, 22);
             this.TreeJSONexport_Btn.Text = "JSON export";
             this.TreeJSONexport_Btn.Click += new System.EventHandler(this.TreeExport_Btn_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(202, 6);
             // 
             // System_Param
             // 
             this.System_Param.Name = "System_Param";
-            this.System_Param.Size = new System.Drawing.Size(239, 22);
+            this.System_Param.Size = new System.Drawing.Size(205, 22);
             this.System_Param.Text = "System";
             this.System_Param.Click += new System.EventHandler(this.System_Param_Click);
             // 
             // OstUpdt_Btn
             // 
             this.OstUpdt_Btn.Name = "OstUpdt_Btn";
-            this.OstUpdt_Btn.Size = new System.Drawing.Size(239, 22);
+            this.OstUpdt_Btn.Size = new System.Drawing.Size(205, 22);
             this.OstUpdt_Btn.Text = "Ostium Update";
             this.OstUpdt_Btn.Click += new System.EventHandler(this.OstUpdt_Btn_Click);
             // 
             // HomePage_Btn
             // 
             this.HomePage_Btn.Name = "HomePage_Btn";
-            this.HomePage_Btn.Size = new System.Drawing.Size(239, 22);
+            this.HomePage_Btn.Size = new System.Drawing.Size(205, 22);
             this.HomePage_Btn.Text = "Home";
             this.HomePage_Btn.Click += new System.EventHandler(this.HomePage_Btn_Click);
             // 
             // toolStripSeparator22
             // 
             this.toolStripSeparator22.Name = "toolStripSeparator22";
-            this.toolStripSeparator22.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator22.Size = new System.Drawing.Size(202, 6);
             // 
             // Credit_Btn
             // 
             this.Credit_Btn.Name = "Credit_Btn";
-            this.Credit_Btn.Size = new System.Drawing.Size(239, 22);
+            this.Credit_Btn.Size = new System.Drawing.Size(205, 22);
             this.Credit_Btn.Text = "Credits";
             this.Credit_Btn.Click += new System.EventHandler(this.Credit_Btn_Click);
             // 
             // AddOn_Cbx
             // 
-            this.AddOn_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.AddOn_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddOn_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOn_Cbx.ForeColor = System.Drawing.Color.DimGray;
+            this.AddOn_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddOn_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.AddOn_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddOn_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.AddOn_Cbx.Name = "AddOn_Cbx";
-            this.AddOn_Cbx.Size = new System.Drawing.Size(121, 25);
+            this.AddOn_Cbx.Size = new System.Drawing.Size(121, 28);
             this.AddOn_Cbx.Text = "Tools";
             this.AddOn_Cbx.SelectedIndexChanged += new System.EventHandler(this.AddOn_Cbx_SelectedIndexChanged);
             // 
@@ -1816,67 +1975,67 @@
             this.ReloadListAds_Mnu,
             this.toolStripSeparator38,
             this.Count_urlCache});
-            this.BlockAdmenu_Mnu.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BlockAdmenu_Mnu.ForeColor = System.Drawing.Color.Lime;
+            this.BlockAdmenu_Mnu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAdmenu_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.BlockAdmenu_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("BlockAdmenu_Mnu.Image")));
             this.BlockAdmenu_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BlockAdmenu_Mnu.Name = "BlockAdmenu_Mnu";
-            this.BlockAdmenu_Mnu.Size = new System.Drawing.Size(39, 22);
+            this.BlockAdmenu_Mnu.Size = new System.Drawing.Size(45, 25);
             this.BlockAdmenu_Mnu.Text = "🚫";
             this.BlockAdmenu_Mnu.ToolTipText = "Block Ads";
             // 
             // BlockAds_Mnu
             // 
-            this.BlockAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAds_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BlockAds_Mnu.Name = "BlockAds_Mnu";
-            this.BlockAds_Mnu.Size = new System.Drawing.Size(172, 22);
+            this.BlockAds_Mnu.Size = new System.Drawing.Size(155, 22);
             this.BlockAds_Mnu.Text = "Block/Unblock";
             this.BlockAds_Mnu.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
             // 
             // toolStripSeparator37
             // 
             this.toolStripSeparator37.Name = "toolStripSeparator37";
-            this.toolStripSeparator37.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator37.Size = new System.Drawing.Size(152, 6);
             // 
             // AllowUrlAds_Mnu
             // 
-            this.AllowUrlAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllowUrlAds_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AllowUrlAds_Mnu.Name = "AllowUrlAds_Mnu";
-            this.AllowUrlAds_Mnu.Size = new System.Drawing.Size(172, 22);
+            this.AllowUrlAds_Mnu.Size = new System.Drawing.Size(155, 22);
             this.AllowUrlAds_Mnu.Text = "Allow URL";
             this.AllowUrlAds_Mnu.Click += new System.EventHandler(this.AllowUrlAds_Mnu_Click);
             // 
             // ReloadListAds_Mnu
             // 
-            this.ReloadListAds_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReloadListAds_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReloadListAds_Mnu.Name = "ReloadListAds_Mnu";
-            this.ReloadListAds_Mnu.Size = new System.Drawing.Size(172, 22);
+            this.ReloadListAds_Mnu.Size = new System.Drawing.Size(155, 22);
             this.ReloadListAds_Mnu.Text = "Reload URLs";
             this.ReloadListAds_Mnu.Click += new System.EventHandler(this.ReloadListAds_Mnu_Click);
             // 
             // toolStripSeparator38
             // 
             this.toolStripSeparator38.Name = "toolStripSeparator38";
-            this.toolStripSeparator38.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator38.Size = new System.Drawing.Size(152, 6);
             // 
             // Count_urlCache
             // 
-            this.Count_urlCache.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Count_urlCache.ForeColor = System.Drawing.Color.Red;
+            this.Count_urlCache.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Count_urlCache.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.Count_urlCache.Name = "Count_urlCache";
-            this.Count_urlCache.Size = new System.Drawing.Size(172, 22);
+            this.Count_urlCache.Size = new System.Drawing.Size(155, 22);
             // 
             // AddURL_Btn
             // 
             this.AddURL_Btn.AutoToolTip = false;
-            this.AddURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.AddURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.AddURL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddURL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddURL_Btn.ForeColor = System.Drawing.Color.White;
+            this.AddURL_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddURL_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.AddURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddURL_Btn.Image")));
             this.AddURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddURL_Btn.Name = "AddURL_Btn";
-            this.AddURL_Btn.Size = new System.Drawing.Size(59, 22);
+            this.AddURL_Btn.Size = new System.Drawing.Size(52, 25);
             this.AddURL_Btn.Text = "Add DB";
             this.AddURL_Btn.ToolTipText = "Add favorite link";
             this.AddURL_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
@@ -1884,5202 +2043,27 @@
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(6, 28);
             // 
             // OpnURL_Btn
             // 
             this.OpnURL_Btn.AutoToolTip = false;
-            this.OpnURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.OpnURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.OpnURL_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnURL_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnURL_Btn.ForeColor = System.Drawing.Color.White;
+            this.OpnURL_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnURL_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.OpnURL_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnURL_Btn.Image")));
             this.OpnURL_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnURL_Btn.Name = "OpnURL_Btn";
-            this.OpnURL_Btn.Size = new System.Drawing.Size(69, 22);
+            this.OpnURL_Btn.Size = new System.Drawing.Size(59, 25);
             this.OpnURL_Btn.Text = "Open DB";
             this.OpnURL_Btn.ToolTipText = "Open favorite links";
             this.OpnURL_Btn.Click += new System.EventHandler(this.OpnURL_Btn_Click);
             // 
-            // Control_Tab
-            // 
-            this.Control_Tab.Controls.Add(this.Browser_Tab);
-            this.Control_Tab.Controls.Add(this.Rss_Tab);
-            this.Control_Tab.Controls.Add(this.Data_Tab);
-            this.Control_Tab.Controls.Add(this.Workflow_Tab);
-            this.Control_Tab.Controls.Add(this.Map_Tab);
-            this.Control_Tab.Controls.Add(this.Json_Tab);
-            this.Control_Tab.Controls.Add(this.OOBai_Tab);
-            this.Control_Tab.Controls.Add(this.Options_Tab);
-            this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Control_Tab.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
-            this.Control_Tab.Name = "Control_Tab";
-            this.Control_Tab.SelectedIndex = 0;
-            this.Control_Tab.Size = new System.Drawing.Size(1334, 639);
-            this.Control_Tab.TabIndex = 13;
-            this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
-            // 
-            // Browser_Tab
-            // 
-            this.Browser_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Browser_Tab.Controls.Add(this.WBrowse);
-            this.Browser_Tab.Controls.Add(this.Cookie_Pnl);
-            this.Browser_Tab.Controls.Add(this.PanelBkmklt_Pnl);
-            this.Browser_Tab.Controls.Add(this.Word_Page_Lst);
-            this.Browser_Tab.Controls.Add(this.Source_Page_Lst);
-            this.Browser_Tab.Controls.Add(this.panel3);
-            this.Browser_Tab.Controls.Add(this.DB_Pnl);
-            this.Browser_Tab.Controls.Add(this.Panel_Workflow);
-            this.Browser_Tab.Controls.Add(this.Console_Cmd_Txt);
-            this.Browser_Tab.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Browser_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Browser_Tab.Name = "Browser_Tab";
-            this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Browser_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Browser_Tab.TabIndex = 1;
-            this.Browser_Tab.Text = "BROWSx";
-            // 
-            // WBrowse
-            // 
-            this.WBrowse.AllowExternalDrop = true;
-            this.WBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.WBrowse.CreationProperties = null;
-            this.WBrowse.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WBrowse.Location = new System.Drawing.Point(203, 30);
-            this.WBrowse.Name = "WBrowse";
-            this.WBrowse.Size = new System.Drawing.Size(920, 461);
-            this.WBrowse.TabIndex = 0;
-            this.WBrowse.ZoomFactor = 1D;
-            // 
-            // Cookie_Pnl
-            // 
-            this.Cookie_Pnl.AutoSize = true;
-            this.Cookie_Pnl.BackColor = System.Drawing.Color.White;
-            this.Cookie_Pnl.Controls.Add(this.CookiesAdd_Btn);
-            this.Cookie_Pnl.Controls.Add(this.ScriptUrl_Lst);
-            this.Cookie_Pnl.Controls.Add(this.SourcePage_Txt);
-            this.Cookie_Pnl.Controls.Add(this.ConstructURL_Lst);
-            this.Cookie_Pnl.Controls.Add(this.CloseSetCookie_Btn);
-            this.Cookie_Pnl.Controls.Add(this.label16);
-            this.Cookie_Pnl.Controls.Add(this.label15);
-            this.Cookie_Pnl.Controls.Add(this.label14);
-            this.Cookie_Pnl.Controls.Add(this.CookieDomain_Txt);
-            this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
-            this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
-            this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 491);
-            this.Cookie_Pnl.Name = "Cookie_Pnl";
-            this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Cookie_Pnl.Size = new System.Drawing.Size(920, 95);
-            this.Cookie_Pnl.TabIndex = 9;
-            this.Cookie_Pnl.Visible = false;
-            // 
-            // CookiesAdd_Btn
-            // 
-            this.CookiesAdd_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CookiesAdd_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CookiesAdd_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.CookiesAdd_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.CookiesAdd_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CookiesAdd_Btn.ForeColor = System.Drawing.Color.White;
-            this.CookiesAdd_Btn.Location = new System.Drawing.Point(556, 25);
-            this.CookiesAdd_Btn.Name = "CookiesAdd_Btn";
-            this.CookiesAdd_Btn.Size = new System.Drawing.Size(106, 27);
-            this.CookiesAdd_Btn.TabIndex = 13;
-            this.CookiesAdd_Btn.Text = "Set Cookie";
-            this.CookiesAdd_Btn.UseVisualStyleBackColor = false;
-            this.CookiesAdd_Btn.Click += new System.EventHandler(this.CookiesAdd_Btn_Click);
-            // 
-            // ScriptUrl_Lst
-            // 
-            this.ScriptUrl_Lst.FormattingEnabled = true;
-            this.ScriptUrl_Lst.ItemHeight = 16;
-            this.ScriptUrl_Lst.Location = new System.Drawing.Point(792, 72);
-            this.ScriptUrl_Lst.Name = "ScriptUrl_Lst";
-            this.ScriptUrl_Lst.Size = new System.Drawing.Size(120, 20);
-            this.ScriptUrl_Lst.TabIndex = 10;
-            this.ScriptUrl_Lst.Visible = false;
-            // 
-            // SourcePage_Txt
-            // 
-            this.SourcePage_Txt.Location = new System.Drawing.Point(792, 47);
-            this.SourcePage_Txt.Multiline = true;
-            this.SourcePage_Txt.Name = "SourcePage_Txt";
-            this.SourcePage_Txt.Size = new System.Drawing.Size(100, 20);
-            this.SourcePage_Txt.TabIndex = 12;
-            this.SourcePage_Txt.Visible = false;
-            // 
-            // ConstructURL_Lst
-            // 
-            this.ConstructURL_Lst.FormattingEnabled = true;
-            this.ConstructURL_Lst.ItemHeight = 16;
-            this.ConstructURL_Lst.Location = new System.Drawing.Point(788, 21);
-            this.ConstructURL_Lst.Name = "ConstructURL_Lst";
-            this.ConstructURL_Lst.Size = new System.Drawing.Size(126, 20);
-            this.ConstructURL_Lst.Sorted = true;
-            this.ConstructURL_Lst.TabIndex = 6;
-            this.ConstructURL_Lst.Visible = false;
-            // 
-            // CloseSetCookie_Btn
-            // 
-            this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
-            this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseSetCookie_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseSetCookie_Btn.ForeColor = System.Drawing.Color.Red;
-            this.CloseSetCookie_Btn.Location = new System.Drawing.Point(8, 28);
-            this.CloseSetCookie_Btn.Name = "CloseSetCookie_Btn";
-            this.CloseSetCookie_Btn.Size = new System.Drawing.Size(22, 22);
-            this.CloseSetCookie_Btn.TabIndex = 7;
-            this.CloseSetCookie_Btn.Text = "X";
-            this.CloseSetCookie_Btn.UseVisualStyleBackColor = false;
-            this.CloseSetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(391, 8);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(154, 14);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "Domain eg(.bing.com)";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(161, 8);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(93, 14);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "Cookie Value";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(34, 8);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(94, 14);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Cookie Name";
-            // 
-            // CookieDomain_Txt
-            // 
-            this.CookieDomain_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CookieDomain_Txt.Location = new System.Drawing.Point(394, 27);
-            this.CookieDomain_Txt.Name = "CookieDomain_Txt";
-            this.CookieDomain_Txt.Size = new System.Drawing.Size(156, 23);
-            this.CookieDomain_Txt.TabIndex = 2;
-            // 
-            // CookieValue_Txt
-            // 
-            this.CookieValue_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CookieValue_Txt.Location = new System.Drawing.Point(163, 27);
-            this.CookieValue_Txt.Name = "CookieValue_Txt";
-            this.CookieValue_Txt.Size = new System.Drawing.Size(225, 23);
-            this.CookieValue_Txt.TabIndex = 1;
-            // 
-            // CookieName_Txt
-            // 
-            this.CookieName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CookieName_Txt.Location = new System.Drawing.Point(36, 27);
-            this.CookieName_Txt.Name = "CookieName_Txt";
-            this.CookieName_Txt.Size = new System.Drawing.Size(121, 23);
-            this.CookieName_Txt.TabIndex = 0;
-            // 
-            // PanelBkmklt_Pnl
-            // 
-            this.PanelBkmklt_Pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.PanelBkmklt_Pnl.Controls.Add(this.PanelButtonBkmklt_Pnl);
-            this.PanelBkmklt_Pnl.Controls.Add(this.Bookmarklet_Lst);
-            this.PanelBkmklt_Pnl.Controls.Add(this.Desc_Lbl);
-            this.PanelBkmklt_Pnl.Controls.Add(this.panel28);
-            this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
-            this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
-            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 556);
-            this.PanelBkmklt_Pnl.TabIndex = 11;
-            this.PanelBkmklt_Pnl.Visible = false;
-            // 
-            // PanelButtonBkmklt_Pnl
-            // 
-            this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
-            this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
-            this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 528);
-            this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
-            this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
-            this.PanelButtonBkmklt_Pnl.TabIndex = 10;
-            // 
-            // InjectBkmklt_Btn
-            // 
-            this.InjectBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.InjectBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InjectBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InjectBkmklt_Btn.FlatAppearance.BorderSize = 0;
-            this.InjectBkmklt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.InjectBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
-            this.InjectBkmklt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InjectBkmklt_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InjectBkmklt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.InjectBkmklt_Btn.Location = new System.Drawing.Point(69, 0);
-            this.InjectBkmklt_Btn.Name = "InjectBkmklt_Btn";
-            this.InjectBkmklt_Btn.Size = new System.Drawing.Size(131, 28);
-            this.InjectBkmklt_Btn.TabIndex = 3;
-            this.InjectBkmklt_Btn.Text = "Inject";
-            this.InjectBkmklt_Btn.UseVisualStyleBackColor = false;
-            this.InjectBkmklt_Btn.Click += new System.EventHandler(this.InjectBkmklt_Btn_Click);
-            // 
-            // ClosePnlBkmklt_Btn
-            // 
-            this.ClosePnlBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ClosePnlBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClosePnlBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ClosePnlBkmklt_Btn.FlatAppearance.BorderSize = 0;
-            this.ClosePnlBkmklt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ClosePnlBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClosePnlBkmklt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClosePnlBkmklt_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClosePnlBkmklt_Btn.ForeColor = System.Drawing.Color.Red;
-            this.ClosePnlBkmklt_Btn.Location = new System.Drawing.Point(0, 0);
-            this.ClosePnlBkmklt_Btn.Name = "ClosePnlBkmklt_Btn";
-            this.ClosePnlBkmklt_Btn.Size = new System.Drawing.Size(69, 28);
-            this.ClosePnlBkmklt_Btn.TabIndex = 4;
-            this.ClosePnlBkmklt_Btn.Text = "Close";
-            this.ClosePnlBkmklt_Btn.UseVisualStyleBackColor = false;
-            this.ClosePnlBkmklt_Btn.Click += new System.EventHandler(this.ClosePnlBkmklt_Btn_Click);
-            // 
-            // Bookmarklet_Lst
-            // 
-            this.Bookmarklet_Lst.BackColor = System.Drawing.Color.Black;
-            this.Bookmarklet_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Bookmarklet_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Bookmarklet_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bookmarklet_Lst.ForeColor = System.Drawing.Color.Lime;
-            this.Bookmarklet_Lst.FormattingEnabled = true;
-            this.Bookmarklet_Lst.ItemHeight = 14;
-            this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
-            this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
-            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 452);
-            this.Bookmarklet_Lst.TabIndex = 9;
-            this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
-            // 
-            // Desc_Lbl
-            // 
-            this.Desc_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Desc_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Desc_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Desc_Lbl.ForeColor = System.Drawing.Color.White;
-            this.Desc_Lbl.Location = new System.Drawing.Point(0, 5);
-            this.Desc_Lbl.Name = "Desc_Lbl";
-            this.Desc_Lbl.Size = new System.Drawing.Size(200, 99);
-            this.Desc_Lbl.TabIndex = 8;
-            // 
-            // panel28
-            // 
-            this.panel28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.panel28.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel28.Location = new System.Drawing.Point(0, 0);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(200, 5);
-            this.panel28.TabIndex = 7;
-            // 
-            // Word_Page_Lst
-            // 
-            this.Word_Page_Lst.FormattingEnabled = true;
-            this.Word_Page_Lst.ItemHeight = 16;
-            this.Word_Page_Lst.Location = new System.Drawing.Point(1101, 533);
-            this.Word_Page_Lst.Name = "Word_Page_Lst";
-            this.Word_Page_Lst.Size = new System.Drawing.Size(29, 20);
-            this.Word_Page_Lst.TabIndex = 5;
-            this.Word_Page_Lst.Visible = false;
-            // 
-            // Source_Page_Lst
-            // 
-            this.Source_Page_Lst.FormattingEnabled = true;
-            this.Source_Page_Lst.ItemHeight = 16;
-            this.Source_Page_Lst.Location = new System.Drawing.Point(1136, 533);
-            this.Source_Page_Lst.Name = "Source_Page_Lst";
-            this.Source_Page_Lst.Size = new System.Drawing.Size(28, 20);
-            this.Source_Page_Lst.TabIndex = 4;
-            this.Source_Page_Lst.Visible = false;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel3.Controls.Add(this.URLbrowse_Cbx);
-            this.panel3.Controls.Add(this.CleanSearch_Btn);
-            this.panel3.Controls.Add(this.OpnPrompt_Btn);
-            this.panel3.Controls.Add(this.AddURLink_Btn);
-            this.panel3.Controls.Add(this.Go_Btn);
-            this.panel3.Controls.Add(this.GoWebwiev_Btn);
-            this.panel3.Controls.Add(this.Home_Btn);
-            this.panel3.Controls.Add(this.Refresh_Btn);
-            this.panel3.Controls.Add(this.Forward_Btn);
-            this.panel3.Controls.Add(this.Back_Btn);
-            this.panel3.Controls.Add(this.Agent_Fetch_Search);
-            this.panel3.Controls.Add(this.NewSeesion_Btn);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(203, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1120, 27);
-            this.panel3.TabIndex = 1;
-            // 
-            // URLbrowse_Cbx
-            // 
-            this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.URLbrowse_Cbx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.DimGray;
-            this.URLbrowse_Cbx.FormattingEnabled = true;
-            this.URLbrowse_Cbx.Location = new System.Drawing.Point(432, 0);
-            this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(490, 24);
-            this.URLbrowse_Cbx.TabIndex = 6;
-            this.URLbrowse_Cbx.Text = "Insert a URL or search term";
-            this.URLbrowse_Cbx.SelectedIndexChanged += new System.EventHandler(this.URLbrowse_Cbx_SelectedIndexChanged);
-            this.URLbrowse_Cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKey_URLbrowse);
-            // 
-            // CleanSearch_Btn
-            // 
-            this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
-            this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.CleanSearch_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.CleanSearch_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.CleanSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CleanSearch_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CleanSearch_Btn.ForeColor = System.Drawing.Color.Red;
-            this.CleanSearch_Btn.Location = new System.Drawing.Point(402, 0);
-            this.CleanSearch_Btn.MaximumSize = new System.Drawing.Size(53, 24);
-            this.CleanSearch_Btn.Name = "CleanSearch_Btn";
-            this.CleanSearch_Btn.Size = new System.Drawing.Size(30, 24);
-            this.CleanSearch_Btn.TabIndex = 9;
-            this.CleanSearch_Btn.Text = "X";
-            this.CleanSearch_Btn.UseVisualStyleBackColor = false;
-            this.CleanSearch_Btn.Click += new System.EventHandler(this.CleanSearch_Btn_Click);
-            // 
-            // OpnPrompt_Btn
-            // 
-            this.OpnPrompt_Btn.BackColor = System.Drawing.Color.DodgerBlue;
-            this.OpnPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OpnPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.OpnPrompt_Btn.FlatAppearance.BorderSize = 0;
-            this.OpnPrompt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.OpnPrompt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.OpnPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
-            this.OpnPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpnPrompt_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnPrompt_Btn.ForeColor = System.Drawing.Color.White;
-            this.OpnPrompt_Btn.Location = new System.Drawing.Point(319, 0);
-            this.OpnPrompt_Btn.MaximumSize = new System.Drawing.Size(83, 24);
-            this.OpnPrompt_Btn.Name = "OpnPrompt_Btn";
-            this.OpnPrompt_Btn.Size = new System.Drawing.Size(83, 24);
-            this.OpnPrompt_Btn.TabIndex = 11;
-            this.OpnPrompt_Btn.Text = "Prompt";
-            this.OpnPrompt_Btn.UseVisualStyleBackColor = false;
-            this.OpnPrompt_Btn.Click += new System.EventHandler(this.OpnPrompt_Btn_Click);
-            // 
-            // AddURLink_Btn
-            // 
-            this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
-            this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddURLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.AddURLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddURLink_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddURLink_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddURLink_Btn.Image = global::Ostium.Properties.Resources.BookmarkUp;
-            this.AddURLink_Btn.Location = new System.Drawing.Point(922, 0);
-            this.AddURLink_Btn.MaximumSize = new System.Drawing.Size(24, 24);
-            this.AddURLink_Btn.Name = "AddURLink_Btn";
-            this.AddURLink_Btn.Size = new System.Drawing.Size(24, 24);
-            this.AddURLink_Btn.TabIndex = 8;
-            this.AddURLink_Btn.UseVisualStyleBackColor = false;
-            this.AddURLink_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
-            // 
-            // Go_Btn
-            // 
-            this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Go_Btn.FlatAppearance.BorderSize = 0;
-            this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Go_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Go_Btn.ForeColor = System.Drawing.Color.White;
-            this.Go_Btn.Location = new System.Drawing.Point(946, 0);
-            this.Go_Btn.MaximumSize = new System.Drawing.Size(58, 24);
-            this.Go_Btn.Name = "Go_Btn";
-            this.Go_Btn.Size = new System.Drawing.Size(58, 24);
-            this.Go_Btn.TabIndex = 1;
-            this.Go_Btn.Text = "Go";
-            this.Go_Btn.UseVisualStyleBackColor = false;
-            this.Go_Btn.Click += new System.EventHandler(this.Go_Btn_Click);
-            // 
-            // GoWebwiev_Btn
-            // 
-            this.GoWebwiev_Btn.BackColor = System.Drawing.Color.Gray;
-            this.GoWebwiev_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.GoWebwiev_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.GoWebwiev_Btn.FlatAppearance.BorderSize = 0;
-            this.GoWebwiev_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.GoWebwiev_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.GoWebwiev_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GoWebwiev_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoWebwiev_Btn.ForeColor = System.Drawing.Color.White;
-            this.GoWebwiev_Btn.Location = new System.Drawing.Point(1004, 0);
-            this.GoWebwiev_Btn.MaximumSize = new System.Drawing.Size(58, 24);
-            this.GoWebwiev_Btn.Name = "GoWebwiev_Btn";
-            this.GoWebwiev_Btn.Size = new System.Drawing.Size(58, 24);
-            this.GoWebwiev_Btn.TabIndex = 7;
-            this.GoWebwiev_Btn.Text = "Tab";
-            this.GoWebwiev_Btn.UseVisualStyleBackColor = false;
-            this.GoWebwiev_Btn.Click += new System.EventHandler(this.GoWebwiev_Btn_Click);
-            // 
-            // Home_Btn
-            // 
-            this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Home_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Home_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Home_Btn.FlatAppearance.BorderSize = 0;
-            this.Home_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.Home_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Home_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Home_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Home_Btn.ForeColor = System.Drawing.Color.White;
-            this.Home_Btn.Location = new System.Drawing.Point(266, 0);
-            this.Home_Btn.MaximumSize = new System.Drawing.Size(53, 24);
-            this.Home_Btn.Name = "Home_Btn";
-            this.Home_Btn.Size = new System.Drawing.Size(53, 24);
-            this.Home_Btn.TabIndex = 5;
-            this.Home_Btn.Text = "H";
-            this.Home_Btn.UseVisualStyleBackColor = false;
-            this.Home_Btn.Click += new System.EventHandler(this.Home_Btn_Click);
-            // 
-            // Refresh_Btn
-            // 
-            this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Refresh_Btn.FlatAppearance.BorderSize = 0;
-            this.Refresh_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.Refresh_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Refresh_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Refresh_Btn.ForeColor = System.Drawing.Color.White;
-            this.Refresh_Btn.Location = new System.Drawing.Point(213, 0);
-            this.Refresh_Btn.MaximumSize = new System.Drawing.Size(53, 24);
-            this.Refresh_Btn.Name = "Refresh_Btn";
-            this.Refresh_Btn.Size = new System.Drawing.Size(53, 24);
-            this.Refresh_Btn.TabIndex = 4;
-            this.Refresh_Btn.Text = "R";
-            this.Refresh_Btn.UseVisualStyleBackColor = false;
-            this.Refresh_Btn.Click += new System.EventHandler(this.Refresh_Btn_Click);
-            // 
-            // Forward_Btn
-            // 
-            this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Forward_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Forward_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Forward_Btn.FlatAppearance.BorderSize = 0;
-            this.Forward_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.Forward_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Forward_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Forward_Btn.ForeColor = System.Drawing.Color.White;
-            this.Forward_Btn.Location = new System.Drawing.Point(160, 0);
-            this.Forward_Btn.MaximumSize = new System.Drawing.Size(53, 24);
-            this.Forward_Btn.Name = "Forward_Btn";
-            this.Forward_Btn.Size = new System.Drawing.Size(53, 24);
-            this.Forward_Btn.TabIndex = 3;
-            this.Forward_Btn.Text = "F";
-            this.Forward_Btn.UseVisualStyleBackColor = false;
-            this.Forward_Btn.Click += new System.EventHandler(this.Forward_Btn_Click);
-            // 
-            // Back_Btn
-            // 
-            this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Back_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Back_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Back_Btn.FlatAppearance.BorderSize = 0;
-            this.Back_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.Back_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Back_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Back_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Back_Btn.ForeColor = System.Drawing.Color.White;
-            this.Back_Btn.Location = new System.Drawing.Point(107, 0);
-            this.Back_Btn.MaximumSize = new System.Drawing.Size(53, 24);
-            this.Back_Btn.Name = "Back_Btn";
-            this.Back_Btn.Size = new System.Drawing.Size(53, 24);
-            this.Back_Btn.TabIndex = 2;
-            this.Back_Btn.Text = "B";
-            this.Back_Btn.UseVisualStyleBackColor = false;
-            this.Back_Btn.Click += new System.EventHandler(this.Back_Btn_Click);
-            // 
-            // Agent_Fetch_Search
-            // 
-            this.Agent_Fetch_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Agent_Fetch_Search.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Agent_Fetch_Search.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Agent_Fetch_Search.FlatAppearance.BorderSize = 0;
-            this.Agent_Fetch_Search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Agent_Fetch_Search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Agent_Fetch_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Agent_Fetch_Search.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Agent_Fetch_Search.ForeColor = System.Drawing.Color.White;
-            this.Agent_Fetch_Search.Location = new System.Drawing.Point(1062, 0);
-            this.Agent_Fetch_Search.MaximumSize = new System.Drawing.Size(58, 24);
-            this.Agent_Fetch_Search.Name = "Agent_Fetch_Search";
-            this.Agent_Fetch_Search.Size = new System.Drawing.Size(58, 24);
-            this.Agent_Fetch_Search.TabIndex = 10;
-            this.Agent_Fetch_Search.Text = "OOBai";
-            this.Agent_Fetch_Search.UseVisualStyleBackColor = false;
-            this.Agent_Fetch_Search.Click += new System.EventHandler(this.Agent_Fetch_Search_Click);
-            // 
-            // NewSeesion_Btn
-            // 
-            this.NewSeesion_Btn.BackColor = System.Drawing.Color.Teal;
-            this.NewSeesion_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NewSeesion_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.NewSeesion_Btn.FlatAppearance.BorderSize = 0;
-            this.NewSeesion_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.NewSeesion_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.NewSeesion_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.NewSeesion_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NewSeesion_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewSeesion_Btn.ForeColor = System.Drawing.Color.White;
-            this.NewSeesion_Btn.Location = new System.Drawing.Point(0, 0);
-            this.NewSeesion_Btn.MaximumSize = new System.Drawing.Size(107, 24);
-            this.NewSeesion_Btn.Name = "NewSeesion_Btn";
-            this.NewSeesion_Btn.Size = new System.Drawing.Size(107, 24);
-            this.NewSeesion_Btn.TabIndex = 12;
-            this.NewSeesion_Btn.Text = "New session";
-            this.NewSeesion_Btn.UseVisualStyleBackColor = false;
-            this.NewSeesion_Btn.Click += new System.EventHandler(this.NewSession_Btn_Click);
-            // 
-            // DB_Pnl
-            // 
-            this.DB_Pnl.Controls.Add(this.Tables_Lst);
-            this.DB_Pnl.Controls.Add(this.UrlName_Txt);
-            this.DB_Pnl.Controls.Add(this.label7);
-            this.DB_Pnl.Controls.Add(this.AddTable_Btn);
-            this.DB_Pnl.Controls.Add(this.URLadd_Lbl);
-            this.DB_Pnl.Controls.Add(this.panel9);
-            this.DB_Pnl.Controls.Add(this.TableName_Txt);
-            this.DB_Pnl.Controls.Add(this.label8);
-            this.DB_Pnl.Location = new System.Drawing.Point(977, 33);
-            this.DB_Pnl.MinimumSize = new System.Drawing.Size(320, 440);
-            this.DB_Pnl.Name = "DB_Pnl";
-            this.DB_Pnl.Size = new System.Drawing.Size(344, 551);
-            this.DB_Pnl.TabIndex = 7;
-            this.DB_Pnl.Visible = false;
-            // 
-            // Tables_Lst
-            // 
-            this.Tables_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tables_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Tables_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tables_Lst.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tables_Lst.ForeColor = System.Drawing.Color.Lime;
-            this.Tables_Lst.FormattingEnabled = true;
-            this.Tables_Lst.ItemHeight = 16;
-            this.Tables_Lst.Location = new System.Drawing.Point(0, 127);
-            this.Tables_Lst.Name = "Tables_Lst";
-            this.Tables_Lst.Size = new System.Drawing.Size(344, 403);
-            this.Tables_Lst.TabIndex = 2;
-            this.Tables_Lst.SelectedIndexChanged += new System.EventHandler(this.Tables_Lst_SelectedIndexChanged);
-            // 
-            // UrlName_Txt
-            // 
-            this.UrlName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UrlName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UrlName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UrlName_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UrlName_Txt.ForeColor = System.Drawing.Color.Gold;
-            this.UrlName_Txt.Location = new System.Drawing.Point(0, 104);
-            this.UrlName_Txt.Name = "UrlName_Txt";
-            this.UrlName_Txt.Size = new System.Drawing.Size(344, 23);
-            this.UrlName_Txt.TabIndex = 11;
-            this.UrlName_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(0, 80);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(344, 24);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "URL name";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // AddTable_Btn
-            // 
-            this.AddTable_Btn.BackColor = System.Drawing.Color.Black;
-            this.AddTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddTable_Btn.FlatAppearance.BorderSize = 0;
-            this.AddTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddTable_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
-            this.AddTable_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddTable_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddTable_Btn.ForeColor = System.Drawing.Color.DimGray;
-            this.AddTable_Btn.Location = new System.Drawing.Point(0, 47);
-            this.AddTable_Btn.Name = "AddTable_Btn";
-            this.AddTable_Btn.Size = new System.Drawing.Size(344, 33);
-            this.AddTable_Btn.TabIndex = 9;
-            this.AddTable_Btn.Text = "Add Table";
-            this.AddTable_Btn.UseVisualStyleBackColor = false;
-            this.AddTable_Btn.Click += new System.EventHandler(this.AddTable_Btn_Click);
-            // 
-            // URLadd_Lbl
-            // 
-            this.URLadd_Lbl.BackColor = System.Drawing.Color.White;
-            this.URLadd_Lbl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.URLadd_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLadd_Lbl.ForeColor = System.Drawing.Color.DimGray;
-            this.URLadd_Lbl.Location = new System.Drawing.Point(0, 530);
-            this.URLadd_Lbl.Name = "URLadd_Lbl";
-            this.URLadd_Lbl.Size = new System.Drawing.Size(344, 21);
-            this.URLadd_Lbl.TabIndex = 3;
-            this.URLadd_Lbl.Text = "0000000000";
-            this.URLadd_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel9
-            // 
-            this.panel9.AutoSize = true;
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 47);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(344, 0);
-            this.panel9.TabIndex = 1;
-            // 
-            // TableName_Txt
-            // 
-            this.TableName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TableName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TableName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TableName_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableName_Txt.ForeColor = System.Drawing.Color.Gold;
-            this.TableName_Txt.Location = new System.Drawing.Point(0, 24);
-            this.TableName_Txt.Name = "TableName_Txt";
-            this.TableName_Txt.Size = new System.Drawing.Size(344, 23);
-            this.TableName_Txt.TabIndex = 8;
-            this.TableName_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(0, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(344, 24);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Add Table or Select exist";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Panel_Workflow
-            // 
-            this.Panel_Workflow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Panel_Workflow.Controls.Add(this.WorkflowItem_Lst);
-            this.Panel_Workflow.Controls.Add(this.label5);
-            this.Panel_Workflow.Controls.Add(this.AddTextWorkflow_Txt);
-            this.Panel_Workflow.Controls.Add(this.WFProjectOpn_Lbl);
-            this.Panel_Workflow.Controls.Add(this.label1);
-            this.Panel_Workflow.Controls.Add(this.AddTNoteWorkflow_Txt);
-            this.Panel_Workflow.Controls.Add(this.label23);
-            this.Panel_Workflow.Controls.Add(this.AddUrlWorkflow_Txt);
-            this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
-            this.Panel_Workflow.Name = "Panel_Workflow";
-            this.Panel_Workflow.Size = new System.Drawing.Size(200, 583);
-            this.Panel_Workflow.TabIndex = 8;
-            this.Panel_Workflow.Visible = false;
-            // 
-            // WorkflowItem_Lst
-            // 
-            this.WorkflowItem_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.WorkflowItem_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WorkflowItem_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WorkflowItem_Lst.ForeColor = System.Drawing.Color.White;
-            this.WorkflowItem_Lst.FormattingEnabled = true;
-            this.WorkflowItem_Lst.ItemHeight = 16;
-            this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
-            this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
-            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 239);
-            this.WorkflowItem_Lst.Sorted = true;
-            this.WorkflowItem_Lst.TabIndex = 9;
-            this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(0, 266);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(200, 24);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Text (value):";
-            // 
-            // AddTextWorkflow_Txt
-            // 
-            this.AddTextWorkflow_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 290);
-            this.AddTextWorkflow_Txt.Multiline = true;
-            this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
-            this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
-            this.AddTextWorkflow_Txt.TabIndex = 9;
-            // 
-            // WFProjectOpn_Lbl
-            // 
-            this.WFProjectOpn_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WFProjectOpn_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.WFProjectOpn_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.WFProjectOpn_Lbl.Location = new System.Drawing.Point(0, 0);
-            this.WFProjectOpn_Lbl.Name = "WFProjectOpn_Lbl";
-            this.WFProjectOpn_Lbl.Size = new System.Drawing.Size(200, 27);
-            this.WFProjectOpn_Lbl.TabIndex = 9;
-            this.WFProjectOpn_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 392);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 24);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Note:";
-            // 
-            // AddTNoteWorkflow_Txt
-            // 
-            this.AddTNoteWorkflow_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 416);
-            this.AddTNoteWorkflow_Txt.Multiline = true;
-            this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
-            this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
-            this.AddTNoteWorkflow_Txt.TabIndex = 10;
-            // 
-            // label23
-            // 
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label23.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label23.Location = new System.Drawing.Point(0, 518);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(200, 24);
-            this.label23.TabIndex = 12;
-            this.label23.Text = "URL:";
-            // 
-            // AddUrlWorkflow_Txt
-            // 
-            this.AddUrlWorkflow_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.White;
-            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 542);
-            this.AddUrlWorkflow_Txt.Multiline = true;
-            this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
-            this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
-            this.AddUrlWorkflow_Txt.TabIndex = 13;
-            // 
-            // Console_Cmd_Txt
-            // 
-            this.Console_Cmd_Txt.BackColor = System.Drawing.Color.Black;
-            this.Console_Cmd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Console_Cmd_Txt.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 586);
-            this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
-            this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
-            this.Console_Cmd_Txt.TabIndex = 2;
-            this.Console_Cmd_Txt.Text = "> ";
-            this.Console_Cmd_Txt.Visible = false;
-            this.Console_Cmd_Txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Console_Cmd_Txt_KeyDown);
-            this.Console_Cmd_Txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Console_Cmd_Txt_KeyPress);
-            // 
-            // Rss_Tab
-            // 
-            this.Rss_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Rss_Tab.Controls.Add(this.splitContain_Rss);
-            this.Rss_Tab.Controls.Add(this.Link_Lst);
-            this.Rss_Tab.Controls.Add(this.ListFeed_Lst);
-            this.Rss_Tab.Controls.Add(this.Speak_Pnl);
-            this.Rss_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Rss_Tab.Name = "Rss_Tab";
-            this.Rss_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Rss_Tab.TabIndex = 6;
-            this.Rss_Tab.Text = "RSS";
-            // 
-            // splitContain_Rss
-            // 
-            this.splitContain_Rss.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContain_Rss.Location = new System.Drawing.Point(0, 50);
-            this.splitContain_Rss.Name = "splitContain_Rss";
-            this.splitContain_Rss.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContain_Rss.Panel1
-            // 
-            this.splitContain_Rss.Panel1.Controls.Add(this.Title_Lst);
-            this.splitContain_Rss.Panel1.Controls.Add(this.RSSListSite_Lbl);
-            this.splitContain_Rss.Panel1Collapsed = true;
-            // 
-            // splitContain_Rss.Panel2
-            // 
-            this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
-            this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
-            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 562);
-            this.splitContain_Rss.SplitterDistance = 227;
-            this.splitContain_Rss.TabIndex = 5;
-            // 
-            // Title_Lst
-            // 
-            this.Title_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Title_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Title_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Title_Lst.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title_Lst.ForeColor = System.Drawing.Color.White;
-            this.Title_Lst.FormattingEnabled = true;
-            this.Title_Lst.ItemHeight = 18;
-            this.Title_Lst.Location = new System.Drawing.Point(0, 0);
-            this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
-            this.Title_Lst.Name = "Title_Lst";
-            this.Title_Lst.Size = new System.Drawing.Size(150, 227);
-            this.Title_Lst.TabIndex = 0;
-            this.Title_Lst.SelectedIndexChanged += new System.EventHandler(this.Title_Lst_SelectedIndexChanged);
-            // 
-            // RSSListSite_Lbl
-            // 
-            this.RSSListSite_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.RSSListSite_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RSSListSite_Lbl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RSSListSite_Lbl.ForeColor = System.Drawing.Color.OrangeRed;
-            this.RSSListSite_Lbl.FormattingEnabled = true;
-            this.RSSListSite_Lbl.ItemHeight = 14;
-            this.RSSListSite_Lbl.Location = new System.Drawing.Point(150, 0);
-            this.RSSListSite_Lbl.MaximumSize = new System.Drawing.Size(0, 227);
-            this.RSSListSite_Lbl.Name = "RSSListSite_Lbl";
-            this.RSSListSite_Lbl.Size = new System.Drawing.Size(0, 227);
-            this.RSSListSite_Lbl.TabIndex = 6;
-            this.RSSListSite_Lbl.Visible = false;
-            this.RSSListSite_Lbl.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lbl_SelectedIndexChanged);
-            // 
-            // CountBlockFeed_Lbl
-            // 
-            this.CountBlockFeed_Lbl.FormattingEnabled = true;
-            this.CountBlockFeed_Lbl.ItemHeight = 14;
-            this.CountBlockFeed_Lbl.Location = new System.Drawing.Point(1080, 587);
-            this.CountBlockFeed_Lbl.Name = "CountBlockFeed_Lbl";
-            this.CountBlockFeed_Lbl.Size = new System.Drawing.Size(143, 18);
-            this.CountBlockFeed_Lbl.TabIndex = 5;
-            this.CountBlockFeed_Lbl.Visible = false;
-            // 
-            // WBrowsefeed
-            // 
-            this.WBrowsefeed.AllowExternalDrop = true;
-            this.WBrowsefeed.CreationProperties = null;
-            this.WBrowsefeed.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
-            this.WBrowsefeed.Name = "WBrowsefeed";
-            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 562);
-            this.WBrowsefeed.TabIndex = 4;
-            this.WBrowsefeed.ZoomFactor = 1D;
-            // 
-            // Link_Lst
-            // 
-            this.Link_Lst.FormattingEnabled = true;
-            this.Link_Lst.ItemHeight = 14;
-            this.Link_Lst.Location = new System.Drawing.Point(1094, 535);
-            this.Link_Lst.Name = "Link_Lst";
-            this.Link_Lst.Size = new System.Drawing.Size(94, 18);
-            this.Link_Lst.TabIndex = 1;
-            this.Link_Lst.Visible = false;
-            // 
-            // ListFeed_Lst
-            // 
-            this.ListFeed_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ListFeed_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListFeed_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListFeed_Lst.ForeColor = System.Drawing.Color.White;
-            this.ListFeed_Lst.FormattingEnabled = true;
-            this.ListFeed_Lst.ItemHeight = 14;
-            this.ListFeed_Lst.Location = new System.Drawing.Point(1086, 530);
-            this.ListFeed_Lst.Name = "ListFeed_Lst";
-            this.ListFeed_Lst.Size = new System.Drawing.Size(98, 28);
-            this.ListFeed_Lst.TabIndex = 3;
-            this.ListFeed_Lst.Visible = false;
-            // 
-            // Speak_Pnl
-            // 
-            this.Speak_Pnl.BackColor = System.Drawing.Color.White;
-            this.Speak_Pnl.Controls.Add(this.SaveVolRat_Btn);
-            this.Speak_Pnl.Controls.Add(this.RateValue_Lbl);
-            this.Speak_Pnl.Controls.Add(this.VolumeValue_Lbl);
-            this.Speak_Pnl.Controls.Add(this.RateVal_Track);
-            this.Speak_Pnl.Controls.Add(this.VolumeVal_Track);
-            this.Speak_Pnl.Controls.Add(this.ReadClipB_Btn);
-            this.Speak_Pnl.Controls.Add(this.StopSpeak_Btn);
-            this.Speak_Pnl.Controls.Add(this.PauseSpeak_Btn);
-            this.Speak_Pnl.Controls.Add(this.ReadTitle_Btn);
-            this.Speak_Pnl.Controls.Add(this.LangSelect_Lst);
-            this.Speak_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Speak_Pnl.Location = new System.Drawing.Point(0, 0);
-            this.Speak_Pnl.Name = "Speak_Pnl";
-            this.Speak_Pnl.Size = new System.Drawing.Size(1326, 50);
-            this.Speak_Pnl.TabIndex = 6;
-            this.Speak_Pnl.Visible = false;
-            // 
-            // SaveVolRat_Btn
-            // 
-            this.SaveVolRat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveVolRat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveVolRat_Btn.FlatAppearance.BorderSize = 0;
-            this.SaveVolRat_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SaveVolRat_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.SaveVolRat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveVolRat_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveVolRat_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveVolRat_Btn.Location = new System.Drawing.Point(1235, 10);
-            this.SaveVolRat_Btn.Name = "SaveVolRat_Btn";
-            this.SaveVolRat_Btn.Size = new System.Drawing.Size(82, 30);
-            this.SaveVolRat_Btn.TabIndex = 17;
-            this.SaveVolRat_Btn.Text = "Save";
-            this.SaveVolRat_Btn.UseVisualStyleBackColor = false;
-            this.SaveVolRat_Btn.Click += new System.EventHandler(this.SaveVolRat_Btn_Click);
-            // 
-            // RateValue_Lbl
-            // 
-            this.RateValue_Lbl.AutoSize = true;
-            this.RateValue_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RateValue_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.RateValue_Lbl.Location = new System.Drawing.Point(976, 16);
-            this.RateValue_Lbl.Name = "RateValue_Lbl";
-            this.RateValue_Lbl.Size = new System.Drawing.Size(55, 14);
-            this.RateValue_Lbl.TabIndex = 16;
-            this.RateValue_Lbl.Text = "Rate: 0";
-            // 
-            // VolumeValue_Lbl
-            // 
-            this.VolumeValue_Lbl.AutoSize = true;
-            this.VolumeValue_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VolumeValue_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.VolumeValue_Lbl.Location = new System.Drawing.Point(675, 16);
-            this.VolumeValue_Lbl.Name = "VolumeValue_Lbl";
-            this.VolumeValue_Lbl.Size = new System.Drawing.Size(83, 14);
-            this.VolumeValue_Lbl.TabIndex = 15;
-            this.VolumeValue_Lbl.Text = "Volume: 50";
-            // 
-            // RateVal_Track
-            // 
-            this.RateVal_Track.BackColor = System.Drawing.Color.White;
-            this.RateVal_Track.Location = new System.Drawing.Point(1043, 3);
-            this.RateVal_Track.Minimum = -10;
-            this.RateVal_Track.Name = "RateVal_Track";
-            this.RateVal_Track.Size = new System.Drawing.Size(185, 45);
-            this.RateVal_Track.TabIndex = 14;
-            this.RateVal_Track.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.RateVal_Track.Scroll += new System.EventHandler(this.RateVal_Track_Scroll);
-            // 
-            // VolumeVal_Track
-            // 
-            this.VolumeVal_Track.BackColor = System.Drawing.Color.White;
-            this.VolumeVal_Track.Location = new System.Drawing.Point(766, 3);
-            this.VolumeVal_Track.Maximum = 100;
-            this.VolumeVal_Track.Name = "VolumeVal_Track";
-            this.VolumeVal_Track.Size = new System.Drawing.Size(206, 45);
-            this.VolumeVal_Track.TabIndex = 13;
-            this.VolumeVal_Track.TickFrequency = 10;
-            this.VolumeVal_Track.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.VolumeVal_Track.Value = 50;
-            this.VolumeVal_Track.Scroll += new System.EventHandler(this.VolumeVal_Track_Scroll);
-            // 
-            // ReadClipB_Btn
-            // 
-            this.ReadClipB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReadClipB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ReadClipB_Btn.FlatAppearance.BorderSize = 0;
-            this.ReadClipB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ReadClipB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ReadClipB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReadClipB_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReadClipB_Btn.ForeColor = System.Drawing.Color.White;
-            this.ReadClipB_Btn.Location = new System.Drawing.Point(389, 10);
-            this.ReadClipB_Btn.Name = "ReadClipB_Btn";
-            this.ReadClipB_Btn.Size = new System.Drawing.Size(126, 30);
-            this.ReadClipB_Btn.TabIndex = 12;
-            this.ReadClipB_Btn.Text = "Read ClipBoard";
-            this.ReadClipB_Btn.UseVisualStyleBackColor = false;
-            this.ReadClipB_Btn.Click += new System.EventHandler(this.ReadClipB_Btn_Click);
-            // 
-            // StopSpeak_Btn
-            // 
-            this.StopSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.StopSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.StopSpeak_Btn.FlatAppearance.BorderSize = 0;
-            this.StopSpeak_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.StopSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.StopSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StopSpeak_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StopSpeak_Btn.ForeColor = System.Drawing.Color.White;
-            this.StopSpeak_Btn.Location = new System.Drawing.Point(595, 10);
-            this.StopSpeak_Btn.Name = "StopSpeak_Btn";
-            this.StopSpeak_Btn.Size = new System.Drawing.Size(71, 30);
-            this.StopSpeak_Btn.TabIndex = 11;
-            this.StopSpeak_Btn.Text = "Stop";
-            this.StopSpeak_Btn.UseVisualStyleBackColor = false;
-            this.StopSpeak_Btn.Click += new System.EventHandler(this.StopSpeak_Btn_Click);
-            // 
-            // PauseSpeak_Btn
-            // 
-            this.PauseSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.PauseSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PauseSpeak_Btn.FlatAppearance.BorderSize = 0;
-            this.PauseSpeak_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.PauseSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.PauseSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PauseSpeak_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PauseSpeak_Btn.ForeColor = System.Drawing.Color.White;
-            this.PauseSpeak_Btn.Location = new System.Drawing.Point(521, 10);
-            this.PauseSpeak_Btn.Name = "PauseSpeak_Btn";
-            this.PauseSpeak_Btn.Size = new System.Drawing.Size(68, 30);
-            this.PauseSpeak_Btn.TabIndex = 10;
-            this.PauseSpeak_Btn.Text = "Pause";
-            this.PauseSpeak_Btn.UseVisualStyleBackColor = false;
-            this.PauseSpeak_Btn.Click += new System.EventHandler(this.PauseSpeak_Btn_Click);
-            // 
-            // ReadTitle_Btn
-            // 
-            this.ReadTitle_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReadTitle_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ReadTitle_Btn.FlatAppearance.BorderSize = 0;
-            this.ReadTitle_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ReadTitle_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ReadTitle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReadTitle_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReadTitle_Btn.ForeColor = System.Drawing.Color.White;
-            this.ReadTitle_Btn.Location = new System.Drawing.Point(279, 10);
-            this.ReadTitle_Btn.Name = "ReadTitle_Btn";
-            this.ReadTitle_Btn.Size = new System.Drawing.Size(104, 30);
-            this.ReadTitle_Btn.TabIndex = 9;
-            this.ReadTitle_Btn.Text = "Read Title";
-            this.ReadTitle_Btn.UseVisualStyleBackColor = false;
-            this.ReadTitle_Btn.Click += new System.EventHandler(this.ReadTitle_Btn_Click);
-            // 
-            // LangSelect_Lst
-            // 
-            this.LangSelect_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LangSelect_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LangSelect_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LangSelect_Lst.ForeColor = System.Drawing.Color.White;
-            this.LangSelect_Lst.FormattingEnabled = true;
-            this.LangSelect_Lst.ItemHeight = 14;
-            this.LangSelect_Lst.Location = new System.Drawing.Point(8, 10);
-            this.LangSelect_Lst.Name = "LangSelect_Lst";
-            this.LangSelect_Lst.Size = new System.Drawing.Size(265, 30);
-            this.LangSelect_Lst.TabIndex = 0;
-            // 
-            // Data_Tab
-            // 
-            this.Data_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Data_Tab.Controls.Add(this.panel1);
-            this.Data_Tab.Controls.Add(this.panel8);
-            this.Data_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Data_Tab.Name = "Data_Tab";
-            this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Data_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Data_Tab.TabIndex = 5;
-            this.Data_Tab.Text = "DATA";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.DataValue_Lst);
-            this.panel1.Controls.Add(this.DataTable_Lst);
-            this.panel1.Controls.Add(this.DataBaze_Lst);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 98);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1320, 511);
-            this.panel1.TabIndex = 6;
-            // 
-            // DataValue_Lst
-            // 
-            this.DataValue_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.DataValue_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataValue_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataValue_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataValue_Lst.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.DataValue_Lst.FormattingEnabled = true;
-            this.DataValue_Lst.ItemHeight = 14;
-            this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
-            this.DataValue_Lst.Name = "DataValue_Lst";
-            this.DataValue_Lst.Size = new System.Drawing.Size(939, 511);
-            this.DataValue_Lst.TabIndex = 5;
-            this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
-            // 
-            // DataTable_Lst
-            // 
-            this.DataTable_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.DataTable_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataTable_Lst.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DataTable_Lst.ForeColor = System.Drawing.Color.Yellow;
-            this.DataTable_Lst.FormattingEnabled = true;
-            this.DataTable_Lst.ItemHeight = 14;
-            this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
-            this.DataTable_Lst.Name = "DataTable_Lst";
-            this.DataTable_Lst.Size = new System.Drawing.Size(199, 511);
-            this.DataTable_Lst.TabIndex = 4;
-            this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
-            // 
-            // DataBaze_Lst
-            // 
-            this.DataBaze_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.DataBaze_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataBaze_Lst.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DataBaze_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.DataBaze_Lst.FormattingEnabled = true;
-            this.DataBaze_Lst.ItemHeight = 14;
-            this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
-            this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
-            this.DataBaze_Lst.Name = "DataBaze_Lst";
-            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 511);
-            this.DataBaze_Lst.TabIndex = 1;
-            this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel8.Controls.Add(this.panel10);
-            this.panel8.Controls.Add(this.tableLayoutPanel7);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(3, 3);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1320, 95);
-            this.panel8.TabIndex = 0;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.ExecuteCMDsql_Txt);
-            this.panel10.Controls.Add(this.label11);
-            this.panel10.Controls.Add(this.ValueCMDsql_Txt);
-            this.panel10.Controls.Add(this.ExecuteCMDsql_Btn);
-            this.panel10.Controls.Add(this.label10);
-            this.panel10.Controls.Add(this.ChangeDefDB_Btn);
-            this.panel10.Controls.Add(this.DB_Default_Txt);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 64);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1320, 31);
-            this.panel10.TabIndex = 14;
-            // 
-            // ExecuteCMDsql_Txt
-            // 
-            this.ExecuteCMDsql_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ExecuteCMDsql_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ExecuteCMDsql_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ExecuteCMDsql_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExecuteCMDsql_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.ExecuteCMDsql_Txt.Location = new System.Drawing.Point(424, 0);
-            this.ExecuteCMDsql_Txt.Name = "ExecuteCMDsql_Txt";
-            this.ExecuteCMDsql_Txt.Size = new System.Drawing.Size(618, 22);
-            this.ExecuteCMDsql_Txt.TabIndex = 0;
-            this.ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE WHERE url_name LIKE \'%word%\';";
-            // 
-            // label11
-            // 
-            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.label11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label11.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(1042, 0);
-            this.label11.MaximumSize = new System.Drawing.Size(43, 23);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 23);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "data:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ValueCMDsql_Txt
-            // 
-            this.ValueCMDsql_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ValueCMDsql_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ValueCMDsql_Txt.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ValueCMDsql_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ValueCMDsql_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.ValueCMDsql_Txt.Location = new System.Drawing.Point(1085, 0);
-            this.ValueCMDsql_Txt.Name = "ValueCMDsql_Txt";
-            this.ValueCMDsql_Txt.Size = new System.Drawing.Size(144, 22);
-            this.ValueCMDsql_Txt.TabIndex = 12;
-            this.ValueCMDsql_Txt.Text = "url_name";
-            this.ValueCMDsql_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ExecuteCMDsql_Btn
-            // 
-            this.ExecuteCMDsql_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ExecuteCMDsql_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExecuteCMDsql_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ExecuteCMDsql_Btn.FlatAppearance.BorderSize = 0;
-            this.ExecuteCMDsql_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ExecuteCMDsql_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.ExecuteCMDsql_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExecuteCMDsql_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExecuteCMDsql_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.ExecuteCMDsql_Btn.Location = new System.Drawing.Point(1229, 0);
-            this.ExecuteCMDsql_Btn.MaximumSize = new System.Drawing.Size(91, 23);
-            this.ExecuteCMDsql_Btn.Name = "ExecuteCMDsql_Btn";
-            this.ExecuteCMDsql_Btn.Size = new System.Drawing.Size(91, 23);
-            this.ExecuteCMDsql_Btn.TabIndex = 8;
-            this.ExecuteCMDsql_Btn.Text = "Execute Mysql";
-            this.ExecuteCMDsql_Btn.UseVisualStyleBackColor = false;
-            this.ExecuteCMDsql_Btn.Click += new System.EventHandler(this.ExecuteCMDsql_Btn_Click);
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label10.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.DimGray;
-            this.label10.Location = new System.Drawing.Point(381, 0);
-            this.label10.MaximumSize = new System.Drawing.Size(106, 23);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 23);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "SQL:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ChangeDefDB_Btn
-            // 
-            this.ChangeDefDB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ChangeDefDB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ChangeDefDB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ChangeDefDB_Btn.FlatAppearance.BorderSize = 0;
-            this.ChangeDefDB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ChangeDefDB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.ChangeDefDB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ChangeDefDB_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeDefDB_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.ChangeDefDB_Btn.Location = new System.Drawing.Point(182, 0);
-            this.ChangeDefDB_Btn.MaximumSize = new System.Drawing.Size(199, 23);
-            this.ChangeDefDB_Btn.Name = "ChangeDefDB_Btn";
-            this.ChangeDefDB_Btn.Size = new System.Drawing.Size(199, 23);
-            this.ChangeDefDB_Btn.TabIndex = 9;
-            this.ChangeDefDB_Btn.Text = "default DB or Create";
-            this.ChangeDefDB_Btn.UseVisualStyleBackColor = false;
-            this.ChangeDefDB_Btn.Click += new System.EventHandler(this.ChangeDefDB_Btn_Click);
-            // 
-            // DB_Default_Txt
-            // 
-            this.DB_Default_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DB_Default_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DB_Default_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.DB_Default_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DB_Default_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.DB_Default_Txt.Location = new System.Drawing.Point(0, 0);
-            this.DB_Default_Txt.Name = "DB_Default_Txt";
-            this.DB_Default_Txt.Size = new System.Drawing.Size(182, 22);
-            this.DB_Default_Txt.TabIndex = 10;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.tableLayoutPanel7.ColumnCount = 5;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 198F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.Db_OrderLst_Btn, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.Db_OpnLink_Btn, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.ValueChange_Txt, 4, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataValue_Name, 2, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataValue_Opn, 3, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataTable_Opn, 1, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataBaze_Opn, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.panel29, 4, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel30, 3, 0);
-            this.tableLayoutPanel7.Controls.Add(this.Db_Delete_Table_Btn, 2, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(1320, 59);
-            this.tableLayoutPanel7.TabIndex = 13;
-            // 
-            // Db_OrderLst_Btn
-            // 
-            this.Db_OrderLst_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_OrderLst_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_OrderLst_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Db_OrderLst_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_OrderLst_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Db_OrderLst_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_OrderLst_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_OrderLst_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_OrderLst_Btn.Location = new System.Drawing.Point(188, 3);
-            this.Db_OrderLst_Btn.Name = "Db_OrderLst_Btn";
-            this.Db_OrderLst_Btn.Size = new System.Drawing.Size(192, 24);
-            this.Db_OrderLst_Btn.TabIndex = 16;
-            this.Db_OrderLst_Btn.Text = "Sorted";
-            this.Db_OrderLst_Btn.UseVisualStyleBackColor = false;
-            this.Db_OrderLst_Btn.Click += new System.EventHandler(this.Db_OrderLst_Btn_Click);
-            // 
-            // Db_OpnLink_Btn
-            // 
-            this.Db_OpnLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_OpnLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_OpnLink_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Db_OpnLink_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_OpnLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Db_OpnLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_OpnLink_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_OpnLink_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_OpnLink_Btn.Location = new System.Drawing.Point(3, 3);
-            this.Db_OpnLink_Btn.Name = "Db_OpnLink_Btn";
-            this.Db_OpnLink_Btn.Size = new System.Drawing.Size(179, 24);
-            this.Db_OpnLink_Btn.TabIndex = 15;
-            this.Db_OpnLink_Btn.Text = "Open Link";
-            this.Db_OpnLink_Btn.UseVisualStyleBackColor = false;
-            this.Db_OpnLink_Btn.Click += new System.EventHandler(this.Db_OpnLink_Btn_Click);
-            // 
-            // ValueChange_Txt
-            // 
-            this.ValueChange_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ValueChange_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ValueChange_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ValueChange_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ValueChange_Txt.ForeColor = System.Drawing.Color.DimGray;
-            this.ValueChange_Txt.Location = new System.Drawing.Point(983, 33);
-            this.ValueChange_Txt.Name = "ValueChange_Txt";
-            this.ValueChange_Txt.Size = new System.Drawing.Size(334, 22);
-            this.ValueChange_Txt.TabIndex = 11;
-            this.ValueChange_Txt.Text = "Update URL and Name here";
-            this.ValueChange_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ValueChange_Txt.Click += new System.EventHandler(this.ValueChange_Txt_Click);
-            // 
-            // DataValue_Name
-            // 
-            this.DataValue_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DataValue_Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataValue_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataValue_Name.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataValue_Name.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.DataValue_Name.Location = new System.Drawing.Point(386, 33);
-            this.DataValue_Name.Name = "DataValue_Name";
-            this.DataValue_Name.Size = new System.Drawing.Size(251, 22);
-            this.DataValue_Name.TabIndex = 12;
-            // 
-            // DataValue_Opn
-            // 
-            this.DataValue_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DataValue_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataValue_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataValue_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataValue_Opn.ForeColor = System.Drawing.Color.Crimson;
-            this.DataValue_Opn.Location = new System.Drawing.Point(643, 33);
-            this.DataValue_Opn.Name = "DataValue_Opn";
-            this.DataValue_Opn.Size = new System.Drawing.Size(334, 22);
-            this.DataValue_Opn.TabIndex = 10;
-            // 
-            // DataTable_Opn
-            // 
-            this.DataTable_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DataTable_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataTable_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataTable_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataTable_Opn.ForeColor = System.Drawing.Color.Yellow;
-            this.DataTable_Opn.Location = new System.Drawing.Point(188, 33);
-            this.DataTable_Opn.Name = "DataTable_Opn";
-            this.DataTable_Opn.Size = new System.Drawing.Size(192, 22);
-            this.DataTable_Opn.TabIndex = 9;
-            // 
-            // DataBaze_Opn
-            // 
-            this.DataBaze_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DataBaze_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataBaze_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataBaze_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataBaze_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.DataBaze_Opn.Location = new System.Drawing.Point(3, 33);
-            this.DataBaze_Opn.MaximumSize = new System.Drawing.Size(179, 23);
-            this.DataBaze_Opn.Name = "DataBaze_Opn";
-            this.DataBaze_Opn.Size = new System.Drawing.Size(179, 22);
-            this.DataBaze_Opn.TabIndex = 8;
-            // 
-            // panel29
-            // 
-            this.panel29.Controls.Add(this.Db_Update_Value_Btn);
-            this.panel29.Controls.Add(this.Db_Update_Name_Btn);
-            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel29.Location = new System.Drawing.Point(983, 3);
-            this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(334, 24);
-            this.panel29.TabIndex = 13;
-            // 
-            // Db_Update_Value_Btn
-            // 
-            this.Db_Update_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Update_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_Update_Value_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Db_Update_Value_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_Update_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_Update_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Db_Update_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_Update_Value_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_Update_Value_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_Update_Value_Btn.Location = new System.Drawing.Point(169, 0);
-            this.Db_Update_Value_Btn.Name = "Db_Update_Value_Btn";
-            this.Db_Update_Value_Btn.Size = new System.Drawing.Size(165, 24);
-            this.Db_Update_Value_Btn.TabIndex = 7;
-            this.Db_Update_Value_Btn.Text = "Update URL";
-            this.Db_Update_Value_Btn.UseVisualStyleBackColor = false;
-            this.Db_Update_Value_Btn.Click += new System.EventHandler(this.Db_Update_Value_Btn_Click);
-            // 
-            // Db_Update_Name_Btn
-            // 
-            this.Db_Update_Name_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Update_Name_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_Update_Name_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Db_Update_Name_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_Update_Name_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_Update_Name_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Db_Update_Name_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_Update_Name_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_Update_Name_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_Update_Name_Btn.Location = new System.Drawing.Point(0, 0);
-            this.Db_Update_Name_Btn.Name = "Db_Update_Name_Btn";
-            this.Db_Update_Name_Btn.Size = new System.Drawing.Size(169, 24);
-            this.Db_Update_Name_Btn.TabIndex = 6;
-            this.Db_Update_Name_Btn.Text = "Update URL name";
-            this.Db_Update_Name_Btn.UseVisualStyleBackColor = false;
-            this.Db_Update_Name_Btn.Click += new System.EventHandler(this.Db_Update_Name_Btn_Click);
-            // 
-            // panel30
-            // 
-            this.panel30.Controls.Add(this.Db_Delete_Table_AllValue_Btn);
-            this.panel30.Controls.Add(this.Db_Delete_Table_Value_Btn);
-            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel30.Location = new System.Drawing.Point(643, 3);
-            this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(334, 24);
-            this.panel30.TabIndex = 14;
-            // 
-            // Db_Delete_Table_AllValue_Btn
-            // 
-            this.Db_Delete_Table_AllValue_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_AllValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_Delete_Table_AllValue_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.Db_Delete_Table_AllValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_Delete_Table_AllValue_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_Delete_Table_AllValue_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_Delete_Table_AllValue_Btn.Location = new System.Drawing.Point(143, 0);
-            this.Db_Delete_Table_AllValue_Btn.Name = "Db_Delete_Table_AllValue_Btn";
-            this.Db_Delete_Table_AllValue_Btn.Size = new System.Drawing.Size(191, 24);
-            this.Db_Delete_Table_AllValue_Btn.TabIndex = 5;
-            this.Db_Delete_Table_AllValue_Btn.Text = "Delete all Table  Value";
-            this.Db_Delete_Table_AllValue_Btn.UseVisualStyleBackColor = false;
-            this.Db_Delete_Table_AllValue_Btn.Click += new System.EventHandler(this.Db_Delete_Table_AllValue_Btn_Click);
-            // 
-            // Db_Delete_Table_Value_Btn
-            // 
-            this.Db_Delete_Table_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.Db_Delete_Table_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_Delete_Table_Value_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_Delete_Table_Value_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_Delete_Table_Value_Btn.Location = new System.Drawing.Point(0, 0);
-            this.Db_Delete_Table_Value_Btn.Name = "Db_Delete_Table_Value_Btn";
-            this.Db_Delete_Table_Value_Btn.Size = new System.Drawing.Size(143, 24);
-            this.Db_Delete_Table_Value_Btn.TabIndex = 4;
-            this.Db_Delete_Table_Value_Btn.Text = "Delete Table Value";
-            this.Db_Delete_Table_Value_Btn.UseVisualStyleBackColor = false;
-            this.Db_Delete_Table_Value_Btn.Click += new System.EventHandler(this.Db_Delete_Table_Value_Btn_Click);
-            // 
-            // Db_Delete_Table_Btn
-            // 
-            this.Db_Delete_Table_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Db_Delete_Table_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Db_Delete_Table_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Db_Delete_Table_Btn.FlatAppearance.BorderSize = 0;
-            this.Db_Delete_Table_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Db_Delete_Table_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.Db_Delete_Table_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Db_Delete_Table_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Db_Delete_Table_Btn.ForeColor = System.Drawing.Color.White;
-            this.Db_Delete_Table_Btn.Location = new System.Drawing.Point(386, 3);
-            this.Db_Delete_Table_Btn.Name = "Db_Delete_Table_Btn";
-            this.Db_Delete_Table_Btn.Size = new System.Drawing.Size(251, 24);
-            this.Db_Delete_Table_Btn.TabIndex = 3;
-            this.Db_Delete_Table_Btn.Text = "Delete Table";
-            this.Db_Delete_Table_Btn.UseVisualStyleBackColor = false;
-            this.Db_Delete_Table_Btn.Click += new System.EventHandler(this.Db_Delete_Table_Btn_Click);
-            // 
-            // Workflow_Tab
-            // 
-            this.Workflow_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Workflow_Tab.Controls.Add(this.tableLayoutPanel1);
-            this.Workflow_Tab.Controls.Add(this.panel13);
-            this.Workflow_Tab.Controls.Add(this.panel12);
-            this.Workflow_Tab.Controls.Add(this.Itemwf_Cbx);
-            this.Workflow_Tab.Controls.Add(this.panel17);
-            this.Workflow_Tab.Controls.Add(this.panel16);
-            this.Workflow_Tab.Controls.Add(this.panel2);
-            this.Workflow_Tab.Controls.Add(this.panel11);
-            this.Workflow_Tab.Controls.Add(this.panel19);
-            this.Workflow_Tab.ForeColor = System.Drawing.Color.White;
-            this.Workflow_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Workflow_Tab.Name = "Workflow_Tab";
-            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Workflow_Tab.TabIndex = 7;
-            this.Workflow_Tab.Text = "WORKFLOW";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(722, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 612);
-            this.tableLayoutPanel1.TabIndex = 25;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.groupBox2.Controls.Add(this.ModelList_Lst);
-            this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 309);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(348, 300);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Select model";
-            // 
-            // ModelList_Lst
-            // 
-            this.ModelList_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelList_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ModelList_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelList_Lst.Enabled = false;
-            this.ModelList_Lst.ForeColor = System.Drawing.Color.White;
-            this.ModelList_Lst.FormattingEnabled = true;
-            this.ModelList_Lst.ItemHeight = 14;
-            this.ModelList_Lst.Location = new System.Drawing.Point(3, 18);
-            this.ModelList_Lst.Name = "ModelList_Lst";
-            this.ModelList_Lst.Size = new System.Drawing.Size(342, 249);
-            this.ModelList_Lst.TabIndex = 0;
-            this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
-            // 
-            // PanelWrkButtonModel_Pnl
-            // 
-            this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
-            this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
-            this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 267);
-            this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
-            this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(342, 30);
-            this.PanelWrkButtonModel_Pnl.TabIndex = 20;
-            // 
-            // ModelDelete_Btn
-            // 
-            this.ModelDelete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelDelete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ModelDelete_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelDelete_Btn.Enabled = false;
-            this.ModelDelete_Btn.FlatAppearance.BorderSize = 0;
-            this.ModelDelete_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ModelDelete_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ModelDelete_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModelDelete_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelDelete_Btn.ForeColor = System.Drawing.Color.Red;
-            this.ModelDelete_Btn.Location = new System.Drawing.Point(156, 0);
-            this.ModelDelete_Btn.Name = "ModelDelete_Btn";
-            this.ModelDelete_Btn.Size = new System.Drawing.Size(186, 30);
-            this.ModelDelete_Btn.TabIndex = 19;
-            this.ModelDelete_Btn.Text = "Delete Model Workflow";
-            this.ModelDelete_Btn.UseVisualStyleBackColor = false;
-            this.ModelDelete_Btn.Click += new System.EventHandler(this.ModelDelete_Btn_Click);
-            // 
-            // ModelEdit_Btn
-            // 
-            this.ModelEdit_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelEdit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ModelEdit_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ModelEdit_Btn.Enabled = false;
-            this.ModelEdit_Btn.FlatAppearance.BorderSize = 0;
-            this.ModelEdit_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ModelEdit_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ModelEdit_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModelEdit_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelEdit_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.ModelEdit_Btn.Location = new System.Drawing.Point(0, 0);
-            this.ModelEdit_Btn.Name = "ModelEdit_Btn";
-            this.ModelEdit_Btn.Size = new System.Drawing.Size(156, 30);
-            this.ModelEdit_Btn.TabIndex = 20;
-            this.ModelEdit_Btn.Text = "Edit Model Workflow";
-            this.ModelEdit_Btn.UseVisualStyleBackColor = false;
-            this.ModelEdit_Btn.Click += new System.EventHandler(this.ModelEdit_Btn_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.groupBox1.Controls.Add(this.ModelItem_Txt);
-            this.groupBox1.Controls.Add(this.panel14);
-            this.groupBox1.Controls.Add(this.panel15);
-            this.groupBox1.Controls.Add(this.ModelCreate_Btn);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 300);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Create a model";
-            // 
-            // ModelItem_Txt
-            // 
-            this.ModelItem_Txt.AcceptsTab = false;
-            this.ModelItem_Txt.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.ModelItem_Txt.AutoIndent = false;
-            this.ModelItem_Txt.AutoIndentChars = false;
-            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
-            this.ModelItem_Txt.BackBrush = null;
-            this.ModelItem_Txt.CharHeight = 13;
-            this.ModelItem_Txt.CharWidth = 7;
-            this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ModelItem_Txt.Font = new System.Drawing.Font("Courier New", 9F);
-            this.ModelItem_Txt.ForeColor = System.Drawing.Color.Black;
-            this.ModelItem_Txt.IsReplaceMode = false;
-            this.ModelItem_Txt.Location = new System.Drawing.Point(3, 73);
-            this.ModelItem_Txt.Name = "ModelItem_Txt";
-            this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
-            this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
-            this.ModelItem_Txt.Size = new System.Drawing.Size(342, 194);
-            this.ModelItem_Txt.TabIndex = 15;
-            this.ModelItem_Txt.Zoom = 100;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.label12);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(3, 43);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(342, 30);
-            this.panel14.TabIndex = 19;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(11, 7);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(150, 14);
-            this.label12.TabIndex = 16;
-            this.label12.Text = "Add Items line by line";
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.ModelName_Txt);
-            this.panel15.Controls.Add(this.label9);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(3, 18);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(342, 25);
-            this.panel15.TabIndex = 20;
-            // 
-            // ModelName_Txt
-            // 
-            this.ModelName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ModelName_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ModelName_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelName_Txt.ForeColor = System.Drawing.Color.DimGray;
-            this.ModelName_Txt.Location = new System.Drawing.Point(103, 0);
-            this.ModelName_Txt.Name = "ModelName_Txt";
-            this.ModelName_Txt.Size = new System.Drawing.Size(244, 23);
-            this.ModelName_Txt.TabIndex = 0;
-            this.ModelName_Txt.Text = "Choose a model name";
-            // 
-            // label9
-            // 
-            this.label9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label9.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(0, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 25);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Model Name:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ModelCreate_Btn
-            // 
-            this.ModelCreate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ModelCreate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ModelCreate_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ModelCreate_Btn.FlatAppearance.BorderSize = 0;
-            this.ModelCreate_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ModelCreate_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModelCreate_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelCreate_Btn.ForeColor = System.Drawing.Color.White;
-            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 267);
-            this.ModelCreate_Btn.Name = "ModelCreate_Btn";
-            this.ModelCreate_Btn.Size = new System.Drawing.Size(342, 30);
-            this.ModelCreate_Btn.TabIndex = 18;
-            this.ModelCreate_Btn.Text = "Create new Model Workflow";
-            this.ModelCreate_Btn.UseVisualStyleBackColor = false;
-            this.ModelCreate_Btn.Click += new System.EventHandler(this.ModelCreate_Btn_Click);
-            // 
-            // panel13
-            // 
-            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel13.Location = new System.Drawing.Point(1076, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(5, 612);
-            this.panel13.TabIndex = 26;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel12.Location = new System.Drawing.Point(712, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 612);
-            this.panel12.TabIndex = 24;
-            // 
-            // Itemwf_Cbx
-            // 
-            this.Itemwf_Cbx.FormattingEnabled = true;
-            this.Itemwf_Cbx.Location = new System.Drawing.Point(1306, 580);
-            this.Itemwf_Cbx.Name = "Itemwf_Cbx";
-            this.Itemwf_Cbx.Size = new System.Drawing.Size(12, 22);
-            this.Itemwf_Cbx.TabIndex = 14;
-            this.Itemwf_Cbx.Visible = false;
-            // 
-            // panel17
-            // 
-            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel17.Controls.Add(this.StatWorkflow_Lst);
-            this.panel17.Controls.Add(this.panel18);
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel17.Location = new System.Drawing.Point(523, 0);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(189, 612);
-            this.panel17.TabIndex = 28;
-            // 
-            // StatWorkflow_Lst
-            // 
-            this.StatWorkflow_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.StatWorkflow_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.StatWorkflow_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StatWorkflow_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatWorkflow_Lst.ForeColor = System.Drawing.Color.White;
-            this.StatWorkflow_Lst.FormattingEnabled = true;
-            this.StatWorkflow_Lst.ItemHeight = 14;
-            this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
-            this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
-            this.StatWorkflow_Lst.Size = new System.Drawing.Size(189, 602);
-            this.StatWorkflow_Lst.TabIndex = 19;
-            this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
-            // 
-            // panel18
-            // 
-            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel18.Location = new System.Drawing.Point(0, 0);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(189, 10);
-            this.panel18.TabIndex = 20;
-            // 
-            // panel16
-            // 
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel16.Location = new System.Drawing.Point(513, 0);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 612);
-            this.panel16.TabIndex = 27;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.ProjectOpn_Lst);
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.AddItemswf_Txt);
-            this.panel2.Controls.Add(this.CreateXMLwf_btn);
-            this.panel2.Controls.Add(this.panel7);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(10, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(503, 612);
-            this.panel2.TabIndex = 15;
-            // 
-            // ProjectOpn_Lst
-            // 
-            this.ProjectOpn_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ProjectOpn_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ProjectOpn_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProjectOpn_Lst.ForeColor = System.Drawing.Color.White;
-            this.ProjectOpn_Lst.FormattingEnabled = true;
-            this.ProjectOpn_Lst.ItemHeight = 14;
-            this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 36);
-            this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
-            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 185);
-            this.ProjectOpn_Lst.TabIndex = 2;
-            this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.Author_Txt);
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.NameProjectwf_Txt);
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 10);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(503, 26);
-            this.panel5.TabIndex = 14;
-            // 
-            // Author_Txt
-            // 
-            this.Author_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Author_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Author_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Author_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Author_Txt.ForeColor = System.Drawing.Color.DimGray;
-            this.Author_Txt.Location = new System.Drawing.Point(353, 0);
-            this.Author_Txt.Name = "Author_Txt";
-            this.Author_Txt.Size = new System.Drawing.Size(150, 23);
-            this.Author_Txt.TabIndex = 1;
-            this.Author_Txt.Text = "Insert Name";
-            // 
-            // label6
-            // 
-            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(297, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 26);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Author:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // NameProjectwf_Txt
-            // 
-            this.NameProjectwf_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.NameProjectwf_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameProjectwf_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.NameProjectwf_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameProjectwf_Txt.ForeColor = System.Drawing.Color.DimGray;
-            this.NameProjectwf_Txt.Location = new System.Drawing.Point(102, 0);
-            this.NameProjectwf_Txt.Name = "NameProjectwf_Txt";
-            this.NameProjectwf_Txt.Size = new System.Drawing.Size(195, 23);
-            this.NameProjectwf_Txt.TabIndex = 0;
-            this.NameProjectwf_Txt.Text = "Insert project Name";
-            // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 26);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Project Name:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel6
-            // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(503, 10);
-            this.panel6.TabIndex = 15;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 221);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(503, 33);
-            this.panel4.TabIndex = 13;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 14);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Add items line by line";
-            // 
-            // AddItemswf_Txt
-            // 
-            this.AddItemswf_Txt.AcceptsTab = false;
-            this.AddItemswf_Txt.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.AddItemswf_Txt.AutoIndent = false;
-            this.AddItemswf_Txt.AutoIndentChars = false;
-            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 13);
-            this.AddItemswf_Txt.BackBrush = null;
-            this.AddItemswf_Txt.CharHeight = 13;
-            this.AddItemswf_Txt.CharWidth = 7;
-            this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddItemswf_Txt.Font = new System.Drawing.Font("Courier New", 9F);
-            this.AddItemswf_Txt.ForeColor = System.Drawing.Color.Black;
-            this.AddItemswf_Txt.IsReplaceMode = false;
-            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 254);
-            this.AddItemswf_Txt.Name = "AddItemswf_Txt";
-            this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
-            this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.AddItemswf_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("AddItemswf_Txt.ServiceColors")));
-            this.AddItemswf_Txt.Size = new System.Drawing.Size(503, 290);
-            this.AddItemswf_Txt.TabIndex = 3;
-            this.AddItemswf_Txt.Zoom = 100;
-            // 
-            // CreateXMLwf_btn
-            // 
-            this.CreateXMLwf_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CreateXMLwf_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CreateXMLwf_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CreateXMLwf_btn.FlatAppearance.BorderSize = 0;
-            this.CreateXMLwf_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.CreateXMLwf_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateXMLwf_btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.White;
-            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 544);
-            this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
-            this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
-            this.CreateXMLwf_btn.TabIndex = 4;
-            this.CreateXMLwf_btn.Text = "Create new Workflow";
-            this.CreateXMLwf_btn.UseVisualStyleBackColor = false;
-            this.CreateXMLwf_btn.Click += new System.EventHandler(this.CreateXMLwf_btn_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.AddItemwf_Btn);
-            this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 575);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(503, 37);
-            this.panel7.TabIndex = 16;
-            // 
-            // AddItemwf_Btn
-            // 
-            this.AddItemwf_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddItemwf_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddItemwf_Btn.Enabled = false;
-            this.AddItemwf_Btn.FlatAppearance.BorderSize = 0;
-            this.AddItemwf_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddItemwf_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.AddItemwf_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddItemwf_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddItemwf_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddItemwf_Btn.Location = new System.Drawing.Point(238, 8);
-            this.AddItemwf_Btn.Name = "AddItemwf_Btn";
-            this.AddItemwf_Btn.Size = new System.Drawing.Size(265, 23);
-            this.AddItemwf_Btn.TabIndex = 8;
-            this.AddItemwf_Btn.Text = "Add new Item in Workflow";
-            this.AddItemwf_Btn.UseVisualStyleBackColor = false;
-            this.AddItemwf_Btn.Click += new System.EventHandler(this.AddItemwf_Btn_Click);
-            // 
-            // AddSingleItemswf_Txt
-            // 
-            this.AddSingleItemswf_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddSingleItemswf_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AddSingleItemswf_Txt.Enabled = false;
-            this.AddSingleItemswf_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddSingleItemswf_Txt.ForeColor = System.Drawing.Color.DimGray;
-            this.AddSingleItemswf_Txt.Location = new System.Drawing.Point(4, 8);
-            this.AddSingleItemswf_Txt.Name = "AddSingleItemswf_Txt";
-            this.AddSingleItemswf_Txt.Size = new System.Drawing.Size(228, 22);
-            this.AddSingleItemswf_Txt.TabIndex = 7;
-            this.AddSingleItemswf_Txt.Text = "Insert item name";
-            // 
-            // panel11
-            // 
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 612);
-            this.panel11.TabIndex = 23;
-            // 
-            // panel19
-            // 
-            this.panel19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel19.Controls.Add(this.TmpFile_Txt);
-            this.panel19.Controls.Add(this.Timeline_Lst);
-            this.panel19.Controls.Add(this.ResetTimeline_Btn);
-            this.panel19.Controls.Add(this.panel20);
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel19.Location = new System.Drawing.Point(1081, 0);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(245, 612);
-            this.panel19.TabIndex = 29;
-            // 
-            // TmpFile_Txt
-            // 
-            this.TmpFile_Txt.Location = new System.Drawing.Point(225, 549);
-            this.TmpFile_Txt.Name = "TmpFile_Txt";
-            this.TmpFile_Txt.Size = new System.Drawing.Size(10, 22);
-            this.TmpFile_Txt.TabIndex = 25;
-            this.TmpFile_Txt.Visible = false;
-            // 
-            // Timeline_Lst
-            // 
-            this.Timeline_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Timeline_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Timeline_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Timeline_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Timeline_Lst.ForeColor = System.Drawing.Color.DimGray;
-            this.Timeline_Lst.FormattingEnabled = true;
-            this.Timeline_Lst.ItemHeight = 14;
-            this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
-            this.Timeline_Lst.Name = "Timeline_Lst";
-            this.Timeline_Lst.Size = new System.Drawing.Size(245, 579);
-            this.Timeline_Lst.TabIndex = 22;
-            this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
-            // 
-            // ResetTimeline_Btn
-            // 
-            this.ResetTimeline_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ResetTimeline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ResetTimeline_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ResetTimeline_Btn.FlatAppearance.BorderSize = 0;
-            this.ResetTimeline_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ResetTimeline_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetTimeline_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 589);
-            this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
-            this.ResetTimeline_Btn.Size = new System.Drawing.Size(245, 23);
-            this.ResetTimeline_Btn.TabIndex = 24;
-            this.ResetTimeline_Btn.Text = "Reset";
-            this.ResetTimeline_Btn.UseVisualStyleBackColor = false;
-            this.ResetTimeline_Btn.Click += new System.EventHandler(this.ResetTimeline_Btn_Click);
-            // 
-            // panel20
-            // 
-            this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel20.Location = new System.Drawing.Point(0, 0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(245, 10);
-            this.panel20.TabIndex = 23;
-            // 
-            // Map_Tab
-            // 
-            this.Map_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Map_Tab.Controls.Add(this.TempPointLoc_Lst);
-            this.Map_Tab.Controls.Add(this.GMap_Ctrl);
-            this.Map_Tab.Controls.Add(this.Map_Cmd_Pnl);
-            this.Map_Tab.ForeColor = System.Drawing.Color.White;
-            this.Map_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Map_Tab.Name = "Map_Tab";
-            this.Map_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Map_Tab.TabIndex = 9;
-            this.Map_Tab.Text = "MAP";
-            // 
-            // TempPointLoc_Lst
-            // 
-            this.TempPointLoc_Lst.FormattingEnabled = true;
-            this.TempPointLoc_Lst.ItemHeight = 14;
-            this.TempPointLoc_Lst.Location = new System.Drawing.Point(1063, 17);
-            this.TempPointLoc_Lst.Name = "TempPointLoc_Lst";
-            this.TempPointLoc_Lst.Size = new System.Drawing.Size(45, 32);
-            this.TempPointLoc_Lst.TabIndex = 2;
-            this.TempPointLoc_Lst.Visible = false;
-            // 
-            // GMap_Ctrl
-            // 
-            this.GMap_Ctrl.Bearing = 0F;
-            this.GMap_Ctrl.CanDragMap = true;
-            this.GMap_Ctrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GMap_Ctrl.EmptyTileColor = System.Drawing.Color.Navy;
-            this.GMap_Ctrl.GrayScaleMode = false;
-            this.GMap_Ctrl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.GMap_Ctrl.LevelsKeepInMemory = 5;
-            this.GMap_Ctrl.Location = new System.Drawing.Point(0, 0);
-            this.GMap_Ctrl.MarkersEnabled = true;
-            this.GMap_Ctrl.MaxZoom = 20;
-            this.GMap_Ctrl.MinZoom = 1;
-            this.GMap_Ctrl.MouseWheelZoomEnabled = true;
-            this.GMap_Ctrl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.GMap_Ctrl.Name = "GMap_Ctrl";
-            this.GMap_Ctrl.NegativeMode = false;
-            this.GMap_Ctrl.PolygonsEnabled = true;
-            this.GMap_Ctrl.RetryLoadTile = 0;
-            this.GMap_Ctrl.RoutesEnabled = true;
-            this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.GMap_Ctrl.ShowTileGridLines = false;
-            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 612);
-            this.GMap_Ctrl.TabIndex = 1;
-            this.GMap_Ctrl.Zoom = 1D;
-            // 
-            // Map_Cmd_Pnl
-            // 
-            this.Map_Cmd_Pnl.BackColor = System.Drawing.Color.Black;
-            this.Map_Cmd_Pnl.Controls.Add(this.PointLoc_Lst);
-            this.Map_Cmd_Pnl.Controls.Add(this.SaveGPX_Btn);
-            this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Chk);
-            this.Map_Cmd_Pnl.Controls.Add(this.AddNewLoc_Btn);
-            this.Map_Cmd_Pnl.Controls.Add(this.LocatRoute_Lbl);
-            this.Map_Cmd_Pnl.Controls.Add(this.TextMarker_Txt);
-            this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Lbl);
-            this.Map_Cmd_Pnl.Controls.Add(this.LocationName_Txt);
-            this.Map_Cmd_Pnl.Controls.Add(this.label24);
-            this.Map_Cmd_Pnl.Controls.Add(this.PointRoute_Lst);
-            this.Map_Cmd_Pnl.Controls.Add(this.SaveRoute_Btn);
-            this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
-            this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
-            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 612);
-            this.Map_Cmd_Pnl.TabIndex = 0;
-            this.Map_Cmd_Pnl.Visible = false;
-            // 
-            // PointLoc_Lst
-            // 
-            this.PointLoc_Lst.BackColor = System.Drawing.Color.Black;
-            this.PointLoc_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PointLoc_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PointLoc_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointLoc_Lst.ForeColor = System.Drawing.Color.Lime;
-            this.PointLoc_Lst.FormattingEnabled = true;
-            this.PointLoc_Lst.ItemHeight = 14;
-            this.PointLoc_Lst.Location = new System.Drawing.Point(0, 142);
-            this.PointLoc_Lst.Name = "PointLoc_Lst";
-            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 263);
-            this.PointLoc_Lst.TabIndex = 18;
-            this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
-            // 
-            // SaveGPX_Btn
-            // 
-            this.SaveGPX_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveGPX_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveGPX_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SaveGPX_Btn.FlatAppearance.BorderSize = 0;
-            this.SaveGPX_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SaveGPX_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveGPX_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveGPX_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 405);
-            this.SaveGPX_Btn.Name = "SaveGPX_Btn";
-            this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
-            this.SaveGPX_Btn.TabIndex = 26;
-            this.SaveGPX_Btn.Text = "Save to List";
-            this.SaveGPX_Btn.UseVisualStyleBackColor = false;
-            this.SaveGPX_Btn.Visible = false;
-            this.SaveGPX_Btn.Click += new System.EventHandler(this.SaveGPX_Btn_Click);
-            // 
-            // TxtMarker_Chk
-            // 
-            this.TxtMarker_Chk.AutoSize = true;
-            this.TxtMarker_Chk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TxtMarker_Chk.Checked = true;
-            this.TxtMarker_Chk.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.TxtMarker_Chk.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtMarker_Chk.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMarker_Chk.ForeColor = System.Drawing.Color.Gray;
-            this.TxtMarker_Chk.Location = new System.Drawing.Point(0, 125);
-            this.TxtMarker_Chk.Name = "TxtMarker_Chk";
-            this.TxtMarker_Chk.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.TxtMarker_Chk.Size = new System.Drawing.Size(200, 17);
-            this.TxtMarker_Chk.TabIndex = 24;
-            this.TxtMarker_Chk.Text = "Text Marker OnMouseOver";
-            this.TxtMarker_Chk.UseVisualStyleBackColor = false;
-            // 
-            // AddNewLoc_Btn
-            // 
-            this.AddNewLoc_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddNewLoc_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddNewLoc_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.AddNewLoc_Btn.FlatAppearance.BorderSize = 0;
-            this.AddNewLoc_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddNewLoc_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 435);
-            this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
-            this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
-            this.AddNewLoc_Btn.TabIndex = 17;
-            this.AddNewLoc_Btn.Text = "Add New Location";
-            this.AddNewLoc_Btn.UseVisualStyleBackColor = false;
-            this.AddNewLoc_Btn.Click += new System.EventHandler(this.AddNewLoc_Btn_Click);
-            // 
-            // LocatRoute_Lbl
-            // 
-            this.LocatRoute_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.LocatRoute_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LocatRoute_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocatRoute_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.LocatRoute_Lbl.Location = new System.Drawing.Point(0, 97);
-            this.LocatRoute_Lbl.Name = "LocatRoute_Lbl";
-            this.LocatRoute_Lbl.Size = new System.Drawing.Size(200, 28);
-            this.LocatRoute_Lbl.TabIndex = 23;
-            this.LocatRoute_Lbl.Text = "Location Points";
-            this.LocatRoute_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TextMarker_Txt
-            // 
-            this.TextMarker_Txt.BackColor = System.Drawing.Color.Black;
-            this.TextMarker_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextMarker_Txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TextMarker_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextMarker_Txt.ForeColor = System.Drawing.Color.White;
-            this.TextMarker_Txt.Location = new System.Drawing.Point(0, 48);
-            this.TextMarker_Txt.Multiline = true;
-            this.TextMarker_Txt.Name = "TextMarker_Txt";
-            this.TextMarker_Txt.Size = new System.Drawing.Size(200, 49);
-            this.TextMarker_Txt.TabIndex = 22;
-            // 
-            // TxtMarker_Lbl
-            // 
-            this.TxtMarker_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TxtMarker_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtMarker_Lbl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMarker_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.TxtMarker_Lbl.Location = new System.Drawing.Point(0, 20);
-            this.TxtMarker_Lbl.Name = "TxtMarker_Lbl";
-            this.TxtMarker_Lbl.Size = new System.Drawing.Size(200, 28);
-            this.TxtMarker_Lbl.TabIndex = 21;
-            this.TxtMarker_Lbl.Text = "Text Marker";
-            this.TxtMarker_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LocationName_Txt
-            // 
-            this.LocationName_Txt.BackColor = System.Drawing.Color.Black;
-            this.LocationName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LocationName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LocationName_Txt.Enabled = false;
-            this.LocationName_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocationName_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.LocationName_Txt.Location = new System.Drawing.Point(0, 5);
-            this.LocationName_Txt.Name = "LocationName_Txt";
-            this.LocationName_Txt.Size = new System.Drawing.Size(200, 15);
-            this.LocationName_Txt.TabIndex = 19;
-            // 
-            // label24
-            // 
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.label24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label24.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label24.Location = new System.Drawing.Point(0, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(200, 5);
-            this.label24.TabIndex = 20;
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PointRoute_Lst
-            // 
-            this.PointRoute_Lst.BackColor = System.Drawing.Color.Black;
-            this.PointRoute_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PointRoute_Lst.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PointRoute_Lst.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointRoute_Lst.ForeColor = System.Drawing.Color.DarkOrange;
-            this.PointRoute_Lst.FormattingEnabled = true;
-            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 465);
-            this.PointRoute_Lst.Name = "PointRoute_Lst";
-            this.PointRoute_Lst.Size = new System.Drawing.Size(200, 117);
-            this.PointRoute_Lst.TabIndex = 27;
-            this.PointRoute_Lst.Visible = false;
-            this.PointRoute_Lst.SelectedIndexChanged += new System.EventHandler(this.PointRoute_Lst_SelectedIndexChanged);
-            // 
-            // SaveRoute_Btn
-            // 
-            this.SaveRoute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveRoute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveRoute_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SaveRoute_Btn.FlatAppearance.BorderSize = 0;
-            this.SaveRoute_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SaveRoute_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveRoute_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveRoute_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 582);
-            this.SaveRoute_Btn.Name = "SaveRoute_Btn";
-            this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
-            this.SaveRoute_Btn.TabIndex = 25;
-            this.SaveRoute_Btn.Text = "Save route Off";
-            this.SaveRoute_Btn.UseVisualStyleBackColor = false;
-            this.SaveRoute_Btn.Visible = false;
-            this.SaveRoute_Btn.Click += new System.EventHandler(this.SaveRoute_Btn_Click);
-            // 
-            // Json_Tab
-            // 
-            this.Json_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Json_Tab.Controls.Add(this.WbOutB);
-            this.Json_Tab.Controls.Add(this.PanelBjson_Pnl);
-            this.Json_Tab.Controls.Add(this.WbOutA);
-            this.Json_Tab.Controls.Add(this.PanelAjson_Pnl);
-            this.Json_Tab.Controls.Add(this.JsonList_Pnl);
-            this.Json_Tab.Controls.Add(this.panel33);
-            this.Json_Tab.Controls.Add(this.JsonPanel3_Pnl);
-            this.Json_Tab.Controls.Add(this.panel31);
-            this.Json_Tab.Controls.Add(this.JsonPanel2_Pnl);
-            this.Json_Tab.Controls.Add(this.JsonUsrAgt_Txt);
-            this.Json_Tab.Controls.Add(this.panel32);
-            this.Json_Tab.Controls.Add(this.JsonBtn_Pnl);
-            this.Json_Tab.ForeColor = System.Drawing.Color.White;
-            this.Json_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Json_Tab.Name = "Json_Tab";
-            this.Json_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Json_Tab.TabIndex = 10;
-            this.Json_Tab.Text = "JSON";
-            // 
-            // WbOutB
-            // 
-            this.WbOutB.AllowExternalDrop = true;
-            this.WbOutB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.WbOutB.CreationProperties = null;
-            this.WbOutB.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WbOutB.Location = new System.Drawing.Point(0, 320);
-            this.WbOutB.Name = "WbOutB";
-            this.WbOutB.Size = new System.Drawing.Size(1126, 270);
-            this.WbOutB.TabIndex = 15;
-            this.WbOutB.ZoomFactor = 1D;
-            // 
-            // PanelBjson_Pnl
-            // 
-            this.PanelBjson_Pnl.Controls.Add(this.ExtdB_Btn);
-            this.PanelBjson_Pnl.Controls.Add(this.EmptyB_Btn);
-            this.PanelBjson_Pnl.Controls.Add(this.RfreshB_Btn);
-            this.PanelBjson_Pnl.Controls.Add(this.OutJsonB_Chk);
-            this.PanelBjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelBjson_Pnl.Location = new System.Drawing.Point(0, 295);
-            this.PanelBjson_Pnl.Name = "PanelBjson_Pnl";
-            this.PanelBjson_Pnl.Size = new System.Drawing.Size(1126, 25);
-            this.PanelBjson_Pnl.TabIndex = 11;
-            // 
-            // ExtdB_Btn
-            // 
-            this.ExtdB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ExtdB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExtdB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ExtdB_Btn.FlatAppearance.BorderSize = 0;
-            this.ExtdB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ExtdB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ExtdB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExtdB_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExtdB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ExtdB_Btn.Location = new System.Drawing.Point(228, 0);
-            this.ExtdB_Btn.Name = "ExtdB_Btn";
-            this.ExtdB_Btn.Size = new System.Drawing.Size(84, 25);
-            this.ExtdB_Btn.TabIndex = 22;
-            this.ExtdB_Btn.Text = "Extend";
-            this.ExtdB_Btn.UseVisualStyleBackColor = false;
-            this.ExtdB_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
-            // 
-            // EmptyB_Btn
-            // 
-            this.EmptyB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.EmptyB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EmptyB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.EmptyB_Btn.FlatAppearance.BorderSize = 0;
-            this.EmptyB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.EmptyB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.EmptyB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EmptyB_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmptyB_Btn.ForeColor = System.Drawing.Color.Red;
-            this.EmptyB_Btn.Location = new System.Drawing.Point(164, 0);
-            this.EmptyB_Btn.Name = "EmptyB_Btn";
-            this.EmptyB_Btn.Size = new System.Drawing.Size(64, 25);
-            this.EmptyB_Btn.TabIndex = 21;
-            this.EmptyB_Btn.Text = "Empty";
-            this.EmptyB_Btn.UseVisualStyleBackColor = false;
-            this.EmptyB_Btn.Click += new System.EventHandler(this.Empty_Btn_Click);
-            // 
-            // RfreshB_Btn
-            // 
-            this.RfreshB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.RfreshB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RfreshB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RfreshB_Btn.FlatAppearance.BorderSize = 0;
-            this.RfreshB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.RfreshB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.RfreshB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RfreshB_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RfreshB_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.RfreshB_Btn.Location = new System.Drawing.Point(80, 0);
-            this.RfreshB_Btn.Name = "RfreshB_Btn";
-            this.RfreshB_Btn.Size = new System.Drawing.Size(84, 25);
-            this.RfreshB_Btn.TabIndex = 20;
-            this.RfreshB_Btn.Text = "Refresh";
-            this.RfreshB_Btn.UseVisualStyleBackColor = false;
-            this.RfreshB_Btn.Click += new System.EventHandler(this.Rfresh_Btn_Click);
-            // 
-            // OutJsonB_Chk
-            // 
-            this.OutJsonB_Chk.AutoSize = true;
-            this.OutJsonB_Chk.Dock = System.Windows.Forms.DockStyle.Left;
-            this.OutJsonB_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.OutJsonB_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutJsonB_Chk.Location = new System.Drawing.Point(0, 0);
-            this.OutJsonB_Chk.Name = "OutJsonB_Chk";
-            this.OutJsonB_Chk.Size = new System.Drawing.Size(80, 25);
-            this.OutJsonB_Chk.TabIndex = 9;
-            this.OutJsonB_Chk.Text = "parse in";
-            this.OutJsonB_Chk.UseVisualStyleBackColor = true;
-            // 
-            // WbOutA
-            // 
-            this.WbOutA.AllowExternalDrop = true;
-            this.WbOutA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.WbOutA.CreationProperties = null;
-            this.WbOutA.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WbOutA.Dock = System.Windows.Forms.DockStyle.Top;
-            this.WbOutA.Location = new System.Drawing.Point(0, 131);
-            this.WbOutA.Name = "WbOutA";
-            this.WbOutA.Size = new System.Drawing.Size(1126, 164);
-            this.WbOutA.TabIndex = 14;
-            this.WbOutA.ZoomFactor = 1D;
-            // 
-            // PanelAjson_Pnl
-            // 
-            this.PanelAjson_Pnl.Controls.Add(this.ExtdA_Btn);
-            this.PanelAjson_Pnl.Controls.Add(this.EmptyA_Btn);
-            this.PanelAjson_Pnl.Controls.Add(this.RfreshA_Btn);
-            this.PanelAjson_Pnl.Controls.Add(this.OutJsonA_Chk);
-            this.PanelAjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelAjson_Pnl.Location = new System.Drawing.Point(0, 106);
-            this.PanelAjson_Pnl.Name = "PanelAjson_Pnl";
-            this.PanelAjson_Pnl.Size = new System.Drawing.Size(1126, 25);
-            this.PanelAjson_Pnl.TabIndex = 10;
-            // 
-            // ExtdA_Btn
-            // 
-            this.ExtdA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ExtdA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExtdA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ExtdA_Btn.FlatAppearance.BorderSize = 0;
-            this.ExtdA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ExtdA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ExtdA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExtdA_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExtdA_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ExtdA_Btn.Location = new System.Drawing.Point(228, 0);
-            this.ExtdA_Btn.Name = "ExtdA_Btn";
-            this.ExtdA_Btn.Size = new System.Drawing.Size(84, 25);
-            this.ExtdA_Btn.TabIndex = 21;
-            this.ExtdA_Btn.Text = "Extend";
-            this.ExtdA_Btn.UseVisualStyleBackColor = false;
-            this.ExtdA_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
-            // 
-            // EmptyA_Btn
-            // 
-            this.EmptyA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.EmptyA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EmptyA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.EmptyA_Btn.FlatAppearance.BorderSize = 0;
-            this.EmptyA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.EmptyA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.EmptyA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EmptyA_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmptyA_Btn.ForeColor = System.Drawing.Color.Red;
-            this.EmptyA_Btn.Location = new System.Drawing.Point(164, 0);
-            this.EmptyA_Btn.Name = "EmptyA_Btn";
-            this.EmptyA_Btn.Size = new System.Drawing.Size(64, 25);
-            this.EmptyA_Btn.TabIndex = 20;
-            this.EmptyA_Btn.Text = "Empty";
-            this.EmptyA_Btn.UseVisualStyleBackColor = false;
-            this.EmptyA_Btn.Click += new System.EventHandler(this.Empty_Btn_Click);
-            // 
-            // RfreshA_Btn
-            // 
-            this.RfreshA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.RfreshA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RfreshA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.RfreshA_Btn.FlatAppearance.BorderSize = 0;
-            this.RfreshA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.RfreshA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.RfreshA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RfreshA_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RfreshA_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.RfreshA_Btn.Location = new System.Drawing.Point(80, 0);
-            this.RfreshA_Btn.Name = "RfreshA_Btn";
-            this.RfreshA_Btn.Size = new System.Drawing.Size(84, 25);
-            this.RfreshA_Btn.TabIndex = 19;
-            this.RfreshA_Btn.Text = "Refresh";
-            this.RfreshA_Btn.UseVisualStyleBackColor = false;
-            this.RfreshA_Btn.Click += new System.EventHandler(this.Rfresh_Btn_Click);
-            // 
-            // OutJsonA_Chk
-            // 
-            this.OutJsonA_Chk.AutoSize = true;
-            this.OutJsonA_Chk.Checked = true;
-            this.OutJsonA_Chk.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OutJsonA_Chk.Dock = System.Windows.Forms.DockStyle.Left;
-            this.OutJsonA_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.OutJsonA_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutJsonA_Chk.Location = new System.Drawing.Point(0, 0);
-            this.OutJsonA_Chk.Name = "OutJsonA_Chk";
-            this.OutJsonA_Chk.Size = new System.Drawing.Size(80, 25);
-            this.OutJsonA_Chk.TabIndex = 9;
-            this.OutJsonA_Chk.Text = "parse in";
-            this.OutJsonA_Chk.UseVisualStyleBackColor = true;
-            // 
-            // JsonList_Pnl
-            // 
-            this.JsonList_Pnl.Controls.Add(this.TableJson_Lst);
-            this.JsonList_Pnl.Controls.Add(this.OpnJsonDirTable_Btn);
-            this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
-            this.JsonList_Pnl.Name = "JsonList_Pnl";
-            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 484);
-            this.JsonList_Pnl.TabIndex = 8;
-            this.JsonList_Pnl.Visible = false;
-            // 
-            // TableJson_Lst
-            // 
-            this.TableJson_Lst.BackColor = System.Drawing.Color.Black;
-            this.TableJson_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TableJson_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TableJson_Lst.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableJson_Lst.ForeColor = System.Drawing.Color.Lime;
-            this.TableJson_Lst.FormattingEnabled = true;
-            this.TableJson_Lst.ItemHeight = 14;
-            this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
-            this.TableJson_Lst.Name = "TableJson_Lst";
-            this.TableJson_Lst.Size = new System.Drawing.Size(200, 452);
-            this.TableJson_Lst.TabIndex = 25;
-            this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
-            // 
-            // OpnJsonDirTable_Btn
-            // 
-            this.OpnJsonDirTable_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.OpnJsonDirTable_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OpnJsonDirTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OpnJsonDirTable_Btn.FlatAppearance.BorderSize = 0;
-            this.OpnJsonDirTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.OpnJsonDirTable_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.OpnJsonDirTable_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpnJsonDirTable_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnJsonDirTable_Btn.ForeColor = System.Drawing.Color.White;
-            this.OpnJsonDirTable_Btn.Location = new System.Drawing.Point(0, 0);
-            this.OpnJsonDirTable_Btn.Name = "OpnJsonDirTable_Btn";
-            this.OpnJsonDirTable_Btn.Size = new System.Drawing.Size(200, 32);
-            this.OpnJsonDirTable_Btn.TabIndex = 24;
-            this.OpnJsonDirTable_Btn.Text = "Open Directory";
-            this.OpnJsonDirTable_Btn.UseVisualStyleBackColor = false;
-            this.OpnJsonDirTable_Btn.Click += new System.EventHandler(this.OpnJsonDirTable_Btn_Click);
-            // 
-            // panel33
-            // 
-            this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel33.Location = new System.Drawing.Point(0, 96);
-            this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(1326, 10);
-            this.panel33.TabIndex = 5;
-            // 
-            // JsonPanel3_Pnl
-            // 
-            this.JsonPanel3_Pnl.Controls.Add(this.Brkt_Chk);
-            this.JsonPanel3_Pnl.Controls.Add(this.ChgCult_Chk);
-            this.JsonPanel3_Pnl.Controls.Add(this.BrcktB_Txt);
-            this.JsonPanel3_Pnl.Controls.Add(this.label30);
-            this.JsonPanel3_Pnl.Controls.Add(this.BrcktA_Txt);
-            this.JsonPanel3_Pnl.Controls.Add(this.ReplaceBrckt_btn);
-            this.JsonPanel3_Pnl.Controls.Add(this.label29);
-            this.JsonPanel3_Pnl.Controls.Add(this.CharSpace_Txt);
-            this.JsonPanel3_Pnl.Controls.Add(this.label28);
-            this.JsonPanel3_Pnl.Controls.Add(this.JsonCnt_txt);
-            this.JsonPanel3_Pnl.Controls.Add(this.label27);
-            this.JsonPanel3_Pnl.Controls.Add(this.JsonNode_Txt);
-            this.JsonPanel3_Pnl.Controls.Add(this.ParseNodeJson_Btn);
-            this.JsonPanel3_Pnl.Controls.Add(this.JsonVal_Txt);
-            this.JsonPanel3_Pnl.Controls.Add(this.ParseJson_Btn);
-            this.JsonPanel3_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.JsonPanel3_Pnl.Location = new System.Drawing.Point(0, 74);
-            this.JsonPanel3_Pnl.Name = "JsonPanel3_Pnl";
-            this.JsonPanel3_Pnl.Size = new System.Drawing.Size(1326, 22);
-            this.JsonPanel3_Pnl.TabIndex = 4;
-            // 
-            // Brkt_Chk
-            // 
-            this.Brkt_Chk.AutoSize = true;
-            this.Brkt_Chk.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Brkt_Chk.Location = new System.Drawing.Point(1161, 0);
-            this.Brkt_Chk.Name = "Brkt_Chk";
-            this.Brkt_Chk.Size = new System.Drawing.Size(38, 22);
-            this.Brkt_Chk.TabIndex = 33;
-            this.Brkt_Chk.Text = "[]";
-            this.Brkt_Chk.UseVisualStyleBackColor = true;
-            // 
-            // ChgCult_Chk
-            // 
-            this.ChgCult_Chk.AutoSize = true;
-            this.ChgCult_Chk.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ChgCult_Chk.Location = new System.Drawing.Point(1199, 0);
-            this.ChgCult_Chk.Name = "ChgCult_Chk";
-            this.ChgCult_Chk.Size = new System.Drawing.Size(127, 22);
-            this.ChgCult_Chk.TabIndex = 32;
-            this.ChgCult_Chk.Text = "Change Culture";
-            this.ChgCult_Chk.UseVisualStyleBackColor = true;
-            // 
-            // BrcktB_Txt
-            // 
-            this.BrcktB_Txt.BackColor = System.Drawing.Color.Black;
-            this.BrcktB_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BrcktB_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BrcktB_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktB_Txt.Location = new System.Drawing.Point(1037, 0);
-            this.BrcktB_Txt.Name = "BrcktB_Txt";
-            this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
-            this.BrcktB_Txt.TabIndex = 29;
-            this.BrcktB_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label30
-            // 
-            this.label30.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label30.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.Gray;
-            this.label30.Location = new System.Drawing.Point(1003, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(34, 22);
-            this.label30.TabIndex = 28;
-            this.label30.Text = "by";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BrcktA_Txt
-            // 
-            this.BrcktA_Txt.BackColor = System.Drawing.Color.Black;
-            this.BrcktA_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BrcktA_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BrcktA_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.BrcktA_Txt.Location = new System.Drawing.Point(966, 0);
-            this.BrcktA_Txt.Name = "BrcktA_Txt";
-            this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
-            this.BrcktA_Txt.TabIndex = 27;
-            this.BrcktA_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ReplaceBrckt_btn
-            // 
-            this.ReplaceBrckt_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ReplaceBrckt_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ReplaceBrckt_btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ReplaceBrckt_btn.FlatAppearance.BorderSize = 0;
-            this.ReplaceBrckt_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ReplaceBrckt_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ReplaceBrckt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ReplaceBrckt_btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReplaceBrckt_btn.ForeColor = System.Drawing.Color.White;
-            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(898, 0);
-            this.ReplaceBrckt_btn.Name = "ReplaceBrckt_btn";
-            this.ReplaceBrckt_btn.Size = new System.Drawing.Size(68, 22);
-            this.ReplaceBrckt_btn.TabIndex = 30;
-            this.ReplaceBrckt_btn.Text = "Replace";
-            this.ReplaceBrckt_btn.UseVisualStyleBackColor = false;
-            this.ReplaceBrckt_btn.Click += new System.EventHandler(this.ReplaceBrckt_btn_Click);
-            // 
-            // label29
-            // 
-            this.label29.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label29.ForeColor = System.Drawing.Color.Gray;
-            this.label29.Location = new System.Drawing.Point(888, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(10, 22);
-            this.label29.TabIndex = 26;
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CharSpace_Txt
-            // 
-            this.CharSpace_Txt.BackColor = System.Drawing.Color.Black;
-            this.CharSpace_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CharSpace_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.CharSpace_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CharSpace_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.CharSpace_Txt.Location = new System.Drawing.Point(861, 0);
-            this.CharSpace_Txt.Name = "CharSpace_Txt";
-            this.CharSpace_Txt.Size = new System.Drawing.Size(27, 22);
-            this.CharSpace_Txt.TabIndex = 25;
-            this.CharSpace_Txt.Text = " ";
-            this.CharSpace_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label28
-            // 
-            this.label28.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label28.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.Color.Gray;
-            this.label28.Location = new System.Drawing.Point(770, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(91, 22);
-            this.label28.TabIndex = 24;
-            this.label28.Text = "Separator";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // JsonCnt_txt
-            // 
-            this.JsonCnt_txt.BackColor = System.Drawing.Color.Black;
-            this.JsonCnt_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.JsonCnt_txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonCnt_txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonCnt_txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonCnt_txt.Location = new System.Drawing.Point(721, 0);
-            this.JsonCnt_txt.Name = "JsonCnt_txt";
-            this.JsonCnt_txt.Size = new System.Drawing.Size(49, 22);
-            this.JsonCnt_txt.TabIndex = 23;
-            this.JsonCnt_txt.Text = "1";
-            this.JsonCnt_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label27
-            // 
-            this.label27.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label27.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.Color.Gray;
-            this.label27.Location = new System.Drawing.Point(659, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(62, 22);
-            this.label27.TabIndex = 22;
-            this.label27.Text = "Count";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // JsonNode_Txt
-            // 
-            this.JsonNode_Txt.BackColor = System.Drawing.Color.Black;
-            this.JsonNode_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.JsonNode_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonNode_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonNode_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonNode_Txt.Location = new System.Drawing.Point(423, 0);
-            this.JsonNode_Txt.Name = "JsonNode_Txt";
-            this.JsonNode_Txt.Size = new System.Drawing.Size(236, 22);
-            this.JsonNode_Txt.TabIndex = 21;
-            // 
-            // ParseNodeJson_Btn
-            // 
-            this.ParseNodeJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ParseNodeJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ParseNodeJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ParseNodeJson_Btn.FlatAppearance.BorderSize = 0;
-            this.ParseNodeJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ParseNodeJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ParseNodeJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ParseNodeJson_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParseNodeJson_Btn.ForeColor = System.Drawing.Color.White;
-            this.ParseNodeJson_Btn.Location = new System.Drawing.Point(297, 0);
-            this.ParseNodeJson_Btn.Name = "ParseNodeJson_Btn";
-            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(126, 22);
-            this.ParseNodeJson_Btn.TabIndex = 20;
-            this.ParseNodeJson_Btn.Text = "Parse Object";
-            this.ParseNodeJson_Btn.UseVisualStyleBackColor = false;
-            this.ParseNodeJson_Btn.Click += new System.EventHandler(this.ParseNodeJson_Btn_Click);
-            // 
-            // JsonVal_Txt
-            // 
-            this.JsonVal_Txt.BackColor = System.Drawing.Color.Black;
-            this.JsonVal_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.JsonVal_Txt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonVal_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonVal_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonVal_Txt.Location = new System.Drawing.Point(61, 0);
-            this.JsonVal_Txt.Name = "JsonVal_Txt";
-            this.JsonVal_Txt.Size = new System.Drawing.Size(236, 22);
-            this.JsonVal_Txt.TabIndex = 19;
-            // 
-            // ParseJson_Btn
-            // 
-            this.ParseJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ParseJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ParseJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ParseJson_Btn.FlatAppearance.BorderSize = 0;
-            this.ParseJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ParseJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.ParseJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ParseJson_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParseJson_Btn.ForeColor = System.Drawing.Color.White;
-            this.ParseJson_Btn.Location = new System.Drawing.Point(0, 0);
-            this.ParseJson_Btn.Name = "ParseJson_Btn";
-            this.ParseJson_Btn.Size = new System.Drawing.Size(61, 22);
-            this.ParseJson_Btn.TabIndex = 18;
-            this.ParseJson_Btn.Text = "Parse";
-            this.ParseJson_Btn.UseVisualStyleBackColor = false;
-            this.ParseJson_Btn.Click += new System.EventHandler(this.ParseJson_Btn_Click);
-            // 
-            // panel31
-            // 
-            this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel31.Location = new System.Drawing.Point(0, 64);
-            this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(1326, 10);
-            this.panel31.TabIndex = 2;
-            // 
-            // JsonPanel2_Pnl
-            // 
-            this.JsonPanel2_Pnl.Controls.Add(this.JsonUri_Txt);
-            this.JsonPanel2_Pnl.Controls.Add(this.GetJson_Btn);
-            this.JsonPanel2_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.JsonPanel2_Pnl.Location = new System.Drawing.Point(0, 42);
-            this.JsonPanel2_Pnl.Name = "JsonPanel2_Pnl";
-            this.JsonPanel2_Pnl.Size = new System.Drawing.Size(1326, 22);
-            this.JsonPanel2_Pnl.TabIndex = 1;
-            // 
-            // JsonUri_Txt
-            // 
-            this.JsonUri_Txt.BackColor = System.Drawing.Color.Black;
-            this.JsonUri_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.JsonUri_Txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.JsonUri_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonUri_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.JsonUri_Txt.Location = new System.Drawing.Point(61, 0);
-            this.JsonUri_Txt.Name = "JsonUri_Txt";
-            this.JsonUri_Txt.Size = new System.Drawing.Size(1265, 22);
-            this.JsonUri_Txt.TabIndex = 18;
-            // 
-            // GetJson_Btn
-            // 
-            this.GetJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GetJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.GetJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.GetJson_Btn.FlatAppearance.BorderSize = 0;
-            this.GetJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.GetJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.GetJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GetJson_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GetJson_Btn.ForeColor = System.Drawing.Color.White;
-            this.GetJson_Btn.Location = new System.Drawing.Point(0, 0);
-            this.GetJson_Btn.Name = "GetJson_Btn";
-            this.GetJson_Btn.Size = new System.Drawing.Size(61, 22);
-            this.GetJson_Btn.TabIndex = 17;
-            this.GetJson_Btn.Text = "GET";
-            this.GetJson_Btn.UseVisualStyleBackColor = false;
-            this.GetJson_Btn.Click += new System.EventHandler(this.GetJson_Btn_Click);
-            // 
-            // JsonUsrAgt_Txt
-            // 
-            this.JsonUsrAgt_Txt.BackColor = System.Drawing.Color.Black;
-            this.JsonUsrAgt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 590);
-            this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
-            this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
-            this.JsonUsrAgt_Txt.TabIndex = 0;
-            // 
-            // panel32
-            // 
-            this.panel32.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel32.Location = new System.Drawing.Point(0, 32);
-            this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(1326, 10);
-            this.panel32.TabIndex = 3;
-            // 
-            // JsonBtn_Pnl
-            // 
-            this.JsonBtn_Pnl.Controls.Add(this.OpnTableList_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.TableNode_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.TableParse_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveData_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.JsonOpnListUri_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveUri_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveFile_Btn);
-            this.JsonBtn_Pnl.Controls.Add(this.JsonOpnFile_Btn);
-            this.JsonBtn_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.JsonBtn_Pnl.Location = new System.Drawing.Point(0, 0);
-            this.JsonBtn_Pnl.Name = "JsonBtn_Pnl";
-            this.JsonBtn_Pnl.Size = new System.Drawing.Size(1326, 32);
-            this.JsonBtn_Pnl.TabIndex = 0;
-            // 
-            // OpnTableList_Btn
-            // 
-            this.OpnTableList_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.OpnTableList_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OpnTableList_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.OpnTableList_Btn.FlatAppearance.BorderSize = 0;
-            this.OpnTableList_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.OpnTableList_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.OpnTableList_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpnTableList_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnTableList_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.OpnTableList_Btn.Location = new System.Drawing.Point(646, 0);
-            this.OpnTableList_Btn.Name = "OpnTableList_Btn";
-            this.OpnTableList_Btn.Size = new System.Drawing.Size(129, 32);
-            this.OpnTableList_Btn.TabIndex = 24;
-            this.OpnTableList_Btn.Text = "Open Table List";
-            this.OpnTableList_Btn.UseVisualStyleBackColor = false;
-            this.OpnTableList_Btn.Click += new System.EventHandler(this.OpnTableList_Btn_Click);
-            // 
-            // TableNode_Btn
-            // 
-            this.TableNode_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TableNode_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TableNode_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TableNode_Btn.FlatAppearance.BorderSize = 0;
-            this.TableNode_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.TableNode_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.TableNode_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TableNode_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableNode_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableNode_Btn.Location = new System.Drawing.Point(545, 0);
-            this.TableNode_Btn.Name = "TableNode_Btn";
-            this.TableNode_Btn.Size = new System.Drawing.Size(101, 32);
-            this.TableNode_Btn.TabIndex = 23;
-            this.TableNode_Btn.Text = "Object Table";
-            this.TableNode_Btn.UseVisualStyleBackColor = false;
-            this.TableNode_Btn.Click += new System.EventHandler(this.TableNode_Btn_Click);
-            // 
-            // TableParse_Btn
-            // 
-            this.TableParse_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TableParse_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TableParse_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TableParse_Btn.FlatAppearance.BorderSize = 0;
-            this.TableParse_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.TableParse_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.TableParse_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TableParse_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableParse_Btn.ForeColor = System.Drawing.Color.White;
-            this.TableParse_Btn.Location = new System.Drawing.Point(493, 0);
-            this.TableParse_Btn.Name = "TableParse_Btn";
-            this.TableParse_Btn.Size = new System.Drawing.Size(52, 32);
-            this.TableParse_Btn.TabIndex = 22;
-            this.TableParse_Btn.Text = "Table";
-            this.TableParse_Btn.UseVisualStyleBackColor = false;
-            this.TableParse_Btn.Click += new System.EventHandler(this.TableParse_Btn_Click);
-            // 
-            // JsonSaveData_Btn
-            // 
-            this.JsonSaveData_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.JsonSaveData_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.JsonSaveData_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonSaveData_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonSaveData_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonSaveData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.JsonSaveData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JsonSaveData_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JsonSaveData_Btn.Location = new System.Drawing.Point(393, 0);
-            this.JsonSaveData_Btn.Name = "JsonSaveData_Btn";
-            this.JsonSaveData_Btn.Size = new System.Drawing.Size(100, 32);
-            this.JsonSaveData_Btn.TabIndex = 20;
-            this.JsonSaveData_Btn.Text = "Save DATA";
-            this.JsonSaveData_Btn.UseVisualStyleBackColor = false;
-            this.JsonSaveData_Btn.Click += new System.EventHandler(this.JsonSaveData_Btn_Click);
-            // 
-            // JsonOpnListUri_Btn
-            // 
-            this.JsonOpnListUri_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.JsonOpnListUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.JsonOpnListUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonOpnListUri_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonOpnListUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.JsonOpnListUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JsonOpnListUri_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(291, 0);
-            this.JsonOpnListUri_Btn.Name = "JsonOpnListUri_Btn";
-            this.JsonOpnListUri_Btn.Size = new System.Drawing.Size(102, 32);
-            this.JsonOpnListUri_Btn.TabIndex = 19;
-            this.JsonOpnListUri_Btn.Text = "Open List Uri";
-            this.JsonOpnListUri_Btn.UseVisualStyleBackColor = false;
-            this.JsonOpnListUri_Btn.Click += new System.EventHandler(this.JsonOpnListUri_Btn_Click);
-            // 
-            // JsonSaveUri_Btn
-            // 
-            this.JsonSaveUri_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.JsonSaveUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.JsonSaveUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonSaveUri_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonSaveUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonSaveUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.JsonSaveUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JsonSaveUri_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonSaveUri_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JsonSaveUri_Btn.Location = new System.Drawing.Point(180, 0);
-            this.JsonSaveUri_Btn.Name = "JsonSaveUri_Btn";
-            this.JsonSaveUri_Btn.Size = new System.Drawing.Size(111, 32);
-            this.JsonSaveUri_Btn.TabIndex = 18;
-            this.JsonSaveUri_Btn.Text = "Save Uri Json";
-            this.JsonSaveUri_Btn.UseVisualStyleBackColor = false;
-            this.JsonSaveUri_Btn.Click += new System.EventHandler(this.JsonSaveUri_Btn_Click);
-            // 
-            // JsonSaveFile_Btn
-            // 
-            this.JsonSaveFile_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.JsonSaveFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.JsonSaveFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonSaveFile_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonSaveFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonSaveFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.JsonSaveFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JsonSaveFile_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.Lime;
-            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(98, 0);
-            this.JsonSaveFile_Btn.Name = "JsonSaveFile_Btn";
-            this.JsonSaveFile_Btn.Size = new System.Drawing.Size(82, 32);
-            this.JsonSaveFile_Btn.TabIndex = 17;
-            this.JsonSaveFile_Btn.Text = "Save Json";
-            this.JsonSaveFile_Btn.UseVisualStyleBackColor = false;
-            this.JsonSaveFile_Btn.Click += new System.EventHandler(this.JsonSaveFile_Btn_Click);
-            // 
-            // JsonOpnFile_Btn
-            // 
-            this.JsonOpnFile_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.JsonOpnFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.JsonOpnFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.JsonOpnFile_Btn.FlatAppearance.BorderSize = 0;
-            this.JsonOpnFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.JsonOpnFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JsonOpnFile_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.JsonOpnFile_Btn.Location = new System.Drawing.Point(0, 0);
-            this.JsonOpnFile_Btn.Name = "JsonOpnFile_Btn";
-            this.JsonOpnFile_Btn.Size = new System.Drawing.Size(98, 32);
-            this.JsonOpnFile_Btn.TabIndex = 16;
-            this.JsonOpnFile_Btn.Text = "Open Json";
-            this.JsonOpnFile_Btn.UseVisualStyleBackColor = false;
-            this.JsonOpnFile_Btn.Click += new System.EventHandler(this.JsonOpnFile_Btn_Click);
-            // 
-            // OOBai_Tab
-            // 
-            this.OOBai_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.OOBai_Tab.Controls.Add(this.Panel_Right_Oobai);
-            this.OOBai_Tab.Controls.Add(this.panel39);
-            this.OOBai_Tab.Controls.Add(this.Panel_Left_Oobai);
-            this.OOBai_Tab.Location = new System.Drawing.Point(4, 23);
-            this.OOBai_Tab.Name = "OOBai_Tab";
-            this.OOBai_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.OOBai_Tab.TabIndex = 11;
-            this.OOBai_Tab.Text = "OOBai";
-            // 
-            // Panel_Right_Oobai
-            // 
-            this.Panel_Right_Oobai.Controls.Add(this.Panel_Right_Middle_Oobai);
-            this.Panel_Right_Oobai.Controls.Add(this.panel38);
-            this.Panel_Right_Oobai.Controls.Add(this.panel36);
-            this.Panel_Right_Oobai.Controls.Add(this.Panel_Right_Bottom_Oobai);
-            this.Panel_Right_Oobai.Controls.Add(this.panel37);
-            this.Panel_Right_Oobai.Controls.Add(this.Panel_Right_Top_Oobai);
-            this.Panel_Right_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Right_Oobai.Location = new System.Drawing.Point(631, 0);
-            this.Panel_Right_Oobai.Name = "Panel_Right_Oobai";
-            this.Panel_Right_Oobai.Size = new System.Drawing.Size(695, 612);
-            this.Panel_Right_Oobai.TabIndex = 14;
-            // 
-            // Panel_Right_Middle_Oobai
-            // 
-            this.Panel_Right_Middle_Oobai.Controls.Add(this.rtbResponse);
-            this.Panel_Right_Middle_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Right_Middle_Oobai.Location = new System.Drawing.Point(0, 128);
-            this.Panel_Right_Middle_Oobai.Name = "Panel_Right_Middle_Oobai";
-            this.Panel_Right_Middle_Oobai.Size = new System.Drawing.Size(695, 444);
-            this.Panel_Right_Middle_Oobai.TabIndex = 26;
-            // 
-            // rtbResponse
-            // 
-            this.rtbResponse.BackColor = System.Drawing.Color.Black;
-            this.rtbResponse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbResponse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbResponse.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbResponse.ForeColor = System.Drawing.Color.White;
-            this.rtbResponse.Location = new System.Drawing.Point(0, 0);
-            this.rtbResponse.Name = "rtbResponse";
-            this.rtbResponse.ReadOnly = true;
-            this.rtbResponse.Size = new System.Drawing.Size(695, 444);
-            this.rtbResponse.TabIndex = 4;
-            this.rtbResponse.Text = "";
-            // 
-            // panel38
-            // 
-            this.panel38.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel38.Location = new System.Drawing.Point(0, 123);
-            this.panel38.Name = "panel38";
-            this.panel38.Size = new System.Drawing.Size(695, 5);
-            this.panel38.TabIndex = 25;
-            // 
-            // panel36
-            // 
-            this.panel36.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel36.Location = new System.Drawing.Point(0, 572);
-            this.panel36.Name = "panel36";
-            this.panel36.Size = new System.Drawing.Size(695, 5);
-            this.panel36.TabIndex = 24;
-            // 
-            // Panel_Right_Bottom_Oobai
-            // 
-            this.Panel_Right_Bottom_Oobai.Controls.Add(this.Clear_Btn);
-            this.Panel_Right_Bottom_Oobai.Controls.Add(this.SpeakPrompt_Btn);
-            this.Panel_Right_Bottom_Oobai.Controls.Add(this.panelHistory);
-            this.Panel_Right_Bottom_Oobai.Controls.Add(this.Copy_Btn);
-            this.Panel_Right_Bottom_Oobai.Controls.Add(this.Export_Btn);
-            this.Panel_Right_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Right_Bottom_Oobai.Location = new System.Drawing.Point(0, 577);
-            this.Panel_Right_Bottom_Oobai.Name = "Panel_Right_Bottom_Oobai";
-            this.Panel_Right_Bottom_Oobai.Size = new System.Drawing.Size(695, 30);
-            this.Panel_Right_Bottom_Oobai.TabIndex = 23;
-            // 
-            // Clear_Btn
-            // 
-            this.Clear_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Clear_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Clear_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Clear_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Clear_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Clear_Btn.ForeColor = System.Drawing.Color.Black;
-            this.Clear_Btn.Location = new System.Drawing.Point(308, 0);
-            this.Clear_Btn.Name = "Clear_Btn";
-            this.Clear_Btn.Size = new System.Drawing.Size(83, 30);
-            this.Clear_Btn.TabIndex = 9;
-            this.Clear_Btn.Text = "🗑 Empty";
-            this.Clear_Btn.UseVisualStyleBackColor = false;
-            this.Clear_Btn.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
-            // SpeakPrompt_Btn
-            // 
-            this.SpeakPrompt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.SpeakPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SpeakPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SpeakPrompt_Btn.FlatAppearance.BorderSize = 0;
-            this.SpeakPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SpeakPrompt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpeakPrompt_Btn.ForeColor = System.Drawing.Color.White;
-            this.SpeakPrompt_Btn.Location = new System.Drawing.Point(391, 0);
-            this.SpeakPrompt_Btn.Name = "SpeakPrompt_Btn";
-            this.SpeakPrompt_Btn.Size = new System.Drawing.Size(83, 30);
-            this.SpeakPrompt_Btn.TabIndex = 18;
-            this.SpeakPrompt_Btn.Text = "▶️ Speak";
-            this.SpeakPrompt_Btn.UseVisualStyleBackColor = false;
-            this.SpeakPrompt_Btn.Click += new System.EventHandler(this.SpeakPrompt_Btn_Click);
-            // 
-            // panelHistory
-            // 
-            this.panelHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelHistory.Controls.Add(this.PromptViewer_Btn);
-            this.panelHistory.Controls.Add(this.lblHistoryInfo);
-            this.panelHistory.Controls.Add(this.btnHistoryPrev);
-            this.panelHistory.Controls.Add(this.btnHistoryNext);
-            this.panelHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHistory.Location = new System.Drawing.Point(0, 0);
-            this.panelHistory.Name = "panelHistory";
-            this.panelHistory.Size = new System.Drawing.Size(474, 30);
-            this.panelHistory.TabIndex = 17;
-            // 
-            // PromptViewer_Btn
-            // 
-            this.PromptViewer_Btn.BackColor = System.Drawing.Color.BurlyWood;
-            this.PromptViewer_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PromptViewer_Btn.FlatAppearance.BorderSize = 0;
-            this.PromptViewer_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PromptViewer_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PromptViewer_Btn.ForeColor = System.Drawing.Color.White;
-            this.PromptViewer_Btn.Location = new System.Drawing.Point(3, 3);
-            this.PromptViewer_Btn.Name = "PromptViewer_Btn";
-            this.PromptViewer_Btn.Size = new System.Drawing.Size(42, 22);
-            this.PromptViewer_Btn.TabIndex = 15;
-            this.PromptViewer_Btn.Text = "⚡";
-            this.PromptViewer_Btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.PromptViewer_Btn.UseVisualStyleBackColor = false;
-            this.PromptViewer_Btn.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
-            // 
-            // lblHistoryInfo
-            // 
-            this.lblHistoryInfo.AutoSize = true;
-            this.lblHistoryInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblHistoryInfo.Location = new System.Drawing.Point(133, 8);
-            this.lblHistoryInfo.Name = "lblHistoryInfo";
-            this.lblHistoryInfo.Size = new System.Drawing.Size(81, 13);
-            this.lblHistoryInfo.TabIndex = 14;
-            this.lblHistoryInfo.Text = "Backup: empty";
-            // 
-            // btnHistoryPrev
-            // 
-            this.btnHistoryPrev.BackColor = System.Drawing.Color.Black;
-            this.btnHistoryPrev.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHistoryPrev.FlatAppearance.BorderSize = 0;
-            this.btnHistoryPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistoryPrev.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistoryPrev.ForeColor = System.Drawing.Color.White;
-            this.btnHistoryPrev.Location = new System.Drawing.Point(51, 3);
-            this.btnHistoryPrev.Name = "btnHistoryPrev";
-            this.btnHistoryPrev.Size = new System.Drawing.Size(35, 22);
-            this.btnHistoryPrev.TabIndex = 11;
-            this.btnHistoryPrev.Text = "◄";
-            this.btnHistoryPrev.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnHistoryPrev.UseVisualStyleBackColor = false;
-            this.btnHistoryPrev.Click += new System.EventHandler(this.BtnHistoryPrev_Click);
-            // 
-            // btnHistoryNext
-            // 
-            this.btnHistoryNext.BackColor = System.Drawing.Color.Black;
-            this.btnHistoryNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHistoryNext.FlatAppearance.BorderSize = 0;
-            this.btnHistoryNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistoryNext.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistoryNext.ForeColor = System.Drawing.Color.White;
-            this.btnHistoryNext.Location = new System.Drawing.Point(92, 3);
-            this.btnHistoryNext.Name = "btnHistoryNext";
-            this.btnHistoryNext.Size = new System.Drawing.Size(35, 22);
-            this.btnHistoryNext.TabIndex = 12;
-            this.btnHistoryNext.Text = "►";
-            this.btnHistoryNext.UseVisualStyleBackColor = false;
-            this.btnHistoryNext.Click += new System.EventHandler(this.BtnHistoryNext_Click);
-            // 
-            // Copy_Btn
-            // 
-            this.Copy_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.Copy_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Copy_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Copy_Btn.FlatAppearance.BorderSize = 0;
-            this.Copy_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Copy_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Copy_Btn.ForeColor = System.Drawing.Color.White;
-            this.Copy_Btn.Location = new System.Drawing.Point(474, 0);
-            this.Copy_Btn.Name = "Copy_Btn";
-            this.Copy_Btn.Size = new System.Drawing.Size(74, 30);
-            this.Copy_Btn.TabIndex = 8;
-            this.Copy_Btn.Text = "📋 Copy";
-            this.Copy_Btn.UseVisualStyleBackColor = false;
-            this.Copy_Btn.Click += new System.EventHandler(this.BtnCopy_Click);
-            // 
-            // Export_Btn
-            // 
-            this.Export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(0)))));
-            this.Export_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Export_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Export_Btn.FlatAppearance.BorderSize = 0;
-            this.Export_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Export_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Export_Btn.ForeColor = System.Drawing.Color.White;
-            this.Export_Btn.Location = new System.Drawing.Point(548, 0);
-            this.Export_Btn.Name = "Export_Btn";
-            this.Export_Btn.Size = new System.Drawing.Size(147, 30);
-            this.Export_Btn.TabIndex = 10;
-            this.Export_Btn.Text = "💾 Export Txt or Md";
-            this.Export_Btn.UseVisualStyleBackColor = false;
-            this.Export_Btn.Click += new System.EventHandler(this.BtnExport_Click);
-            // 
-            // panel37
-            // 
-            this.panel37.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel37.Location = new System.Drawing.Point(0, 607);
-            this.panel37.Name = "panel37";
-            this.panel37.Size = new System.Drawing.Size(695, 5);
-            this.panel37.TabIndex = 25;
-            // 
-            // Panel_Right_Top_Oobai
-            // 
-            this.Panel_Right_Top_Oobai.Controls.Add(this.ViewTruncatePrompt);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.TruncateAnswer);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.label35);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.label34);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.SignatureCompressText_Lbl);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.label33);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.WebFetch_Txt);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.SemanticCompress);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.StatsCompressText_Lbl);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.label36);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.WebSearch_Txt);
-            this.Panel_Right_Top_Oobai.Controls.Add(this.CloudChat_Txt);
-            this.Panel_Right_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Panel_Right_Top_Oobai.Location = new System.Drawing.Point(0, 0);
-            this.Panel_Right_Top_Oobai.Name = "Panel_Right_Top_Oobai";
-            this.Panel_Right_Top_Oobai.Size = new System.Drawing.Size(695, 123);
-            this.Panel_Right_Top_Oobai.TabIndex = 22;
-            // 
-            // ViewTruncatePrompt
-            // 
-            this.ViewTruncatePrompt.AutoSize = true;
-            this.ViewTruncatePrompt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ViewTruncatePrompt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewTruncatePrompt.ForeColor = System.Drawing.Color.White;
-            this.ViewTruncatePrompt.Location = new System.Drawing.Point(339, 34);
-            this.ViewTruncatePrompt.Name = "ViewTruncatePrompt";
-            this.ViewTruncatePrompt.Size = new System.Drawing.Size(254, 18);
-            this.ViewTruncatePrompt.TabIndex = 32;
-            this.ViewTruncatePrompt.Text = "Display the text (continue answer)";
-            this.ViewTruncatePrompt.UseVisualStyleBackColor = true;
-            // 
-            // TruncateAnswer
-            // 
-            this.TruncateAnswer.AutoSize = true;
-            this.TruncateAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TruncateAnswer.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TruncateAnswer.ForeColor = System.Drawing.Color.Red;
-            this.TruncateAnswer.Location = new System.Drawing.Point(339, 59);
-            this.TruncateAnswer.Name = "TruncateAnswer";
-            this.TruncateAnswer.Size = new System.Drawing.Size(141, 18);
-            this.TruncateAnswer.TabIndex = 21;
-            this.TruncateAnswer.Text = "Truncate question";
-            this.TruncateAnswer.UseVisualStyleBackColor = true;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.Olive;
-            this.label35.Location = new System.Drawing.Point(16, 7);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(302, 13);
-            this.label35.TabIndex = 31;
-            this.label35.Text = "Change these settings \\OOBai\\agent_ai_config.json";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.White;
-            this.label34.Location = new System.Drawing.Point(8, 94);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(39, 13);
-            this.label34.TabIndex = 30;
-            this.label34.Text = "Chat:";
-            // 
-            // SignatureCompressText_Lbl
-            // 
-            this.SignatureCompressText_Lbl.AutoSize = true;
-            this.SignatureCompressText_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SignatureCompressText_Lbl.ForeColor = System.Drawing.Color.LimeGreen;
-            this.SignatureCompressText_Lbl.Location = new System.Drawing.Point(336, 99);
-            this.SignatureCompressText_Lbl.Name = "SignatureCompressText_Lbl";
-            this.SignatureCompressText_Lbl.Size = new System.Drawing.Size(68, 15);
-            this.SignatureCompressText_Lbl.TabIndex = 17;
-            this.SignatureCompressText_Lbl.Text = "Signature: -";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.Color.White;
-            this.label33.Location = new System.Drawing.Point(8, 65);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(42, 13);
-            this.label33.TabIndex = 29;
-            this.label33.Text = "Fetch:";
-            // 
-            // WebFetch_Txt
-            // 
-            this.WebFetch_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WebFetch_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WebFetch_Txt.Enabled = false;
-            this.WebFetch_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebFetch_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.WebFetch_Txt.Location = new System.Drawing.Point(65, 60);
-            this.WebFetch_Txt.Name = "WebFetch_Txt";
-            this.WebFetch_Txt.ReadOnly = true;
-            this.WebFetch_Txt.Size = new System.Drawing.Size(250, 22);
-            this.WebFetch_Txt.TabIndex = 26;
-            // 
-            // SemanticCompress
-            // 
-            this.SemanticCompress.AutoSize = true;
-            this.SemanticCompress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SemanticCompress.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SemanticCompress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.SemanticCompress.Location = new System.Drawing.Point(339, 10);
-            this.SemanticCompress.Name = "SemanticCompress";
-            this.SemanticCompress.Size = new System.Drawing.Size(298, 18);
-            this.SemanticCompress.TabIndex = 20;
-            this.SemanticCompress.Text = "Semantic compression (continue answer)";
-            this.SemanticCompress.UseVisualStyleBackColor = true;
-            // 
-            // StatsCompressText_Lbl
-            // 
-            this.StatsCompressText_Lbl.AutoSize = true;
-            this.StatsCompressText_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatsCompressText_Lbl.ForeColor = System.Drawing.Color.Teal;
-            this.StatsCompressText_Lbl.Location = new System.Drawing.Point(336, 81);
-            this.StatsCompressText_Lbl.Name = "StatsCompressText_Lbl";
-            this.StatsCompressText_Lbl.Size = new System.Drawing.Size(99, 15);
-            this.StatsCompressText_Lbl.TabIndex = 16;
-            this.StatsCompressText_Lbl.Text = "Compression: 0%";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.Color.White;
-            this.label36.Location = new System.Drawing.Point(8, 36);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(52, 13);
-            this.label36.TabIndex = 28;
-            this.label36.Text = "Search:";
-            // 
-            // WebSearch_Txt
-            // 
-            this.WebSearch_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WebSearch_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WebSearch_Txt.Enabled = false;
-            this.WebSearch_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebSearch_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.WebSearch_Txt.Location = new System.Drawing.Point(65, 31);
-            this.WebSearch_Txt.Name = "WebSearch_Txt";
-            this.WebSearch_Txt.ReadOnly = true;
-            this.WebSearch_Txt.Size = new System.Drawing.Size(250, 22);
-            this.WebSearch_Txt.TabIndex = 25;
-            // 
-            // CloudChat_Txt
-            // 
-            this.CloudChat_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CloudChat_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CloudChat_Txt.Enabled = false;
-            this.CloudChat_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloudChat_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.CloudChat_Txt.Location = new System.Drawing.Point(65, 89);
-            this.CloudChat_Txt.Name = "CloudChat_Txt";
-            this.CloudChat_Txt.ReadOnly = true;
-            this.CloudChat_Txt.Size = new System.Drawing.Size(250, 22);
-            this.CloudChat_Txt.TabIndex = 27;
-            // 
-            // panel39
-            // 
-            this.panel39.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel39.Location = new System.Drawing.Point(624, 0);
-            this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(7, 612);
-            this.panel39.TabIndex = 24;
-            // 
-            // Panel_Left_Oobai
-            // 
-            this.Panel_Left_Oobai.Controls.Add(this.Panel_Middle_Top_Oobai);
-            this.Panel_Left_Oobai.Controls.Add(this.panel41);
-            this.Panel_Left_Oobai.Controls.Add(this.panel40);
-            this.Panel_Left_Oobai.Controls.Add(this.Panel_Middle_TopT_Oobai);
-            this.Panel_Left_Oobai.Controls.Add(this.Panel_Middle_BottomT_Oobai);
-            this.Panel_Left_Oobai.Controls.Add(this.Panel_Left_Top_Oobai);
-            this.Panel_Left_Oobai.Controls.Add(this.panel35);
-            this.Panel_Left_Oobai.Controls.Add(this.Panel_Left_Bottom_Oobai);
-            this.Panel_Left_Oobai.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Panel_Left_Oobai.Location = new System.Drawing.Point(0, 0);
-            this.Panel_Left_Oobai.Name = "Panel_Left_Oobai";
-            this.Panel_Left_Oobai.Size = new System.Drawing.Size(624, 612);
-            this.Panel_Left_Oobai.TabIndex = 23;
-            // 
-            // Panel_Middle_Top_Oobai
-            // 
-            this.Panel_Middle_Top_Oobai.Controls.Add(this.txtPrompt);
-            this.Panel_Middle_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_Middle_Top_Oobai.Location = new System.Drawing.Point(0, 128);
-            this.Panel_Middle_Top_Oobai.Name = "Panel_Middle_Top_Oobai";
-            this.Panel_Middle_Top_Oobai.Size = new System.Drawing.Size(624, 415);
-            this.Panel_Middle_Top_Oobai.TabIndex = 25;
-            // 
-            // txtPrompt
-            // 
-            this.txtPrompt.BackColor = System.Drawing.Color.Black;
-            this.txtPrompt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrompt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPrompt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrompt.ForeColor = System.Drawing.Color.Lime;
-            this.txtPrompt.Location = new System.Drawing.Point(0, 0);
-            this.txtPrompt.Multiline = true;
-            this.txtPrompt.Name = "txtPrompt";
-            this.txtPrompt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtPrompt.Size = new System.Drawing.Size(624, 415);
-            this.txtPrompt.TabIndex = 3;
-            // 
-            // panel41
-            // 
-            this.panel41.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel41.Location = new System.Drawing.Point(0, 543);
-            this.panel41.Name = "panel41";
-            this.panel41.Size = new System.Drawing.Size(624, 5);
-            this.panel41.TabIndex = 31;
-            // 
-            // panel40
-            // 
-            this.panel40.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel40.Location = new System.Drawing.Point(0, 123);
-            this.panel40.Name = "panel40";
-            this.panel40.Size = new System.Drawing.Size(624, 5);
-            this.panel40.TabIndex = 30;
-            // 
-            // Panel_Middle_TopT_Oobai
-            // 
-            this.Panel_Middle_TopT_Oobai.Controls.Add(this.cmbTemplates);
-            this.Panel_Middle_TopT_Oobai.Controls.Add(this.AddTemplate_Btn);
-            this.Panel_Middle_TopT_Oobai.Controls.Add(this.lblTemplates);
-            this.Panel_Middle_TopT_Oobai.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Panel_Middle_TopT_Oobai.Location = new System.Drawing.Point(0, 100);
-            this.Panel_Middle_TopT_Oobai.Name = "Panel_Middle_TopT_Oobai";
-            this.Panel_Middle_TopT_Oobai.Size = new System.Drawing.Size(624, 23);
-            this.Panel_Middle_TopT_Oobai.TabIndex = 29;
-            // 
-            // cmbTemplates
-            // 
-            this.cmbTemplates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.cmbTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTemplates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbTemplates.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbTemplates.ForeColor = System.Drawing.Color.White;
-            this.cmbTemplates.FormattingEnabled = true;
-            this.cmbTemplates.Location = new System.Drawing.Point(71, 0);
-            this.cmbTemplates.Name = "cmbTemplates";
-            this.cmbTemplates.Size = new System.Drawing.Size(489, 23);
-            this.cmbTemplates.TabIndex = 2;
-            this.cmbTemplates.SelectedIndexChanged += new System.EventHandler(this.CmbTemplates_SelectedIndexChanged);
-            // 
-            // AddTemplate_Btn
-            // 
-            this.AddTemplate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
-            this.AddTemplate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddTemplate_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AddTemplate_Btn.FlatAppearance.BorderSize = 0;
-            this.AddTemplate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddTemplate_Btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.AddTemplate_Btn.ForeColor = System.Drawing.Color.White;
-            this.AddTemplate_Btn.Location = new System.Drawing.Point(560, 0);
-            this.AddTemplate_Btn.Name = "AddTemplate_Btn";
-            this.AddTemplate_Btn.Size = new System.Drawing.Size(64, 23);
-            this.AddTemplate_Btn.TabIndex = 16;
-            this.AddTemplate_Btn.Text = "➕ Add";
-            this.AddTemplate_Btn.UseVisualStyleBackColor = false;
-            this.AddTemplate_Btn.Click += new System.EventHandler(this.BtnAddTemplate_Click);
-            // 
-            // lblTemplates
-            // 
-            this.lblTemplates.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTemplates.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTemplates.ForeColor = System.Drawing.Color.White;
-            this.lblTemplates.Location = new System.Drawing.Point(0, 0);
-            this.lblTemplates.Name = "lblTemplates";
-            this.lblTemplates.Size = new System.Drawing.Size(71, 23);
-            this.lblTemplates.TabIndex = 15;
-            this.lblTemplates.Text = "Template:";
-            this.lblTemplates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Panel_Middle_BottomT_Oobai
-            // 
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.Send_Btn);
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.ContinueAnswer_Btn);
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.CloudModelChat_Btn);
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.WebSearch_Btn);
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.SearchURLOnly_Btn);
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.ClearPrompt_Btn);
-            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.Cancel_Btn);
-            this.Panel_Middle_BottomT_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Middle_BottomT_Oobai.Location = new System.Drawing.Point(0, 548);
-            this.Panel_Middle_BottomT_Oobai.Name = "Panel_Middle_BottomT_Oobai";
-            this.Panel_Middle_BottomT_Oobai.Size = new System.Drawing.Size(624, 25);
-            this.Panel_Middle_BottomT_Oobai.TabIndex = 27;
-            // 
-            // Send_Btn
-            // 
-            this.Send_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.Send_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Send_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Send_Btn.FlatAppearance.BorderSize = 0;
-            this.Send_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Send_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Send_Btn.ForeColor = System.Drawing.Color.White;
-            this.Send_Btn.Location = new System.Drawing.Point(355, 0);
-            this.Send_Btn.Name = "Send_Btn";
-            this.Send_Btn.Size = new System.Drawing.Size(135, 25);
-            this.Send_Btn.TabIndex = 5;
-            this.Send_Btn.Text = "📤 Localhost";
-            this.Send_Btn.UseVisualStyleBackColor = false;
-            this.Send_Btn.Click += new System.EventHandler(this.BtnSend_Click);
-            // 
-            // ContinueAnswer_Btn
-            // 
-            this.ContinueAnswer_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ContinueAnswer_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ContinueAnswer_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ContinueAnswer_Btn.FlatAppearance.BorderSize = 0;
-            this.ContinueAnswer_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ContinueAnswer_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContinueAnswer_Btn.ForeColor = System.Drawing.Color.White;
-            this.ContinueAnswer_Btn.Location = new System.Drawing.Point(490, 0);
-            this.ContinueAnswer_Btn.Name = "ContinueAnswer_Btn";
-            this.ContinueAnswer_Btn.Size = new System.Drawing.Size(134, 25);
-            this.ContinueAnswer_Btn.TabIndex = 20;
-            this.ContinueAnswer_Btn.Text = "Continue Answer";
-            this.ContinueAnswer_Btn.UseVisualStyleBackColor = false;
-            this.ContinueAnswer_Btn.Click += new System.EventHandler(this.ContinueAnswer_Btn_Click);
-            // 
-            // CloudModelChat_Btn
-            // 
-            this.CloudModelChat_Btn.BackColor = System.Drawing.Color.Lime;
-            this.CloudModelChat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloudModelChat_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.CloudModelChat_Btn.FlatAppearance.BorderSize = 0;
-            this.CloudModelChat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloudModelChat_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloudModelChat_Btn.ForeColor = System.Drawing.Color.Black;
-            this.CloudModelChat_Btn.Location = new System.Drawing.Point(273, 0);
-            this.CloudModelChat_Btn.Name = "CloudModelChat_Btn";
-            this.CloudModelChat_Btn.Size = new System.Drawing.Size(82, 25);
-            this.CloudModelChat_Btn.TabIndex = 18;
-            this.CloudModelChat_Btn.Text = "Cloud";
-            this.CloudModelChat_Btn.UseVisualStyleBackColor = false;
-            this.CloudModelChat_Btn.Click += new System.EventHandler(this.CloudModelChat_Click);
-            // 
-            // WebSearch_Btn
-            // 
-            this.WebSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            this.WebSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WebSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.WebSearch_Btn.FlatAppearance.BorderSize = 0;
-            this.WebSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WebSearch_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebSearch_Btn.ForeColor = System.Drawing.Color.White;
-            this.WebSearch_Btn.Location = new System.Drawing.Point(209, 0);
-            this.WebSearch_Btn.Name = "WebSearch_Btn";
-            this.WebSearch_Btn.Size = new System.Drawing.Size(64, 25);
-            this.WebSearch_Btn.TabIndex = 8;
-            this.WebSearch_Btn.Text = "Web";
-            this.WebSearch_Btn.UseVisualStyleBackColor = false;
-            this.WebSearch_Btn.Click += new System.EventHandler(this.BtnWebSearch_Click);
-            // 
-            // SearchURLOnly_Btn
-            // 
-            this.SearchURLOnly_Btn.BackColor = System.Drawing.Color.Yellow;
-            this.SearchURLOnly_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SearchURLOnly_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SearchURLOnly_Btn.FlatAppearance.BorderSize = 0;
-            this.SearchURLOnly_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SearchURLOnly_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchURLOnly_Btn.ForeColor = System.Drawing.Color.Black;
-            this.SearchURLOnly_Btn.Location = new System.Drawing.Point(150, 0);
-            this.SearchURLOnly_Btn.Name = "SearchURLOnly_Btn";
-            this.SearchURLOnly_Btn.Size = new System.Drawing.Size(59, 25);
-            this.SearchURLOnly_Btn.TabIndex = 17;
-            this.SearchURLOnly_Btn.Text = "Url";
-            this.SearchURLOnly_Btn.UseVisualStyleBackColor = false;
-            this.SearchURLOnly_Btn.Click += new System.EventHandler(this.SearchURLOnly_Click);
-            // 
-            // ClearPrompt_Btn
-            // 
-            this.ClearPrompt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ClearPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ClearPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearPrompt_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClearPrompt_Btn.ForeColor = System.Drawing.Color.Black;
-            this.ClearPrompt_Btn.Location = new System.Drawing.Point(62, 0);
-            this.ClearPrompt_Btn.Name = "ClearPrompt_Btn";
-            this.ClearPrompt_Btn.Size = new System.Drawing.Size(88, 25);
-            this.ClearPrompt_Btn.TabIndex = 7;
-            this.ClearPrompt_Btn.Text = "🗑 Empty";
-            this.ClearPrompt_Btn.UseVisualStyleBackColor = false;
-            this.ClearPrompt_Btn.Click += new System.EventHandler(this.BtnClearPrompt_Click);
-            // 
-            // Cancel_Btn
-            // 
-            this.Cancel_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
-            this.Cancel_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Cancel_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Cancel_Btn.Enabled = false;
-            this.Cancel_Btn.FlatAppearance.BorderSize = 0;
-            this.Cancel_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancel_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cancel_Btn.ForeColor = System.Drawing.Color.White;
-            this.Cancel_Btn.Location = new System.Drawing.Point(0, 0);
-            this.Cancel_Btn.Name = "Cancel_Btn";
-            this.Cancel_Btn.Size = new System.Drawing.Size(62, 25);
-            this.Cancel_Btn.TabIndex = 6;
-            this.Cancel_Btn.Text = " Cancel";
-            this.Cancel_Btn.UseVisualStyleBackColor = false;
-            this.Cancel_Btn.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
-            // Panel_Left_Top_Oobai
-            // 
-            this.Panel_Left_Top_Oobai.Controls.Add(this.ModelInfos_Btn);
-            this.Panel_Left_Top_Oobai.Controls.Add(this.ModeSelectl_Cbx);
-            this.Panel_Left_Top_Oobai.Controls.Add(this.lblUrl);
-            this.Panel_Left_Top_Oobai.Controls.Add(this.lblModel);
-            this.Panel_Left_Top_Oobai.Controls.Add(this.lblApiKey);
-            this.Panel_Left_Top_Oobai.Controls.Add(this.txtUrl);
-            this.Panel_Left_Top_Oobai.Controls.Add(this.txtApiKey);
-            this.Panel_Left_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Panel_Left_Top_Oobai.Location = new System.Drawing.Point(0, 0);
-            this.Panel_Left_Top_Oobai.Name = "Panel_Left_Top_Oobai";
-            this.Panel_Left_Top_Oobai.Size = new System.Drawing.Size(624, 100);
-            this.Panel_Left_Top_Oobai.TabIndex = 24;
-            // 
-            // ModelInfos_Btn
-            // 
-            this.ModelInfos_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ModelInfos_Btn.FlatAppearance.BorderSize = 0;
-            this.ModelInfos_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModelInfos_Btn.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelInfos_Btn.ForeColor = System.Drawing.Color.Yellow;
-            this.ModelInfos_Btn.Location = new System.Drawing.Point(597, 39);
-            this.ModelInfos_Btn.Name = "ModelInfos_Btn";
-            this.ModelInfos_Btn.Size = new System.Drawing.Size(25, 25);
-            this.ModelInfos_Btn.TabIndex = 11;
-            this.ModelInfos_Btn.Text = "ℹ️";
-            this.ModelInfos_Btn.UseVisualStyleBackColor = true;
-            this.ModelInfos_Btn.Click += new System.EventHandler(this.ModelInfos_Btn_Click);
-            // 
-            // ModeSelectl_Cbx
-            // 
-            this.ModeSelectl_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ModeSelectl_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModeSelectl_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModeSelectl_Cbx.ForeColor = System.Drawing.Color.White;
-            this.ModeSelectl_Cbx.FormattingEnabled = true;
-            this.ModeSelectl_Cbx.Location = new System.Drawing.Point(70, 41);
-            this.ModeSelectl_Cbx.Name = "ModeSelectl_Cbx";
-            this.ModeSelectl_Cbx.Size = new System.Drawing.Size(523, 22);
-            this.ModeSelectl_Cbx.Sorted = true;
-            this.ModeSelectl_Cbx.TabIndex = 10;
-            this.ModeSelectl_Cbx.Text = "deepseek-v3.1:671b-cloud";
-            this.ModeSelectl_Cbx.SelectedIndexChanged += new System.EventHandler(this.ModeSelectl_Cbx_SelectedIndexChanged);
-            // 
-            // lblUrl
-            // 
-            this.lblUrl.AutoSize = true;
-            this.lblUrl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUrl.ForeColor = System.Drawing.Color.White;
-            this.lblUrl.Location = new System.Drawing.Point(9, 16);
-            this.lblUrl.Name = "lblUrl";
-            this.lblUrl.Size = new System.Drawing.Size(34, 13);
-            this.lblUrl.TabIndex = 7;
-            this.lblUrl.Text = "URL:";
-            // 
-            // lblModel
-            // 
-            this.lblModel.AutoSize = true;
-            this.lblModel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModel.ForeColor = System.Drawing.Color.White;
-            this.lblModel.Location = new System.Drawing.Point(9, 46);
-            this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(45, 13);
-            this.lblModel.TabIndex = 8;
-            this.lblModel.Text = "Model:";
-            // 
-            // lblApiKey
-            // 
-            this.lblApiKey.AutoSize = true;
-            this.lblApiKey.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApiKey.ForeColor = System.Drawing.Color.White;
-            this.lblApiKey.Location = new System.Drawing.Point(9, 74);
-            this.lblApiKey.Name = "lblApiKey";
-            this.lblApiKey.Size = new System.Drawing.Size(58, 13);
-            this.lblApiKey.TabIndex = 9;
-            this.lblApiKey.Text = "API Key:";
-            // 
-            // txtUrl
-            // 
-            this.txtUrl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUrl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUrl.ForeColor = System.Drawing.Color.Lime;
-            this.txtUrl.Location = new System.Drawing.Point(70, 11);
-            this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(554, 22);
-            this.txtUrl.TabIndex = 0;
-            // 
-            // txtApiKey
-            // 
-            this.txtApiKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtApiKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtApiKey.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApiKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtApiKey.Location = new System.Drawing.Point(70, 69);
-            this.txtApiKey.Name = "txtApiKey";
-            this.txtApiKey.Size = new System.Drawing.Size(554, 22);
-            this.txtApiKey.TabIndex = 2;
-            this.txtApiKey.Text = "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
-            // 
-            // panel35
-            // 
-            this.panel35.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel35.Location = new System.Drawing.Point(0, 573);
-            this.panel35.Name = "panel35";
-            this.panel35.Size = new System.Drawing.Size(624, 5);
-            this.panel35.TabIndex = 28;
-            // 
-            // Panel_Left_Bottom_Oobai
-            // 
-            this.Panel_Left_Bottom_Oobai.Controls.Add(this.lblStatus);
-            this.Panel_Left_Bottom_Oobai.Controls.Add(this.WebCloud);
-            this.Panel_Left_Bottom_Oobai.Controls.Add(this.panel34);
-            this.Panel_Left_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Left_Bottom_Oobai.Location = new System.Drawing.Point(0, 578);
-            this.Panel_Left_Bottom_Oobai.Name = "Panel_Left_Bottom_Oobai";
-            this.Panel_Left_Bottom_Oobai.Size = new System.Drawing.Size(624, 34);
-            this.Panel_Left_Bottom_Oobai.TabIndex = 26;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(0, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.lblStatus.Size = new System.Drawing.Size(571, 29);
-            this.lblStatus.TabIndex = 15;
-            this.lblStatus.Text = "Prêt";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // WebCloud
-            // 
-            this.WebCloud.AutoSize = true;
-            this.WebCloud.Dock = System.Windows.Forms.DockStyle.Right;
-            this.WebCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WebCloud.Location = new System.Drawing.Point(571, 0);
-            this.WebCloud.Name = "WebCloud";
-            this.WebCloud.Size = new System.Drawing.Size(53, 29);
-            this.WebCloud.TabIndex = 20;
-            this.WebCloud.Text = "Web";
-            this.WebCloud.UseVisualStyleBackColor = true;
-            // 
-            // panel34
-            // 
-            this.panel34.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel34.Location = new System.Drawing.Point(0, 29);
-            this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(624, 5);
-            this.panel34.TabIndex = 16;
-            // 
-            // Options_Tab
-            // 
-            this.Options_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Options_Tab.Controls.Add(this.Panel_WorkspaceSize);
-            this.Options_Tab.Controls.Add(this.panel26);
-            this.Options_Tab.Controls.Add(this.Panel_ConfigFiles);
-            this.Options_Tab.Controls.Add(this.panel25);
-            this.Options_Tab.Controls.Add(this.Panel_ConfigXml);
-            this.Options_Tab.Controls.Add(this.panel24);
-            this.Options_Tab.Controls.Add(this.panel23);
-            this.Options_Tab.Controls.Add(this.panel22);
-            this.Options_Tab.Controls.Add(this.panel21);
-            this.Options_Tab.ForeColor = System.Drawing.Color.White;
-            this.Options_Tab.Location = new System.Drawing.Point(4, 23);
-            this.Options_Tab.Name = "Options_Tab";
-            this.Options_Tab.Size = new System.Drawing.Size(1326, 612);
-            this.Options_Tab.TabIndex = 8;
-            this.Options_Tab.Text = "OPTIONS";
-            // 
-            // Panel_WorkspaceSize
-            // 
-            this.Panel_WorkspaceSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Panel_WorkspaceSize.Controls.Add(this.groupBox5);
-            this.Panel_WorkspaceSize.Controls.Add(this.groupBox7);
-            this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
-            this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
-            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 592);
-            this.Panel_WorkspaceSize.TabIndex = 26;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.groupBox5.Controls.Add(this.PanelOptDir_Pnl);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox5.Location = new System.Drawing.Point(0, 62);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 530);
-            this.groupBox5.TabIndex = 19;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Workspace Size";
-            // 
-            // PanelOptDir_Pnl
-            // 
-            this.PanelOptDir_Pnl.AutoScroll = true;
-            this.PanelOptDir_Pnl.Controls.Add(this.KeepTrackDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.KeepTrackDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.JsonDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.JsonDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.MapDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.MapDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.OstiumDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.BkmkltDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.AddOnDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.BkmkltDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.DatabaseDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.SpritesDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.FeedDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.SpritesDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.ScriptDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.DiagramDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.DiagramDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.OstiumDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.WebView2Dir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.AddOnDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.WebView2Dir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.DatabseDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.PictureDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.FeedDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.PictureDir_Opn);
-            this.PanelOptDir_Pnl.Controls.Add(this.ScriptDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowModelDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowDir_Lbl);
-            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowModelDir_Opn);
-            this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 18);
-            this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
-            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 509);
-            this.PanelOptDir_Pnl.TabIndex = 24;
-            // 
-            // KeepTrackDir_Lbl
-            // 
-            this.KeepTrackDir_Lbl.AutoSize = true;
-            this.KeepTrackDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KeepTrackDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.KeepTrackDir_Lbl.Location = new System.Drawing.Point(8, 674);
-            this.KeepTrackDir_Lbl.Name = "KeepTrackDir_Lbl";
-            this.KeepTrackDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.KeepTrackDir_Lbl.TabIndex = 29;
-            this.KeepTrackDir_Lbl.Text = "0";
-            // 
-            // KeepTrackDir_Opn
-            // 
-            this.KeepTrackDir_Opn.AutoSize = true;
-            this.KeepTrackDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.KeepTrackDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KeepTrackDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.KeepTrackDir_Opn.Location = new System.Drawing.Point(8, 653);
-            this.KeepTrackDir_Opn.Name = "KeepTrackDir_Opn";
-            this.KeepTrackDir_Opn.Size = new System.Drawing.Size(114, 14);
-            this.KeepTrackDir_Opn.TabIndex = 28;
-            this.KeepTrackDir_Opn.Text = "Keep Track path";
-            this.KeepTrackDir_Opn.Click += new System.EventHandler(this.KeepTrackDir_Opn_Click);
-            // 
-            // JsonDir_Lbl
-            // 
-            this.JsonDir_Lbl.AutoSize = true;
-            this.JsonDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.JsonDir_Lbl.Location = new System.Drawing.Point(8, 629);
-            this.JsonDir_Lbl.Name = "JsonDir_Lbl";
-            this.JsonDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.JsonDir_Lbl.TabIndex = 27;
-            this.JsonDir_Lbl.Text = "0";
-            // 
-            // JsonDir_Opn
-            // 
-            this.JsonDir_Opn.AutoSize = true;
-            this.JsonDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.JsonDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JsonDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.JsonDir_Opn.Location = new System.Drawing.Point(8, 608);
-            this.JsonDir_Opn.Name = "JsonDir_Opn";
-            this.JsonDir_Opn.Size = new System.Drawing.Size(102, 14);
-            this.JsonDir_Opn.TabIndex = 26;
-            this.JsonDir_Opn.Text = "Json files path";
-            this.JsonDir_Opn.Click += new System.EventHandler(this.JsonDir_Opn_Click);
-            // 
-            // MapDir_Lbl
-            // 
-            this.MapDir_Lbl.AutoSize = true;
-            this.MapDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.MapDir_Lbl.Location = new System.Drawing.Point(8, 584);
-            this.MapDir_Lbl.Name = "MapDir_Lbl";
-            this.MapDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.MapDir_Lbl.TabIndex = 25;
-            this.MapDir_Lbl.Text = "0";
-            // 
-            // MapDir_Opn
-            // 
-            this.MapDir_Opn.AutoSize = true;
-            this.MapDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MapDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.MapDir_Opn.Location = new System.Drawing.Point(8, 563);
-            this.MapDir_Opn.Name = "MapDir_Opn";
-            this.MapDir_Opn.Size = new System.Drawing.Size(67, 14);
-            this.MapDir_Opn.TabIndex = 24;
-            this.MapDir_Opn.Text = "Map path";
-            this.MapDir_Opn.Click += new System.EventHandler(this.MapDir_Opn_Click);
-            // 
-            // OstiumDir_Opn
-            // 
-            this.OstiumDir_Opn.AutoSize = true;
-            this.OstiumDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OstiumDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OstiumDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
-            this.OstiumDir_Opn.Name = "OstiumDir_Opn";
-            this.OstiumDir_Opn.Size = new System.Drawing.Size(88, 14);
-            this.OstiumDir_Opn.TabIndex = 0;
-            this.OstiumDir_Opn.Text = "Ostium Path";
-            this.OstiumDir_Opn.Click += new System.EventHandler(this.OstiumDir_Opn_Click);
-            // 
-            // BkmkltDir_Lbl
-            // 
-            this.BkmkltDir_Lbl.AutoSize = true;
-            this.BkmkltDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BkmkltDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.BkmkltDir_Lbl.Location = new System.Drawing.Point(8, 539);
-            this.BkmkltDir_Lbl.Name = "BkmkltDir_Lbl";
-            this.BkmkltDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.BkmkltDir_Lbl.TabIndex = 23;
-            this.BkmkltDir_Lbl.Text = "0";
-            // 
-            // AddOnDir_Opn
-            // 
-            this.AddOnDir_Opn.AutoSize = true;
-            this.AddOnDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddOnDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOnDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.AddOnDir_Opn.Location = new System.Drawing.Point(8, 56);
-            this.AddOnDir_Opn.Name = "AddOnDir_Opn";
-            this.AddOnDir_Opn.Size = new System.Drawing.Size(129, 14);
-            this.AddOnDir_Opn.TabIndex = 1;
-            this.AddOnDir_Opn.Text = "Add-On Tools path";
-            this.AddOnDir_Opn.Click += new System.EventHandler(this.AddOnDir_Opn_Click);
-            // 
-            // BkmkltDir_Opn
-            // 
-            this.BkmkltDir_Opn.AutoSize = true;
-            this.BkmkltDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BkmkltDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BkmkltDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.BkmkltDir_Opn.Location = new System.Drawing.Point(8, 518);
-            this.BkmkltDir_Opn.Name = "BkmkltDir_Opn";
-            this.BkmkltDir_Opn.Size = new System.Drawing.Size(131, 14);
-            this.BkmkltDir_Opn.TabIndex = 22;
-            this.BkmkltDir_Opn.Text = "Bookmarklets path";
-            this.BkmkltDir_Opn.Click += new System.EventHandler(this.BkmkltDir_Opn_Click);
-            // 
-            // DatabaseDir_Opn
-            // 
-            this.DatabaseDir_Opn.AutoSize = true;
-            this.DatabaseDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DatabaseDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatabaseDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.DatabaseDir_Opn.Location = new System.Drawing.Point(8, 103);
-            this.DatabaseDir_Opn.Name = "DatabaseDir_Opn";
-            this.DatabaseDir_Opn.Size = new System.Drawing.Size(102, 14);
-            this.DatabaseDir_Opn.TabIndex = 2;
-            this.DatabaseDir_Opn.Text = "Database path";
-            this.DatabaseDir_Opn.Click += new System.EventHandler(this.DatabaseDir_Opn_Click);
-            // 
-            // SpritesDir_Lbl
-            // 
-            this.SpritesDir_Lbl.AutoSize = true;
-            this.SpritesDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpritesDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.SpritesDir_Lbl.Location = new System.Drawing.Point(8, 494);
-            this.SpritesDir_Lbl.Name = "SpritesDir_Lbl";
-            this.SpritesDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.SpritesDir_Lbl.TabIndex = 21;
-            this.SpritesDir_Lbl.Text = "0";
-            // 
-            // FeedDir_Opn
-            // 
-            this.FeedDir_Opn.AutoSize = true;
-            this.FeedDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FeedDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FeedDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.FeedDir_Opn.Location = new System.Drawing.Point(8, 150);
-            this.FeedDir_Opn.Name = "FeedDir_Opn";
-            this.FeedDir_Opn.Size = new System.Drawing.Size(72, 14);
-            this.FeedDir_Opn.TabIndex = 3;
-            this.FeedDir_Opn.Text = "Feed path";
-            this.FeedDir_Opn.Click += new System.EventHandler(this.FeedDir_Opn_Click);
-            // 
-            // SpritesDir_Opn
-            // 
-            this.SpritesDir_Opn.AutoSize = true;
-            this.SpritesDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SpritesDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpritesDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.SpritesDir_Opn.Location = new System.Drawing.Point(8, 473);
-            this.SpritesDir_Opn.Name = "SpritesDir_Opn";
-            this.SpritesDir_Opn.Size = new System.Drawing.Size(87, 14);
-            this.SpritesDir_Opn.TabIndex = 20;
-            this.SpritesDir_Opn.Text = "Sprites path";
-            this.SpritesDir_Opn.Click += new System.EventHandler(this.SpritesDir_Opn_Click);
-            // 
-            // ScriptDir_Opn
-            // 
-            this.ScriptDir_Opn.AutoSize = true;
-            this.ScriptDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ScriptDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScriptDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.ScriptDir_Opn.Location = new System.Drawing.Point(8, 197);
-            this.ScriptDir_Opn.Name = "ScriptDir_Opn";
-            this.ScriptDir_Opn.Size = new System.Drawing.Size(79, 14);
-            this.ScriptDir_Opn.TabIndex = 4;
-            this.ScriptDir_Opn.Text = "Script path";
-            this.ScriptDir_Opn.Click += new System.EventHandler(this.ScriptDir_Opn_Click);
-            // 
-            // DiagramDir_Lbl
-            // 
-            this.DiagramDir_Lbl.AutoSize = true;
-            this.DiagramDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiagramDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.DiagramDir_Lbl.Location = new System.Drawing.Point(8, 449);
-            this.DiagramDir_Lbl.Name = "DiagramDir_Lbl";
-            this.DiagramDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.DiagramDir_Lbl.TabIndex = 19;
-            this.DiagramDir_Lbl.Text = "0";
-            // 
-            // WorkFlowDir_Opn
-            // 
-            this.WorkFlowDir_Opn.AutoSize = true;
-            this.WorkFlowDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WorkFlowDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkFlowDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.WorkFlowDir_Opn.Location = new System.Drawing.Point(8, 244);
-            this.WorkFlowDir_Opn.Name = "WorkFlowDir_Opn";
-            this.WorkFlowDir_Opn.Size = new System.Drawing.Size(105, 14);
-            this.WorkFlowDir_Opn.TabIndex = 5;
-            this.WorkFlowDir_Opn.Text = "Workflow path";
-            this.WorkFlowDir_Opn.Click += new System.EventHandler(this.WorkFlowDir_Opn_Click);
-            // 
-            // DiagramDir_Opn
-            // 
-            this.DiagramDir_Opn.AutoSize = true;
-            this.DiagramDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DiagramDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiagramDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.DiagramDir_Opn.Location = new System.Drawing.Point(8, 428);
-            this.DiagramDir_Opn.Name = "DiagramDir_Opn";
-            this.DiagramDir_Opn.Size = new System.Drawing.Size(96, 14);
-            this.DiagramDir_Opn.TabIndex = 18;
-            this.DiagramDir_Opn.Text = "Diagram path";
-            this.DiagramDir_Opn.Click += new System.EventHandler(this.DiagramDir_Opn_Click);
-            // 
-            // OstiumDir_Lbl
-            // 
-            this.OstiumDir_Lbl.AutoSize = true;
-            this.OstiumDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OstiumDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.OstiumDir_Lbl.Location = new System.Drawing.Point(8, 30);
-            this.OstiumDir_Lbl.Name = "OstiumDir_Lbl";
-            this.OstiumDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.OstiumDir_Lbl.TabIndex = 6;
-            this.OstiumDir_Lbl.Text = "0";
-            // 
-            // WebView2Dir_Lbl
-            // 
-            this.WebView2Dir_Lbl.AutoSize = true;
-            this.WebView2Dir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebView2Dir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.WebView2Dir_Lbl.Location = new System.Drawing.Point(8, 404);
-            this.WebView2Dir_Lbl.Name = "WebView2Dir_Lbl";
-            this.WebView2Dir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.WebView2Dir_Lbl.TabIndex = 17;
-            this.WebView2Dir_Lbl.Text = "0";
-            // 
-            // AddOnDir_Lbl
-            // 
-            this.AddOnDir_Lbl.AutoSize = true;
-            this.AddOnDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOnDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.AddOnDir_Lbl.Location = new System.Drawing.Point(8, 77);
-            this.AddOnDir_Lbl.Name = "AddOnDir_Lbl";
-            this.AddOnDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.AddOnDir_Lbl.TabIndex = 7;
-            this.AddOnDir_Lbl.Text = "0";
-            // 
-            // WebView2Dir_Opn
-            // 
-            this.WebView2Dir_Opn.AutoSize = true;
-            this.WebView2Dir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WebView2Dir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebView2Dir_Opn.ForeColor = System.Drawing.Color.White;
-            this.WebView2Dir_Opn.Location = new System.Drawing.Point(8, 383);
-            this.WebView2Dir_Opn.Name = "WebView2Dir_Opn";
-            this.WebView2Dir_Opn.Size = new System.Drawing.Size(113, 14);
-            this.WebView2Dir_Opn.TabIndex = 16;
-            this.WebView2Dir_Opn.Text = "WebView2 Path";
-            this.WebView2Dir_Opn.Click += new System.EventHandler(this.WebView2Dir_Opn_Click);
-            // 
-            // DatabseDir_Lbl
-            // 
-            this.DatabseDir_Lbl.AutoSize = true;
-            this.DatabseDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatabseDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.DatabseDir_Lbl.Location = new System.Drawing.Point(8, 124);
-            this.DatabseDir_Lbl.Name = "DatabseDir_Lbl";
-            this.DatabseDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.DatabseDir_Lbl.TabIndex = 8;
-            this.DatabseDir_Lbl.Text = "0";
-            // 
-            // PictureDir_Lbl
-            // 
-            this.PictureDir_Lbl.AutoSize = true;
-            this.PictureDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PictureDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.PictureDir_Lbl.Location = new System.Drawing.Point(8, 359);
-            this.PictureDir_Lbl.Name = "PictureDir_Lbl";
-            this.PictureDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.PictureDir_Lbl.TabIndex = 15;
-            this.PictureDir_Lbl.Text = "0";
-            // 
-            // FeedDir_Lbl
-            // 
-            this.FeedDir_Lbl.AutoSize = true;
-            this.FeedDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FeedDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.FeedDir_Lbl.Location = new System.Drawing.Point(8, 170);
-            this.FeedDir_Lbl.Name = "FeedDir_Lbl";
-            this.FeedDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.FeedDir_Lbl.TabIndex = 9;
-            this.FeedDir_Lbl.Text = "0";
-            // 
-            // PictureDir_Opn
-            // 
-            this.PictureDir_Opn.AutoSize = true;
-            this.PictureDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PictureDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.PictureDir_Opn.Location = new System.Drawing.Point(8, 338);
-            this.PictureDir_Opn.Name = "PictureDir_Opn";
-            this.PictureDir_Opn.Size = new System.Drawing.Size(94, 14);
-            this.PictureDir_Opn.TabIndex = 14;
-            this.PictureDir_Opn.Text = "Pictures path";
-            this.PictureDir_Opn.Click += new System.EventHandler(this.PictureDir_Opn_Click);
-            // 
-            // ScriptDir_Lbl
-            // 
-            this.ScriptDir_Lbl.AutoSize = true;
-            this.ScriptDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScriptDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.ScriptDir_Lbl.Location = new System.Drawing.Point(8, 218);
-            this.ScriptDir_Lbl.Name = "ScriptDir_Lbl";
-            this.ScriptDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.ScriptDir_Lbl.TabIndex = 10;
-            this.ScriptDir_Lbl.Text = "0";
-            // 
-            // WorkFlowModelDir_Lbl
-            // 
-            this.WorkFlowModelDir_Lbl.AutoSize = true;
-            this.WorkFlowModelDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkFlowModelDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.WorkFlowModelDir_Lbl.Location = new System.Drawing.Point(8, 312);
-            this.WorkFlowModelDir_Lbl.Name = "WorkFlowModelDir_Lbl";
-            this.WorkFlowModelDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.WorkFlowModelDir_Lbl.TabIndex = 13;
-            this.WorkFlowModelDir_Lbl.Text = "0";
-            // 
-            // WorkFlowDir_Lbl
-            // 
-            this.WorkFlowDir_Lbl.AutoSize = true;
-            this.WorkFlowDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkFlowDir_Lbl.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.WorkFlowDir_Lbl.Location = new System.Drawing.Point(8, 265);
-            this.WorkFlowDir_Lbl.Name = "WorkFlowDir_Lbl";
-            this.WorkFlowDir_Lbl.Size = new System.Drawing.Size(14, 15);
-            this.WorkFlowDir_Lbl.TabIndex = 11;
-            this.WorkFlowDir_Lbl.Text = "0";
-            // 
-            // WorkFlowModelDir_Opn
-            // 
-            this.WorkFlowModelDir_Opn.AutoSize = true;
-            this.WorkFlowModelDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WorkFlowModelDir_Opn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkFlowModelDir_Opn.ForeColor = System.Drawing.Color.White;
-            this.WorkFlowModelDir_Opn.Location = new System.Drawing.Point(8, 291);
-            this.WorkFlowModelDir_Opn.Name = "WorkFlowModelDir_Opn";
-            this.WorkFlowModelDir_Opn.Size = new System.Drawing.Size(148, 14);
-            this.WorkFlowModelDir_Opn.TabIndex = 12;
-            this.WorkFlowModelDir_Opn.Text = "Workflow Model path";
-            this.WorkFlowModelDir_Opn.Click += new System.EventHandler(this.WorkFlowModelDir_Opn_Click);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.TrackPrevent_Cbx);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox7.Location = new System.Drawing.Point(0, 0);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(328, 62);
-            this.groupBox7.TabIndex = 20;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Tracking Prevention Level";
-            // 
-            // TrackPrevent_Cbx
-            // 
-            this.TrackPrevent_Cbx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TrackPrevent_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.TrackPrevent_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TrackPrevent_Cbx.ForeColor = System.Drawing.Color.White;
-            this.TrackPrevent_Cbx.FormattingEnabled = true;
-            this.TrackPrevent_Cbx.Items.AddRange(new object[] {
-            "None",
-            "Basic",
-            "Balanced",
-            "Strict"});
-            this.TrackPrevent_Cbx.Location = new System.Drawing.Point(6, 26);
-            this.TrackPrevent_Cbx.Name = "TrackPrevent_Cbx";
-            this.TrackPrevent_Cbx.Size = new System.Drawing.Size(316, 22);
-            this.TrackPrevent_Cbx.TabIndex = 0;
-            this.TrackPrevent_Cbx.Text = "None";
-            this.TrackPrevent_Cbx.SelectedIndexChanged += new System.EventHandler(this.TrackPrevent_Cbx_SelectedIndexChanged);
-            // 
-            // panel26
-            // 
-            this.panel26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel26.Location = new System.Drawing.Point(978, 10);
-            this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(10, 592);
-            this.panel26.TabIndex = 27;
-            // 
-            // Panel_ConfigFiles
-            // 
-            this.Panel_ConfigFiles.Controls.Add(this.groupBox6);
-            this.Panel_ConfigFiles.Controls.Add(this.groupBox4);
-            this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
-            this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
-            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 592);
-            this.Panel_ConfigFiles.TabIndex = 28;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.KillCookies_Chk);
-            this.groupBox6.Controls.Add(this.FloodHeader_Chk);
-            this.groupBox6.Controls.Add(this.Limitsize_Chk);
-            this.groupBox6.Controls.Add(this.ArchiveAdd_Lst);
-            this.groupBox6.Controls.Add(this.SaveCookies_Chk);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox6.Location = new System.Drawing.Point(0, 370);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(244, 222);
-            this.groupBox6.TabIndex = 19;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "other";
-            // 
-            // KillCookies_Chk
-            // 
-            this.KillCookies_Chk.AutoSize = true;
-            this.KillCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.KillCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KillCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.KillCookies_Chk.Location = new System.Drawing.Point(14, 158);
-            this.KillCookies_Chk.Name = "KillCookies_Chk";
-            this.KillCookies_Chk.Size = new System.Drawing.Size(176, 36);
-            this.KillCookies_Chk.TabIndex = 4;
-            this.KillCookies_Chk.Text = "Clear cookies after \r\nevery browsing session";
-            this.KillCookies_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.KillCookies_Chk.UseVisualStyleBackColor = true;
-            // 
-            // FloodHeader_Chk
-            // 
-            this.FloodHeader_Chk.AutoSize = true;
-            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FloodHeader_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FloodHeader_Chk.ForeColor = System.Drawing.Color.White;
-            this.FloodHeader_Chk.Location = new System.Drawing.Point(14, 81);
-            this.FloodHeader_Chk.Name = "FloodHeader_Chk";
-            this.FloodHeader_Chk.Size = new System.Drawing.Size(157, 20);
-            this.FloodHeader_Chk.TabIndex = 3;
-            this.FloodHeader_Chk.Text = "Fingerprint Defender";
-            this.FloodHeader_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.FloodHeader_Chk.UseVisualStyleBackColor = true;
-            this.FloodHeader_Chk.CheckedChanged += new System.EventHandler(this.FloodHeader_Chk_CheckedChanged);
-            // 
-            // Limitsize_Chk
-            // 
-            this.Limitsize_Chk.AutoSize = true;
-            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Limitsize_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Limitsize_Chk.ForeColor = System.Drawing.Color.White;
-            this.Limitsize_Chk.Location = new System.Drawing.Point(14, 35);
-            this.Limitsize_Chk.Name = "Limitsize_Chk";
-            this.Limitsize_Chk.Size = new System.Drawing.Size(217, 36);
-            this.Limitsize_Chk.TabIndex = 2;
-            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\n(default is 4096)";
-            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.Limitsize_Chk.UseVisualStyleBackColor = true;
-            this.Limitsize_Chk.CheckedChanged += new System.EventHandler(this.Limitsize_Chk_CheckedChanged);
-            // 
-            // ArchiveAdd_Lst
-            // 
-            this.ArchiveAdd_Lst.FormattingEnabled = true;
-            this.ArchiveAdd_Lst.ItemHeight = 14;
-            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(2, 201);
-            this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
-            this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 18);
-            this.ArchiveAdd_Lst.TabIndex = 1;
-            this.ArchiveAdd_Lst.Visible = false;
-            // 
-            // SaveCookies_Chk
-            // 
-            this.SaveCookies_Chk.AutoSize = true;
-            this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveCookies_Chk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveCookies_Chk.ForeColor = System.Drawing.Color.White;
-            this.SaveCookies_Chk.Location = new System.Drawing.Point(14, 113);
-            this.SaveCookies_Chk.Name = "SaveCookies_Chk";
-            this.SaveCookies_Chk.Size = new System.Drawing.Size(191, 36);
-            this.SaveCookies_Chk.TabIndex = 0;
-            this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
-            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.SaveCookies_Chk.UseVisualStyleBackColor = true;
-            this.SaveCookies_Chk.CheckedChanged += new System.EventHandler(this.SaveCookies_Chk_CheckedChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.OOBai_Opt);
-            this.groupBox4.Controls.Add(this.MultipleDir_Opt);
-            this.groupBox4.Controls.Add(this.Furlconstdir_Opt);
-            this.groupBox4.Controls.Add(this.Fgdork_Opt);
-            this.groupBox4.Controls.Add(this.Fmultiplewin_Opt);
-            this.groupBox4.Controls.Add(this.AddOntools_Opt);
-            this.groupBox4.Controls.Add(this.Furlconst_Opt);
-            this.groupBox4.Controls.Add(this.Furldir_Opt);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(244, 370);
-            this.groupBox4.TabIndex = 18;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "config files";
-            // 
-            // OOBai_Opt
-            // 
-            this.OOBai_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.OOBai_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OOBai_Opt.FlatAppearance.BorderSize = 0;
-            this.OOBai_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.OOBai_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.OOBai_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OOBai_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OOBai_Opt.ForeColor = System.Drawing.Color.White;
-            this.OOBai_Opt.Location = new System.Drawing.Point(14, 318);
-            this.OOBai_Opt.Name = "OOBai_Opt";
-            this.OOBai_Opt.Size = new System.Drawing.Size(218, 36);
-            this.OOBai_Opt.TabIndex = 24;
-            this.OOBai_Opt.Text = "OOBai Path";
-            this.OOBai_Opt.UseVisualStyleBackColor = false;
-            this.OOBai_Opt.Click += new System.EventHandler(this.OOBai_Opt_Click);
-            // 
-            // MultipleDir_Opt
-            // 
-            this.MultipleDir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.MultipleDir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MultipleDir_Opt.FlatAppearance.BorderSize = 0;
-            this.MultipleDir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.MultipleDir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.MultipleDir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MultipleDir_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MultipleDir_Opt.ForeColor = System.Drawing.Color.White;
-            this.MultipleDir_Opt.Location = new System.Drawing.Point(14, 233);
-            this.MultipleDir_Opt.Name = "MultipleDir_Opt";
-            this.MultipleDir_Opt.Size = new System.Drawing.Size(218, 36);
-            this.MultipleDir_Opt.TabIndex = 23;
-            this.MultipleDir_Opt.Text = "Multiple Windows Path";
-            this.MultipleDir_Opt.UseVisualStyleBackColor = false;
-            this.MultipleDir_Opt.Click += new System.EventHandler(this.MultipleDir_Opt_Click);
-            // 
-            // Furlconstdir_Opt
-            // 
-            this.Furlconstdir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Furlconstdir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Furlconstdir_Opt.FlatAppearance.BorderSize = 0;
-            this.Furlconstdir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Furlconstdir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Furlconstdir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Furlconstdir_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Furlconstdir_Opt.ForeColor = System.Drawing.Color.White;
-            this.Furlconstdir_Opt.Location = new System.Drawing.Point(14, 109);
-            this.Furlconstdir_Opt.Name = "Furlconstdir_Opt";
-            this.Furlconstdir_Opt.Size = new System.Drawing.Size(218, 36);
-            this.Furlconstdir_Opt.TabIndex = 22;
-            this.Furlconstdir_Opt.Text = "Build URL Path";
-            this.Furlconstdir_Opt.UseVisualStyleBackColor = false;
-            this.Furlconstdir_Opt.Click += new System.EventHandler(this.Furlconstdir_Opt_Click);
-            // 
-            // Fgdork_Opt
-            // 
-            this.Fgdork_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Fgdork_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Fgdork_Opt.FlatAppearance.BorderSize = 0;
-            this.Fgdork_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Fgdork_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Fgdork_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Fgdork_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Fgdork_Opt.ForeColor = System.Drawing.Color.White;
-            this.Fgdork_Opt.Location = new System.Drawing.Point(14, 275);
-            this.Fgdork_Opt.Name = "Fgdork_Opt";
-            this.Fgdork_Opt.Size = new System.Drawing.Size(218, 36);
-            this.Fgdork_Opt.TabIndex = 21;
-            this.Fgdork_Opt.Text = "Google Dork File";
-            this.Fgdork_Opt.UseVisualStyleBackColor = false;
-            this.Fgdork_Opt.Click += new System.EventHandler(this.Fgdork_Opt_Click);
-            // 
-            // Fmultiplewin_Opt
-            // 
-            this.Fmultiplewin_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Fmultiplewin_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Fmultiplewin_Opt.FlatAppearance.BorderSize = 0;
-            this.Fmultiplewin_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Fmultiplewin_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Fmultiplewin_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Fmultiplewin_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Fmultiplewin_Opt.ForeColor = System.Drawing.Color.White;
-            this.Fmultiplewin_Opt.Location = new System.Drawing.Point(14, 191);
-            this.Fmultiplewin_Opt.Name = "Fmultiplewin_Opt";
-            this.Fmultiplewin_Opt.Size = new System.Drawing.Size(218, 36);
-            this.Fmultiplewin_Opt.TabIndex = 20;
-            this.Fmultiplewin_Opt.Text = "Multiple Windows default File";
-            this.Fmultiplewin_Opt.UseVisualStyleBackColor = false;
-            this.Fmultiplewin_Opt.Click += new System.EventHandler(this.Fmultiplewin_Opt_Click);
-            // 
-            // AddOntools_Opt
-            // 
-            this.AddOntools_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.AddOntools_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddOntools_Opt.FlatAppearance.BorderSize = 0;
-            this.AddOntools_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.AddOntools_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.AddOntools_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddOntools_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddOntools_Opt.ForeColor = System.Drawing.Color.White;
-            this.AddOntools_Opt.Location = new System.Drawing.Point(14, 150);
-            this.AddOntools_Opt.Name = "AddOntools_Opt";
-            this.AddOntools_Opt.Size = new System.Drawing.Size(218, 36);
-            this.AddOntools_Opt.TabIndex = 19;
-            this.AddOntools_Opt.Text = "Add-On Tools Path";
-            this.AddOntools_Opt.UseVisualStyleBackColor = false;
-            this.AddOntools_Opt.Click += new System.EventHandler(this.AddOntools_Opt_Click);
-            // 
-            // Furlconst_Opt
-            // 
-            this.Furlconst_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Furlconst_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Furlconst_Opt.FlatAppearance.BorderSize = 0;
-            this.Furlconst_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Furlconst_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Furlconst_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Furlconst_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Furlconst_Opt.ForeColor = System.Drawing.Color.White;
-            this.Furlconst_Opt.Location = new System.Drawing.Point(14, 68);
-            this.Furlconst_Opt.Name = "Furlconst_Opt";
-            this.Furlconst_Opt.Size = new System.Drawing.Size(218, 36);
-            this.Furlconst_Opt.TabIndex = 18;
-            this.Furlconst_Opt.Text = "Build URL File";
-            this.Furlconst_Opt.UseVisualStyleBackColor = false;
-            this.Furlconst_Opt.Click += new System.EventHandler(this.Furlconst_Opt_Click);
-            // 
-            // Furldir_Opt
-            // 
-            this.Furldir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Furldir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Furldir_Opt.FlatAppearance.BorderSize = 0;
-            this.Furldir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.Furldir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.Furldir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Furldir_Opt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Furldir_Opt.ForeColor = System.Drawing.Color.White;
-            this.Furldir_Opt.Location = new System.Drawing.Point(14, 26);
-            this.Furldir_Opt.Name = "Furldir_Opt";
-            this.Furldir_Opt.Size = new System.Drawing.Size(218, 36);
-            this.Furldir_Opt.TabIndex = 17;
-            this.Furldir_Opt.Text = "URL File";
-            this.Furldir_Opt.UseVisualStyleBackColor = false;
-            this.Furldir_Opt.Click += new System.EventHandler(this.Furldir_Opt_Click);
-            // 
-            // panel25
-            // 
-            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel25.Location = new System.Drawing.Point(724, 10);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(10, 592);
-            this.panel25.TabIndex = 25;
-            // 
-            // Panel_ConfigXml
-            // 
-            this.Panel_ConfigXml.Controls.Add(this.groupBox3);
-            this.Panel_ConfigXml.Controls.Add(this.panel27);
-            this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
-            this.Panel_ConfigXml.Name = "Panel_ConfigXml";
-            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 592);
-            this.Panel_ConfigXml.TabIndex = 24;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.PanelGrpOpt_Pnl);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 559);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "config.xml file";
-            // 
-            // PanelGrpOpt_Pnl
-            // 
-            this.PanelGrpOpt_Pnl.AutoScroll = true;
-            this.PanelGrpOpt_Pnl.Controls.Add(this.WarcArchiver_Link);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.WarcArchiver_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label40);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.WebToMarkdown_Link);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.WebToMarkdown_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label39);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Link);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Link);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label37);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.Redlist_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label26);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label25);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.ArchiveAdd_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label31);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label4);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.DefaultEditor_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.DB_Default_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label22);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label13);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.GoogBot_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlHome_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label21);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label17);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgentHttp_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlTradWebPage_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label20);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label18);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgent_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.SearchEngine_Opt_Txt);
-            this.PanelGrpOpt_Pnl.Controls.Add(this.label19);
-            this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 18);
-            this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
-            this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 538);
-            this.PanelGrpOpt_Pnl.TabIndex = 16;
-            // 
-            // WarcArchiver_Link
-            // 
-            this.WarcArchiver_Link.AutoSize = true;
-            this.WarcArchiver_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WarcArchiver_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarcArchiver_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.WarcArchiver_Link.Location = new System.Drawing.Point(483, 696);
-            this.WarcArchiver_Link.Name = "WarcArchiver_Link";
-            this.WarcArchiver_Link.Size = new System.Drawing.Size(201, 14);
-            this.WarcArchiver_Link.TabIndex = 32;
-            this.WarcArchiver_Link.Text = "Link to WARC Archiver (GitHub)";
-            this.WarcArchiver_Link.Click += new System.EventHandler(this.WarcArchiver_Link_Click);
-            // 
-            // WarcArchiver_Opt_Txt
-            // 
-            this.WarcArchiver_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.WarcArchiver_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WarcArchiver_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarcArchiver_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.WarcArchiver_Opt_Txt.Location = new System.Drawing.Point(9, 717);
-            this.WarcArchiver_Opt_Txt.Name = "WarcArchiver_Opt_Txt";
-            this.WarcArchiver_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.WarcArchiver_Opt_Txt.TabIndex = 31;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.ForeColor = System.Drawing.Color.White;
-            this.label40.Location = new System.Drawing.Point(6, 696);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(142, 14);
-            this.label40.TabIndex = 30;
-            this.label40.Text = "WARC Archiver Path";
-            // 
-            // WebToMarkdown_Link
-            // 
-            this.WebToMarkdown_Link.AutoSize = true;
-            this.WebToMarkdown_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WebToMarkdown_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebToMarkdown_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.WebToMarkdown_Link.Location = new System.Drawing.Point(460, 635);
-            this.WebToMarkdown_Link.Name = "WebToMarkdown_Link";
-            this.WebToMarkdown_Link.Size = new System.Drawing.Size(224, 14);
-            this.WebToMarkdown_Link.TabIndex = 29;
-            this.WebToMarkdown_Link.Text = "Link to Web To Markdown (GitHub)";
-            this.WebToMarkdown_Link.Click += new System.EventHandler(this.WebToMarkdown_Link_Click);
-            // 
-            // WebToMarkdown_Opt_Txt
-            // 
-            this.WebToMarkdown_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.WebToMarkdown_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WebToMarkdown_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WebToMarkdown_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.WebToMarkdown_Opt_Txt.Location = new System.Drawing.Point(9, 656);
-            this.WebToMarkdown_Opt_Txt.Name = "WebToMarkdown_Opt_Txt";
-            this.WebToMarkdown_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.WebToMarkdown_Opt_Txt.TabIndex = 28;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.ForeColor = System.Drawing.Color.White;
-            this.label39.Location = new System.Drawing.Point(6, 635);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(164, 14);
-            this.label39.TabIndex = 27;
-            this.label39.Text = "Web To Markdown Path";
-            // 
-            // CyberChef_Link
-            // 
-            this.CyberChef_Link.AutoSize = true;
-            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CyberChef_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CyberChef_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.CyberChef_Link.Location = new System.Drawing.Point(509, 513);
-            this.CyberChef_Link.Name = "CyberChef_Link";
-            this.CyberChef_Link.Size = new System.Drawing.Size(175, 14);
-            this.CyberChef_Link.TabIndex = 26;
-            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
-            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
-            // 
-            // OsintWatcher_Link
-            // 
-            this.OsintWatcher_Link.AutoSize = true;
-            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OsintWatcher_Link.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.OsintWatcher_Link.Location = new System.Drawing.Point(486, 574);
-            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
-            this.OsintWatcher_Link.Size = new System.Drawing.Size(198, 14);
-            this.OsintWatcher_Link.TabIndex = 25;
-            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
-            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
-            // 
-            // OsintWatcher_Opt_Txt
-            // 
-            this.OsintWatcher_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.OsintWatcher_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OsintWatcher_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OsintWatcher_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.OsintWatcher_Opt_Txt.Location = new System.Drawing.Point(9, 595);
-            this.OsintWatcher_Opt_Txt.Name = "OsintWatcher_Opt_Txt";
-            this.OsintWatcher_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.OsintWatcher_Opt_Txt.TabIndex = 24;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.ForeColor = System.Drawing.Color.White;
-            this.label37.Location = new System.Drawing.Point(6, 574);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(136, 14);
-            this.label37.TabIndex = 23;
-            this.label37.Text = "Osint Watcher Path";
-            // 
-            // Redlist_Txt
-            // 
-            this.Redlist_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Redlist_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Redlist_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.Redlist_Txt.Location = new System.Drawing.Point(9, 778);
-            this.Redlist_Txt.Name = "Redlist_Txt";
-            this.Redlist_Txt.Size = new System.Drawing.Size(675, 22);
-            this.Redlist_Txt.TabIndex = 22;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(6, 757);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(120, 14);
-            this.label26.TabIndex = 21;
-            this.label26.Text = "Ad block list path";
-            // 
-            // CyberChef_Opt_Txt
-            // 
-            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 534);
-            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
-            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.CyberChef_Opt_Txt.TabIndex = 20;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(6, 513);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(110, 14);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "CyberChef Path";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(8, 697);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(0, 14);
-            this.label32.TabIndex = 18;
-            // 
-            // ArchiveAdd_Txt
-            // 
-            this.ArchiveAdd_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.White;
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 842);
-            this.ArchiveAdd_Txt.Multiline = true;
-            this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
-            this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
-            this.ArchiveAdd_Txt.TabIndex = 17;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(4, 820);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(402, 14);
-            this.label31.TabIndex = 16;
-            this.label31.Text = "Add or remove  a path to save it in the archive (line by line)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(4, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(310, 14);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Default DataBase Name (change in DATA tab)";
-            // 
-            // DefaultEditor_Opt_Txt
-            // 
-            this.DefaultEditor_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DefaultEditor_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DefaultEditor_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefaultEditor_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.DefaultEditor_Opt_Txt.Location = new System.Drawing.Point(7, 471);
-            this.DefaultEditor_Opt_Txt.Name = "DefaultEditor_Opt_Txt";
-            this.DefaultEditor_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.DefaultEditor_Opt_Txt.TabIndex = 15;
-            // 
-            // DB_Default_Opt_Txt
-            // 
-            this.DB_Default_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.DB_Default_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DB_Default_Opt_Txt.Enabled = false;
-            this.DB_Default_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DB_Default_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.DB_Default_Opt_Txt.Location = new System.Drawing.Point(6, 30);
-            this.DB_Default_Opt_Txt.Name = "DB_Default_Opt_Txt";
-            this.DB_Default_Opt_Txt.Size = new System.Drawing.Size(676, 22);
-            this.DB_Default_Opt_Txt.TabIndex = 1;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(4, 450);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(131, 14);
-            this.label22.TabIndex = 14;
-            this.label22.Text = "Default Editor path";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(3, 72);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(82, 14);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Home Page";
-            // 
-            // GoogBot_Opt_Txt
-            // 
-            this.GoogBot_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GoogBot_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GoogBot_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoogBot_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.GoogBot_Opt_Txt.Location = new System.Drawing.Point(7, 408);
-            this.GoogBot_Opt_Txt.Name = "GoogBot_Opt_Txt";
-            this.GoogBot_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.GoogBot_Opt_Txt.TabIndex = 13;
-            // 
-            // UrlHome_Opt_Txt
-            // 
-            this.UrlHome_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UrlHome_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UrlHome_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UrlHome_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UrlHome_Opt_Txt.Location = new System.Drawing.Point(7, 93);
-            this.UrlHome_Opt_Txt.Name = "UrlHome_Opt_Txt";
-            this.UrlHome_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.UrlHome_Opt_Txt.TabIndex = 3;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(4, 387);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(158, 14);
-            this.label21.TabIndex = 12;
-            this.label21.Text = "GoogleBot or other Bot";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(4, 135);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(114, 14);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "Traduction Page";
-            // 
-            // UserAgentHttp_Opt_Txt
-            // 
-            this.UserAgentHttp_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UserAgentHttp_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserAgentHttp_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserAgentHttp_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UserAgentHttp_Opt_Txt.Location = new System.Drawing.Point(7, 345);
-            this.UserAgentHttp_Opt_Txt.Name = "UserAgentHttp_Opt_Txt";
-            this.UserAgentHttp_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.UserAgentHttp_Opt_Txt.TabIndex = 11;
-            // 
-            // UrlTradWebPage_Opt_Txt
-            // 
-            this.UrlTradWebPage_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UrlTradWebPage_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UrlTradWebPage_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UrlTradWebPage_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UrlTradWebPage_Opt_Txt.Location = new System.Drawing.Point(7, 156);
-            this.UrlTradWebPage_Opt_Txt.Name = "UrlTradWebPage_Opt_Txt";
-            this.UrlTradWebPage_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.UrlTradWebPage_Opt_Txt.TabIndex = 5;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(4, 324);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(150, 14);
-            this.label20.TabIndex = 10;
-            this.label20.Text = "User Agent HttpClient";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(4, 198);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(101, 14);
-            this.label18.TabIndex = 6;
-            this.label18.Text = "Search Engine";
-            // 
-            // UserAgent_Opt_Txt
-            // 
-            this.UserAgent_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.UserAgent_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserAgent_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserAgent_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.UserAgent_Opt_Txt.Location = new System.Drawing.Point(7, 282);
-            this.UserAgent_Opt_Txt.Name = "UserAgent_Opt_Txt";
-            this.UserAgent_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.UserAgent_Opt_Txt.TabIndex = 9;
-            // 
-            // SearchEngine_Opt_Txt
-            // 
-            this.SearchEngine_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SearchEngine_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchEngine_Opt_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchEngine_Opt_Txt.ForeColor = System.Drawing.Color.Yellow;
-            this.SearchEngine_Opt_Txt.Location = new System.Drawing.Point(7, 219);
-            this.SearchEngine_Opt_Txt.Name = "SearchEngine_Opt_Txt";
-            this.SearchEngine_Opt_Txt.Size = new System.Drawing.Size(675, 22);
-            this.SearchEngine_Opt_Txt.TabIndex = 7;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(4, 261);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(133, 14);
-            this.label19.TabIndex = 8;
-            this.label19.Text = "User Agent Change";
-            // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
-            this.panel27.Controls.Add(this.ResetConfig_Btn);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel27.Location = new System.Drawing.Point(0, 559);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(714, 33);
-            this.panel27.TabIndex = 17;
-            // 
-            // SaveConfig_Opt_Btn
-            // 
-            this.SaveConfig_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SaveConfig_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveConfig_Opt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SaveConfig_Opt_Btn.FlatAppearance.BorderSize = 0;
-            this.SaveConfig_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.SaveConfig_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.SaveConfig_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveConfig_Opt_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveConfig_Opt_Btn.ForeColor = System.Drawing.Color.White;
-            this.SaveConfig_Opt_Btn.Location = new System.Drawing.Point(218, 0);
-            this.SaveConfig_Opt_Btn.Name = "SaveConfig_Opt_Btn";
-            this.SaveConfig_Opt_Btn.Size = new System.Drawing.Size(496, 33);
-            this.SaveConfig_Opt_Btn.TabIndex = 16;
-            this.SaveConfig_Opt_Btn.Text = "Save config and Reload";
-            this.SaveConfig_Opt_Btn.UseVisualStyleBackColor = false;
-            this.SaveConfig_Opt_Btn.Click += new System.EventHandler(this.SaveConfig_Opt_Btn_Click);
-            // 
-            // ResetConfig_Btn
-            // 
-            this.ResetConfig_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ResetConfig_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
-            this.ResetConfig_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.ResetConfig_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetConfig_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetConfig_Btn.ForeColor = System.Drawing.Color.White;
-            this.ResetConfig_Btn.Location = new System.Drawing.Point(0, 0);
-            this.ResetConfig_Btn.Name = "ResetConfig_Btn";
-            this.ResetConfig_Btn.Size = new System.Drawing.Size(218, 33);
-            this.ResetConfig_Btn.TabIndex = 17;
-            this.ResetConfig_Btn.Text = "Reset Config";
-            this.ResetConfig_Btn.UseVisualStyleBackColor = false;
-            this.ResetConfig_Btn.Click += new System.EventHandler(this.ResetConfig_Btn_Click);
-            // 
-            // panel24
-            // 
-            this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(10, 602);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(1306, 10);
-            this.panel24.TabIndex = 23;
-            // 
-            // panel23
-            // 
-            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(10, 0);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(1306, 10);
-            this.panel23.TabIndex = 22;
-            // 
-            // panel22
-            // 
-            this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel22.Location = new System.Drawing.Point(1316, 0);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(10, 612);
-            this.panel22.TabIndex = 21;
-            // 
-            // panel21
-            // 
-            this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel21.Location = new System.Drawing.Point(0, 0);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(10, 612);
-            this.panel21.TabIndex = 20;
-            // 
             // Status_Strip
             // 
-            this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Status_Strip.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Status_Strip.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TtsButton_Sts,
             this.TrackingLevel_Lbl,
@@ -7099,9 +2083,9 @@
             this.FileOpnJson_Status,
             this.MaxHistoryEntry_Status,
             this.Agent_RSS_Cnt_Status});
-            this.Status_Strip.Location = new System.Drawing.Point(0, 639);
+            this.Status_Strip.Location = new System.Drawing.Point(0, 637);
             this.Status_Strip.Name = "Status_Strip";
-            this.Status_Strip.Size = new System.Drawing.Size(1334, 22);
+            this.Status_Strip.Size = new System.Drawing.Size(1334, 24);
             this.Status_Strip.SizingGrip = false;
             this.Status_Strip.TabIndex = 14;
             this.Status_Strip.Text = "statusStrip1";
@@ -7112,168 +2096,168 @@
             this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
             this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TtsButton_Sts.Name = "TtsButton_Sts";
-            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 20);
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 22);
             this.TtsButton_Sts.Text = "Tools";
             this.TtsButton_Sts.ToolTipText = "Choose an action";
             // 
             // TrackingLevel_Lbl
             // 
-            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
-            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(161, 17);
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(150, 19);
             this.TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
             // 
             // URLtxt_Status
             // 
             this.URLtxt_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.URLtxt_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLtxt_Status.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.URLtxt_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLtxt_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.URLtxt_Status.Name = "URLtxt_Status";
-            this.URLtxt_Status.Size = new System.Drawing.Size(22, 17);
+            this.URLtxt_Status.Size = new System.Drawing.Size(21, 19);
             this.URLtxt_Status.Text = "url";
             // 
             // TableVal_Status
             // 
-            this.TableVal_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableVal_Status.ForeColor = System.Drawing.Color.DimGray;
+            this.TableVal_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableVal_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.TableVal_Status.Name = "TableVal_Status";
-            this.TableVal_Status.Size = new System.Drawing.Size(233, 17);
+            this.TableVal_Status.Size = new System.Drawing.Size(205, 19);
             this.TableVal_Status.Text = "TABLE (url_date, url_name, url_adress)";
             this.TableVal_Status.Visible = false;
             // 
             // CountFeed_Status
             // 
             this.CountFeed_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CountFeed_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountFeed_Status.ForeColor = System.Drawing.Color.ForestGreen;
+            this.CountFeed_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountFeed_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.CountFeed_Status.Name = "CountFeed_Status";
-            this.CountFeed_Status.Size = new System.Drawing.Size(14, 17);
+            this.CountFeed_Status.Size = new System.Drawing.Size(12, 19);
             this.CountFeed_Status.Text = "_";
             this.CountFeed_Status.Visible = false;
             // 
             // JavaDisable_Status
             // 
             this.JavaDisable_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.JavaDisable_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaDisable_Status.ForeColor = System.Drawing.Color.Red;
+            this.JavaDisable_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaDisable_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.JavaDisable_Status.Name = "JavaDisable_Status";
-            this.JavaDisable_Status.Size = new System.Drawing.Size(110, 17);
+            this.JavaDisable_Status.Size = new System.Drawing.Size(99, 19);
             this.JavaDisable_Status.Text = "Javascript Disable";
             this.JavaDisable_Status.Visible = false;
             // 
             // JavaDisableFeed_Status
             // 
             this.JavaDisableFeed_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.JavaDisableFeed_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaDisableFeed_Status.ForeColor = System.Drawing.Color.Red;
+            this.JavaDisableFeed_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaDisableFeed_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.JavaDisableFeed_Status.Name = "JavaDisableFeed_Status";
-            this.JavaDisableFeed_Status.Size = new System.Drawing.Size(110, 17);
+            this.JavaDisableFeed_Status.Size = new System.Drawing.Size(99, 19);
             this.JavaDisableFeed_Status.Text = "Javascript Disable";
             this.JavaDisableFeed_Status.Visible = false;
             // 
             // DBSelectOpen_Status
             // 
-            this.DBSelectOpen_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DBSelectOpen_Status.ForeColor = System.Drawing.Color.ForestGreen;
+            this.DBSelectOpen_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DBSelectOpen_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.DBSelectOpen_Status.Name = "DBSelectOpen_Status";
-            this.DBSelectOpen_Status.Size = new System.Drawing.Size(14, 17);
+            this.DBSelectOpen_Status.Size = new System.Drawing.Size(12, 19);
             this.DBSelectOpen_Status.Text = "_";
             this.DBSelectOpen_Status.Visible = false;
             // 
             // TableCount_Status
             // 
-            this.TableCount_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableCount_Status.ForeColor = System.Drawing.Color.ForestGreen;
+            this.TableCount_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableCount_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.TableCount_Status.Name = "TableCount_Status";
-            this.TableCount_Status.Size = new System.Drawing.Size(14, 17);
+            this.TableCount_Status.Size = new System.Drawing.Size(12, 19);
             this.TableCount_Status.Text = "_";
             this.TableCount_Status.Visible = false;
             // 
             // TableOpen_Status
             // 
-            this.TableOpen_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableOpen_Status.ForeColor = System.Drawing.Color.ForestGreen;
+            this.TableOpen_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableOpen_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.TableOpen_Status.Name = "TableOpen_Status";
-            this.TableOpen_Status.Size = new System.Drawing.Size(14, 17);
+            this.TableOpen_Status.Size = new System.Drawing.Size(12, 19);
             this.TableOpen_Status.Text = "_";
             this.TableOpen_Status.Visible = false;
             // 
             // RecordsCount_Status
             // 
-            this.RecordsCount_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecordsCount_Status.ForeColor = System.Drawing.Color.ForestGreen;
+            this.RecordsCount_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordsCount_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.RecordsCount_Status.Name = "RecordsCount_Status";
-            this.RecordsCount_Status.Size = new System.Drawing.Size(14, 17);
+            this.RecordsCount_Status.Size = new System.Drawing.Size(12, 19);
             this.RecordsCount_Status.Text = "_";
             this.RecordsCount_Status.Visible = false;
             // 
             // ProjectMapOpn_Status
             // 
-            this.ProjectMapOpn_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProjectMapOpn_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ProjectMapOpn_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProjectMapOpn_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
             this.ProjectMapOpn_Status.Name = "ProjectMapOpn_Status";
-            this.ProjectMapOpn_Status.Size = new System.Drawing.Size(14, 17);
+            this.ProjectMapOpn_Status.Size = new System.Drawing.Size(12, 19);
             this.ProjectMapOpn_Status.Text = "_";
             this.ProjectMapOpn_Status.Visible = false;
             // 
             // LatTCurrent_Status
             // 
-            this.LatTCurrent_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatTCurrent_Status.ForeColor = System.Drawing.Color.Lime;
+            this.LatTCurrent_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatTCurrent_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.LatTCurrent_Status.Name = "LatTCurrent_Status";
-            this.LatTCurrent_Status.Size = new System.Drawing.Size(14, 17);
+            this.LatTCurrent_Status.Size = new System.Drawing.Size(12, 19);
             this.LatTCurrent_Status.Text = "_";
             this.LatTCurrent_Status.Visible = false;
             // 
             // Separator
             // 
-            this.Separator.ForeColor = System.Drawing.Color.Lime;
+            this.Separator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.Separator.Name = "Separator";
-            this.Separator.Size = new System.Drawing.Size(14, 17);
+            this.Separator.Size = new System.Drawing.Size(12, 19);
             this.Separator.Text = "|";
             this.Separator.Visible = false;
             // 
             // LonGtCurrent_Status
             // 
-            this.LonGtCurrent_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LonGtCurrent_Status.ForeColor = System.Drawing.Color.Lime;
+            this.LonGtCurrent_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LonGtCurrent_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.LonGtCurrent_Status.Name = "LonGtCurrent_Status";
-            this.LonGtCurrent_Status.Size = new System.Drawing.Size(14, 17);
+            this.LonGtCurrent_Status.Size = new System.Drawing.Size(12, 19);
             this.LonGtCurrent_Status.Text = "_";
             this.LonGtCurrent_Status.Visible = false;
             // 
             // FileOpnJson_Status
             // 
-            this.FileOpnJson_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FileOpnJson_Status.ForeColor = System.Drawing.Color.White;
+            this.FileOpnJson_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileOpnJson_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.FileOpnJson_Status.Name = "FileOpnJson_Status";
-            this.FileOpnJson_Status.Size = new System.Drawing.Size(14, 17);
+            this.FileOpnJson_Status.Size = new System.Drawing.Size(12, 19);
             this.FileOpnJson_Status.Text = "_";
             this.FileOpnJson_Status.Visible = false;
             // 
             // MaxHistoryEntry_Status
             // 
-            this.MaxHistoryEntry_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaxHistoryEntry_Status.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MaxHistoryEntry_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaxHistoryEntry_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.MaxHistoryEntry_Status.Name = "MaxHistoryEntry_Status";
-            this.MaxHistoryEntry_Status.Size = new System.Drawing.Size(14, 17);
+            this.MaxHistoryEntry_Status.Size = new System.Drawing.Size(12, 19);
             this.MaxHistoryEntry_Status.Text = "_";
             this.MaxHistoryEntry_Status.Visible = false;
             // 
             // Agent_RSS_Cnt_Status
             // 
-            this.Agent_RSS_Cnt_Status.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Agent_RSS_Cnt_Status.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.Agent_RSS_Cnt_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Agent_RSS_Cnt_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.Agent_RSS_Cnt_Status.Name = "Agent_RSS_Cnt_Status";
-            this.Agent_RSS_Cnt_Status.Size = new System.Drawing.Size(14, 17);
+            this.Agent_RSS_Cnt_Status.Size = new System.Drawing.Size(12, 19);
             this.Agent_RSS_Cnt_Status.Text = "_";
             this.Agent_RSS_Cnt_Status.Visible = false;
             // 
             // Tools_TAB_1
             // 
-            this.Tools_TAB_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tools_TAB_1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tools_TAB_1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Tools_TAB_1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.HomeFeed_Btn,
@@ -7301,9 +2285,8 @@
             this.RSS2_Tls});
             this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_1.Name = "Tools_TAB_1";
-            this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
-            this.Tools_TAB_1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 29);
+            this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 34);
             this.Tools_TAB_1.TabIndex = 14;
             this.Tools_TAB_1.Visible = false;
             // 
@@ -7311,61 +2294,61 @@
             // 
             this.HomeFeed_Btn.AutoToolTip = false;
             this.HomeFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.HomeFeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.HomeFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.HomeFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("HomeFeed_Btn.Image")));
             this.HomeFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HomeFeed_Btn.Name = "HomeFeed_Btn";
-            this.HomeFeed_Btn.Size = new System.Drawing.Size(49, 22);
+            this.HomeFeed_Btn.Size = new System.Drawing.Size(44, 25);
             this.HomeFeed_Btn.Text = "Home";
             this.HomeFeed_Btn.Click += new System.EventHandler(this.HomeFeed_Btn_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel1
             // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(72, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(57, 25);
             this.toolStripLabel1.Text = "Category:";
             // 
             // CategorieFeed_Cbx
             // 
-            this.CategorieFeed_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.CategorieFeed_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CategorieFeed_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.DimGray;
+            this.CategorieFeed_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CategorieFeed_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.CategorieFeed_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.CategorieFeed_Cbx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 0);
             this.CategorieFeed_Cbx.Name = "CategorieFeed_Cbx";
-            this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 24);
+            this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 27);
             this.CategorieFeed_Cbx.Text = "Select";
             // 
             // CreatCategorie_Btn
             // 
             this.CreatCategorie_Btn.AutoToolTip = false;
             this.CreatCategorie_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CreatCategorie_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatCategorie_Btn.ForeColor = System.Drawing.Color.White;
+            this.CreatCategorie_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatCategorie_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.CreatCategorie_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreatCategorie_Btn.Image")));
             this.CreatCategorie_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CreatCategorie_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.CreatCategorie_Btn.Name = "CreatCategorie_Btn";
-            this.CreatCategorie_Btn.Size = new System.Drawing.Size(55, 20);
+            this.CreatCategorie_Btn.Size = new System.Drawing.Size(44, 23);
             this.CreatCategorie_Btn.Text = "Create";
             this.CreatCategorie_Btn.Click += new System.EventHandler(this.CreatCategorie_Btn_Click);
             // 
             // NewCategory_Txt
             // 
-            this.NewCategory_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.NewCategory_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.NewCategory_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NewCategory_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewCategory_Txt.ForeColor = System.Drawing.Color.DimGray;
+            this.NewCategory_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewCategory_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.NewCategory_Txt.Name = "NewCategory_Txt";
-            this.NewCategory_Txt.Size = new System.Drawing.Size(150, 25);
+            this.NewCategory_Txt.Size = new System.Drawing.Size(150, 28);
             this.NewCategory_Txt.Text = "New Category";
             this.NewCategory_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -7373,24 +2356,24 @@
             // 
             this.AddFeed_Btn.AutoToolTip = false;
             this.AddFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddFeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.AddFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.AddFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddFeed_Btn.Image")));
             this.AddFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.AddFeed_Btn.Name = "AddFeed_Btn";
-            this.AddFeed_Btn.Size = new System.Drawing.Size(72, 20);
+            this.AddFeed_Btn.Size = new System.Drawing.Size(61, 23);
             this.AddFeed_Btn.Text = "Add Feed";
             this.AddFeed_Btn.Click += new System.EventHandler(this.AddFeed_Btn_Click);
             // 
             // NewFeed_Txt
             // 
-            this.NewFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.NewFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.NewFeed_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NewFeed_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewFeed_Txt.ForeColor = System.Drawing.Color.DimGray;
+            this.NewFeed_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewFeed_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.NewFeed_Txt.Name = "NewFeed_Txt";
-            this.NewFeed_Txt.Size = new System.Drawing.Size(150, 25);
+            this.NewFeed_Txt.Size = new System.Drawing.Size(150, 28);
             this.NewFeed_Txt.Text = "New Feed";
             this.NewFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -7398,32 +2381,32 @@
             // 
             this.ManageFeed_Btn.AutoToolTip = false;
             this.ManageFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ManageFeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManageFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.ManageFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManageFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.ManageFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("ManageFeed_Btn.Image")));
             this.ManageFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ManageFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.ManageFeed_Btn.Name = "ManageFeed_Btn";
-            this.ManageFeed_Btn.Size = new System.Drawing.Size(95, 20);
+            this.ManageFeed_Btn.Size = new System.Drawing.Size(80, 23);
             this.ManageFeed_Btn.Text = "Manage feed";
             this.ManageFeed_Btn.Click += new System.EventHandler(this.ManageFeed_Btn_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // DeleteCatfeed_Btn
             // 
             this.DeleteCatfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.DeleteCatfeed_Btn.Enabled = false;
-            this.DeleteCatfeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteCatfeed_Btn.ForeColor = System.Drawing.Color.Red;
+            this.DeleteCatfeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteCatfeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.DeleteCatfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteCatfeed_Btn.Image")));
             this.DeleteCatfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteCatfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.DeleteCatfeed_Btn.Name = "DeleteCatfeed_Btn";
-            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(97, 20);
+            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(79, 23);
             this.DeleteCatfeed_Btn.Text = "Del Category";
             this.DeleteCatfeed_Btn.Visible = false;
             this.DeleteCatfeed_Btn.Click += new System.EventHandler(this.DeleteCatfeed_Btn_Click);
@@ -7431,20 +2414,20 @@
             // Separator5
             // 
             this.Separator5.Name = "Separator5";
-            this.Separator5.Size = new System.Drawing.Size(6, 25);
+            this.Separator5.Size = new System.Drawing.Size(6, 28);
             this.Separator5.Visible = false;
             // 
             // DeleteURLfeed_Btn
             // 
             this.DeleteURLfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.DeleteURLfeed_Btn.Enabled = false;
-            this.DeleteURLfeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteURLfeed_Btn.ForeColor = System.Drawing.Color.Red;
+            this.DeleteURLfeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteURLfeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.DeleteURLfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteURLfeed_Btn.Image")));
             this.DeleteURLfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteURLfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.DeleteURLfeed_Btn.Name = "DeleteURLfeed_Btn";
-            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(64, 20);
+            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(53, 23);
             this.DeleteURLfeed_Btn.Text = "Del URL";
             this.DeleteURLfeed_Btn.Visible = false;
             this.DeleteURLfeed_Btn.Click += new System.EventHandler(this.DeleteURLfeed_Btn_Click);
@@ -7452,50 +2435,50 @@
             // Separator4
             // 
             this.Separator4.Name = "Separator4";
-            this.Separator4.Size = new System.Drawing.Size(6, 25);
+            this.Separator4.Size = new System.Drawing.Size(6, 28);
             this.Separator4.Visible = false;
             // 
             // CollapseTitleFeed_Btn
             // 
             this.CollapseTitleFeed_Btn.AutoToolTip = false;
             this.CollapseTitleFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CollapseTitleFeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CollapseTitleFeed_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.CollapseTitleFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CollapseTitleFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.CollapseTitleFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CollapseTitleFeed_Btn.Image")));
             this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
-            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(90, 20);
+            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(74, 23);
             this.CollapseTitleFeed_Btn.Text = "Collapse On";
             this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
             // 
             // GoFeed_Txt
             // 
-            this.GoFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.GoFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.GoFeed_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GoFeed_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoFeed_Txt.ForeColor = System.Drawing.Color.Yellow;
+            this.GoFeed_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoFeed_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
             this.GoFeed_Txt.Name = "GoFeed_Txt";
-            this.GoFeed_Txt.Size = new System.Drawing.Size(40, 25);
+            this.GoFeed_Txt.Size = new System.Drawing.Size(40, 28);
             this.GoFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GoFeed_Txt.Click += new System.EventHandler(this.GoFeed_Txt_Click);
             // 
             // GoFeed_Btn
             // 
             this.GoFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoFeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.GoFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.GoFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("GoFeed_Btn.Image")));
             this.GoFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoFeed_Btn.Name = "GoFeed_Btn";
-            this.GoFeed_Btn.Size = new System.Drawing.Size(29, 22);
+            this.GoFeed_Btn.Size = new System.Drawing.Size(26, 25);
             this.GoFeed_Btn.Text = "Go";
             this.GoFeed_Btn.Click += new System.EventHandler(this.GoFeed_Btn_Click);
             // 
             // toolStripSeparator20
             // 
             this.toolStripSeparator20.Name = "toolStripSeparator20";
-            this.toolStripSeparator20.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator20.Size = new System.Drawing.Size(6, 28);
             // 
             // ToolsFeed_Mnu
             // 
@@ -7514,83 +2497,83 @@
             this.DiscoverRSS_Btn,
             this.toolStripSeparator39,
             this.oOBaiAgentRssNewsToolStripMenuItem});
-            this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.White;
+            this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
             this.ToolsFeed_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolsFeed_Mnu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this.ToolsFeed_Mnu.Name = "ToolsFeed_Mnu";
-            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(55, 20);
+            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(48, 23);
             this.ToolsFeed_Mnu.Text = "Tools";
             // 
             // CopyURLfeed_Mnu
             // 
             this.CopyURLfeed_Mnu.Name = "CopyURLfeed_Mnu";
-            this.CopyURLfeed_Mnu.Size = new System.Drawing.Size(239, 22);
+            this.CopyURLfeed_Mnu.Size = new System.Drawing.Size(203, 22);
             this.CopyURLfeed_Mnu.Text = "Copy URL";
             this.CopyURLfeed_Mnu.Click += new System.EventHandler(this.CopyURLfeed_Mnu_Click);
             // 
             // OpnFileCategory_Btn
             // 
             this.OpnFileCategory_Btn.Name = "OpnFileCategory_Btn";
-            this.OpnFileCategory_Btn.Size = new System.Drawing.Size(239, 22);
+            this.OpnFileCategory_Btn.Size = new System.Drawing.Size(203, 22);
             this.OpnFileCategory_Btn.Text = "Open File Category";
             this.OpnFileCategory_Btn.Click += new System.EventHandler(this.OpnFileCategory_Btn_Click);
             // 
             // TraductPageFeed_Btn
             // 
             this.TraductPageFeed_Btn.Name = "TraductPageFeed_Btn";
-            this.TraductPageFeed_Btn.Size = new System.Drawing.Size(239, 22);
+            this.TraductPageFeed_Btn.Size = new System.Drawing.Size(203, 22);
             this.TraductPageFeed_Btn.Text = "Traduct Page";
             this.TraductPageFeed_Btn.Click += new System.EventHandler(this.TraductPageFeed_Btn_Click);
             // 
             // toolStripSeparator45
             // 
             this.toolStripSeparator45.Name = "toolStripSeparator45";
-            this.toolStripSeparator45.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator45.Size = new System.Drawing.Size(200, 6);
             // 
             // SaveTitleRSS_Btn
             // 
             this.SaveTitleRSS_Btn.Name = "SaveTitleRSS_Btn";
-            this.SaveTitleRSS_Btn.Size = new System.Drawing.Size(239, 22);
+            this.SaveTitleRSS_Btn.Size = new System.Drawing.Size(203, 22);
             this.SaveTitleRSS_Btn.Text = "Save titles";
             this.SaveTitleRSS_Btn.Click += new System.EventHandler(this.SaveTitleRSS_Btn_Click);
             // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
-            this.toolStripSeparator19.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator19.Size = new System.Drawing.Size(200, 6);
             // 
             // ReadArticle_Btn
             // 
             this.ReadArticle_Btn.Name = "ReadArticle_Btn";
-            this.ReadArticle_Btn.Size = new System.Drawing.Size(239, 22);
+            this.ReadArticle_Btn.Size = new System.Drawing.Size(203, 22);
             this.ReadArticle_Btn.Text = "Read the Article";
             this.ReadArticle_Btn.Click += new System.EventHandler(this.ReadArticle_Btn_Click);
             // 
             // SpeakOpenPnl_Btn
             // 
             this.SpeakOpenPnl_Btn.Name = "SpeakOpenPnl_Btn";
-            this.SpeakOpenPnl_Btn.Size = new System.Drawing.Size(239, 22);
+            this.SpeakOpenPnl_Btn.Size = new System.Drawing.Size(203, 22);
             this.SpeakOpenPnl_Btn.Text = "Speak";
             this.SpeakOpenPnl_Btn.Click += new System.EventHandler(this.SpeakOpenPnl_Btn_Click);
             // 
             // toolStripSeparator44
             // 
             this.toolStripSeparator44.Name = "toolStripSeparator44";
-            this.toolStripSeparator44.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator44.Size = new System.Drawing.Size(200, 6);
             // 
             // DiscoverRSS_Btn
             // 
             this.DiscoverRSS_Btn.Name = "DiscoverRSS_Btn";
-            this.DiscoverRSS_Btn.Size = new System.Drawing.Size(239, 22);
+            this.DiscoverRSS_Btn.Size = new System.Drawing.Size(203, 22);
             this.DiscoverRSS_Btn.Text = "Discover";
             this.DiscoverRSS_Btn.Click += new System.EventHandler(this.DiscoverRSS_Btn_Click);
             // 
             // toolStripSeparator39
             // 
             this.toolStripSeparator39.Name = "toolStripSeparator39";
-            this.toolStripSeparator39.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator39.Size = new System.Drawing.Size(200, 6);
             // 
             // oOBaiAgentRssNewsToolStripMenuItem
             // 
@@ -7599,65 +2582,65 @@
             this.Agent_RSS_News_Cloud,
             this.Agent_RSS_News_Promptsend});
             this.oOBaiAgentRssNewsToolStripMenuItem.Name = "oOBaiAgentRssNewsToolStripMenuItem";
-            this.oOBaiAgentRssNewsToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.oOBaiAgentRssNewsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.oOBaiAgentRssNewsToolStripMenuItem.Text = "OOBai [Agent Rss News]";
             // 
             // Agent_RSS_News_Local
             // 
             this.Agent_RSS_News_Local.Name = "Agent_RSS_News_Local";
-            this.Agent_RSS_News_Local.Size = new System.Drawing.Size(137, 22);
+            this.Agent_RSS_News_Local.Size = new System.Drawing.Size(125, 22);
             this.Agent_RSS_News_Local.Text = "Localhost";
             this.Agent_RSS_News_Local.Click += new System.EventHandler(this.Agent_RSS_News_Local_Click);
             // 
             // Agent_RSS_News_Cloud
             // 
             this.Agent_RSS_News_Cloud.Name = "Agent_RSS_News_Cloud";
-            this.Agent_RSS_News_Cloud.Size = new System.Drawing.Size(137, 22);
+            this.Agent_RSS_News_Cloud.Size = new System.Drawing.Size(125, 22);
             this.Agent_RSS_News_Cloud.Text = "Cloud";
             this.Agent_RSS_News_Cloud.Click += new System.EventHandler(this.Agent_RSS_News_Cloud_Click);
             // 
             // Agent_RSS_News_Promptsend
             // 
             this.Agent_RSS_News_Promptsend.Name = "Agent_RSS_News_Promptsend";
-            this.Agent_RSS_News_Promptsend.Size = new System.Drawing.Size(137, 22);
+            this.Agent_RSS_News_Promptsend.Size = new System.Drawing.Size(125, 22);
             this.Agent_RSS_News_Promptsend.Text = "Prompt";
             this.Agent_RSS_News_Promptsend.Click += new System.EventHandler(this.Agent_RSS_News_Promptsend_Click);
             // 
             // JavaScriptFeed_Btn
             // 
             this.JavaScriptFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.JavaScriptFeed_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaScriptFeed_Btn.ForeColor = System.Drawing.Color.White;
+            this.JavaScriptFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaScriptFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.JavaScriptFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("JavaScriptFeed_Btn.Image")));
             this.JavaScriptFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.JavaScriptFeed_Btn.Name = "JavaScriptFeed_Btn";
-            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(75, 22);
+            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(61, 25);
             this.JavaScriptFeed_Btn.Text = "JS Enable";
             this.JavaScriptFeed_Btn.Click += new System.EventHandler(this.JavaScriptFeed_Btn_Click);
             // 
             // BlockAdFeed_Btn
             // 
             this.BlockAdFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.BlockAdFeed_Btn.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BlockAdFeed_Btn.ForeColor = System.Drawing.Color.Lime;
+            this.BlockAdFeed_Btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAdFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.BlockAdFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("BlockAdFeed_Btn.Image")));
             this.BlockAdFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BlockAdFeed_Btn.Name = "BlockAdFeed_Btn";
-            this.BlockAdFeed_Btn.Size = new System.Drawing.Size(30, 22);
+            this.BlockAdFeed_Btn.Size = new System.Drawing.Size(36, 25);
             this.BlockAdFeed_Btn.Text = "🚫";
             this.BlockAdFeed_Btn.ToolTipText = "Block Ad/Tracker";
             this.BlockAdFeed_Btn.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
             // 
             // OpnPromptRss_Btn
             // 
-            this.OpnPromptRss_Btn.BackColor = System.Drawing.Color.DodgerBlue;
+            this.OpnPromptRss_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
             this.OpnPromptRss_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnPromptRss_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnPromptRss_Btn.ForeColor = System.Drawing.Color.White;
+            this.OpnPromptRss_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnPromptRss_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
             this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(64, 20);
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(59, 25);
             this.OpnPromptRss_Btn.Text = "Prompt";
             this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
             // 
@@ -7668,39 +2651,39 @@
             this.ConfigRSS2_Btn,
             this.StartRSS2node_Btn,
             this.RSS2local_Btn});
-            this.RSS2_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.RSS2_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
             this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
             this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RSS2_Tls.Name = "RSS2_Tls";
-            this.RSS2_Tls.Size = new System.Drawing.Size(54, 20);
+            this.RSS2_Tls.Size = new System.Drawing.Size(52, 25);
             this.RSS2_Tls.Text = "RSS2";
             // 
             // ConfigRSS2_Btn
             // 
             this.ConfigRSS2_Btn.Name = "ConfigRSS2_Btn";
-            this.ConfigRSS2_Btn.Size = new System.Drawing.Size(147, 22);
+            this.ConfigRSS2_Btn.Size = new System.Drawing.Size(141, 24);
             this.ConfigRSS2_Btn.Text = "Config";
             this.ConfigRSS2_Btn.Click += new System.EventHandler(this.ConfigRSS2_Btn_Click);
             // 
             // StartRSS2node_Btn
             // 
             this.StartRSS2node_Btn.Name = "StartRSS2node_Btn";
-            this.StartRSS2node_Btn.Size = new System.Drawing.Size(147, 22);
+            this.StartRSS2node_Btn.Size = new System.Drawing.Size(141, 24);
             this.StartRSS2node_Btn.Text = "Start RSS2";
             this.StartRSS2node_Btn.Click += new System.EventHandler(this.StartRSS2node_Btn_Click);
             // 
             // RSS2local_Btn
             // 
             this.RSS2local_Btn.Name = "RSS2local_Btn";
-            this.RSS2local_Btn.Size = new System.Drawing.Size(147, 22);
+            this.RSS2local_Btn.Size = new System.Drawing.Size(141, 24);
             this.RSS2local_Btn.Text = "Localhost";
             this.RSS2local_Btn.Click += new System.EventHandler(this.RSS2local_Btn_Click);
             // 
             // Tools_TAB_3
             // 
             this.Tools_TAB_3.AutoSize = false;
-            this.Tools_TAB_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tools_TAB_3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tools_TAB_3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Tools_TAB_3.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.Tools_TAB_3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -7723,7 +2706,6 @@
             this.CharsetPlant_Txt});
             this.Tools_TAB_3.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_3.Name = "Tools_TAB_3";
-            this.Tools_TAB_3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.Tools_TAB_3.Size = new System.Drawing.Size(1334, 31);
             this.Tools_TAB_3.TabIndex = 15;
             this.Tools_TAB_3.Visible = false;
@@ -7777,7 +2759,7 @@
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExportXml_Tls,
             this.ExportJson_Tls});
-            this.toolStripDropDownButton2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripDropDownButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButton2.Image = global::Ostium.Properties.Resources.Export0;
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 3);
@@ -7787,16 +2769,16 @@
             // 
             // ExportXml_Tls
             // 
-            this.ExportXml_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportXml_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExportXml_Tls.Name = "ExportXml_Tls";
-            this.ExportXml_Tls.Size = new System.Drawing.Size(151, 22);
+            this.ExportXml_Tls.Size = new System.Drawing.Size(135, 22);
             this.ExportXml_Tls.Text = "Export XML";
             this.ExportXml_Tls.Click += new System.EventHandler(this.ExportXml_Tls_Click);
             // 
             // ExportJson_Tls
             // 
             this.ExportJson_Tls.Name = "ExportJson_Tls";
-            this.ExportJson_Tls.Size = new System.Drawing.Size(151, 22);
+            this.ExportJson_Tls.Size = new System.Drawing.Size(135, 22);
             this.ExportJson_Tls.Text = "Export Json";
             this.ExportJson_Tls.Click += new System.EventHandler(this.ExportJson_Tls_Click);
             // 
@@ -7807,7 +2789,7 @@
             this.Diagram_Tls,
             this.DiagramMindMap_Tls,
             this.DiagramMindMap2_Tls});
-            this.CreateDiagram_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateDiagram_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateDiagram_Tls.Image = global::Ostium.Properties.Resources.Diagram;
             this.CreateDiagram_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CreateDiagram_Tls.Name = "CreateDiagram_Tls";
@@ -7817,28 +2799,28 @@
             // Diagram_Tls
             // 
             this.Diagram_Tls.Name = "Diagram_Tls";
-            this.Diagram_Tls.Size = new System.Drawing.Size(261, 22);
+            this.Diagram_Tls.Size = new System.Drawing.Size(230, 22);
             this.Diagram_Tls.Text = "Model #1 Json";
             this.Diagram_Tls.Click += new System.EventHandler(this.Diagram_Tls_Click);
             // 
             // DiagramMindMap_Tls
             // 
             this.DiagramMindMap_Tls.Name = "DiagramMindMap_Tls";
-            this.DiagramMindMap_Tls.Size = new System.Drawing.Size(261, 22);
+            this.DiagramMindMap_Tls.Size = new System.Drawing.Size(230, 22);
             this.DiagramMindMap_Tls.Text = "Model #2 Mind Map Detailed";
             this.DiagramMindMap_Tls.Click += new System.EventHandler(this.DiagramMindMap_Tls_Click);
             // 
             // DiagramMindMap2_Tls
             // 
             this.DiagramMindMap2_Tls.Name = "DiagramMindMap2_Tls";
-            this.DiagramMindMap2_Tls.Size = new System.Drawing.Size(261, 22);
+            this.DiagramMindMap2_Tls.Size = new System.Drawing.Size(230, 22);
             this.DiagramMindMap2_Tls.Text = "Model #3 Mind Map";
             this.DiagramMindMap2_Tls.Click += new System.EventHandler(this.DiagramMindMap2_Tls_Click);
             // 
             // ExportDiag_Btn
             // 
             this.ExportDiag_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ExportDiag_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportDiag_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExportDiag_Btn.Image = global::Ostium.Properties.Resources.Exportsvg;
             this.ExportDiag_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExportDiag_Btn.Name = "ExportDiag_Btn";
@@ -7873,7 +2855,7 @@
             this.OpnJsonFile_Btn,
             this.OpnXMLFile_Btn,
             this.OpnPlantUMLFile_Btn});
-            this.File_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.File_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.File_Tls.Image = global::Ostium.Properties.Resources.Filesbtn;
             this.File_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.File_Tls.Name = "File_Tls";
@@ -7883,38 +2865,38 @@
             // OpnJsonFile_Btn
             // 
             this.OpnJsonFile_Btn.Name = "OpnJsonFile_Btn";
-            this.OpnJsonFile_Btn.Size = new System.Drawing.Size(201, 22);
+            this.OpnJsonFile_Btn.Size = new System.Drawing.Size(177, 22);
             this.OpnJsonFile_Btn.Text = "Open JSON file";
             this.OpnJsonFile_Btn.Click += new System.EventHandler(this.OpnJsonFile_Btn_Click);
             // 
             // OpnXMLFile_Btn
             // 
             this.OpnXMLFile_Btn.Name = "OpnXMLFile_Btn";
-            this.OpnXMLFile_Btn.Size = new System.Drawing.Size(201, 22);
+            this.OpnXMLFile_Btn.Size = new System.Drawing.Size(177, 22);
             this.OpnXMLFile_Btn.Text = "Open XML file";
             this.OpnXMLFile_Btn.Click += new System.EventHandler(this.OpnXMLFile_Btn_Click);
             // 
             // OpnPlantUMLFile_Btn
             // 
             this.OpnPlantUMLFile_Btn.Name = "OpnPlantUMLFile_Btn";
-            this.OpnPlantUMLFile_Btn.Size = new System.Drawing.Size(201, 22);
+            this.OpnPlantUMLFile_Btn.Size = new System.Drawing.Size(177, 22);
             this.OpnPlantUMLFile_Btn.Text = "Open PlantUML file";
             this.OpnPlantUMLFile_Btn.Click += new System.EventHandler(this.OpnPlantUMLFile_Btn_Click);
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(161, 28);
+            this.toolStripLabel2.Size = new System.Drawing.Size(131, 28);
             this.toolStripLabel2.Text = "Diagram Theme Select:";
             // 
             // ThemDiag_Cbx
             // 
-            this.ThemDiag_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ThemDiag_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ThemDiag_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ThemDiag_Cbx.ForeColor = System.Drawing.Color.Lime;
+            this.ThemDiag_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ThemDiag_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.ThemDiag_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ThemDiag_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
             this.ThemDiag_Cbx.Items.AddRange(new object[] {
             "amiga",
             "hacker",
@@ -7953,7 +2935,7 @@
             this.Debug_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.VerifProcessRun_Btn,
             this.KillProcess_Btn});
-            this.Debug_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Debug_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Debug_Tls.Image = global::Ostium.Properties.Resources.CPU;
             this.Debug_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Debug_Tls.Name = "Debug_Tls";
@@ -7963,15 +2945,15 @@
             // VerifProcessRun_Btn
             // 
             this.VerifProcessRun_Btn.Name = "VerifProcessRun_Btn";
-            this.VerifProcessRun_Btn.Size = new System.Drawing.Size(451, 22);
+            this.VerifProcessRun_Btn.Size = new System.Drawing.Size(367, 22);
             this.VerifProcessRun_Btn.Text = "Verify Process run => OpenJDK Platform binary (javaw)";
             this.VerifProcessRun_Btn.Click += new System.EventHandler(this.VerifProcessRun_Btn_Click);
             // 
             // KillProcess_Btn
             // 
-            this.KillProcess_Btn.ForeColor = System.Drawing.Color.Red;
+            this.KillProcess_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.KillProcess_Btn.Name = "KillProcess_Btn";
-            this.KillProcess_Btn.Size = new System.Drawing.Size(451, 22);
+            this.KillProcess_Btn.Size = new System.Drawing.Size(367, 22);
             this.KillProcess_Btn.Text = "Kill => OpenJDK Platform binary (javaw)";
             this.KillProcess_Btn.Click += new System.EventHandler(this.KillProcess_Btn_Click);
             // 
@@ -7982,42 +2964,42 @@
             this.PlantUmlVersion_Mnu,
             this.PlantUmlLicense_Mnu,
             this.PlantUmlLUpdate_Mnu});
-            this.PlantUml_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlantUml_Mnu.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PlantUml_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlantUml_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
             this.PlantUml_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("PlantUml_Mnu.Image")));
             this.PlantUml_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PlantUml_Mnu.Name = "PlantUml_Mnu";
-            this.PlantUml_Mnu.Size = new System.Drawing.Size(83, 28);
+            this.PlantUml_Mnu.Size = new System.Drawing.Size(72, 28);
             this.PlantUml_Mnu.Text = "PlantUML";
             // 
             // PlantUmlVersion_Mnu
             // 
             this.PlantUmlVersion_Mnu.Name = "PlantUmlVersion_Mnu";
-            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(124, 22);
+            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(113, 22);
             this.PlantUmlVersion_Mnu.Text = "Version";
             this.PlantUmlVersion_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
             // 
             // PlantUmlLicense_Mnu
             // 
             this.PlantUmlLicense_Mnu.Name = "PlantUmlLicense_Mnu";
-            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(124, 22);
+            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(113, 22);
             this.PlantUmlLicense_Mnu.Text = "License";
             this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
             // 
             // PlantUmlLUpdate_Mnu
             // 
             this.PlantUmlLUpdate_Mnu.Name = "PlantUmlLUpdate_Mnu";
-            this.PlantUmlLUpdate_Mnu.Size = new System.Drawing.Size(124, 22);
+            this.PlantUmlLUpdate_Mnu.Size = new System.Drawing.Size(113, 22);
             this.PlantUmlLUpdate_Mnu.Text = "Update";
             this.PlantUmlLUpdate_Mnu.Click += new System.EventHandler(this.PlantUmlLUpdate_Mnu_Click);
             // 
             // CharsetPlant_Txt
             // 
             this.CharsetPlant_Txt.AutoSize = false;
-            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.DarkGray;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
             this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
             this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
@@ -8032,8 +3014,8 @@
             // Tools_TAB_4
             // 
             this.Tools_TAB_4.AutoSize = false;
-            this.Tools_TAB_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tools_TAB_4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tools_TAB_4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Tools_TAB_4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MapProject_Tls,
@@ -8055,8 +3037,7 @@
             this.UndoRoutePoint_Btn});
             this.Tools_TAB_4.Location = new System.Drawing.Point(0, 0);
             this.Tools_TAB_4.Name = "Tools_TAB_4";
-            this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(0, 1, 1, 3);
-            this.Tools_TAB_4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.Tools_TAB_4.Size = new System.Drawing.Size(1334, 29);
             this.Tools_TAB_4.TabIndex = 16;
             this.Tools_TAB_4.Visible = false;
@@ -8071,52 +3052,52 @@
             this.NewRouteProject_Tls,
             this.toolStripSeparator29,
             this.EgHelp_Tls});
-            this.MapProject_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapProject_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.MapProject_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapProject_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.MapProject_Tls.Image = ((System.Drawing.Image)(resources.GetObject("MapProject_Tls.Image")));
             this.MapProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MapProject_Tls.Name = "MapProject_Tls";
-            this.MapProject_Tls.Size = new System.Drawing.Size(68, 22);
+            this.MapProject_Tls.Size = new System.Drawing.Size(57, 20);
             this.MapProject_Tls.Text = "Project";
             // 
             // NewProjectMap_Tls
             // 
-            this.NewProjectMap_Tls.ForeColor = System.Drawing.Color.Black;
+            this.NewProjectMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.NewProjectMap_Tls.Name = "NewProjectMap_Tls";
-            this.NewProjectMap_Tls.Size = new System.Drawing.Size(472, 22);
+            this.NewProjectMap_Tls.Size = new System.Drawing.Size(391, 22);
             this.NewProjectMap_Tls.Text = "New Location Project";
             this.NewProjectMap_Tls.Click += new System.EventHandler(this.NewProjectMap_Tls_Click);
             // 
             // NewProjectMapList_Tls
             // 
             this.NewProjectMapList_Tls.Name = "NewProjectMapList_Tls";
-            this.NewProjectMapList_Tls.Size = new System.Drawing.Size(472, 22);
+            this.NewProjectMapList_Tls.Size = new System.Drawing.Size(391, 22);
             this.NewProjectMapList_Tls.Text = "Create a project from a list of points";
             this.NewProjectMapList_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
             // 
             // NewProjectMapLatLon_Tls
             // 
             this.NewProjectMapLatLon_Tls.Name = "NewProjectMapLatLon_Tls";
-            this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(472, 22);
+            this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(391, 22);
             this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
             this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
             // 
             // NewRouteProject_Tls
             // 
             this.NewRouteProject_Tls.Name = "NewRouteProject_Tls";
-            this.NewRouteProject_Tls.Size = new System.Drawing.Size(472, 22);
+            this.NewRouteProject_Tls.Size = new System.Drawing.Size(391, 22);
             this.NewRouteProject_Tls.Text = "New Route Project";
             this.NewRouteProject_Tls.Click += new System.EventHandler(this.NewRouteProject_Tls_Click);
             // 
             // toolStripSeparator29
             // 
             this.toolStripSeparator29.Name = "toolStripSeparator29";
-            this.toolStripSeparator29.Size = new System.Drawing.Size(469, 6);
+            this.toolStripSeparator29.Size = new System.Drawing.Size(388, 6);
             // 
             // EgHelp_Tls
             // 
             this.EgHelp_Tls.Name = "EgHelp_Tls";
-            this.EgHelp_Tls.Size = new System.Drawing.Size(472, 22);
+            this.EgHelp_Tls.Size = new System.Drawing.Size(391, 22);
             this.EgHelp_Tls.Text = "eg. data format";
             this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
             // 
@@ -8130,52 +3111,52 @@
             this.OpnDirMap_Tls,
             this.toolStripSeparator25,
             this.DelProjectMap_Tls});
-            this.FilesMap_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FilesMap_Mnu.ForeColor = System.Drawing.Color.White;
+            this.FilesMap_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilesMap_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.FilesMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("FilesMap_Mnu.Image")));
             this.FilesMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FilesMap_Mnu.Name = "FilesMap_Mnu";
-            this.FilesMap_Mnu.Size = new System.Drawing.Size(51, 22);
+            this.FilesMap_Mnu.Size = new System.Drawing.Size(43, 20);
             this.FilesMap_Mnu.Text = "Files";
             // 
             // EditXMLMap_Tls
             // 
             this.EditXMLMap_Tls.Name = "EditXMLMap_Tls";
-            this.EditXMLMap_Tls.Size = new System.Drawing.Size(264, 22);
+            this.EditXMLMap_Tls.Size = new System.Drawing.Size(225, 22);
             this.EditXMLMap_Tls.Text = "Edit Project File";
             this.EditXMLMap_Tls.Click += new System.EventHandler(this.EditXMLMap_Tls_Click);
             // 
             // ShowXMLMap_Tls
             // 
             this.ShowXMLMap_Tls.Name = "ShowXMLMap_Tls";
-            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(264, 22);
+            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(225, 22);
             this.ShowXMLMap_Tls.Text = "Show Project";
             this.ShowXMLMap_Tls.Click += new System.EventHandler(this.ShowXMLMap_Tls_Click);
             // 
             // ExportGPX_Tls
             // 
             this.ExportGPX_Tls.Name = "ExportGPX_Tls";
-            this.ExportGPX_Tls.Size = new System.Drawing.Size(264, 22);
+            this.ExportGPX_Tls.Size = new System.Drawing.Size(225, 22);
             this.ExportGPX_Tls.Text = "Export project in GPX format";
             this.ExportGPX_Tls.Click += new System.EventHandler(this.ExportGPX_Tls_Click);
             // 
             // OpnDirMap_Tls
             // 
             this.OpnDirMap_Tls.Name = "OpnDirMap_Tls";
-            this.OpnDirMap_Tls.Size = new System.Drawing.Size(264, 22);
+            this.OpnDirMap_Tls.Size = new System.Drawing.Size(225, 22);
             this.OpnDirMap_Tls.Text = "Open Directory";
             this.OpnDirMap_Tls.Click += new System.EventHandler(this.OpnDirMap_Tls_Click);
             // 
             // toolStripSeparator25
             // 
             this.toolStripSeparator25.Name = "toolStripSeparator25";
-            this.toolStripSeparator25.Size = new System.Drawing.Size(261, 6);
+            this.toolStripSeparator25.Size = new System.Drawing.Size(222, 6);
             // 
             // DelProjectMap_Tls
             // 
-            this.DelProjectMap_Tls.ForeColor = System.Drawing.Color.Red;
+            this.DelProjectMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.DelProjectMap_Tls.Name = "DelProjectMap_Tls";
-            this.DelProjectMap_Tls.Size = new System.Drawing.Size(264, 22);
+            this.DelProjectMap_Tls.Size = new System.Drawing.Size(225, 22);
             this.DelProjectMap_Tls.Text = "Delete Project";
             this.DelProjectMap_Tls.Click += new System.EventHandler(this.DelProjectMap_Tls_Click);
             // 
@@ -8201,138 +3182,138 @@
             this.toolStripSeparator28,
             this.NegativeModeMap_Tls,
             this.ClearMap_Tls});
-            this.ToolsMap_Mnu.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.White;
+            this.ToolsMap_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
             this.ToolsMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolsMap_Mnu.Name = "ToolsMap_Mnu";
-            this.ToolsMap_Mnu.Size = new System.Drawing.Size(55, 22);
+            this.ToolsMap_Mnu.Size = new System.Drawing.Size(48, 20);
             this.ToolsMap_Mnu.Text = "Tools";
             // 
             // OpnListLocation_Tls
             // 
             this.OpnListLocation_Tls.Name = "OpnListLocation_Tls";
-            this.OpnListLocation_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnListLocation_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnListLocation_Tls.Text = "Open Locations List";
             this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
             // 
             // OpnListRoute_Tls
             // 
             this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
-            this.OpnListRoute_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnListRoute_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnListRoute_Tls.Text = "Open Routes List";
             this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
             // 
             // OpnListRouteGpx_Tls
             // 
             this.OpnListRouteGpx_Tls.Name = "OpnListRouteGpx_Tls";
-            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnListRouteGpx_Tls.Text = "Open Routes GPX KML GEOJSON JSON List";
             this.OpnListRouteGpx_Tls.Click += new System.EventHandler(this.OpnListRouteGpx_Tls_Click);
             // 
             // OpnGPXRoute_Tls
             // 
             this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
-            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnGPXRoute_Tls.Text = "Open File GPX KML GEOJSON JSON";
             this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
             // 
             // toolStripSeparator30
             // 
             this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(358, 6);
+            this.toolStripSeparator30.Size = new System.Drawing.Size(301, 6);
             // 
             // CrossCenter_Tls
             // 
             this.CrossCenter_Tls.Name = "CrossCenter_Tls";
-            this.CrossCenter_Tls.Size = new System.Drawing.Size(361, 22);
+            this.CrossCenter_Tls.Size = new System.Drawing.Size(304, 22);
             this.CrossCenter_Tls.Text = "Cross Center";
             this.CrossCenter_Tls.Click += new System.EventHandler(this.CrossCenter_Tls_Click);
             // 
             // ScreenShotGmap_Tls
             // 
             this.ScreenShotGmap_Tls.Name = "ScreenShotGmap_Tls";
-            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(361, 22);
+            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(304, 22);
             this.ScreenShotGmap_Tls.Text = "ScreenShot";
             this.ScreenShotGmap_Tls.Click += new System.EventHandler(this.ScreenShotGmap_Tls_Click);
             // 
             // toolStripSeparator24
             // 
             this.toolStripSeparator24.Name = "toolStripSeparator24";
-            this.toolStripSeparator24.Size = new System.Drawing.Size(358, 6);
+            this.toolStripSeparator24.Size = new System.Drawing.Size(301, 6);
             // 
             // OpnGoogleMaps_Tls
             // 
             this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
-            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
             this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
             // 
             // OpnGoogleStreet_Tls
             // 
             this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
-            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
             this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
             // 
             // OpnBingMap_Tls
             // 
             this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
-            this.OpnBingMap_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpnBingMap_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpnBingMap_Tls.Text = "Open BingMap";
             this.OpnBingMap_Tls.Click += new System.EventHandler(this.OpnBingMap_Tls_Click);
             // 
             // OpenGoogleEarth_Tls
             // 
             this.OpenGoogleEarth_Tls.Name = "OpenGoogleEarth_Tls";
-            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
             this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
             // 
             // OpenGoogleEarthWeb_Tls
             // 
             this.OpenGoogleEarthWeb_Tls.Name = "OpenGoogleEarthWeb_Tls";
-            this.OpenGoogleEarthWeb_Tls.Size = new System.Drawing.Size(361, 22);
+            this.OpenGoogleEarthWeb_Tls.Size = new System.Drawing.Size(304, 22);
             this.OpenGoogleEarthWeb_Tls.Text = "Open Google Earth Web";
             this.OpenGoogleEarthWeb_Tls.Click += new System.EventHandler(this.OpenGoogleEarthWeb_Tls_Click);
             // 
             // toolStripSeparator26
             // 
             this.toolStripSeparator26.Name = "toolStripSeparator26";
-            this.toolStripSeparator26.Size = new System.Drawing.Size(358, 6);
+            this.toolStripSeparator26.Size = new System.Drawing.Size(301, 6);
             // 
             // CopyGeoMap_Tls
             // 
             this.CopyGeoMap_Tls.Name = "CopyGeoMap_Tls";
-            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(361, 22);
+            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(304, 22);
             this.CopyGeoMap_Tls.Text = "Copy Geolocation";
             this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
             // 
             // toolStripSeparator28
             // 
             this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(358, 6);
+            this.toolStripSeparator28.Size = new System.Drawing.Size(301, 6);
             // 
             // NegativeModeMap_Tls
             // 
             this.NegativeModeMap_Tls.Name = "NegativeModeMap_Tls";
-            this.NegativeModeMap_Tls.Size = new System.Drawing.Size(361, 22);
+            this.NegativeModeMap_Tls.Size = new System.Drawing.Size(304, 22);
             this.NegativeModeMap_Tls.Text = "Negative Mode";
             this.NegativeModeMap_Tls.Click += new System.EventHandler(this.NegativeModeMap_Tls_Click);
             // 
             // ClearMap_Tls
             // 
-            this.ClearMap_Tls.ForeColor = System.Drawing.Color.Red;
+            this.ClearMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.ClearMap_Tls.Name = "ClearMap_Tls";
-            this.ClearMap_Tls.Size = new System.Drawing.Size(361, 22);
+            this.ClearMap_Tls.Size = new System.Drawing.Size(304, 22);
             this.ClearMap_Tls.Text = "Clear Map";
             this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
             // 
             // GmapProvider_Cbx
             // 
-            this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GmapProvider_Cbx.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GmapProvider_Cbx.ForeColor = System.Drawing.Color.White;
+            this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.GmapProvider_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GmapProvider_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.GmapProvider_Cbx.Items.AddRange(new object[] {
             "BingHybridMap",
             "BingMap",
@@ -8346,44 +3327,44 @@
             "WikiMapiaMap",
             "ArcGIS_World_Street"});
             this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
-            this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 25);
+            this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 23);
             this.GmapProvider_Cbx.Text = "OpenCycleMap";
             this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
             // 
             // toolStripLabel3
             // 
-            this.toolStripLabel3.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel3.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(56, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(45, 20);
             this.toolStripLabel3.Text = "lat/Lon";
             // 
             // LatLon_Txt
             // 
-            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
             this.LatLon_Txt.Name = "LatLon_Txt";
-            this.LatLon_Txt.Size = new System.Drawing.Size(200, 25);
+            this.LatLon_Txt.Size = new System.Drawing.Size(200, 23);
             this.LatLon_Txt.Text = "Coordinates";
             // 
             // toolStripLabel5
             // 
-            this.toolStripLabel5.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel5.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(46, 22);
+            this.toolStripLabel5.Size = new System.Drawing.Size(37, 20);
             this.toolStripLabel5.Text = "Order";
             // 
             // OrderLL_txt
             // 
-            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
             this.OrderLL_txt.Name = "OrderLL_txt";
-            this.OrderLL_txt.Size = new System.Drawing.Size(45, 25);
+            this.OrderLL_txt.Size = new System.Drawing.Size(45, 23);
             this.OrderLL_txt.Text = "lalo";
             this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -8391,8 +3372,8 @@
             // 
             this.GoLatLong_Tls.AutoSize = false;
             this.GoLatLong_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoLatLong_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoLatLong_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.GoLatLong_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoLatLong_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.GoLatLong_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoLatLong_Tls.Image")));
             this.GoLatLong_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoLatLong_Tls.Name = "GoLatLong_Tls";
@@ -8403,32 +3384,32 @@
             // toolStripSeparator23
             // 
             this.toolStripSeparator23.Name = "toolStripSeparator23";
-            this.toolStripSeparator23.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator23.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabel4
             // 
-            this.toolStripLabel4.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel4.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(41, 22);
+            this.toolStripLabel4.Size = new System.Drawing.Size(34, 20);
             this.toolStripLabel4.Text = "word";
             // 
             // KeywordMap_Txt
             // 
-            this.KeywordMap_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.KeywordMap_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.KeywordMap_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.KeywordMap_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
             this.KeywordMap_Txt.Name = "KeywordMap_Txt";
-            this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 25);
+            this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 23);
             this.KeywordMap_Txt.Text = "Adress";
             // 
             // GoWord_Tls
             // 
             this.GoWord_Tls.AutoSize = false;
             this.GoWord_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoWord_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoWord_Tls.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.GoWord_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoWord_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
             this.GoWord_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoWord_Tls.Image")));
             this.GoWord_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoWord_Tls.Name = "GoWord_Tls";
@@ -8439,43 +3420,5145 @@
             // toolStripSeparator27
             // 
             this.toolStripSeparator27.Name = "toolStripSeparator27";
-            this.toolStripSeparator27.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator27.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabel6
             // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
             this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel6.Size = new System.Drawing.Size(39, 20);
             this.toolStripLabel6.Text = "Zoom";
             // 
             // ZoomValMap_Lbl
             // 
-            this.ZoomValMap_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ZoomValMap_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
             this.ZoomValMap_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ZoomValMap_Lbl.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZoomValMap_Lbl.ForeColor = System.Drawing.Color.Fuchsia;
+            this.ZoomValMap_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(121)))), ((int)(((byte)(249)))));
             this.ZoomValMap_Lbl.Name = "ZoomValMap_Lbl";
-            this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 25);
+            this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 23);
             this.ZoomValMap_Lbl.Text = "3";
             this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // UndoRoutePoint_Btn
             // 
             this.UndoRoutePoint_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.UndoRoutePoint_Btn.ForeColor = System.Drawing.Color.Red;
+            this.UndoRoutePoint_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
             this.UndoRoutePoint_Btn.Image = ((System.Drawing.Image)(resources.GetObject("UndoRoutePoint_Btn.Image")));
             this.UndoRoutePoint_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UndoRoutePoint_Btn.Name = "UndoRoutePoint_Btn";
-            this.UndoRoutePoint_Btn.Size = new System.Drawing.Size(121, 22);
+            this.UndoRoutePoint_Btn.Size = new System.Drawing.Size(105, 20);
             this.UndoRoutePoint_Btn.Text = "Undo Route Point";
             this.UndoRoutePoint_Btn.Visible = false;
             this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
             // 
+            // Control_Tab
+            // 
+            this.Control_Tab.Controls.Add(this.Browser_Tab);
+            this.Control_Tab.Controls.Add(this.Rss_Tab);
+            this.Control_Tab.Controls.Add(this.Data_Tab);
+            this.Control_Tab.Controls.Add(this.Workflow_Tab);
+            this.Control_Tab.Controls.Add(this.Map_Tab);
+            this.Control_Tab.Controls.Add(this.Json_Tab);
+            this.Control_Tab.Controls.Add(this.OOBai_Tab);
+            this.Control_Tab.Controls.Add(this.Options_Tab);
+            this.Control_Tab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Control_Tab.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Control_Tab.ItemSize = new System.Drawing.Size(112, 34);
+            this.Control_Tab.Location = new System.Drawing.Point(0, 0);
+            this.Control_Tab.Name = "Control_Tab";
+            this.Control_Tab.Padding = new System.Drawing.Point(14, 6);
+            this.Control_Tab.SelectedIndex = 0;
+            this.Control_Tab.Size = new System.Drawing.Size(1334, 637);
+            this.Control_Tab.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.Control_Tab.TabIndex = 13;
+            this.Control_Tab.Click += new System.EventHandler(this.Control_Tab_Click);
+            // 
+            // Browser_Tab
+            // 
+            this.Browser_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Browser_Tab.Controls.Add(this.WBrowse);
+            this.Browser_Tab.Controls.Add(this.Cookie_Pnl);
+            this.Browser_Tab.Controls.Add(this.PanelBkmklt_Pnl);
+            this.Browser_Tab.Controls.Add(this.Word_Page_Lst);
+            this.Browser_Tab.Controls.Add(this.Source_Page_Lst);
+            this.Browser_Tab.Controls.Add(this.panel3);
+            this.Browser_Tab.Controls.Add(this.DB_Pnl);
+            this.Browser_Tab.Controls.Add(this.Panel_Workflow);
+            this.Browser_Tab.Controls.Add(this.Console_Cmd_Txt);
+            this.Browser_Tab.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Browser_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Browser_Tab.Name = "Browser_Tab";
+            this.Browser_Tab.Padding = new System.Windows.Forms.Padding(3);
+            this.Browser_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Browser_Tab.TabIndex = 1;
+            this.Browser_Tab.Text = "BROWSx";
+            // 
+            // WBrowse
+            // 
+            this.WBrowse.AllowExternalDrop = true;
+            this.WBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.WBrowse.CreationProperties = null;
+            this.WBrowse.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WBrowse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBrowse.Location = new System.Drawing.Point(203, 30);
+            this.WBrowse.Name = "WBrowse";
+            this.WBrowse.Size = new System.Drawing.Size(920, 460);
+            this.WBrowse.TabIndex = 0;
+            this.WBrowse.ZoomFactor = 1D;
+            // 
+            // Cookie_Pnl
+            // 
+            this.Cookie_Pnl.AutoSize = true;
+            this.Cookie_Pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Cookie_Pnl.Controls.Add(this.CookiesAdd_Btn);
+            this.Cookie_Pnl.Controls.Add(this.ScriptUrl_Lst);
+            this.Cookie_Pnl.Controls.Add(this.SourcePage_Txt);
+            this.Cookie_Pnl.Controls.Add(this.ConstructURL_Lst);
+            this.Cookie_Pnl.Controls.Add(this.CloseSetCookie_Btn);
+            this.Cookie_Pnl.Controls.Add(this.label16);
+            this.Cookie_Pnl.Controls.Add(this.label15);
+            this.Cookie_Pnl.Controls.Add(this.label14);
+            this.Cookie_Pnl.Controls.Add(this.CookieDomain_Txt);
+            this.Cookie_Pnl.Controls.Add(this.CookieValue_Txt);
+            this.Cookie_Pnl.Controls.Add(this.CookieName_Txt);
+            this.Cookie_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Cookie_Pnl.Location = new System.Drawing.Point(203, 490);
+            this.Cookie_Pnl.Name = "Cookie_Pnl";
+            this.Cookie_Pnl.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Cookie_Pnl.Size = new System.Drawing.Size(920, 79);
+            this.Cookie_Pnl.TabIndex = 9;
+            this.Cookie_Pnl.Visible = false;
+            // 
+            // CookiesAdd_Btn
+            // 
+            this.CookiesAdd_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.CookiesAdd_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CookiesAdd_Btn.FlatAppearance.BorderSize = 0;
+            this.CookiesAdd_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CookiesAdd_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.CookiesAdd_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CookiesAdd_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CookiesAdd_Btn.Location = new System.Drawing.Point(556, 25);
+            this.CookiesAdd_Btn.Name = "CookiesAdd_Btn";
+            this.CookiesAdd_Btn.Size = new System.Drawing.Size(106, 27);
+            this.CookiesAdd_Btn.TabIndex = 13;
+            this.CookiesAdd_Btn.Text = "Set Cookie";
+            this.CookiesAdd_Btn.UseVisualStyleBackColor = false;
+            this.CookiesAdd_Btn.Click += new System.EventHandler(this.CookiesAdd_Btn_Click);
+            // 
+            // ScriptUrl_Lst
+            // 
+            this.ScriptUrl_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ScriptUrl_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ScriptUrl_Lst.FormattingEnabled = true;
+            this.ScriptUrl_Lst.ItemHeight = 17;
+            this.ScriptUrl_Lst.Location = new System.Drawing.Point(792, 72);
+            this.ScriptUrl_Lst.Name = "ScriptUrl_Lst";
+            this.ScriptUrl_Lst.Size = new System.Drawing.Size(120, 4);
+            this.ScriptUrl_Lst.TabIndex = 10;
+            this.ScriptUrl_Lst.Visible = false;
+            // 
+            // SourcePage_Txt
+            // 
+            this.SourcePage_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.SourcePage_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SourcePage_Txt.Location = new System.Drawing.Point(792, 47);
+            this.SourcePage_Txt.Multiline = true;
+            this.SourcePage_Txt.Name = "SourcePage_Txt";
+            this.SourcePage_Txt.Size = new System.Drawing.Size(100, 20);
+            this.SourcePage_Txt.TabIndex = 12;
+            this.SourcePage_Txt.Visible = false;
+            // 
+            // ConstructURL_Lst
+            // 
+            this.ConstructURL_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ConstructURL_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ConstructURL_Lst.FormattingEnabled = true;
+            this.ConstructURL_Lst.ItemHeight = 17;
+            this.ConstructURL_Lst.Location = new System.Drawing.Point(788, 21);
+            this.ConstructURL_Lst.Name = "ConstructURL_Lst";
+            this.ConstructURL_Lst.Size = new System.Drawing.Size(126, 4);
+            this.ConstructURL_Lst.Sorted = true;
+            this.ConstructURL_Lst.TabIndex = 6;
+            this.ConstructURL_Lst.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(391, 8);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(128, 15);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Domain eg(.bing.com)";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(161, 8);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(75, 15);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Cookie Value";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(34, 8);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 15);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Cookie Name";
+            // 
+            // CookieDomain_Txt
+            // 
+            this.CookieDomain_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CookieDomain_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CookieDomain_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CookieDomain_Txt.Location = new System.Drawing.Point(394, 27);
+            this.CookieDomain_Txt.Name = "CookieDomain_Txt";
+            this.CookieDomain_Txt.Size = new System.Drawing.Size(156, 25);
+            this.CookieDomain_Txt.TabIndex = 2;
+            // 
+            // CookieValue_Txt
+            // 
+            this.CookieValue_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CookieValue_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CookieValue_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CookieValue_Txt.Location = new System.Drawing.Point(163, 27);
+            this.CookieValue_Txt.Name = "CookieValue_Txt";
+            this.CookieValue_Txt.Size = new System.Drawing.Size(225, 25);
+            this.CookieValue_Txt.TabIndex = 1;
+            // 
+            // CookieName_Txt
+            // 
+            this.CookieName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CookieName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CookieName_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CookieName_Txt.Location = new System.Drawing.Point(36, 27);
+            this.CookieName_Txt.Name = "CookieName_Txt";
+            this.CookieName_Txt.Size = new System.Drawing.Size(121, 25);
+            this.CookieName_Txt.TabIndex = 0;
+            // 
+            // PanelBkmklt_Pnl
+            // 
+            this.PanelBkmklt_Pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.PanelBkmklt_Pnl.Controls.Add(this.PanelButtonBkmklt_Pnl);
+            this.PanelBkmklt_Pnl.Controls.Add(this.Bookmarklet_Lst);
+            this.PanelBkmklt_Pnl.Controls.Add(this.Desc_Lbl);
+            this.PanelBkmklt_Pnl.Controls.Add(this.panel28);
+            this.PanelBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanelBkmklt_Pnl.Location = new System.Drawing.Point(1123, 30);
+            this.PanelBkmklt_Pnl.Name = "PanelBkmklt_Pnl";
+            this.PanelBkmklt_Pnl.Size = new System.Drawing.Size(200, 539);
+            this.PanelBkmklt_Pnl.TabIndex = 11;
+            this.PanelBkmklt_Pnl.Visible = false;
+            // 
+            // PanelButtonBkmklt_Pnl
+            // 
+            this.PanelButtonBkmklt_Pnl.Controls.Add(this.InjectBkmklt_Btn);
+            this.PanelButtonBkmklt_Pnl.Controls.Add(this.ClosePnlBkmklt_Btn);
+            this.PanelButtonBkmklt_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PanelButtonBkmklt_Pnl.Location = new System.Drawing.Point(0, 511);
+            this.PanelButtonBkmklt_Pnl.Name = "PanelButtonBkmklt_Pnl";
+            this.PanelButtonBkmklt_Pnl.Size = new System.Drawing.Size(200, 28);
+            this.PanelButtonBkmklt_Pnl.TabIndex = 10;
+            // 
+            // InjectBkmklt_Btn
+            // 
+            this.InjectBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.InjectBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.InjectBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InjectBkmklt_Btn.FlatAppearance.BorderSize = 0;
+            this.InjectBkmklt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.InjectBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(72)))), ((int)(((byte)(50)))));
+            this.InjectBkmklt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.InjectBkmklt_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InjectBkmklt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.InjectBkmklt_Btn.Location = new System.Drawing.Point(69, 0);
+            this.InjectBkmklt_Btn.Name = "InjectBkmklt_Btn";
+            this.InjectBkmklt_Btn.Size = new System.Drawing.Size(131, 28);
+            this.InjectBkmklt_Btn.TabIndex = 3;
+            this.InjectBkmklt_Btn.Text = "Inject";
+            this.InjectBkmklt_Btn.UseVisualStyleBackColor = false;
+            this.InjectBkmklt_Btn.Click += new System.EventHandler(this.InjectBkmklt_Btn_Click);
+            // 
+            // ClosePnlBkmklt_Btn
+            // 
+            this.ClosePnlBkmklt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ClosePnlBkmklt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClosePnlBkmklt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ClosePnlBkmklt_Btn.FlatAppearance.BorderSize = 0;
+            this.ClosePnlBkmklt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ClosePnlBkmklt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.ClosePnlBkmklt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClosePnlBkmklt_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClosePnlBkmklt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.ClosePnlBkmklt_Btn.Location = new System.Drawing.Point(0, 0);
+            this.ClosePnlBkmklt_Btn.Name = "ClosePnlBkmklt_Btn";
+            this.ClosePnlBkmklt_Btn.Size = new System.Drawing.Size(69, 28);
+            this.ClosePnlBkmklt_Btn.TabIndex = 4;
+            this.ClosePnlBkmklt_Btn.Text = "Close";
+            this.ClosePnlBkmklt_Btn.UseVisualStyleBackColor = false;
+            this.ClosePnlBkmklt_Btn.Click += new System.EventHandler(this.ClosePnlBkmklt_Btn_Click);
+            // 
+            // Bookmarklet_Lst
+            // 
+            this.Bookmarklet_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Bookmarklet_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Bookmarklet_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Bookmarklet_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bookmarklet_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.Bookmarklet_Lst.FormattingEnabled = true;
+            this.Bookmarklet_Lst.ItemHeight = 15;
+            this.Bookmarklet_Lst.Location = new System.Drawing.Point(0, 104);
+            this.Bookmarklet_Lst.Name = "Bookmarklet_Lst";
+            this.Bookmarklet_Lst.Size = new System.Drawing.Size(200, 435);
+            this.Bookmarklet_Lst.TabIndex = 9;
+            this.Bookmarklet_Lst.SelectedIndexChanged += new System.EventHandler(this.Bookmarklet_Lst_SelectedIndexChanged);
+            // 
+            // Desc_Lbl
+            // 
+            this.Desc_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.Desc_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Desc_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Desc_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Desc_Lbl.Location = new System.Drawing.Point(0, 5);
+            this.Desc_Lbl.Name = "Desc_Lbl";
+            this.Desc_Lbl.Size = new System.Drawing.Size(200, 99);
+            this.Desc_Lbl.TabIndex = 8;
+            // 
+            // panel28
+            // 
+            this.panel28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.panel28.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel28.Location = new System.Drawing.Point(0, 0);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(200, 5);
+            this.panel28.TabIndex = 7;
+            // 
+            // Word_Page_Lst
+            // 
+            this.Word_Page_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Word_Page_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Word_Page_Lst.FormattingEnabled = true;
+            this.Word_Page_Lst.ItemHeight = 17;
+            this.Word_Page_Lst.Location = new System.Drawing.Point(1101, 533);
+            this.Word_Page_Lst.Name = "Word_Page_Lst";
+            this.Word_Page_Lst.Size = new System.Drawing.Size(29, 4);
+            this.Word_Page_Lst.TabIndex = 5;
+            this.Word_Page_Lst.Visible = false;
+            // 
+            // Source_Page_Lst
+            // 
+            this.Source_Page_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Source_Page_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Source_Page_Lst.FormattingEnabled = true;
+            this.Source_Page_Lst.ItemHeight = 17;
+            this.Source_Page_Lst.Location = new System.Drawing.Point(1136, 533);
+            this.Source_Page_Lst.Name = "Source_Page_Lst";
+            this.Source_Page_Lst.Size = new System.Drawing.Size(28, 4);
+            this.Source_Page_Lst.TabIndex = 4;
+            this.Source_Page_Lst.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel3.Controls.Add(this.URLbrowse_Cbx);
+            this.panel3.Controls.Add(this.CleanSearch_Btn);
+            this.panel3.Controls.Add(this.OpnPrompt_Btn);
+            this.panel3.Controls.Add(this.AddURLink_Btn);
+            this.panel3.Controls.Add(this.Go_Btn);
+            this.panel3.Controls.Add(this.GoWebwiev_Btn);
+            this.panel3.Controls.Add(this.Home_Btn);
+            this.panel3.Controls.Add(this.Refresh_Btn);
+            this.panel3.Controls.Add(this.Forward_Btn);
+            this.panel3.Controls.Add(this.Back_Btn);
+            this.panel3.Controls.Add(this.Agent_Fetch_Search);
+            this.panel3.Controls.Add(this.NewSeesion_Btn);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(203, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1120, 27);
+            this.panel3.TabIndex = 1;
+            // 
+            // URLbrowse_Cbx
+            // 
+            this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.URLbrowse_Cbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.URLbrowse_Cbx.FormattingEnabled = true;
+            this.URLbrowse_Cbx.Location = new System.Drawing.Point(432, 0);
+            this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(490, 25);
+            this.URLbrowse_Cbx.TabIndex = 6;
+            this.URLbrowse_Cbx.Text = "Insert a URL or search term";
+            this.URLbrowse_Cbx.SelectedIndexChanged += new System.EventHandler(this.URLbrowse_Cbx_SelectedIndexChanged);
+            this.URLbrowse_Cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKey_URLbrowse);
+            // 
+            // OpnPrompt_Btn
+            // 
+            this.OpnPrompt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.OpnPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OpnPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OpnPrompt_Btn.FlatAppearance.BorderSize = 0;
+            this.OpnPrompt_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.OpnPrompt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.OpnPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.OpnPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpnPrompt_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnPrompt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.OpnPrompt_Btn.Location = new System.Drawing.Point(319, 0);
+            this.OpnPrompt_Btn.MaximumSize = new System.Drawing.Size(83, 24);
+            this.OpnPrompt_Btn.Name = "OpnPrompt_Btn";
+            this.OpnPrompt_Btn.Size = new System.Drawing.Size(83, 24);
+            this.OpnPrompt_Btn.TabIndex = 11;
+            this.OpnPrompt_Btn.Text = "Prompt";
+            this.OpnPrompt_Btn.UseVisualStyleBackColor = false;
+            this.OpnPrompt_Btn.Click += new System.EventHandler(this.OpnPrompt_Btn_Click);
+            // 
+            // AddURLink_Btn
+            // 
+            this.AddURLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.AddURLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddURLink_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AddURLink_Btn.FlatAppearance.BorderSize = 0;
+            this.AddURLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.AddURLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.AddURLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddURLink_Btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddURLink_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddURLink_Btn.Image = global::Ostium.Properties.Resources.BookmarkUp;
+            this.AddURLink_Btn.Location = new System.Drawing.Point(922, 0);
+            this.AddURLink_Btn.MaximumSize = new System.Drawing.Size(24, 24);
+            this.AddURLink_Btn.Name = "AddURLink_Btn";
+            this.AddURLink_Btn.Size = new System.Drawing.Size(24, 24);
+            this.AddURLink_Btn.TabIndex = 8;
+            this.AddURLink_Btn.UseVisualStyleBackColor = false;
+            this.AddURLink_Btn.Click += new System.EventHandler(this.AddURLink_Btn_Click);
+            // 
+            // GoWebwiev_Btn
+            // 
+            this.GoWebwiev_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.GoWebwiev_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GoWebwiev_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.GoWebwiev_Btn.FlatAppearance.BorderSize = 0;
+            this.GoWebwiev_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.GoWebwiev_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.GoWebwiev_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GoWebwiev_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoWebwiev_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.GoWebwiev_Btn.Location = new System.Drawing.Point(1004, 0);
+            this.GoWebwiev_Btn.MaximumSize = new System.Drawing.Size(58, 24);
+            this.GoWebwiev_Btn.Name = "GoWebwiev_Btn";
+            this.GoWebwiev_Btn.Size = new System.Drawing.Size(58, 24);
+            this.GoWebwiev_Btn.TabIndex = 7;
+            this.GoWebwiev_Btn.Text = "Tab";
+            this.GoWebwiev_Btn.UseVisualStyleBackColor = false;
+            this.GoWebwiev_Btn.Click += new System.EventHandler(this.GoWebwiev_Btn_Click);
+            // 
+            // Agent_Fetch_Search
+            // 
+            this.Agent_Fetch_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Agent_Fetch_Search.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Agent_Fetch_Search.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Agent_Fetch_Search.FlatAppearance.BorderSize = 0;
+            this.Agent_Fetch_Search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Agent_Fetch_Search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Agent_Fetch_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Agent_Fetch_Search.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Agent_Fetch_Search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Agent_Fetch_Search.Location = new System.Drawing.Point(1062, 0);
+            this.Agent_Fetch_Search.MaximumSize = new System.Drawing.Size(58, 24);
+            this.Agent_Fetch_Search.Name = "Agent_Fetch_Search";
+            this.Agent_Fetch_Search.Size = new System.Drawing.Size(58, 24);
+            this.Agent_Fetch_Search.TabIndex = 10;
+            this.Agent_Fetch_Search.Text = "OOBai";
+            this.Agent_Fetch_Search.UseVisualStyleBackColor = false;
+            this.Agent_Fetch_Search.Click += new System.EventHandler(this.Agent_Fetch_Search_Click);
+            // 
+            // NewSeesion_Btn
+            // 
+            this.NewSeesion_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.NewSeesion_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NewSeesion_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NewSeesion_Btn.FlatAppearance.BorderSize = 0;
+            this.NewSeesion_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.NewSeesion_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.NewSeesion_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(119)))), ((int)(((byte)(6)))));
+            this.NewSeesion_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NewSeesion_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewSeesion_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.NewSeesion_Btn.Location = new System.Drawing.Point(0, 0);
+            this.NewSeesion_Btn.MaximumSize = new System.Drawing.Size(107, 24);
+            this.NewSeesion_Btn.Name = "NewSeesion_Btn";
+            this.NewSeesion_Btn.Size = new System.Drawing.Size(107, 24);
+            this.NewSeesion_Btn.TabIndex = 12;
+            this.NewSeesion_Btn.Text = "New session";
+            this.NewSeesion_Btn.UseVisualStyleBackColor = false;
+            this.NewSeesion_Btn.Click += new System.EventHandler(this.NewSession_Btn_Click);
+            // 
+            // DB_Pnl
+            // 
+            this.DB_Pnl.Controls.Add(this.Tables_Lst);
+            this.DB_Pnl.Controls.Add(this.UrlName_Txt);
+            this.DB_Pnl.Controls.Add(this.label7);
+            this.DB_Pnl.Controls.Add(this.AddTable_Btn);
+            this.DB_Pnl.Controls.Add(this.URLadd_Lbl);
+            this.DB_Pnl.Controls.Add(this.panel9);
+            this.DB_Pnl.Controls.Add(this.TableName_Txt);
+            this.DB_Pnl.Controls.Add(this.label8);
+            this.DB_Pnl.Location = new System.Drawing.Point(977, 33);
+            this.DB_Pnl.MinimumSize = new System.Drawing.Size(320, 440);
+            this.DB_Pnl.Name = "DB_Pnl";
+            this.DB_Pnl.Size = new System.Drawing.Size(344, 551);
+            this.DB_Pnl.TabIndex = 7;
+            this.DB_Pnl.Visible = false;
+            // 
+            // Tables_Lst
+            // 
+            this.Tables_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Tables_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Tables_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tables_Lst.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tables_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.Tables_Lst.FormattingEnabled = true;
+            this.Tables_Lst.ItemHeight = 17;
+            this.Tables_Lst.Location = new System.Drawing.Point(0, 131);
+            this.Tables_Lst.Name = "Tables_Lst";
+            this.Tables_Lst.Size = new System.Drawing.Size(344, 399);
+            this.Tables_Lst.TabIndex = 2;
+            this.Tables_Lst.SelectedIndexChanged += new System.EventHandler(this.Tables_Lst_SelectedIndexChanged);
+            // 
+            // UrlName_Txt
+            // 
+            this.UrlName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.UrlName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UrlName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.UrlName_Txt.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UrlName_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.UrlName_Txt.Location = new System.Drawing.Point(0, 106);
+            this.UrlName_Txt.Name = "UrlName_Txt";
+            this.UrlName_Txt.Size = new System.Drawing.Size(344, 25);
+            this.UrlName_Txt.TabIndex = 11;
+            this.UrlName_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label7.Location = new System.Drawing.Point(0, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(344, 24);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "URL name";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AddTable_Btn
+            // 
+            this.AddTable_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.AddTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddTable_Btn.FlatAppearance.BorderSize = 0;
+            this.AddTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.AddTable_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(72)))), ((int)(((byte)(50)))));
+            this.AddTable_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddTable_Btn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddTable_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.AddTable_Btn.Location = new System.Drawing.Point(0, 49);
+            this.AddTable_Btn.Name = "AddTable_Btn";
+            this.AddTable_Btn.Size = new System.Drawing.Size(344, 33);
+            this.AddTable_Btn.TabIndex = 9;
+            this.AddTable_Btn.Text = "Add Table";
+            this.AddTable_Btn.UseVisualStyleBackColor = false;
+            this.AddTable_Btn.Click += new System.EventHandler(this.AddTable_Btn_Click);
+            // 
+            // URLadd_Lbl
+            // 
+            this.URLadd_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.URLadd_Lbl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.URLadd_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLadd_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.URLadd_Lbl.Location = new System.Drawing.Point(0, 530);
+            this.URLadd_Lbl.Name = "URLadd_Lbl";
+            this.URLadd_Lbl.Size = new System.Drawing.Size(344, 21);
+            this.URLadd_Lbl.TabIndex = 3;
+            this.URLadd_Lbl.Text = "0000000000";
+            this.URLadd_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel9
+            // 
+            this.panel9.AutoSize = true;
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 49);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(344, 0);
+            this.panel9.TabIndex = 1;
+            // 
+            // TableName_Txt
+            // 
+            this.TableName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TableName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TableName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TableName_Txt.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableName_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.TableName_Txt.Location = new System.Drawing.Point(0, 24);
+            this.TableName_Txt.Name = "TableName_Txt";
+            this.TableName_Txt.Size = new System.Drawing.Size(344, 25);
+            this.TableName_Txt.TabIndex = 8;
+            this.TableName_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.label8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label8.Location = new System.Drawing.Point(0, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(344, 24);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Add Table or Select exist";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Panel_Workflow
+            // 
+            this.Panel_Workflow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.Panel_Workflow.Controls.Add(this.WorkflowItem_Lst);
+            this.Panel_Workflow.Controls.Add(this.label5);
+            this.Panel_Workflow.Controls.Add(this.AddTextWorkflow_Txt);
+            this.Panel_Workflow.Controls.Add(this.WFProjectOpn_Lbl);
+            this.Panel_Workflow.Controls.Add(this.label1);
+            this.Panel_Workflow.Controls.Add(this.AddTNoteWorkflow_Txt);
+            this.Panel_Workflow.Controls.Add(this.label23);
+            this.Panel_Workflow.Controls.Add(this.AddUrlWorkflow_Txt);
+            this.Panel_Workflow.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Panel_Workflow.Location = new System.Drawing.Point(3, 3);
+            this.Panel_Workflow.Name = "Panel_Workflow";
+            this.Panel_Workflow.Size = new System.Drawing.Size(200, 566);
+            this.Panel_Workflow.TabIndex = 8;
+            this.Panel_Workflow.Visible = false;
+            // 
+            // WorkflowItem_Lst
+            // 
+            this.WorkflowItem_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.WorkflowItem_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.WorkflowItem_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WorkflowItem_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.WorkflowItem_Lst.FormattingEnabled = true;
+            this.WorkflowItem_Lst.ItemHeight = 17;
+            this.WorkflowItem_Lst.Location = new System.Drawing.Point(0, 27);
+            this.WorkflowItem_Lst.Name = "WorkflowItem_Lst";
+            this.WorkflowItem_Lst.Size = new System.Drawing.Size(200, 222);
+            this.WorkflowItem_Lst.Sorted = true;
+            this.WorkflowItem_Lst.TabIndex = 9;
+            this.WorkflowItem_Lst.SelectedIndexChanged += new System.EventHandler(this.WorkflowItem_Lst_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.label5.Location = new System.Drawing.Point(0, 249);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(200, 24);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Text (value):";
+            // 
+            // AddTextWorkflow_Txt
+            // 
+            this.AddTextWorkflow_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddTextWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AddTextWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddTextWorkflow_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddTextWorkflow_Txt.Location = new System.Drawing.Point(0, 273);
+            this.AddTextWorkflow_Txt.Multiline = true;
+            this.AddTextWorkflow_Txt.Name = "AddTextWorkflow_Txt";
+            this.AddTextWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
+            this.AddTextWorkflow_Txt.TabIndex = 9;
+            // 
+            // WFProjectOpn_Lbl
+            // 
+            this.WFProjectOpn_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WFProjectOpn_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.WFProjectOpn_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.WFProjectOpn_Lbl.Location = new System.Drawing.Point(0, 0);
+            this.WFProjectOpn_Lbl.Name = "WFProjectOpn_Lbl";
+            this.WFProjectOpn_Lbl.Size = new System.Drawing.Size(200, 27);
+            this.WFProjectOpn_Lbl.TabIndex = 9;
+            this.WFProjectOpn_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.label1.Location = new System.Drawing.Point(0, 375);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 24);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Note:";
+            // 
+            // AddTNoteWorkflow_Txt
+            // 
+            this.AddTNoteWorkflow_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddTNoteWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AddTNoteWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddTNoteWorkflow_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddTNoteWorkflow_Txt.Location = new System.Drawing.Point(0, 399);
+            this.AddTNoteWorkflow_Txt.Multiline = true;
+            this.AddTNoteWorkflow_Txt.Name = "AddTNoteWorkflow_Txt";
+            this.AddTNoteWorkflow_Txt.Size = new System.Drawing.Size(200, 102);
+            this.AddTNoteWorkflow_Txt.TabIndex = 10;
+            // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.label23.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.label23.Location = new System.Drawing.Point(0, 501);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(200, 24);
+            this.label23.TabIndex = 12;
+            this.label23.Text = "URL:";
+            // 
+            // AddUrlWorkflow_Txt
+            // 
+            this.AddUrlWorkflow_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddUrlWorkflow_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AddUrlWorkflow_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddUrlWorkflow_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddUrlWorkflow_Txt.Location = new System.Drawing.Point(0, 525);
+            this.AddUrlWorkflow_Txt.Multiline = true;
+            this.AddUrlWorkflow_Txt.Name = "AddUrlWorkflow_Txt";
+            this.AddUrlWorkflow_Txt.Size = new System.Drawing.Size(200, 41);
+            this.AddUrlWorkflow_Txt.TabIndex = 13;
+            // 
+            // Console_Cmd_Txt
+            // 
+            this.Console_Cmd_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Console_Cmd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Console_Cmd_Txt.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.Console_Cmd_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Console_Cmd_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Console_Cmd_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.Console_Cmd_Txt.Location = new System.Drawing.Point(3, 569);
+            this.Console_Cmd_Txt.Name = "Console_Cmd_Txt";
+            this.Console_Cmd_Txt.Size = new System.Drawing.Size(1320, 23);
+            this.Console_Cmd_Txt.TabIndex = 2;
+            this.Console_Cmd_Txt.Text = "> ";
+            this.Console_Cmd_Txt.Visible = false;
+            this.Console_Cmd_Txt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Console_Cmd_Txt_KeyDown);
+            this.Console_Cmd_Txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Console_Cmd_Txt_KeyPress);
+            // 
+            // Rss_Tab
+            // 
+            this.Rss_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Rss_Tab.Controls.Add(this.splitContain_Rss);
+            this.Rss_Tab.Controls.Add(this.Link_Lst);
+            this.Rss_Tab.Controls.Add(this.ListFeed_Lst);
+            this.Rss_Tab.Controls.Add(this.Speak_Pnl);
+            this.Rss_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Rss_Tab.Name = "Rss_Tab";
+            this.Rss_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Rss_Tab.TabIndex = 6;
+            this.Rss_Tab.Text = "RSS";
+            // 
+            // splitContain_Rss
+            // 
+            this.splitContain_Rss.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContain_Rss.Location = new System.Drawing.Point(0, 50);
+            this.splitContain_Rss.Name = "splitContain_Rss";
+            this.splitContain_Rss.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContain_Rss.Panel1
+            // 
+            this.splitContain_Rss.Panel1.Controls.Add(this.Title_Lst);
+            this.splitContain_Rss.Panel1.Controls.Add(this.RSSListSite_Lst);
+            this.splitContain_Rss.Panel1Collapsed = true;
+            // 
+            // splitContain_Rss.Panel2
+            // 
+            this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lst);
+            this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
+            this.splitContain_Rss.Size = new System.Drawing.Size(1326, 545);
+            this.splitContain_Rss.SplitterDistance = 227;
+            this.splitContain_Rss.TabIndex = 5;
+            // 
+            // Title_Lst
+            // 
+            this.Title_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Title_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Title_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Title_Lst.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Title_Lst.FormattingEnabled = true;
+            this.Title_Lst.ItemHeight = 21;
+            this.Title_Lst.Location = new System.Drawing.Point(0, 0);
+            this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
+            this.Title_Lst.Name = "Title_Lst";
+            this.Title_Lst.Size = new System.Drawing.Size(0, 227);
+            this.Title_Lst.TabIndex = 0;
+            this.Title_Lst.SelectedIndexChanged += new System.EventHandler(this.Title_Lst_SelectedIndexChanged);
+            // 
+            // RSSListSite_Lst
+            // 
+            this.RSSListSite_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.RSSListSite_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RSSListSite_Lst.Dock = System.Windows.Forms.DockStyle.Right;
+            this.RSSListSite_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.RSSListSite_Lst.FormattingEnabled = true;
+            this.RSSListSite_Lst.ItemHeight = 15;
+            this.RSSListSite_Lst.Location = new System.Drawing.Point(-100, 0);
+            this.RSSListSite_Lst.MaximumSize = new System.Drawing.Size(0, 227);
+            this.RSSListSite_Lst.Name = "RSSListSite_Lst";
+            this.RSSListSite_Lst.Size = new System.Drawing.Size(250, 227);
+            this.RSSListSite_Lst.TabIndex = 6;
+            this.RSSListSite_Lst.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lst_SelectedIndexChanged);
+            // 
+            // CountBlockFeed_Lst
+            // 
+            this.CountBlockFeed_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CountBlockFeed_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CountBlockFeed_Lst.FormattingEnabled = true;
+            this.CountBlockFeed_Lst.ItemHeight = 15;
+            this.CountBlockFeed_Lst.Location = new System.Drawing.Point(1080, 587);
+            this.CountBlockFeed_Lst.Name = "CountBlockFeed_Lst";
+            this.CountBlockFeed_Lst.Size = new System.Drawing.Size(143, 4);
+            this.CountBlockFeed_Lst.TabIndex = 5;
+            this.CountBlockFeed_Lst.Visible = false;
+            // 
+            // WBrowsefeed
+            // 
+            this.WBrowsefeed.AllowExternalDrop = true;
+            this.WBrowsefeed.CreationProperties = null;
+            this.WBrowsefeed.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WBrowsefeed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBrowsefeed.Location = new System.Drawing.Point(0, 0);
+            this.WBrowsefeed.Name = "WBrowsefeed";
+            this.WBrowsefeed.Size = new System.Drawing.Size(1326, 545);
+            this.WBrowsefeed.TabIndex = 4;
+            this.WBrowsefeed.ZoomFactor = 1D;
+            // 
+            // Link_Lst
+            // 
+            this.Link_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Link_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Link_Lst.FormattingEnabled = true;
+            this.Link_Lst.ItemHeight = 15;
+            this.Link_Lst.Location = new System.Drawing.Point(1094, 535);
+            this.Link_Lst.Name = "Link_Lst";
+            this.Link_Lst.Size = new System.Drawing.Size(94, 4);
+            this.Link_Lst.TabIndex = 1;
+            this.Link_Lst.Visible = false;
+            // 
+            // ListFeed_Lst
+            // 
+            this.ListFeed_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ListFeed_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListFeed_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListFeed_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ListFeed_Lst.FormattingEnabled = true;
+            this.ListFeed_Lst.ItemHeight = 15;
+            this.ListFeed_Lst.Location = new System.Drawing.Point(1086, 530);
+            this.ListFeed_Lst.Name = "ListFeed_Lst";
+            this.ListFeed_Lst.Size = new System.Drawing.Size(98, 15);
+            this.ListFeed_Lst.TabIndex = 3;
+            this.ListFeed_Lst.Visible = false;
+            // 
+            // Speak_Pnl
+            // 
+            this.Speak_Pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Speak_Pnl.Controls.Add(this.SaveVolRat_Btn);
+            this.Speak_Pnl.Controls.Add(this.RateValue_Lbl);
+            this.Speak_Pnl.Controls.Add(this.VolumeValue_Lbl);
+            this.Speak_Pnl.Controls.Add(this.RateVal_Track);
+            this.Speak_Pnl.Controls.Add(this.VolumeVal_Track);
+            this.Speak_Pnl.Controls.Add(this.ReadClipB_Btn);
+            this.Speak_Pnl.Controls.Add(this.StopSpeak_Btn);
+            this.Speak_Pnl.Controls.Add(this.PauseSpeak_Btn);
+            this.Speak_Pnl.Controls.Add(this.ReadTitle_Btn);
+            this.Speak_Pnl.Controls.Add(this.LangSelect_Lst);
+            this.Speak_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Speak_Pnl.Location = new System.Drawing.Point(0, 0);
+            this.Speak_Pnl.Name = "Speak_Pnl";
+            this.Speak_Pnl.Size = new System.Drawing.Size(1326, 50);
+            this.Speak_Pnl.TabIndex = 6;
+            this.Speak_Pnl.Visible = false;
+            // 
+            // SaveVolRat_Btn
+            // 
+            this.SaveVolRat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.SaveVolRat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveVolRat_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveVolRat_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.SaveVolRat_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.SaveVolRat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveVolRat_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveVolRat_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SaveVolRat_Btn.Location = new System.Drawing.Point(1235, 10);
+            this.SaveVolRat_Btn.Name = "SaveVolRat_Btn";
+            this.SaveVolRat_Btn.Size = new System.Drawing.Size(82, 30);
+            this.SaveVolRat_Btn.TabIndex = 17;
+            this.SaveVolRat_Btn.Text = "Save";
+            this.SaveVolRat_Btn.UseVisualStyleBackColor = false;
+            this.SaveVolRat_Btn.Click += new System.EventHandler(this.SaveVolRat_Btn_Click);
+            // 
+            // RateValue_Lbl
+            // 
+            this.RateValue_Lbl.AutoSize = true;
+            this.RateValue_Lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RateValue_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.RateValue_Lbl.Location = new System.Drawing.Point(976, 16);
+            this.RateValue_Lbl.Name = "RateValue_Lbl";
+            this.RateValue_Lbl.Size = new System.Drawing.Size(43, 15);
+            this.RateValue_Lbl.TabIndex = 16;
+            this.RateValue_Lbl.Text = "Rate: 0";
+            // 
+            // VolumeValue_Lbl
+            // 
+            this.VolumeValue_Lbl.AutoSize = true;
+            this.VolumeValue_Lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VolumeValue_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.VolumeValue_Lbl.Location = new System.Drawing.Point(675, 16);
+            this.VolumeValue_Lbl.Name = "VolumeValue_Lbl";
+            this.VolumeValue_Lbl.Size = new System.Drawing.Size(68, 15);
+            this.VolumeValue_Lbl.TabIndex = 15;
+            this.VolumeValue_Lbl.Text = "Volume: 50";
+            // 
+            // RateVal_Track
+            // 
+            this.RateVal_Track.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.RateVal_Track.Location = new System.Drawing.Point(1043, 3);
+            this.RateVal_Track.Minimum = -10;
+            this.RateVal_Track.Name = "RateVal_Track";
+            this.RateVal_Track.Size = new System.Drawing.Size(185, 45);
+            this.RateVal_Track.TabIndex = 14;
+            this.RateVal_Track.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.RateVal_Track.Scroll += new System.EventHandler(this.RateVal_Track_Scroll);
+            // 
+            // VolumeVal_Track
+            // 
+            this.VolumeVal_Track.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.VolumeVal_Track.Location = new System.Drawing.Point(766, 3);
+            this.VolumeVal_Track.Maximum = 100;
+            this.VolumeVal_Track.Name = "VolumeVal_Track";
+            this.VolumeVal_Track.Size = new System.Drawing.Size(206, 45);
+            this.VolumeVal_Track.TabIndex = 13;
+            this.VolumeVal_Track.TickFrequency = 10;
+            this.VolumeVal_Track.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.VolumeVal_Track.Value = 50;
+            this.VolumeVal_Track.Scroll += new System.EventHandler(this.VolumeVal_Track_Scroll);
+            // 
+            // ReadClipB_Btn
+            // 
+            this.ReadClipB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ReadClipB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ReadClipB_Btn.FlatAppearance.BorderSize = 0;
+            this.ReadClipB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ReadClipB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ReadClipB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ReadClipB_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReadClipB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ReadClipB_Btn.Location = new System.Drawing.Point(389, 10);
+            this.ReadClipB_Btn.Name = "ReadClipB_Btn";
+            this.ReadClipB_Btn.Size = new System.Drawing.Size(126, 30);
+            this.ReadClipB_Btn.TabIndex = 12;
+            this.ReadClipB_Btn.Text = "Read ClipBoard";
+            this.ReadClipB_Btn.UseVisualStyleBackColor = false;
+            this.ReadClipB_Btn.Click += new System.EventHandler(this.ReadClipB_Btn_Click);
+            // 
+            // StopSpeak_Btn
+            // 
+            this.StopSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.StopSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.StopSpeak_Btn.FlatAppearance.BorderSize = 0;
+            this.StopSpeak_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.StopSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.StopSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StopSpeak_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StopSpeak_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.StopSpeak_Btn.Location = new System.Drawing.Point(595, 10);
+            this.StopSpeak_Btn.Name = "StopSpeak_Btn";
+            this.StopSpeak_Btn.Size = new System.Drawing.Size(71, 30);
+            this.StopSpeak_Btn.TabIndex = 11;
+            this.StopSpeak_Btn.Text = "Stop";
+            this.StopSpeak_Btn.UseVisualStyleBackColor = false;
+            this.StopSpeak_Btn.Click += new System.EventHandler(this.StopSpeak_Btn_Click);
+            // 
+            // PauseSpeak_Btn
+            // 
+            this.PauseSpeak_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.PauseSpeak_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PauseSpeak_Btn.FlatAppearance.BorderSize = 0;
+            this.PauseSpeak_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.PauseSpeak_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.PauseSpeak_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PauseSpeak_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PauseSpeak_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.PauseSpeak_Btn.Location = new System.Drawing.Point(521, 10);
+            this.PauseSpeak_Btn.Name = "PauseSpeak_Btn";
+            this.PauseSpeak_Btn.Size = new System.Drawing.Size(68, 30);
+            this.PauseSpeak_Btn.TabIndex = 10;
+            this.PauseSpeak_Btn.Text = "Pause";
+            this.PauseSpeak_Btn.UseVisualStyleBackColor = false;
+            this.PauseSpeak_Btn.Click += new System.EventHandler(this.PauseSpeak_Btn_Click);
+            // 
+            // ReadTitle_Btn
+            // 
+            this.ReadTitle_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ReadTitle_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ReadTitle_Btn.FlatAppearance.BorderSize = 0;
+            this.ReadTitle_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ReadTitle_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ReadTitle_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ReadTitle_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReadTitle_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ReadTitle_Btn.Location = new System.Drawing.Point(279, 10);
+            this.ReadTitle_Btn.Name = "ReadTitle_Btn";
+            this.ReadTitle_Btn.Size = new System.Drawing.Size(104, 30);
+            this.ReadTitle_Btn.TabIndex = 9;
+            this.ReadTitle_Btn.Text = "Read Title";
+            this.ReadTitle_Btn.UseVisualStyleBackColor = false;
+            this.ReadTitle_Btn.Click += new System.EventHandler(this.ReadTitle_Btn_Click);
+            // 
+            // LangSelect_Lst
+            // 
+            this.LangSelect_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.LangSelect_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LangSelect_Lst.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LangSelect_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.LangSelect_Lst.FormattingEnabled = true;
+            this.LangSelect_Lst.ItemHeight = 15;
+            this.LangSelect_Lst.Location = new System.Drawing.Point(8, 9);
+            this.LangSelect_Lst.Name = "LangSelect_Lst";
+            this.LangSelect_Lst.Size = new System.Drawing.Size(265, 32);
+            this.LangSelect_Lst.TabIndex = 0;
+            // 
+            // Data_Tab
+            // 
+            this.Data_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Data_Tab.Controls.Add(this.panel1);
+            this.Data_Tab.Controls.Add(this.panel8);
+            this.Data_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Data_Tab.Name = "Data_Tab";
+            this.Data_Tab.Padding = new System.Windows.Forms.Padding(3);
+            this.Data_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Data_Tab.TabIndex = 5;
+            this.Data_Tab.Text = "DATA";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.DataValue_Lst);
+            this.panel1.Controls.Add(this.DataTable_Lst);
+            this.panel1.Controls.Add(this.DataBaze_Lst);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 98);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1320, 494);
+            this.panel1.TabIndex = 6;
+            // 
+            // DataValue_Lst
+            // 
+            this.DataValue_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataValue_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataValue_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataValue_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataValue_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.DataValue_Lst.FormattingEnabled = true;
+            this.DataValue_Lst.ItemHeight = 15;
+            this.DataValue_Lst.Location = new System.Drawing.Point(381, 0);
+            this.DataValue_Lst.Name = "DataValue_Lst";
+            this.DataValue_Lst.Size = new System.Drawing.Size(939, 494);
+            this.DataValue_Lst.TabIndex = 5;
+            this.DataValue_Lst.SelectedIndexChanged += new System.EventHandler(this.DataValue_Lst_SelectedIndexChanged);
+            // 
+            // DataTable_Lst
+            // 
+            this.DataTable_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataTable_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataTable_Lst.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DataTable_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.DataTable_Lst.FormattingEnabled = true;
+            this.DataTable_Lst.ItemHeight = 15;
+            this.DataTable_Lst.Location = new System.Drawing.Point(182, 0);
+            this.DataTable_Lst.Name = "DataTable_Lst";
+            this.DataTable_Lst.Size = new System.Drawing.Size(199, 494);
+            this.DataTable_Lst.TabIndex = 4;
+            this.DataTable_Lst.SelectedIndexChanged += new System.EventHandler(this.DataTable_Lst_SelectedIndexChanged);
+            // 
+            // DataBaze_Lst
+            // 
+            this.DataBaze_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataBaze_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataBaze_Lst.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DataBaze_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.DataBaze_Lst.FormattingEnabled = true;
+            this.DataBaze_Lst.ItemHeight = 15;
+            this.DataBaze_Lst.Location = new System.Drawing.Point(0, 0);
+            this.DataBaze_Lst.Margin = new System.Windows.Forms.Padding(30);
+            this.DataBaze_Lst.Name = "DataBaze_Lst";
+            this.DataBaze_Lst.Size = new System.Drawing.Size(182, 494);
+            this.DataBaze_Lst.TabIndex = 1;
+            this.DataBaze_Lst.SelectedIndexChanged += new System.EventHandler(this.DataBaze_Lst_SelectedIndexChanged);
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel8.Controls.Add(this.panel10);
+            this.panel8.Controls.Add(this.tableLayoutPanel7);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1320, 95);
+            this.panel8.TabIndex = 0;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.ExecuteCMDsql_Txt);
+            this.panel10.Controls.Add(this.label11);
+            this.panel10.Controls.Add(this.ValueCMDsql_Txt);
+            this.panel10.Controls.Add(this.ExecuteCMDsql_Btn);
+            this.panel10.Controls.Add(this.label10);
+            this.panel10.Controls.Add(this.ChangeDefDB_Btn);
+            this.panel10.Controls.Add(this.DB_Default_Txt);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(0, 64);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1320, 31);
+            this.panel10.TabIndex = 14;
+            // 
+            // ExecuteCMDsql_Txt
+            // 
+            this.ExecuteCMDsql_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ExecuteCMDsql_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ExecuteCMDsql_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ExecuteCMDsql_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExecuteCMDsql_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.ExecuteCMDsql_Txt.Location = new System.Drawing.Point(424, 0);
+            this.ExecuteCMDsql_Txt.Name = "ExecuteCMDsql_Txt";
+            this.ExecuteCMDsql_Txt.Size = new System.Drawing.Size(618, 23);
+            this.ExecuteCMDsql_Txt.TabIndex = 0;
+            this.ExecuteCMDsql_Txt.Text = "SELECT * FROM TABLE WHERE url_name LIKE \'%word%\';";
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.label11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label11.Location = new System.Drawing.Point(1042, 0);
+            this.label11.MaximumSize = new System.Drawing.Size(43, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 23);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "data:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ValueCMDsql_Txt
+            // 
+            this.ValueCMDsql_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ValueCMDsql_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ValueCMDsql_Txt.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ValueCMDsql_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValueCMDsql_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.ValueCMDsql_Txt.Location = new System.Drawing.Point(1085, 0);
+            this.ValueCMDsql_Txt.Name = "ValueCMDsql_Txt";
+            this.ValueCMDsql_Txt.Size = new System.Drawing.Size(144, 23);
+            this.ValueCMDsql_Txt.TabIndex = 12;
+            this.ValueCMDsql_Txt.Text = "url_name";
+            this.ValueCMDsql_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ExecuteCMDsql_Btn
+            // 
+            this.ExecuteCMDsql_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.ExecuteCMDsql_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExecuteCMDsql_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ExecuteCMDsql_Btn.FlatAppearance.BorderSize = 0;
+            this.ExecuteCMDsql_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ExecuteCMDsql_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ExecuteCMDsql_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExecuteCMDsql_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExecuteCMDsql_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.ExecuteCMDsql_Btn.Location = new System.Drawing.Point(1229, 0);
+            this.ExecuteCMDsql_Btn.MaximumSize = new System.Drawing.Size(91, 23);
+            this.ExecuteCMDsql_Btn.Name = "ExecuteCMDsql_Btn";
+            this.ExecuteCMDsql_Btn.Size = new System.Drawing.Size(91, 23);
+            this.ExecuteCMDsql_Btn.TabIndex = 8;
+            this.ExecuteCMDsql_Btn.Text = "Execute Mysql";
+            this.ExecuteCMDsql_Btn.UseVisualStyleBackColor = false;
+            this.ExecuteCMDsql_Btn.Click += new System.EventHandler(this.ExecuteCMDsql_Btn_Click);
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label10.Location = new System.Drawing.Point(381, 0);
+            this.label10.MaximumSize = new System.Drawing.Size(106, 23);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 23);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "SQL:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ChangeDefDB_Btn
+            // 
+            this.ChangeDefDB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.ChangeDefDB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ChangeDefDB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ChangeDefDB_Btn.FlatAppearance.BorderSize = 0;
+            this.ChangeDefDB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ChangeDefDB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ChangeDefDB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChangeDefDB_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeDefDB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.ChangeDefDB_Btn.Location = new System.Drawing.Point(182, 0);
+            this.ChangeDefDB_Btn.MaximumSize = new System.Drawing.Size(199, 23);
+            this.ChangeDefDB_Btn.Name = "ChangeDefDB_Btn";
+            this.ChangeDefDB_Btn.Size = new System.Drawing.Size(199, 23);
+            this.ChangeDefDB_Btn.TabIndex = 9;
+            this.ChangeDefDB_Btn.Text = "default DB or Create";
+            this.ChangeDefDB_Btn.UseVisualStyleBackColor = false;
+            this.ChangeDefDB_Btn.Click += new System.EventHandler(this.ChangeDefDB_Btn_Click);
+            // 
+            // DB_Default_Txt
+            // 
+            this.DB_Default_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DB_Default_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DB_Default_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.DB_Default_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DB_Default_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.DB_Default_Txt.Location = new System.Drawing.Point(0, 0);
+            this.DB_Default_Txt.Name = "DB_Default_Txt";
+            this.DB_Default_Txt.Size = new System.Drawing.Size(182, 23);
+            this.DB_Default_Txt.TabIndex = 10;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.tableLayoutPanel7.ColumnCount = 5;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 198F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.Db_OrderLst_Btn, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.Db_OpnLink_Btn, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.ValueChange_Txt, 4, 1);
+            this.tableLayoutPanel7.Controls.Add(this.DataValue_Name, 2, 1);
+            this.tableLayoutPanel7.Controls.Add(this.DataValue_Opn, 3, 1);
+            this.tableLayoutPanel7.Controls.Add(this.DataTable_Opn, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.DataBaze_Opn, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.panel29, 4, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel30, 3, 0);
+            this.tableLayoutPanel7.Controls.Add(this.Db_Delete_Table_Btn, 2, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(1320, 59);
+            this.tableLayoutPanel7.TabIndex = 13;
+            // 
+            // Db_OrderLst_Btn
+            // 
+            this.Db_OrderLst_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_OrderLst_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_OrderLst_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Db_OrderLst_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_OrderLst_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_OrderLst_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Db_OrderLst_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_OrderLst_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_OrderLst_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_OrderLst_Btn.Location = new System.Drawing.Point(188, 3);
+            this.Db_OrderLst_Btn.Name = "Db_OrderLst_Btn";
+            this.Db_OrderLst_Btn.Size = new System.Drawing.Size(192, 24);
+            this.Db_OrderLst_Btn.TabIndex = 16;
+            this.Db_OrderLst_Btn.Text = "Sorted";
+            this.Db_OrderLst_Btn.UseVisualStyleBackColor = false;
+            this.Db_OrderLst_Btn.Click += new System.EventHandler(this.Db_OrderLst_Btn_Click);
+            // 
+            // Db_OpnLink_Btn
+            // 
+            this.Db_OpnLink_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_OpnLink_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_OpnLink_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Db_OpnLink_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_OpnLink_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_OpnLink_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Db_OpnLink_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_OpnLink_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_OpnLink_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_OpnLink_Btn.Location = new System.Drawing.Point(3, 3);
+            this.Db_OpnLink_Btn.Name = "Db_OpnLink_Btn";
+            this.Db_OpnLink_Btn.Size = new System.Drawing.Size(179, 24);
+            this.Db_OpnLink_Btn.TabIndex = 15;
+            this.Db_OpnLink_Btn.Text = "Open Link";
+            this.Db_OpnLink_Btn.UseVisualStyleBackColor = false;
+            this.Db_OpnLink_Btn.Click += new System.EventHandler(this.Db_OpnLink_Btn_Click);
+            // 
+            // ValueChange_Txt
+            // 
+            this.ValueChange_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ValueChange_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ValueChange_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ValueChange_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValueChange_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.ValueChange_Txt.Location = new System.Drawing.Point(983, 33);
+            this.ValueChange_Txt.Name = "ValueChange_Txt";
+            this.ValueChange_Txt.Size = new System.Drawing.Size(334, 23);
+            this.ValueChange_Txt.TabIndex = 11;
+            this.ValueChange_Txt.Text = "Update URL and Name here";
+            this.ValueChange_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ValueChange_Txt.Click += new System.EventHandler(this.ValueChange_Txt_Click);
+            // 
+            // DataValue_Name
+            // 
+            this.DataValue_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataValue_Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DataValue_Name.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataValue_Name.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataValue_Name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.DataValue_Name.Location = new System.Drawing.Point(386, 33);
+            this.DataValue_Name.Name = "DataValue_Name";
+            this.DataValue_Name.Size = new System.Drawing.Size(251, 23);
+            this.DataValue_Name.TabIndex = 12;
+            // 
+            // DataValue_Opn
+            // 
+            this.DataValue_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataValue_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DataValue_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataValue_Opn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataValue_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(113)))), ((int)(((byte)(133)))));
+            this.DataValue_Opn.Location = new System.Drawing.Point(643, 33);
+            this.DataValue_Opn.Name = "DataValue_Opn";
+            this.DataValue_Opn.Size = new System.Drawing.Size(334, 23);
+            this.DataValue_Opn.TabIndex = 10;
+            // 
+            // DataTable_Opn
+            // 
+            this.DataTable_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataTable_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DataTable_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataTable_Opn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataTable_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.DataTable_Opn.Location = new System.Drawing.Point(188, 33);
+            this.DataTable_Opn.Name = "DataTable_Opn";
+            this.DataTable_Opn.Size = new System.Drawing.Size(192, 23);
+            this.DataTable_Opn.TabIndex = 9;
+            // 
+            // DataBaze_Opn
+            // 
+            this.DataBaze_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DataBaze_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DataBaze_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataBaze_Opn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataBaze_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.DataBaze_Opn.Location = new System.Drawing.Point(3, 33);
+            this.DataBaze_Opn.MaximumSize = new System.Drawing.Size(179, 23);
+            this.DataBaze_Opn.Name = "DataBaze_Opn";
+            this.DataBaze_Opn.Size = new System.Drawing.Size(179, 23);
+            this.DataBaze_Opn.TabIndex = 8;
+            // 
+            // panel29
+            // 
+            this.panel29.Controls.Add(this.Db_Update_Value_Btn);
+            this.panel29.Controls.Add(this.Db_Update_Name_Btn);
+            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel29.Location = new System.Drawing.Point(983, 3);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(334, 24);
+            this.panel29.TabIndex = 13;
+            // 
+            // Db_Update_Value_Btn
+            // 
+            this.Db_Update_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_Update_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_Update_Value_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Db_Update_Value_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Update_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_Update_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Db_Update_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_Update_Value_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_Update_Value_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_Update_Value_Btn.Location = new System.Drawing.Point(169, 0);
+            this.Db_Update_Value_Btn.Name = "Db_Update_Value_Btn";
+            this.Db_Update_Value_Btn.Size = new System.Drawing.Size(165, 24);
+            this.Db_Update_Value_Btn.TabIndex = 7;
+            this.Db_Update_Value_Btn.Text = "Update URL";
+            this.Db_Update_Value_Btn.UseVisualStyleBackColor = false;
+            this.Db_Update_Value_Btn.Click += new System.EventHandler(this.Db_Update_Value_Btn_Click);
+            // 
+            // Db_Update_Name_Btn
+            // 
+            this.Db_Update_Name_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_Update_Name_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_Update_Name_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Db_Update_Name_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Update_Name_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_Update_Name_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Db_Update_Name_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_Update_Name_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_Update_Name_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_Update_Name_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Db_Update_Name_Btn.Name = "Db_Update_Name_Btn";
+            this.Db_Update_Name_Btn.Size = new System.Drawing.Size(169, 24);
+            this.Db_Update_Name_Btn.TabIndex = 6;
+            this.Db_Update_Name_Btn.Text = "Update URL name";
+            this.Db_Update_Name_Btn.UseVisualStyleBackColor = false;
+            this.Db_Update_Name_Btn.Click += new System.EventHandler(this.Db_Update_Name_Btn_Click);
+            // 
+            // panel30
+            // 
+            this.panel30.Controls.Add(this.Db_Delete_Table_AllValue_Btn);
+            this.panel30.Controls.Add(this.Db_Delete_Table_Value_Btn);
+            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel30.Location = new System.Drawing.Point(643, 3);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(334, 24);
+            this.panel30.TabIndex = 14;
+            // 
+            // Db_Delete_Table_AllValue_Btn
+            // 
+            this.Db_Delete_Table_AllValue_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_Delete_Table_AllValue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_Delete_Table_AllValue_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_Delete_Table_AllValue_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.Db_Delete_Table_AllValue_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_Delete_Table_AllValue_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_Delete_Table_AllValue_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_Delete_Table_AllValue_Btn.Location = new System.Drawing.Point(143, 0);
+            this.Db_Delete_Table_AllValue_Btn.Name = "Db_Delete_Table_AllValue_Btn";
+            this.Db_Delete_Table_AllValue_Btn.Size = new System.Drawing.Size(191, 24);
+            this.Db_Delete_Table_AllValue_Btn.TabIndex = 5;
+            this.Db_Delete_Table_AllValue_Btn.Text = "Delete all Table  Value";
+            this.Db_Delete_Table_AllValue_Btn.UseVisualStyleBackColor = false;
+            this.Db_Delete_Table_AllValue_Btn.Click += new System.EventHandler(this.Db_Delete_Table_AllValue_Btn_Click);
+            // 
+            // Db_Delete_Table_Value_Btn
+            // 
+            this.Db_Delete_Table_Value_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_Delete_Table_Value_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_Delete_Table_Value_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Db_Delete_Table_Value_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_Delete_Table_Value_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(119)))), ((int)(((byte)(6)))));
+            this.Db_Delete_Table_Value_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_Delete_Table_Value_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_Delete_Table_Value_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_Delete_Table_Value_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Db_Delete_Table_Value_Btn.Name = "Db_Delete_Table_Value_Btn";
+            this.Db_Delete_Table_Value_Btn.Size = new System.Drawing.Size(143, 24);
+            this.Db_Delete_Table_Value_Btn.TabIndex = 4;
+            this.Db_Delete_Table_Value_Btn.Text = "Delete Table Value";
+            this.Db_Delete_Table_Value_Btn.UseVisualStyleBackColor = false;
+            this.Db_Delete_Table_Value_Btn.Click += new System.EventHandler(this.Db_Delete_Table_Value_Btn_Click);
+            // 
+            // Db_Delete_Table_Btn
+            // 
+            this.Db_Delete_Table_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Db_Delete_Table_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Db_Delete_Table_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Db_Delete_Table_Btn.FlatAppearance.BorderSize = 0;
+            this.Db_Delete_Table_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Db_Delete_Table_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.Db_Delete_Table_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Db_Delete_Table_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Db_Delete_Table_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Db_Delete_Table_Btn.Location = new System.Drawing.Point(386, 3);
+            this.Db_Delete_Table_Btn.Name = "Db_Delete_Table_Btn";
+            this.Db_Delete_Table_Btn.Size = new System.Drawing.Size(251, 24);
+            this.Db_Delete_Table_Btn.TabIndex = 3;
+            this.Db_Delete_Table_Btn.Text = "Delete Table";
+            this.Db_Delete_Table_Btn.UseVisualStyleBackColor = false;
+            this.Db_Delete_Table_Btn.Click += new System.EventHandler(this.Db_Delete_Table_Btn_Click);
+            // 
+            // Workflow_Tab
+            // 
+            this.Workflow_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Workflow_Tab.Controls.Add(this.tableLayoutPanel1);
+            this.Workflow_Tab.Controls.Add(this.panel13);
+            this.Workflow_Tab.Controls.Add(this.panel12);
+            this.Workflow_Tab.Controls.Add(this.Itemwf_Cbx);
+            this.Workflow_Tab.Controls.Add(this.panel17);
+            this.Workflow_Tab.Controls.Add(this.panel16);
+            this.Workflow_Tab.Controls.Add(this.panel2);
+            this.Workflow_Tab.Controls.Add(this.panel11);
+            this.Workflow_Tab.Controls.Add(this.panel19);
+            this.Workflow_Tab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Workflow_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Workflow_Tab.Name = "Workflow_Tab";
+            this.Workflow_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Workflow_Tab.TabIndex = 7;
+            this.Workflow_Tab.Text = "WORKFLOW";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(722, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 595);
+            this.tableLayoutPanel1.TabIndex = 25;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.groupBox2.Controls.Add(this.ModelList_Lst);
+            this.groupBox2.Controls.Add(this.PanelWrkButtonModel_Pnl);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.groupBox2.Location = new System.Drawing.Point(3, 300);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(348, 292);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Select model";
+            // 
+            // ModelList_Lst
+            // 
+            this.ModelList_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ModelList_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ModelList_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelList_Lst.Enabled = false;
+            this.ModelList_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ModelList_Lst.FormattingEnabled = true;
+            this.ModelList_Lst.ItemHeight = 15;
+            this.ModelList_Lst.Location = new System.Drawing.Point(3, 19);
+            this.ModelList_Lst.Name = "ModelList_Lst";
+            this.ModelList_Lst.Size = new System.Drawing.Size(342, 240);
+            this.ModelList_Lst.TabIndex = 0;
+            this.ModelList_Lst.SelectedIndexChanged += new System.EventHandler(this.ModelList_Lst_SelectedIndexChanged);
+            // 
+            // PanelWrkButtonModel_Pnl
+            // 
+            this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelDelete_Btn);
+            this.PanelWrkButtonModel_Pnl.Controls.Add(this.ModelEdit_Btn);
+            this.PanelWrkButtonModel_Pnl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PanelWrkButtonModel_Pnl.Location = new System.Drawing.Point(3, 259);
+            this.PanelWrkButtonModel_Pnl.Name = "PanelWrkButtonModel_Pnl";
+            this.PanelWrkButtonModel_Pnl.Size = new System.Drawing.Size(342, 30);
+            this.PanelWrkButtonModel_Pnl.TabIndex = 20;
+            // 
+            // ModelDelete_Btn
+            // 
+            this.ModelDelete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ModelDelete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModelDelete_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelDelete_Btn.Enabled = false;
+            this.ModelDelete_Btn.FlatAppearance.BorderSize = 0;
+            this.ModelDelete_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ModelDelete_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ModelDelete_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModelDelete_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelDelete_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.ModelDelete_Btn.Location = new System.Drawing.Point(156, 0);
+            this.ModelDelete_Btn.Name = "ModelDelete_Btn";
+            this.ModelDelete_Btn.Size = new System.Drawing.Size(186, 30);
+            this.ModelDelete_Btn.TabIndex = 19;
+            this.ModelDelete_Btn.Text = "Delete Model Workflow";
+            this.ModelDelete_Btn.UseVisualStyleBackColor = false;
+            this.ModelDelete_Btn.Click += new System.EventHandler(this.ModelDelete_Btn_Click);
+            // 
+            // ModelEdit_Btn
+            // 
+            this.ModelEdit_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ModelEdit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModelEdit_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ModelEdit_Btn.Enabled = false;
+            this.ModelEdit_Btn.FlatAppearance.BorderSize = 0;
+            this.ModelEdit_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ModelEdit_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ModelEdit_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModelEdit_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelEdit_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.ModelEdit_Btn.Location = new System.Drawing.Point(0, 0);
+            this.ModelEdit_Btn.Name = "ModelEdit_Btn";
+            this.ModelEdit_Btn.Size = new System.Drawing.Size(156, 30);
+            this.ModelEdit_Btn.TabIndex = 20;
+            this.ModelEdit_Btn.Text = "Edit Model Workflow";
+            this.ModelEdit_Btn.UseVisualStyleBackColor = false;
+            this.ModelEdit_Btn.Click += new System.EventHandler(this.ModelEdit_Btn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.groupBox1.Controls.Add(this.ModelItem_Txt);
+            this.groupBox1.Controls.Add(this.panel14);
+            this.groupBox1.Controls.Add(this.panel15);
+            this.groupBox1.Controls.Add(this.ModelCreate_Btn);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(348, 291);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Create a model";
+            // 
+            // ModelItem_Txt
+            // 
+            this.ModelItem_Txt.AcceptsTab = false;
+            this.ModelItem_Txt.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.ModelItem_Txt.AutoIndent = false;
+            this.ModelItem_Txt.AutoIndentChars = false;
+            this.ModelItem_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 15);
+            this.ModelItem_Txt.BackBrush = null;
+            this.ModelItem_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ModelItem_Txt.CaretColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ModelItem_Txt.CharHeight = 15;
+            this.ModelItem_Txt.CharWidth = 8;
+            this.ModelItem_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ModelItem_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.ModelItem_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ModelItem_Txt.Font = new System.Drawing.Font("Consolas", 10F);
+            this.ModelItem_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ModelItem_Txt.IndentBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.ModelItem_Txt.IsReplaceMode = false;
+            this.ModelItem_Txt.LineNumberColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.ModelItem_Txt.Location = new System.Drawing.Point(3, 74);
+            this.ModelItem_Txt.Name = "ModelItem_Txt";
+            this.ModelItem_Txt.PaddingBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ModelItem_Txt.Paddings = new System.Windows.Forms.Padding(0);
+            this.ModelItem_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.ModelItem_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("ModelItem_Txt.ServiceColors")));
+            this.ModelItem_Txt.ServiceLinesColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(62)))), ((int)(((byte)(72)))));
+            this.ModelItem_Txt.Size = new System.Drawing.Size(342, 184);
+            this.ModelItem_Txt.TabIndex = 15;
+            this.ModelItem_Txt.Zoom = 100;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.label12);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(3, 44);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(342, 30);
+            this.panel14.TabIndex = 19;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label12.Location = new System.Drawing.Point(11, 7);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(122, 15);
+            this.label12.TabIndex = 16;
+            this.label12.Text = "Add Items line by line";
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.ModelName_Txt);
+            this.panel15.Controls.Add(this.label9);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(3, 19);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(342, 25);
+            this.panel15.TabIndex = 20;
+            // 
+            // ModelName_Txt
+            // 
+            this.ModelName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ModelName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ModelName_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ModelName_Txt.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelName_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.ModelName_Txt.Location = new System.Drawing.Point(103, 0);
+            this.ModelName_Txt.Name = "ModelName_Txt";
+            this.ModelName_Txt.Size = new System.Drawing.Size(244, 25);
+            this.ModelName_Txt.TabIndex = 0;
+            this.ModelName_Txt.Text = "Choose a model name";
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label9.Location = new System.Drawing.Point(0, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(103, 25);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Model Name:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ModelCreate_Btn
+            // 
+            this.ModelCreate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ModelCreate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModelCreate_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ModelCreate_Btn.FlatAppearance.BorderSize = 0;
+            this.ModelCreate_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ModelCreate_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ModelCreate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModelCreate_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelCreate_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ModelCreate_Btn.Location = new System.Drawing.Point(3, 258);
+            this.ModelCreate_Btn.Name = "ModelCreate_Btn";
+            this.ModelCreate_Btn.Size = new System.Drawing.Size(342, 30);
+            this.ModelCreate_Btn.TabIndex = 18;
+            this.ModelCreate_Btn.Text = "Create new Model Workflow";
+            this.ModelCreate_Btn.UseVisualStyleBackColor = false;
+            this.ModelCreate_Btn.Click += new System.EventHandler(this.ModelCreate_Btn_Click);
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel13.Location = new System.Drawing.Point(1076, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(5, 595);
+            this.panel13.TabIndex = 26;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(712, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(10, 595);
+            this.panel12.TabIndex = 24;
+            // 
+            // Itemwf_Cbx
+            // 
+            this.Itemwf_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Itemwf_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Itemwf_Cbx.FormattingEnabled = true;
+            this.Itemwf_Cbx.Location = new System.Drawing.Point(1306, 580);
+            this.Itemwf_Cbx.Name = "Itemwf_Cbx";
+            this.Itemwf_Cbx.Size = new System.Drawing.Size(12, 23);
+            this.Itemwf_Cbx.TabIndex = 14;
+            this.Itemwf_Cbx.Visible = false;
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel17.Controls.Add(this.StatWorkflow_Lst);
+            this.panel17.Controls.Add(this.panel18);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel17.Location = new System.Drawing.Point(523, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(189, 595);
+            this.panel17.TabIndex = 28;
+            // 
+            // StatWorkflow_Lst
+            // 
+            this.StatWorkflow_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.StatWorkflow_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StatWorkflow_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatWorkflow_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatWorkflow_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.StatWorkflow_Lst.FormattingEnabled = true;
+            this.StatWorkflow_Lst.ItemHeight = 15;
+            this.StatWorkflow_Lst.Location = new System.Drawing.Point(0, 10);
+            this.StatWorkflow_Lst.Name = "StatWorkflow_Lst";
+            this.StatWorkflow_Lst.Size = new System.Drawing.Size(189, 585);
+            this.StatWorkflow_Lst.TabIndex = 19;
+            this.StatWorkflow_Lst.SelectedIndexChanged += new System.EventHandler(this.StatWorkflow_Lst_SelectedIndexChanged);
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel18.Location = new System.Drawing.Point(0, 0);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(189, 10);
+            this.panel18.TabIndex = 20;
+            // 
+            // panel16
+            // 
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel16.Location = new System.Drawing.Point(513, 0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(10, 595);
+            this.panel16.TabIndex = 27;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.ProjectOpn_Lst);
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.AddItemswf_Txt);
+            this.panel2.Controls.Add(this.CreateXMLwf_btn);
+            this.panel2.Controls.Add(this.panel7);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(10, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(503, 595);
+            this.panel2.TabIndex = 15;
+            // 
+            // ProjectOpn_Lst
+            // 
+            this.ProjectOpn_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ProjectOpn_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ProjectOpn_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProjectOpn_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ProjectOpn_Lst.FormattingEnabled = true;
+            this.ProjectOpn_Lst.ItemHeight = 15;
+            this.ProjectOpn_Lst.Location = new System.Drawing.Point(0, 36);
+            this.ProjectOpn_Lst.Name = "ProjectOpn_Lst";
+            this.ProjectOpn_Lst.Size = new System.Drawing.Size(503, 168);
+            this.ProjectOpn_Lst.TabIndex = 2;
+            this.ProjectOpn_Lst.SelectedIndexChanged += new System.EventHandler(this.ProjectOpn_Lst_SelectedIndexChanged);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.Author_Txt);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.NameProjectwf_Txt);
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 10);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(503, 26);
+            this.panel5.TabIndex = 14;
+            // 
+            // Author_Txt
+            // 
+            this.Author_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Author_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Author_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Author_Txt.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Author_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.Author_Txt.Location = new System.Drawing.Point(353, 0);
+            this.Author_Txt.Name = "Author_Txt";
+            this.Author_Txt.Size = new System.Drawing.Size(150, 25);
+            this.Author_Txt.TabIndex = 1;
+            this.Author_Txt.Text = "Insert Name";
+            // 
+            // label6
+            // 
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label6.Location = new System.Drawing.Point(297, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 26);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Author:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NameProjectwf_Txt
+            // 
+            this.NameProjectwf_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.NameProjectwf_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameProjectwf_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NameProjectwf_Txt.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameProjectwf_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.NameProjectwf_Txt.Location = new System.Drawing.Point(102, 0);
+            this.NameProjectwf_Txt.Name = "NameProjectwf_Txt";
+            this.NameProjectwf_Txt.Size = new System.Drawing.Size(195, 25);
+            this.NameProjectwf_Txt.TabIndex = 0;
+            this.NameProjectwf_Txt.Text = "Insert project Name";
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 26);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Project Name:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(503, 10);
+            this.panel6.TabIndex = 15;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 204);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(503, 33);
+            this.panel4.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label2.Location = new System.Drawing.Point(11, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 15);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Add items line by line";
+            // 
+            // AddItemswf_Txt
+            // 
+            this.AddItemswf_Txt.AcceptsTab = false;
+            this.AddItemswf_Txt.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.AddItemswf_Txt.AutoIndent = false;
+            this.AddItemswf_Txt.AutoIndentChars = false;
+            this.AddItemswf_Txt.AutoScrollMinSize = new System.Drawing.Size(2, 15);
+            this.AddItemswf_Txt.BackBrush = null;
+            this.AddItemswf_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddItemswf_Txt.CaretColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddItemswf_Txt.CharHeight = 15;
+            this.AddItemswf_Txt.CharWidth = 8;
+            this.AddItemswf_Txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.AddItemswf_Txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.AddItemswf_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddItemswf_Txt.Font = new System.Drawing.Font("Consolas", 10F);
+            this.AddItemswf_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddItemswf_Txt.IndentBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.AddItemswf_Txt.IsReplaceMode = false;
+            this.AddItemswf_Txt.LineNumberColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.AddItemswf_Txt.Location = new System.Drawing.Point(0, 237);
+            this.AddItemswf_Txt.Name = "AddItemswf_Txt";
+            this.AddItemswf_Txt.PaddingBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddItemswf_Txt.Paddings = new System.Windows.Forms.Padding(0);
+            this.AddItemswf_Txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.AddItemswf_Txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("AddItemswf_Txt.ServiceColors")));
+            this.AddItemswf_Txt.ServiceLinesColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(62)))), ((int)(((byte)(72)))));
+            this.AddItemswf_Txt.Size = new System.Drawing.Size(503, 290);
+            this.AddItemswf_Txt.TabIndex = 3;
+            this.AddItemswf_Txt.Zoom = 100;
+            // 
+            // CreateXMLwf_btn
+            // 
+            this.CreateXMLwf_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.CreateXMLwf_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CreateXMLwf_btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CreateXMLwf_btn.FlatAppearance.BorderSize = 0;
+            this.CreateXMLwf_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CreateXMLwf_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.CreateXMLwf_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CreateXMLwf_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateXMLwf_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CreateXMLwf_btn.Location = new System.Drawing.Point(0, 527);
+            this.CreateXMLwf_btn.Name = "CreateXMLwf_btn";
+            this.CreateXMLwf_btn.Size = new System.Drawing.Size(503, 31);
+            this.CreateXMLwf_btn.TabIndex = 4;
+            this.CreateXMLwf_btn.Text = "Create new Workflow";
+            this.CreateXMLwf_btn.UseVisualStyleBackColor = false;
+            this.CreateXMLwf_btn.Click += new System.EventHandler(this.CreateXMLwf_btn_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.AddItemwf_Btn);
+            this.panel7.Controls.Add(this.AddSingleItemswf_Txt);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 558);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(503, 37);
+            this.panel7.TabIndex = 16;
+            // 
+            // AddItemwf_Btn
+            // 
+            this.AddItemwf_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.AddItemwf_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddItemwf_Btn.Enabled = false;
+            this.AddItemwf_Btn.FlatAppearance.BorderSize = 0;
+            this.AddItemwf_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.AddItemwf_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.AddItemwf_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddItemwf_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddItemwf_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddItemwf_Btn.Location = new System.Drawing.Point(238, 8);
+            this.AddItemwf_Btn.Name = "AddItemwf_Btn";
+            this.AddItemwf_Btn.Size = new System.Drawing.Size(265, 23);
+            this.AddItemwf_Btn.TabIndex = 8;
+            this.AddItemwf_Btn.Text = "Add new Item in Workflow";
+            this.AddItemwf_Btn.UseVisualStyleBackColor = false;
+            this.AddItemwf_Btn.Click += new System.EventHandler(this.AddItemwf_Btn_Click);
+            // 
+            // AddSingleItemswf_Txt
+            // 
+            this.AddSingleItemswf_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.AddSingleItemswf_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AddSingleItemswf_Txt.Enabled = false;
+            this.AddSingleItemswf_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddSingleItemswf_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.AddSingleItemswf_Txt.Location = new System.Drawing.Point(4, 8);
+            this.AddSingleItemswf_Txt.Name = "AddSingleItemswf_Txt";
+            this.AddSingleItemswf_Txt.Size = new System.Drawing.Size(228, 23);
+            this.AddSingleItemswf_Txt.TabIndex = 7;
+            this.AddSingleItemswf_Txt.Text = "Insert item name";
+            // 
+            // panel11
+            // 
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(10, 595);
+            this.panel11.TabIndex = 23;
+            // 
+            // panel19
+            // 
+            this.panel19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel19.Controls.Add(this.TmpFile_Txt);
+            this.panel19.Controls.Add(this.Timeline_Lst);
+            this.panel19.Controls.Add(this.ResetTimeline_Btn);
+            this.panel19.Controls.Add(this.panel20);
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel19.Location = new System.Drawing.Point(1081, 0);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(245, 595);
+            this.panel19.TabIndex = 29;
+            // 
+            // TmpFile_Txt
+            // 
+            this.TmpFile_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TmpFile_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.TmpFile_Txt.Location = new System.Drawing.Point(225, 549);
+            this.TmpFile_Txt.Name = "TmpFile_Txt";
+            this.TmpFile_Txt.Size = new System.Drawing.Size(10, 23);
+            this.TmpFile_Txt.TabIndex = 25;
+            this.TmpFile_Txt.Visible = false;
+            // 
+            // Timeline_Lst
+            // 
+            this.Timeline_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Timeline_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Timeline_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Timeline_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Timeline_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.Timeline_Lst.FormattingEnabled = true;
+            this.Timeline_Lst.ItemHeight = 15;
+            this.Timeline_Lst.Location = new System.Drawing.Point(0, 10);
+            this.Timeline_Lst.Name = "Timeline_Lst";
+            this.Timeline_Lst.Size = new System.Drawing.Size(245, 562);
+            this.Timeline_Lst.TabIndex = 22;
+            this.Timeline_Lst.SelectedIndexChanged += new System.EventHandler(this.Timeline_Lst_SelectedIndexChanged);
+            // 
+            // ResetTimeline_Btn
+            // 
+            this.ResetTimeline_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.ResetTimeline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ResetTimeline_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ResetTimeline_Btn.FlatAppearance.BorderSize = 0;
+            this.ResetTimeline_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ResetTimeline_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ResetTimeline_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetTimeline_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetTimeline_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ResetTimeline_Btn.Location = new System.Drawing.Point(0, 572);
+            this.ResetTimeline_Btn.Name = "ResetTimeline_Btn";
+            this.ResetTimeline_Btn.Size = new System.Drawing.Size(245, 23);
+            this.ResetTimeline_Btn.TabIndex = 24;
+            this.ResetTimeline_Btn.Text = "Reset";
+            this.ResetTimeline_Btn.UseVisualStyleBackColor = false;
+            this.ResetTimeline_Btn.Click += new System.EventHandler(this.ResetTimeline_Btn_Click);
+            // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel20.Location = new System.Drawing.Point(0, 0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(245, 10);
+            this.panel20.TabIndex = 23;
+            // 
+            // Map_Tab
+            // 
+            this.Map_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Map_Tab.Controls.Add(this.TempPointLoc_Lst);
+            this.Map_Tab.Controls.Add(this.GMap_Ctrl);
+            this.Map_Tab.Controls.Add(this.Map_Cmd_Pnl);
+            this.Map_Tab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Map_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Map_Tab.Name = "Map_Tab";
+            this.Map_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Map_Tab.TabIndex = 9;
+            this.Map_Tab.Text = "MAP";
+            // 
+            // TempPointLoc_Lst
+            // 
+            this.TempPointLoc_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TempPointLoc_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.TempPointLoc_Lst.FormattingEnabled = true;
+            this.TempPointLoc_Lst.ItemHeight = 15;
+            this.TempPointLoc_Lst.Location = new System.Drawing.Point(1063, 17);
+            this.TempPointLoc_Lst.Name = "TempPointLoc_Lst";
+            this.TempPointLoc_Lst.Size = new System.Drawing.Size(45, 19);
+            this.TempPointLoc_Lst.TabIndex = 2;
+            this.TempPointLoc_Lst.Visible = false;
+            // 
+            // GMap_Ctrl
+            // 
+            this.GMap_Ctrl.Bearing = 0F;
+            this.GMap_Ctrl.CanDragMap = true;
+            this.GMap_Ctrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GMap_Ctrl.EmptyTileColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.GMap_Ctrl.GrayScaleMode = false;
+            this.GMap_Ctrl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.GMap_Ctrl.LevelsKeepInMemory = 5;
+            this.GMap_Ctrl.Location = new System.Drawing.Point(0, 0);
+            this.GMap_Ctrl.MarkersEnabled = true;
+            this.GMap_Ctrl.MaxZoom = 20;
+            this.GMap_Ctrl.MinZoom = 1;
+            this.GMap_Ctrl.MouseWheelZoomEnabled = true;
+            this.GMap_Ctrl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.GMap_Ctrl.Name = "GMap_Ctrl";
+            this.GMap_Ctrl.NegativeMode = false;
+            this.GMap_Ctrl.PolygonsEnabled = true;
+            this.GMap_Ctrl.RetryLoadTile = 0;
+            this.GMap_Ctrl.RoutesEnabled = true;
+            this.GMap_Ctrl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.GMap_Ctrl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.GMap_Ctrl.ShowTileGridLines = false;
+            this.GMap_Ctrl.Size = new System.Drawing.Size(1126, 595);
+            this.GMap_Ctrl.TabIndex = 1;
+            this.GMap_Ctrl.Zoom = 1D;
+            // 
+            // Map_Cmd_Pnl
+            // 
+            this.Map_Cmd_Pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.Map_Cmd_Pnl.Controls.Add(this.PointLoc_Lst);
+            this.Map_Cmd_Pnl.Controls.Add(this.SaveGPX_Btn);
+            this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Chk);
+            this.Map_Cmd_Pnl.Controls.Add(this.AddNewLoc_Btn);
+            this.Map_Cmd_Pnl.Controls.Add(this.LocatRoute_Lbl);
+            this.Map_Cmd_Pnl.Controls.Add(this.TextMarker_Txt);
+            this.Map_Cmd_Pnl.Controls.Add(this.TxtMarker_Lbl);
+            this.Map_Cmd_Pnl.Controls.Add(this.LocationName_Txt);
+            this.Map_Cmd_Pnl.Controls.Add(this.label24);
+            this.Map_Cmd_Pnl.Controls.Add(this.PointRoute_Lst);
+            this.Map_Cmd_Pnl.Controls.Add(this.SaveRoute_Btn);
+            this.Map_Cmd_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Map_Cmd_Pnl.Location = new System.Drawing.Point(1126, 0);
+            this.Map_Cmd_Pnl.Name = "Map_Cmd_Pnl";
+            this.Map_Cmd_Pnl.Size = new System.Drawing.Size(200, 595);
+            this.Map_Cmd_Pnl.TabIndex = 0;
+            this.Map_Cmd_Pnl.Visible = false;
+            // 
+            // PointLoc_Lst
+            // 
+            this.PointLoc_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.PointLoc_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PointLoc_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PointLoc_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PointLoc_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.PointLoc_Lst.FormattingEnabled = true;
+            this.PointLoc_Lst.ItemHeight = 15;
+            this.PointLoc_Lst.Location = new System.Drawing.Point(0, 145);
+            this.PointLoc_Lst.Name = "PointLoc_Lst";
+            this.PointLoc_Lst.Size = new System.Drawing.Size(200, 255);
+            this.PointLoc_Lst.TabIndex = 18;
+            this.PointLoc_Lst.SelectedIndexChanged += new System.EventHandler(this.PointLoc_Lst_SelectedIndexChanged);
+            // 
+            // SaveGPX_Btn
+            // 
+            this.SaveGPX_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.SaveGPX_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveGPX_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveGPX_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveGPX_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.SaveGPX_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.SaveGPX_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveGPX_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveGPX_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SaveGPX_Btn.Location = new System.Drawing.Point(0, 400);
+            this.SaveGPX_Btn.Name = "SaveGPX_Btn";
+            this.SaveGPX_Btn.Size = new System.Drawing.Size(200, 30);
+            this.SaveGPX_Btn.TabIndex = 26;
+            this.SaveGPX_Btn.Text = "Save to List";
+            this.SaveGPX_Btn.UseVisualStyleBackColor = false;
+            this.SaveGPX_Btn.Visible = false;
+            this.SaveGPX_Btn.Click += new System.EventHandler(this.SaveGPX_Btn_Click);
+            // 
+            // TxtMarker_Chk
+            // 
+            this.TxtMarker_Chk.AutoSize = true;
+            this.TxtMarker_Chk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.TxtMarker_Chk.Checked = true;
+            this.TxtMarker_Chk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TxtMarker_Chk.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtMarker_Chk.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMarker_Chk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.TxtMarker_Chk.Location = new System.Drawing.Point(0, 126);
+            this.TxtMarker_Chk.Name = "TxtMarker_Chk";
+            this.TxtMarker_Chk.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.TxtMarker_Chk.Size = new System.Drawing.Size(200, 19);
+            this.TxtMarker_Chk.TabIndex = 24;
+            this.TxtMarker_Chk.Text = "Text Marker OnMouseOver";
+            this.TxtMarker_Chk.UseVisualStyleBackColor = false;
+            // 
+            // AddNewLoc_Btn
+            // 
+            this.AddNewLoc_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.AddNewLoc_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddNewLoc_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddNewLoc_Btn.FlatAppearance.BorderSize = 0;
+            this.AddNewLoc_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.AddNewLoc_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.AddNewLoc_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddNewLoc_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddNewLoc_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddNewLoc_Btn.Location = new System.Drawing.Point(0, 430);
+            this.AddNewLoc_Btn.Name = "AddNewLoc_Btn";
+            this.AddNewLoc_Btn.Size = new System.Drawing.Size(200, 30);
+            this.AddNewLoc_Btn.TabIndex = 17;
+            this.AddNewLoc_Btn.Text = "Add New Location";
+            this.AddNewLoc_Btn.UseVisualStyleBackColor = false;
+            this.AddNewLoc_Btn.Click += new System.EventHandler(this.AddNewLoc_Btn_Click);
+            // 
+            // LocatRoute_Lbl
+            // 
+            this.LocatRoute_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.LocatRoute_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LocatRoute_Lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocatRoute_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.LocatRoute_Lbl.Location = new System.Drawing.Point(0, 98);
+            this.LocatRoute_Lbl.Name = "LocatRoute_Lbl";
+            this.LocatRoute_Lbl.Size = new System.Drawing.Size(200, 28);
+            this.LocatRoute_Lbl.TabIndex = 23;
+            this.LocatRoute_Lbl.Text = "Location Points";
+            this.LocatRoute_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TextMarker_Txt
+            // 
+            this.TextMarker_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TextMarker_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextMarker_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TextMarker_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextMarker_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.TextMarker_Txt.Location = new System.Drawing.Point(0, 49);
+            this.TextMarker_Txt.Multiline = true;
+            this.TextMarker_Txt.Name = "TextMarker_Txt";
+            this.TextMarker_Txt.Size = new System.Drawing.Size(200, 49);
+            this.TextMarker_Txt.TabIndex = 22;
+            // 
+            // TxtMarker_Lbl
+            // 
+            this.TxtMarker_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.TxtMarker_Lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TxtMarker_Lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMarker_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.TxtMarker_Lbl.Location = new System.Drawing.Point(0, 21);
+            this.TxtMarker_Lbl.Name = "TxtMarker_Lbl";
+            this.TxtMarker_Lbl.Size = new System.Drawing.Size(200, 28);
+            this.TxtMarker_Lbl.TabIndex = 21;
+            this.TxtMarker_Lbl.Text = "Text Marker";
+            this.TxtMarker_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LocationName_Txt
+            // 
+            this.LocationName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.LocationName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LocationName_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LocationName_Txt.Enabled = false;
+            this.LocationName_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LocationName_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.LocationName_Txt.Location = new System.Drawing.Point(0, 5);
+            this.LocationName_Txt.Name = "LocationName_Txt";
+            this.LocationName_Txt.Size = new System.Drawing.Size(200, 16);
+            this.LocationName_Txt.TabIndex = 19;
+            // 
+            // label24
+            // 
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.label24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.label24.Location = new System.Drawing.Point(0, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(200, 5);
+            this.label24.TabIndex = 20;
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PointRoute_Lst
+            // 
+            this.PointRoute_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.PointRoute_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PointRoute_Lst.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PointRoute_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PointRoute_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.PointRoute_Lst.FormattingEnabled = true;
+            this.PointRoute_Lst.ItemHeight = 15;
+            this.PointRoute_Lst.Location = new System.Drawing.Point(0, 460);
+            this.PointRoute_Lst.Name = "PointRoute_Lst";
+            this.PointRoute_Lst.Size = new System.Drawing.Size(200, 105);
+            this.PointRoute_Lst.TabIndex = 27;
+            this.PointRoute_Lst.Visible = false;
+            this.PointRoute_Lst.SelectedIndexChanged += new System.EventHandler(this.PointRoute_Lst_SelectedIndexChanged);
+            // 
+            // SaveRoute_Btn
+            // 
+            this.SaveRoute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.SaveRoute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveRoute_Btn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveRoute_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveRoute_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.SaveRoute_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.SaveRoute_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveRoute_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveRoute_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SaveRoute_Btn.Location = new System.Drawing.Point(0, 565);
+            this.SaveRoute_Btn.Name = "SaveRoute_Btn";
+            this.SaveRoute_Btn.Size = new System.Drawing.Size(200, 30);
+            this.SaveRoute_Btn.TabIndex = 25;
+            this.SaveRoute_Btn.Text = "Save route Off";
+            this.SaveRoute_Btn.UseVisualStyleBackColor = false;
+            this.SaveRoute_Btn.Visible = false;
+            this.SaveRoute_Btn.Click += new System.EventHandler(this.SaveRoute_Btn_Click);
+            // 
+            // Json_Tab
+            // 
+            this.Json_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Json_Tab.Controls.Add(this.WbOutB);
+            this.Json_Tab.Controls.Add(this.PanelBjson_Pnl);
+            this.Json_Tab.Controls.Add(this.WbOutA);
+            this.Json_Tab.Controls.Add(this.PanelAjson_Pnl);
+            this.Json_Tab.Controls.Add(this.JsonList_Pnl);
+            this.Json_Tab.Controls.Add(this.panel33);
+            this.Json_Tab.Controls.Add(this.JsonPanel3_Pnl);
+            this.Json_Tab.Controls.Add(this.panel31);
+            this.Json_Tab.Controls.Add(this.JsonPanel2_Pnl);
+            this.Json_Tab.Controls.Add(this.JsonUsrAgt_Txt);
+            this.Json_Tab.Controls.Add(this.panel32);
+            this.Json_Tab.Controls.Add(this.JsonBtn_Pnl);
+            this.Json_Tab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Json_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Json_Tab.Name = "Json_Tab";
+            this.Json_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Json_Tab.TabIndex = 10;
+            this.Json_Tab.Text = "JSON";
+            // 
+            // WbOutB
+            // 
+            this.WbOutB.AllowExternalDrop = true;
+            this.WbOutB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.WbOutB.CreationProperties = null;
+            this.WbOutB.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WbOutB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WbOutB.Location = new System.Drawing.Point(0, 320);
+            this.WbOutB.Name = "WbOutB";
+            this.WbOutB.Size = new System.Drawing.Size(1126, 253);
+            this.WbOutB.TabIndex = 15;
+            this.WbOutB.ZoomFactor = 1D;
+            // 
+            // PanelBjson_Pnl
+            // 
+            this.PanelBjson_Pnl.Controls.Add(this.ExtdB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.EmptyB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.RfreshB_Btn);
+            this.PanelBjson_Pnl.Controls.Add(this.OutJsonB_Chk);
+            this.PanelBjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelBjson_Pnl.Location = new System.Drawing.Point(0, 295);
+            this.PanelBjson_Pnl.Name = "PanelBjson_Pnl";
+            this.PanelBjson_Pnl.Size = new System.Drawing.Size(1126, 25);
+            this.PanelBjson_Pnl.TabIndex = 11;
+            // 
+            // ExtdB_Btn
+            // 
+            this.ExtdB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.ExtdB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExtdB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ExtdB_Btn.FlatAppearance.BorderSize = 0;
+            this.ExtdB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ExtdB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ExtdB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExtdB_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExtdB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.ExtdB_Btn.Location = new System.Drawing.Point(228, 0);
+            this.ExtdB_Btn.Name = "ExtdB_Btn";
+            this.ExtdB_Btn.Size = new System.Drawing.Size(84, 25);
+            this.ExtdB_Btn.TabIndex = 22;
+            this.ExtdB_Btn.Text = "Extend";
+            this.ExtdB_Btn.UseVisualStyleBackColor = false;
+            this.ExtdB_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
+            // 
+            // EmptyB_Btn
+            // 
+            this.EmptyB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.EmptyB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EmptyB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.EmptyB_Btn.FlatAppearance.BorderSize = 0;
+            this.EmptyB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.EmptyB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.EmptyB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EmptyB_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmptyB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.EmptyB_Btn.Location = new System.Drawing.Point(164, 0);
+            this.EmptyB_Btn.Name = "EmptyB_Btn";
+            this.EmptyB_Btn.Size = new System.Drawing.Size(64, 25);
+            this.EmptyB_Btn.TabIndex = 21;
+            this.EmptyB_Btn.Text = "Empty";
+            this.EmptyB_Btn.UseVisualStyleBackColor = false;
+            this.EmptyB_Btn.Click += new System.EventHandler(this.Empty_Btn_Click);
+            // 
+            // RfreshB_Btn
+            // 
+            this.RfreshB_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.RfreshB_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RfreshB_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RfreshB_Btn.FlatAppearance.BorderSize = 0;
+            this.RfreshB_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.RfreshB_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.RfreshB_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RfreshB_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RfreshB_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.RfreshB_Btn.Location = new System.Drawing.Point(80, 0);
+            this.RfreshB_Btn.Name = "RfreshB_Btn";
+            this.RfreshB_Btn.Size = new System.Drawing.Size(84, 25);
+            this.RfreshB_Btn.TabIndex = 20;
+            this.RfreshB_Btn.Text = "Refresh";
+            this.RfreshB_Btn.UseVisualStyleBackColor = false;
+            this.RfreshB_Btn.Click += new System.EventHandler(this.Rfresh_Btn_Click);
+            // 
+            // OutJsonB_Chk
+            // 
+            this.OutJsonB_Chk.AutoSize = true;
+            this.OutJsonB_Chk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OutJsonB_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.OutJsonB_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutJsonB_Chk.Location = new System.Drawing.Point(0, 0);
+            this.OutJsonB_Chk.Name = "OutJsonB_Chk";
+            this.OutJsonB_Chk.Size = new System.Drawing.Size(80, 25);
+            this.OutJsonB_Chk.TabIndex = 9;
+            this.OutJsonB_Chk.Text = "parse in";
+            this.OutJsonB_Chk.UseVisualStyleBackColor = true;
+            // 
+            // WbOutA
+            // 
+            this.WbOutA.AllowExternalDrop = true;
+            this.WbOutA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.WbOutA.CreationProperties = null;
+            this.WbOutA.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WbOutA.Dock = System.Windows.Forms.DockStyle.Top;
+            this.WbOutA.Location = new System.Drawing.Point(0, 131);
+            this.WbOutA.Name = "WbOutA";
+            this.WbOutA.Size = new System.Drawing.Size(1126, 164);
+            this.WbOutA.TabIndex = 14;
+            this.WbOutA.ZoomFactor = 1D;
+            // 
+            // PanelAjson_Pnl
+            // 
+            this.PanelAjson_Pnl.Controls.Add(this.ExtdA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.EmptyA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.RfreshA_Btn);
+            this.PanelAjson_Pnl.Controls.Add(this.OutJsonA_Chk);
+            this.PanelAjson_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelAjson_Pnl.Location = new System.Drawing.Point(0, 106);
+            this.PanelAjson_Pnl.Name = "PanelAjson_Pnl";
+            this.PanelAjson_Pnl.Size = new System.Drawing.Size(1126, 25);
+            this.PanelAjson_Pnl.TabIndex = 10;
+            // 
+            // ExtdA_Btn
+            // 
+            this.ExtdA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.ExtdA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExtdA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ExtdA_Btn.FlatAppearance.BorderSize = 0;
+            this.ExtdA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ExtdA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ExtdA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExtdA_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExtdA_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.ExtdA_Btn.Location = new System.Drawing.Point(228, 0);
+            this.ExtdA_Btn.Name = "ExtdA_Btn";
+            this.ExtdA_Btn.Size = new System.Drawing.Size(84, 25);
+            this.ExtdA_Btn.TabIndex = 21;
+            this.ExtdA_Btn.Text = "Extend";
+            this.ExtdA_Btn.UseVisualStyleBackColor = false;
+            this.ExtdA_Btn.Click += new System.EventHandler(this.Extd_Btn_Click);
+            // 
+            // EmptyA_Btn
+            // 
+            this.EmptyA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.EmptyA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EmptyA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.EmptyA_Btn.FlatAppearance.BorderSize = 0;
+            this.EmptyA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.EmptyA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.EmptyA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EmptyA_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmptyA_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.EmptyA_Btn.Location = new System.Drawing.Point(164, 0);
+            this.EmptyA_Btn.Name = "EmptyA_Btn";
+            this.EmptyA_Btn.Size = new System.Drawing.Size(64, 25);
+            this.EmptyA_Btn.TabIndex = 20;
+            this.EmptyA_Btn.Text = "Empty";
+            this.EmptyA_Btn.UseVisualStyleBackColor = false;
+            this.EmptyA_Btn.Click += new System.EventHandler(this.Empty_Btn_Click);
+            // 
+            // RfreshA_Btn
+            // 
+            this.RfreshA_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.RfreshA_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RfreshA_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RfreshA_Btn.FlatAppearance.BorderSize = 0;
+            this.RfreshA_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.RfreshA_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.RfreshA_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RfreshA_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RfreshA_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.RfreshA_Btn.Location = new System.Drawing.Point(80, 0);
+            this.RfreshA_Btn.Name = "RfreshA_Btn";
+            this.RfreshA_Btn.Size = new System.Drawing.Size(84, 25);
+            this.RfreshA_Btn.TabIndex = 19;
+            this.RfreshA_Btn.Text = "Refresh";
+            this.RfreshA_Btn.UseVisualStyleBackColor = false;
+            this.RfreshA_Btn.Click += new System.EventHandler(this.Rfresh_Btn_Click);
+            // 
+            // OutJsonA_Chk
+            // 
+            this.OutJsonA_Chk.AutoSize = true;
+            this.OutJsonA_Chk.Checked = true;
+            this.OutJsonA_Chk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OutJsonA_Chk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OutJsonA_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.OutJsonA_Chk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutJsonA_Chk.Location = new System.Drawing.Point(0, 0);
+            this.OutJsonA_Chk.Name = "OutJsonA_Chk";
+            this.OutJsonA_Chk.Size = new System.Drawing.Size(80, 25);
+            this.OutJsonA_Chk.TabIndex = 9;
+            this.OutJsonA_Chk.Text = "parse in";
+            this.OutJsonA_Chk.UseVisualStyleBackColor = true;
+            // 
+            // JsonList_Pnl
+            // 
+            this.JsonList_Pnl.Controls.Add(this.TableJson_Lst);
+            this.JsonList_Pnl.Controls.Add(this.OpnJsonDirTable_Btn);
+            this.JsonList_Pnl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.JsonList_Pnl.Location = new System.Drawing.Point(1126, 106);
+            this.JsonList_Pnl.Name = "JsonList_Pnl";
+            this.JsonList_Pnl.Size = new System.Drawing.Size(200, 467);
+            this.JsonList_Pnl.TabIndex = 8;
+            this.JsonList_Pnl.Visible = false;
+            // 
+            // TableJson_Lst
+            // 
+            this.TableJson_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TableJson_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TableJson_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableJson_Lst.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableJson_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.TableJson_Lst.FormattingEnabled = true;
+            this.TableJson_Lst.ItemHeight = 15;
+            this.TableJson_Lst.Location = new System.Drawing.Point(0, 32);
+            this.TableJson_Lst.Name = "TableJson_Lst";
+            this.TableJson_Lst.Size = new System.Drawing.Size(200, 435);
+            this.TableJson_Lst.TabIndex = 25;
+            this.TableJson_Lst.SelectedIndexChanged += new System.EventHandler(this.TableJson_Lst_SelectedIndexChanged);
+            // 
+            // OpnJsonDirTable_Btn
+            // 
+            this.OpnJsonDirTable_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.OpnJsonDirTable_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OpnJsonDirTable_Btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OpnJsonDirTable_Btn.FlatAppearance.BorderSize = 0;
+            this.OpnJsonDirTable_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.OpnJsonDirTable_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.OpnJsonDirTable_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpnJsonDirTable_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnJsonDirTable_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.OpnJsonDirTable_Btn.Location = new System.Drawing.Point(0, 0);
+            this.OpnJsonDirTable_Btn.Name = "OpnJsonDirTable_Btn";
+            this.OpnJsonDirTable_Btn.Size = new System.Drawing.Size(200, 32);
+            this.OpnJsonDirTable_Btn.TabIndex = 24;
+            this.OpnJsonDirTable_Btn.Text = "Open Directory";
+            this.OpnJsonDirTable_Btn.UseVisualStyleBackColor = false;
+            this.OpnJsonDirTable_Btn.Click += new System.EventHandler(this.OpnJsonDirTable_Btn_Click);
+            // 
+            // panel33
+            // 
+            this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel33.Location = new System.Drawing.Point(0, 96);
+            this.panel33.Name = "panel33";
+            this.panel33.Size = new System.Drawing.Size(1326, 10);
+            this.panel33.TabIndex = 5;
+            // 
+            // JsonPanel3_Pnl
+            // 
+            this.JsonPanel3_Pnl.Controls.Add(this.Brkt_Chk);
+            this.JsonPanel3_Pnl.Controls.Add(this.ChgCult_Chk);
+            this.JsonPanel3_Pnl.Controls.Add(this.BrcktB_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.label30);
+            this.JsonPanel3_Pnl.Controls.Add(this.BrcktA_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.ReplaceBrckt_btn);
+            this.JsonPanel3_Pnl.Controls.Add(this.label29);
+            this.JsonPanel3_Pnl.Controls.Add(this.CharSpace_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.label28);
+            this.JsonPanel3_Pnl.Controls.Add(this.JsonCnt_txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.label27);
+            this.JsonPanel3_Pnl.Controls.Add(this.JsonNode_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.ParseNodeJson_Btn);
+            this.JsonPanel3_Pnl.Controls.Add(this.JsonVal_Txt);
+            this.JsonPanel3_Pnl.Controls.Add(this.ParseJson_Btn);
+            this.JsonPanel3_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonPanel3_Pnl.Location = new System.Drawing.Point(0, 74);
+            this.JsonPanel3_Pnl.Name = "JsonPanel3_Pnl";
+            this.JsonPanel3_Pnl.Size = new System.Drawing.Size(1326, 22);
+            this.JsonPanel3_Pnl.TabIndex = 4;
+            // 
+            // Brkt_Chk
+            // 
+            this.Brkt_Chk.AutoSize = true;
+            this.Brkt_Chk.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Brkt_Chk.Location = new System.Drawing.Point(1185, 0);
+            this.Brkt_Chk.Name = "Brkt_Chk";
+            this.Brkt_Chk.Size = new System.Drawing.Size(34, 22);
+            this.Brkt_Chk.TabIndex = 33;
+            this.Brkt_Chk.Text = "[]";
+            this.Brkt_Chk.UseVisualStyleBackColor = true;
+            // 
+            // ChgCult_Chk
+            // 
+            this.ChgCult_Chk.AutoSize = true;
+            this.ChgCult_Chk.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ChgCult_Chk.Location = new System.Drawing.Point(1219, 0);
+            this.ChgCult_Chk.Name = "ChgCult_Chk";
+            this.ChgCult_Chk.Size = new System.Drawing.Size(107, 22);
+            this.ChgCult_Chk.TabIndex = 32;
+            this.ChgCult_Chk.Text = "Change Culture";
+            this.ChgCult_Chk.UseVisualStyleBackColor = true;
+            // 
+            // BrcktB_Txt
+            // 
+            this.BrcktB_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.BrcktB_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BrcktB_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BrcktB_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BrcktB_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.BrcktB_Txt.Location = new System.Drawing.Point(1037, 0);
+            this.BrcktB_Txt.Name = "BrcktB_Txt";
+            this.BrcktB_Txt.Size = new System.Drawing.Size(37, 22);
+            this.BrcktB_Txt.TabIndex = 29;
+            this.BrcktB_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label30
+            // 
+            this.label30.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label30.Location = new System.Drawing.Point(1003, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(34, 22);
+            this.label30.TabIndex = 28;
+            this.label30.Text = "by";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BrcktA_Txt
+            // 
+            this.BrcktA_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.BrcktA_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BrcktA_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BrcktA_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BrcktA_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.BrcktA_Txt.Location = new System.Drawing.Point(966, 0);
+            this.BrcktA_Txt.Name = "BrcktA_Txt";
+            this.BrcktA_Txt.Size = new System.Drawing.Size(37, 22);
+            this.BrcktA_Txt.TabIndex = 27;
+            this.BrcktA_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ReplaceBrckt_btn
+            // 
+            this.ReplaceBrckt_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ReplaceBrckt_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ReplaceBrckt_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ReplaceBrckt_btn.FlatAppearance.BorderSize = 0;
+            this.ReplaceBrckt_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ReplaceBrckt_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ReplaceBrckt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ReplaceBrckt_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReplaceBrckt_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ReplaceBrckt_btn.Location = new System.Drawing.Point(898, 0);
+            this.ReplaceBrckt_btn.Name = "ReplaceBrckt_btn";
+            this.ReplaceBrckt_btn.Size = new System.Drawing.Size(68, 22);
+            this.ReplaceBrckt_btn.TabIndex = 30;
+            this.ReplaceBrckt_btn.Text = "Replace";
+            this.ReplaceBrckt_btn.UseVisualStyleBackColor = false;
+            this.ReplaceBrckt_btn.Click += new System.EventHandler(this.ReplaceBrckt_btn_Click);
+            // 
+            // label29
+            // 
+            this.label29.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label29.Location = new System.Drawing.Point(888, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(10, 22);
+            this.label29.TabIndex = 26;
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CharSpace_Txt
+            // 
+            this.CharSpace_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CharSpace_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CharSpace_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CharSpace_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharSpace_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.CharSpace_Txt.Location = new System.Drawing.Point(861, 0);
+            this.CharSpace_Txt.Name = "CharSpace_Txt";
+            this.CharSpace_Txt.Size = new System.Drawing.Size(27, 22);
+            this.CharSpace_Txt.TabIndex = 25;
+            this.CharSpace_Txt.Text = " ";
+            this.CharSpace_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label28
+            // 
+            this.label28.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label28.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label28.Location = new System.Drawing.Point(770, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(91, 22);
+            this.label28.TabIndex = 24;
+            this.label28.Text = "Separator";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // JsonCnt_txt
+            // 
+            this.JsonCnt_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.JsonCnt_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonCnt_txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonCnt_txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonCnt_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonCnt_txt.Location = new System.Drawing.Point(721, 0);
+            this.JsonCnt_txt.Name = "JsonCnt_txt";
+            this.JsonCnt_txt.Size = new System.Drawing.Size(49, 22);
+            this.JsonCnt_txt.TabIndex = 23;
+            this.JsonCnt_txt.Text = "1";
+            this.JsonCnt_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label27
+            // 
+            this.label27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.label27.Location = new System.Drawing.Point(659, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(62, 22);
+            this.label27.TabIndex = 22;
+            this.label27.Text = "Count";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // JsonNode_Txt
+            // 
+            this.JsonNode_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.JsonNode_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonNode_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonNode_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonNode_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonNode_Txt.Location = new System.Drawing.Point(423, 0);
+            this.JsonNode_Txt.Name = "JsonNode_Txt";
+            this.JsonNode_Txt.Size = new System.Drawing.Size(236, 22);
+            this.JsonNode_Txt.TabIndex = 21;
+            // 
+            // ParseNodeJson_Btn
+            // 
+            this.ParseNodeJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ParseNodeJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ParseNodeJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ParseNodeJson_Btn.FlatAppearance.BorderSize = 0;
+            this.ParseNodeJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ParseNodeJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ParseNodeJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ParseNodeJson_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ParseNodeJson_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ParseNodeJson_Btn.Location = new System.Drawing.Point(297, 0);
+            this.ParseNodeJson_Btn.Name = "ParseNodeJson_Btn";
+            this.ParseNodeJson_Btn.Size = new System.Drawing.Size(126, 22);
+            this.ParseNodeJson_Btn.TabIndex = 20;
+            this.ParseNodeJson_Btn.Text = "Parse Object";
+            this.ParseNodeJson_Btn.UseVisualStyleBackColor = false;
+            this.ParseNodeJson_Btn.Click += new System.EventHandler(this.ParseNodeJson_Btn_Click);
+            // 
+            // JsonVal_Txt
+            // 
+            this.JsonVal_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.JsonVal_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonVal_Txt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonVal_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonVal_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonVal_Txt.Location = new System.Drawing.Point(61, 0);
+            this.JsonVal_Txt.Name = "JsonVal_Txt";
+            this.JsonVal_Txt.Size = new System.Drawing.Size(236, 22);
+            this.JsonVal_Txt.TabIndex = 19;
+            // 
+            // ParseJson_Btn
+            // 
+            this.ParseJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ParseJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ParseJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ParseJson_Btn.FlatAppearance.BorderSize = 0;
+            this.ParseJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ParseJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ParseJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ParseJson_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ParseJson_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ParseJson_Btn.Location = new System.Drawing.Point(0, 0);
+            this.ParseJson_Btn.Name = "ParseJson_Btn";
+            this.ParseJson_Btn.Size = new System.Drawing.Size(61, 22);
+            this.ParseJson_Btn.TabIndex = 18;
+            this.ParseJson_Btn.Text = "Parse";
+            this.ParseJson_Btn.UseVisualStyleBackColor = false;
+            this.ParseJson_Btn.Click += new System.EventHandler(this.ParseJson_Btn_Click);
+            // 
+            // panel31
+            // 
+            this.panel31.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel31.Location = new System.Drawing.Point(0, 64);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(1326, 10);
+            this.panel31.TabIndex = 2;
+            // 
+            // JsonPanel2_Pnl
+            // 
+            this.JsonPanel2_Pnl.Controls.Add(this.JsonUri_Txt);
+            this.JsonPanel2_Pnl.Controls.Add(this.GetJson_Btn);
+            this.JsonPanel2_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonPanel2_Pnl.Location = new System.Drawing.Point(0, 42);
+            this.JsonPanel2_Pnl.Name = "JsonPanel2_Pnl";
+            this.JsonPanel2_Pnl.Size = new System.Drawing.Size(1326, 22);
+            this.JsonPanel2_Pnl.TabIndex = 1;
+            // 
+            // JsonUri_Txt
+            // 
+            this.JsonUri_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.JsonUri_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonUri_Txt.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonUri_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonUri_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonUri_Txt.Location = new System.Drawing.Point(61, 0);
+            this.JsonUri_Txt.Name = "JsonUri_Txt";
+            this.JsonUri_Txt.Size = new System.Drawing.Size(1265, 22);
+            this.JsonUri_Txt.TabIndex = 18;
+            // 
+            // GetJson_Btn
+            // 
+            this.GetJson_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.GetJson_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.GetJson_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GetJson_Btn.FlatAppearance.BorderSize = 0;
+            this.GetJson_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.GetJson_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.GetJson_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GetJson_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GetJson_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.GetJson_Btn.Location = new System.Drawing.Point(0, 0);
+            this.GetJson_Btn.Name = "GetJson_Btn";
+            this.GetJson_Btn.Size = new System.Drawing.Size(61, 22);
+            this.GetJson_Btn.TabIndex = 17;
+            this.GetJson_Btn.Text = "GET";
+            this.GetJson_Btn.UseVisualStyleBackColor = false;
+            this.GetJson_Btn.Click += new System.EventHandler(this.GetJson_Btn_Click);
+            // 
+            // JsonUsrAgt_Txt
+            // 
+            this.JsonUsrAgt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.JsonUsrAgt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JsonUsrAgt_Txt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.JsonUsrAgt_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonUsrAgt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.JsonUsrAgt_Txt.Location = new System.Drawing.Point(0, 573);
+            this.JsonUsrAgt_Txt.Name = "JsonUsrAgt_Txt";
+            this.JsonUsrAgt_Txt.Size = new System.Drawing.Size(1326, 22);
+            this.JsonUsrAgt_Txt.TabIndex = 0;
+            // 
+            // panel32
+            // 
+            this.panel32.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel32.Location = new System.Drawing.Point(0, 32);
+            this.panel32.Name = "panel32";
+            this.panel32.Size = new System.Drawing.Size(1326, 10);
+            this.panel32.TabIndex = 3;
+            // 
+            // JsonBtn_Pnl
+            // 
+            this.JsonBtn_Pnl.Controls.Add(this.OpnTableList_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.TableNode_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.TableParse_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveData_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.JsonOpnListUri_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveUri_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.JsonSaveFile_Btn);
+            this.JsonBtn_Pnl.Controls.Add(this.JsonOpnFile_Btn);
+            this.JsonBtn_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.JsonBtn_Pnl.Location = new System.Drawing.Point(0, 0);
+            this.JsonBtn_Pnl.Name = "JsonBtn_Pnl";
+            this.JsonBtn_Pnl.Size = new System.Drawing.Size(1326, 32);
+            this.JsonBtn_Pnl.TabIndex = 0;
+            // 
+            // OpnTableList_Btn
+            // 
+            this.OpnTableList_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.OpnTableList_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OpnTableList_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.OpnTableList_Btn.FlatAppearance.BorderSize = 0;
+            this.OpnTableList_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.OpnTableList_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.OpnTableList_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpnTableList_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnTableList_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.OpnTableList_Btn.Location = new System.Drawing.Point(646, 0);
+            this.OpnTableList_Btn.Name = "OpnTableList_Btn";
+            this.OpnTableList_Btn.Size = new System.Drawing.Size(129, 32);
+            this.OpnTableList_Btn.TabIndex = 24;
+            this.OpnTableList_Btn.Text = "Open Table List";
+            this.OpnTableList_Btn.UseVisualStyleBackColor = false;
+            this.OpnTableList_Btn.Click += new System.EventHandler(this.OpnTableList_Btn_Click);
+            // 
+            // TableNode_Btn
+            // 
+            this.TableNode_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.TableNode_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TableNode_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TableNode_Btn.FlatAppearance.BorderSize = 0;
+            this.TableNode_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.TableNode_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.TableNode_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TableNode_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableNode_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.TableNode_Btn.Location = new System.Drawing.Point(545, 0);
+            this.TableNode_Btn.Name = "TableNode_Btn";
+            this.TableNode_Btn.Size = new System.Drawing.Size(101, 32);
+            this.TableNode_Btn.TabIndex = 23;
+            this.TableNode_Btn.Text = "Object Table";
+            this.TableNode_Btn.UseVisualStyleBackColor = false;
+            this.TableNode_Btn.Click += new System.EventHandler(this.TableNode_Btn_Click);
+            // 
+            // TableParse_Btn
+            // 
+            this.TableParse_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.TableParse_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TableParse_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TableParse_Btn.FlatAppearance.BorderSize = 0;
+            this.TableParse_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.TableParse_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.TableParse_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TableParse_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableParse_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.TableParse_Btn.Location = new System.Drawing.Point(493, 0);
+            this.TableParse_Btn.Name = "TableParse_Btn";
+            this.TableParse_Btn.Size = new System.Drawing.Size(52, 32);
+            this.TableParse_Btn.TabIndex = 22;
+            this.TableParse_Btn.Text = "Table";
+            this.TableParse_Btn.UseVisualStyleBackColor = false;
+            this.TableParse_Btn.Click += new System.EventHandler(this.TableParse_Btn_Click);
+            // 
+            // JsonSaveData_Btn
+            // 
+            this.JsonSaveData_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.JsonSaveData_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonSaveData_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonSaveData_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonSaveData_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.JsonSaveData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.JsonSaveData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonSaveData_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonSaveData_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonSaveData_Btn.Location = new System.Drawing.Point(393, 0);
+            this.JsonSaveData_Btn.Name = "JsonSaveData_Btn";
+            this.JsonSaveData_Btn.Size = new System.Drawing.Size(100, 32);
+            this.JsonSaveData_Btn.TabIndex = 20;
+            this.JsonSaveData_Btn.Text = "Save DATA";
+            this.JsonSaveData_Btn.UseVisualStyleBackColor = false;
+            this.JsonSaveData_Btn.Click += new System.EventHandler(this.JsonSaveData_Btn_Click);
+            // 
+            // JsonOpnListUri_Btn
+            // 
+            this.JsonOpnListUri_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.JsonOpnListUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonOpnListUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonOpnListUri_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonOpnListUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.JsonOpnListUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.JsonOpnListUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonOpnListUri_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonOpnListUri_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.JsonOpnListUri_Btn.Location = new System.Drawing.Point(291, 0);
+            this.JsonOpnListUri_Btn.Name = "JsonOpnListUri_Btn";
+            this.JsonOpnListUri_Btn.Size = new System.Drawing.Size(102, 32);
+            this.JsonOpnListUri_Btn.TabIndex = 19;
+            this.JsonOpnListUri_Btn.Text = "Open List Uri";
+            this.JsonOpnListUri_Btn.UseVisualStyleBackColor = false;
+            this.JsonOpnListUri_Btn.Click += new System.EventHandler(this.JsonOpnListUri_Btn_Click);
+            // 
+            // JsonSaveUri_Btn
+            // 
+            this.JsonSaveUri_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.JsonSaveUri_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonSaveUri_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonSaveUri_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonSaveUri_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.JsonSaveUri_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.JsonSaveUri_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonSaveUri_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonSaveUri_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonSaveUri_Btn.Location = new System.Drawing.Point(180, 0);
+            this.JsonSaveUri_Btn.Name = "JsonSaveUri_Btn";
+            this.JsonSaveUri_Btn.Size = new System.Drawing.Size(111, 32);
+            this.JsonSaveUri_Btn.TabIndex = 18;
+            this.JsonSaveUri_Btn.Text = "Save Uri Json";
+            this.JsonSaveUri_Btn.UseVisualStyleBackColor = false;
+            this.JsonSaveUri_Btn.Click += new System.EventHandler(this.JsonSaveUri_Btn_Click);
+            // 
+            // JsonSaveFile_Btn
+            // 
+            this.JsonSaveFile_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.JsonSaveFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonSaveFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonSaveFile_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonSaveFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.JsonSaveFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.JsonSaveFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonSaveFile_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonSaveFile_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.JsonSaveFile_Btn.Location = new System.Drawing.Point(98, 0);
+            this.JsonSaveFile_Btn.Name = "JsonSaveFile_Btn";
+            this.JsonSaveFile_Btn.Size = new System.Drawing.Size(82, 32);
+            this.JsonSaveFile_Btn.TabIndex = 17;
+            this.JsonSaveFile_Btn.Text = "Save Json";
+            this.JsonSaveFile_Btn.UseVisualStyleBackColor = false;
+            this.JsonSaveFile_Btn.Click += new System.EventHandler(this.JsonSaveFile_Btn_Click);
+            // 
+            // JsonOpnFile_Btn
+            // 
+            this.JsonOpnFile_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.JsonOpnFile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonOpnFile_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.JsonOpnFile_Btn.FlatAppearance.BorderSize = 0;
+            this.JsonOpnFile_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.JsonOpnFile_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.JsonOpnFile_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JsonOpnFile_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonOpnFile_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.JsonOpnFile_Btn.Location = new System.Drawing.Point(0, 0);
+            this.JsonOpnFile_Btn.Name = "JsonOpnFile_Btn";
+            this.JsonOpnFile_Btn.Size = new System.Drawing.Size(98, 32);
+            this.JsonOpnFile_Btn.TabIndex = 16;
+            this.JsonOpnFile_Btn.Text = "Open Json";
+            this.JsonOpnFile_Btn.UseVisualStyleBackColor = false;
+            this.JsonOpnFile_Btn.Click += new System.EventHandler(this.JsonOpnFile_Btn_Click);
+            // 
+            // OOBai_Tab
+            // 
+            this.OOBai_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.OOBai_Tab.Controls.Add(this.Panel_Right_Oobai);
+            this.OOBai_Tab.Controls.Add(this.panel39);
+            this.OOBai_Tab.Controls.Add(this.Panel_Left_Oobai);
+            this.OOBai_Tab.Location = new System.Drawing.Point(4, 38);
+            this.OOBai_Tab.Name = "OOBai_Tab";
+            this.OOBai_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.OOBai_Tab.TabIndex = 11;
+            this.OOBai_Tab.Text = "OOBai";
+            // 
+            // Panel_Right_Oobai
+            // 
+            this.Panel_Right_Oobai.Controls.Add(this.Panel_Right_Middle_Oobai);
+            this.Panel_Right_Oobai.Controls.Add(this.panel38);
+            this.Panel_Right_Oobai.Controls.Add(this.panel36);
+            this.Panel_Right_Oobai.Controls.Add(this.Panel_Right_Bottom_Oobai);
+            this.Panel_Right_Oobai.Controls.Add(this.panel37);
+            this.Panel_Right_Oobai.Controls.Add(this.Panel_Right_Top_Oobai);
+            this.Panel_Right_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_Right_Oobai.Location = new System.Drawing.Point(631, 0);
+            this.Panel_Right_Oobai.Name = "Panel_Right_Oobai";
+            this.Panel_Right_Oobai.Size = new System.Drawing.Size(695, 595);
+            this.Panel_Right_Oobai.TabIndex = 14;
+            // 
+            // Panel_Right_Middle_Oobai
+            // 
+            this.Panel_Right_Middle_Oobai.Controls.Add(this.rtbResponse);
+            this.Panel_Right_Middle_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_Right_Middle_Oobai.Location = new System.Drawing.Point(0, 128);
+            this.Panel_Right_Middle_Oobai.Name = "Panel_Right_Middle_Oobai";
+            this.Panel_Right_Middle_Oobai.Size = new System.Drawing.Size(695, 427);
+            this.Panel_Right_Middle_Oobai.TabIndex = 26;
+            // 
+            // rtbResponse
+            // 
+            this.rtbResponse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.rtbResponse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtbResponse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbResponse.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbResponse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.rtbResponse.Location = new System.Drawing.Point(0, 0);
+            this.rtbResponse.Name = "rtbResponse";
+            this.rtbResponse.ReadOnly = true;
+            this.rtbResponse.Size = new System.Drawing.Size(695, 427);
+            this.rtbResponse.TabIndex = 4;
+            this.rtbResponse.Text = "";
+            // 
+            // panel38
+            // 
+            this.panel38.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel38.Location = new System.Drawing.Point(0, 123);
+            this.panel38.Name = "panel38";
+            this.panel38.Size = new System.Drawing.Size(695, 5);
+            this.panel38.TabIndex = 25;
+            // 
+            // panel36
+            // 
+            this.panel36.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel36.Location = new System.Drawing.Point(0, 555);
+            this.panel36.Name = "panel36";
+            this.panel36.Size = new System.Drawing.Size(695, 5);
+            this.panel36.TabIndex = 24;
+            // 
+            // Panel_Right_Bottom_Oobai
+            // 
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.Clear_Btn);
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.SpeakPrompt_Btn);
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.panelHistory);
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.Copy_Btn);
+            this.Panel_Right_Bottom_Oobai.Controls.Add(this.Export_Btn);
+            this.Panel_Right_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panel_Right_Bottom_Oobai.Location = new System.Drawing.Point(0, 560);
+            this.Panel_Right_Bottom_Oobai.Name = "Panel_Right_Bottom_Oobai";
+            this.Panel_Right_Bottom_Oobai.Size = new System.Drawing.Size(695, 30);
+            this.Panel_Right_Bottom_Oobai.TabIndex = 23;
+            // 
+            // Clear_Btn
+            // 
+            this.Clear_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Clear_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Clear_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Clear_Btn.FlatAppearance.BorderSize = 0;
+            this.Clear_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Clear_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Clear_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Clear_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Clear_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Clear_Btn.Location = new System.Drawing.Point(308, 0);
+            this.Clear_Btn.Name = "Clear_Btn";
+            this.Clear_Btn.Size = new System.Drawing.Size(83, 30);
+            this.Clear_Btn.TabIndex = 9;
+            this.Clear_Btn.Text = "🗑 Empty";
+            this.Clear_Btn.UseVisualStyleBackColor = false;
+            this.Clear_Btn.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // SpeakPrompt_Btn
+            // 
+            this.SpeakPrompt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.SpeakPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SpeakPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SpeakPrompt_Btn.FlatAppearance.BorderSize = 0;
+            this.SpeakPrompt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.SpeakPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SpeakPrompt_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpeakPrompt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SpeakPrompt_Btn.Location = new System.Drawing.Point(391, 0);
+            this.SpeakPrompt_Btn.Name = "SpeakPrompt_Btn";
+            this.SpeakPrompt_Btn.Size = new System.Drawing.Size(83, 30);
+            this.SpeakPrompt_Btn.TabIndex = 18;
+            this.SpeakPrompt_Btn.Text = "▶️ Speak";
+            this.SpeakPrompt_Btn.UseVisualStyleBackColor = false;
+            this.SpeakPrompt_Btn.Click += new System.EventHandler(this.SpeakPrompt_Btn_Click);
+            // 
+            // panelHistory
+            // 
+            this.panelHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.panelHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHistory.Controls.Add(this.PromptViewer_Btn);
+            this.panelHistory.Controls.Add(this.lblHistoryInfo);
+            this.panelHistory.Controls.Add(this.btnHistoryPrev);
+            this.panelHistory.Controls.Add(this.btnHistoryNext);
+            this.panelHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelHistory.Location = new System.Drawing.Point(0, 0);
+            this.panelHistory.Name = "panelHistory";
+            this.panelHistory.Size = new System.Drawing.Size(474, 30);
+            this.panelHistory.TabIndex = 17;
+            // 
+            // PromptViewer_Btn
+            // 
+            this.PromptViewer_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.PromptViewer_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PromptViewer_Btn.FlatAppearance.BorderSize = 0;
+            this.PromptViewer_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.PromptViewer_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.PromptViewer_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PromptViewer_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PromptViewer_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.PromptViewer_Btn.Location = new System.Drawing.Point(3, 3);
+            this.PromptViewer_Btn.Name = "PromptViewer_Btn";
+            this.PromptViewer_Btn.Size = new System.Drawing.Size(42, 22);
+            this.PromptViewer_Btn.TabIndex = 15;
+            this.PromptViewer_Btn.Text = "⚡";
+            this.PromptViewer_Btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.PromptViewer_Btn.UseVisualStyleBackColor = false;
+            this.PromptViewer_Btn.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
+            // 
+            // lblHistoryInfo
+            // 
+            this.lblHistoryInfo.AutoSize = true;
+            this.lblHistoryInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblHistoryInfo.Location = new System.Drawing.Point(133, 8);
+            this.lblHistoryInfo.Name = "lblHistoryInfo";
+            this.lblHistoryInfo.Size = new System.Drawing.Size(81, 13);
+            this.lblHistoryInfo.TabIndex = 14;
+            this.lblHistoryInfo.Text = "Backup: empty";
+            // 
+            // btnHistoryPrev
+            // 
+            this.btnHistoryPrev.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.btnHistoryPrev.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistoryPrev.FlatAppearance.BorderSize = 0;
+            this.btnHistoryPrev.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.btnHistoryPrev.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.btnHistoryPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistoryPrev.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistoryPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.btnHistoryPrev.Location = new System.Drawing.Point(51, 3);
+            this.btnHistoryPrev.Name = "btnHistoryPrev";
+            this.btnHistoryPrev.Size = new System.Drawing.Size(35, 22);
+            this.btnHistoryPrev.TabIndex = 11;
+            this.btnHistoryPrev.Text = "◄";
+            this.btnHistoryPrev.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnHistoryPrev.UseVisualStyleBackColor = false;
+            this.btnHistoryPrev.Click += new System.EventHandler(this.BtnHistoryPrev_Click);
+            // 
+            // btnHistoryNext
+            // 
+            this.btnHistoryNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.btnHistoryNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistoryNext.FlatAppearance.BorderSize = 0;
+            this.btnHistoryNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.btnHistoryNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.btnHistoryNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistoryNext.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistoryNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.btnHistoryNext.Location = new System.Drawing.Point(92, 3);
+            this.btnHistoryNext.Name = "btnHistoryNext";
+            this.btnHistoryNext.Size = new System.Drawing.Size(35, 22);
+            this.btnHistoryNext.TabIndex = 12;
+            this.btnHistoryNext.Text = "►";
+            this.btnHistoryNext.UseVisualStyleBackColor = false;
+            this.btnHistoryNext.Click += new System.EventHandler(this.BtnHistoryNext_Click);
+            // 
+            // Copy_Btn
+            // 
+            this.Copy_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(148)))), ((int)(((byte)(136)))));
+            this.Copy_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Copy_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Copy_Btn.FlatAppearance.BorderSize = 0;
+            this.Copy_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Copy_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Copy_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Copy_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Copy_Btn.Location = new System.Drawing.Point(474, 0);
+            this.Copy_Btn.Name = "Copy_Btn";
+            this.Copy_Btn.Size = new System.Drawing.Size(74, 30);
+            this.Copy_Btn.TabIndex = 8;
+            this.Copy_Btn.Text = "📋 Copy";
+            this.Copy_Btn.UseVisualStyleBackColor = false;
+            this.Copy_Btn.Click += new System.EventHandler(this.BtnCopy_Click);
+            // 
+            // Export_Btn
+            // 
+            this.Export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(119)))), ((int)(((byte)(6)))));
+            this.Export_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Export_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Export_Btn.FlatAppearance.BorderSize = 0;
+            this.Export_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Export_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Export_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Export_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Export_Btn.Location = new System.Drawing.Point(548, 0);
+            this.Export_Btn.Name = "Export_Btn";
+            this.Export_Btn.Size = new System.Drawing.Size(147, 30);
+            this.Export_Btn.TabIndex = 10;
+            this.Export_Btn.Text = "💾 Export Txt or Md";
+            this.Export_Btn.UseVisualStyleBackColor = false;
+            this.Export_Btn.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
+            // panel37
+            // 
+            this.panel37.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel37.Location = new System.Drawing.Point(0, 590);
+            this.panel37.Name = "panel37";
+            this.panel37.Size = new System.Drawing.Size(695, 5);
+            this.panel37.TabIndex = 25;
+            // 
+            // Panel_Right_Top_Oobai
+            // 
+            this.Panel_Right_Top_Oobai.Controls.Add(this.ViewTruncatePrompt);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.TruncateAnswer);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.label35);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.label34);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.SignatureCompressText_Lbl);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.label33);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.WebFetch_Txt);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.SemanticCompress);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.StatsCompressText_Lbl);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.label36);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.WebSearch_Txt);
+            this.Panel_Right_Top_Oobai.Controls.Add(this.CloudChat_Txt);
+            this.Panel_Right_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel_Right_Top_Oobai.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Right_Top_Oobai.Name = "Panel_Right_Top_Oobai";
+            this.Panel_Right_Top_Oobai.Size = new System.Drawing.Size(695, 123);
+            this.Panel_Right_Top_Oobai.TabIndex = 22;
+            // 
+            // ViewTruncatePrompt
+            // 
+            this.ViewTruncatePrompt.AutoSize = true;
+            this.ViewTruncatePrompt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ViewTruncatePrompt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewTruncatePrompt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ViewTruncatePrompt.Location = new System.Drawing.Point(339, 34);
+            this.ViewTruncatePrompt.Name = "ViewTruncatePrompt";
+            this.ViewTruncatePrompt.Size = new System.Drawing.Size(203, 19);
+            this.ViewTruncatePrompt.TabIndex = 32;
+            this.ViewTruncatePrompt.Text = "Display the text (continue answer)";
+            this.ViewTruncatePrompt.UseVisualStyleBackColor = true;
+            // 
+            // TruncateAnswer
+            // 
+            this.TruncateAnswer.AutoSize = true;
+            this.TruncateAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TruncateAnswer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TruncateAnswer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.TruncateAnswer.Location = new System.Drawing.Point(339, 59);
+            this.TruncateAnswer.Name = "TruncateAnswer";
+            this.TruncateAnswer.Size = new System.Drawing.Size(118, 19);
+            this.TruncateAnswer.TabIndex = 21;
+            this.TruncateAnswer.Text = "Truncate question";
+            this.TruncateAnswer.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.label35.Location = new System.Drawing.Point(8, 7);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(278, 15);
+            this.label35.TabIndex = 31;
+            this.label35.Text = "Change these settings \\OOBai\\agent_ai_config.json";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label34.Location = new System.Drawing.Point(8, 94);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(35, 15);
+            this.label34.TabIndex = 30;
+            this.label34.Text = "Chat:";
+            // 
+            // SignatureCompressText_Lbl
+            // 
+            this.SignatureCompressText_Lbl.AutoSize = true;
+            this.SignatureCompressText_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SignatureCompressText_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.SignatureCompressText_Lbl.Location = new System.Drawing.Point(336, 99);
+            this.SignatureCompressText_Lbl.Name = "SignatureCompressText_Lbl";
+            this.SignatureCompressText_Lbl.Size = new System.Drawing.Size(68, 15);
+            this.SignatureCompressText_Lbl.TabIndex = 17;
+            this.SignatureCompressText_Lbl.Text = "Signature: -";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label33.Location = new System.Drawing.Point(8, 65);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(39, 15);
+            this.label33.TabIndex = 29;
+            this.label33.Text = "Fetch:";
+            // 
+            // WebFetch_Txt
+            // 
+            this.WebFetch_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.WebFetch_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebFetch_Txt.Enabled = false;
+            this.WebFetch_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebFetch_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.WebFetch_Txt.Location = new System.Drawing.Point(65, 60);
+            this.WebFetch_Txt.Name = "WebFetch_Txt";
+            this.WebFetch_Txt.ReadOnly = true;
+            this.WebFetch_Txt.Size = new System.Drawing.Size(250, 23);
+            this.WebFetch_Txt.TabIndex = 26;
+            // 
+            // SemanticCompress
+            // 
+            this.SemanticCompress.AutoSize = true;
+            this.SemanticCompress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SemanticCompress.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SemanticCompress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.SemanticCompress.Location = new System.Drawing.Point(339, 10);
+            this.SemanticCompress.Name = "SemanticCompress";
+            this.SemanticCompress.Size = new System.Drawing.Size(242, 19);
+            this.SemanticCompress.TabIndex = 20;
+            this.SemanticCompress.Text = "Semantic compression (continue answer)";
+            this.SemanticCompress.UseVisualStyleBackColor = true;
+            // 
+            // StatsCompressText_Lbl
+            // 
+            this.StatsCompressText_Lbl.AutoSize = true;
+            this.StatsCompressText_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatsCompressText_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(212)))), ((int)(((byte)(191)))));
+            this.StatsCompressText_Lbl.Location = new System.Drawing.Point(336, 81);
+            this.StatsCompressText_Lbl.Name = "StatsCompressText_Lbl";
+            this.StatsCompressText_Lbl.Size = new System.Drawing.Size(99, 15);
+            this.StatsCompressText_Lbl.TabIndex = 16;
+            this.StatsCompressText_Lbl.Text = "Compression: 0%";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label36.Location = new System.Drawing.Point(8, 36);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(45, 15);
+            this.label36.TabIndex = 28;
+            this.label36.Text = "Search:";
+            // 
+            // WebSearch_Txt
+            // 
+            this.WebSearch_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.WebSearch_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebSearch_Txt.Enabled = false;
+            this.WebSearch_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebSearch_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.WebSearch_Txt.Location = new System.Drawing.Point(65, 31);
+            this.WebSearch_Txt.Name = "WebSearch_Txt";
+            this.WebSearch_Txt.ReadOnly = true;
+            this.WebSearch_Txt.Size = new System.Drawing.Size(250, 23);
+            this.WebSearch_Txt.TabIndex = 25;
+            // 
+            // CloudChat_Txt
+            // 
+            this.CloudChat_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CloudChat_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CloudChat_Txt.Enabled = false;
+            this.CloudChat_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloudChat_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.CloudChat_Txt.Location = new System.Drawing.Point(65, 89);
+            this.CloudChat_Txt.Name = "CloudChat_Txt";
+            this.CloudChat_Txt.ReadOnly = true;
+            this.CloudChat_Txt.Size = new System.Drawing.Size(250, 23);
+            this.CloudChat_Txt.TabIndex = 27;
+            // 
+            // panel39
+            // 
+            this.panel39.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel39.Location = new System.Drawing.Point(624, 0);
+            this.panel39.Name = "panel39";
+            this.panel39.Size = new System.Drawing.Size(7, 595);
+            this.panel39.TabIndex = 24;
+            // 
+            // Panel_Left_Oobai
+            // 
+            this.Panel_Left_Oobai.Controls.Add(this.Panel_Middle_Top_Oobai);
+            this.Panel_Left_Oobai.Controls.Add(this.panel41);
+            this.Panel_Left_Oobai.Controls.Add(this.panel40);
+            this.Panel_Left_Oobai.Controls.Add(this.Panel_Middle_TopT_Oobai);
+            this.Panel_Left_Oobai.Controls.Add(this.Panel_Middle_BottomT_Oobai);
+            this.Panel_Left_Oobai.Controls.Add(this.Panel_Left_Top_Oobai);
+            this.Panel_Left_Oobai.Controls.Add(this.panel35);
+            this.Panel_Left_Oobai.Controls.Add(this.Panel_Left_Bottom_Oobai);
+            this.Panel_Left_Oobai.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Panel_Left_Oobai.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Left_Oobai.Name = "Panel_Left_Oobai";
+            this.Panel_Left_Oobai.Size = new System.Drawing.Size(624, 595);
+            this.Panel_Left_Oobai.TabIndex = 23;
+            // 
+            // Panel_Middle_Top_Oobai
+            // 
+            this.Panel_Middle_Top_Oobai.Controls.Add(this.txtPrompt);
+            this.Panel_Middle_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_Middle_Top_Oobai.Location = new System.Drawing.Point(0, 128);
+            this.Panel_Middle_Top_Oobai.Name = "Panel_Middle_Top_Oobai";
+            this.Panel_Middle_Top_Oobai.Size = new System.Drawing.Size(624, 398);
+            this.Panel_Middle_Top_Oobai.TabIndex = 25;
+            // 
+            // txtPrompt
+            // 
+            this.txtPrompt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.txtPrompt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrompt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPrompt.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrompt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.txtPrompt.Location = new System.Drawing.Point(0, 0);
+            this.txtPrompt.Multiline = true;
+            this.txtPrompt.Name = "txtPrompt";
+            this.txtPrompt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtPrompt.Size = new System.Drawing.Size(624, 398);
+            this.txtPrompt.TabIndex = 3;
+            // 
+            // panel41
+            // 
+            this.panel41.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel41.Location = new System.Drawing.Point(0, 526);
+            this.panel41.Name = "panel41";
+            this.panel41.Size = new System.Drawing.Size(624, 5);
+            this.panel41.TabIndex = 31;
+            // 
+            // panel40
+            // 
+            this.panel40.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel40.Location = new System.Drawing.Point(0, 123);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(624, 5);
+            this.panel40.TabIndex = 30;
+            // 
+            // Panel_Middle_TopT_Oobai
+            // 
+            this.Panel_Middle_TopT_Oobai.Controls.Add(this.cmbTemplates);
+            this.Panel_Middle_TopT_Oobai.Controls.Add(this.AddTemplate_Btn);
+            this.Panel_Middle_TopT_Oobai.Controls.Add(this.lblTemplates);
+            this.Panel_Middle_TopT_Oobai.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel_Middle_TopT_Oobai.Location = new System.Drawing.Point(0, 100);
+            this.Panel_Middle_TopT_Oobai.Name = "Panel_Middle_TopT_Oobai";
+            this.Panel_Middle_TopT_Oobai.Size = new System.Drawing.Size(624, 23);
+            this.Panel_Middle_TopT_Oobai.TabIndex = 29;
+            // 
+            // cmbTemplates
+            // 
+            this.cmbTemplates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.cmbTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTemplates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbTemplates.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cmbTemplates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.cmbTemplates.FormattingEnabled = true;
+            this.cmbTemplates.Location = new System.Drawing.Point(71, 0);
+            this.cmbTemplates.Name = "cmbTemplates";
+            this.cmbTemplates.Size = new System.Drawing.Size(489, 23);
+            this.cmbTemplates.TabIndex = 2;
+            this.cmbTemplates.SelectedIndexChanged += new System.EventHandler(this.CmbTemplates_SelectedIndexChanged);
+            // 
+            // AddTemplate_Btn
+            // 
+            this.AddTemplate_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.AddTemplate_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddTemplate_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AddTemplate_Btn.FlatAppearance.BorderSize = 0;
+            this.AddTemplate_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.AddTemplate_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddTemplate_Btn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.AddTemplate_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddTemplate_Btn.Location = new System.Drawing.Point(560, 0);
+            this.AddTemplate_Btn.Name = "AddTemplate_Btn";
+            this.AddTemplate_Btn.Size = new System.Drawing.Size(64, 23);
+            this.AddTemplate_Btn.TabIndex = 16;
+            this.AddTemplate_Btn.Text = "➕ Add";
+            this.AddTemplate_Btn.UseVisualStyleBackColor = false;
+            this.AddTemplate_Btn.Click += new System.EventHandler(this.BtnAddTemplate_Click);
+            // 
+            // lblTemplates
+            // 
+            this.lblTemplates.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTemplates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTemplates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.lblTemplates.Location = new System.Drawing.Point(0, 0);
+            this.lblTemplates.Name = "lblTemplates";
+            this.lblTemplates.Size = new System.Drawing.Size(71, 23);
+            this.lblTemplates.TabIndex = 15;
+            this.lblTemplates.Text = "Template:";
+            this.lblTemplates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Panel_Middle_BottomT_Oobai
+            // 
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.Send_Btn);
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.ContinueAnswer_Btn);
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.CloudModelChat_Btn);
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.WebSearch_Btn);
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.SearchURLOnly_Btn);
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.ClearPrompt_Btn);
+            this.Panel_Middle_BottomT_Oobai.Controls.Add(this.Cancel_Btn);
+            this.Panel_Middle_BottomT_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panel_Middle_BottomT_Oobai.Location = new System.Drawing.Point(0, 531);
+            this.Panel_Middle_BottomT_Oobai.Name = "Panel_Middle_BottomT_Oobai";
+            this.Panel_Middle_BottomT_Oobai.Size = new System.Drawing.Size(624, 25);
+            this.Panel_Middle_BottomT_Oobai.TabIndex = 27;
+            // 
+            // Send_Btn
+            // 
+            this.Send_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Send_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Send_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Send_Btn.FlatAppearance.BorderSize = 0;
+            this.Send_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Send_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Send_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Send_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Send_Btn.Location = new System.Drawing.Point(355, 0);
+            this.Send_Btn.Name = "Send_Btn";
+            this.Send_Btn.Size = new System.Drawing.Size(135, 25);
+            this.Send_Btn.TabIndex = 5;
+            this.Send_Btn.Text = "📤 Localhost";
+            this.Send_Btn.UseVisualStyleBackColor = false;
+            this.Send_Btn.Click += new System.EventHandler(this.BtnSend_Click);
+            // 
+            // ContinueAnswer_Btn
+            // 
+            this.ContinueAnswer_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(40)))), ((int)(((byte)(217)))));
+            this.ContinueAnswer_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ContinueAnswer_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ContinueAnswer_Btn.FlatAppearance.BorderSize = 0;
+            this.ContinueAnswer_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ContinueAnswer_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ContinueAnswer_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContinueAnswer_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ContinueAnswer_Btn.Location = new System.Drawing.Point(490, 0);
+            this.ContinueAnswer_Btn.Name = "ContinueAnswer_Btn";
+            this.ContinueAnswer_Btn.Size = new System.Drawing.Size(134, 25);
+            this.ContinueAnswer_Btn.TabIndex = 20;
+            this.ContinueAnswer_Btn.Text = "Continue Answer";
+            this.ContinueAnswer_Btn.UseVisualStyleBackColor = false;
+            this.ContinueAnswer_Btn.Click += new System.EventHandler(this.ContinueAnswer_Btn_Click);
+            // 
+            // CloudModelChat_Btn
+            // 
+            this.CloudModelChat_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.CloudModelChat_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CloudModelChat_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CloudModelChat_Btn.FlatAppearance.BorderSize = 0;
+            this.CloudModelChat_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CloudModelChat_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloudModelChat_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloudModelChat_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CloudModelChat_Btn.Location = new System.Drawing.Point(273, 0);
+            this.CloudModelChat_Btn.Name = "CloudModelChat_Btn";
+            this.CloudModelChat_Btn.Size = new System.Drawing.Size(82, 25);
+            this.CloudModelChat_Btn.TabIndex = 18;
+            this.CloudModelChat_Btn.Text = "Cloud";
+            this.CloudModelChat_Btn.UseVisualStyleBackColor = false;
+            this.CloudModelChat_Btn.Click += new System.EventHandler(this.CloudModelChat_Click);
+            // 
+            // WebSearch_Btn
+            // 
+            this.WebSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(58)))), ((int)(((byte)(237)))));
+            this.WebSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WebSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WebSearch_Btn.FlatAppearance.BorderSize = 0;
+            this.WebSearch_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.WebSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebSearch_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebSearch_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.WebSearch_Btn.Location = new System.Drawing.Point(209, 0);
+            this.WebSearch_Btn.Name = "WebSearch_Btn";
+            this.WebSearch_Btn.Size = new System.Drawing.Size(64, 25);
+            this.WebSearch_Btn.TabIndex = 8;
+            this.WebSearch_Btn.Text = "Web";
+            this.WebSearch_Btn.UseVisualStyleBackColor = false;
+            this.WebSearch_Btn.Click += new System.EventHandler(this.BtnWebSearch_Click);
+            // 
+            // SearchURLOnly_Btn
+            // 
+            this.SearchURLOnly_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(119)))), ((int)(((byte)(6)))));
+            this.SearchURLOnly_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SearchURLOnly_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SearchURLOnly_Btn.FlatAppearance.BorderSize = 0;
+            this.SearchURLOnly_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.SearchURLOnly_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchURLOnly_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchURLOnly_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SearchURLOnly_Btn.Location = new System.Drawing.Point(150, 0);
+            this.SearchURLOnly_Btn.Name = "SearchURLOnly_Btn";
+            this.SearchURLOnly_Btn.Size = new System.Drawing.Size(59, 25);
+            this.SearchURLOnly_Btn.TabIndex = 17;
+            this.SearchURLOnly_Btn.Text = "Url";
+            this.SearchURLOnly_Btn.UseVisualStyleBackColor = false;
+            this.SearchURLOnly_Btn.Click += new System.EventHandler(this.SearchURLOnly_Click);
+            // 
+            // ClearPrompt_Btn
+            // 
+            this.ClearPrompt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ClearPrompt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearPrompt_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ClearPrompt_Btn.FlatAppearance.BorderSize = 0;
+            this.ClearPrompt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ClearPrompt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ClearPrompt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearPrompt_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearPrompt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ClearPrompt_Btn.Location = new System.Drawing.Point(62, 0);
+            this.ClearPrompt_Btn.Name = "ClearPrompt_Btn";
+            this.ClearPrompt_Btn.Size = new System.Drawing.Size(88, 25);
+            this.ClearPrompt_Btn.TabIndex = 7;
+            this.ClearPrompt_Btn.Text = "🗑 Empty";
+            this.ClearPrompt_Btn.UseVisualStyleBackColor = false;
+            this.ClearPrompt_Btn.Click += new System.EventHandler(this.BtnClearPrompt_Click);
+            // 
+            // Cancel_Btn
+            // 
+            this.Cancel_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.Cancel_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Cancel_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Cancel_Btn.Enabled = false;
+            this.Cancel_Btn.FlatAppearance.BorderSize = 0;
+            this.Cancel_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Cancel_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancel_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cancel_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Cancel_Btn.Location = new System.Drawing.Point(0, 0);
+            this.Cancel_Btn.Name = "Cancel_Btn";
+            this.Cancel_Btn.Size = new System.Drawing.Size(62, 25);
+            this.Cancel_Btn.TabIndex = 6;
+            this.Cancel_Btn.Text = " Cancel";
+            this.Cancel_Btn.UseVisualStyleBackColor = false;
+            this.Cancel_Btn.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // Panel_Left_Top_Oobai
+            // 
+            this.Panel_Left_Top_Oobai.Controls.Add(this.ModelInfos_Btn);
+            this.Panel_Left_Top_Oobai.Controls.Add(this.ModeSelectl_Cbx);
+            this.Panel_Left_Top_Oobai.Controls.Add(this.lblUrl);
+            this.Panel_Left_Top_Oobai.Controls.Add(this.lblModel);
+            this.Panel_Left_Top_Oobai.Controls.Add(this.lblApiKey);
+            this.Panel_Left_Top_Oobai.Controls.Add(this.txtUrl);
+            this.Panel_Left_Top_Oobai.Controls.Add(this.txtApiKey);
+            this.Panel_Left_Top_Oobai.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel_Left_Top_Oobai.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Left_Top_Oobai.Name = "Panel_Left_Top_Oobai";
+            this.Panel_Left_Top_Oobai.Size = new System.Drawing.Size(624, 100);
+            this.Panel_Left_Top_Oobai.TabIndex = 24;
+            // 
+            // ModelInfos_Btn
+            // 
+            this.ModelInfos_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ModelInfos_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModelInfos_Btn.FlatAppearance.BorderSize = 0;
+            this.ModelInfos_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ModelInfos_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.ModelInfos_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModelInfos_Btn.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelInfos_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.ModelInfos_Btn.Location = new System.Drawing.Point(597, 39);
+            this.ModelInfos_Btn.Name = "ModelInfos_Btn";
+            this.ModelInfos_Btn.Size = new System.Drawing.Size(25, 25);
+            this.ModelInfos_Btn.TabIndex = 11;
+            this.ModelInfos_Btn.Text = "ℹ️";
+            this.ModelInfos_Btn.UseVisualStyleBackColor = false;
+            this.ModelInfos_Btn.Click += new System.EventHandler(this.ModelInfos_Btn_Click);
+            // 
+            // ModeSelectl_Cbx
+            // 
+            this.ModeSelectl_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ModeSelectl_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ModeSelectl_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModeSelectl_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ModeSelectl_Cbx.FormattingEnabled = true;
+            this.ModeSelectl_Cbx.Location = new System.Drawing.Point(70, 41);
+            this.ModeSelectl_Cbx.Name = "ModeSelectl_Cbx";
+            this.ModeSelectl_Cbx.Size = new System.Drawing.Size(523, 23);
+            this.ModeSelectl_Cbx.Sorted = true;
+            this.ModeSelectl_Cbx.TabIndex = 10;
+            this.ModeSelectl_Cbx.Text = "deepseek-v3.1:671b-cloud";
+            this.ModeSelectl_Cbx.SelectedIndexChanged += new System.EventHandler(this.ModeSelectl_Cbx_SelectedIndexChanged);
+            // 
+            // lblUrl
+            // 
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.lblUrl.Location = new System.Drawing.Point(9, 16);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(31, 15);
+            this.lblUrl.TabIndex = 7;
+            this.lblUrl.Text = "URL:";
+            // 
+            // lblModel
+            // 
+            this.lblModel.AutoSize = true;
+            this.lblModel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.lblModel.Location = new System.Drawing.Point(9, 46);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(44, 15);
+            this.lblModel.TabIndex = 8;
+            this.lblModel.Text = "Model:";
+            // 
+            // lblApiKey
+            // 
+            this.lblApiKey.AutoSize = true;
+            this.lblApiKey.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApiKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.lblApiKey.Location = new System.Drawing.Point(9, 74);
+            this.lblApiKey.Name = "lblApiKey";
+            this.lblApiKey.Size = new System.Drawing.Size(50, 15);
+            this.lblApiKey.TabIndex = 9;
+            this.lblApiKey.Text = "API Key:";
+            // 
+            // txtUrl
+            // 
+            this.txtUrl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.txtUrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUrl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUrl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.txtUrl.Location = new System.Drawing.Point(70, 11);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(554, 23);
+            this.txtUrl.TabIndex = 0;
+            // 
+            // txtApiKey
+            // 
+            this.txtApiKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.txtApiKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtApiKey.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApiKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.txtApiKey.Location = new System.Drawing.Point(70, 69);
+            this.txtApiKey.Name = "txtApiKey";
+            this.txtApiKey.Size = new System.Drawing.Size(554, 23);
+            this.txtApiKey.TabIndex = 2;
+            this.txtApiKey.Text = "Instead, set the OLLAMA_API_KEY environment variable to your API key....";
+            // 
+            // panel35
+            // 
+            this.panel35.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel35.Location = new System.Drawing.Point(0, 556);
+            this.panel35.Name = "panel35";
+            this.panel35.Size = new System.Drawing.Size(624, 5);
+            this.panel35.TabIndex = 28;
+            // 
+            // Panel_Left_Bottom_Oobai
+            // 
+            this.Panel_Left_Bottom_Oobai.Controls.Add(this.lblStatus);
+            this.Panel_Left_Bottom_Oobai.Controls.Add(this.WebCloud);
+            this.Panel_Left_Bottom_Oobai.Controls.Add(this.panel34);
+            this.Panel_Left_Bottom_Oobai.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panel_Left_Bottom_Oobai.Location = new System.Drawing.Point(0, 561);
+            this.Panel_Left_Bottom_Oobai.Name = "Panel_Left_Bottom_Oobai";
+            this.Panel_Left_Bottom_Oobai.Size = new System.Drawing.Size(624, 34);
+            this.Panel_Left_Bottom_Oobai.TabIndex = 26;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblStatus.Location = new System.Drawing.Point(0, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.lblStatus.Size = new System.Drawing.Size(576, 29);
+            this.lblStatus.TabIndex = 15;
+            this.lblStatus.Text = "Prêt";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // WebCloud
+            // 
+            this.WebCloud.AutoSize = true;
+            this.WebCloud.Dock = System.Windows.Forms.DockStyle.Right;
+            this.WebCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebCloud.Location = new System.Drawing.Point(576, 0);
+            this.WebCloud.Name = "WebCloud";
+            this.WebCloud.Size = new System.Drawing.Size(48, 29);
+            this.WebCloud.TabIndex = 20;
+            this.WebCloud.Text = "Web";
+            this.WebCloud.UseVisualStyleBackColor = true;
+            // 
+            // panel34
+            // 
+            this.panel34.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel34.Location = new System.Drawing.Point(0, 29);
+            this.panel34.Name = "panel34";
+            this.panel34.Size = new System.Drawing.Size(624, 5);
+            this.panel34.TabIndex = 16;
+            // 
+            // Options_Tab
+            // 
+            this.Options_Tab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Options_Tab.Controls.Add(this.Panel_WorkspaceSize);
+            this.Options_Tab.Controls.Add(this.panel26);
+            this.Options_Tab.Controls.Add(this.Panel_ConfigFiles);
+            this.Options_Tab.Controls.Add(this.panel25);
+            this.Options_Tab.Controls.Add(this.Panel_ConfigXml);
+            this.Options_Tab.Controls.Add(this.panel24);
+            this.Options_Tab.Controls.Add(this.panel23);
+            this.Options_Tab.Controls.Add(this.panel22);
+            this.Options_Tab.Controls.Add(this.panel21);
+            this.Options_Tab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Options_Tab.Location = new System.Drawing.Point(4, 38);
+            this.Options_Tab.Name = "Options_Tab";
+            this.Options_Tab.Size = new System.Drawing.Size(1326, 595);
+            this.Options_Tab.TabIndex = 8;
+            this.Options_Tab.Text = "OPTIONS";
+            // 
+            // Panel_WorkspaceSize
+            // 
+            this.Panel_WorkspaceSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.Panel_WorkspaceSize.Controls.Add(this.groupBox5);
+            this.Panel_WorkspaceSize.Controls.Add(this.groupBox7);
+            this.Panel_WorkspaceSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel_WorkspaceSize.Location = new System.Drawing.Point(988, 10);
+            this.Panel_WorkspaceSize.Name = "Panel_WorkspaceSize";
+            this.Panel_WorkspaceSize.Size = new System.Drawing.Size(328, 575);
+            this.Panel_WorkspaceSize.TabIndex = 26;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.groupBox5.Controls.Add(this.PanelOptDir_Pnl);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.groupBox5.Location = new System.Drawing.Point(0, 62);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(328, 513);
+            this.groupBox5.TabIndex = 19;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Workspace Size";
+            // 
+            // PanelOptDir_Pnl
+            // 
+            this.PanelOptDir_Pnl.AutoScroll = true;
+            this.PanelOptDir_Pnl.Controls.Add(this.KeepTrackDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.KeepTrackDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.JsonDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.JsonDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.MapDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.MapDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.OstiumDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.BkmkltDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.AddOnDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.BkmkltDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.DatabaseDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.SpritesDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.FeedDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.SpritesDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.ScriptDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.DiagramDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.DiagramDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.OstiumDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.WebView2Dir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.AddOnDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.WebView2Dir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.DatabseDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.PictureDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.FeedDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.PictureDir_Opn);
+            this.PanelOptDir_Pnl.Controls.Add(this.ScriptDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowModelDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowDir_Lbl);
+            this.PanelOptDir_Pnl.Controls.Add(this.WorkFlowModelDir_Opn);
+            this.PanelOptDir_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelOptDir_Pnl.Location = new System.Drawing.Point(3, 19);
+            this.PanelOptDir_Pnl.Name = "PanelOptDir_Pnl";
+            this.PanelOptDir_Pnl.Size = new System.Drawing.Size(322, 491);
+            this.PanelOptDir_Pnl.TabIndex = 24;
+            // 
+            // KeepTrackDir_Lbl
+            // 
+            this.KeepTrackDir_Lbl.AutoSize = true;
+            this.KeepTrackDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeepTrackDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.KeepTrackDir_Lbl.Location = new System.Drawing.Point(8, 674);
+            this.KeepTrackDir_Lbl.Name = "KeepTrackDir_Lbl";
+            this.KeepTrackDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.KeepTrackDir_Lbl.TabIndex = 29;
+            this.KeepTrackDir_Lbl.Text = "0";
+            // 
+            // KeepTrackDir_Opn
+            // 
+            this.KeepTrackDir_Opn.AutoSize = true;
+            this.KeepTrackDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.KeepTrackDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeepTrackDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.KeepTrackDir_Opn.Location = new System.Drawing.Point(8, 653);
+            this.KeepTrackDir_Opn.Name = "KeepTrackDir_Opn";
+            this.KeepTrackDir_Opn.Size = new System.Drawing.Size(91, 15);
+            this.KeepTrackDir_Opn.TabIndex = 28;
+            this.KeepTrackDir_Opn.Text = "Keep Track path";
+            this.KeepTrackDir_Opn.Click += new System.EventHandler(this.KeepTrackDir_Opn_Click);
+            // 
+            // JsonDir_Lbl
+            // 
+            this.JsonDir_Lbl.AutoSize = true;
+            this.JsonDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.JsonDir_Lbl.Location = new System.Drawing.Point(8, 629);
+            this.JsonDir_Lbl.Name = "JsonDir_Lbl";
+            this.JsonDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.JsonDir_Lbl.TabIndex = 27;
+            this.JsonDir_Lbl.Text = "0";
+            // 
+            // JsonDir_Opn
+            // 
+            this.JsonDir_Opn.AutoSize = true;
+            this.JsonDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JsonDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JsonDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.JsonDir_Opn.Location = new System.Drawing.Point(8, 608);
+            this.JsonDir_Opn.Name = "JsonDir_Opn";
+            this.JsonDir_Opn.Size = new System.Drawing.Size(82, 15);
+            this.JsonDir_Opn.TabIndex = 26;
+            this.JsonDir_Opn.Text = "Json files path";
+            this.JsonDir_Opn.Click += new System.EventHandler(this.JsonDir_Opn_Click);
+            // 
+            // MapDir_Lbl
+            // 
+            this.MapDir_Lbl.AutoSize = true;
+            this.MapDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.MapDir_Lbl.Location = new System.Drawing.Point(8, 584);
+            this.MapDir_Lbl.Name = "MapDir_Lbl";
+            this.MapDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.MapDir_Lbl.TabIndex = 25;
+            this.MapDir_Lbl.Text = "0";
+            // 
+            // MapDir_Opn
+            // 
+            this.MapDir_Opn.AutoSize = true;
+            this.MapDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MapDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.MapDir_Opn.Location = new System.Drawing.Point(8, 563);
+            this.MapDir_Opn.Name = "MapDir_Opn";
+            this.MapDir_Opn.Size = new System.Drawing.Size(58, 15);
+            this.MapDir_Opn.TabIndex = 24;
+            this.MapDir_Opn.Text = "Map path";
+            this.MapDir_Opn.Click += new System.EventHandler(this.MapDir_Opn_Click);
+            // 
+            // OstiumDir_Opn
+            // 
+            this.OstiumDir_Opn.AutoSize = true;
+            this.OstiumDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OstiumDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OstiumDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.OstiumDir_Opn.Location = new System.Drawing.Point(8, 9);
+            this.OstiumDir_Opn.Name = "OstiumDir_Opn";
+            this.OstiumDir_Opn.Size = new System.Drawing.Size(73, 15);
+            this.OstiumDir_Opn.TabIndex = 0;
+            this.OstiumDir_Opn.Text = "Ostium Path";
+            this.OstiumDir_Opn.Click += new System.EventHandler(this.OstiumDir_Opn_Click);
+            // 
+            // BkmkltDir_Lbl
+            // 
+            this.BkmkltDir_Lbl.AutoSize = true;
+            this.BkmkltDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BkmkltDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.BkmkltDir_Lbl.Location = new System.Drawing.Point(8, 539);
+            this.BkmkltDir_Lbl.Name = "BkmkltDir_Lbl";
+            this.BkmkltDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.BkmkltDir_Lbl.TabIndex = 23;
+            this.BkmkltDir_Lbl.Text = "0";
+            // 
+            // AddOnDir_Opn
+            // 
+            this.AddOnDir_Opn.AutoSize = true;
+            this.AddOnDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddOnDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddOnDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddOnDir_Opn.Location = new System.Drawing.Point(8, 56);
+            this.AddOnDir_Opn.Name = "AddOnDir_Opn";
+            this.AddOnDir_Opn.Size = new System.Drawing.Size(108, 15);
+            this.AddOnDir_Opn.TabIndex = 1;
+            this.AddOnDir_Opn.Text = "Add-On Tools path";
+            this.AddOnDir_Opn.Click += new System.EventHandler(this.AddOnDir_Opn_Click);
+            // 
+            // BkmkltDir_Opn
+            // 
+            this.BkmkltDir_Opn.AutoSize = true;
+            this.BkmkltDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BkmkltDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BkmkltDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.BkmkltDir_Opn.Location = new System.Drawing.Point(8, 518);
+            this.BkmkltDir_Opn.Name = "BkmkltDir_Opn";
+            this.BkmkltDir_Opn.Size = new System.Drawing.Size(106, 15);
+            this.BkmkltDir_Opn.TabIndex = 22;
+            this.BkmkltDir_Opn.Text = "Bookmarklets path";
+            this.BkmkltDir_Opn.Click += new System.EventHandler(this.BkmkltDir_Opn_Click);
+            // 
+            // DatabaseDir_Opn
+            // 
+            this.DatabaseDir_Opn.AutoSize = true;
+            this.DatabaseDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DatabaseDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatabaseDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.DatabaseDir_Opn.Location = new System.Drawing.Point(8, 103);
+            this.DatabaseDir_Opn.Name = "DatabaseDir_Opn";
+            this.DatabaseDir_Opn.Size = new System.Drawing.Size(83, 15);
+            this.DatabaseDir_Opn.TabIndex = 2;
+            this.DatabaseDir_Opn.Text = "Database path";
+            this.DatabaseDir_Opn.Click += new System.EventHandler(this.DatabaseDir_Opn_Click);
+            // 
+            // SpritesDir_Lbl
+            // 
+            this.SpritesDir_Lbl.AutoSize = true;
+            this.SpritesDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpritesDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.SpritesDir_Lbl.Location = new System.Drawing.Point(8, 494);
+            this.SpritesDir_Lbl.Name = "SpritesDir_Lbl";
+            this.SpritesDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.SpritesDir_Lbl.TabIndex = 21;
+            this.SpritesDir_Lbl.Text = "0";
+            // 
+            // FeedDir_Opn
+            // 
+            this.FeedDir_Opn.AutoSize = true;
+            this.FeedDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FeedDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FeedDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.FeedDir_Opn.Location = new System.Drawing.Point(8, 150);
+            this.FeedDir_Opn.Name = "FeedDir_Opn";
+            this.FeedDir_Opn.Size = new System.Drawing.Size(59, 15);
+            this.FeedDir_Opn.TabIndex = 3;
+            this.FeedDir_Opn.Text = "Feed path";
+            this.FeedDir_Opn.Click += new System.EventHandler(this.FeedDir_Opn_Click);
+            // 
+            // SpritesDir_Opn
+            // 
+            this.SpritesDir_Opn.AutoSize = true;
+            this.SpritesDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SpritesDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpritesDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SpritesDir_Opn.Location = new System.Drawing.Point(8, 473);
+            this.SpritesDir_Opn.Name = "SpritesDir_Opn";
+            this.SpritesDir_Opn.Size = new System.Drawing.Size(70, 15);
+            this.SpritesDir_Opn.TabIndex = 20;
+            this.SpritesDir_Opn.Text = "Sprites path";
+            this.SpritesDir_Opn.Click += new System.EventHandler(this.SpritesDir_Opn_Click);
+            // 
+            // ScriptDir_Opn
+            // 
+            this.ScriptDir_Opn.AutoSize = true;
+            this.ScriptDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ScriptDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScriptDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ScriptDir_Opn.Location = new System.Drawing.Point(8, 197);
+            this.ScriptDir_Opn.Name = "ScriptDir_Opn";
+            this.ScriptDir_Opn.Size = new System.Drawing.Size(65, 15);
+            this.ScriptDir_Opn.TabIndex = 4;
+            this.ScriptDir_Opn.Text = "Script path";
+            this.ScriptDir_Opn.Click += new System.EventHandler(this.ScriptDir_Opn_Click);
+            // 
+            // DiagramDir_Lbl
+            // 
+            this.DiagramDir_Lbl.AutoSize = true;
+            this.DiagramDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiagramDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.DiagramDir_Lbl.Location = new System.Drawing.Point(8, 449);
+            this.DiagramDir_Lbl.Name = "DiagramDir_Lbl";
+            this.DiagramDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.DiagramDir_Lbl.TabIndex = 19;
+            this.DiagramDir_Lbl.Text = "0";
+            // 
+            // WorkFlowDir_Opn
+            // 
+            this.WorkFlowDir_Opn.AutoSize = true;
+            this.WorkFlowDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WorkFlowDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkFlowDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.WorkFlowDir_Opn.Location = new System.Drawing.Point(8, 244);
+            this.WorkFlowDir_Opn.Name = "WorkFlowDir_Opn";
+            this.WorkFlowDir_Opn.Size = new System.Drawing.Size(86, 15);
+            this.WorkFlowDir_Opn.TabIndex = 5;
+            this.WorkFlowDir_Opn.Text = "Workflow path";
+            this.WorkFlowDir_Opn.Click += new System.EventHandler(this.WorkFlowDir_Opn_Click);
+            // 
+            // DiagramDir_Opn
+            // 
+            this.DiagramDir_Opn.AutoSize = true;
+            this.DiagramDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DiagramDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiagramDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.DiagramDir_Opn.Location = new System.Drawing.Point(8, 428);
+            this.DiagramDir_Opn.Name = "DiagramDir_Opn";
+            this.DiagramDir_Opn.Size = new System.Drawing.Size(80, 15);
+            this.DiagramDir_Opn.TabIndex = 18;
+            this.DiagramDir_Opn.Text = "Diagram path";
+            this.DiagramDir_Opn.Click += new System.EventHandler(this.DiagramDir_Opn_Click);
+            // 
+            // OstiumDir_Lbl
+            // 
+            this.OstiumDir_Lbl.AutoSize = true;
+            this.OstiumDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OstiumDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.OstiumDir_Lbl.Location = new System.Drawing.Point(8, 30);
+            this.OstiumDir_Lbl.Name = "OstiumDir_Lbl";
+            this.OstiumDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.OstiumDir_Lbl.TabIndex = 6;
+            this.OstiumDir_Lbl.Text = "0";
+            // 
+            // WebView2Dir_Lbl
+            // 
+            this.WebView2Dir_Lbl.AutoSize = true;
+            this.WebView2Dir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebView2Dir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.WebView2Dir_Lbl.Location = new System.Drawing.Point(8, 404);
+            this.WebView2Dir_Lbl.Name = "WebView2Dir_Lbl";
+            this.WebView2Dir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.WebView2Dir_Lbl.TabIndex = 17;
+            this.WebView2Dir_Lbl.Text = "0";
+            // 
+            // AddOnDir_Lbl
+            // 
+            this.AddOnDir_Lbl.AutoSize = true;
+            this.AddOnDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddOnDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.AddOnDir_Lbl.Location = new System.Drawing.Point(8, 77);
+            this.AddOnDir_Lbl.Name = "AddOnDir_Lbl";
+            this.AddOnDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.AddOnDir_Lbl.TabIndex = 7;
+            this.AddOnDir_Lbl.Text = "0";
+            // 
+            // WebView2Dir_Opn
+            // 
+            this.WebView2Dir_Opn.AutoSize = true;
+            this.WebView2Dir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WebView2Dir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebView2Dir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.WebView2Dir_Opn.Location = new System.Drawing.Point(8, 383);
+            this.WebView2Dir_Opn.Name = "WebView2Dir_Opn";
+            this.WebView2Dir_Opn.Size = new System.Drawing.Size(92, 15);
+            this.WebView2Dir_Opn.TabIndex = 16;
+            this.WebView2Dir_Opn.Text = "WebView2 Path";
+            this.WebView2Dir_Opn.Click += new System.EventHandler(this.WebView2Dir_Opn_Click);
+            // 
+            // DatabseDir_Lbl
+            // 
+            this.DatabseDir_Lbl.AutoSize = true;
+            this.DatabseDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DatabseDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.DatabseDir_Lbl.Location = new System.Drawing.Point(8, 124);
+            this.DatabseDir_Lbl.Name = "DatabseDir_Lbl";
+            this.DatabseDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.DatabseDir_Lbl.TabIndex = 8;
+            this.DatabseDir_Lbl.Text = "0";
+            // 
+            // PictureDir_Lbl
+            // 
+            this.PictureDir_Lbl.AutoSize = true;
+            this.PictureDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PictureDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.PictureDir_Lbl.Location = new System.Drawing.Point(8, 359);
+            this.PictureDir_Lbl.Name = "PictureDir_Lbl";
+            this.PictureDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.PictureDir_Lbl.TabIndex = 15;
+            this.PictureDir_Lbl.Text = "0";
+            // 
+            // FeedDir_Lbl
+            // 
+            this.FeedDir_Lbl.AutoSize = true;
+            this.FeedDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FeedDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.FeedDir_Lbl.Location = new System.Drawing.Point(8, 170);
+            this.FeedDir_Lbl.Name = "FeedDir_Lbl";
+            this.FeedDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.FeedDir_Lbl.TabIndex = 9;
+            this.FeedDir_Lbl.Text = "0";
+            // 
+            // PictureDir_Opn
+            // 
+            this.PictureDir_Opn.AutoSize = true;
+            this.PictureDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PictureDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.PictureDir_Opn.Location = new System.Drawing.Point(8, 338);
+            this.PictureDir_Opn.Name = "PictureDir_Opn";
+            this.PictureDir_Opn.Size = new System.Drawing.Size(76, 15);
+            this.PictureDir_Opn.TabIndex = 14;
+            this.PictureDir_Opn.Text = "Pictures path";
+            this.PictureDir_Opn.Click += new System.EventHandler(this.PictureDir_Opn_Click);
+            // 
+            // ScriptDir_Lbl
+            // 
+            this.ScriptDir_Lbl.AutoSize = true;
+            this.ScriptDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScriptDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.ScriptDir_Lbl.Location = new System.Drawing.Point(8, 218);
+            this.ScriptDir_Lbl.Name = "ScriptDir_Lbl";
+            this.ScriptDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.ScriptDir_Lbl.TabIndex = 10;
+            this.ScriptDir_Lbl.Text = "0";
+            // 
+            // WorkFlowModelDir_Lbl
+            // 
+            this.WorkFlowModelDir_Lbl.AutoSize = true;
+            this.WorkFlowModelDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkFlowModelDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.WorkFlowModelDir_Lbl.Location = new System.Drawing.Point(8, 312);
+            this.WorkFlowModelDir_Lbl.Name = "WorkFlowModelDir_Lbl";
+            this.WorkFlowModelDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.WorkFlowModelDir_Lbl.TabIndex = 13;
+            this.WorkFlowModelDir_Lbl.Text = "0";
+            // 
+            // WorkFlowDir_Lbl
+            // 
+            this.WorkFlowDir_Lbl.AutoSize = true;
+            this.WorkFlowDir_Lbl.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkFlowDir_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.WorkFlowDir_Lbl.Location = new System.Drawing.Point(8, 265);
+            this.WorkFlowDir_Lbl.Name = "WorkFlowDir_Lbl";
+            this.WorkFlowDir_Lbl.Size = new System.Drawing.Size(14, 15);
+            this.WorkFlowDir_Lbl.TabIndex = 11;
+            this.WorkFlowDir_Lbl.Text = "0";
+            // 
+            // WorkFlowModelDir_Opn
+            // 
+            this.WorkFlowModelDir_Opn.AutoSize = true;
+            this.WorkFlowModelDir_Opn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WorkFlowModelDir_Opn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkFlowModelDir_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.WorkFlowModelDir_Opn.Location = new System.Drawing.Point(8, 291);
+            this.WorkFlowModelDir_Opn.Name = "WorkFlowModelDir_Opn";
+            this.WorkFlowModelDir_Opn.Size = new System.Drawing.Size(123, 15);
+            this.WorkFlowModelDir_Opn.TabIndex = 12;
+            this.WorkFlowModelDir_Opn.Text = "Workflow Model path";
+            this.WorkFlowModelDir_Opn.Click += new System.EventHandler(this.WorkFlowModelDir_Opn_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.TrackPrevent_Cbx);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.groupBox7.Location = new System.Drawing.Point(0, 0);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(328, 62);
+            this.groupBox7.TabIndex = 20;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Tracking Prevention Level";
+            // 
+            // TrackPrevent_Cbx
+            // 
+            this.TrackPrevent_Cbx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TrackPrevent_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TrackPrevent_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TrackPrevent_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.TrackPrevent_Cbx.FormattingEnabled = true;
+            this.TrackPrevent_Cbx.Items.AddRange(new object[] {
+            "None",
+            "Basic",
+            "Balanced",
+            "Strict"});
+            this.TrackPrevent_Cbx.Location = new System.Drawing.Point(6, 26);
+            this.TrackPrevent_Cbx.Name = "TrackPrevent_Cbx";
+            this.TrackPrevent_Cbx.Size = new System.Drawing.Size(316, 23);
+            this.TrackPrevent_Cbx.TabIndex = 0;
+            this.TrackPrevent_Cbx.Text = "None";
+            this.TrackPrevent_Cbx.SelectedIndexChanged += new System.EventHandler(this.TrackPrevent_Cbx_SelectedIndexChanged);
+            // 
+            // panel26
+            // 
+            this.panel26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel26.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel26.Location = new System.Drawing.Point(978, 10);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(10, 575);
+            this.panel26.TabIndex = 27;
+            // 
+            // Panel_ConfigFiles
+            // 
+            this.Panel_ConfigFiles.Controls.Add(this.groupBox6);
+            this.Panel_ConfigFiles.Controls.Add(this.groupBox4);
+            this.Panel_ConfigFiles.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Panel_ConfigFiles.Location = new System.Drawing.Point(734, 10);
+            this.Panel_ConfigFiles.Name = "Panel_ConfigFiles";
+            this.Panel_ConfigFiles.Size = new System.Drawing.Size(244, 575);
+            this.Panel_ConfigFiles.TabIndex = 28;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.KillCookies_Chk);
+            this.groupBox6.Controls.Add(this.FloodHeader_Chk);
+            this.groupBox6.Controls.Add(this.Limitsize_Chk);
+            this.groupBox6.Controls.Add(this.ArchiveAdd_Lst);
+            this.groupBox6.Controls.Add(this.SaveCookies_Chk);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.groupBox6.Location = new System.Drawing.Point(0, 370);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(244, 205);
+            this.groupBox6.TabIndex = 19;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "other";
+            // 
+            // KillCookies_Chk
+            // 
+            this.KillCookies_Chk.AutoSize = true;
+            this.KillCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KillCookies_Chk.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KillCookies_Chk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.KillCookies_Chk.Location = new System.Drawing.Point(14, 158);
+            this.KillCookies_Chk.Name = "KillCookies_Chk";
+            this.KillCookies_Chk.Size = new System.Drawing.Size(166, 42);
+            this.KillCookies_Chk.TabIndex = 4;
+            this.KillCookies_Chk.Text = "Clear cookies after \r\nevery browsing session";
+            this.KillCookies_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.KillCookies_Chk.UseVisualStyleBackColor = true;
+            // 
+            // FloodHeader_Chk
+            // 
+            this.FloodHeader_Chk.AutoSize = true;
+            this.FloodHeader_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FloodHeader_Chk.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FloodHeader_Chk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.FloodHeader_Chk.Location = new System.Drawing.Point(14, 81);
+            this.FloodHeader_Chk.Name = "FloodHeader_Chk";
+            this.FloodHeader_Chk.Size = new System.Drawing.Size(152, 23);
+            this.FloodHeader_Chk.TabIndex = 3;
+            this.FloodHeader_Chk.Text = "Fingerprint Defender";
+            this.FloodHeader_Chk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FloodHeader_Chk.UseVisualStyleBackColor = true;
+            this.FloodHeader_Chk.CheckedChanged += new System.EventHandler(this.FloodHeader_Chk_CheckedChanged);
+            // 
+            // Limitsize_Chk
+            // 
+            this.Limitsize_Chk.AutoSize = true;
+            this.Limitsize_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Limitsize_Chk.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Limitsize_Chk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Limitsize_Chk.Location = new System.Drawing.Point(14, 35);
+            this.Limitsize_Chk.Name = "Limitsize_Chk";
+            this.Limitsize_Chk.Size = new System.Drawing.Size(211, 42);
+            this.Limitsize_Chk.TabIndex = 2;
+            this.Limitsize_Chk.Text = "PLANTUML_LIMIT_SIZE=8192\r\n(default is 4096)";
+            this.Limitsize_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.Limitsize_Chk.UseVisualStyleBackColor = true;
+            this.Limitsize_Chk.CheckedChanged += new System.EventHandler(this.Limitsize_Chk_CheckedChanged);
+            // 
+            // ArchiveAdd_Lst
+            // 
+            this.ArchiveAdd_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ArchiveAdd_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ArchiveAdd_Lst.FormattingEnabled = true;
+            this.ArchiveAdd_Lst.ItemHeight = 15;
+            this.ArchiveAdd_Lst.Location = new System.Drawing.Point(2, 201);
+            this.ArchiveAdd_Lst.Name = "ArchiveAdd_Lst";
+            this.ArchiveAdd_Lst.Size = new System.Drawing.Size(17, 4);
+            this.ArchiveAdd_Lst.TabIndex = 1;
+            this.ArchiveAdd_Lst.Visible = false;
+            // 
+            // SaveCookies_Chk
+            // 
+            this.SaveCookies_Chk.AutoSize = true;
+            this.SaveCookies_Chk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveCookies_Chk.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveCookies_Chk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SaveCookies_Chk.Location = new System.Drawing.Point(14, 113);
+            this.SaveCookies_Chk.Name = "SaveCookies_Chk";
+            this.SaveCookies_Chk.Size = new System.Drawing.Size(174, 42);
+            this.SaveCookies_Chk.TabIndex = 0;
+            this.SaveCookies_Chk.Text = "Save all cookies in the \r\ncookie.txt file at the root";
+            this.SaveCookies_Chk.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.SaveCookies_Chk.UseVisualStyleBackColor = true;
+            this.SaveCookies_Chk.CheckedChanged += new System.EventHandler(this.SaveCookies_Chk_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.OOBai_Opt);
+            this.groupBox4.Controls.Add(this.MultipleDir_Opt);
+            this.groupBox4.Controls.Add(this.Furlconstdir_Opt);
+            this.groupBox4.Controls.Add(this.Fgdork_Opt);
+            this.groupBox4.Controls.Add(this.Fmultiplewin_Opt);
+            this.groupBox4.Controls.Add(this.AddOntools_Opt);
+            this.groupBox4.Controls.Add(this.Furlconst_Opt);
+            this.groupBox4.Controls.Add(this.Furldir_Opt);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(244, 370);
+            this.groupBox4.TabIndex = 18;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "config files";
+            // 
+            // OOBai_Opt
+            // 
+            this.OOBai_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.OOBai_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OOBai_Opt.FlatAppearance.BorderSize = 0;
+            this.OOBai_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.OOBai_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.OOBai_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OOBai_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OOBai_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.OOBai_Opt.Location = new System.Drawing.Point(14, 318);
+            this.OOBai_Opt.Name = "OOBai_Opt";
+            this.OOBai_Opt.Size = new System.Drawing.Size(218, 36);
+            this.OOBai_Opt.TabIndex = 24;
+            this.OOBai_Opt.Text = "OOBai Path";
+            this.OOBai_Opt.UseVisualStyleBackColor = false;
+            this.OOBai_Opt.Click += new System.EventHandler(this.OOBai_Opt_Click);
+            // 
+            // MultipleDir_Opt
+            // 
+            this.MultipleDir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.MultipleDir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MultipleDir_Opt.FlatAppearance.BorderSize = 0;
+            this.MultipleDir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.MultipleDir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.MultipleDir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MultipleDir_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MultipleDir_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.MultipleDir_Opt.Location = new System.Drawing.Point(14, 233);
+            this.MultipleDir_Opt.Name = "MultipleDir_Opt";
+            this.MultipleDir_Opt.Size = new System.Drawing.Size(218, 36);
+            this.MultipleDir_Opt.TabIndex = 23;
+            this.MultipleDir_Opt.Text = "Multiple Windows Path";
+            this.MultipleDir_Opt.UseVisualStyleBackColor = false;
+            this.MultipleDir_Opt.Click += new System.EventHandler(this.MultipleDir_Opt_Click);
+            // 
+            // Furlconstdir_Opt
+            // 
+            this.Furlconstdir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Furlconstdir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Furlconstdir_Opt.FlatAppearance.BorderSize = 0;
+            this.Furlconstdir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Furlconstdir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Furlconstdir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Furlconstdir_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Furlconstdir_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Furlconstdir_Opt.Location = new System.Drawing.Point(14, 109);
+            this.Furlconstdir_Opt.Name = "Furlconstdir_Opt";
+            this.Furlconstdir_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Furlconstdir_Opt.TabIndex = 22;
+            this.Furlconstdir_Opt.Text = "Build URL Path";
+            this.Furlconstdir_Opt.UseVisualStyleBackColor = false;
+            this.Furlconstdir_Opt.Click += new System.EventHandler(this.Furlconstdir_Opt_Click);
+            // 
+            // Fgdork_Opt
+            // 
+            this.Fgdork_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Fgdork_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Fgdork_Opt.FlatAppearance.BorderSize = 0;
+            this.Fgdork_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Fgdork_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Fgdork_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Fgdork_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fgdork_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Fgdork_Opt.Location = new System.Drawing.Point(14, 275);
+            this.Fgdork_Opt.Name = "Fgdork_Opt";
+            this.Fgdork_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Fgdork_Opt.TabIndex = 21;
+            this.Fgdork_Opt.Text = "Google Dork File";
+            this.Fgdork_Opt.UseVisualStyleBackColor = false;
+            this.Fgdork_Opt.Click += new System.EventHandler(this.Fgdork_Opt_Click);
+            // 
+            // Fmultiplewin_Opt
+            // 
+            this.Fmultiplewin_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Fmultiplewin_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Fmultiplewin_Opt.FlatAppearance.BorderSize = 0;
+            this.Fmultiplewin_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Fmultiplewin_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Fmultiplewin_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Fmultiplewin_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fmultiplewin_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Fmultiplewin_Opt.Location = new System.Drawing.Point(14, 191);
+            this.Fmultiplewin_Opt.Name = "Fmultiplewin_Opt";
+            this.Fmultiplewin_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Fmultiplewin_Opt.TabIndex = 20;
+            this.Fmultiplewin_Opt.Text = "Multiple Windows default File";
+            this.Fmultiplewin_Opt.UseVisualStyleBackColor = false;
+            this.Fmultiplewin_Opt.Click += new System.EventHandler(this.Fmultiplewin_Opt_Click);
+            // 
+            // AddOntools_Opt
+            // 
+            this.AddOntools_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.AddOntools_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddOntools_Opt.FlatAppearance.BorderSize = 0;
+            this.AddOntools_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.AddOntools_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.AddOntools_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddOntools_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddOntools_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddOntools_Opt.Location = new System.Drawing.Point(14, 150);
+            this.AddOntools_Opt.Name = "AddOntools_Opt";
+            this.AddOntools_Opt.Size = new System.Drawing.Size(218, 36);
+            this.AddOntools_Opt.TabIndex = 19;
+            this.AddOntools_Opt.Text = "Add-On Tools Path";
+            this.AddOntools_Opt.UseVisualStyleBackColor = false;
+            this.AddOntools_Opt.Click += new System.EventHandler(this.AddOntools_Opt_Click);
+            // 
+            // Furlconst_Opt
+            // 
+            this.Furlconst_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Furlconst_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Furlconst_Opt.FlatAppearance.BorderSize = 0;
+            this.Furlconst_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Furlconst_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Furlconst_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Furlconst_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Furlconst_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Furlconst_Opt.Location = new System.Drawing.Point(14, 68);
+            this.Furlconst_Opt.Name = "Furlconst_Opt";
+            this.Furlconst_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Furlconst_Opt.TabIndex = 18;
+            this.Furlconst_Opt.Text = "Build URL File";
+            this.Furlconst_Opt.UseVisualStyleBackColor = false;
+            this.Furlconst_Opt.Click += new System.EventHandler(this.Furlconst_Opt_Click);
+            // 
+            // Furldir_Opt
+            // 
+            this.Furldir_Opt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.Furldir_Opt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Furldir_Opt.FlatAppearance.BorderSize = 0;
+            this.Furldir_Opt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Furldir_Opt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.Furldir_Opt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Furldir_Opt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Furldir_Opt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Furldir_Opt.Location = new System.Drawing.Point(14, 26);
+            this.Furldir_Opt.Name = "Furldir_Opt";
+            this.Furldir_Opt.Size = new System.Drawing.Size(218, 36);
+            this.Furldir_Opt.TabIndex = 17;
+            this.Furldir_Opt.Text = "URL File";
+            this.Furldir_Opt.UseVisualStyleBackColor = false;
+            this.Furldir_Opt.Click += new System.EventHandler(this.Furldir_Opt_Click);
+            // 
+            // panel25
+            // 
+            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel25.Location = new System.Drawing.Point(724, 10);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(10, 575);
+            this.panel25.TabIndex = 25;
+            // 
+            // Panel_ConfigXml
+            // 
+            this.Panel_ConfigXml.Controls.Add(this.groupBox3);
+            this.Panel_ConfigXml.Controls.Add(this.panel27);
+            this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
+            this.Panel_ConfigXml.Name = "Panel_ConfigXml";
+            this.Panel_ConfigXml.Size = new System.Drawing.Size(714, 575);
+            this.Panel_ConfigXml.TabIndex = 24;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.PanelGrpOpt_Pnl);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(714, 542);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "config.xml file";
+            // 
+            // PanelGrpOpt_Pnl
+            // 
+            this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.WarcArchiver_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.WarcArchiver_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label40);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.WebToMarkdown_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.WebToMarkdown_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label39);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.OsintWatcher_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label37);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.Redlist_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label26);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.CyberChef_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label25);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label32);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.ArchiveAdd_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label31);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label4);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.DefaultEditor_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.DB_Default_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label22);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label13);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.GoogBot_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlHome_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label21);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label17);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgentHttp_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UrlTradWebPage_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label20);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label18);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.UserAgent_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.SearchEngine_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label19);
+            this.PanelGrpOpt_Pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 19);
+            this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
+            this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 520);
+            this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // WarcArchiver_Link
+            // 
+            this.WarcArchiver_Link.AutoSize = true;
+            this.WarcArchiver_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WarcArchiver_Link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarcArchiver_Link.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.WarcArchiver_Link.Location = new System.Drawing.Point(484, 696);
+            this.WarcArchiver_Link.Name = "WarcArchiver_Link";
+            this.WarcArchiver_Link.Size = new System.Drawing.Size(176, 15);
+            this.WarcArchiver_Link.TabIndex = 32;
+            this.WarcArchiver_Link.Text = "Link to WARC Archiver (GitHub)";
+            this.WarcArchiver_Link.Click += new System.EventHandler(this.WarcArchiver_Link_Click);
+            // 
+            // WarcArchiver_Opt_Txt
+            // 
+            this.WarcArchiver_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.WarcArchiver_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WarcArchiver_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarcArchiver_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.WarcArchiver_Opt_Txt.Location = new System.Drawing.Point(9, 717);
+            this.WarcArchiver_Opt_Txt.Name = "WarcArchiver_Opt_Txt";
+            this.WarcArchiver_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.WarcArchiver_Opt_Txt.TabIndex = 31;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label40.Location = new System.Drawing.Point(6, 696);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(115, 15);
+            this.label40.TabIndex = 30;
+            this.label40.Text = "WARC Archiver Path";
+            // 
+            // WebToMarkdown_Link
+            // 
+            this.WebToMarkdown_Link.AutoSize = true;
+            this.WebToMarkdown_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.WebToMarkdown_Link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebToMarkdown_Link.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.WebToMarkdown_Link.Location = new System.Drawing.Point(466, 635);
+            this.WebToMarkdown_Link.Name = "WebToMarkdown_Link";
+            this.WebToMarkdown_Link.Size = new System.Drawing.Size(194, 15);
+            this.WebToMarkdown_Link.TabIndex = 29;
+            this.WebToMarkdown_Link.Text = "Link to Web To Markdown (GitHub)";
+            this.WebToMarkdown_Link.Click += new System.EventHandler(this.WebToMarkdown_Link_Click);
+            // 
+            // WebToMarkdown_Opt_Txt
+            // 
+            this.WebToMarkdown_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.WebToMarkdown_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WebToMarkdown_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebToMarkdown_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.WebToMarkdown_Opt_Txt.Location = new System.Drawing.Point(9, 656);
+            this.WebToMarkdown_Opt_Txt.Name = "WebToMarkdown_Opt_Txt";
+            this.WebToMarkdown_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.WebToMarkdown_Opt_Txt.TabIndex = 28;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label39.Location = new System.Drawing.Point(6, 635);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(135, 15);
+            this.label39.TabIndex = 27;
+            this.label39.Text = "Web To Markdown Path";
+            // 
+            // CyberChef_Link
+            // 
+            this.CyberChef_Link.AutoSize = true;
+            this.CyberChef_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CyberChef_Link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Link.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.CyberChef_Link.Location = new System.Drawing.Point(509, 513);
+            this.CyberChef_Link.Name = "CyberChef_Link";
+            this.CyberChef_Link.Size = new System.Drawing.Size(151, 15);
+            this.CyberChef_Link.TabIndex = 26;
+            this.CyberChef_Link.Text = "Link to CyberChef (GitHub)";
+            this.CyberChef_Link.Click += new System.EventHandler(this.CyberChef_Link_Click);
+            // 
+            // OsintWatcher_Link
+            // 
+            this.OsintWatcher_Link.AutoSize = true;
+            this.OsintWatcher_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OsintWatcher_Link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Link.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.OsintWatcher_Link.Location = new System.Drawing.Point(490, 574);
+            this.OsintWatcher_Link.Name = "OsintWatcher_Link";
+            this.OsintWatcher_Link.Size = new System.Drawing.Size(170, 15);
+            this.OsintWatcher_Link.TabIndex = 25;
+            this.OsintWatcher_Link.Text = "Link to Osint Watcher (GitHub)";
+            this.OsintWatcher_Link.Click += new System.EventHandler(this.OsintWatcher_Link_Click);
+            // 
+            // OsintWatcher_Opt_Txt
+            // 
+            this.OsintWatcher_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.OsintWatcher_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OsintWatcher_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OsintWatcher_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.OsintWatcher_Opt_Txt.Location = new System.Drawing.Point(9, 595);
+            this.OsintWatcher_Opt_Txt.Name = "OsintWatcher_Opt_Txt";
+            this.OsintWatcher_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.OsintWatcher_Opt_Txt.TabIndex = 24;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label37.Location = new System.Drawing.Point(6, 574);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(110, 15);
+            this.label37.TabIndex = 23;
+            this.label37.Text = "Osint Watcher Path";
+            // 
+            // Redlist_Txt
+            // 
+            this.Redlist_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Redlist_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Redlist_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.Redlist_Txt.Location = new System.Drawing.Point(9, 778);
+            this.Redlist_Txt.Name = "Redlist_Txt";
+            this.Redlist_Txt.Size = new System.Drawing.Size(675, 23);
+            this.Redlist_Txt.TabIndex = 22;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label26.Location = new System.Drawing.Point(6, 757);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(99, 15);
+            this.label26.TabIndex = 21;
+            this.label26.Text = "Ad block list path";
+            // 
+            // CyberChef_Opt_Txt
+            // 
+            this.CyberChef_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CyberChef_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CyberChef_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CyberChef_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.CyberChef_Opt_Txt.Location = new System.Drawing.Point(9, 534);
+            this.CyberChef_Opt_Txt.Name = "CyberChef_Opt_Txt";
+            this.CyberChef_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.CyberChef_Opt_Txt.TabIndex = 20;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label25.Location = new System.Drawing.Point(6, 513);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(88, 15);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "CyberChef Path";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label32.Location = new System.Drawing.Point(8, 697);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(0, 15);
+            this.label32.TabIndex = 18;
+            // 
+            // ArchiveAdd_Txt
+            // 
+            this.ArchiveAdd_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 842);
+            this.ArchiveAdd_Txt.Multiline = true;
+            this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
+            this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
+            this.ArchiveAdd_Txt.TabIndex = 17;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label31.Location = new System.Drawing.Point(4, 820);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(317, 15);
+            this.label31.TabIndex = 16;
+            this.label31.Text = "Add or remove  a path to save it in the archive (line by line)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label4.Location = new System.Drawing.Point(4, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(249, 15);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Default DataBase Name (change in DATA tab)";
+            // 
+            // DefaultEditor_Opt_Txt
+            // 
+            this.DefaultEditor_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DefaultEditor_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DefaultEditor_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DefaultEditor_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.DefaultEditor_Opt_Txt.Location = new System.Drawing.Point(7, 471);
+            this.DefaultEditor_Opt_Txt.Name = "DefaultEditor_Opt_Txt";
+            this.DefaultEditor_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.DefaultEditor_Opt_Txt.TabIndex = 15;
+            // 
+            // DB_Default_Opt_Txt
+            // 
+            this.DB_Default_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DB_Default_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DB_Default_Opt_Txt.Enabled = false;
+            this.DB_Default_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DB_Default_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.DB_Default_Opt_Txt.Location = new System.Drawing.Point(6, 30);
+            this.DB_Default_Opt_Txt.Name = "DB_Default_Opt_Txt";
+            this.DB_Default_Opt_Txt.Size = new System.Drawing.Size(676, 23);
+            this.DB_Default_Opt_Txt.TabIndex = 1;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label22.Location = new System.Drawing.Point(4, 450);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(107, 15);
+            this.label22.TabIndex = 14;
+            this.label22.Text = "Default Editor path";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label13.Location = new System.Drawing.Point(3, 72);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(69, 15);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Home Page";
+            // 
+            // GoogBot_Opt_Txt
+            // 
+            this.GoogBot_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.GoogBot_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GoogBot_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoogBot_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.GoogBot_Opt_Txt.Location = new System.Drawing.Point(7, 408);
+            this.GoogBot_Opt_Txt.Name = "GoogBot_Opt_Txt";
+            this.GoogBot_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.GoogBot_Opt_Txt.TabIndex = 13;
+            // 
+            // UrlHome_Opt_Txt
+            // 
+            this.UrlHome_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.UrlHome_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UrlHome_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UrlHome_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.UrlHome_Opt_Txt.Location = new System.Drawing.Point(7, 93);
+            this.UrlHome_Opt_Txt.Name = "UrlHome_Opt_Txt";
+            this.UrlHome_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UrlHome_Opt_Txt.TabIndex = 3;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label21.Location = new System.Drawing.Point(4, 387);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(129, 15);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "GoogleBot or other Bot";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label17.Location = new System.Drawing.Point(4, 135);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(93, 15);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Traduction Page";
+            // 
+            // UserAgentHttp_Opt_Txt
+            // 
+            this.UserAgentHttp_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.UserAgentHttp_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserAgentHttp_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserAgentHttp_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.UserAgentHttp_Opt_Txt.Location = new System.Drawing.Point(7, 345);
+            this.UserAgentHttp_Opt_Txt.Name = "UserAgentHttp_Opt_Txt";
+            this.UserAgentHttp_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UserAgentHttp_Opt_Txt.TabIndex = 11;
+            // 
+            // UrlTradWebPage_Opt_Txt
+            // 
+            this.UrlTradWebPage_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.UrlTradWebPage_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UrlTradWebPage_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UrlTradWebPage_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.UrlTradWebPage_Opt_Txt.Location = new System.Drawing.Point(7, 156);
+            this.UrlTradWebPage_Opt_Txt.Name = "UrlTradWebPage_Opt_Txt";
+            this.UrlTradWebPage_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UrlTradWebPage_Opt_Txt.TabIndex = 5;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label20.Location = new System.Drawing.Point(4, 324);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(122, 15);
+            this.label20.TabIndex = 10;
+            this.label20.Text = "User Agent HttpClient";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label18.Location = new System.Drawing.Point(4, 198);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(82, 15);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Search Engine";
+            // 
+            // UserAgent_Opt_Txt
+            // 
+            this.UserAgent_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.UserAgent_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserAgent_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserAgent_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.UserAgent_Opt_Txt.Location = new System.Drawing.Point(7, 282);
+            this.UserAgent_Opt_Txt.Name = "UserAgent_Opt_Txt";
+            this.UserAgent_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.UserAgent_Opt_Txt.TabIndex = 9;
+            // 
+            // SearchEngine_Opt_Txt
+            // 
+            this.SearchEngine_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.SearchEngine_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchEngine_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchEngine_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.SearchEngine_Opt_Txt.Location = new System.Drawing.Point(7, 219);
+            this.SearchEngine_Opt_Txt.Name = "SearchEngine_Opt_Txt";
+            this.SearchEngine_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.SearchEngine_Opt_Txt.TabIndex = 7;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label19.Location = new System.Drawing.Point(4, 261);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(108, 15);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "User Agent Change";
+            // 
+            // panel27
+            // 
+            this.panel27.Controls.Add(this.SaveConfig_Opt_Btn);
+            this.panel27.Controls.Add(this.ResetConfig_Btn);
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel27.Location = new System.Drawing.Point(0, 542);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(714, 33);
+            this.panel27.TabIndex = 17;
+            // 
+            // SaveConfig_Opt_Btn
+            // 
+            this.SaveConfig_Opt_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.SaveConfig_Opt_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveConfig_Opt_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SaveConfig_Opt_Btn.FlatAppearance.BorderSize = 0;
+            this.SaveConfig_Opt_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.SaveConfig_Opt_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.SaveConfig_Opt_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveConfig_Opt_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveConfig_Opt_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.SaveConfig_Opt_Btn.Location = new System.Drawing.Point(218, 0);
+            this.SaveConfig_Opt_Btn.Name = "SaveConfig_Opt_Btn";
+            this.SaveConfig_Opt_Btn.Size = new System.Drawing.Size(496, 33);
+            this.SaveConfig_Opt_Btn.TabIndex = 16;
+            this.SaveConfig_Opt_Btn.Text = "Save config and Reload";
+            this.SaveConfig_Opt_Btn.UseVisualStyleBackColor = false;
+            this.SaveConfig_Opt_Btn.Click += new System.EventHandler(this.SaveConfig_Opt_Btn_Click);
+            // 
+            // ResetConfig_Btn
+            // 
+            this.ResetConfig_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.ResetConfig_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ResetConfig_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ResetConfig_Btn.FlatAppearance.BorderSize = 0;
+            this.ResetConfig_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.ResetConfig_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.ResetConfig_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetConfig_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetConfig_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ResetConfig_Btn.Location = new System.Drawing.Point(0, 0);
+            this.ResetConfig_Btn.Name = "ResetConfig_Btn";
+            this.ResetConfig_Btn.Size = new System.Drawing.Size(218, 33);
+            this.ResetConfig_Btn.TabIndex = 17;
+            this.ResetConfig_Btn.Text = "Reset Config";
+            this.ResetConfig_Btn.UseVisualStyleBackColor = false;
+            this.ResetConfig_Btn.Click += new System.EventHandler(this.ResetConfig_Btn_Click);
+            // 
+            // panel24
+            // 
+            this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel24.Location = new System.Drawing.Point(10, 585);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(1306, 10);
+            this.panel24.TabIndex = 23;
+            // 
+            // panel23
+            // 
+            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(10, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(1306, 10);
+            this.panel23.TabIndex = 22;
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel22.Location = new System.Drawing.Point(1316, 0);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(10, 595);
+            this.panel22.TabIndex = 21;
+            // 
+            // panel21
+            // 
+            this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel21.Location = new System.Drawing.Point(0, 0);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(10, 595);
+            this.panel21.TabIndex = 20;
+            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(1334, 661);
             this.Controls.Add(this.Control_Tab);
             this.Controls.Add(this.Status_Strip);
@@ -8483,14 +8566,24 @@
             this.Controls.Add(this.Tools_TAB_3);
             this.Controls.Add(this.Tools_TAB_4);
             this.Controls.Add(this.Tools_TAB_1);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_Frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.Load += new System.EventHandler(this.Main_Frm_Load);
+            this.HandleCreated += new System.EventHandler(this.ModernTheme_HandleCreated);
             this.Tools_TAB_0.ResumeLayout(false);
             this.Tools_TAB_0.PerformLayout();
+            this.Status_Strip.ResumeLayout(false);
+            this.Status_Strip.PerformLayout();
+            this.Tools_TAB_1.ResumeLayout(false);
+            this.Tools_TAB_1.PerformLayout();
+            this.Tools_TAB_3.ResumeLayout(false);
+            this.Tools_TAB_3.PerformLayout();
+            this.Tools_TAB_4.ResumeLayout(false);
+            this.Tools_TAB_4.PerformLayout();
             this.Control_Tab.ResumeLayout(false);
             this.Browser_Tab.ResumeLayout(false);
             this.Browser_Tab.PerformLayout();
@@ -8593,14 +8686,6 @@
             this.PanelGrpOpt_Pnl.ResumeLayout(false);
             this.PanelGrpOpt_Pnl.PerformLayout();
             this.panel27.ResumeLayout(false);
-            this.Status_Strip.ResumeLayout(false);
-            this.Status_Strip.PerformLayout();
-            this.Tools_TAB_1.ResumeLayout(false);
-            this.Tools_TAB_1.PerformLayout();
-            this.Tools_TAB_3.ResumeLayout(false);
-            this.Tools_TAB_3.PerformLayout();
-            this.Tools_TAB_4.ResumeLayout(false);
-            this.Tools_TAB_4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8634,7 +8719,7 @@
         private System.Windows.Forms.ToolStripMenuItem Memo_Btn;
         private System.Windows.Forms.ToolStripMenuItem OpnDirectory_Btn;
         private System.Windows.Forms.ToolStripMenuItem IndexDir_Btn;
-        private System.Windows.Forms.TabControl Control_Tab;
+        private Ostium.ModernUI.ModernTabControl Control_Tab;
         private System.Windows.Forms.TabPage Browser_Tab;
         private System.Windows.Forms.Panel DB_Pnl;
         private System.Windows.Forms.ListBox Tables_Lst;
@@ -8712,8 +8797,8 @@
         private System.Windows.Forms.ToolStripMenuItem CopyURLfeed_Mnu;
         private System.Windows.Forms.ToolStripStatusLabel CountFeed_Status;
         private System.Windows.Forms.ToolStripMenuItem TraductPageFeed_Btn;
-        private System.Windows.Forms.ListBox CountBlockFeed_Lbl;
-        private System.Windows.Forms.ListBox RSSListSite_Lbl;
+        private System.Windows.Forms.ListBox CountBlockFeed_Lst;
+        private System.Windows.Forms.ListBox RSSListSite_Lst;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
@@ -8764,12 +8849,12 @@
         private System.Windows.Forms.ListBox StatWorkflow_Lst;
         private System.Windows.Forms.TextBox Author_Txt;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private Ostium.ModernUI.ModernGroupBox groupBox1;
         private System.Windows.Forms.TextBox ModelName_Txt;
         private System.Windows.Forms.Label label12;
         private FastColoredTextBoxNS.FastColoredTextBox ModelItem_Txt;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private Ostium.ModernUI.ModernGroupBox groupBox2;
         private System.Windows.Forms.Button ModelCreate_Btn;
         private System.Windows.Forms.ListBox ModelList_Lst;
         private System.Windows.Forms.ListBox Timeline_Lst;
@@ -8825,7 +8910,7 @@
         private System.Windows.Forms.ToolStripMenuItem Googlebot_Btn;
         private System.Windows.Forms.Button ResetTimeline_Btn;
         private System.Windows.Forms.TabPage Options_Tab;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private Ostium.ModernUI.ModernGroupBox groupBox3;
         private System.Windows.Forms.TextBox DB_Default_Opt_Txt;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox UrlHome_Opt_Txt;
@@ -8844,14 +8929,14 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button SaveConfig_Opt_Btn;
         private System.Windows.Forms.Button Furldir_Opt;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private Ostium.ModernUI.ModernGroupBox groupBox4;
         private System.Windows.Forms.Button Furlconst_Opt;
         private System.Windows.Forms.Button Fmultiplewin_Opt;
         private System.Windows.Forms.Button AddOntools_Opt;
         private System.Windows.Forms.Button Fgdork_Opt;
         private System.Windows.Forms.Button MultipleDir_Opt;
         private System.Windows.Forms.Button Furlconstdir_Opt;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private Ostium.ModernUI.ModernGroupBox groupBox5;
         private System.Windows.Forms.Label WorkFlowDir_Opn;
         private System.Windows.Forms.Label ScriptDir_Opn;
         private System.Windows.Forms.Label FeedDir_Opn;
@@ -8984,7 +9069,7 @@
         private System.Windows.Forms.ToolStripTextBox ZoomValMap_Lbl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator27;
         private System.Windows.Forms.ToolStripMenuItem ClrHistory_Param;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private Ostium.ModernUI.ModernGroupBox groupBox6;
         private System.Windows.Forms.CheckBox SaveCookies_Chk;
         private System.Windows.Forms.ToolStripSplitButton TtsButton_Sts;
         private System.Windows.Forms.ToolStripMenuItem OpnGoogleMaps_Tls;
@@ -9222,7 +9307,7 @@
         private System.Windows.Forms.ToolStripMenuItem LocalhostOBE_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
         private System.Windows.Forms.Button NewSeesion_Btn;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private Ostium.ModernUI.ModernGroupBox groupBox7;
         private System.Windows.Forms.ComboBox TrackPrevent_Cbx;
         private System.Windows.Forms.ToolStripStatusLabel TrackingLevel_Lbl;
         private System.Windows.Forms.TextBox OsintWatcher_Opt_Txt;
@@ -9253,6 +9338,7 @@
         private System.Windows.Forms.ToolStripMenuItem WarcArchiver_Mnu;
         private System.Windows.Forms.ToolStripMenuItem WarcArchiver_Btn;
         private System.Windows.Forms.ToolStripMenuItem WarcExplorer_Btn;
+        private System.Windows.Forms.ToolTip ModernToolTip;
     }
 }
 
