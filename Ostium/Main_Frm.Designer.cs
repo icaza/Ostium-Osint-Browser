@@ -58,13 +58,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Frm));
             this.ModernToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.CloseSetCookie_Btn = new System.Windows.Forms.Button();
+            this.CleanSearch_Btn = new System.Windows.Forms.Button();
+            this.Go_Btn = new System.Windows.Forms.Button();
             this.Home_Btn = new System.Windows.Forms.Button();
             this.Refresh_Btn = new System.Windows.Forms.Button();
             this.Forward_Btn = new System.Windows.Forms.Button();
             this.Back_Btn = new System.Windows.Forms.Button();
-            this.CleanSearch_Btn = new System.Windows.Forms.Button();
-            this.CloseSetCookie_Btn = new System.Windows.Forms.Button();
-            this.Go_Btn = new System.Windows.Forms.Button();
             this.Tools_TAB_0 = new System.Windows.Forms.ToolStrip();
             this.Console_Btn = new System.Windows.Forms.ToolStripButton();
             this.Mute_Btn = new System.Windows.Forms.ToolStripButton();
@@ -201,6 +201,147 @@
             this.AddURL_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnURL_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Status_Strip = new System.Windows.Forms.StatusStrip();
+            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
+            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.JavaDisable_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.JavaDisableFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.DBSelectOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TableOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.RecordsCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ProjectMapOpn_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LatTCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LonGtCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.FileOpnJson_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MaxHistoryEntry_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Agent_RSS_Cnt_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
+            this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.CategorieFeed_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.CreatCategorie_Btn = new System.Windows.Forms.ToolStripButton();
+            this.NewCategory_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.AddFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.NewFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.ManageFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteCatfeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Separator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteURLfeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.Separator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.CollapseTitleFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.GoFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.GoFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolsFeed_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CopyURLfeed_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnFileCategory_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.TraductPageFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator45 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveTitleRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
+            this.ReadArticle_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
+            this.DiscoverRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
+            this.oOBaiAgentRssNewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Agent_RSS_News_Local = new System.Windows.Forms.ToolStripMenuItem();
+            this.Agent_RSS_News_Cloud = new System.Windows.Forms.ToolStripMenuItem();
+            this.Agent_RSS_News_Promptsend = new System.Windows.Forms.ToolStripMenuItem();
+            this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
+            this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
+            this.RSS2_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ConfigRSS2_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartRSS2node_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.RSS2local_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
+            this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
+            this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
+            this.ViewXml_Tls = new System.Windows.Forms.ToolStripButton();
+            this.EditXml_Tls = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ExportXml_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportJson_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateDiagram_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Diagram_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiagramMindMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiagramMindMap2_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportDiag_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnSprites_Btn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
+            this.File_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.OpnJsonFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnXMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnPlantUMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.ThemDiag_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.DeleteProject_Tls = new System.Windows.Forms.ToolStripButton();
+            this.Debug_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.VerifProcessRun_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.KillProcess_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlantUmlLUpdate_Mnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.Timo = new System.Windows.Forms.Timer(this.components);
+            this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
+            this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
+            this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportGPX_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnDirMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
+            this.DelProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolsMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.OpnListLocation_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnListRouteGpx_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
+            this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpnBingMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenGoogleEarthWeb_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
+            this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
+            this.NegativeModeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
+            this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
+            this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.KeywordMap_Txt = new System.Windows.Forms.ToolStripTextBox();
+            this.GoWord_Tls = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
+            this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
             this.Control_Tab = new Ostium.ModernUI.ModernTabControl();
             this.Browser_Tab = new System.Windows.Forms.TabPage();
             this.WBrowse = new Microsoft.Web.WebView2.WinForms.WebView2();
@@ -253,8 +394,8 @@
             this.Rss_Tab = new System.Windows.Forms.TabPage();
             this.splitContain_Rss = new System.Windows.Forms.SplitContainer();
             this.Title_Lst = new System.Windows.Forms.ListBox();
-            this.RSSListSite_Lbl = new System.Windows.Forms.ListBox();
-            this.CountBlockFeed_Lbl = new System.Windows.Forms.ListBox();
+            this.RSSListSite_Lst = new System.Windows.Forms.ListBox();
+            this.CountBlockFeed_Lst = new System.Windows.Forms.ListBox();
             this.WBrowsefeed = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.Link_Lst = new System.Windows.Forms.ListBox();
             this.ListFeed_Lst = new System.Windows.Forms.ListBox();
@@ -562,148 +703,11 @@
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.Status_Strip = new System.Windows.Forms.StatusStrip();
-            this.TtsButton_Sts = new System.Windows.Forms.ToolStripSplitButton();
-            this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.URLtxt_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableVal_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.CountFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.JavaDisable_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.JavaDisableFeed_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DBSelectOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TableOpen_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.RecordsCount_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ProjectMapOpn_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.LatTCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Separator = new System.Windows.Forms.ToolStripStatusLabel();
-            this.LonGtCurrent_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.FileOpnJson_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MaxHistoryEntry_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Agent_RSS_Cnt_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Tools_TAB_1 = new System.Windows.Forms.ToolStrip();
-            this.HomeFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.CategorieFeed_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.CreatCategorie_Btn = new System.Windows.Forms.ToolStripButton();
-            this.NewCategory_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.AddFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.NewFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.ManageFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteCatfeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Separator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteURLfeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.Separator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.CollapseTitleFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.GoFeed_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
-            this.ToolsFeed_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.CopyURLfeed_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnFileCategory_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.TraductPageFeed_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator45 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaveTitleRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
-            this.ReadArticle_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.SpeakOpenPnl_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
-            this.DiscoverRSS_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
-            this.oOBaiAgentRssNewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Agent_RSS_News_Local = new System.Windows.Forms.ToolStripMenuItem();
-            this.Agent_RSS_News_Cloud = new System.Windows.Forms.ToolStripMenuItem();
-            this.Agent_RSS_News_Promptsend = new System.Windows.Forms.ToolStripMenuItem();
-            this.JavaScriptFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.BlockAdFeed_Btn = new System.Windows.Forms.ToolStripButton();
-            this.OpnPromptRss_Btn = new System.Windows.Forms.ToolStripButton();
-            this.RSS2_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ConfigRSS2_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.StartRSS2node_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.RSS2local_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.Tools_TAB_3 = new System.Windows.Forms.ToolStrip();
-            this.NewProject_Tls = new System.Windows.Forms.ToolStripButton();
-            this.SVGviewer_Tls = new System.Windows.Forms.ToolStripButton();
-            this.ViewXml_Tls = new System.Windows.Forms.ToolStripButton();
-            this.EditXml_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ExportXml_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportJson_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateDiagram_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Diagram_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.DiagramMindMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.DiagramMindMap2_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportDiag_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnSprites_Btn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
-            this.File_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.OpnJsonFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnXMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnPlantUMLFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.ThemDiag_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.DeleteProject_Tls = new System.Windows.Forms.ToolStripButton();
-            this.Debug_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.VerifProcessRun_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.KillProcess_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlantUml_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.PlantUmlVersion_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlantUmlLicense_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.PlantUmlLUpdate_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.CharsetPlant_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.Timo = new System.Windows.Forms.Timer(this.components);
-            this.Tools_TAB_4 = new System.Windows.Forms.ToolStrip();
-            this.MapProject_Tls = new System.Windows.Forms.ToolStripDropDownButton();
-            this.NewProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewProjectMapList_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewProjectMapLatLon_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewRouteProject_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
-            this.EgHelp_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.FilesMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.EditXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShowXMLMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportGPX_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnDirMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
-            this.DelProjectMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolsMap_Mnu = new System.Windows.Forms.ToolStripDropDownButton();
-            this.OpnListLocation_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnListRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnListRouteGpx_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnGPXRoute_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
-            this.CrossCenter_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScreenShotGmap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
-            this.OpnGoogleMaps_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnGoogleStreet_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpnBingMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenGoogleEarth_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenGoogleEarthWeb_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
-            this.CopyGeoMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
-            this.NegativeModeMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClearMap_Tls = new System.Windows.Forms.ToolStripMenuItem();
-            this.GmapProvider_Cbx = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.LatLon_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.OrderLL_txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoLatLong_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.KeywordMap_Txt = new System.Windows.Forms.ToolStripTextBox();
-            this.GoWord_Tls = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.ZoomValMap_Lbl = new System.Windows.Forms.ToolStripTextBox();
-            this.UndoRoutePoint_Btn = new System.Windows.Forms.ToolStripButton();
             this.Tools_TAB_0.SuspendLayout();
+            this.Status_Strip.SuspendLayout();
+            this.Tools_TAB_1.SuspendLayout();
+            this.Tools_TAB_3.SuspendLayout();
+            this.Tools_TAB_4.SuspendLayout();
             this.Control_Tab.SuspendLayout();
             this.Browser_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WBrowse)).BeginInit();
@@ -779,10 +783,6 @@
             this.groupBox3.SuspendLayout();
             this.PanelGrpOpt_Pnl.SuspendLayout();
             this.panel27.SuspendLayout();
-            this.Status_Strip.SuspendLayout();
-            this.Tools_TAB_1.SuspendLayout();
-            this.Tools_TAB_3.SuspendLayout();
-            this.Tools_TAB_4.SuspendLayout();
             this.SuspendLayout();
             // 
             // ModernToolTip
@@ -793,6 +793,68 @@
             this.ModernToolTip.ReshowDelay = 100;
             this.ModernToolTip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.ModernToolTip_Draw);
             this.ModernToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.ModernToolTip_Popup);
+            // 
+            // CloseSetCookie_Btn
+            // 
+            this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
+            this.CloseSetCookie_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseSetCookie_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseSetCookie_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.CloseSetCookie_Btn.Location = new System.Drawing.Point(8, 28);
+            this.CloseSetCookie_Btn.Name = "CloseSetCookie_Btn";
+            this.CloseSetCookie_Btn.Size = new System.Drawing.Size(22, 22);
+            this.CloseSetCookie_Btn.TabIndex = 7;
+            this.CloseSetCookie_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.CloseSetCookie_Btn, "Close");
+            this.CloseSetCookie_Btn.UseVisualStyleBackColor = false;
+            this.CloseSetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
+            // 
+            // CleanSearch_Btn
+            // 
+            this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
+            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
+            this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.CleanSearch_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.CleanSearch_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
+            this.CleanSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CleanSearch_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CleanSearch_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.CleanSearch_Btn.Location = new System.Drawing.Point(402, 0);
+            this.CleanSearch_Btn.MaximumSize = new System.Drawing.Size(53, 24);
+            this.CleanSearch_Btn.Name = "CleanSearch_Btn";
+            this.CleanSearch_Btn.Size = new System.Drawing.Size(30, 24);
+            this.CleanSearch_Btn.TabIndex = 9;
+            this.CleanSearch_Btn.Text = "";
+            this.ModernToolTip.SetToolTip(this.CleanSearch_Btn, "Clear");
+            this.CleanSearch_Btn.UseVisualStyleBackColor = false;
+            this.CleanSearch_Btn.Click += new System.EventHandler(this.CleanSearch_Btn_Click);
+            // 
+            // Go_Btn
+            // 
+            this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Go_Btn.FlatAppearance.BorderSize = 0;
+            this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Go_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Go_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.Go_Btn.Location = new System.Drawing.Point(946, 0);
+            this.Go_Btn.MaximumSize = new System.Drawing.Size(58, 24);
+            this.Go_Btn.Name = "Go_Btn";
+            this.Go_Btn.Size = new System.Drawing.Size(58, 24);
+            this.Go_Btn.TabIndex = 1;
+            this.Go_Btn.Text = "Go";
+            this.ModernToolTip.SetToolTip(this.Go_Btn, "Go");
+            this.Go_Btn.UseVisualStyleBackColor = false;
+            this.Go_Btn.Click += new System.EventHandler(this.Go_Btn_Click);
             // 
             // Home_Btn
             // 
@@ -881,68 +943,6 @@
             this.ModernToolTip.SetToolTip(this.Back_Btn, "Back");
             this.Back_Btn.UseVisualStyleBackColor = false;
             this.Back_Btn.Click += new System.EventHandler(this.Back_Btn_Click);
-            // 
-            // CleanSearch_Btn
-            // 
-            this.CleanSearch_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(61)))));
-            this.CleanSearch_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CleanSearch_Btn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.CleanSearch_Btn.FlatAppearance.BorderSize = 0;
-            this.CleanSearch_Btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.CleanSearch_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.CleanSearch_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(81)))));
-            this.CleanSearch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CleanSearch_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CleanSearch_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.CleanSearch_Btn.Location = new System.Drawing.Point(402, 0);
-            this.CleanSearch_Btn.MaximumSize = new System.Drawing.Size(53, 24);
-            this.CleanSearch_Btn.Name = "CleanSearch_Btn";
-            this.CleanSearch_Btn.Size = new System.Drawing.Size(30, 24);
-            this.CleanSearch_Btn.TabIndex = 9;
-            this.CleanSearch_Btn.Text = "";
-            this.ModernToolTip.SetToolTip(this.CleanSearch_Btn, "Clear");
-            this.CleanSearch_Btn.UseVisualStyleBackColor = false;
-            this.CleanSearch_Btn.Click += new System.EventHandler(this.CleanSearch_Btn_Click);
-            // 
-            // CloseSetCookie_Btn
-            // 
-            this.CloseSetCookie_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
-            this.CloseSetCookie_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloseSetCookie_Btn.FlatAppearance.BorderSize = 0;
-            this.CloseSetCookie_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.CloseSetCookie_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.CloseSetCookie_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseSetCookie_Btn.Font = new System.Drawing.Font("Segoe MDL2 Assets", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseSetCookie_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.CloseSetCookie_Btn.Location = new System.Drawing.Point(8, 28);
-            this.CloseSetCookie_Btn.Name = "CloseSetCookie_Btn";
-            this.CloseSetCookie_Btn.Size = new System.Drawing.Size(22, 22);
-            this.CloseSetCookie_Btn.TabIndex = 7;
-            this.CloseSetCookie_Btn.Text = "";
-            this.ModernToolTip.SetToolTip(this.CloseSetCookie_Btn, "Close");
-            this.CloseSetCookie_Btn.UseVisualStyleBackColor = false;
-            this.CloseSetCookie_Btn.Click += new System.EventHandler(this.SetCookie_Btn_Click);
-            // 
-            // Go_Btn
-            // 
-            this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Go_Btn.FlatAppearance.BorderSize = 0;
-            this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
-            this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Go_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Go_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.Go_Btn.Location = new System.Drawing.Point(946, 0);
-            this.Go_Btn.MaximumSize = new System.Drawing.Size(58, 24);
-            this.Go_Btn.Name = "Go_Btn";
-            this.Go_Btn.Size = new System.Drawing.Size(58, 24);
-            this.Go_Btn.TabIndex = 1;
-            this.Go_Btn.Text = "Go";
-            this.ModernToolTip.SetToolTip(this.Go_Btn, "Go");
-            this.Go_Btn.UseVisualStyleBackColor = false;
-            this.Go_Btn.Click += new System.EventHandler(this.Go_Btn_Click);
             // 
             // Tools_TAB_0
             // 
@@ -2060,6 +2060,1399 @@
             this.OpnURL_Btn.ToolTipText = "Open favorite links";
             this.OpnURL_Btn.Click += new System.EventHandler(this.OpnURL_Btn_Click);
             // 
+            // Status_Strip
+            // 
+            this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Status_Strip.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TtsButton_Sts,
+            this.TrackingLevel_Lbl,
+            this.URLtxt_Status,
+            this.TableVal_Status,
+            this.CountFeed_Status,
+            this.JavaDisable_Status,
+            this.JavaDisableFeed_Status,
+            this.DBSelectOpen_Status,
+            this.TableCount_Status,
+            this.TableOpen_Status,
+            this.RecordsCount_Status,
+            this.ProjectMapOpn_Status,
+            this.LatTCurrent_Status,
+            this.Separator,
+            this.LonGtCurrent_Status,
+            this.FileOpnJson_Status,
+            this.MaxHistoryEntry_Status,
+            this.Agent_RSS_Cnt_Status});
+            this.Status_Strip.Location = new System.Drawing.Point(0, 637);
+            this.Status_Strip.Name = "Status_Strip";
+            this.Status_Strip.Size = new System.Drawing.Size(1334, 24);
+            this.Status_Strip.SizingGrip = false;
+            this.Status_Strip.TabIndex = 14;
+            this.Status_Strip.Text = "statusStrip1";
+            // 
+            // TtsButton_Sts
+            // 
+            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
+            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TtsButton_Sts.Name = "TtsButton_Sts";
+            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 22);
+            this.TtsButton_Sts.Text = "Tools";
+            this.TtsButton_Sts.ToolTipText = "Choose an action";
+            // 
+            // TrackingLevel_Lbl
+            // 
+            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
+            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(150, 19);
+            this.TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
+            // 
+            // URLtxt_Status
+            // 
+            this.URLtxt_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.URLtxt_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLtxt_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.URLtxt_Status.Name = "URLtxt_Status";
+            this.URLtxt_Status.Size = new System.Drawing.Size(21, 19);
+            this.URLtxt_Status.Text = "url";
+            // 
+            // TableVal_Status
+            // 
+            this.TableVal_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableVal_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.TableVal_Status.Name = "TableVal_Status";
+            this.TableVal_Status.Size = new System.Drawing.Size(205, 19);
+            this.TableVal_Status.Text = "TABLE (url_date, url_name, url_adress)";
+            this.TableVal_Status.Visible = false;
+            // 
+            // CountFeed_Status
+            // 
+            this.CountFeed_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CountFeed_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountFeed_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.CountFeed_Status.Name = "CountFeed_Status";
+            this.CountFeed_Status.Size = new System.Drawing.Size(12, 19);
+            this.CountFeed_Status.Text = "_";
+            this.CountFeed_Status.Visible = false;
+            // 
+            // JavaDisable_Status
+            // 
+            this.JavaDisable_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.JavaDisable_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaDisable_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.JavaDisable_Status.Name = "JavaDisable_Status";
+            this.JavaDisable_Status.Size = new System.Drawing.Size(99, 19);
+            this.JavaDisable_Status.Text = "Javascript Disable";
+            this.JavaDisable_Status.Visible = false;
+            // 
+            // JavaDisableFeed_Status
+            // 
+            this.JavaDisableFeed_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.JavaDisableFeed_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaDisableFeed_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.JavaDisableFeed_Status.Name = "JavaDisableFeed_Status";
+            this.JavaDisableFeed_Status.Size = new System.Drawing.Size(99, 19);
+            this.JavaDisableFeed_Status.Text = "Javascript Disable";
+            this.JavaDisableFeed_Status.Visible = false;
+            // 
+            // DBSelectOpen_Status
+            // 
+            this.DBSelectOpen_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DBSelectOpen_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.DBSelectOpen_Status.Name = "DBSelectOpen_Status";
+            this.DBSelectOpen_Status.Size = new System.Drawing.Size(12, 19);
+            this.DBSelectOpen_Status.Text = "_";
+            this.DBSelectOpen_Status.Visible = false;
+            // 
+            // TableCount_Status
+            // 
+            this.TableCount_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableCount_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.TableCount_Status.Name = "TableCount_Status";
+            this.TableCount_Status.Size = new System.Drawing.Size(12, 19);
+            this.TableCount_Status.Text = "_";
+            this.TableCount_Status.Visible = false;
+            // 
+            // TableOpen_Status
+            // 
+            this.TableOpen_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableOpen_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.TableOpen_Status.Name = "TableOpen_Status";
+            this.TableOpen_Status.Size = new System.Drawing.Size(12, 19);
+            this.TableOpen_Status.Text = "_";
+            this.TableOpen_Status.Visible = false;
+            // 
+            // RecordsCount_Status
+            // 
+            this.RecordsCount_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordsCount_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.RecordsCount_Status.Name = "RecordsCount_Status";
+            this.RecordsCount_Status.Size = new System.Drawing.Size(12, 19);
+            this.RecordsCount_Status.Text = "_";
+            this.RecordsCount_Status.Visible = false;
+            // 
+            // ProjectMapOpn_Status
+            // 
+            this.ProjectMapOpn_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProjectMapOpn_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.ProjectMapOpn_Status.Name = "ProjectMapOpn_Status";
+            this.ProjectMapOpn_Status.Size = new System.Drawing.Size(12, 19);
+            this.ProjectMapOpn_Status.Text = "_";
+            this.ProjectMapOpn_Status.Visible = false;
+            // 
+            // LatTCurrent_Status
+            // 
+            this.LatTCurrent_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatTCurrent_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.LatTCurrent_Status.Name = "LatTCurrent_Status";
+            this.LatTCurrent_Status.Size = new System.Drawing.Size(12, 19);
+            this.LatTCurrent_Status.Text = "_";
+            this.LatTCurrent_Status.Visible = false;
+            // 
+            // Separator
+            // 
+            this.Separator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.Separator.Name = "Separator";
+            this.Separator.Size = new System.Drawing.Size(12, 19);
+            this.Separator.Text = "|";
+            this.Separator.Visible = false;
+            // 
+            // LonGtCurrent_Status
+            // 
+            this.LonGtCurrent_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LonGtCurrent_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.LonGtCurrent_Status.Name = "LonGtCurrent_Status";
+            this.LonGtCurrent_Status.Size = new System.Drawing.Size(12, 19);
+            this.LonGtCurrent_Status.Text = "_";
+            this.LonGtCurrent_Status.Visible = false;
+            // 
+            // FileOpnJson_Status
+            // 
+            this.FileOpnJson_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileOpnJson_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.FileOpnJson_Status.Name = "FileOpnJson_Status";
+            this.FileOpnJson_Status.Size = new System.Drawing.Size(12, 19);
+            this.FileOpnJson_Status.Text = "_";
+            this.FileOpnJson_Status.Visible = false;
+            // 
+            // MaxHistoryEntry_Status
+            // 
+            this.MaxHistoryEntry_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaxHistoryEntry_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.MaxHistoryEntry_Status.Name = "MaxHistoryEntry_Status";
+            this.MaxHistoryEntry_Status.Size = new System.Drawing.Size(12, 19);
+            this.MaxHistoryEntry_Status.Text = "_";
+            this.MaxHistoryEntry_Status.Visible = false;
+            // 
+            // Agent_RSS_Cnt_Status
+            // 
+            this.Agent_RSS_Cnt_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Agent_RSS_Cnt_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.Agent_RSS_Cnt_Status.Name = "Agent_RSS_Cnt_Status";
+            this.Agent_RSS_Cnt_Status.Size = new System.Drawing.Size(12, 19);
+            this.Agent_RSS_Cnt_Status.Text = "_";
+            this.Agent_RSS_Cnt_Status.Visible = false;
+            // 
+            // Tools_TAB_1
+            // 
+            this.Tools_TAB_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.Tools_TAB_1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HomeFeed_Btn,
+            this.toolStripSeparator5,
+            this.toolStripLabel1,
+            this.CategorieFeed_Cbx,
+            this.CreatCategorie_Btn,
+            this.NewCategory_Txt,
+            this.AddFeed_Btn,
+            this.NewFeed_Txt,
+            this.ManageFeed_Btn,
+            this.toolStripSeparator2,
+            this.DeleteCatfeed_Btn,
+            this.Separator5,
+            this.DeleteURLfeed_Btn,
+            this.Separator4,
+            this.CollapseTitleFeed_Btn,
+            this.GoFeed_Txt,
+            this.GoFeed_Btn,
+            this.toolStripSeparator20,
+            this.ToolsFeed_Mnu,
+            this.JavaScriptFeed_Btn,
+            this.BlockAdFeed_Btn,
+            this.OpnPromptRss_Btn,
+            this.RSS2_Tls});
+            this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
+            this.Tools_TAB_1.Name = "Tools_TAB_1";
+            this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 34);
+            this.Tools_TAB_1.TabIndex = 14;
+            this.Tools_TAB_1.Visible = false;
+            // 
+            // HomeFeed_Btn
+            // 
+            this.HomeFeed_Btn.AutoToolTip = false;
+            this.HomeFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.HomeFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.HomeFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("HomeFeed_Btn.Image")));
+            this.HomeFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HomeFeed_Btn.Name = "HomeFeed_Btn";
+            this.HomeFeed_Btn.Size = new System.Drawing.Size(44, 25);
+            this.HomeFeed_Btn.Text = "Home";
+            this.HomeFeed_Btn.Click += new System.EventHandler(this.HomeFeed_Btn_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(57, 25);
+            this.toolStripLabel1.Text = "Category:";
+            // 
+            // CategorieFeed_Cbx
+            // 
+            this.CategorieFeed_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CategorieFeed_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.CategorieFeed_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.CategorieFeed_Cbx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 0);
+            this.CategorieFeed_Cbx.Name = "CategorieFeed_Cbx";
+            this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 27);
+            this.CategorieFeed_Cbx.Text = "Select";
+            // 
+            // CreatCategorie_Btn
+            // 
+            this.CreatCategorie_Btn.AutoToolTip = false;
+            this.CreatCategorie_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CreatCategorie_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreatCategorie_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CreatCategorie_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreatCategorie_Btn.Image")));
+            this.CreatCategorie_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CreatCategorie_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.CreatCategorie_Btn.Name = "CreatCategorie_Btn";
+            this.CreatCategorie_Btn.Size = new System.Drawing.Size(44, 23);
+            this.CreatCategorie_Btn.Text = "Create";
+            this.CreatCategorie_Btn.Click += new System.EventHandler(this.CreatCategorie_Btn_Click);
+            // 
+            // NewCategory_Txt
+            // 
+            this.NewCategory_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.NewCategory_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NewCategory_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewCategory_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.NewCategory_Txt.Name = "NewCategory_Txt";
+            this.NewCategory_Txt.Size = new System.Drawing.Size(150, 28);
+            this.NewCategory_Txt.Text = "New Category";
+            this.NewCategory_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AddFeed_Btn
+            // 
+            this.AddFeed_Btn.AutoToolTip = false;
+            this.AddFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AddFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.AddFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddFeed_Btn.Image")));
+            this.AddFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AddFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.AddFeed_Btn.Name = "AddFeed_Btn";
+            this.AddFeed_Btn.Size = new System.Drawing.Size(61, 23);
+            this.AddFeed_Btn.Text = "Add Feed";
+            this.AddFeed_Btn.Click += new System.EventHandler(this.AddFeed_Btn_Click);
+            // 
+            // NewFeed_Txt
+            // 
+            this.NewFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.NewFeed_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NewFeed_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewFeed_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.NewFeed_Txt.Name = "NewFeed_Txt";
+            this.NewFeed_Txt.Size = new System.Drawing.Size(150, 28);
+            this.NewFeed_Txt.Text = "New Feed";
+            this.NewFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ManageFeed_Btn
+            // 
+            this.ManageFeed_Btn.AutoToolTip = false;
+            this.ManageFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ManageFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManageFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ManageFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("ManageFeed_Btn.Image")));
+            this.ManageFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ManageFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.ManageFeed_Btn.Name = "ManageFeed_Btn";
+            this.ManageFeed_Btn.Size = new System.Drawing.Size(80, 23);
+            this.ManageFeed_Btn.Text = "Manage feed";
+            this.ManageFeed_Btn.Click += new System.EventHandler(this.ManageFeed_Btn_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // DeleteCatfeed_Btn
+            // 
+            this.DeleteCatfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteCatfeed_Btn.Enabled = false;
+            this.DeleteCatfeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteCatfeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.DeleteCatfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteCatfeed_Btn.Image")));
+            this.DeleteCatfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteCatfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.DeleteCatfeed_Btn.Name = "DeleteCatfeed_Btn";
+            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(79, 23);
+            this.DeleteCatfeed_Btn.Text = "Del Category";
+            this.DeleteCatfeed_Btn.Visible = false;
+            this.DeleteCatfeed_Btn.Click += new System.EventHandler(this.DeleteCatfeed_Btn_Click);
+            // 
+            // Separator5
+            // 
+            this.Separator5.Name = "Separator5";
+            this.Separator5.Size = new System.Drawing.Size(6, 28);
+            this.Separator5.Visible = false;
+            // 
+            // DeleteURLfeed_Btn
+            // 
+            this.DeleteURLfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteURLfeed_Btn.Enabled = false;
+            this.DeleteURLfeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteURLfeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.DeleteURLfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteURLfeed_Btn.Image")));
+            this.DeleteURLfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteURLfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.DeleteURLfeed_Btn.Name = "DeleteURLfeed_Btn";
+            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(53, 23);
+            this.DeleteURLfeed_Btn.Text = "Del URL";
+            this.DeleteURLfeed_Btn.Visible = false;
+            this.DeleteURLfeed_Btn.Click += new System.EventHandler(this.DeleteURLfeed_Btn_Click);
+            // 
+            // Separator4
+            // 
+            this.Separator4.Name = "Separator4";
+            this.Separator4.Size = new System.Drawing.Size(6, 28);
+            this.Separator4.Visible = false;
+            // 
+            // CollapseTitleFeed_Btn
+            // 
+            this.CollapseTitleFeed_Btn.AutoToolTip = false;
+            this.CollapseTitleFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CollapseTitleFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CollapseTitleFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.CollapseTitleFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CollapseTitleFeed_Btn.Image")));
+            this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
+            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(74, 23);
+            this.CollapseTitleFeed_Btn.Text = "Collapse On";
+            this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
+            // 
+            // GoFeed_Txt
+            // 
+            this.GoFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.GoFeed_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GoFeed_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoFeed_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.GoFeed_Txt.Name = "GoFeed_Txt";
+            this.GoFeed_Txt.Size = new System.Drawing.Size(40, 28);
+            this.GoFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.GoFeed_Txt.Click += new System.EventHandler(this.GoFeed_Txt_Click);
+            // 
+            // GoFeed_Btn
+            // 
+            this.GoFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.GoFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.GoFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("GoFeed_Btn.Image")));
+            this.GoFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GoFeed_Btn.Name = "GoFeed_Btn";
+            this.GoFeed_Btn.Size = new System.Drawing.Size(26, 25);
+            this.GoFeed_Btn.Text = "Go";
+            this.GoFeed_Btn.Click += new System.EventHandler(this.GoFeed_Btn_Click);
+            // 
+            // toolStripSeparator20
+            // 
+            this.toolStripSeparator20.Name = "toolStripSeparator20";
+            this.toolStripSeparator20.Size = new System.Drawing.Size(6, 28);
+            // 
+            // ToolsFeed_Mnu
+            // 
+            this.ToolsFeed_Mnu.AutoToolTip = false;
+            this.ToolsFeed_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToolsFeed_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CopyURLfeed_Mnu,
+            this.OpnFileCategory_Btn,
+            this.TraductPageFeed_Btn,
+            this.toolStripSeparator45,
+            this.SaveTitleRSS_Btn,
+            this.toolStripSeparator19,
+            this.ReadArticle_Btn,
+            this.SpeakOpenPnl_Btn,
+            this.toolStripSeparator44,
+            this.DiscoverRSS_Btn,
+            this.toolStripSeparator39,
+            this.oOBaiAgentRssNewsToolStripMenuItem});
+            this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
+            this.ToolsFeed_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolsFeed_Mnu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.ToolsFeed_Mnu.Name = "ToolsFeed_Mnu";
+            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(48, 23);
+            this.ToolsFeed_Mnu.Text = "Tools";
+            // 
+            // CopyURLfeed_Mnu
+            // 
+            this.CopyURLfeed_Mnu.Name = "CopyURLfeed_Mnu";
+            this.CopyURLfeed_Mnu.Size = new System.Drawing.Size(203, 22);
+            this.CopyURLfeed_Mnu.Text = "Copy URL";
+            this.CopyURLfeed_Mnu.Click += new System.EventHandler(this.CopyURLfeed_Mnu_Click);
+            // 
+            // OpnFileCategory_Btn
+            // 
+            this.OpnFileCategory_Btn.Name = "OpnFileCategory_Btn";
+            this.OpnFileCategory_Btn.Size = new System.Drawing.Size(203, 22);
+            this.OpnFileCategory_Btn.Text = "Open File Category";
+            this.OpnFileCategory_Btn.Click += new System.EventHandler(this.OpnFileCategory_Btn_Click);
+            // 
+            // TraductPageFeed_Btn
+            // 
+            this.TraductPageFeed_Btn.Name = "TraductPageFeed_Btn";
+            this.TraductPageFeed_Btn.Size = new System.Drawing.Size(203, 22);
+            this.TraductPageFeed_Btn.Text = "Traduct Page";
+            this.TraductPageFeed_Btn.Click += new System.EventHandler(this.TraductPageFeed_Btn_Click);
+            // 
+            // toolStripSeparator45
+            // 
+            this.toolStripSeparator45.Name = "toolStripSeparator45";
+            this.toolStripSeparator45.Size = new System.Drawing.Size(200, 6);
+            // 
+            // SaveTitleRSS_Btn
+            // 
+            this.SaveTitleRSS_Btn.Name = "SaveTitleRSS_Btn";
+            this.SaveTitleRSS_Btn.Size = new System.Drawing.Size(203, 22);
+            this.SaveTitleRSS_Btn.Text = "Save titles";
+            this.SaveTitleRSS_Btn.Click += new System.EventHandler(this.SaveTitleRSS_Btn_Click);
+            // 
+            // toolStripSeparator19
+            // 
+            this.toolStripSeparator19.Name = "toolStripSeparator19";
+            this.toolStripSeparator19.Size = new System.Drawing.Size(200, 6);
+            // 
+            // ReadArticle_Btn
+            // 
+            this.ReadArticle_Btn.Name = "ReadArticle_Btn";
+            this.ReadArticle_Btn.Size = new System.Drawing.Size(203, 22);
+            this.ReadArticle_Btn.Text = "Read the Article";
+            this.ReadArticle_Btn.Click += new System.EventHandler(this.ReadArticle_Btn_Click);
+            // 
+            // SpeakOpenPnl_Btn
+            // 
+            this.SpeakOpenPnl_Btn.Name = "SpeakOpenPnl_Btn";
+            this.SpeakOpenPnl_Btn.Size = new System.Drawing.Size(203, 22);
+            this.SpeakOpenPnl_Btn.Text = "Speak";
+            this.SpeakOpenPnl_Btn.Click += new System.EventHandler(this.SpeakOpenPnl_Btn_Click);
+            // 
+            // toolStripSeparator44
+            // 
+            this.toolStripSeparator44.Name = "toolStripSeparator44";
+            this.toolStripSeparator44.Size = new System.Drawing.Size(200, 6);
+            // 
+            // DiscoverRSS_Btn
+            // 
+            this.DiscoverRSS_Btn.Name = "DiscoverRSS_Btn";
+            this.DiscoverRSS_Btn.Size = new System.Drawing.Size(203, 22);
+            this.DiscoverRSS_Btn.Text = "Discover";
+            this.DiscoverRSS_Btn.Click += new System.EventHandler(this.DiscoverRSS_Btn_Click);
+            // 
+            // toolStripSeparator39
+            // 
+            this.toolStripSeparator39.Name = "toolStripSeparator39";
+            this.toolStripSeparator39.Size = new System.Drawing.Size(200, 6);
+            // 
+            // oOBaiAgentRssNewsToolStripMenuItem
+            // 
+            this.oOBaiAgentRssNewsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Agent_RSS_News_Local,
+            this.Agent_RSS_News_Cloud,
+            this.Agent_RSS_News_Promptsend});
+            this.oOBaiAgentRssNewsToolStripMenuItem.Name = "oOBaiAgentRssNewsToolStripMenuItem";
+            this.oOBaiAgentRssNewsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.oOBaiAgentRssNewsToolStripMenuItem.Text = "OOBai [Agent Rss News]";
+            // 
+            // Agent_RSS_News_Local
+            // 
+            this.Agent_RSS_News_Local.Name = "Agent_RSS_News_Local";
+            this.Agent_RSS_News_Local.Size = new System.Drawing.Size(125, 22);
+            this.Agent_RSS_News_Local.Text = "Localhost";
+            this.Agent_RSS_News_Local.Click += new System.EventHandler(this.Agent_RSS_News_Local_Click);
+            // 
+            // Agent_RSS_News_Cloud
+            // 
+            this.Agent_RSS_News_Cloud.Name = "Agent_RSS_News_Cloud";
+            this.Agent_RSS_News_Cloud.Size = new System.Drawing.Size(125, 22);
+            this.Agent_RSS_News_Cloud.Text = "Cloud";
+            this.Agent_RSS_News_Cloud.Click += new System.EventHandler(this.Agent_RSS_News_Cloud_Click);
+            // 
+            // Agent_RSS_News_Promptsend
+            // 
+            this.Agent_RSS_News_Promptsend.Name = "Agent_RSS_News_Promptsend";
+            this.Agent_RSS_News_Promptsend.Size = new System.Drawing.Size(125, 22);
+            this.Agent_RSS_News_Promptsend.Text = "Prompt";
+            this.Agent_RSS_News_Promptsend.Click += new System.EventHandler(this.Agent_RSS_News_Promptsend_Click);
+            // 
+            // JavaScriptFeed_Btn
+            // 
+            this.JavaScriptFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.JavaScriptFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaScriptFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.JavaScriptFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("JavaScriptFeed_Btn.Image")));
+            this.JavaScriptFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.JavaScriptFeed_Btn.Name = "JavaScriptFeed_Btn";
+            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(61, 25);
+            this.JavaScriptFeed_Btn.Text = "JS Enable";
+            this.JavaScriptFeed_Btn.Click += new System.EventHandler(this.JavaScriptFeed_Btn_Click);
+            // 
+            // BlockAdFeed_Btn
+            // 
+            this.BlockAdFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BlockAdFeed_Btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlockAdFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.BlockAdFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("BlockAdFeed_Btn.Image")));
+            this.BlockAdFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BlockAdFeed_Btn.Name = "BlockAdFeed_Btn";
+            this.BlockAdFeed_Btn.Size = new System.Drawing.Size(36, 25);
+            this.BlockAdFeed_Btn.Text = "🚫";
+            this.BlockAdFeed_Btn.ToolTipText = "Block Ad/Tracker";
+            this.BlockAdFeed_Btn.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
+            // 
+            // OpnPromptRss_Btn
+            // 
+            this.OpnPromptRss_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.OpnPromptRss_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpnPromptRss_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnPromptRss_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
+            this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
+            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(59, 25);
+            this.OpnPromptRss_Btn.Text = "Prompt";
+            this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
+            // 
+            // RSS2_Tls
+            // 
+            this.RSS2_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RSS2_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConfigRSS2_Btn,
+            this.StartRSS2node_Btn,
+            this.RSS2local_Btn});
+            this.RSS2_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
+            this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RSS2_Tls.Name = "RSS2_Tls";
+            this.RSS2_Tls.Size = new System.Drawing.Size(52, 25);
+            this.RSS2_Tls.Text = "RSS2";
+            // 
+            // ConfigRSS2_Btn
+            // 
+            this.ConfigRSS2_Btn.Name = "ConfigRSS2_Btn";
+            this.ConfigRSS2_Btn.Size = new System.Drawing.Size(141, 24);
+            this.ConfigRSS2_Btn.Text = "Config";
+            this.ConfigRSS2_Btn.Click += new System.EventHandler(this.ConfigRSS2_Btn_Click);
+            // 
+            // StartRSS2node_Btn
+            // 
+            this.StartRSS2node_Btn.Name = "StartRSS2node_Btn";
+            this.StartRSS2node_Btn.Size = new System.Drawing.Size(141, 24);
+            this.StartRSS2node_Btn.Text = "Start RSS2";
+            this.StartRSS2node_Btn.Click += new System.EventHandler(this.StartRSS2node_Btn_Click);
+            // 
+            // RSS2local_Btn
+            // 
+            this.RSS2local_Btn.Name = "RSS2local_Btn";
+            this.RSS2local_Btn.Size = new System.Drawing.Size(141, 24);
+            this.RSS2local_Btn.Text = "Localhost";
+            this.RSS2local_Btn.Click += new System.EventHandler(this.RSS2local_Btn_Click);
+            // 
+            // Tools_TAB_3
+            // 
+            this.Tools_TAB_3.AutoSize = false;
+            this.Tools_TAB_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.Tools_TAB_3.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.Tools_TAB_3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewProject_Tls,
+            this.SVGviewer_Tls,
+            this.ViewXml_Tls,
+            this.EditXml_Tls,
+            this.toolStripDropDownButton2,
+            this.CreateDiagram_Tls,
+            this.ExportDiag_Btn,
+            this.toolStripSeparator6,
+            this.OpnSprites_Btn,
+            this.toolStripSeparator21,
+            this.File_Tls,
+            this.toolStripLabel2,
+            this.ThemDiag_Cbx,
+            this.DeleteProject_Tls,
+            this.Debug_Tls,
+            this.PlantUml_Mnu,
+            this.CharsetPlant_Txt});
+            this.Tools_TAB_3.Location = new System.Drawing.Point(0, 0);
+            this.Tools_TAB_3.Name = "Tools_TAB_3";
+            this.Tools_TAB_3.Size = new System.Drawing.Size(1334, 31);
+            this.Tools_TAB_3.TabIndex = 15;
+            this.Tools_TAB_3.Visible = false;
+            // 
+            // NewProject_Tls
+            // 
+            this.NewProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.NewProject_Tls.Image = global::Ostium.Properties.Resources.AddNew;
+            this.NewProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewProject_Tls.Margin = new System.Windows.Forms.Padding(10, 1, 0, 3);
+            this.NewProject_Tls.Name = "NewProject_Tls";
+            this.NewProject_Tls.Size = new System.Drawing.Size(28, 27);
+            this.NewProject_Tls.ToolTipText = "Create new Project";
+            this.NewProject_Tls.Click += new System.EventHandler(this.NewProject_Tls_Click);
+            // 
+            // SVGviewer_Tls
+            // 
+            this.SVGviewer_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SVGviewer_Tls.Image = global::Ostium.Properties.Resources.Show;
+            this.SVGviewer_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SVGviewer_Tls.Name = "SVGviewer_Tls";
+            this.SVGviewer_Tls.Size = new System.Drawing.Size(28, 28);
+            this.SVGviewer_Tls.Text = "SVG Viewer";
+            this.SVGviewer_Tls.Click += new System.EventHandler(this.SVGviewer_Tls_Click);
+            // 
+            // ViewXml_Tls
+            // 
+            this.ViewXml_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ViewXml_Tls.Image = global::Ostium.Properties.Resources.Viewxml;
+            this.ViewXml_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ViewXml_Tls.Margin = new System.Windows.Forms.Padding(5, 1, 0, 3);
+            this.ViewXml_Tls.Name = "ViewXml_Tls";
+            this.ViewXml_Tls.Size = new System.Drawing.Size(28, 27);
+            this.ViewXml_Tls.ToolTipText = "Show XML";
+            this.ViewXml_Tls.Click += new System.EventHandler(this.ViewXml_Tls_Click);
+            // 
+            // EditXml_Tls
+            // 
+            this.EditXml_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EditXml_Tls.Image = global::Ostium.Properties.Resources.EditWF;
+            this.EditXml_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditXml_Tls.Margin = new System.Windows.Forms.Padding(5, 1, 0, 3);
+            this.EditXml_Tls.Name = "EditXml_Tls";
+            this.EditXml_Tls.Size = new System.Drawing.Size(28, 27);
+            this.EditXml_Tls.ToolTipText = "Edit XML";
+            this.EditXml_Tls.Click += new System.EventHandler(this.EditXml_Tls_Click);
+            // 
+            // toolStripDropDownButton2
+            // 
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExportXml_Tls,
+            this.ExportJson_Tls});
+            this.toolStripDropDownButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripDropDownButton2.Image = global::Ostium.Properties.Resources.Export0;
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 3);
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(37, 27);
+            this.toolStripDropDownButton2.Text = "Export File";
+            // 
+            // ExportXml_Tls
+            // 
+            this.ExportXml_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportXml_Tls.Name = "ExportXml_Tls";
+            this.ExportXml_Tls.Size = new System.Drawing.Size(135, 22);
+            this.ExportXml_Tls.Text = "Export XML";
+            this.ExportXml_Tls.Click += new System.EventHandler(this.ExportXml_Tls_Click);
+            // 
+            // ExportJson_Tls
+            // 
+            this.ExportJson_Tls.Name = "ExportJson_Tls";
+            this.ExportJson_Tls.Size = new System.Drawing.Size(135, 22);
+            this.ExportJson_Tls.Text = "Export Json";
+            this.ExportJson_Tls.Click += new System.EventHandler(this.ExportJson_Tls_Click);
+            // 
+            // CreateDiagram_Tls
+            // 
+            this.CreateDiagram_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CreateDiagram_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Diagram_Tls,
+            this.DiagramMindMap_Tls,
+            this.DiagramMindMap2_Tls});
+            this.CreateDiagram_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateDiagram_Tls.Image = global::Ostium.Properties.Resources.Diagram;
+            this.CreateDiagram_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CreateDiagram_Tls.Name = "CreateDiagram_Tls";
+            this.CreateDiagram_Tls.Size = new System.Drawing.Size(37, 28);
+            this.CreateDiagram_Tls.Text = "Create Diagram";
+            // 
+            // Diagram_Tls
+            // 
+            this.Diagram_Tls.Name = "Diagram_Tls";
+            this.Diagram_Tls.Size = new System.Drawing.Size(230, 22);
+            this.Diagram_Tls.Text = "Model #1 Json";
+            this.Diagram_Tls.Click += new System.EventHandler(this.Diagram_Tls_Click);
+            // 
+            // DiagramMindMap_Tls
+            // 
+            this.DiagramMindMap_Tls.Name = "DiagramMindMap_Tls";
+            this.DiagramMindMap_Tls.Size = new System.Drawing.Size(230, 22);
+            this.DiagramMindMap_Tls.Text = "Model #2 Mind Map Detailed";
+            this.DiagramMindMap_Tls.Click += new System.EventHandler(this.DiagramMindMap_Tls_Click);
+            // 
+            // DiagramMindMap2_Tls
+            // 
+            this.DiagramMindMap2_Tls.Name = "DiagramMindMap2_Tls";
+            this.DiagramMindMap2_Tls.Size = new System.Drawing.Size(230, 22);
+            this.DiagramMindMap2_Tls.Text = "Model #3 Mind Map";
+            this.DiagramMindMap2_Tls.Click += new System.EventHandler(this.DiagramMindMap2_Tls_Click);
+            // 
+            // ExportDiag_Btn
+            // 
+            this.ExportDiag_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ExportDiag_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportDiag_Btn.Image = global::Ostium.Properties.Resources.Exportsvg;
+            this.ExportDiag_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExportDiag_Btn.Name = "ExportDiag_Btn";
+            this.ExportDiag_Btn.Size = new System.Drawing.Size(28, 28);
+            this.ExportDiag_Btn.Text = "Export Diagram";
+            this.ExportDiag_Btn.Click += new System.EventHandler(this.ExportDiag_Btn_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
+            // 
+            // OpnSprites_Btn
+            // 
+            this.OpnSprites_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.OpnSprites_Btn.Image = global::Ostium.Properties.Resources.Sprites;
+            this.OpnSprites_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpnSprites_Btn.Name = "OpnSprites_Btn";
+            this.OpnSprites_Btn.Size = new System.Drawing.Size(28, 28);
+            this.OpnSprites_Btn.Text = "Sprites";
+            this.OpnSprites_Btn.Click += new System.EventHandler(this.OpnSprites_Btn_Click);
+            // 
+            // toolStripSeparator21
+            // 
+            this.toolStripSeparator21.Name = "toolStripSeparator21";
+            this.toolStripSeparator21.Size = new System.Drawing.Size(6, 31);
+            // 
+            // File_Tls
+            // 
+            this.File_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.File_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnJsonFile_Btn,
+            this.OpnXMLFile_Btn,
+            this.OpnPlantUMLFile_Btn});
+            this.File_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.File_Tls.Image = global::Ostium.Properties.Resources.Filesbtn;
+            this.File_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.File_Tls.Name = "File_Tls";
+            this.File_Tls.Size = new System.Drawing.Size(37, 28);
+            this.File_Tls.Text = "File";
+            // 
+            // OpnJsonFile_Btn
+            // 
+            this.OpnJsonFile_Btn.Name = "OpnJsonFile_Btn";
+            this.OpnJsonFile_Btn.Size = new System.Drawing.Size(177, 22);
+            this.OpnJsonFile_Btn.Text = "Open JSON file";
+            this.OpnJsonFile_Btn.Click += new System.EventHandler(this.OpnJsonFile_Btn_Click);
+            // 
+            // OpnXMLFile_Btn
+            // 
+            this.OpnXMLFile_Btn.Name = "OpnXMLFile_Btn";
+            this.OpnXMLFile_Btn.Size = new System.Drawing.Size(177, 22);
+            this.OpnXMLFile_Btn.Text = "Open XML file";
+            this.OpnXMLFile_Btn.Click += new System.EventHandler(this.OpnXMLFile_Btn_Click);
+            // 
+            // OpnPlantUMLFile_Btn
+            // 
+            this.OpnPlantUMLFile_Btn.Name = "OpnPlantUMLFile_Btn";
+            this.OpnPlantUMLFile_Btn.Size = new System.Drawing.Size(177, 22);
+            this.OpnPlantUMLFile_Btn.Text = "Open PlantUML file";
+            this.OpnPlantUMLFile_Btn.Click += new System.EventHandler(this.OpnPlantUMLFile_Btn_Click);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(131, 28);
+            this.toolStripLabel2.Text = "Diagram Theme Select:";
+            // 
+            // ThemDiag_Cbx
+            // 
+            this.ThemDiag_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ThemDiag_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.ThemDiag_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ThemDiag_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
+            this.ThemDiag_Cbx.Items.AddRange(new object[] {
+            "amiga",
+            "hacker",
+            "crt-green",
+            "crt-amber",
+            "cloudscape-design",
+            "cyborg",
+            "materia",
+            "materia-outline",
+            "minty",
+            "reddress-darkblue",
+            "reddress-lightred",
+            "sandstone",
+            "spacelab",
+            "superhero",
+            "superhero-outline",
+            "united"});
+            this.ThemDiag_Cbx.Margin = new System.Windows.Forms.Padding(0, 3, 1, 5);
+            this.ThemDiag_Cbx.Name = "ThemDiag_Cbx";
+            this.ThemDiag_Cbx.Size = new System.Drawing.Size(150, 23);
+            // 
+            // DeleteProject_Tls
+            // 
+            this.DeleteProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DeleteProject_Tls.Image = global::Ostium.Properties.Resources.TrashCan;
+            this.DeleteProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteProject_Tls.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+            this.DeleteProject_Tls.Name = "DeleteProject_Tls";
+            this.DeleteProject_Tls.Size = new System.Drawing.Size(28, 28);
+            this.DeleteProject_Tls.ToolTipText = "Delete Project";
+            this.DeleteProject_Tls.Click += new System.EventHandler(this.DeleteProject_Tls_Click);
+            // 
+            // Debug_Tls
+            // 
+            this.Debug_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Debug_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.VerifProcessRun_Btn,
+            this.KillProcess_Btn});
+            this.Debug_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Debug_Tls.Image = global::Ostium.Properties.Resources.CPU;
+            this.Debug_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Debug_Tls.Name = "Debug_Tls";
+            this.Debug_Tls.Size = new System.Drawing.Size(37, 28);
+            this.Debug_Tls.Text = "Process";
+            // 
+            // VerifProcessRun_Btn
+            // 
+            this.VerifProcessRun_Btn.Name = "VerifProcessRun_Btn";
+            this.VerifProcessRun_Btn.Size = new System.Drawing.Size(367, 22);
+            this.VerifProcessRun_Btn.Text = "Verify Process run => OpenJDK Platform binary (javaw)";
+            this.VerifProcessRun_Btn.Click += new System.EventHandler(this.VerifProcessRun_Btn_Click);
+            // 
+            // KillProcess_Btn
+            // 
+            this.KillProcess_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.KillProcess_Btn.Name = "KillProcess_Btn";
+            this.KillProcess_Btn.Size = new System.Drawing.Size(367, 22);
+            this.KillProcess_Btn.Text = "Kill => OpenJDK Platform binary (javaw)";
+            this.KillProcess_Btn.Click += new System.EventHandler(this.KillProcess_Btn_Click);
+            // 
+            // PlantUml_Mnu
+            // 
+            this.PlantUml_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PlantUml_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PlantUmlVersion_Mnu,
+            this.PlantUmlLicense_Mnu,
+            this.PlantUmlLUpdate_Mnu});
+            this.PlantUml_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlantUml_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.PlantUml_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("PlantUml_Mnu.Image")));
+            this.PlantUml_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PlantUml_Mnu.Name = "PlantUml_Mnu";
+            this.PlantUml_Mnu.Size = new System.Drawing.Size(72, 28);
+            this.PlantUml_Mnu.Text = "PlantUML";
+            // 
+            // PlantUmlVersion_Mnu
+            // 
+            this.PlantUmlVersion_Mnu.Name = "PlantUmlVersion_Mnu";
+            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(113, 22);
+            this.PlantUmlVersion_Mnu.Text = "Version";
+            this.PlantUmlVersion_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
+            // 
+            // PlantUmlLicense_Mnu
+            // 
+            this.PlantUmlLicense_Mnu.Name = "PlantUmlLicense_Mnu";
+            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(113, 22);
+            this.PlantUmlLicense_Mnu.Text = "License";
+            this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
+            // 
+            // PlantUmlLUpdate_Mnu
+            // 
+            this.PlantUmlLUpdate_Mnu.Name = "PlantUmlLUpdate_Mnu";
+            this.PlantUmlLUpdate_Mnu.Size = new System.Drawing.Size(113, 22);
+            this.PlantUmlLUpdate_Mnu.Text = "Update";
+            this.PlantUmlLUpdate_Mnu.Click += new System.EventHandler(this.PlantUmlLUpdate_Mnu_Click);
+            // 
+            // CharsetPlant_Txt
+            // 
+            this.CharsetPlant_Txt.AutoSize = false;
+            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
+            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
+            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
+            this.CharsetPlant_Txt.Text = "-charset UTF-8";
+            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Timo
+            // 
+            this.Timo.Interval = 5000;
+            this.Timo.Tick += new System.EventHandler(this.Timo_Tick);
+            // 
+            // Tools_TAB_4
+            // 
+            this.Tools_TAB_4.AutoSize = false;
+            this.Tools_TAB_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.Tools_TAB_4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_TAB_4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.Tools_TAB_4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MapProject_Tls,
+            this.FilesMap_Mnu,
+            this.ToolsMap_Mnu,
+            this.GmapProvider_Cbx,
+            this.toolStripLabel3,
+            this.LatLon_Txt,
+            this.toolStripLabel5,
+            this.OrderLL_txt,
+            this.GoLatLong_Tls,
+            this.toolStripSeparator23,
+            this.toolStripLabel4,
+            this.KeywordMap_Txt,
+            this.GoWord_Tls,
+            this.toolStripSeparator27,
+            this.toolStripLabel6,
+            this.ZoomValMap_Lbl,
+            this.UndoRoutePoint_Btn});
+            this.Tools_TAB_4.Location = new System.Drawing.Point(0, 0);
+            this.Tools_TAB_4.Name = "Tools_TAB_4";
+            this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.Tools_TAB_4.Size = new System.Drawing.Size(1334, 29);
+            this.Tools_TAB_4.TabIndex = 16;
+            this.Tools_TAB_4.Visible = false;
+            // 
+            // MapProject_Tls
+            // 
+            this.MapProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.MapProject_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NewProjectMap_Tls,
+            this.NewProjectMapList_Tls,
+            this.NewProjectMapLatLon_Tls,
+            this.NewRouteProject_Tls,
+            this.toolStripSeparator29,
+            this.EgHelp_Tls});
+            this.MapProject_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapProject_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.MapProject_Tls.Image = ((System.Drawing.Image)(resources.GetObject("MapProject_Tls.Image")));
+            this.MapProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MapProject_Tls.Name = "MapProject_Tls";
+            this.MapProject_Tls.Size = new System.Drawing.Size(57, 20);
+            this.MapProject_Tls.Text = "Project";
+            // 
+            // NewProjectMap_Tls
+            // 
+            this.NewProjectMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.NewProjectMap_Tls.Name = "NewProjectMap_Tls";
+            this.NewProjectMap_Tls.Size = new System.Drawing.Size(391, 22);
+            this.NewProjectMap_Tls.Text = "New Location Project";
+            this.NewProjectMap_Tls.Click += new System.EventHandler(this.NewProjectMap_Tls_Click);
+            // 
+            // NewProjectMapList_Tls
+            // 
+            this.NewProjectMapList_Tls.Name = "NewProjectMapList_Tls";
+            this.NewProjectMapList_Tls.Size = new System.Drawing.Size(391, 22);
+            this.NewProjectMapList_Tls.Text = "Create a project from a list of points";
+            this.NewProjectMapList_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
+            // 
+            // NewProjectMapLatLon_Tls
+            // 
+            this.NewProjectMapLatLon_Tls.Name = "NewProjectMapLatLon_Tls";
+            this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(391, 22);
+            this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
+            this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
+            // 
+            // NewRouteProject_Tls
+            // 
+            this.NewRouteProject_Tls.Name = "NewRouteProject_Tls";
+            this.NewRouteProject_Tls.Size = new System.Drawing.Size(391, 22);
+            this.NewRouteProject_Tls.Text = "New Route Project";
+            this.NewRouteProject_Tls.Click += new System.EventHandler(this.NewRouteProject_Tls_Click);
+            // 
+            // toolStripSeparator29
+            // 
+            this.toolStripSeparator29.Name = "toolStripSeparator29";
+            this.toolStripSeparator29.Size = new System.Drawing.Size(388, 6);
+            // 
+            // EgHelp_Tls
+            // 
+            this.EgHelp_Tls.Name = "EgHelp_Tls";
+            this.EgHelp_Tls.Size = new System.Drawing.Size(391, 22);
+            this.EgHelp_Tls.Text = "eg. data format";
+            this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
+            // 
+            // FilesMap_Mnu
+            // 
+            this.FilesMap_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.FilesMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EditXMLMap_Tls,
+            this.ShowXMLMap_Tls,
+            this.ExportGPX_Tls,
+            this.OpnDirMap_Tls,
+            this.toolStripSeparator25,
+            this.DelProjectMap_Tls});
+            this.FilesMap_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilesMap_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.FilesMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("FilesMap_Mnu.Image")));
+            this.FilesMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FilesMap_Mnu.Name = "FilesMap_Mnu";
+            this.FilesMap_Mnu.Size = new System.Drawing.Size(43, 20);
+            this.FilesMap_Mnu.Text = "Files";
+            // 
+            // EditXMLMap_Tls
+            // 
+            this.EditXMLMap_Tls.Name = "EditXMLMap_Tls";
+            this.EditXMLMap_Tls.Size = new System.Drawing.Size(225, 22);
+            this.EditXMLMap_Tls.Text = "Edit Project File";
+            this.EditXMLMap_Tls.Click += new System.EventHandler(this.EditXMLMap_Tls_Click);
+            // 
+            // ShowXMLMap_Tls
+            // 
+            this.ShowXMLMap_Tls.Name = "ShowXMLMap_Tls";
+            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(225, 22);
+            this.ShowXMLMap_Tls.Text = "Show Project";
+            this.ShowXMLMap_Tls.Click += new System.EventHandler(this.ShowXMLMap_Tls_Click);
+            // 
+            // ExportGPX_Tls
+            // 
+            this.ExportGPX_Tls.Name = "ExportGPX_Tls";
+            this.ExportGPX_Tls.Size = new System.Drawing.Size(225, 22);
+            this.ExportGPX_Tls.Text = "Export project in GPX format";
+            this.ExportGPX_Tls.Click += new System.EventHandler(this.ExportGPX_Tls_Click);
+            // 
+            // OpnDirMap_Tls
+            // 
+            this.OpnDirMap_Tls.Name = "OpnDirMap_Tls";
+            this.OpnDirMap_Tls.Size = new System.Drawing.Size(225, 22);
+            this.OpnDirMap_Tls.Text = "Open Directory";
+            this.OpnDirMap_Tls.Click += new System.EventHandler(this.OpnDirMap_Tls_Click);
+            // 
+            // toolStripSeparator25
+            // 
+            this.toolStripSeparator25.Name = "toolStripSeparator25";
+            this.toolStripSeparator25.Size = new System.Drawing.Size(222, 6);
+            // 
+            // DelProjectMap_Tls
+            // 
+            this.DelProjectMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.DelProjectMap_Tls.Name = "DelProjectMap_Tls";
+            this.DelProjectMap_Tls.Size = new System.Drawing.Size(225, 22);
+            this.DelProjectMap_Tls.Text = "Delete Project";
+            this.DelProjectMap_Tls.Click += new System.EventHandler(this.DelProjectMap_Tls_Click);
+            // 
+            // ToolsMap_Mnu
+            // 
+            this.ToolsMap_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToolsMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpnListLocation_Tls,
+            this.OpnListRoute_Tls,
+            this.OpnListRouteGpx_Tls,
+            this.OpnGPXRoute_Tls,
+            this.toolStripSeparator30,
+            this.CrossCenter_Tls,
+            this.ScreenShotGmap_Tls,
+            this.toolStripSeparator24,
+            this.OpnGoogleMaps_Tls,
+            this.OpnGoogleStreet_Tls,
+            this.OpnBingMap_Tls,
+            this.OpenGoogleEarth_Tls,
+            this.OpenGoogleEarthWeb_Tls,
+            this.toolStripSeparator26,
+            this.CopyGeoMap_Tls,
+            this.toolStripSeparator28,
+            this.NegativeModeMap_Tls,
+            this.ClearMap_Tls});
+            this.ToolsMap_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
+            this.ToolsMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolsMap_Mnu.Name = "ToolsMap_Mnu";
+            this.ToolsMap_Mnu.Size = new System.Drawing.Size(48, 20);
+            this.ToolsMap_Mnu.Text = "Tools";
+            // 
+            // OpnListLocation_Tls
+            // 
+            this.OpnListLocation_Tls.Name = "OpnListLocation_Tls";
+            this.OpnListLocation_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnListLocation_Tls.Text = "Open Locations List";
+            this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
+            // 
+            // OpnListRoute_Tls
+            // 
+            this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
+            this.OpnListRoute_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnListRoute_Tls.Text = "Open Routes List";
+            this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
+            // 
+            // OpnListRouteGpx_Tls
+            // 
+            this.OpnListRouteGpx_Tls.Name = "OpnListRouteGpx_Tls";
+            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnListRouteGpx_Tls.Text = "Open Routes GPX KML GEOJSON JSON List";
+            this.OpnListRouteGpx_Tls.Click += new System.EventHandler(this.OpnListRouteGpx_Tls_Click);
+            // 
+            // OpnGPXRoute_Tls
+            // 
+            this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
+            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnGPXRoute_Tls.Text = "Open File GPX KML GEOJSON JSON";
+            this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
+            // 
+            // toolStripSeparator30
+            // 
+            this.toolStripSeparator30.Name = "toolStripSeparator30";
+            this.toolStripSeparator30.Size = new System.Drawing.Size(301, 6);
+            // 
+            // CrossCenter_Tls
+            // 
+            this.CrossCenter_Tls.Name = "CrossCenter_Tls";
+            this.CrossCenter_Tls.Size = new System.Drawing.Size(304, 22);
+            this.CrossCenter_Tls.Text = "Cross Center";
+            this.CrossCenter_Tls.Click += new System.EventHandler(this.CrossCenter_Tls_Click);
+            // 
+            // ScreenShotGmap_Tls
+            // 
+            this.ScreenShotGmap_Tls.Name = "ScreenShotGmap_Tls";
+            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(304, 22);
+            this.ScreenShotGmap_Tls.Text = "ScreenShot";
+            this.ScreenShotGmap_Tls.Click += new System.EventHandler(this.ScreenShotGmap_Tls_Click);
+            // 
+            // toolStripSeparator24
+            // 
+            this.toolStripSeparator24.Name = "toolStripSeparator24";
+            this.toolStripSeparator24.Size = new System.Drawing.Size(301, 6);
+            // 
+            // OpnGoogleMaps_Tls
+            // 
+            this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
+            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
+            this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
+            // 
+            // OpnGoogleStreet_Tls
+            // 
+            this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
+            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
+            this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
+            // 
+            // OpnBingMap_Tls
+            // 
+            this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
+            this.OpnBingMap_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpnBingMap_Tls.Text = "Open BingMap";
+            this.OpnBingMap_Tls.Click += new System.EventHandler(this.OpnBingMap_Tls_Click);
+            // 
+            // OpenGoogleEarth_Tls
+            // 
+            this.OpenGoogleEarth_Tls.Name = "OpenGoogleEarth_Tls";
+            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
+            this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
+            // 
+            // OpenGoogleEarthWeb_Tls
+            // 
+            this.OpenGoogleEarthWeb_Tls.Name = "OpenGoogleEarthWeb_Tls";
+            this.OpenGoogleEarthWeb_Tls.Size = new System.Drawing.Size(304, 22);
+            this.OpenGoogleEarthWeb_Tls.Text = "Open Google Earth Web";
+            this.OpenGoogleEarthWeb_Tls.Click += new System.EventHandler(this.OpenGoogleEarthWeb_Tls_Click);
+            // 
+            // toolStripSeparator26
+            // 
+            this.toolStripSeparator26.Name = "toolStripSeparator26";
+            this.toolStripSeparator26.Size = new System.Drawing.Size(301, 6);
+            // 
+            // CopyGeoMap_Tls
+            // 
+            this.CopyGeoMap_Tls.Name = "CopyGeoMap_Tls";
+            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(304, 22);
+            this.CopyGeoMap_Tls.Text = "Copy Geolocation";
+            this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
+            // 
+            // toolStripSeparator28
+            // 
+            this.toolStripSeparator28.Name = "toolStripSeparator28";
+            this.toolStripSeparator28.Size = new System.Drawing.Size(301, 6);
+            // 
+            // NegativeModeMap_Tls
+            // 
+            this.NegativeModeMap_Tls.Name = "NegativeModeMap_Tls";
+            this.NegativeModeMap_Tls.Size = new System.Drawing.Size(304, 22);
+            this.NegativeModeMap_Tls.Text = "Negative Mode";
+            this.NegativeModeMap_Tls.Click += new System.EventHandler(this.NegativeModeMap_Tls_Click);
+            // 
+            // ClearMap_Tls
+            // 
+            this.ClearMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.ClearMap_Tls.Name = "ClearMap_Tls";
+            this.ClearMap_Tls.Size = new System.Drawing.Size(304, 22);
+            this.ClearMap_Tls.Text = "Clear Map";
+            this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
+            // 
+            // GmapProvider_Cbx
+            // 
+            this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.GmapProvider_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GmapProvider_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.GmapProvider_Cbx.Items.AddRange(new object[] {
+            "BingHybridMap",
+            "BingMap",
+            "BingSatelliteMap",
+            "GoogleMap",
+            "GoogleSatelliteMap",
+            "GoogleTerrainMap",
+            "OpenCycleLandscapeMap",
+            "OpenCycleMap",
+            "OpenCycleTransportMap",
+            "WikiMapiaMap",
+            "ArcGIS_World_Street"});
+            this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
+            this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 23);
+            this.GmapProvider_Cbx.Text = "OpenCycleMap";
+            this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(45, 20);
+            this.toolStripLabel3.Text = "lat/Lon";
+            // 
+            // LatLon_Txt
+            // 
+            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.LatLon_Txt.Name = "LatLon_Txt";
+            this.LatLon_Txt.Size = new System.Drawing.Size(200, 23);
+            this.LatLon_Txt.Text = "Coordinates";
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(37, 20);
+            this.toolStripLabel5.Text = "Order";
+            // 
+            // OrderLL_txt
+            // 
+            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.OrderLL_txt.Name = "OrderLL_txt";
+            this.OrderLL_txt.Size = new System.Drawing.Size(45, 23);
+            this.OrderLL_txt.Text = "lalo";
+            this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // GoLatLong_Tls
+            // 
+            this.GoLatLong_Tls.AutoSize = false;
+            this.GoLatLong_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.GoLatLong_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoLatLong_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.GoLatLong_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoLatLong_Tls.Image")));
+            this.GoLatLong_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GoLatLong_Tls.Name = "GoLatLong_Tls";
+            this.GoLatLong_Tls.Size = new System.Drawing.Size(50, 22);
+            this.GoLatLong_Tls.Text = "go";
+            this.GoLatLong_Tls.Click += new System.EventHandler(this.GoLatLong_Tls_Click);
+            // 
+            // toolStripSeparator23
+            // 
+            this.toolStripSeparator23.Name = "toolStripSeparator23";
+            this.toolStripSeparator23.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(34, 20);
+            this.toolStripLabel4.Text = "word";
+            // 
+            // KeywordMap_Txt
+            // 
+            this.KeywordMap_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.KeywordMap_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.KeywordMap_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.KeywordMap_Txt.Name = "KeywordMap_Txt";
+            this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 23);
+            this.KeywordMap_Txt.Text = "Adress";
+            // 
+            // GoWord_Tls
+            // 
+            this.GoWord_Tls.AutoSize = false;
+            this.GoWord_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.GoWord_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GoWord_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
+            this.GoWord_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoWord_Tls.Image")));
+            this.GoWord_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.GoWord_Tls.Name = "GoWord_Tls";
+            this.GoWord_Tls.Size = new System.Drawing.Size(50, 22);
+            this.GoWord_Tls.Text = "go";
+            this.GoWord_Tls.Click += new System.EventHandler(this.GoWord_Tls_Click);
+            // 
+            // toolStripSeparator27
+            // 
+            this.toolStripSeparator27.Name = "toolStripSeparator27";
+            this.toolStripSeparator27.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(39, 20);
+            this.toolStripLabel6.Text = "Zoom";
+            // 
+            // ZoomValMap_Lbl
+            // 
+            this.ZoomValMap_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ZoomValMap_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ZoomValMap_Lbl.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZoomValMap_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(121)))), ((int)(((byte)(249)))));
+            this.ZoomValMap_Lbl.Name = "ZoomValMap_Lbl";
+            this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 23);
+            this.ZoomValMap_Lbl.Text = "3";
+            this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // UndoRoutePoint_Btn
+            // 
+            this.UndoRoutePoint_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.UndoRoutePoint_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
+            this.UndoRoutePoint_Btn.Image = ((System.Drawing.Image)(resources.GetObject("UndoRoutePoint_Btn.Image")));
+            this.UndoRoutePoint_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UndoRoutePoint_Btn.Name = "UndoRoutePoint_Btn";
+            this.UndoRoutePoint_Btn.Size = new System.Drawing.Size(105, 20);
+            this.UndoRoutePoint_Btn.Text = "Undo Route Point";
+            this.UndoRoutePoint_Btn.Visible = false;
+            this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
+            // 
             // Control_Tab
             // 
             this.Control_Tab.Controls.Add(this.Browser_Tab);
@@ -2791,12 +4184,12 @@
             // splitContain_Rss.Panel1
             // 
             this.splitContain_Rss.Panel1.Controls.Add(this.Title_Lst);
-            this.splitContain_Rss.Panel1.Controls.Add(this.RSSListSite_Lbl);
+            this.splitContain_Rss.Panel1.Controls.Add(this.RSSListSite_Lst);
             this.splitContain_Rss.Panel1Collapsed = true;
             // 
             // splitContain_Rss.Panel2
             // 
-            this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lbl);
+            this.splitContain_Rss.Panel2.Controls.Add(this.CountBlockFeed_Lst);
             this.splitContain_Rss.Panel2.Controls.Add(this.WBrowsefeed);
             this.splitContain_Rss.Size = new System.Drawing.Size(1326, 545);
             this.splitContain_Rss.SplitterDistance = 227;
@@ -2814,37 +4207,36 @@
             this.Title_Lst.Location = new System.Drawing.Point(0, 0);
             this.Title_Lst.MaximumSize = new System.Drawing.Size(0, 227);
             this.Title_Lst.Name = "Title_Lst";
-            this.Title_Lst.Size = new System.Drawing.Size(150, 227);
+            this.Title_Lst.Size = new System.Drawing.Size(0, 227);
             this.Title_Lst.TabIndex = 0;
             this.Title_Lst.SelectedIndexChanged += new System.EventHandler(this.Title_Lst_SelectedIndexChanged);
             // 
-            // RSSListSite_Lbl
+            // RSSListSite_Lst
             // 
-            this.RSSListSite_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.RSSListSite_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RSSListSite_Lbl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RSSListSite_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.RSSListSite_Lbl.FormattingEnabled = true;
-            this.RSSListSite_Lbl.ItemHeight = 15;
-            this.RSSListSite_Lbl.Location = new System.Drawing.Point(150, 0);
-            this.RSSListSite_Lbl.MaximumSize = new System.Drawing.Size(0, 227);
-            this.RSSListSite_Lbl.Name = "RSSListSite_Lbl";
-            this.RSSListSite_Lbl.Size = new System.Drawing.Size(0, 227);
-            this.RSSListSite_Lbl.TabIndex = 6;
-            this.RSSListSite_Lbl.Visible = false;
-            this.RSSListSite_Lbl.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lbl_SelectedIndexChanged);
+            this.RSSListSite_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.RSSListSite_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RSSListSite_Lst.Dock = System.Windows.Forms.DockStyle.Right;
+            this.RSSListSite_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.RSSListSite_Lst.FormattingEnabled = true;
+            this.RSSListSite_Lst.ItemHeight = 15;
+            this.RSSListSite_Lst.Location = new System.Drawing.Point(-100, 0);
+            this.RSSListSite_Lst.MaximumSize = new System.Drawing.Size(0, 227);
+            this.RSSListSite_Lst.Name = "RSSListSite_Lst";
+            this.RSSListSite_Lst.Size = new System.Drawing.Size(250, 227);
+            this.RSSListSite_Lst.TabIndex = 6;
+            this.RSSListSite_Lst.SelectedIndexChanged += new System.EventHandler(this.CountBlockSite_Lst_SelectedIndexChanged);
             // 
-            // CountBlockFeed_Lbl
+            // CountBlockFeed_Lst
             // 
-            this.CountBlockFeed_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.CountBlockFeed_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.CountBlockFeed_Lbl.FormattingEnabled = true;
-            this.CountBlockFeed_Lbl.ItemHeight = 15;
-            this.CountBlockFeed_Lbl.Location = new System.Drawing.Point(1080, 587);
-            this.CountBlockFeed_Lbl.Name = "CountBlockFeed_Lbl";
-            this.CountBlockFeed_Lbl.Size = new System.Drawing.Size(143, 4);
-            this.CountBlockFeed_Lbl.TabIndex = 5;
-            this.CountBlockFeed_Lbl.Visible = false;
+            this.CountBlockFeed_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.CountBlockFeed_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.CountBlockFeed_Lst.FormattingEnabled = true;
+            this.CountBlockFeed_Lst.ItemHeight = 15;
+            this.CountBlockFeed_Lst.Location = new System.Drawing.Point(1080, 587);
+            this.CountBlockFeed_Lst.Name = "CountBlockFeed_Lst";
+            this.CountBlockFeed_Lst.Size = new System.Drawing.Size(143, 4);
+            this.CountBlockFeed_Lst.TabIndex = 5;
+            this.CountBlockFeed_Lst.Visible = false;
             // 
             // WBrowsefeed
             // 
@@ -5372,7 +6764,7 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
-            this.label35.Location = new System.Drawing.Point(16, 7);
+            this.label35.Location = new System.Drawing.Point(8, 7);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(278, 15);
             this.label35.TabIndex = 31;
@@ -7163,1399 +8555,6 @@
             this.panel21.Size = new System.Drawing.Size(10, 595);
             this.panel21.TabIndex = 20;
             // 
-            // Status_Strip
-            // 
-            this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.Status_Strip.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TtsButton_Sts,
-            this.TrackingLevel_Lbl,
-            this.URLtxt_Status,
-            this.TableVal_Status,
-            this.CountFeed_Status,
-            this.JavaDisable_Status,
-            this.JavaDisableFeed_Status,
-            this.DBSelectOpen_Status,
-            this.TableCount_Status,
-            this.TableOpen_Status,
-            this.RecordsCount_Status,
-            this.ProjectMapOpn_Status,
-            this.LatTCurrent_Status,
-            this.Separator,
-            this.LonGtCurrent_Status,
-            this.FileOpnJson_Status,
-            this.MaxHistoryEntry_Status,
-            this.Agent_RSS_Cnt_Status});
-            this.Status_Strip.Location = new System.Drawing.Point(0, 637);
-            this.Status_Strip.Name = "Status_Strip";
-            this.Status_Strip.Size = new System.Drawing.Size(1334, 24);
-            this.Status_Strip.SizingGrip = false;
-            this.Status_Strip.TabIndex = 14;
-            this.Status_Strip.Text = "statusStrip1";
-            // 
-            // TtsButton_Sts
-            // 
-            this.TtsButton_Sts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TtsButton_Sts.Image = global::Ostium.Properties.Resources.Menutls;
-            this.TtsButton_Sts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TtsButton_Sts.Name = "TtsButton_Sts";
-            this.TtsButton_Sts.Size = new System.Drawing.Size(32, 22);
-            this.TtsButton_Sts.Text = "Tools";
-            this.TtsButton_Sts.ToolTipText = "Choose an action";
-            // 
-            // TrackingLevel_Lbl
-            // 
-            this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrackingLevel_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
-            this.TrackingLevel_Lbl.Size = new System.Drawing.Size(150, 19);
-            this.TrackingLevel_Lbl.Text = "Tracking Prevention: NONE";
-            // 
-            // URLtxt_Status
-            // 
-            this.URLtxt_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.URLtxt_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLtxt_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.URLtxt_Status.Name = "URLtxt_Status";
-            this.URLtxt_Status.Size = new System.Drawing.Size(21, 19);
-            this.URLtxt_Status.Text = "url";
-            // 
-            // TableVal_Status
-            // 
-            this.TableVal_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableVal_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.TableVal_Status.Name = "TableVal_Status";
-            this.TableVal_Status.Size = new System.Drawing.Size(205, 19);
-            this.TableVal_Status.Text = "TABLE (url_date, url_name, url_adress)";
-            this.TableVal_Status.Visible = false;
-            // 
-            // CountFeed_Status
-            // 
-            this.CountFeed_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CountFeed_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountFeed_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.CountFeed_Status.Name = "CountFeed_Status";
-            this.CountFeed_Status.Size = new System.Drawing.Size(12, 19);
-            this.CountFeed_Status.Text = "_";
-            this.CountFeed_Status.Visible = false;
-            // 
-            // JavaDisable_Status
-            // 
-            this.JavaDisable_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.JavaDisable_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaDisable_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.JavaDisable_Status.Name = "JavaDisable_Status";
-            this.JavaDisable_Status.Size = new System.Drawing.Size(99, 19);
-            this.JavaDisable_Status.Text = "Javascript Disable";
-            this.JavaDisable_Status.Visible = false;
-            // 
-            // JavaDisableFeed_Status
-            // 
-            this.JavaDisableFeed_Status.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.JavaDisableFeed_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaDisableFeed_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.JavaDisableFeed_Status.Name = "JavaDisableFeed_Status";
-            this.JavaDisableFeed_Status.Size = new System.Drawing.Size(99, 19);
-            this.JavaDisableFeed_Status.Text = "Javascript Disable";
-            this.JavaDisableFeed_Status.Visible = false;
-            // 
-            // DBSelectOpen_Status
-            // 
-            this.DBSelectOpen_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DBSelectOpen_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.DBSelectOpen_Status.Name = "DBSelectOpen_Status";
-            this.DBSelectOpen_Status.Size = new System.Drawing.Size(12, 19);
-            this.DBSelectOpen_Status.Text = "_";
-            this.DBSelectOpen_Status.Visible = false;
-            // 
-            // TableCount_Status
-            // 
-            this.TableCount_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableCount_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.TableCount_Status.Name = "TableCount_Status";
-            this.TableCount_Status.Size = new System.Drawing.Size(12, 19);
-            this.TableCount_Status.Text = "_";
-            this.TableCount_Status.Visible = false;
-            // 
-            // TableOpen_Status
-            // 
-            this.TableOpen_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableOpen_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.TableOpen_Status.Name = "TableOpen_Status";
-            this.TableOpen_Status.Size = new System.Drawing.Size(12, 19);
-            this.TableOpen_Status.Text = "_";
-            this.TableOpen_Status.Visible = false;
-            // 
-            // RecordsCount_Status
-            // 
-            this.RecordsCount_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecordsCount_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.RecordsCount_Status.Name = "RecordsCount_Status";
-            this.RecordsCount_Status.Size = new System.Drawing.Size(12, 19);
-            this.RecordsCount_Status.Text = "_";
-            this.RecordsCount_Status.Visible = false;
-            // 
-            // ProjectMapOpn_Status
-            // 
-            this.ProjectMapOpn_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProjectMapOpn_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.ProjectMapOpn_Status.Name = "ProjectMapOpn_Status";
-            this.ProjectMapOpn_Status.Size = new System.Drawing.Size(12, 19);
-            this.ProjectMapOpn_Status.Text = "_";
-            this.ProjectMapOpn_Status.Visible = false;
-            // 
-            // LatTCurrent_Status
-            // 
-            this.LatTCurrent_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatTCurrent_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.LatTCurrent_Status.Name = "LatTCurrent_Status";
-            this.LatTCurrent_Status.Size = new System.Drawing.Size(12, 19);
-            this.LatTCurrent_Status.Text = "_";
-            this.LatTCurrent_Status.Visible = false;
-            // 
-            // Separator
-            // 
-            this.Separator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.Separator.Name = "Separator";
-            this.Separator.Size = new System.Drawing.Size(12, 19);
-            this.Separator.Text = "|";
-            this.Separator.Visible = false;
-            // 
-            // LonGtCurrent_Status
-            // 
-            this.LonGtCurrent_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LonGtCurrent_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.LonGtCurrent_Status.Name = "LonGtCurrent_Status";
-            this.LonGtCurrent_Status.Size = new System.Drawing.Size(12, 19);
-            this.LonGtCurrent_Status.Text = "_";
-            this.LonGtCurrent_Status.Visible = false;
-            // 
-            // FileOpnJson_Status
-            // 
-            this.FileOpnJson_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FileOpnJson_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.FileOpnJson_Status.Name = "FileOpnJson_Status";
-            this.FileOpnJson_Status.Size = new System.Drawing.Size(12, 19);
-            this.FileOpnJson_Status.Text = "_";
-            this.FileOpnJson_Status.Visible = false;
-            // 
-            // MaxHistoryEntry_Status
-            // 
-            this.MaxHistoryEntry_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaxHistoryEntry_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.MaxHistoryEntry_Status.Name = "MaxHistoryEntry_Status";
-            this.MaxHistoryEntry_Status.Size = new System.Drawing.Size(12, 19);
-            this.MaxHistoryEntry_Status.Text = "_";
-            this.MaxHistoryEntry_Status.Visible = false;
-            // 
-            // Agent_RSS_Cnt_Status
-            // 
-            this.Agent_RSS_Cnt_Status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Agent_RSS_Cnt_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.Agent_RSS_Cnt_Status.Name = "Agent_RSS_Cnt_Status";
-            this.Agent_RSS_Cnt_Status.Size = new System.Drawing.Size(12, 19);
-            this.Agent_RSS_Cnt_Status.Text = "_";
-            this.Agent_RSS_Cnt_Status.Visible = false;
-            // 
-            // Tools_TAB_1
-            // 
-            this.Tools_TAB_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.Tools_TAB_1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_TAB_1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Tools_TAB_1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.HomeFeed_Btn,
-            this.toolStripSeparator5,
-            this.toolStripLabel1,
-            this.CategorieFeed_Cbx,
-            this.CreatCategorie_Btn,
-            this.NewCategory_Txt,
-            this.AddFeed_Btn,
-            this.NewFeed_Txt,
-            this.ManageFeed_Btn,
-            this.toolStripSeparator2,
-            this.DeleteCatfeed_Btn,
-            this.Separator5,
-            this.DeleteURLfeed_Btn,
-            this.Separator4,
-            this.CollapseTitleFeed_Btn,
-            this.GoFeed_Txt,
-            this.GoFeed_Btn,
-            this.toolStripSeparator20,
-            this.ToolsFeed_Mnu,
-            this.JavaScriptFeed_Btn,
-            this.BlockAdFeed_Btn,
-            this.OpnPromptRss_Btn,
-            this.RSS2_Tls});
-            this.Tools_TAB_1.Location = new System.Drawing.Point(0, 0);
-            this.Tools_TAB_1.Name = "Tools_TAB_1";
-            this.Tools_TAB_1.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
-            this.Tools_TAB_1.Size = new System.Drawing.Size(1334, 34);
-            this.Tools_TAB_1.TabIndex = 14;
-            this.Tools_TAB_1.Visible = false;
-            // 
-            // HomeFeed_Btn
-            // 
-            this.HomeFeed_Btn.AutoToolTip = false;
-            this.HomeFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.HomeFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HomeFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.HomeFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("HomeFeed_Btn.Image")));
-            this.HomeFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HomeFeed_Btn.Name = "HomeFeed_Btn";
-            this.HomeFeed_Btn.Size = new System.Drawing.Size(44, 25);
-            this.HomeFeed_Btn.Text = "Home";
-            this.HomeFeed_Btn.Click += new System.EventHandler(this.HomeFeed_Btn_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(57, 25);
-            this.toolStripLabel1.Text = "Category:";
-            // 
-            // CategorieFeed_Cbx
-            // 
-            this.CategorieFeed_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.CategorieFeed_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.CategorieFeed_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategorieFeed_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.CategorieFeed_Cbx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 0);
-            this.CategorieFeed_Cbx.Name = "CategorieFeed_Cbx";
-            this.CategorieFeed_Cbx.Size = new System.Drawing.Size(150, 27);
-            this.CategorieFeed_Cbx.Text = "Select";
-            // 
-            // CreatCategorie_Btn
-            // 
-            this.CreatCategorie_Btn.AutoToolTip = false;
-            this.CreatCategorie_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CreatCategorie_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreatCategorie_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.CreatCategorie_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CreatCategorie_Btn.Image")));
-            this.CreatCategorie_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CreatCategorie_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.CreatCategorie_Btn.Name = "CreatCategorie_Btn";
-            this.CreatCategorie_Btn.Size = new System.Drawing.Size(44, 23);
-            this.CreatCategorie_Btn.Text = "Create";
-            this.CreatCategorie_Btn.Click += new System.EventHandler(this.CreatCategorie_Btn_Click);
-            // 
-            // NewCategory_Txt
-            // 
-            this.NewCategory_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.NewCategory_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NewCategory_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewCategory_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.NewCategory_Txt.Name = "NewCategory_Txt";
-            this.NewCategory_Txt.Size = new System.Drawing.Size(150, 28);
-            this.NewCategory_Txt.Text = "New Category";
-            this.NewCategory_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // AddFeed_Btn
-            // 
-            this.AddFeed_Btn.AutoToolTip = false;
-            this.AddFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.AddFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("AddFeed_Btn.Image")));
-            this.AddFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AddFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.AddFeed_Btn.Name = "AddFeed_Btn";
-            this.AddFeed_Btn.Size = new System.Drawing.Size(61, 23);
-            this.AddFeed_Btn.Text = "Add Feed";
-            this.AddFeed_Btn.Click += new System.EventHandler(this.AddFeed_Btn_Click);
-            // 
-            // NewFeed_Txt
-            // 
-            this.NewFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.NewFeed_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NewFeed_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewFeed_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.NewFeed_Txt.Name = "NewFeed_Txt";
-            this.NewFeed_Txt.Size = new System.Drawing.Size(150, 28);
-            this.NewFeed_Txt.Text = "New Feed";
-            this.NewFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ManageFeed_Btn
-            // 
-            this.ManageFeed_Btn.AutoToolTip = false;
-            this.ManageFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ManageFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManageFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.ManageFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("ManageFeed_Btn.Image")));
-            this.ManageFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ManageFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.ManageFeed_Btn.Name = "ManageFeed_Btn";
-            this.ManageFeed_Btn.Size = new System.Drawing.Size(80, 23);
-            this.ManageFeed_Btn.Text = "Manage feed";
-            this.ManageFeed_Btn.Click += new System.EventHandler(this.ManageFeed_Btn_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
-            // 
-            // DeleteCatfeed_Btn
-            // 
-            this.DeleteCatfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DeleteCatfeed_Btn.Enabled = false;
-            this.DeleteCatfeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteCatfeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.DeleteCatfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteCatfeed_Btn.Image")));
-            this.DeleteCatfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteCatfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.DeleteCatfeed_Btn.Name = "DeleteCatfeed_Btn";
-            this.DeleteCatfeed_Btn.Size = new System.Drawing.Size(79, 23);
-            this.DeleteCatfeed_Btn.Text = "Del Category";
-            this.DeleteCatfeed_Btn.Visible = false;
-            this.DeleteCatfeed_Btn.Click += new System.EventHandler(this.DeleteCatfeed_Btn_Click);
-            // 
-            // Separator5
-            // 
-            this.Separator5.Name = "Separator5";
-            this.Separator5.Size = new System.Drawing.Size(6, 28);
-            this.Separator5.Visible = false;
-            // 
-            // DeleteURLfeed_Btn
-            // 
-            this.DeleteURLfeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DeleteURLfeed_Btn.Enabled = false;
-            this.DeleteURLfeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteURLfeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.DeleteURLfeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DeleteURLfeed_Btn.Image")));
-            this.DeleteURLfeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteURLfeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.DeleteURLfeed_Btn.Name = "DeleteURLfeed_Btn";
-            this.DeleteURLfeed_Btn.Size = new System.Drawing.Size(53, 23);
-            this.DeleteURLfeed_Btn.Text = "Del URL";
-            this.DeleteURLfeed_Btn.Visible = false;
-            this.DeleteURLfeed_Btn.Click += new System.EventHandler(this.DeleteURLfeed_Btn_Click);
-            // 
-            // Separator4
-            // 
-            this.Separator4.Name = "Separator4";
-            this.Separator4.Size = new System.Drawing.Size(6, 28);
-            this.Separator4.Visible = false;
-            // 
-            // CollapseTitleFeed_Btn
-            // 
-            this.CollapseTitleFeed_Btn.AutoToolTip = false;
-            this.CollapseTitleFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CollapseTitleFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CollapseTitleFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.CollapseTitleFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("CollapseTitleFeed_Btn.Image")));
-            this.CollapseTitleFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CollapseTitleFeed_Btn.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.CollapseTitleFeed_Btn.Name = "CollapseTitleFeed_Btn";
-            this.CollapseTitleFeed_Btn.Size = new System.Drawing.Size(74, 23);
-            this.CollapseTitleFeed_Btn.Text = "Collapse On";
-            this.CollapseTitleFeed_Btn.Click += new System.EventHandler(this.CollapseTitleFeed_Btn_Click);
-            // 
-            // GoFeed_Txt
-            // 
-            this.GoFeed_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.GoFeed_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GoFeed_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoFeed_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
-            this.GoFeed_Txt.Name = "GoFeed_Txt";
-            this.GoFeed_Txt.Size = new System.Drawing.Size(40, 28);
-            this.GoFeed_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.GoFeed_Txt.Click += new System.EventHandler(this.GoFeed_Txt_Click);
-            // 
-            // GoFeed_Btn
-            // 
-            this.GoFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.GoFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("GoFeed_Btn.Image")));
-            this.GoFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GoFeed_Btn.Name = "GoFeed_Btn";
-            this.GoFeed_Btn.Size = new System.Drawing.Size(26, 25);
-            this.GoFeed_Btn.Text = "Go";
-            this.GoFeed_Btn.Click += new System.EventHandler(this.GoFeed_Btn_Click);
-            // 
-            // toolStripSeparator20
-            // 
-            this.toolStripSeparator20.Name = "toolStripSeparator20";
-            this.toolStripSeparator20.Size = new System.Drawing.Size(6, 28);
-            // 
-            // ToolsFeed_Mnu
-            // 
-            this.ToolsFeed_Mnu.AutoToolTip = false;
-            this.ToolsFeed_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToolsFeed_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CopyURLfeed_Mnu,
-            this.OpnFileCategory_Btn,
-            this.TraductPageFeed_Btn,
-            this.toolStripSeparator45,
-            this.SaveTitleRSS_Btn,
-            this.toolStripSeparator19,
-            this.ReadArticle_Btn,
-            this.SpeakOpenPnl_Btn,
-            this.toolStripSeparator44,
-            this.DiscoverRSS_Btn,
-            this.toolStripSeparator39,
-            this.oOBaiAgentRssNewsToolStripMenuItem});
-            this.ToolsFeed_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsFeed_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.ToolsFeed_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsFeed_Mnu.Image")));
-            this.ToolsFeed_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolsFeed_Mnu.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
-            this.ToolsFeed_Mnu.Name = "ToolsFeed_Mnu";
-            this.ToolsFeed_Mnu.Size = new System.Drawing.Size(48, 23);
-            this.ToolsFeed_Mnu.Text = "Tools";
-            // 
-            // CopyURLfeed_Mnu
-            // 
-            this.CopyURLfeed_Mnu.Name = "CopyURLfeed_Mnu";
-            this.CopyURLfeed_Mnu.Size = new System.Drawing.Size(203, 22);
-            this.CopyURLfeed_Mnu.Text = "Copy URL";
-            this.CopyURLfeed_Mnu.Click += new System.EventHandler(this.CopyURLfeed_Mnu_Click);
-            // 
-            // OpnFileCategory_Btn
-            // 
-            this.OpnFileCategory_Btn.Name = "OpnFileCategory_Btn";
-            this.OpnFileCategory_Btn.Size = new System.Drawing.Size(203, 22);
-            this.OpnFileCategory_Btn.Text = "Open File Category";
-            this.OpnFileCategory_Btn.Click += new System.EventHandler(this.OpnFileCategory_Btn_Click);
-            // 
-            // TraductPageFeed_Btn
-            // 
-            this.TraductPageFeed_Btn.Name = "TraductPageFeed_Btn";
-            this.TraductPageFeed_Btn.Size = new System.Drawing.Size(203, 22);
-            this.TraductPageFeed_Btn.Text = "Traduct Page";
-            this.TraductPageFeed_Btn.Click += new System.EventHandler(this.TraductPageFeed_Btn_Click);
-            // 
-            // toolStripSeparator45
-            // 
-            this.toolStripSeparator45.Name = "toolStripSeparator45";
-            this.toolStripSeparator45.Size = new System.Drawing.Size(200, 6);
-            // 
-            // SaveTitleRSS_Btn
-            // 
-            this.SaveTitleRSS_Btn.Name = "SaveTitleRSS_Btn";
-            this.SaveTitleRSS_Btn.Size = new System.Drawing.Size(203, 22);
-            this.SaveTitleRSS_Btn.Text = "Save titles";
-            this.SaveTitleRSS_Btn.Click += new System.EventHandler(this.SaveTitleRSS_Btn_Click);
-            // 
-            // toolStripSeparator19
-            // 
-            this.toolStripSeparator19.Name = "toolStripSeparator19";
-            this.toolStripSeparator19.Size = new System.Drawing.Size(200, 6);
-            // 
-            // ReadArticle_Btn
-            // 
-            this.ReadArticle_Btn.Name = "ReadArticle_Btn";
-            this.ReadArticle_Btn.Size = new System.Drawing.Size(203, 22);
-            this.ReadArticle_Btn.Text = "Read the Article";
-            this.ReadArticle_Btn.Click += new System.EventHandler(this.ReadArticle_Btn_Click);
-            // 
-            // SpeakOpenPnl_Btn
-            // 
-            this.SpeakOpenPnl_Btn.Name = "SpeakOpenPnl_Btn";
-            this.SpeakOpenPnl_Btn.Size = new System.Drawing.Size(203, 22);
-            this.SpeakOpenPnl_Btn.Text = "Speak";
-            this.SpeakOpenPnl_Btn.Click += new System.EventHandler(this.SpeakOpenPnl_Btn_Click);
-            // 
-            // toolStripSeparator44
-            // 
-            this.toolStripSeparator44.Name = "toolStripSeparator44";
-            this.toolStripSeparator44.Size = new System.Drawing.Size(200, 6);
-            // 
-            // DiscoverRSS_Btn
-            // 
-            this.DiscoverRSS_Btn.Name = "DiscoverRSS_Btn";
-            this.DiscoverRSS_Btn.Size = new System.Drawing.Size(203, 22);
-            this.DiscoverRSS_Btn.Text = "Discover";
-            this.DiscoverRSS_Btn.Click += new System.EventHandler(this.DiscoverRSS_Btn_Click);
-            // 
-            // toolStripSeparator39
-            // 
-            this.toolStripSeparator39.Name = "toolStripSeparator39";
-            this.toolStripSeparator39.Size = new System.Drawing.Size(200, 6);
-            // 
-            // oOBaiAgentRssNewsToolStripMenuItem
-            // 
-            this.oOBaiAgentRssNewsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Agent_RSS_News_Local,
-            this.Agent_RSS_News_Cloud,
-            this.Agent_RSS_News_Promptsend});
-            this.oOBaiAgentRssNewsToolStripMenuItem.Name = "oOBaiAgentRssNewsToolStripMenuItem";
-            this.oOBaiAgentRssNewsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.oOBaiAgentRssNewsToolStripMenuItem.Text = "OOBai [Agent Rss News]";
-            // 
-            // Agent_RSS_News_Local
-            // 
-            this.Agent_RSS_News_Local.Name = "Agent_RSS_News_Local";
-            this.Agent_RSS_News_Local.Size = new System.Drawing.Size(125, 22);
-            this.Agent_RSS_News_Local.Text = "Localhost";
-            this.Agent_RSS_News_Local.Click += new System.EventHandler(this.Agent_RSS_News_Local_Click);
-            // 
-            // Agent_RSS_News_Cloud
-            // 
-            this.Agent_RSS_News_Cloud.Name = "Agent_RSS_News_Cloud";
-            this.Agent_RSS_News_Cloud.Size = new System.Drawing.Size(125, 22);
-            this.Agent_RSS_News_Cloud.Text = "Cloud";
-            this.Agent_RSS_News_Cloud.Click += new System.EventHandler(this.Agent_RSS_News_Cloud_Click);
-            // 
-            // Agent_RSS_News_Promptsend
-            // 
-            this.Agent_RSS_News_Promptsend.Name = "Agent_RSS_News_Promptsend";
-            this.Agent_RSS_News_Promptsend.Size = new System.Drawing.Size(125, 22);
-            this.Agent_RSS_News_Promptsend.Text = "Prompt";
-            this.Agent_RSS_News_Promptsend.Click += new System.EventHandler(this.Agent_RSS_News_Promptsend_Click);
-            // 
-            // JavaScriptFeed_Btn
-            // 
-            this.JavaScriptFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.JavaScriptFeed_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JavaScriptFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.JavaScriptFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("JavaScriptFeed_Btn.Image")));
-            this.JavaScriptFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.JavaScriptFeed_Btn.Name = "JavaScriptFeed_Btn";
-            this.JavaScriptFeed_Btn.Size = new System.Drawing.Size(61, 25);
-            this.JavaScriptFeed_Btn.Text = "JS Enable";
-            this.JavaScriptFeed_Btn.Click += new System.EventHandler(this.JavaScriptFeed_Btn_Click);
-            // 
-            // BlockAdFeed_Btn
-            // 
-            this.BlockAdFeed_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.BlockAdFeed_Btn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BlockAdFeed_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.BlockAdFeed_Btn.Image = ((System.Drawing.Image)(resources.GetObject("BlockAdFeed_Btn.Image")));
-            this.BlockAdFeed_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BlockAdFeed_Btn.Name = "BlockAdFeed_Btn";
-            this.BlockAdFeed_Btn.Size = new System.Drawing.Size(36, 25);
-            this.BlockAdFeed_Btn.Text = "🚫";
-            this.BlockAdFeed_Btn.ToolTipText = "Block Ad/Tracker";
-            this.BlockAdFeed_Btn.Click += new System.EventHandler(this.BlockAds_Mnu_Click);
-            // 
-            // OpnPromptRss_Btn
-            // 
-            this.OpnPromptRss_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.OpnPromptRss_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnPromptRss_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpnPromptRss_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.OpnPromptRss_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnPromptRss_Btn.Image")));
-            this.OpnPromptRss_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpnPromptRss_Btn.Name = "OpnPromptRss_Btn";
-            this.OpnPromptRss_Btn.Size = new System.Drawing.Size(59, 25);
-            this.OpnPromptRss_Btn.Text = "Prompt";
-            this.OpnPromptRss_Btn.Click += new System.EventHandler(this.OpnPromptRss_Btn_Click);
-            // 
-            // RSS2_Tls
-            // 
-            this.RSS2_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.RSS2_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ConfigRSS2_Btn,
-            this.StartRSS2node_Btn,
-            this.RSS2local_Btn});
-            this.RSS2_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.RSS2_Tls.Image = ((System.Drawing.Image)(resources.GetObject("RSS2_Tls.Image")));
-            this.RSS2_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.RSS2_Tls.Name = "RSS2_Tls";
-            this.RSS2_Tls.Size = new System.Drawing.Size(52, 25);
-            this.RSS2_Tls.Text = "RSS2";
-            // 
-            // ConfigRSS2_Btn
-            // 
-            this.ConfigRSS2_Btn.Name = "ConfigRSS2_Btn";
-            this.ConfigRSS2_Btn.Size = new System.Drawing.Size(141, 24);
-            this.ConfigRSS2_Btn.Text = "Config";
-            this.ConfigRSS2_Btn.Click += new System.EventHandler(this.ConfigRSS2_Btn_Click);
-            // 
-            // StartRSS2node_Btn
-            // 
-            this.StartRSS2node_Btn.Name = "StartRSS2node_Btn";
-            this.StartRSS2node_Btn.Size = new System.Drawing.Size(141, 24);
-            this.StartRSS2node_Btn.Text = "Start RSS2";
-            this.StartRSS2node_Btn.Click += new System.EventHandler(this.StartRSS2node_Btn_Click);
-            // 
-            // RSS2local_Btn
-            // 
-            this.RSS2local_Btn.Name = "RSS2local_Btn";
-            this.RSS2local_Btn.Size = new System.Drawing.Size(141, 24);
-            this.RSS2local_Btn.Text = "Localhost";
-            this.RSS2local_Btn.Click += new System.EventHandler(this.RSS2local_Btn_Click);
-            // 
-            // Tools_TAB_3
-            // 
-            this.Tools_TAB_3.AutoSize = false;
-            this.Tools_TAB_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.Tools_TAB_3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_TAB_3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Tools_TAB_3.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.Tools_TAB_3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NewProject_Tls,
-            this.SVGviewer_Tls,
-            this.ViewXml_Tls,
-            this.EditXml_Tls,
-            this.toolStripDropDownButton2,
-            this.CreateDiagram_Tls,
-            this.ExportDiag_Btn,
-            this.toolStripSeparator6,
-            this.OpnSprites_Btn,
-            this.toolStripSeparator21,
-            this.File_Tls,
-            this.toolStripLabel2,
-            this.ThemDiag_Cbx,
-            this.DeleteProject_Tls,
-            this.Debug_Tls,
-            this.PlantUml_Mnu,
-            this.CharsetPlant_Txt});
-            this.Tools_TAB_3.Location = new System.Drawing.Point(0, 0);
-            this.Tools_TAB_3.Name = "Tools_TAB_3";
-            this.Tools_TAB_3.Size = new System.Drawing.Size(1334, 31);
-            this.Tools_TAB_3.TabIndex = 15;
-            this.Tools_TAB_3.Visible = false;
-            // 
-            // NewProject_Tls
-            // 
-            this.NewProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NewProject_Tls.Image = global::Ostium.Properties.Resources.AddNew;
-            this.NewProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NewProject_Tls.Margin = new System.Windows.Forms.Padding(10, 1, 0, 3);
-            this.NewProject_Tls.Name = "NewProject_Tls";
-            this.NewProject_Tls.Size = new System.Drawing.Size(28, 27);
-            this.NewProject_Tls.ToolTipText = "Create new Project";
-            this.NewProject_Tls.Click += new System.EventHandler(this.NewProject_Tls_Click);
-            // 
-            // SVGviewer_Tls
-            // 
-            this.SVGviewer_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SVGviewer_Tls.Image = global::Ostium.Properties.Resources.Show;
-            this.SVGviewer_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SVGviewer_Tls.Name = "SVGviewer_Tls";
-            this.SVGviewer_Tls.Size = new System.Drawing.Size(28, 28);
-            this.SVGviewer_Tls.Text = "SVG Viewer";
-            this.SVGviewer_Tls.Click += new System.EventHandler(this.SVGviewer_Tls_Click);
-            // 
-            // ViewXml_Tls
-            // 
-            this.ViewXml_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ViewXml_Tls.Image = global::Ostium.Properties.Resources.Viewxml;
-            this.ViewXml_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ViewXml_Tls.Margin = new System.Windows.Forms.Padding(5, 1, 0, 3);
-            this.ViewXml_Tls.Name = "ViewXml_Tls";
-            this.ViewXml_Tls.Size = new System.Drawing.Size(28, 27);
-            this.ViewXml_Tls.ToolTipText = "Show XML";
-            this.ViewXml_Tls.Click += new System.EventHandler(this.ViewXml_Tls_Click);
-            // 
-            // EditXml_Tls
-            // 
-            this.EditXml_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EditXml_Tls.Image = global::Ostium.Properties.Resources.EditWF;
-            this.EditXml_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EditXml_Tls.Margin = new System.Windows.Forms.Padding(5, 1, 0, 3);
-            this.EditXml_Tls.Name = "EditXml_Tls";
-            this.EditXml_Tls.Size = new System.Drawing.Size(28, 27);
-            this.EditXml_Tls.ToolTipText = "Edit XML";
-            this.EditXml_Tls.Click += new System.EventHandler(this.EditXml_Tls_Click);
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExportXml_Tls,
-            this.ExportJson_Tls});
-            this.toolStripDropDownButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripDropDownButton2.Image = global::Ostium.Properties.Resources.Export0;
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 3);
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(37, 27);
-            this.toolStripDropDownButton2.Text = "Export File";
-            // 
-            // ExportXml_Tls
-            // 
-            this.ExportXml_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExportXml_Tls.Name = "ExportXml_Tls";
-            this.ExportXml_Tls.Size = new System.Drawing.Size(135, 22);
-            this.ExportXml_Tls.Text = "Export XML";
-            this.ExportXml_Tls.Click += new System.EventHandler(this.ExportXml_Tls_Click);
-            // 
-            // ExportJson_Tls
-            // 
-            this.ExportJson_Tls.Name = "ExportJson_Tls";
-            this.ExportJson_Tls.Size = new System.Drawing.Size(135, 22);
-            this.ExportJson_Tls.Text = "Export Json";
-            this.ExportJson_Tls.Click += new System.EventHandler(this.ExportJson_Tls_Click);
-            // 
-            // CreateDiagram_Tls
-            // 
-            this.CreateDiagram_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CreateDiagram_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Diagram_Tls,
-            this.DiagramMindMap_Tls,
-            this.DiagramMindMap2_Tls});
-            this.CreateDiagram_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateDiagram_Tls.Image = global::Ostium.Properties.Resources.Diagram;
-            this.CreateDiagram_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CreateDiagram_Tls.Name = "CreateDiagram_Tls";
-            this.CreateDiagram_Tls.Size = new System.Drawing.Size(37, 28);
-            this.CreateDiagram_Tls.Text = "Create Diagram";
-            // 
-            // Diagram_Tls
-            // 
-            this.Diagram_Tls.Name = "Diagram_Tls";
-            this.Diagram_Tls.Size = new System.Drawing.Size(230, 22);
-            this.Diagram_Tls.Text = "Model #1 Json";
-            this.Diagram_Tls.Click += new System.EventHandler(this.Diagram_Tls_Click);
-            // 
-            // DiagramMindMap_Tls
-            // 
-            this.DiagramMindMap_Tls.Name = "DiagramMindMap_Tls";
-            this.DiagramMindMap_Tls.Size = new System.Drawing.Size(230, 22);
-            this.DiagramMindMap_Tls.Text = "Model #2 Mind Map Detailed";
-            this.DiagramMindMap_Tls.Click += new System.EventHandler(this.DiagramMindMap_Tls_Click);
-            // 
-            // DiagramMindMap2_Tls
-            // 
-            this.DiagramMindMap2_Tls.Name = "DiagramMindMap2_Tls";
-            this.DiagramMindMap2_Tls.Size = new System.Drawing.Size(230, 22);
-            this.DiagramMindMap2_Tls.Text = "Model #3 Mind Map";
-            this.DiagramMindMap2_Tls.Click += new System.EventHandler(this.DiagramMindMap2_Tls_Click);
-            // 
-            // ExportDiag_Btn
-            // 
-            this.ExportDiag_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ExportDiag_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExportDiag_Btn.Image = global::Ostium.Properties.Resources.Exportsvg;
-            this.ExportDiag_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExportDiag_Btn.Name = "ExportDiag_Btn";
-            this.ExportDiag_Btn.Size = new System.Drawing.Size(28, 28);
-            this.ExportDiag_Btn.Text = "Export Diagram";
-            this.ExportDiag_Btn.Click += new System.EventHandler(this.ExportDiag_Btn_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
-            // 
-            // OpnSprites_Btn
-            // 
-            this.OpnSprites_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OpnSprites_Btn.Image = global::Ostium.Properties.Resources.Sprites;
-            this.OpnSprites_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpnSprites_Btn.Name = "OpnSprites_Btn";
-            this.OpnSprites_Btn.Size = new System.Drawing.Size(28, 28);
-            this.OpnSprites_Btn.Text = "Sprites";
-            this.OpnSprites_Btn.Click += new System.EventHandler(this.OpnSprites_Btn_Click);
-            // 
-            // toolStripSeparator21
-            // 
-            this.toolStripSeparator21.Name = "toolStripSeparator21";
-            this.toolStripSeparator21.Size = new System.Drawing.Size(6, 31);
-            // 
-            // File_Tls
-            // 
-            this.File_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.File_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpnJsonFile_Btn,
-            this.OpnXMLFile_Btn,
-            this.OpnPlantUMLFile_Btn});
-            this.File_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.File_Tls.Image = global::Ostium.Properties.Resources.Filesbtn;
-            this.File_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.File_Tls.Name = "File_Tls";
-            this.File_Tls.Size = new System.Drawing.Size(37, 28);
-            this.File_Tls.Text = "File";
-            // 
-            // OpnJsonFile_Btn
-            // 
-            this.OpnJsonFile_Btn.Name = "OpnJsonFile_Btn";
-            this.OpnJsonFile_Btn.Size = new System.Drawing.Size(177, 22);
-            this.OpnJsonFile_Btn.Text = "Open JSON file";
-            this.OpnJsonFile_Btn.Click += new System.EventHandler(this.OpnJsonFile_Btn_Click);
-            // 
-            // OpnXMLFile_Btn
-            // 
-            this.OpnXMLFile_Btn.Name = "OpnXMLFile_Btn";
-            this.OpnXMLFile_Btn.Size = new System.Drawing.Size(177, 22);
-            this.OpnXMLFile_Btn.Text = "Open XML file";
-            this.OpnXMLFile_Btn.Click += new System.EventHandler(this.OpnXMLFile_Btn_Click);
-            // 
-            // OpnPlantUMLFile_Btn
-            // 
-            this.OpnPlantUMLFile_Btn.Name = "OpnPlantUMLFile_Btn";
-            this.OpnPlantUMLFile_Btn.Size = new System.Drawing.Size(177, 22);
-            this.OpnPlantUMLFile_Btn.Text = "Open PlantUML file";
-            this.OpnPlantUMLFile_Btn.Click += new System.EventHandler(this.OpnPlantUMLFile_Btn_Click);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(131, 28);
-            this.toolStripLabel2.Text = "Diagram Theme Select:";
-            // 
-            // ThemDiag_Cbx
-            // 
-            this.ThemDiag_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.ThemDiag_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.ThemDiag_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ThemDiag_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(222)))), ((int)(((byte)(128)))));
-            this.ThemDiag_Cbx.Items.AddRange(new object[] {
-            "amiga",
-            "hacker",
-            "crt-green",
-            "crt-amber",
-            "cloudscape-design",
-            "cyborg",
-            "materia",
-            "materia-outline",
-            "minty",
-            "reddress-darkblue",
-            "reddress-lightred",
-            "sandstone",
-            "spacelab",
-            "superhero",
-            "superhero-outline",
-            "united"});
-            this.ThemDiag_Cbx.Margin = new System.Windows.Forms.Padding(0, 3, 1, 5);
-            this.ThemDiag_Cbx.Name = "ThemDiag_Cbx";
-            this.ThemDiag_Cbx.Size = new System.Drawing.Size(150, 23);
-            // 
-            // DeleteProject_Tls
-            // 
-            this.DeleteProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DeleteProject_Tls.Image = global::Ostium.Properties.Resources.TrashCan;
-            this.DeleteProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteProject_Tls.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
-            this.DeleteProject_Tls.Name = "DeleteProject_Tls";
-            this.DeleteProject_Tls.Size = new System.Drawing.Size(28, 28);
-            this.DeleteProject_Tls.ToolTipText = "Delete Project";
-            this.DeleteProject_Tls.Click += new System.EventHandler(this.DeleteProject_Tls_Click);
-            // 
-            // Debug_Tls
-            // 
-            this.Debug_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Debug_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.VerifProcessRun_Btn,
-            this.KillProcess_Btn});
-            this.Debug_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Debug_Tls.Image = global::Ostium.Properties.Resources.CPU;
-            this.Debug_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Debug_Tls.Name = "Debug_Tls";
-            this.Debug_Tls.Size = new System.Drawing.Size(37, 28);
-            this.Debug_Tls.Text = "Process";
-            // 
-            // VerifProcessRun_Btn
-            // 
-            this.VerifProcessRun_Btn.Name = "VerifProcessRun_Btn";
-            this.VerifProcessRun_Btn.Size = new System.Drawing.Size(367, 22);
-            this.VerifProcessRun_Btn.Text = "Verify Process run => OpenJDK Platform binary (javaw)";
-            this.VerifProcessRun_Btn.Click += new System.EventHandler(this.VerifProcessRun_Btn_Click);
-            // 
-            // KillProcess_Btn
-            // 
-            this.KillProcess_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.KillProcess_Btn.Name = "KillProcess_Btn";
-            this.KillProcess_Btn.Size = new System.Drawing.Size(367, 22);
-            this.KillProcess_Btn.Text = "Kill => OpenJDK Platform binary (javaw)";
-            this.KillProcess_Btn.Click += new System.EventHandler(this.KillProcess_Btn_Click);
-            // 
-            // PlantUml_Mnu
-            // 
-            this.PlantUml_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PlantUml_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.PlantUmlVersion_Mnu,
-            this.PlantUmlLicense_Mnu,
-            this.PlantUmlLUpdate_Mnu});
-            this.PlantUml_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlantUml_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
-            this.PlantUml_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("PlantUml_Mnu.Image")));
-            this.PlantUml_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PlantUml_Mnu.Name = "PlantUml_Mnu";
-            this.PlantUml_Mnu.Size = new System.Drawing.Size(72, 28);
-            this.PlantUml_Mnu.Text = "PlantUML";
-            // 
-            // PlantUmlVersion_Mnu
-            // 
-            this.PlantUmlVersion_Mnu.Name = "PlantUmlVersion_Mnu";
-            this.PlantUmlVersion_Mnu.Size = new System.Drawing.Size(113, 22);
-            this.PlantUmlVersion_Mnu.Text = "Version";
-            this.PlantUmlVersion_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
-            // 
-            // PlantUmlLicense_Mnu
-            // 
-            this.PlantUmlLicense_Mnu.Name = "PlantUmlLicense_Mnu";
-            this.PlantUmlLicense_Mnu.Size = new System.Drawing.Size(113, 22);
-            this.PlantUmlLicense_Mnu.Text = "License";
-            this.PlantUmlLicense_Mnu.Click += new System.EventHandler(this.PlantUmlVersion_Mnu_Click);
-            // 
-            // PlantUmlLUpdate_Mnu
-            // 
-            this.PlantUmlLUpdate_Mnu.Name = "PlantUmlLUpdate_Mnu";
-            this.PlantUmlLUpdate_Mnu.Size = new System.Drawing.Size(113, 22);
-            this.PlantUmlLUpdate_Mnu.Text = "Update";
-            this.PlantUmlLUpdate_Mnu.Click += new System.EventHandler(this.PlantUmlLUpdate_Mnu_Click);
-            // 
-            // CharsetPlant_Txt
-            // 
-            this.CharsetPlant_Txt.AutoSize = false;
-            this.CharsetPlant_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.CharsetPlant_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CharsetPlant_Txt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CharsetPlant_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.CharsetPlant_Txt.Margin = new System.Windows.Forms.Padding(3, 0, 1, 2);
-            this.CharsetPlant_Txt.Name = "CharsetPlant_Txt";
-            this.CharsetPlant_Txt.Size = new System.Drawing.Size(100, 15);
-            this.CharsetPlant_Txt.Text = "-charset UTF-8";
-            this.CharsetPlant_Txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // Timo
-            // 
-            this.Timo.Interval = 5000;
-            this.Timo.Tick += new System.EventHandler(this.Timo_Tick);
-            // 
-            // Tools_TAB_4
-            // 
-            this.Tools_TAB_4.AutoSize = false;
-            this.Tools_TAB_4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.Tools_TAB_4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_TAB_4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Tools_TAB_4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MapProject_Tls,
-            this.FilesMap_Mnu,
-            this.ToolsMap_Mnu,
-            this.GmapProvider_Cbx,
-            this.toolStripLabel3,
-            this.LatLon_Txt,
-            this.toolStripLabel5,
-            this.OrderLL_txt,
-            this.GoLatLong_Tls,
-            this.toolStripSeparator23,
-            this.toolStripLabel4,
-            this.KeywordMap_Txt,
-            this.GoWord_Tls,
-            this.toolStripSeparator27,
-            this.toolStripLabel6,
-            this.ZoomValMap_Lbl,
-            this.UndoRoutePoint_Btn});
-            this.Tools_TAB_4.Location = new System.Drawing.Point(0, 0);
-            this.Tools_TAB_4.Name = "Tools_TAB_4";
-            this.Tools_TAB_4.Padding = new System.Windows.Forms.Padding(8, 3, 8, 3);
-            this.Tools_TAB_4.Size = new System.Drawing.Size(1334, 29);
-            this.Tools_TAB_4.TabIndex = 16;
-            this.Tools_TAB_4.Visible = false;
-            // 
-            // MapProject_Tls
-            // 
-            this.MapProject_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.MapProject_Tls.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NewProjectMap_Tls,
-            this.NewProjectMapList_Tls,
-            this.NewProjectMapLatLon_Tls,
-            this.NewRouteProject_Tls,
-            this.toolStripSeparator29,
-            this.EgHelp_Tls});
-            this.MapProject_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapProject_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.MapProject_Tls.Image = ((System.Drawing.Image)(resources.GetObject("MapProject_Tls.Image")));
-            this.MapProject_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MapProject_Tls.Name = "MapProject_Tls";
-            this.MapProject_Tls.Size = new System.Drawing.Size(57, 20);
-            this.MapProject_Tls.Text = "Project";
-            // 
-            // NewProjectMap_Tls
-            // 
-            this.NewProjectMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.NewProjectMap_Tls.Name = "NewProjectMap_Tls";
-            this.NewProjectMap_Tls.Size = new System.Drawing.Size(391, 22);
-            this.NewProjectMap_Tls.Text = "New Location Project";
-            this.NewProjectMap_Tls.Click += new System.EventHandler(this.NewProjectMap_Tls_Click);
-            // 
-            // NewProjectMapList_Tls
-            // 
-            this.NewProjectMapList_Tls.Name = "NewProjectMapList_Tls";
-            this.NewProjectMapList_Tls.Size = new System.Drawing.Size(391, 22);
-            this.NewProjectMapList_Tls.Text = "Create a project from a list of points";
-            this.NewProjectMapList_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
-            // 
-            // NewProjectMapLatLon_Tls
-            // 
-            this.NewProjectMapLatLon_Tls.Name = "NewProjectMapLatLon_Tls";
-            this.NewProjectMapLatLon_Tls.Size = new System.Drawing.Size(391, 22);
-            this.NewProjectMapLatLon_Tls.Text = "Create a project from a list of points only Latitude Longitude";
-            this.NewProjectMapLatLon_Tls.Click += new System.EventHandler(this.NewProjectMapList_Tls_ClickAsync);
-            // 
-            // NewRouteProject_Tls
-            // 
-            this.NewRouteProject_Tls.Name = "NewRouteProject_Tls";
-            this.NewRouteProject_Tls.Size = new System.Drawing.Size(391, 22);
-            this.NewRouteProject_Tls.Text = "New Route Project";
-            this.NewRouteProject_Tls.Click += new System.EventHandler(this.NewRouteProject_Tls_Click);
-            // 
-            // toolStripSeparator29
-            // 
-            this.toolStripSeparator29.Name = "toolStripSeparator29";
-            this.toolStripSeparator29.Size = new System.Drawing.Size(388, 6);
-            // 
-            // EgHelp_Tls
-            // 
-            this.EgHelp_Tls.Name = "EgHelp_Tls";
-            this.EgHelp_Tls.Size = new System.Drawing.Size(391, 22);
-            this.EgHelp_Tls.Text = "eg. data format";
-            this.EgHelp_Tls.Click += new System.EventHandler(this.EgHelp_Tls_Click);
-            // 
-            // FilesMap_Mnu
-            // 
-            this.FilesMap_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.FilesMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EditXMLMap_Tls,
-            this.ShowXMLMap_Tls,
-            this.ExportGPX_Tls,
-            this.OpnDirMap_Tls,
-            this.toolStripSeparator25,
-            this.DelProjectMap_Tls});
-            this.FilesMap_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FilesMap_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.FilesMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("FilesMap_Mnu.Image")));
-            this.FilesMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FilesMap_Mnu.Name = "FilesMap_Mnu";
-            this.FilesMap_Mnu.Size = new System.Drawing.Size(43, 20);
-            this.FilesMap_Mnu.Text = "Files";
-            // 
-            // EditXMLMap_Tls
-            // 
-            this.EditXMLMap_Tls.Name = "EditXMLMap_Tls";
-            this.EditXMLMap_Tls.Size = new System.Drawing.Size(225, 22);
-            this.EditXMLMap_Tls.Text = "Edit Project File";
-            this.EditXMLMap_Tls.Click += new System.EventHandler(this.EditXMLMap_Tls_Click);
-            // 
-            // ShowXMLMap_Tls
-            // 
-            this.ShowXMLMap_Tls.Name = "ShowXMLMap_Tls";
-            this.ShowXMLMap_Tls.Size = new System.Drawing.Size(225, 22);
-            this.ShowXMLMap_Tls.Text = "Show Project";
-            this.ShowXMLMap_Tls.Click += new System.EventHandler(this.ShowXMLMap_Tls_Click);
-            // 
-            // ExportGPX_Tls
-            // 
-            this.ExportGPX_Tls.Name = "ExportGPX_Tls";
-            this.ExportGPX_Tls.Size = new System.Drawing.Size(225, 22);
-            this.ExportGPX_Tls.Text = "Export project in GPX format";
-            this.ExportGPX_Tls.Click += new System.EventHandler(this.ExportGPX_Tls_Click);
-            // 
-            // OpnDirMap_Tls
-            // 
-            this.OpnDirMap_Tls.Name = "OpnDirMap_Tls";
-            this.OpnDirMap_Tls.Size = new System.Drawing.Size(225, 22);
-            this.OpnDirMap_Tls.Text = "Open Directory";
-            this.OpnDirMap_Tls.Click += new System.EventHandler(this.OpnDirMap_Tls_Click);
-            // 
-            // toolStripSeparator25
-            // 
-            this.toolStripSeparator25.Name = "toolStripSeparator25";
-            this.toolStripSeparator25.Size = new System.Drawing.Size(222, 6);
-            // 
-            // DelProjectMap_Tls
-            // 
-            this.DelProjectMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.DelProjectMap_Tls.Name = "DelProjectMap_Tls";
-            this.DelProjectMap_Tls.Size = new System.Drawing.Size(225, 22);
-            this.DelProjectMap_Tls.Text = "Delete Project";
-            this.DelProjectMap_Tls.Click += new System.EventHandler(this.DelProjectMap_Tls_Click);
-            // 
-            // ToolsMap_Mnu
-            // 
-            this.ToolsMap_Mnu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToolsMap_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpnListLocation_Tls,
-            this.OpnListRoute_Tls,
-            this.OpnListRouteGpx_Tls,
-            this.OpnGPXRoute_Tls,
-            this.toolStripSeparator30,
-            this.CrossCenter_Tls,
-            this.ScreenShotGmap_Tls,
-            this.toolStripSeparator24,
-            this.OpnGoogleMaps_Tls,
-            this.OpnGoogleStreet_Tls,
-            this.OpnBingMap_Tls,
-            this.OpenGoogleEarth_Tls,
-            this.OpenGoogleEarthWeb_Tls,
-            this.toolStripSeparator26,
-            this.CopyGeoMap_Tls,
-            this.toolStripSeparator28,
-            this.NegativeModeMap_Tls,
-            this.ClearMap_Tls});
-            this.ToolsMap_Mnu.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolsMap_Mnu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.ToolsMap_Mnu.Image = ((System.Drawing.Image)(resources.GetObject("ToolsMap_Mnu.Image")));
-            this.ToolsMap_Mnu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolsMap_Mnu.Name = "ToolsMap_Mnu";
-            this.ToolsMap_Mnu.Size = new System.Drawing.Size(48, 20);
-            this.ToolsMap_Mnu.Text = "Tools";
-            // 
-            // OpnListLocation_Tls
-            // 
-            this.OpnListLocation_Tls.Name = "OpnListLocation_Tls";
-            this.OpnListLocation_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnListLocation_Tls.Text = "Open Locations List";
-            this.OpnListLocation_Tls.Click += new System.EventHandler(this.OpnListLocation_Tls_Click);
-            // 
-            // OpnListRoute_Tls
-            // 
-            this.OpnListRoute_Tls.Name = "OpnListRoute_Tls";
-            this.OpnListRoute_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnListRoute_Tls.Text = "Open Routes List";
-            this.OpnListRoute_Tls.Click += new System.EventHandler(this.OpnListRoute_Tls_Click);
-            // 
-            // OpnListRouteGpx_Tls
-            // 
-            this.OpnListRouteGpx_Tls.Name = "OpnListRouteGpx_Tls";
-            this.OpnListRouteGpx_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnListRouteGpx_Tls.Text = "Open Routes GPX KML GEOJSON JSON List";
-            this.OpnListRouteGpx_Tls.Click += new System.EventHandler(this.OpnListRouteGpx_Tls_Click);
-            // 
-            // OpnGPXRoute_Tls
-            // 
-            this.OpnGPXRoute_Tls.Name = "OpnGPXRoute_Tls";
-            this.OpnGPXRoute_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnGPXRoute_Tls.Text = "Open File GPX KML GEOJSON JSON";
-            this.OpnGPXRoute_Tls.Click += new System.EventHandler(this.OpnGPXRoute_Tls_Click);
-            // 
-            // toolStripSeparator30
-            // 
-            this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(301, 6);
-            // 
-            // CrossCenter_Tls
-            // 
-            this.CrossCenter_Tls.Name = "CrossCenter_Tls";
-            this.CrossCenter_Tls.Size = new System.Drawing.Size(304, 22);
-            this.CrossCenter_Tls.Text = "Cross Center";
-            this.CrossCenter_Tls.Click += new System.EventHandler(this.CrossCenter_Tls_Click);
-            // 
-            // ScreenShotGmap_Tls
-            // 
-            this.ScreenShotGmap_Tls.Name = "ScreenShotGmap_Tls";
-            this.ScreenShotGmap_Tls.Size = new System.Drawing.Size(304, 22);
-            this.ScreenShotGmap_Tls.Text = "ScreenShot";
-            this.ScreenShotGmap_Tls.Click += new System.EventHandler(this.ScreenShotGmap_Tls_Click);
-            // 
-            // toolStripSeparator24
-            // 
-            this.toolStripSeparator24.Name = "toolStripSeparator24";
-            this.toolStripSeparator24.Size = new System.Drawing.Size(301, 6);
-            // 
-            // OpnGoogleMaps_Tls
-            // 
-            this.OpnGoogleMaps_Tls.Name = "OpnGoogleMaps_Tls";
-            this.OpnGoogleMaps_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnGoogleMaps_Tls.Text = "Open Google Maps";
-            this.OpnGoogleMaps_Tls.Click += new System.EventHandler(this.OpnGoogleMaps_Tls_Click);
-            // 
-            // OpnGoogleStreet_Tls
-            // 
-            this.OpnGoogleStreet_Tls.Name = "OpnGoogleStreet_Tls";
-            this.OpnGoogleStreet_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnGoogleStreet_Tls.Text = "Open Google Street View";
-            this.OpnGoogleStreet_Tls.Click += new System.EventHandler(this.OpnGoogleStreet_Tls_Click);
-            // 
-            // OpnBingMap_Tls
-            // 
-            this.OpnBingMap_Tls.Name = "OpnBingMap_Tls";
-            this.OpnBingMap_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpnBingMap_Tls.Text = "Open BingMap";
-            this.OpnBingMap_Tls.Click += new System.EventHandler(this.OpnBingMap_Tls_Click);
-            // 
-            // OpenGoogleEarth_Tls
-            // 
-            this.OpenGoogleEarth_Tls.Name = "OpenGoogleEarth_Tls";
-            this.OpenGoogleEarth_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpenGoogleEarth_Tls.Text = "Open Google Earth";
-            this.OpenGoogleEarth_Tls.Click += new System.EventHandler(this.OpenGoogleEarth_Tls_Click);
-            // 
-            // OpenGoogleEarthWeb_Tls
-            // 
-            this.OpenGoogleEarthWeb_Tls.Name = "OpenGoogleEarthWeb_Tls";
-            this.OpenGoogleEarthWeb_Tls.Size = new System.Drawing.Size(304, 22);
-            this.OpenGoogleEarthWeb_Tls.Text = "Open Google Earth Web";
-            this.OpenGoogleEarthWeb_Tls.Click += new System.EventHandler(this.OpenGoogleEarthWeb_Tls_Click);
-            // 
-            // toolStripSeparator26
-            // 
-            this.toolStripSeparator26.Name = "toolStripSeparator26";
-            this.toolStripSeparator26.Size = new System.Drawing.Size(301, 6);
-            // 
-            // CopyGeoMap_Tls
-            // 
-            this.CopyGeoMap_Tls.Name = "CopyGeoMap_Tls";
-            this.CopyGeoMap_Tls.Size = new System.Drawing.Size(304, 22);
-            this.CopyGeoMap_Tls.Text = "Copy Geolocation";
-            this.CopyGeoMap_Tls.Click += new System.EventHandler(this.CopyGeoMap_Tls_Click);
-            // 
-            // toolStripSeparator28
-            // 
-            this.toolStripSeparator28.Name = "toolStripSeparator28";
-            this.toolStripSeparator28.Size = new System.Drawing.Size(301, 6);
-            // 
-            // NegativeModeMap_Tls
-            // 
-            this.NegativeModeMap_Tls.Name = "NegativeModeMap_Tls";
-            this.NegativeModeMap_Tls.Size = new System.Drawing.Size(304, 22);
-            this.NegativeModeMap_Tls.Text = "Negative Mode";
-            this.NegativeModeMap_Tls.Click += new System.EventHandler(this.NegativeModeMap_Tls_Click);
-            // 
-            // ClearMap_Tls
-            // 
-            this.ClearMap_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.ClearMap_Tls.Name = "ClearMap_Tls";
-            this.ClearMap_Tls.Size = new System.Drawing.Size(304, 22);
-            this.ClearMap_Tls.Text = "Clear Map";
-            this.ClearMap_Tls.Click += new System.EventHandler(this.ClearMap_Tls_Click);
-            // 
-            // GmapProvider_Cbx
-            // 
-            this.GmapProvider_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.GmapProvider_Cbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GmapProvider_Cbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.GmapProvider_Cbx.Items.AddRange(new object[] {
-            "BingHybridMap",
-            "BingMap",
-            "BingSatelliteMap",
-            "GoogleMap",
-            "GoogleSatelliteMap",
-            "GoogleTerrainMap",
-            "OpenCycleLandscapeMap",
-            "OpenCycleMap",
-            "OpenCycleTransportMap",
-            "WikiMapiaMap",
-            "ArcGIS_World_Street"});
-            this.GmapProvider_Cbx.Name = "GmapProvider_Cbx";
-            this.GmapProvider_Cbx.Size = new System.Drawing.Size(190, 23);
-            this.GmapProvider_Cbx.Text = "OpenCycleMap";
-            this.GmapProvider_Cbx.SelectedIndexChanged += new System.EventHandler(this.GmapProvider_Cbx_SelectedIndexChanged);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(45, 20);
-            this.toolStripLabel3.Text = "lat/Lon";
-            // 
-            // LatLon_Txt
-            // 
-            this.LatLon_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.LatLon_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LatLon_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LatLon_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.LatLon_Txt.Name = "LatLon_Txt";
-            this.LatLon_Txt.Size = new System.Drawing.Size(200, 23);
-            this.LatLon_Txt.Text = "Coordinates";
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(37, 20);
-            this.toolStripLabel5.Text = "Order";
-            // 
-            // OrderLL_txt
-            // 
-            this.OrderLL_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.OrderLL_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OrderLL_txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderLL_txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.OrderLL_txt.Name = "OrderLL_txt";
-            this.OrderLL_txt.Size = new System.Drawing.Size(45, 23);
-            this.OrderLL_txt.Text = "lalo";
-            this.OrderLL_txt.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // GoLatLong_Tls
-            // 
-            this.GoLatLong_Tls.AutoSize = false;
-            this.GoLatLong_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoLatLong_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoLatLong_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.GoLatLong_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoLatLong_Tls.Image")));
-            this.GoLatLong_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GoLatLong_Tls.Name = "GoLatLong_Tls";
-            this.GoLatLong_Tls.Size = new System.Drawing.Size(50, 22);
-            this.GoLatLong_Tls.Text = "go";
-            this.GoLatLong_Tls.Click += new System.EventHandler(this.GoLatLong_Tls_Click);
-            // 
-            // toolStripSeparator23
-            // 
-            this.toolStripSeparator23.Name = "toolStripSeparator23";
-            this.toolStripSeparator23.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(34, 20);
-            this.toolStripLabel4.Text = "word";
-            // 
-            // KeywordMap_Txt
-            // 
-            this.KeywordMap_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.KeywordMap_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.KeywordMap_Txt.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KeywordMap_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.KeywordMap_Txt.Name = "KeywordMap_Txt";
-            this.KeywordMap_Txt.Size = new System.Drawing.Size(100, 23);
-            this.KeywordMap_Txt.Text = "Adress";
-            // 
-            // GoWord_Tls
-            // 
-            this.GoWord_Tls.AutoSize = false;
-            this.GoWord_Tls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.GoWord_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoWord_Tls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(165)))), ((int)(((byte)(250)))));
-            this.GoWord_Tls.Image = ((System.Drawing.Image)(resources.GetObject("GoWord_Tls.Image")));
-            this.GoWord_Tls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.GoWord_Tls.Name = "GoWord_Tls";
-            this.GoWord_Tls.Size = new System.Drawing.Size(50, 22);
-            this.GoWord_Tls.Text = "go";
-            this.GoWord_Tls.Click += new System.EventHandler(this.GoWord_Tls_Click);
-            // 
-            // toolStripSeparator27
-            // 
-            this.toolStripSeparator27.Name = "toolStripSeparator27";
-            this.toolStripSeparator27.Size = new System.Drawing.Size(6, 23);
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(39, 20);
-            this.toolStripLabel6.Text = "Zoom";
-            // 
-            // ZoomValMap_Lbl
-            // 
-            this.ZoomValMap_Lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.ZoomValMap_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ZoomValMap_Lbl.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZoomValMap_Lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(121)))), ((int)(((byte)(249)))));
-            this.ZoomValMap_Lbl.Name = "ZoomValMap_Lbl";
-            this.ZoomValMap_Lbl.Size = new System.Drawing.Size(30, 23);
-            this.ZoomValMap_Lbl.Text = "3";
-            this.ZoomValMap_Lbl.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // UndoRoutePoint_Btn
-            // 
-            this.UndoRoutePoint_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.UndoRoutePoint_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(113)))), ((int)(((byte)(113)))));
-            this.UndoRoutePoint_Btn.Image = ((System.Drawing.Image)(resources.GetObject("UndoRoutePoint_Btn.Image")));
-            this.UndoRoutePoint_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UndoRoutePoint_Btn.Name = "UndoRoutePoint_Btn";
-            this.UndoRoutePoint_Btn.Size = new System.Drawing.Size(105, 20);
-            this.UndoRoutePoint_Btn.Text = "Undo Route Point";
-            this.UndoRoutePoint_Btn.Visible = false;
-            this.UndoRoutePoint_Btn.Click += new System.EventHandler(this.UndoRoutePoint_Btn_Click);
-            // 
             // Main_Frm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -8577,6 +8576,14 @@
             this.HandleCreated += new System.EventHandler(this.ModernTheme_HandleCreated);
             this.Tools_TAB_0.ResumeLayout(false);
             this.Tools_TAB_0.PerformLayout();
+            this.Status_Strip.ResumeLayout(false);
+            this.Status_Strip.PerformLayout();
+            this.Tools_TAB_1.ResumeLayout(false);
+            this.Tools_TAB_1.PerformLayout();
+            this.Tools_TAB_3.ResumeLayout(false);
+            this.Tools_TAB_3.PerformLayout();
+            this.Tools_TAB_4.ResumeLayout(false);
+            this.Tools_TAB_4.PerformLayout();
             this.Control_Tab.ResumeLayout(false);
             this.Browser_Tab.ResumeLayout(false);
             this.Browser_Tab.PerformLayout();
@@ -8679,14 +8686,6 @@
             this.PanelGrpOpt_Pnl.ResumeLayout(false);
             this.PanelGrpOpt_Pnl.PerformLayout();
             this.panel27.ResumeLayout(false);
-            this.Status_Strip.ResumeLayout(false);
-            this.Status_Strip.PerformLayout();
-            this.Tools_TAB_1.ResumeLayout(false);
-            this.Tools_TAB_1.PerformLayout();
-            this.Tools_TAB_3.ResumeLayout(false);
-            this.Tools_TAB_3.PerformLayout();
-            this.Tools_TAB_4.ResumeLayout(false);
-            this.Tools_TAB_4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8798,8 +8797,8 @@
         private System.Windows.Forms.ToolStripMenuItem CopyURLfeed_Mnu;
         private System.Windows.Forms.ToolStripStatusLabel CountFeed_Status;
         private System.Windows.Forms.ToolStripMenuItem TraductPageFeed_Btn;
-        private System.Windows.Forms.ListBox CountBlockFeed_Lbl;
-        private System.Windows.Forms.ListBox RSSListSite_Lbl;
+        private System.Windows.Forms.ListBox CountBlockFeed_Lst;
+        private System.Windows.Forms.ListBox RSSListSite_Lst;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
