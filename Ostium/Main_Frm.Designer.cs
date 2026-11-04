@@ -3048,9 +3048,9 @@
             this.LangSelect_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.LangSelect_Lst.FormattingEnabled = true;
             this.LangSelect_Lst.ItemHeight = 15;
-            this.LangSelect_Lst.Location = new System.Drawing.Point(8, 10);
+            this.LangSelect_Lst.Location = new System.Drawing.Point(8, 9);
             this.LangSelect_Lst.Name = "LangSelect_Lst";
-            this.LangSelect_Lst.Size = new System.Drawing.Size(265, 17);
+            this.LangSelect_Lst.Size = new System.Drawing.Size(265, 32);
             this.LangSelect_Lst.TabIndex = 0;
             // 
             // Data_Tab
