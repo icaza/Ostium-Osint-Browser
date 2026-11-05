@@ -42,10 +42,10 @@
             // 
             // PromptSendForm_Txt
             // 
-            this.PromptSendForm_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.PromptSendForm_Txt.BackColor = System.Drawing.Color.Black;
             this.PromptSendForm_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PromptSendForm_Txt.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PromptSendForm_Txt.ForeColor = System.Drawing.SystemColors.Info;
+            this.PromptSendForm_Txt.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PromptSendForm_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.PromptSendForm_Txt.Location = new System.Drawing.Point(11, 32);
             this.PromptSendForm_Txt.Multiline = true;
             this.PromptSendForm_Txt.Name = "PromptSendForm_Txt";
@@ -85,11 +85,11 @@
             // Local_Chk
             // 
             this.Local_Chk.AutoSize = true;
-            this.Local_Chk.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Local_Chk.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Local_Chk.ForeColor = System.Drawing.Color.DodgerBlue;
             this.Local_Chk.Location = new System.Drawing.Point(11, 8);
             this.Local_Chk.Name = "Local_Chk";
-            this.Local_Chk.Size = new System.Drawing.Size(86, 18);
+            this.Local_Chk.Size = new System.Drawing.Size(77, 19);
             this.Local_Chk.TabIndex = 14;
             this.Local_Chk.Text = "Localhost";
             this.Local_Chk.UseVisualStyleBackColor = true;
@@ -97,11 +97,11 @@
             // Cloud_Chk
             // 
             this.Cloud_Chk.AutoSize = true;
-            this.Cloud_Chk.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cloud_Chk.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cloud_Chk.ForeColor = System.Drawing.Color.DeepSkyBlue;
             this.Cloud_Chk.Location = new System.Drawing.Point(103, 8);
             this.Cloud_Chk.Name = "Cloud_Chk";
-            this.Cloud_Chk.Size = new System.Drawing.Size(62, 18);
+            this.Cloud_Chk.Size = new System.Drawing.Size(57, 19);
             this.Cloud_Chk.TabIndex = 15;
             this.Cloud_Chk.Text = "Cloud";
             this.Cloud_Chk.UseVisualStyleBackColor = true;
@@ -126,13 +126,13 @@
             // 
             this.Prompt_Lst.BackColor = System.Drawing.Color.Black;
             this.Prompt_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Prompt_Lst.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Prompt_Lst.ForeColor = System.Drawing.Color.White;
+            this.Prompt_Lst.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Prompt_Lst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Prompt_Lst.FormattingEnabled = true;
-            this.Prompt_Lst.ItemHeight = 16;
+            this.Prompt_Lst.ItemHeight = 15;
             this.Prompt_Lst.Location = new System.Drawing.Point(11, 204);
             this.Prompt_Lst.Name = "Prompt_Lst";
-            this.Prompt_Lst.Size = new System.Drawing.Size(503, 80);
+            this.Prompt_Lst.Size = new System.Drawing.Size(503, 75);
             this.Prompt_Lst.TabIndex = 17;
             this.Prompt_Lst.SelectedIndexChanged += new System.EventHandler(this.Prompt_Lst_SelectedIndexChanged);
             // 
@@ -171,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(524, 294);
             this.Controls.Add(this.RemovePromptList_Btn);
             this.Controls.Add(this.Clear_Btn);

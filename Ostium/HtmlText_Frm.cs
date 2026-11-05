@@ -1,4 +1,5 @@
 ﻿using Icaza;
+using Ostium.ModernUI;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -87,6 +88,7 @@ namespace Ostium
         public HtmlText_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
             InitializeEvents();
             ConfigureHttpClient();
         }

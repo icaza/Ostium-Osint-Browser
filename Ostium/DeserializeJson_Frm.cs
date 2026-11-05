@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Windows.Forms;
+using Ostium.ModernUI;
 
 namespace Ostium
 {
@@ -15,6 +16,7 @@ namespace Ostium
         public DeserializeJson_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
 
             DomainURL_Txt.Text = new Uri(@Class_Var.URL_URI).Host;
             Output_Data.Font = new Font("Consolas", 10);

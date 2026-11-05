@@ -43,8 +43,8 @@
             this.Status_Strip = new System.Windows.Forms.StatusStrip();
             this.JavaScriptToggle_Btn = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             this.TrackingLevel_Lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.URLtxt_txt = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.WBrowsew)).BeginInit();
             this.panel3.SuspendLayout();
             this.Status_Strip.SuspendLayout();
@@ -53,9 +53,9 @@
             // WBrowsew
             // 
             this.WBrowsew.AllowExternalDrop = true;
-            this.WBrowsew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.WBrowsew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.WBrowsew.CreationProperties = null;
-            this.WBrowsew.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.WBrowsew.DefaultBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.WBrowsew.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WBrowsew.Location = new System.Drawing.Point(0, 24);
             this.WBrowsew.Name = "WBrowsew";
@@ -83,20 +83,20 @@
             // 
             // URLbrowse_Cbx
             // 
-            this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.URLbrowse_Cbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.URLbrowse_Cbx.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLbrowse_Cbx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.Gold;
             this.URLbrowse_Cbx.FormattingEnabled = true;
             this.URLbrowse_Cbx.Location = new System.Drawing.Point(328, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(414, 24);
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(414, 23);
             this.URLbrowse_Cbx.TabIndex = 6;
             // 
             // CopyURL_Btn
             // 
-            this.CopyURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.CopyURL_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.CopyURL_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CopyURL_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.CopyURL_Btn.FlatAppearance.BorderSize = 0;
@@ -105,7 +105,7 @@
             this.CopyURL_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.CopyURL_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CopyURL_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CopyURL_Btn.ForeColor = System.Drawing.Color.White;
+            this.CopyURL_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.CopyURL_Btn.Location = new System.Drawing.Point(290, 0);
             this.CopyURL_Btn.Name = "CopyURL_Btn";
             this.CopyURL_Btn.Size = new System.Drawing.Size(38, 24);
@@ -116,7 +116,7 @@
             // 
             // Trad_Btn
             // 
-            this.Trad_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Trad_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Trad_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Trad_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Trad_Btn.FlatAppearance.BorderSize = 0;
@@ -125,7 +125,7 @@
             this.Trad_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Trad_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Trad_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Trad_Btn.ForeColor = System.Drawing.Color.White;
+            this.Trad_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Trad_Btn.Location = new System.Drawing.Point(243, 0);
             this.Trad_Btn.Name = "Trad_Btn";
             this.Trad_Btn.Size = new System.Drawing.Size(47, 24);
@@ -136,7 +136,7 @@
             // 
             // Home_Btn
             // 
-            this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Home_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Home_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Home_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Home_Btn.FlatAppearance.BorderSize = 0;
@@ -145,7 +145,7 @@
             this.Home_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Home_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Home_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Home_Btn.ForeColor = System.Drawing.Color.White;
+            this.Home_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Home_Btn.Location = new System.Drawing.Point(190, 0);
             this.Home_Btn.Name = "Home_Btn";
             this.Home_Btn.Size = new System.Drawing.Size(53, 24);
@@ -156,7 +156,7 @@
             // 
             // Refresh_Btn
             // 
-            this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Refresh_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Refresh_Btn.FlatAppearance.BorderSize = 0;
@@ -165,7 +165,7 @@
             this.Refresh_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Refresh_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Refresh_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Refresh_Btn.ForeColor = System.Drawing.Color.White;
+            this.Refresh_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Refresh_Btn.Location = new System.Drawing.Point(137, 0);
             this.Refresh_Btn.Name = "Refresh_Btn";
             this.Refresh_Btn.Size = new System.Drawing.Size(53, 24);
@@ -176,7 +176,7 @@
             // 
             // Forward_Btn
             // 
-            this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Forward_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Forward_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Forward_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Forward_Btn.FlatAppearance.BorderSize = 0;
@@ -185,7 +185,7 @@
             this.Forward_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Forward_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Forward_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Forward_Btn.ForeColor = System.Drawing.Color.White;
+            this.Forward_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Forward_Btn.Location = new System.Drawing.Point(84, 0);
             this.Forward_Btn.Name = "Forward_Btn";
             this.Forward_Btn.Size = new System.Drawing.Size(53, 24);
@@ -196,7 +196,7 @@
             // 
             // Back_Btn
             // 
-            this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Back_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Back_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Back_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Back_Btn.FlatAppearance.BorderSize = 0;
@@ -205,7 +205,7 @@
             this.Back_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Back_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Back_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Back_Btn.ForeColor = System.Drawing.Color.White;
+            this.Back_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Back_Btn.Location = new System.Drawing.Point(31, 0);
             this.Back_Btn.Name = "Back_Btn";
             this.Back_Btn.Size = new System.Drawing.Size(53, 24);
@@ -216,7 +216,7 @@
             // 
             // Go_Btn
             // 
-            this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Go_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Go_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Go_Btn.Dock = System.Windows.Forms.DockStyle.Right;
             this.Go_Btn.FlatAppearance.BorderSize = 0;
@@ -224,7 +224,7 @@
             this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Go_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Go_Btn.ForeColor = System.Drawing.Color.White;
+            this.Go_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Go_Btn.Location = new System.Drawing.Point(742, 0);
             this.Go_Btn.Name = "Go_Btn";
             this.Go_Btn.Size = new System.Drawing.Size(58, 24);
@@ -235,7 +235,7 @@
             // 
             // Mute_Btn
             // 
-            this.Mute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Mute_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Mute_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Mute_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.Mute_Btn.FlatAppearance.BorderSize = 0;
@@ -255,7 +255,7 @@
             // 
             // Status_Strip
             // 
-            this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(54)))));
+            this.Status_Strip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Status_Strip.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Status_Strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.JavaScriptToggle_Btn,
@@ -271,10 +271,10 @@
             // 
             // JavaScriptToggle_Btn
             // 
-            this.JavaScriptToggle_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JavaScriptToggle_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JavaScriptToggle_Btn.ForeColor = System.Drawing.Color.Lime;
             this.JavaScriptToggle_Btn.Name = "JavaScriptToggle_Btn";
-            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(123, 17);
+            this.JavaScriptToggle_Btn.Size = new System.Drawing.Size(95, 17);
             this.JavaScriptToggle_Btn.Text = "JavaScript Enable";
             this.JavaScriptToggle_Btn.Click += new System.EventHandler(this.JavaScriptToggle_Btn_Click);
             // 
@@ -286,14 +286,6 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(14, 17);
             this.toolStripStatusLabel2.Text = "|";
             // 
-            // URLtxt_txt
-            // 
-            this.URLtxt_txt.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.URLtxt_txt.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.URLtxt_txt.Name = "URLtxt_txt";
-            this.URLtxt_txt.Size = new System.Drawing.Size(22, 17);
-            this.URLtxt_txt.Text = "url";
-            // 
             // TrackingLevel_Lbl
             // 
             this.TrackingLevel_Lbl.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -301,6 +293,14 @@
             this.TrackingLevel_Lbl.Name = "TrackingLevel_Lbl";
             this.TrackingLevel_Lbl.Size = new System.Drawing.Size(158, 17);
             this.TrackingLevel_Lbl.Text = "Tracking Prevention: None";
+            // 
+            // URLtxt_txt
+            // 
+            this.URLtxt_txt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLtxt_txt.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.URLtxt_txt.Name = "URLtxt_txt";
+            this.URLtxt_txt.Size = new System.Drawing.Size(21, 17);
+            this.URLtxt_txt.Text = "url";
             // 
             // Webview_Frm
             // 

@@ -67,15 +67,15 @@
             // 
             this.URLbrowse_Cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.URLbrowse_Cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-            this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.URLbrowse_Cbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.URLbrowse_Cbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.URLbrowse_Cbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.URLbrowse_Cbx.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLbrowse_Cbx.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.URLbrowse_Cbx.ForeColor = System.Drawing.Color.Gold;
             this.URLbrowse_Cbx.FormattingEnabled = true;
             this.URLbrowse_Cbx.Location = new System.Drawing.Point(130, 0);
             this.URLbrowse_Cbx.Name = "URLbrowse_Cbx";
-            this.URLbrowse_Cbx.Size = new System.Drawing.Size(608, 24);
+            this.URLbrowse_Cbx.Size = new System.Drawing.Size(608, 23);
             this.URLbrowse_Cbx.TabIndex = 10;
             // 
             // EmptyCbx_Btn
@@ -106,7 +106,7 @@
             this.Go_Btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
             this.Go_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(180)))), ((int)(((byte)(255)))));
             this.Go_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Go_Btn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Go_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Go_Btn.ForeColor = System.Drawing.Color.White;
             this.Go_Btn.Location = new System.Drawing.Point(738, 0);
             this.Go_Btn.Name = "Go_Btn";
@@ -156,11 +156,11 @@
             // 
             // WbrowseTxt
             // 
-            this.WbrowseTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.WbrowseTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.WbrowseTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WbrowseTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WbrowseTxt.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WbrowseTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.WbrowseTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.WbrowseTxt.Location = new System.Drawing.Point(0, 0);
             this.WbrowseTxt.Name = "WbrowseTxt";
             this.WbrowseTxt.ReadOnly = true;
@@ -170,7 +170,7 @@
             // 
             // ListLinks_Lst
             // 
-            this.ListLinks_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ListLinks_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.ListLinks_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListLinks_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListLinks_Lst.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -217,7 +217,7 @@
             // 
             // UserAgent_Txt
             // 
-            this.UserAgent_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.UserAgent_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.UserAgent_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.UserAgent_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserAgent_Txt.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

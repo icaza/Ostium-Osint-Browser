@@ -1,4 +1,5 @@
 ﻿using Icaza;
+using Ostium.ModernUI;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -12,6 +13,8 @@ namespace Ostium
         public Doc_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
+
             Sortie_Txt.DoubleClick += new EventHandler(Sortie_Txt_DoubleClick);
         }
         ///

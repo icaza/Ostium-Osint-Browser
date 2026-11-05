@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ostium.ModernUI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -27,6 +28,7 @@ namespace Ostium
         public PromptSend_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
 
             Local_Chk.Click += new EventHandler(Local_Chk_Click);
             Cloud_Chk.Click += new EventHandler(Cloud_Chk_Click);

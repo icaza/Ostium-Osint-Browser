@@ -34,11 +34,11 @@
             // 
             // Sortie_Txt
             // 
-            this.Sortie_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Sortie_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Sortie_Txt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Sortie_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Sortie_Txt.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Sortie_Txt.ForeColor = System.Drawing.Color.White;
+            this.Sortie_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Sortie_Txt.Location = new System.Drawing.Point(0, 0);
             this.Sortie_Txt.Multiline = true;
             this.Sortie_Txt.Name = "Sortie_Txt";

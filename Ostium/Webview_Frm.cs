@@ -1,4 +1,5 @@
 ﻿using Microsoft.Web.WebView2.Core;
+using Ostium.ModernUI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,6 +25,7 @@ namespace Ostium
         public Webview_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
 
             WBrowsew_EventHandlers(WBrowsew);
 

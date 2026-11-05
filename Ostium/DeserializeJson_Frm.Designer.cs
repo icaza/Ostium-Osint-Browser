@@ -56,7 +56,7 @@
             this.Fetch_Btn.FlatAppearance.BorderSize = 0;
             this.Fetch_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.Fetch_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Fetch_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fetch_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fetch_Btn.ForeColor = System.Drawing.Color.White;
             this.Fetch_Btn.Location = new System.Drawing.Point(382, 8);
             this.Fetch_Btn.Name = "Fetch_Btn";
@@ -68,7 +68,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.panel1.Controls.Add(this.ExportData_Btn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.DomainURL_Txt);
@@ -85,7 +85,7 @@
             this.ExportData_Btn.FlatAppearance.BorderSize = 0;
             this.ExportData_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ExportData_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExportData_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExportData_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExportData_Btn.ForeColor = System.Drawing.Color.White;
             this.ExportData_Btn.Location = new System.Drawing.Point(474, 8);
             this.ExportData_Btn.Name = "ExportData_Btn";
@@ -98,11 +98,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Domain";
             // 

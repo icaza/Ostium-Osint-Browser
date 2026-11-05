@@ -663,6 +663,12 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new Ostium.ModernUI.ModernGroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.WarcArchiver_Link = new System.Windows.Forms.Label();
             this.WarcArchiver_Opt_Txt = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
@@ -8074,6 +8080,12 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label45);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label44);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label43);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label42);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label41);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label38);
             this.PanelGrpOpt_Pnl.Controls.Add(this.WarcArchiver_Link);
             this.PanelGrpOpt_Pnl.Controls.Add(this.WarcArchiver_Opt_Txt);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label40);
@@ -8113,6 +8125,78 @@
             this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 520);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label45.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.Color.Gray;
+            this.label45.Location = new System.Drawing.Point(147, 450);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(211, 15);
+            this.label45.TabIndex = 38;
+            this.label45.Text = "e.g. C:\\...\\Microsoft VS Code\\Code.exe";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label44.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.Color.Gray;
+            this.label44.Location = new System.Drawing.Point(147, 757);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(212, 15);
+            this.label44.TabIndex = 37;
+            this.label44.Text = "e.g. C:\\...\\Ostium\\data\\blocked_full.txt";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label43.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.Color.Gray;
+            this.label43.Location = new System.Drawing.Point(147, 696);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(174, 15);
+            this.label43.TabIndex = 36;
+            this.label43.Text = "e.g. C:\\...\\Ostium\\WarcArchiver";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label42.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.Color.Gray;
+            this.label42.Location = new System.Drawing.Point(147, 635);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(196, 15);
+            this.label42.TabIndex = 35;
+            this.label42.Text = "e.g. C:\\...\\Ostium\\WebToMarkdown";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label41.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.Gray;
+            this.label41.Location = new System.Drawing.Point(147, 574);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(175, 15);
+            this.label41.TabIndex = 34;
+            this.label41.Text = "e.g. C:\\...\\Ostium\\OsintWatcher";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.Gray;
+            this.label38.Location = new System.Drawing.Point(147, 513);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(318, 15);
+            this.label38.TabIndex = 33;
+            this.label38.Text = "e.g. C:\\...\\Ostium\\CyberChef_v0.0.0\\CyberChef_v0.0.0.html";
             // 
             // WarcArchiver_Link
             // 
@@ -9339,6 +9423,12 @@
         private System.Windows.Forms.ToolStripMenuItem WarcArchiver_Btn;
         private System.Windows.Forms.ToolStripMenuItem WarcExplorer_Btn;
         private System.Windows.Forms.ToolTip ModernToolTip;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label44;
     }
 }
 

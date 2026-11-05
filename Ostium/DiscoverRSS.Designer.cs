@@ -28,10 +28,10 @@
             // urlTextBox
             // 
             this.urlTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.urlTextBox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.urlTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urlTextBox.Location = new System.Drawing.Point(12, 27);
             this.urlTextBox.Name = "urlTextBox";
-            this.urlTextBox.Size = new System.Drawing.Size(551, 22);
+            this.urlTextBox.Size = new System.Drawing.Size(551, 23);
             this.urlTextBox.TabIndex = 1;
             this.urlTextBox.Text = "Enter website URL (e.g. https://example.com)";
             // 
@@ -39,7 +39,7 @@
             // 
             this.titleTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.titleTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.titleTextBox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleTextBox.Location = new System.Drawing.Point(12, 73);
             this.titleTextBox.Multiline = true;
             this.titleTextBox.Name = "titleTextBox";
@@ -52,7 +52,7 @@
             this.DiscoverRSS_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DiscoverRSS_Btn.FlatAppearance.BorderSize = 0;
             this.DiscoverRSS_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DiscoverRSS_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiscoverRSS_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DiscoverRSS_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.DiscoverRSS_Btn.Location = new System.Drawing.Point(453, 131);
             this.DiscoverRSS_Btn.Name = "DiscoverRSS_Btn";
@@ -65,11 +65,11 @@
             // lblUrl
             // 
             this.lblUrl.AutoSize = true;
-            this.lblUrl.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUrl.ForeColor = System.Drawing.Color.White;
             this.lblUrl.Location = new System.Drawing.Point(9, 10);
             this.lblUrl.Name = "lblUrl";
-            this.lblUrl.Size = new System.Drawing.Size(91, 14);
+            this.lblUrl.Size = new System.Drawing.Size(77, 15);
             this.lblUrl.TabIndex = 0;
             this.lblUrl.Text = "Website URL:";
             // 
@@ -90,7 +90,7 @@
             this.CopyRSSdiscover_Btn.Enabled = false;
             this.CopyRSSdiscover_Btn.FlatAppearance.BorderSize = 0;
             this.CopyRSSdiscover_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyRSSdiscover_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyRSSdiscover_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyRSSdiscover_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.CopyRSSdiscover_Btn.Location = new System.Drawing.Point(179, 131);
             this.CopyRSSdiscover_Btn.Name = "CopyRSSdiscover_Btn";
@@ -105,7 +105,7 @@
             this.BatchDiscover_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BatchDiscover_Btn.FlatAppearance.BorderSize = 0;
             this.BatchDiscover_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BatchDiscover_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BatchDiscover_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BatchDiscover_Btn.ForeColor = System.Drawing.Color.GreenYellow;
             this.BatchDiscover_Btn.Location = new System.Drawing.Point(295, 131);
             this.BatchDiscover_Btn.Name = "BatchDiscover_Btn";
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(573, 163);
             this.Controls.Add(this.BatchDiscover_Btn);
             this.Controls.Add(this.CopyRSSdiscover_Btn);

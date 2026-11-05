@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using Ostium.ModernUI;
 
 namespace Ostium
 {
@@ -27,6 +28,7 @@ namespace Ostium
         public Mdi_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
 
             SizeChanged += new EventHandler(Main_Frm_SizeChange);
             URLlist_Cbx.SelectedIndexChanged += new EventHandler(URLlist_Cbx_SelectedIndexChanged);
@@ -170,7 +172,7 @@ namespace Ostium
                     MdiParent = this,
                     Width = 500,
                     Height = 380
-                };
+                };                
                 webviewForm.Show();
             }
             catch (Exception ex)

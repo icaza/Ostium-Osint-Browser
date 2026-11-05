@@ -1,5 +1,6 @@
 ﻿using Icaza;
 using Microsoft.Ajax.Utilities;
+using Ostium.ModernUI;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -26,6 +27,7 @@ namespace Ostium
         public ScriptCreator_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
 
             FormClosing += new FormClosingEventHandler(ScriptCreator_Closed);
         }

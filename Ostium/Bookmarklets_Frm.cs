@@ -1,6 +1,7 @@
 ﻿using Icaza;
 using LoadDirectory;
 using Microsoft.Ajax.Utilities;
+using Ostium.ModernUI;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -27,6 +28,7 @@ namespace Ostium
         public Bookmarklets_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
         }
 
         void Bookmarklets_Frm_Load(object sender, EventArgs e)
