@@ -139,27 +139,25 @@
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.OpnEncFrm = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator42 = new System.Windows.Forms.ToolStripSeparator();
-            this.semanticAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SemanticAnalysis_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.SemanticFile_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
-            this.messisPlatformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MessisPlatform_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigMESS_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.StartMESS_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.LocalhostMESS_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.LogPathMESS_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.secureFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SecureFileExplorer_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.StartSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.LocalhostSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.LogPathSFE_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.netLogViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ConfigNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.NetLogViewer_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.NetExport_Btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.StartNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.OpnNLV_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.PromptViewer_Mnu = new System.Windows.Forms.ToolStripMenuItem();
-            this.ostiumBookmarkExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BookmarkExplorer_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigOBE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.StartOBE_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.LocalhostOBE_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -180,7 +178,7 @@
             this.AdvancedOption_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.DevTools_Param = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.directoryTreeExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DirectoryTree_Mnu = new System.Windows.Forms.ToolStripMenuItem();
             this.TreeTXTexport_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.TreeXMLexport_Btn = new System.Windows.Forms.ToolStripMenuItem();
             this.TreeJSONexport_Btn = new System.Windows.Forms.ToolStripMenuItem();
@@ -663,6 +661,11 @@
             this.Panel_ConfigXml = new System.Windows.Forms.Panel();
             this.groupBox3 = new Ostium.ModernUI.ModernGroupBox();
             this.PanelGrpOpt_Pnl = new System.Windows.Forms.Panel();
+            this.label46 = new System.Windows.Forms.Label();
+            this.NetLogViewer_Link = new System.Windows.Forms.Label();
+            this.NetLogViewer_Opt_Txt = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.panel43 = new System.Windows.Forms.Panel();
             this.label45 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -702,6 +705,7 @@
             this.UserAgent_Opt_Txt = new System.Windows.Forms.TextBox();
             this.SearchEngine_Opt_Txt = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.panel42 = new System.Windows.Forms.Panel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.SaveConfig_Opt_Btn = new System.Windows.Forms.Button();
             this.ResetConfig_Btn = new System.Windows.Forms.Button();
@@ -1514,14 +1518,14 @@
             this.toolStripSeparator17,
             this.OpnEncFrm,
             this.toolStripSeparator42,
-            this.semanticAnalysisToolStripMenuItem,
+            this.SemanticAnalysis_Mnu,
             this.toolStripSeparator31,
-            this.messisPlatformToolStripMenuItem,
-            this.secureFileExplorerToolStripMenuItem,
-            this.netLogViewerToolStripMenuItem,
+            this.MessisPlatform_Mnu,
+            this.SecureFileExplorer_Mnu,
+            this.NetLogViewer_Mnu,
             this.toolStripSeparator40,
             this.PromptViewer_Mnu,
-            this.ostiumBookmarkExplorerToolStripMenuItem,
+            this.BookmarkExplorer_Mnu,
             this.toolStripSeparator34,
             this.ConvertPDF_Btn,
             this.toolStripSeparator43,
@@ -1537,7 +1541,7 @@
             this.AdvancedOption_Param,
             this.DevTools_Param,
             this.toolStripSeparator16,
-            this.directoryTreeExportToolStripMenuItem,
+            this.DirectoryTree_Mnu,
             this.toolStripSeparator4,
             this.System_Param,
             this.OstUpdt_Btn,
@@ -1602,13 +1606,13 @@
             this.toolStripSeparator42.Name = "toolStripSeparator42";
             this.toolStripSeparator42.Size = new System.Drawing.Size(202, 6);
             // 
-            // semanticAnalysisToolStripMenuItem
+            // SemanticAnalysis_Mnu
             // 
-            this.semanticAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SemanticAnalysis_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SemanticFile_Btn});
-            this.semanticAnalysisToolStripMenuItem.Name = "semanticAnalysisToolStripMenuItem";
-            this.semanticAnalysisToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.semanticAnalysisToolStripMenuItem.Text = "Semantic Analysis";
+            this.SemanticAnalysis_Mnu.Name = "SemanticAnalysis_Mnu";
+            this.SemanticAnalysis_Mnu.Size = new System.Drawing.Size(205, 22);
+            this.SemanticAnalysis_Mnu.Text = "Semantic Analysis";
             // 
             // SemanticFile_Btn
             // 
@@ -1622,16 +1626,16 @@
             this.toolStripSeparator31.Name = "toolStripSeparator31";
             this.toolStripSeparator31.Size = new System.Drawing.Size(202, 6);
             // 
-            // messisPlatformToolStripMenuItem
+            // MessisPlatform_Mnu
             // 
-            this.messisPlatformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MessisPlatform_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigMESS_Btn,
             this.StartMESS_Btn,
             this.LocalhostMESS_Btn,
             this.LogPathMESS_Btn});
-            this.messisPlatformToolStripMenuItem.Name = "messisPlatformToolStripMenuItem";
-            this.messisPlatformToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.messisPlatformToolStripMenuItem.Text = "Messis Platform";
+            this.MessisPlatform_Mnu.Name = "MessisPlatform_Mnu";
+            this.MessisPlatform_Mnu.Size = new System.Drawing.Size(205, 22);
+            this.MessisPlatform_Mnu.Text = "Messis Platform";
             // 
             // ConfigMESS_Btn
             // 
@@ -1661,16 +1665,16 @@
             this.LogPathMESS_Btn.Text = "Log Path";
             this.LogPathMESS_Btn.Click += new System.EventHandler(this.LogPathMESS_Btn_Click);
             // 
-            // secureFileExplorerToolStripMenuItem
+            // SecureFileExplorer_Mnu
             // 
-            this.secureFileExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SecureFileExplorer_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigSFE_Btn,
             this.StartSFE_Btn,
             this.LocalhostSFE_Btn,
             this.LogPathSFE_Btn});
-            this.secureFileExplorerToolStripMenuItem.Name = "secureFileExplorerToolStripMenuItem";
-            this.secureFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.secureFileExplorerToolStripMenuItem.Text = "Secure File Explorer";
+            this.SecureFileExplorer_Mnu.Name = "SecureFileExplorer_Mnu";
+            this.SecureFileExplorer_Mnu.Size = new System.Drawing.Size(205, 22);
+            this.SecureFileExplorer_Mnu.Text = "Secure File Explorer";
             // 
             // ConfigSFE_Btn
             // 
@@ -1700,23 +1704,14 @@
             this.LogPathSFE_Btn.Text = "Log Path";
             this.LogPathSFE_Btn.Click += new System.EventHandler(this.LogPathSFE_Btn_Click);
             // 
-            // netLogViewerToolStripMenuItem
+            // NetLogViewer_Mnu
             // 
-            this.netLogViewerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ConfigNLV_Btn,
+            this.NetLogViewer_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NetExport_Btn,
-            this.StartNLV_Btn,
             this.OpnNLV_Btn});
-            this.netLogViewerToolStripMenuItem.Name = "netLogViewerToolStripMenuItem";
-            this.netLogViewerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.netLogViewerToolStripMenuItem.Text = "Net Log Viewer";
-            // 
-            // ConfigNLV_Btn
-            // 
-            this.ConfigNLV_Btn.Name = "ConfigNLV_Btn";
-            this.ConfigNLV_Btn.Size = new System.Drawing.Size(186, 22);
-            this.ConfigNLV_Btn.Text = "Config";
-            this.ConfigNLV_Btn.Click += new System.EventHandler(this.ConfigNLV_Btn_Click);
+            this.NetLogViewer_Mnu.Name = "NetLogViewer_Mnu";
+            this.NetLogViewer_Mnu.Size = new System.Drawing.Size(205, 22);
+            this.NetLogViewer_Mnu.Text = "Net Log Viewer";
             // 
             // NetExport_Btn
             // 
@@ -1725,19 +1720,12 @@
             this.NetExport_Btn.Text = "Capture Network Log";
             this.NetExport_Btn.Click += new System.EventHandler(this.NetExport_Btn_Click);
             // 
-            // StartNLV_Btn
-            // 
-            this.StartNLV_Btn.Name = "StartNLV_Btn";
-            this.StartNLV_Btn.Size = new System.Drawing.Size(186, 22);
-            this.StartNLV_Btn.Text = "Server Start";
-            this.StartNLV_Btn.Click += new System.EventHandler(this.StartNLV_Btn_Click);
-            // 
             // OpnNLV_Btn
             // 
             this.OpnNLV_Btn.Name = "OpnNLV_Btn";
             this.OpnNLV_Btn.Size = new System.Drawing.Size(186, 22);
-            this.OpnNLV_Btn.Text = "Localhost";
-            this.OpnNLV_Btn.Click += new System.EventHandler(this.LocalhostNLV_Btn_Click);
+            this.OpnNLV_Btn.Text = "Netlog Viewer";
+            this.OpnNLV_Btn.Click += new System.EventHandler(this.OpnNLV_Btn_Click);
             // 
             // toolStripSeparator40
             // 
@@ -1751,17 +1739,17 @@
             this.PromptViewer_Mnu.Text = "Prompt History Viewer";
             this.PromptViewer_Mnu.Click += new System.EventHandler(this.PromptViewer_Mnu_Click);
             // 
-            // ostiumBookmarkExplorerToolStripMenuItem
+            // BookmarkExplorer_Mnu
             // 
-            this.ostiumBookmarkExplorerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BookmarkExplorer_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConfigOBE_Btn,
             this.StartOBE_Btn,
             this.LocalhostOBE_Btn,
             this.toolStripSeparator41,
             this.DenoUpdate_Btn});
-            this.ostiumBookmarkExplorerToolStripMenuItem.Name = "ostiumBookmarkExplorerToolStripMenuItem";
-            this.ostiumBookmarkExplorerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.ostiumBookmarkExplorerToolStripMenuItem.Text = "Bookmark Explorer";
+            this.BookmarkExplorer_Mnu.Name = "BookmarkExplorer_Mnu";
+            this.BookmarkExplorer_Mnu.Size = new System.Drawing.Size(205, 22);
+            this.BookmarkExplorer_Mnu.Text = "Bookmark Explorer";
             // 
             // ConfigOBE_Btn
             // 
@@ -1891,15 +1879,15 @@
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             this.toolStripSeparator16.Size = new System.Drawing.Size(202, 6);
             // 
-            // directoryTreeExportToolStripMenuItem
+            // DirectoryTree_Mnu
             // 
-            this.directoryTreeExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DirectoryTree_Mnu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TreeTXTexport_Btn,
             this.TreeXMLexport_Btn,
             this.TreeJSONexport_Btn});
-            this.directoryTreeExportToolStripMenuItem.Name = "directoryTreeExportToolStripMenuItem";
-            this.directoryTreeExportToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.directoryTreeExportToolStripMenuItem.Text = "Directory tree export";
+            this.DirectoryTree_Mnu.Name = "DirectoryTree_Mnu";
+            this.DirectoryTree_Mnu.Size = new System.Drawing.Size(205, 22);
+            this.DirectoryTree_Mnu.Text = "Directory tree export";
             // 
             // TreeTXTexport_Btn
             // 
@@ -8058,6 +8046,7 @@
             // Panel_ConfigXml
             // 
             this.Panel_ConfigXml.Controls.Add(this.groupBox3);
+            this.Panel_ConfigXml.Controls.Add(this.panel42);
             this.Panel_ConfigXml.Controls.Add(this.panel27);
             this.Panel_ConfigXml.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel_ConfigXml.Location = new System.Drawing.Point(10, 10);
@@ -8072,7 +8061,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(714, 542);
+            this.groupBox3.Size = new System.Drawing.Size(714, 534);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "config.xml file";
@@ -8080,6 +8069,11 @@
             // PanelGrpOpt_Pnl
             // 
             this.PanelGrpOpt_Pnl.AutoScroll = true;
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label46);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.NetLogViewer_Link);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.NetLogViewer_Opt_Txt);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.label48);
+            this.PanelGrpOpt_Pnl.Controls.Add(this.panel43);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label45);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label44);
             this.PanelGrpOpt_Pnl.Controls.Add(this.label43);
@@ -8123,8 +8117,61 @@
             this.PanelGrpOpt_Pnl.Location = new System.Drawing.Point(3, 19);
             this.PanelGrpOpt_Pnl.Name = "PanelGrpOpt_Pnl";
             this.PanelGrpOpt_Pnl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 520);
+            this.PanelGrpOpt_Pnl.Size = new System.Drawing.Size(708, 512);
             this.PanelGrpOpt_Pnl.TabIndex = 16;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label46.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.ForeColor = System.Drawing.Color.Gray;
+            this.label46.Location = new System.Drawing.Point(147, 755);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(177, 15);
+            this.label46.TabIndex = 43;
+            this.label46.Text = "e.g. C:\\...\\Ostium\\NetLogViewer";
+            // 
+            // NetLogViewer_Link
+            // 
+            this.NetLogViewer_Link.AutoSize = true;
+            this.NetLogViewer_Link.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NetLogViewer_Link.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NetLogViewer_Link.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.NetLogViewer_Link.Location = new System.Drawing.Point(484, 755);
+            this.NetLogViewer_Link.Name = "NetLogViewer_Link";
+            this.NetLogViewer_Link.Size = new System.Drawing.Size(172, 15);
+            this.NetLogViewer_Link.TabIndex = 42;
+            this.NetLogViewer_Link.Text = "Link to NetLog Viewer (GitHub)";
+            this.NetLogViewer_Link.Click += new System.EventHandler(this.NetLogViewer_Link_Click);
+            // 
+            // NetLogViewer_Opt_Txt
+            // 
+            this.NetLogViewer_Opt_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.NetLogViewer_Opt_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NetLogViewer_Opt_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NetLogViewer_Opt_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.NetLogViewer_Opt_Txt.Location = new System.Drawing.Point(9, 776);
+            this.NetLogViewer_Opt_Txt.Name = "NetLogViewer_Opt_Txt";
+            this.NetLogViewer_Opt_Txt.Size = new System.Drawing.Size(675, 23);
+            this.NetLogViewer_Opt_Txt.TabIndex = 41;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
+            this.label48.Location = new System.Drawing.Point(6, 755);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(112, 15);
+            this.label48.TabIndex = 40;
+            this.label48.Text = "NetLog Viewer Path";
+            // 
+            // panel43
+            // 
+            this.panel43.Location = new System.Drawing.Point(0, 1062);
+            this.panel43.Name = "panel43";
+            this.panel43.Size = new System.Drawing.Size(691, 10);
+            this.panel43.TabIndex = 39;
             // 
             // label45
             // 
@@ -8144,7 +8191,7 @@
             this.label44.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label44.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.ForeColor = System.Drawing.Color.Gray;
-            this.label44.Location = new System.Drawing.Point(147, 757);
+            this.label44.Location = new System.Drawing.Point(147, 807);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(212, 15);
             this.label44.TabIndex = 37;
@@ -8319,7 +8366,7 @@
             this.Redlist_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Redlist_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Redlist_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
-            this.Redlist_Txt.Location = new System.Drawing.Point(9, 778);
+            this.Redlist_Txt.Location = new System.Drawing.Point(9, 828);
             this.Redlist_Txt.Name = "Redlist_Txt";
             this.Redlist_Txt.Size = new System.Drawing.Size(675, 23);
             this.Redlist_Txt.TabIndex = 22;
@@ -8328,7 +8375,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.label26.Location = new System.Drawing.Point(6, 757);
+            this.label26.Location = new System.Drawing.Point(6, 807);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(99, 15);
             this.label26.TabIndex = 21;
@@ -8370,7 +8417,7 @@
             this.ArchiveAdd_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ArchiveAdd_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiveAdd_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 842);
+            this.ArchiveAdd_Txt.Location = new System.Drawing.Point(7, 890);
             this.ArchiveAdd_Txt.Multiline = true;
             this.ArchiveAdd_Txt.Name = "ArchiveAdd_Txt";
             this.ArchiveAdd_Txt.Size = new System.Drawing.Size(675, 159);
@@ -8380,7 +8427,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
-            this.label31.Location = new System.Drawing.Point(4, 820);
+            this.label31.Location = new System.Drawing.Point(4, 870);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(317, 15);
             this.label31.TabIndex = 16;
@@ -8554,6 +8601,14 @@
             this.label19.Size = new System.Drawing.Size(108, 15);
             this.label19.TabIndex = 8;
             this.label19.Text = "User Agent Change";
+            // 
+            // panel42
+            // 
+            this.panel42.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel42.Location = new System.Drawing.Point(0, 534);
+            this.panel42.Name = "panel42";
+            this.panel42.Size = new System.Drawing.Size(714, 8);
+            this.panel42.TabIndex = 18;
             // 
             // panel27
             // 
@@ -9258,7 +9313,7 @@
         private System.Windows.Forms.ToolStripButton JavaScriptFeed_Btn;
         private System.Windows.Forms.CheckBox FloodHeader_Chk;
         private System.Windows.Forms.ListBox PointRoute_Lst;
-        private System.Windows.Forms.ToolStripMenuItem directoryTreeExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DirectoryTree_Mnu;
         private System.Windows.Forms.ToolStripMenuItem TreeTXTexport_Btn;
         private System.Windows.Forms.ToolStripMenuItem TreeXMLexport_Btn;
         private System.Windows.Forms.ToolStripMenuItem TreeJSONexport_Btn;
@@ -9281,7 +9336,7 @@
         private System.Windows.Forms.ToolStripMenuItem Count_urlCache;
         private System.Windows.Forms.TextBox Redlist_Txt;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.ToolStripMenuItem secureFileExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SecureFileExplorer_Mnu;
         private System.Windows.Forms.ToolStripMenuItem StartSFE_Btn;
         private System.Windows.Forms.ToolStripMenuItem ConfigSFE_Btn;
         private System.Windows.Forms.ToolStripMenuItem LocalhostSFE_Btn;
@@ -9357,23 +9412,21 @@
         private System.Windows.Forms.Button SpeakPrompt_Btn;
         private System.Windows.Forms.ToolStripButton OpnPromptRss_Btn;
         private System.Windows.Forms.Button ModelInfos_Btn;
-        private System.Windows.Forms.ToolStripMenuItem semanticAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SemanticAnalysis_Mnu;
         private System.Windows.Forms.ToolStripMenuItem SemanticFile_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator42;
         private System.Windows.Forms.ToolStripMenuItem ConvertPDF_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator43;
-        private System.Windows.Forms.ToolStripMenuItem messisPlatformToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MessisPlatform_Mnu;
         private System.Windows.Forms.ToolStripMenuItem ConfigMESS_Btn;
         private System.Windows.Forms.ToolStripMenuItem StartMESS_Btn;
         private System.Windows.Forms.ToolStripMenuItem LocalhostMESS_Btn;
         private System.Windows.Forms.ToolStripMenuItem LogPathMESS_Btn;
         private System.Windows.Forms.ToolStripMenuItem ReadArticle_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator44;
-        private System.Windows.Forms.ToolStripMenuItem netLogViewerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem NetLogViewer_Mnu;
         private System.Windows.Forms.ToolStripMenuItem NetExport_Btn;
         private System.Windows.Forms.ToolStripMenuItem OpnNLV_Btn;
-        private System.Windows.Forms.ToolStripMenuItem StartNLV_Btn;
-        private System.Windows.Forms.ToolStripMenuItem ConfigNLV_Btn;
         private System.Windows.Forms.ToolStripMenuItem DiscoverRSS_Btn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
         private System.Windows.Forms.ToolStripDropDownButton RSS2_Tls;
@@ -9385,7 +9438,7 @@
         private System.Windows.Forms.ToolStripMenuItem PromptViewer_Mnu;
         private System.Windows.Forms.Button PromptViewer_Btn;
         private System.Windows.Forms.ToolStripMenuItem InvestigationBoard_Btn;
-        private System.Windows.Forms.ToolStripMenuItem ostiumBookmarkExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BookmarkExplorer_Mnu;
         private System.Windows.Forms.ToolStripMenuItem ConfigOBE_Btn;
         private System.Windows.Forms.ToolStripMenuItem StartOBE_Btn;
         private System.Windows.Forms.ToolStripMenuItem LocalhostOBE_Btn;
@@ -9429,6 +9482,12 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Panel panel42;
+        private System.Windows.Forms.Panel panel43;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label NetLogViewer_Link;
+        private System.Windows.Forms.TextBox NetLogViewer_Opt_Txt;
+        private System.Windows.Forms.Label label48;
     }
 }
 

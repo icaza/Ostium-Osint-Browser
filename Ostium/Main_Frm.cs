@@ -601,6 +601,7 @@ namespace Ostium
                 OsintWatcher_Opt_Txt.Text = "";
                 WebToMarkdown_Opt_Txt.Text = "";
                 WarcArchiver_Opt_Txt.Text = "";
+                NetLogViewer_Opt_Txt.Text = "";
                 ArchiveAdd_Txt.Text = "";
 
                 var ArchiveDir = new List<string>()
@@ -645,6 +646,7 @@ namespace Ostium
                 writer.WriteElementString("OSINTWATCHER_VAR", OsintWatcher_Opt_Txt.Text);
                 writer.WriteElementString("WEBTOMARKDOWN_VAR", WebToMarkdown_Opt_Txt.Text);
                 writer.WriteElementString("WARCARCHIVER_VAR", WarcArchiver_Opt_Txt.Text);
+                writer.WriteElementString("NETLOGVIEWER_VAR", NetLogViewer_Opt_Txt.Text);
                 writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
@@ -1133,6 +1135,13 @@ namespace Ostium
                                     else
                                         WarcArchiver_Mnu.Enabled = false;
                                 }
+                                break;
+                            case "NETLOGVIEWER_VAR":
+                                NetLogViewer_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                if (!string.IsNullOrEmpty(NetLogViewer_Opt_Txt.Text))
+                                    NetLogViewer_Mnu.Enabled = true;
+                                else
+                                    NetLogViewer_Mnu.Enabled = false;
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -4770,6 +4779,43 @@ namespace Ostium
             }
         }
 
+        void OpnNLV_Btn_Click(object sender, EventArgs e)
+        {
+            NetlogViewer();
+        }
+
+        void NetlogViewer()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(NetLogViewer_Opt_Txt.Text))
+                {
+                    if (Directory.Exists(NetLogViewer_Opt_Txt.Text))
+                    {
+                        if (File.Exists(Path.Combine(NetLogViewer_Opt_Txt.Text, "NetLogViewer.exe")))
+                            Process.Start(Path.Combine(NetLogViewer_Opt_Txt.Text, "NetLogViewer.exe"));
+                        else
+                            MessageBox.Show("The file NetLogViewer.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "NetLog Viewer not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("NetLog Viewer is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "NetLog Viewer not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WarcArchiverExec: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         static string ExtractHostValue(string line)
         {
             int hostIndex = line.IndexOf("host:", StringComparison.OrdinalIgnoreCase);
@@ -4845,90 +4891,9 @@ namespace Ostium
             }
         }
 
-        void ConfigNLV_Btn_Click(object sender, EventArgs e)
-        {
-            string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
-
-            if (!File.Exists(filepath))
-            {
-                MessageBox.Show("NetLogViewer is not install, go to Discord channel Ostium for fix and help. is not started!",
-                    "NetLogViewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            OpenFile_Editor(filepath);
-        }
-
         void NetExport_Btn_Click(object sender, EventArgs e)
         {
             GoBrowser("edge://net-export/", 1);
-        }
-
-        void StartNLV_Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
-
-                if (!File.Exists(filepath))
-                {
-                    MessageBox.Show("NetLogViewer is not install, go to Discord channel Ostium for fix and help. is not started!",
-                        "NetLogViewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                using (Process proc = new Process())
-                {
-                    proc.StartInfo.FileName = filepath;
-                    proc.StartInfo.Arguments = string.Empty;
-                    proc.StartInfo.UseShellExecute = true;
-                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "NetLogViewer");
-                    proc.StartInfo.RedirectStandardOutput = false;
-                    proc.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! StartNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
-            }
-        }
-
-        void LocalhostNLV_Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
-
-                if (!File.Exists(filepath))
-                {
-                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
-                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                string[] lines = File.ReadAllLines(filepath);
-
-                string portLine = lines.FirstOrDefault(l => l.Contains("PORT="));
-
-                if (portLine == null)
-                {
-                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                string portStr = new string(portLine
-                    .SkipWhile(c => !char.IsDigit(c))
-                    .TakeWhile(char.IsDigit)
-                    .ToArray());
-
-                int port = int.Parse(portStr);
-
-                GoBrowser($"localhost:{port}", 0);
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! OpnNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
-            }
         }
 
         void PromptViewer_Mnu_Click(object sender, EventArgs e)
@@ -14694,6 +14659,11 @@ namespace Ostium
         void WarcArchiver_Link_Click(object sender, EventArgs e)
         {
             Tools_Link("https://github.com/icaza/WARC-Archiver");
+        }
+
+        void NetLogViewer_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/icaza/NetLogViewer");
         }
 
         void Tools_Link(string url)

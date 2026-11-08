@@ -1,4 +1,4 @@
-﻿http://www.goal.com/
+http://www.goal.com/
 http://www.goal.com/en-ca/
 http://www.goal.com/static/js?files=%2Fjs%2Fredirects.js&amp;version=2015.11.18-v1
 http://www.goal.com/static/css?files=%2Fcss%2Fbase.css&amp;version=2015.11.18-v1
@@ -39,7 +39,6 @@ http://wfpscripts.webspectator.com/ws-4.4.7i_cc.js
 http://js.casalemedia.com/casaleJTag.js
 http://plugin.mediavoice.com/mediaconductor/mc.js
 http://aka-cdn-ns.adtechus.com/media/moat/adtechbrands092348fjlsmdhlwsl239fh3df/moatad.js#moatClientLevel1=327&amp;moatClientLevel2=1099125&amp;moatClientLevel3=0&amp;moatClientLevel4=3750891&amp;zMoatMaster=12733644&amp;zMoatFlight=12738388&amp;zMoatBanner=108243350&amp;zURL=http&amp;zMoatPlacementId=3750891&amp;zMoatAdId=12738388&amp;zMoatCreative=0&amp;zMoatBannerID=1&amp;zMoatCustomVisp=50&amp;zMoatCustomVist=1000&amp;zMoatIsAdvisGoal=0&amp;zMoatEventUrl=http://adserver.adtech.de/adcount%7C2.0%7C327%7C3750891%7C0%7C16%7CAdId=12738388;BnId=1;ct=1681351206;st=8554;adcid=1;itime=968300118;reqtype=5;;key=homepage%3Aindex;kr3132=2596984;kp=76620&amp;zMoatSize=16&amp;zMoatSubNetID=0&amp;zMoatisSelected=1&amp;zMoatadServer=adserver.adtech.de&amp;zMoatadVisServer=&amp;zMoatSamplingRate=23&amp;zMoatliveTestCookie=&amp;zMoatRefSeqId=P2tCVICAIAA
-http://edge.quantserve.com/quant.js
 http://as.casalemedia.com/j?s=155756&amp;a=2&amp;id=494870053&amp;p=0&amp;v=3&amp;inif=0&amp;pos=2&amp;l=200&amp;t=13&amp;w=1680&amp;h=979&amp;z=300&amp;u=http%3A%2F%2Fwww.goal.com%2Fen-ca%2F&amp;r=http%3A%2F%2Fwww.goal.com%2F
 http://meraxes-cdn.polarmobile.com/mrm/v1.0.0/json/site/8db51e20c44843c9b444c1a0513602da
 http://uac.advertising.com/wrapper/aceUAC.js
@@ -57,9 +56,7 @@ http://pixel.mathtag.com/u/js?callback=MathID.Callbacks.t1
 http://ortc-ws-useast1-s0008.realtime.co/broadcast/614/kppdv3_9/websocket
 http://pixel.mathtag.com/u/js?callback=MathID.Callbacks.t2&amp;mathid_data=%7B%22dv1%22%3A%22TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xOyBXT1c2NDsgcnY6NDAuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC80MC4x%22%2C%22dv2%22%3A%22MmE4NjU5NTBmZTgyNTNjZjgzNWMxNWU4YTBiZjQ3ZDE%3D%22%2C%22dv3%22%3A%22YjA0ODUzNzU5MDQzOTNiM2E1OTVmNmM4MGMxM2ExYzc%3D%22%2C%22dv4%22%3A%22MTY4MHwxMDUwfDE2ODB8OTc5fDI0fHw%3D%22%2C%22dv5%22%3A%22QW1lcmljYS9OZXdfWW9yaw%3D%3D%22%2C%22dv6%22%3A%22%22%2C%22dv7%22%3A%22MA%3D%3D%22%2C%22dv8%22%3A%22dHJ1ZXx0cnVlfHRydWU%3D%22%2C%22dv9%22%3A%22fGVuLVVTfA%3D%3D%22%2C%22dv10%22%3A%22TW96aWxsYXxOZXRzY2FwZXxNYWNJbnRlbHw%3D%22%7D
 http://adserver.adtech.de/addyn%7C3.0%7C327.0%7C3555309%7C0%7C170%7CADTECH;cookie=info;alias=en-caHPTM;key=homepage:index;kvcampaign=null;kvlayout=narrow;kvskin=no;kvabbr=;kvenv=production;kvpagetype=homepage:index;kvpagetag=;kvarticleid=;kvoteamid=;kvamz=;kvmatchid=;kvsectionid=;kvcompetitionid=;kvocompid=;loc=100;target=_blank;sub1=%5Bsubst%5D;grp=682;misc=682
-http://js.casalemedia.com/casaleJTag.js
 http://as.casalemedia.com/j?s=155738&amp;a=4&amp;id=494870053&amp;p=0&amp;v=2&amp;inif=0&amp;l=340&amp;t=742&amp;w=1680&amp;h=979&amp;z=300&amp;u=http%3A%2F%2Fwww.goal.com%2Fen-ca%2F&amp;r=http%3A%2F%2Fwww.goal.com%2F
-http://uac.advertising.com/wrapper/aceUAC.js
 http://r1.ace.advertising.com/site=885667/size=300250/u=2/bnum=3221338/wkhr=112/hr=16/hl=1/scres=5/swh=1680x1050/sd=2/tile=2/f=0/r=1/optn=1/kvismob=2/fv=0/aolexp=1/dref=http%253A%252F%252Fwww.goal.com%252Fen-ca%252F
 http://www.googletagservices.com/dcm/dcmads.js
 http://js.moatads.com/advertisingdotcom370674952587/moatad.js#moatClientLevel1=2153994&amp;moatClientLevel2=363326&amp;zMoatMediaWidth=300&amp;zMoatMediaHeight=250&amp;zMoatSegmentID=1183&amp;zMoatImpressionID=AS40221359621147c3b243954e7fdee009&amp;moatClientSlicer1=885667&amp;moatClientSlicer2=0&amp;zMoatSiteDomain=www.goal.com&amp;zMoatDevice=personalcomputer
@@ -90,7 +87,6 @@ https://s.yimg.com/rq/darla/2-8-9/js/g-d-min.js
 https://n.gemini.yahoo.com/ssi?ui=syndication&amp;cc=STRM&amp;ve=2&amp;hs=1&amp;pb=%7C%7C1197768208%7CSTRM%7C9b1dc998-4970-4935-b077-87d72c070a32&amp;ri=9b1dc998-4970-4935-b077-87d72c070a32&amp;sc=5dce44e0-33fd-4a03-a0d9-1c93781572ed&amp;pu=http%3A%2F%2Fwww.goal.com%2Fen-ca%2F&amp;cb=jsonpCallback0
 http://fresh8.co/864240/embed.js?view=homepage&amp;_=1447968300293
 http://www.geolocation.performgroup.com/page/userLocation/country/results.jsonp
-http://d3avqv6zaxegeu.cloudfront.net/sentinel.js
 http://www.eplayerhtml5.performgroup.com/tsindex.html#channelId=&amp;videoUUId=&amp;partnerId=&amp;playerId=v7oskwi6ohlc11oxwsgmbb861&amp;eplayerID=perfv7oskwi6ohlc11oxwsgmbb861&amp;playerType=eplayer2&amp;onView=false&amp;isEmbeded=false&amp;configXML=http://xml.eplayer.performgroup.com/eplayer/config/v7oskwi6ohlc11oxwsgmbb861&amp;referrer=www.goal.com&amp;assetsPath=http://static.eplayer.performgroup.com/ptvFlash/eplayer2/assets/&amp;dataPath=http://static.eplayer.performgroup.com/ptvFlash/eplayer2/data/&amp;isForceHTML5=false&amp;isFullSizeOn=false&amp;isFullSizeOnError=false&amp;isFullSizeOffError=false&amp;disableliverail=false&amp;isConfigLoaded=false&amp;isAutoplay=false&amp;isScrollToPlay=false&amp;isSecurePage=false&amp;prevWidth=0&amp;isOverRider=false&amp;age=1400073752000&amp;mobilewidgetplayer=false&amp;index=1&amp;swfUrlPath=&amp;html5Path=http://www.eplayerhtml5.performgroup.com/tsindex.html&amp;swfUrl=http://static.eplayer.performgroup.com/ptvFlash/eplayer2/Eplayer.swf&amp;logBasePath=http://static.eplayer.performgroup.com/ptvFlash/eplayer2/testarea/EplayerLogging/&amp;debugMode=false&amp;javascriptPath=&amp;customRulesPath=http://static.eplayer.performgroup.com/ptvFlash/eplayer2/data/xml/customRules/customRulesFLASH.xml&amp;resizeMode=false&amp;locale=&amp;country=&amp;SWFWidth=300&amp;SWFHeight=360&amp;
 https://cdns.gigya.com/gs/sso.htm?APIKey=2_Y8Ou2zve7eSZI-lzS_Sx1CPu9ZO65T9xjCUz9vX5C60PxafAuK2Z5fPvO_tmfs7D&amp;version=1#m=getToken&amp;d=http%3A%2F%2Fwww.goal.com&amp;lid=flid1447968300309&amp;callbackID=gig_sso_cb1447968300312_0&amp;sAPIKey=2_Y8Ou2zve7eSZI-lzS_Sx1CPu9ZO65T9xjCUz9vX5C60PxafAuK2Z5fPvO_tmfs7D
 http://s.effectivemeasure.net/html/frame_2.3.3.html
@@ -204,7 +200,6 @@ http://ads.pubmatic.com/AdServer/js/universalpixel.js
 http://ads.pubmatic.com/AdServer/js/universalpixel.js#UPIX&amp;pubId=27349&amp;pixId=204&amp;ran=0.10863846305483393&amp;pageURL=http%3A%2F%2Fbcp.crwdcntrl.net%2Fpx%3FYz0zMzc2JnB4aWQ9OTM2NzcsMjcxODY3&amp;refURL=http%3A%2F%2Fbcp.crwdcntrl.net%2F5%2Fct%3Dy%2Fc%3D3376%2Frand%3D344930021%2Fpv%3Dy%2Fint%3D%2523OpR%252351925%2523Goal%2520%253A%2520Version%2520%253A%2520%2520Edition%253A%2520Canada%2Frt%3Difr
 http://a1.vdna-assets.com/analytics.js
 http://image2.pubmatic.com/AdServer/UCookieSetPug
-http://ads.pubmatic.com/AdServer/js/universalpixel.js#UPIX&amp;pubId=27349&amp;pixId=204&amp;ran=0.10863846305483393&amp;pageURL=http%3A%2F%2Fbcp.crwdcntrl.net%2Fpx%3FYz0zMzc2JnB4aWQ9OTM2NzcsMjcxODY3&amp;refURL=http%3A%2F%2Fbcp.crwdcntrl.net%2F5%2Fct%3Dy%2Fc%3D3376%2Frand%3D344930021%2Fpv%3Dy%2Fint%3D%2523OpR%252351925%2523Goal%2520%253A%2520Version%2520%253A%2520%2520Edition%253A%2520Canada%2Frt%3Difr
 http://hao123.com/
 http://www.hao123.com/
 https://www.hao123.com/
@@ -230,7 +225,6 @@ https://gss1.bdstatic.com/5eN1dDebRNRTm2_p8IuM_a/v5/Gd/Ic/CP/tX/Xz/GdIcCPtXXz.js
 https://gss1.bdstatic.com/5eN1dDebRNRTm2_p8IuM_a/v5/cE/fm/kT/tj/rN/cEfmkTtjrN.js
 https://phs.tanx.com/ex?i=mm_26632322_6858406_35046203
 https://www.hao123.com/api/tnwhilte?tn=sitehao123&amp;_=1447968314525
-https://www.hao123.com/
 https://gss0.bdstatic.com/5eR1dDebRNRTm2_p8IuM_a/res/js/t_https.js?402213
 https://gsp0.baidu.com/5LN1bjeh1BF3odCf/cpro/ui/mads.php?callback=jQuery17206909939024453754_1447968314509&amp;u=default&amp;ie=1&amp;n=48&amp;tm=512&amp;cm=512&amp;md=1&amp;at=3&amp;v=naked&amp;cs=&amp;pk=&amp;q=f503a8d7_cpr&amp;appid=f503a8d7&amp;act=LP&amp;w=&amp;sn=E34BB29F26AD2CC6F3434D1A473265A4&amp;prod=hao123&amp;h=&amp;adstrade=1000300&amp;frameseq=0&amp;cntperframe=6&amp;_=1447968314565
 https://gsp0.baidu.com/5LN1bjeh1BF3odCf/cpro/ui/mads.php?callback=jQuery17206909939024453754_1447968314510&amp;u=default&amp;ie=1&amp;n=48&amp;tm=512&amp;cm=512&amp;md=1&amp;at=3&amp;v=naked&amp;cs=&amp;pk=&amp;q=f503a8d7_cpr&amp;appid=f503a8d7&amp;act=LP&amp;w=&amp;sn=E34BB29F26AD2CC6F3434D1A473265A4&amp;prod=hao123&amp;h=&amp;adstrade=1000700_1000900_1001300_1001700_1002000_1001200_1002500&amp;frameseq=0&amp;cntperframe=6&amp;_=1447968314567
@@ -238,7 +232,6 @@ https://gsp0.baidu.com/5LN1bjeh1BF3odCf/cpro/ui/mads.php?callback=jQuery17206909
 https://www.hao123.com/api/ssugdata?c=E34BB29F26AD2CC6F3434D1A473265A4&amp;r=4826561
 https://www.hao123.com/api/sug_short?c=E34BB29F26AD2CC6F3434D1A473265A4&amp;r=4826561
 https://www.baidu.com/con?from=jinshan
-https://www.hao123.com/sugdata_s4.json?r=-804427
 https://www.hao123.com/sugdata_s4.json?r=-804427
 https://atanx.alicdn.com/t/tanxssp.js
 https://www.hao123.com/api/youxidj?c=E34BB29F26AD2CC6F3434D1A473265A4
@@ -252,7 +245,6 @@ https://atanx.alicdn.com/t/tanxclick.js
 https://tns.simba.taobao.com/?name=itemdsp&amp;o=j&amp;st_type=9_12&amp;templetId=10674&amp;tanxdspv=https%3A%2F%2Frdstat.tanx.com%2Ftrd%3Ff%3D%26k%3Da09e279ad7f7a12a%26p%3Dmm_26632322_6858406_35046203%26pvid%3D0a67220c0001564e3e3d39550059bfed%26s%3D988x350%26d%3D59420271%26t%3D1447968317pid&amp;tp=3&amp;tsid=0a67220c0001564e3e3d39550059bfed&amp;u=https%3A%2F%2Fwww.hao123.com%2F&amp;r=&amp;pid=mm_26632322_6858406_35046203&amp;count=27&amp;p4p=jsonp0ih6qy8x1
 https://textlink.simba.taobao.com/lk?url=&amp;pid=mm_26632322_6858406_35046203&amp;templetId=10674&amp;tanxdspv=https%3A%2F%2Frdstat.tanx.com%2Ftrd%3Ff%3D%26k%3Da09e279ad7f7a12a%26p%3Dmm_26632322_6858406_35046203%26pvid%3D0a67220c0001564e3e3d39550059bfed%26s%3D988x350%26d%3D59420271%26t%3D1447968317pid&amp;tp=3&amp;tsid=0a67220c0001564e3e3d39550059bfed&amp;u=https%3A%2F%2Fwww.hao123.com%2F&amp;r=&amp;number=6&amp;callback=jsonp1ih6qy8x2
 https://gss3.bdstatic.com/70cFsjip0QIZ8tyhnq/hunter/alog/dp.https.min.js?v=-16759
-http://slashdot.org/
 http://slashdot.org/
 http://slashcdn.com/sd/classic.css?release_20151119
 http://slashcdn.com/sd/css/app.css?release_20151119
@@ -271,7 +263,6 @@ http://jadserve.postrelease.com/t?ntv_url=http%3A%2F%2Fslashdot.org%2F
 http://partner.googleadservices.com/gpt/pubads_impl_75.js
 http://widget-cdn.rpxnow.com/manifest/login?version=1.108.0_widgets_493
 http://cdn.taboola.com/libtrc/impl.183-1-RELEASE.js
-http://b.scorecardresearch.com/beacon.js
 https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1002083962/?random=1447968325290&amp;cv=8&amp;fst=1447968325290&amp;num=1&amp;fmt=1&amp;label=G_uGCOaBlAQQ-qzq3QM&amp;guid=ON&amp;u_h=1050&amp;u_w=1680&amp;u_ah=979&amp;u_aw=1680&amp;u_cd=24&amp;u_his=1&amp;u_tz=-300&amp;u_java=true&amp;u_nplug=5&amp;u_nmime=32&amp;frm=0&amp;url=http%3A//slashdot.org/&amp;tiba=Slashdot%20%2816%29
 http://slashdot.org/api/v1/jobs.json
 http://player.ooyala.com/ooyala_storage.html
@@ -323,6 +314,5 @@ https://cdn.doubleverify.com/dvtp_src.js?ctx=589953&amp;cmp=29243917&amp;sid=128
 https://www.google.com/pagead/drt/ui
 https://tpc.googlesyndication.com/sadbundle/10902038790012114138/GUID-A-728x90-adwords/GUID-A-728x90-adwords_edge.js
 https://googleads.g.doubleclick.net/pagead/drt/si
-https://tpc.googlesyndication.com/sadbundle/10902038790012114138/GUID-A-728x90-adwords/GUID-A-728x90-adwords_edge.js
 http://tpc.googlesyndication.com/safeframe/1-0-2/html/container.html#xpc=sf-gdn-exp-2&amp;p=http%3A//slashdot.org
 https://securepubads.g.doubleclick.</div></div></div></main></body></html>

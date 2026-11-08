@@ -122,6 +122,10 @@ IAnon is a Windows application that runs locally using Ollama, designed to rewri
 
 This tool is an open-source software solution designed to meet the technical requirements of the AFNOR NF Z67-147 standard. Fully functional and developed to ensure optimal technical reliability, this software serves as a collection aid. [More](https://github.com/icaza/EvidenceCollector)
 
+## 🟢 NetLog Viewer
+
+**NetLog Viewer** is a fast, resource-efficient Windows Forms application for visualizing, analyzing, and inspecting Chromium and Microsoft Edge NetLog files (`chrome://net-export` and `edge://net-export`). [More](https://github.com/icaza/NetLogViewer)
+
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence
