@@ -90,42 +90,6 @@ With the [RestartSession](https://github.com/icaza/Ostium-Osint-Browser/tree/mas
 
 More information on usage [EN](Create_an_Encrypted_Virtual_Disk_with_VeraCrypt.md) [FR](Créer_un_disque_virtuel_chiffré_avec_VeraCrypt.md)
 
-## 🟢 OSTIUM OSINT Watcher
-
-### Evidence-grade change detection for web pages, built for OSINT investigators.
-
-Register a list of pages, run a check whenever you need one (or let the app check on a randomized interval), and get a verdict — modified, unchanged, or unreachable — backed by layered cryptographic fingerprints and a line-level diff, not a single fragile hash. Native Windows app, fully offline data storage. [More](https://github.com/icaza/OsintWatcher)
-
-## 🟢 WARC Archiver
-
-### WARC Archiver — Web archiving with evidentiary value.
-
-A Windows desktop application that preserves a web page and everything it loads as a standards-based WARC 1.1 archive (ISO 28500), fingerprints it with SHA-256 and SHA-512, records the capture in a tamper-evident audit log, and can sign the evidence with an X.509 certificate. A built-in verifier re-checks everything independently. [More](https://github.com/icaza/WARC-Archiver)
-
-## 🟢 OstiumIAtrad
-
-### Local, AI-assisted text translation for Windows — nothing ever leaves your PC.
-
-OstiumIAtrad is a lightweight Windows desktop app that translates text using a small AI language model running entirely on your own machine or local network — through Ollama, LM Studio, or any other OpenAI-compatible local server. No cloud API keys, no per-word pricing, no text ever sent over the internet. [More](https://github.com/icaza/OstiumIAtrad)
-
-## 🟢 Web To Markdown
-
-### Windows command-line web extraction utility.
-
-Windows command-line web extraction utility. The process has no visible console or GUI. It accepts a URL, renders the page with WebView2, extracts the rendered DOM rather than the HTML source, and writes a Markdown report into reports_. [More](https://github.com/icaza/WebToMarkdown)
-
-## 🟢 IAnon
-
-IAnon is a Windows application that runs locally using Ollama, designed to rewrite text to mask distinctive linguistic patterns while preserving meaning and factual content. IAnon alters the writing style to make stylometric analysis more difficult, thereby protecting the author's identity. [More](https://github.com/icaza/IAnon)
-
-## 🟢 EvidenceCollector
-
-This tool is an open-source software solution designed to meet the technical requirements of the AFNOR NF Z67-147 standard. Fully functional and developed to ensure optimal technical reliability, this software serves as a collection aid. [More](https://github.com/icaza/EvidenceCollector)
-
-## 🟢 NetLog Viewer
-
-**NetLog Viewer** is a fast, resource-efficient Windows Forms application for visualizing, analyzing, and inspecting Chromium and Microsoft Edge NetLog files (`chrome://net-export` and `edge://net-export`). [More](https://github.com/icaza/NetLogViewer)
-
 ## ✨ Main Features
 
 ### 🤖 Artificial Intelligence
@@ -242,6 +206,44 @@ Ostium OSINT Browser relies on proven open-source technologies:
 - **[SQLite](https://www.sqlite.org/)**: Embedded database
 
 [View all dependencies](https://github.com/icaza/Ostium-Osint-Browser/network/dependencies)
+
+# 🛠️ Toolset
+
+## 🟢 OSTIUM OSINT Watcher
+
+### Evidence-grade change detection for web pages, built for OSINT investigators.
+
+Register a list of pages, run a check whenever you need one (or let the app check on a randomized interval), and get a verdict — modified, unchanged, or unreachable — backed by layered cryptographic fingerprints and a line-level diff, not a single fragile hash. Native Windows app, fully offline data storage. [More](https://github.com/icaza/OsintWatcher)
+
+## 🟢 WARC Archiver
+
+### WARC Archiver — Web archiving with evidentiary value.
+
+A Windows desktop application that preserves a web page and everything it loads as a standards-based WARC 1.1 archive (ISO 28500), fingerprints it with SHA-256 and SHA-512, records the capture in a tamper-evident audit log, and can sign the evidence with an X.509 certificate. A built-in verifier re-checks everything independently. [More](https://github.com/icaza/WARC-Archiver)
+
+## 🟢 OstiumIAtrad
+
+### Local, AI-assisted text translation for Windows — nothing ever leaves your PC.
+
+OstiumIAtrad is a lightweight Windows desktop app that translates text using a small AI language model running entirely on your own machine or local network — through Ollama, LM Studio, or any other OpenAI-compatible local server. No cloud API keys, no per-word pricing, no text ever sent over the internet. [More](https://github.com/icaza/OstiumIAtrad)
+
+## 🟢 Web To Markdown
+
+### Windows command-line web extraction utility.
+
+Windows command-line web extraction utility. The process has no visible console or GUI. It accepts a URL, renders the page with WebView2, extracts the rendered DOM rather than the HTML source, and writes a Markdown report into reports_. [More](https://github.com/icaza/WebToMarkdown)
+
+## 🟢 IAnon
+
+IAnon is a Windows application that runs locally using Ollama, designed to rewrite text to mask distinctive linguistic patterns while preserving meaning and factual content. IAnon alters the writing style to make stylometric analysis more difficult, thereby protecting the author's identity. [More](https://github.com/icaza/IAnon)
+
+## 🟢 EvidenceCollector
+
+This tool is an open-source software solution designed to meet the technical requirements of the AFNOR NF Z67-147 standard. Fully functional and developed to ensure optimal technical reliability, this software serves as a collection aid. [More](https://github.com/icaza/EvidenceCollector)
+
+## 🟢 NetLog Viewer
+
+**NetLog Viewer** is a fast, resource-efficient Windows Forms application for visualizing, analyzing, and inspecting Chromium and Microsoft Edge NetLog files (`chrome://net-export` and `edge://net-export`). [More](https://github.com/icaza/NetLogViewer)
 
 ### Report a Bug or Suggest a Feature
 

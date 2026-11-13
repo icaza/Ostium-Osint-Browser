@@ -425,11 +425,11 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.Db_OrderLst_Btn = new System.Windows.Forms.Button();
             this.Db_OpnLink_Btn = new System.Windows.Forms.Button();
-            this.ValueChange_Txt = new System.Windows.Forms.TextBox();
-            this.DataValue_Name = new System.Windows.Forms.TextBox();
-            this.DataValue_Opn = new System.Windows.Forms.TextBox();
-            this.DataTable_Opn = new System.Windows.Forms.TextBox();
-            this.DataBaze_Opn = new System.Windows.Forms.TextBox();
+            this.ValueModify_Txt = new System.Windows.Forms.TextBox();
+            this.TableSelectName_Txt = new System.Windows.Forms.TextBox();
+            this.URLValue_Txt = new System.Windows.Forms.TextBox();
+            this.TableNameOpen_Txt = new System.Windows.Forms.TextBox();
+            this.DBNameOpen_Txt = new System.Windows.Forms.TextBox();
             this.panel29 = new System.Windows.Forms.Panel();
             this.Db_Update_Value_Btn = new System.Windows.Forms.Button();
             this.Db_Update_Name_Btn = new System.Windows.Forms.Button();
@@ -4650,11 +4650,11 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Controls.Add(this.Db_OrderLst_Btn, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.Db_OpnLink_Btn, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.ValueChange_Txt, 4, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataValue_Name, 2, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataValue_Opn, 3, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataTable_Opn, 1, 1);
-            this.tableLayoutPanel7.Controls.Add(this.DataBaze_Opn, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.ValueModify_Txt, 4, 1);
+            this.tableLayoutPanel7.Controls.Add(this.TableSelectName_Txt, 2, 1);
+            this.tableLayoutPanel7.Controls.Add(this.URLValue_Txt, 3, 1);
+            this.tableLayoutPanel7.Controls.Add(this.TableNameOpen_Txt, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.DBNameOpen_Txt, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.panel29, 4, 0);
             this.tableLayoutPanel7.Controls.Add(this.panel30, 3, 0);
             this.tableLayoutPanel7.Controls.Add(this.Db_Delete_Table_Btn, 2, 0);
@@ -4705,69 +4705,69 @@
             this.Db_OpnLink_Btn.UseVisualStyleBackColor = false;
             this.Db_OpnLink_Btn.Click += new System.EventHandler(this.Db_OpnLink_Btn_Click);
             // 
-            // ValueChange_Txt
+            // ValueModify_Txt
             // 
-            this.ValueChange_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.ValueChange_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ValueChange_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ValueChange_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ValueChange_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
-            this.ValueChange_Txt.Location = new System.Drawing.Point(983, 33);
-            this.ValueChange_Txt.Name = "ValueChange_Txt";
-            this.ValueChange_Txt.Size = new System.Drawing.Size(334, 23);
-            this.ValueChange_Txt.TabIndex = 11;
-            this.ValueChange_Txt.Text = "Update URL and Name here";
-            this.ValueChange_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ValueChange_Txt.Click += new System.EventHandler(this.ValueChange_Txt_Click);
+            this.ValueModify_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.ValueModify_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ValueModify_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ValueModify_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValueModify_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(155)))), ((int)(((byte)(168)))));
+            this.ValueModify_Txt.Location = new System.Drawing.Point(983, 33);
+            this.ValueModify_Txt.Name = "ValueModify_Txt";
+            this.ValueModify_Txt.Size = new System.Drawing.Size(334, 23);
+            this.ValueModify_Txt.TabIndex = 11;
+            this.ValueModify_Txt.Text = "Update URL and Name here";
+            this.ValueModify_Txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ValueModify_Txt.Click += new System.EventHandler(this.ValueChange_Txt_Click);
             // 
-            // DataValue_Name
+            // TableSelectName_Txt
             // 
-            this.DataValue_Name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.DataValue_Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataValue_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataValue_Name.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataValue_Name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
-            this.DataValue_Name.Location = new System.Drawing.Point(386, 33);
-            this.DataValue_Name.Name = "DataValue_Name";
-            this.DataValue_Name.Size = new System.Drawing.Size(251, 23);
-            this.DataValue_Name.TabIndex = 12;
+            this.TableSelectName_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TableSelectName_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TableSelectName_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableSelectName_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableSelectName_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(189)))), ((int)(((byte)(248)))));
+            this.TableSelectName_Txt.Location = new System.Drawing.Point(386, 33);
+            this.TableSelectName_Txt.Name = "TableSelectName_Txt";
+            this.TableSelectName_Txt.Size = new System.Drawing.Size(251, 23);
+            this.TableSelectName_Txt.TabIndex = 12;
             // 
-            // DataValue_Opn
+            // URLValue_Txt
             // 
-            this.DataValue_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.DataValue_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataValue_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataValue_Opn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataValue_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(113)))), ((int)(((byte)(133)))));
-            this.DataValue_Opn.Location = new System.Drawing.Point(643, 33);
-            this.DataValue_Opn.Name = "DataValue_Opn";
-            this.DataValue_Opn.Size = new System.Drawing.Size(334, 23);
-            this.DataValue_Opn.TabIndex = 10;
+            this.URLValue_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.URLValue_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.URLValue_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.URLValue_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.URLValue_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(113)))), ((int)(((byte)(133)))));
+            this.URLValue_Txt.Location = new System.Drawing.Point(643, 33);
+            this.URLValue_Txt.Name = "URLValue_Txt";
+            this.URLValue_Txt.Size = new System.Drawing.Size(334, 23);
+            this.URLValue_Txt.TabIndex = 10;
             // 
-            // DataTable_Opn
+            // TableNameOpen_Txt
             // 
-            this.DataTable_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.DataTable_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataTable_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataTable_Opn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataTable_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
-            this.DataTable_Opn.Location = new System.Drawing.Point(188, 33);
-            this.DataTable_Opn.Name = "DataTable_Opn";
-            this.DataTable_Opn.Size = new System.Drawing.Size(192, 23);
-            this.DataTable_Opn.TabIndex = 9;
+            this.TableNameOpen_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.TableNameOpen_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TableNameOpen_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TableNameOpen_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableNameOpen_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(36)))));
+            this.TableNameOpen_Txt.Location = new System.Drawing.Point(188, 33);
+            this.TableNameOpen_Txt.Name = "TableNameOpen_Txt";
+            this.TableNameOpen_Txt.Size = new System.Drawing.Size(192, 23);
+            this.TableNameOpen_Txt.TabIndex = 9;
             // 
-            // DataBaze_Opn
+            // DBNameOpen_Txt
             // 
-            this.DataBaze_Opn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
-            this.DataBaze_Opn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataBaze_Opn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataBaze_Opn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataBaze_Opn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
-            this.DataBaze_Opn.Location = new System.Drawing.Point(3, 33);
-            this.DataBaze_Opn.MaximumSize = new System.Drawing.Size(179, 23);
-            this.DataBaze_Opn.Name = "DataBaze_Opn";
-            this.DataBaze_Opn.Size = new System.Drawing.Size(179, 23);
-            this.DataBaze_Opn.TabIndex = 8;
+            this.DBNameOpen_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(22)))), ((int)(((byte)(26)))));
+            this.DBNameOpen_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DBNameOpen_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DBNameOpen_Txt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DBNameOpen_Txt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(146)))), ((int)(((byte)(60)))));
+            this.DBNameOpen_Txt.Location = new System.Drawing.Point(3, 33);
+            this.DBNameOpen_Txt.MaximumSize = new System.Drawing.Size(179, 23);
+            this.DBNameOpen_Txt.Name = "DBNameOpen_Txt";
+            this.DBNameOpen_Txt.Size = new System.Drawing.Size(179, 23);
+            this.DBNameOpen_Txt.TabIndex = 8;
             // 
             // panel29
             // 
@@ -8899,15 +8899,15 @@
         private System.Windows.Forms.Button ExecuteCMDsql_Btn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button Db_Delete_Table_Btn;
-        private System.Windows.Forms.TextBox ValueChange_Txt;
-        private System.Windows.Forms.TextBox DataValue_Name;
-        private System.Windows.Forms.TextBox DataValue_Opn;
+        private System.Windows.Forms.TextBox ValueModify_Txt;
+        private System.Windows.Forms.TextBox TableSelectName_Txt;
+        private System.Windows.Forms.TextBox URLValue_Txt;
         private System.Windows.Forms.Button Db_Delete_Table_Value_Btn;
         private System.Windows.Forms.Button Db_Delete_Table_AllValue_Btn;
         private System.Windows.Forms.Button Db_Update_Name_Btn;
-        private System.Windows.Forms.TextBox DataTable_Opn;
+        private System.Windows.Forms.TextBox TableNameOpen_Txt;
         private System.Windows.Forms.Button Db_Update_Value_Btn;
-        private System.Windows.Forms.TextBox DataBaze_Opn;
+        private System.Windows.Forms.TextBox DBNameOpen_Txt;
         private System.Windows.Forms.StatusStrip Status_Strip;
         private System.Windows.Forms.ToolStripStatusLabel URLtxt_Status;
         private System.Windows.Forms.ToolStripMenuItem InjectScript_Btn;
