@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ostium.ModernUI;
+using System;
 using System.Windows.Forms;
 
 namespace Ostium
@@ -13,6 +14,7 @@ namespace Ostium
         public TemplateEditorForm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
         }
 
         void BtnOK_Click(object sender, EventArgs e)

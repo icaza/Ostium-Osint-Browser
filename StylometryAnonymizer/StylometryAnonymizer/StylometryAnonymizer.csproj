@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- On cible .NET 9 ou 10 selon le SDK installé sur votre machine -->
-    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>StylometryAnonymizer</RootNamespace>
     <AssemblyName>StylometryAnonymizer</AssemblyName>
@@ -16,9 +16,9 @@
     <!-- Gestion des ressources complexes non-chaînes -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <FileVersion>1.0.0.2</FileVersion>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
     <Authors>ICAZA</Authors>
     <Company>ICAZA MEDIA</Company>
     <Product>Stylometry Anonymizer</Product>
@@ -26,6 +26,8 @@
     <Copyright>MIT</Copyright>    
 
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>    
+
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>    
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -40,7 +42,9 @@
     <!-- Les références systèmes standard (System, Drawing, etc.) sont gérées automatiquement par Sdk="Microsoft.NET.Sdk" -->
     <!-- On déclare uniquement le package NuGet Newtonsoft.Json mis à jour pour .NET moderne -->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="System.Resources.Extensions" Version="10.0.13" GeneratePathProperty="true" />
+    <PackageReference Include="System.Collections.Immutable" Version="11.0.0" />
+    <PackageReference Include="System.Formats.Nrbf" Version="11.0.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="11.0.0" GeneratePathProperty="true" />
   </ItemGroup>
 
   <!-- Inclusion forcée de la DLL pour le mode SingleFile -->

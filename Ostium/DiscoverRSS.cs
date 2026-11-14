@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ostium.ModernUI;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -29,6 +30,7 @@ namespace Ostium
         public DiscoverRSS()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
 
             urlTextBox.Enter += new EventHandler(UrlTextBox_Enter);
             urlTextBox.Leave += new EventHandler(UrlTextBox_Leave);

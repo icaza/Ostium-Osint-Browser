@@ -448,11 +448,11 @@ namespace Ostium
             Author_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             ModelName_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             AddSingleItemswf_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
-            DataBaze_Opn.KeyPress += new KeyPressEventHandler(Object_Keypress);
-            DataTable_Opn.KeyPress += new KeyPressEventHandler(Object_Keypress);
-            DataValue_Name.KeyPress += new KeyPressEventHandler(Object_Keypress);
-            DataValue_Opn.KeyPress += new KeyPressEventHandler(Object_Keypress);
-            ValueChange_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            DBNameOpen_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            TableNameOpen_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            TableSelectName_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            URLValue_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
+            ValueModify_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             DB_Default_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             ExecuteCMDsql_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
             ValueCMDsql_Txt.KeyPress += new KeyPressEventHandler(Object_Keypress);
@@ -525,8 +525,8 @@ namespace Ostium
             NewCategory_Txt.LostFocus += new EventHandler(NewCategory_Txt_Leave);
             NewFeed_Txt.GotFocus += new EventHandler(NewFeed_Txt_Enter);
             NewFeed_Txt.LostFocus += new EventHandler(NewFeed_Txt_Leave);
-            ValueChange_Txt.GotFocus += new EventHandler(ValueChange_Txt_Enter);
-            ValueChange_Txt.LostFocus += new EventHandler(ValueChange_Txt_Leave);
+            ValueModify_Txt.GotFocus += new EventHandler(ValueChange_Txt_Enter);
+            ValueModify_Txt.LostFocus += new EventHandler(ValueChange_Txt_Leave);
             ValueCMDsql_Txt.GotFocus += new EventHandler(ValueCMDsql_Txt_Enter);
             ValueCMDsql_Txt.LostFocus += new EventHandler(ValueCMDsql_Txt_Leave);
             ExecuteCMDsql_Txt.GotFocus += new EventHandler(ExecuteCMDsql_Txt_Enter);
@@ -601,6 +601,7 @@ namespace Ostium
                 OsintWatcher_Opt_Txt.Text = "";
                 WebToMarkdown_Opt_Txt.Text = "";
                 WarcArchiver_Opt_Txt.Text = "";
+                NetLogViewer_Opt_Txt.Text = "";
                 ArchiveAdd_Txt.Text = "";
 
                 var ArchiveDir = new List<string>()
@@ -645,6 +646,7 @@ namespace Ostium
                 writer.WriteElementString("OSINTWATCHER_VAR", OsintWatcher_Opt_Txt.Text);
                 writer.WriteElementString("WEBTOMARKDOWN_VAR", WebToMarkdown_Opt_Txt.Text);
                 writer.WriteElementString("WARCARCHIVER_VAR", WarcArchiver_Opt_Txt.Text);
+                writer.WriteElementString("NETLOGVIEWER_VAR", NetLogViewer_Opt_Txt.Text);
                 writer.WriteElementString("REDLIST_VAR", Redlist_Txt.Text);
                 writer.WriteElementString("VOLUME_TRACK_VAR", Convert.ToString(VolumeVal_Track.Value));
                 writer.WriteElementString("RATE_TRACK_VAR", Convert.ToString(RateVal_Track.Value));
@@ -830,19 +832,19 @@ namespace Ostium
 
         void ValueChange_Txt_Enter(object sender, EventArgs e)
         {
-            if (ValueChange_Txt.Text == "Update URL and Name here")
+            if (ValueModify_Txt.Text == "Update URL and Name here")
             {
-                ValueChange_Txt.Text = string.Empty;
-                ValueChange_Txt.ForeColor = Color.White;
+                ValueModify_Txt.Text = string.Empty;
+                ValueModify_Txt.ForeColor = Color.White;
             }
         }
 
         void ValueChange_Txt_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ValueChange_Txt.Text))
+            if (string.IsNullOrEmpty(ValueModify_Txt.Text))
             {
-                ValueChange_Txt.Text = "Update URL and Name here";
-                ValueChange_Txt.ForeColor = Color.DimGray;
+                ValueModify_Txt.Text = "Update URL and Name here";
+                ValueModify_Txt.ForeColor = Color.DimGray;
             }
         }
 
@@ -1133,6 +1135,13 @@ namespace Ostium
                                     else
                                         WarcArchiver_Mnu.Enabled = false;
                                 }
+                                break;
+                            case "NETLOGVIEWER_VAR":
+                                NetLogViewer_Opt_Txt.Text = Convert.ToString(reader.ReadString());
+                                if (!string.IsNullOrEmpty(NetLogViewer_Opt_Txt.Text))
+                                    NetLogViewer_Mnu.Enabled = true;
+                                else
+                                    NetLogViewer_Mnu.Enabled = false;
                                 break;
                             case "REDLIST_VAR":
                                 Redlist_Txt.Text = Convert.ToString(reader.ReadString());
@@ -4770,6 +4779,43 @@ namespace Ostium
             }
         }
 
+        void OpnNLV_Btn_Click(object sender, EventArgs e)
+        {
+            NetlogViewer();
+        }
+
+        void NetlogViewer()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(NetLogViewer_Opt_Txt.Text))
+                {
+                    if (Directory.Exists(NetLogViewer_Opt_Txt.Text))
+                    {
+                        if (File.Exists(Path.Combine(NetLogViewer_Opt_Txt.Text, "NetLogViewer.exe")))
+                            Process.Start(Path.Combine(NetLogViewer_Opt_Txt.Text, "NetLogViewer.exe"));
+                        else
+                            MessageBox.Show("The file NetLogViewer.exe does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory specified in the options does not exist!",
+                            "NetLog Viewer not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("NetLog Viewer is not downloaded; you need to download it and enter the path in the options. " +
+                        "Check the GitHub wiki for installation instructions!",
+                        "NetLog Viewer not found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                senderror.ErrorLog("Error! WarcArchiverExec: ", ex.ToString(), "Main_Frm", AppStart);
+            }
+        }
+
         static string ExtractHostValue(string line)
         {
             int hostIndex = line.IndexOf("host:", StringComparison.OrdinalIgnoreCase);
@@ -4845,90 +4891,9 @@ namespace Ostium
             }
         }
 
-        void ConfigNLV_Btn_Click(object sender, EventArgs e)
-        {
-            string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
-
-            if (!File.Exists(filepath))
-            {
-                MessageBox.Show("NetLogViewer is not install, go to Discord channel Ostium for fix and help. is not started!",
-                    "NetLogViewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            OpenFile_Editor(filepath);
-        }
-
         void NetExport_Btn_Click(object sender, EventArgs e)
         {
             GoBrowser("edge://net-export/", 1);
-        }
-
-        void StartNLV_Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
-
-                if (!File.Exists(filepath))
-                {
-                    MessageBox.Show("NetLogViewer is not install, go to Discord channel Ostium for fix and help. is not started!",
-                        "NetLogViewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                using (Process proc = new Process())
-                {
-                    proc.StartInfo.FileName = filepath;
-                    proc.StartInfo.Arguments = string.Empty;
-                    proc.StartInfo.UseShellExecute = true;
-                    proc.StartInfo.WorkingDirectory = Path.Combine(AppStart, "NetLogViewer");
-                    proc.StartInfo.RedirectStandardOutput = false;
-                    proc.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! StartNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
-            }
-        }
-
-        void LocalhostNLV_Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string filepath = Path.Combine(AppStart, "NetLogViewer", "startserver.bat");
-
-                if (!File.Exists(filepath))
-                {
-                    MessageBox.Show("The configuration file does not exist, go to Discord channel Ostium for fix and help!",
-                        "Messis", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                string[] lines = File.ReadAllLines(filepath);
-
-                string portLine = lines.FirstOrDefault(l => l.Contains("PORT="));
-
-                if (portLine == null)
-                {
-                    MessageBox.Show("Incomplete configuration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                string portStr = new string(portLine
-                    .SkipWhile(c => !char.IsDigit(c))
-                    .TakeWhile(char.IsDigit)
-                    .ToArray());
-
-                int port = int.Parse(portStr);
-
-                GoBrowser($"localhost:{port}", 0);
-            }
-            catch (Exception ex)
-            {
-                senderror.ErrorLog("Error! OpnNLV_Btn_Click: ", ex.ToString(), "Main_Frm", AppStart);
-            }
         }
 
         void PromptViewer_Mnu_Click(object sender, EventArgs e)
@@ -6185,8 +6150,8 @@ namespace Ostium
                     MaxHistoryEntry_Status.Visible = false;
                     Agent_RSS_Cnt_Status.Visible = false;
 
-                    ValueChange_Txt.ForeColor = Color.DimGray;
-                    ValueChange_Txt.Text = "update URL and Name here";
+                    ValueModify_Txt.ForeColor = Color.DimGray;
+                    ValueModify_Txt.Text = "update URL and Name here";
 
                     loadfiledir.LoadFileDirectory(DBdirectory, "*", "lst", DataBaze_Lst);
                     break;
@@ -7337,7 +7302,7 @@ namespace Ostium
                     if (DBadmin == "off")
                         WBrowse.Source = new Uri((string)reader[valueDB]);
                     else
-                        DataValue_Opn.Text = (string)reader[valueDB];
+                        URLValue_Txt.Text = (string)reader[valueDB];
                 }
 
                 myDB.Close();
@@ -7362,9 +7327,9 @@ namespace Ostium
         {
             try
             {
-                if (!string.IsNullOrEmpty(DataBaze_Opn.Text))
+                if (!string.IsNullOrEmpty(DBNameOpen_Txt.Text))
                 {
-                    if (File.Exists(Path.Combine(DBdirectory, DataBaze_Opn.Text)))
+                    if (File.Exists(Path.Combine(DBdirectory, DBNameOpen_Txt.Text)))
                     {
                         string message = "Change default Database?";
                         string caption = "Database default";
@@ -7372,10 +7337,10 @@ namespace Ostium
 
                         if (result == DialogResult.Yes)
                         {
-                            ChangeDBdefault(DataBaze_Opn.Text);
-                            databasePath = DBdirectory + DataBaze_Opn.Text;
-                            DB_Default_Txt.Text = DataBaze_Opn.Text;
-                            DB_Default_Opt_Txt.Text = DataBaze_Opn.Text;
+                            ChangeDBdefault(DBNameOpen_Txt.Text);
+                            databasePath = DBdirectory + DBNameOpen_Txt.Text;
+                            DB_Default_Txt.Text = DBNameOpen_Txt.Text;
+                            DB_Default_Opt_Txt.Text = DBNameOpen_Txt.Text;
                         }
                     }
                     else
@@ -7386,13 +7351,13 @@ namespace Ostium
 
                         if (result == DialogResult.Yes)
                         {
-                            DataBaze_Opn.Text = Regex.Replace(DataBaze_Opn.Text, "[^a-zA-Z0-9]", string.Empty);
-                            DataBaze_Opn.Text += ".db";
+                            DBNameOpen_Txt.Text = Regex.Replace(DBNameOpen_Txt.Text, "[^a-zA-Z0-9]", string.Empty);
+                            DBNameOpen_Txt.Text += ".db";
 
-                            SQLiteConnection.CreateFile(DBdirectory + DataBaze_Opn.Text);
-                            ChangeDBdefault(DataBaze_Opn.Text);
-                            databasePath = DBdirectory + DataBaze_Opn.Text;
-                            DB_Default_Txt.Text = DataBaze_Opn.Text;
+                            SQLiteConnection.CreateFile(DBdirectory + DBNameOpen_Txt.Text);
+                            ChangeDBdefault(DBNameOpen_Txt.Text);
+                            databasePath = DBdirectory + DBNameOpen_Txt.Text;
+                            DB_Default_Txt.Text = DBNameOpen_Txt.Text;
 
                             loadfiledir.LoadFileDirectory(DBdirectory, "*", "lst", DataBaze_Lst);
                         }
@@ -7400,9 +7365,9 @@ namespace Ostium
                 }
                 else
                 {
-                    DataBaze_Opn.BackColor = Color.Red;
+                    DBNameOpen_Txt.BackColor = Color.Red;
                     MessageBox.Show("Enter name first!");
-                    DataBaze_Opn.BackColor = Color.FromArgb(28, 28, 28);
+                    DBNameOpen_Txt.BackColor = Color.FromArgb(28, 28, 28);
                 }
             }
             catch (Exception ex)
@@ -7427,7 +7392,7 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    tlsi = DataTable_Opn.Text;
+                    tlsi = TableNameOpen_Txt.Text;
 
                     string message = $"Are you sure that you would like to delete the Database? {tlsi}";
                     const string caption = "Database delete";
@@ -7443,7 +7408,7 @@ namespace Ostium
 
                         Sqlite_Read("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1", "name", "lst");
 
-                        DataTable_Opn.Text = string.Empty;
+                        TableNameOpen_Txt.Text = string.Empty;
                     }
                 }
                 else
@@ -7471,18 +7436,18 @@ namespace Ostium
 
                     if (result == DialogResult.Yes)
                     {
-                        tlsi = DataTable_Opn.Text;
+                        tlsi = TableNameOpen_Txt.Text;
                         string usct = DataValue_Lst.Text;
 
                         Sqlite_ReadUri("DELETE FROM " + tlsi + " WHERE url_name = '" + usct + "'", "url_adress");
 
                         DataValue_Lst.Items.Clear();
                         List_Object = DataValue_Lst;
-                        tlsi = DataTable_Opn.Text;
+                        tlsi = TableNameOpen_Txt.Text;
 
                         Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
 
-                        DataValue_Opn.Text = string.Empty;
+                        URLValue_Txt.Text = string.Empty;
                     }
                 }
                 else
@@ -7504,7 +7469,7 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    tlsi = DataTable_Opn.Text;
+                    tlsi = TableNameOpen_Txt.Text;
 
                     string message = $"Are you sure that you would like to delete all entry? {tlsi}";
                     const string caption = "Database delete";
@@ -7515,7 +7480,7 @@ namespace Ostium
                         Sqlite_Cmd("DELETE FROM [" + tlsi + "];");
 
                         DataValue_Lst.Items.Clear();
-                        DataValue_Opn.Text = string.Empty;
+                        URLValue_Txt.Text = string.Empty;
                     }
                 }
                 else
@@ -7533,53 +7498,53 @@ namespace Ostium
         {
             try
             {
-                ValueChange_Txt.Text = Regex.Replace(ValueChange_Txt.Text, "[^\\w\\\x20_-]", string.Empty);
+                ValueModify_Txt.Text = Regex.Replace(ValueModify_Txt.Text, "[^\\w\\\x20_-]", string.Empty);
 
                 if (DataValue_Lst.SelectedIndex != -1)
                 {
-                    if (ValueChange_Txt.Text != string.Empty && ValueChange_Txt.Text != "update URL and Name here")
+                    if (ValueModify_Txt.Text != string.Empty && ValueModify_Txt.Text != "update URL and Name here")
                     {
                         DBadmin = "on";
 
                         string usct = DataValue_Lst.Text;
-                        tlsi = DataTable_Opn.Text;
+                        tlsi = TableNameOpen_Txt.Text;
 
-                        string message = $"Are you sure that you update entry? \r\n {DataValue_Lst.Text} <=> {ValueChange_Txt.Text}";
+                        string message = $"Are you sure that you update entry? \r\n {DataValue_Lst.Text} <=> {ValueModify_Txt.Text}";
                         const string caption = "Modify update";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.Yes)
                         {
                             int x;
-                            x = DataValue_Lst.FindStringExact(ValueChange_Txt.Text);
+                            x = DataValue_Lst.FindStringExact(ValueModify_Txt.Text);
                             if (x == -1)
                             {
-                                Sqlite_Cmd("UPDATE " + tlsi + " SET url_name = '" + ValueChange_Txt.Text + "' WHERE url_name = '" + usct + "';");
+                                Sqlite_Cmd("UPDATE " + tlsi + " SET url_name = '" + ValueModify_Txt.Text + "' WHERE url_name = '" + usct + "';");
 
                                 DataValue_Lst.Items.Clear();
                                 List_Object = DataValue_Lst;
                                 tlsi = DataTable_Lst.SelectedItem.ToString();
 
-                                DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
+                                TableNameOpen_Txt.Text = DataTable_Lst.SelectedItem.ToString();
 
                                 Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
 
-                                ValueChange_Txt.ForeColor = Color.DimGray;
-                                ValueChange_Txt.Text = "update URL and Name here";
+                                ValueModify_Txt.ForeColor = Color.DimGray;
+                                ValueModify_Txt.Text = "update URL and Name here";
                             }
                             else
                             {
-                                ValueChange_Txt.BackColor = Color.Red;
+                                ValueModify_Txt.BackColor = Color.Red;
                                 MessageBox.Show("Name Url exist!");
-                                ValueChange_Txt.BackColor = Color.FromArgb(28, 28, 28);
+                                ValueModify_Txt.BackColor = Color.FromArgb(28, 28, 28);
                             }
                         }
                     }
                     else
                     {
-                        ValueChange_Txt.BackColor = Color.Red;
+                        ValueModify_Txt.BackColor = Color.Red;
                         MessageBox.Show("Select Name first!");
-                        ValueChange_Txt.BackColor = Color.FromArgb(28, 28, 28);
+                        ValueModify_Txt.BackColor = Color.FromArgb(28, 28, 28);
                     }
                 }
                 else
@@ -7599,30 +7564,30 @@ namespace Ostium
             {
                 if (DataValue_Lst.SelectedIndex != -1)
                 {
-                    if (ValueChange_Txt.Text != string.Empty && ValueChange_Txt.Text != "update URL and Name here")
+                    if (ValueModify_Txt.Text != string.Empty && ValueModify_Txt.Text != "update URL and Name here")
                     {
                         DBadmin = "on";
 
-                        string usct = DataValue_Opn.Text;
-                        tlsi = DataTable_Opn.Text;
+                        string usct = URLValue_Txt.Text;
+                        tlsi = TableNameOpen_Txt.Text;
 
-                        string message = $"Are you sure that you modify entry? \r\n {DataValue_Opn.Text} <=> {ValueChange_Txt.Text}";
+                        string message = $"Are you sure that you modify entry? \r\n {URLValue_Txt.Text} <=> {ValueModify_Txt.Text}";
                         const string caption = "Modify entry";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.Yes)
                         {
-                            Sqlite_Cmd("UPDATE " + tlsi + " SET url_adress = '" + ValueChange_Txt.Text + "' WHERE url_adress = '" + usct + "';");
+                            Sqlite_Cmd("UPDATE " + tlsi + " SET url_adress = '" + ValueModify_Txt.Text + "' WHERE url_adress = '" + usct + "';");
 
-                            ValueChange_Txt.ForeColor = Color.DimGray;
-                            ValueChange_Txt.Text = "update URL and Name here";
+                            ValueModify_Txt.ForeColor = Color.DimGray;
+                            ValueModify_Txt.Text = "update URL and Name here";
                         }
                     }
                     else
                     {
-                        ValueChange_Txt.BackColor = Color.Red;
+                        ValueModify_Txt.BackColor = Color.Red;
                         MessageBox.Show("URL is not valid!");
-                        ValueChange_Txt.BackColor = Color.FromArgb(28, 28, 28);
+                        ValueModify_Txt.BackColor = Color.FromArgb(28, 28, 28);
                     }
                 }
                 else
@@ -7644,22 +7609,22 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    DataTable_Opn.Text = string.Empty;
-                    DataValue_Name.Text = string.Empty;
-                    DataValue_Opn.Text = string.Empty;
-                    ValueChange_Txt.ForeColor = Color.DimGray;
-                    ValueChange_Txt.Text = "update URL and Name here";
+                    TableNameOpen_Txt.Text = string.Empty;
+                    TableSelectName_Txt.Text = string.Empty;
+                    URLValue_Txt.Text = string.Empty;
+                    ValueModify_Txt.ForeColor = Color.DimGray;
+                    ValueModify_Txt.Text = "update URL and Name here";
 
                     DataValue_Lst.Items.Clear();
                     DataTable_Lst.Items.Clear();
                     List_Object = DataTable_Lst;
 
-                    DataBaze_Opn.Text = DataBaze_Lst.SelectedItem.ToString();
-                    DBSelectOpen_Status.Text = $"DB open: {DataBaze_Opn.Text}";
+                    DBNameOpen_Txt.Text = DataBaze_Lst.SelectedItem.ToString();
+                    DBSelectOpen_Status.Text = $"DB open: {DBNameOpen_Txt.Text}";
                     TableOpen_Status.Text = string.Empty;
                     RecordsCount_Status.Text = string.Empty;
 
-                    databasePath = DBdirectory + DataBaze_Opn.Text;
+                    databasePath = DBdirectory + DBNameOpen_Txt.Text;
 
                     Sqlite_Read("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1", "name", "lst");
                 }
@@ -7678,17 +7643,17 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    DataValue_Name.Text = string.Empty;
-                    DataValue_Opn.Text = string.Empty;
-                    ValueChange_Txt.ForeColor = Color.DimGray;
-                    ValueChange_Txt.Text = "update URL and Name here";
+                    TableSelectName_Txt.Text = string.Empty;
+                    URLValue_Txt.Text = string.Empty;
+                    ValueModify_Txt.ForeColor = Color.DimGray;
+                    ValueModify_Txt.Text = "update URL and Name here";
 
                     DataValue_Lst.Items.Clear();
                     List_Object = DataValue_Lst;
                     tlsi = DataTable_Lst.SelectedItem.ToString();
 
-                    DataTable_Opn.Text = DataTable_Lst.SelectedItem.ToString();
-                    TableOpen_Status.Text = $"Table open: {DataTable_Opn.Text}";
+                    TableNameOpen_Txt.Text = DataTable_Lst.SelectedItem.ToString();
+                    TableOpen_Status.Text = $"Table open: {TableNameOpen_Txt.Text}";
 
                     Sqlite_Read("SELECT * FROM " + tlsi + string.Empty, "url_name", "lst");
                 }
@@ -7707,9 +7672,9 @@ namespace Ostium
                 {
                     DBadmin = "on";
 
-                    tlsi = DataTable_Opn.Text;
+                    tlsi = TableNameOpen_Txt.Text;
                     string usct = DataValue_Lst.Text;
-                    DataValue_Name.Text = DataValue_Lst.Text;
+                    TableSelectName_Txt.Text = DataValue_Lst.Text;
 
                     Sqlite_ReadUri("SELECT * FROM " + tlsi + " WHERE url_name = '" + usct + "'", "url_adress");
                 }
@@ -7742,13 +7707,16 @@ namespace Ostium
 
         void ValueChange_Txt_Click(object sender, EventArgs e)
         {
-            ValueChange_Txt.ForeColor = Color.White;
-            ValueChange_Txt.Text = string.Empty;
+            ValueModify_Txt.ForeColor = Color.White;
+            ValueModify_Txt.Text = string.Empty;
         }
 
         void Db_OpnLink_Btn_Click(object sender, EventArgs e)
         {
-            GoBrowser(DataValue_Opn.Text, 0);
+            if (string.IsNullOrEmpty(URLValue_Txt.Text))
+                return;
+
+            GoBrowser(URLValue_Txt.Text, 0);
             CtrlTabBrowsx();
             Control_Tab.SelectedIndex = 0;
         }
@@ -14694,6 +14662,11 @@ namespace Ostium
         void WarcArchiver_Link_Click(object sender, EventArgs e)
         {
             Tools_Link("https://github.com/icaza/WARC-Archiver");
+        }
+
+        void NetLogViewer_Link_Click(object sender, EventArgs e)
+        {
+            Tools_Link("https://github.com/icaza/NetLogViewer");
         }
 
         void Tools_Link(string url)

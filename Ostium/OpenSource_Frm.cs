@@ -1,4 +1,5 @@
 ﻿using Icaza;
+using Ostium.ModernUI;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace Ostium
         public OpenSource_Frm()
         {
             InitializeComponent();
+            ModernTheme.Apply(this);
         }
 
         void OpenSource_Frm_Load(object sender, EventArgs e)

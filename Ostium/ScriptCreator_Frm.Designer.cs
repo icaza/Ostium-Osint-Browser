@@ -71,6 +71,7 @@
             this.ScriptMinify_Txt = new System.Windows.Forms.TextBox();
             this.CopyScriptMini_Btn = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.Tls_Tls.SuspendLayout();
             this.Script_Pnl.SuspendLayout();
             this.UrlSite_Pnl.SuspendLayout();
@@ -81,8 +82,8 @@
             // 
             // Tls_Tls
             // 
-            this.Tls_Tls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.Tls_Tls.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tls_Tls.BackColor = System.Drawing.Color.Black;
+            this.Tls_Tls.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tls_Tls.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Tls_Tls.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewScript_Btn,
@@ -110,11 +111,12 @@
             // NewScript_Btn
             // 
             this.NewScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.NewScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewScript_Btn.ForeColor = System.Drawing.Color.White;
             this.NewScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("NewScript_Btn.Image")));
             this.NewScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NewScript_Btn.Name = "NewScript_Btn";
-            this.NewScript_Btn.Size = new System.Drawing.Size(41, 22);
+            this.NewScript_Btn.Size = new System.Drawing.Size(35, 22);
             this.NewScript_Btn.Text = "New";
             this.NewScript_Btn.Click += new System.EventHandler(this.NewScript_Btn_Click);
             // 
@@ -126,12 +128,12 @@
             // OpnScript_Btn
             // 
             this.OpnScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnScript_Btn.ForeColor = System.Drawing.Color.White;
             this.OpnScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnScript_Btn.Image")));
             this.OpnScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnScript_Btn.Name = "OpnScript_Btn";
-            this.OpnScript_Btn.Size = new System.Drawing.Size(46, 22);
+            this.OpnScript_Btn.Size = new System.Drawing.Size(40, 22);
             this.OpnScript_Btn.Text = "Open";
             this.OpnScript_Btn.Click += new System.EventHandler(this.OpnScript_Btn_Click);
             // 
@@ -143,12 +145,12 @@
             // SaveScript_Btn
             // 
             this.SaveScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SaveScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveScript_Btn.ForeColor = System.Drawing.Color.White;
             this.SaveScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("SaveScript_Btn.Image")));
             this.SaveScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveScript_Btn.Name = "SaveScript_Btn";
-            this.SaveScript_Btn.Size = new System.Drawing.Size(44, 22);
+            this.SaveScript_Btn.Size = new System.Drawing.Size(36, 22);
             this.SaveScript_Btn.Text = "Save";
             this.SaveScript_Btn.Click += new System.EventHandler(this.SaveScript_Btn_Click);
             // 
@@ -160,12 +162,12 @@
             // PauseScript_Btn
             // 
             this.PauseScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PauseScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PauseScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PauseScript_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.PauseScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("PauseScript_Btn.Image")));
             this.PauseScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PauseScript_Btn.Name = "PauseScript_Btn";
-            this.PauseScript_Btn.Size = new System.Drawing.Size(51, 22);
+            this.PauseScript_Btn.Size = new System.Drawing.Size(42, 22);
             this.PauseScript_Btn.Text = "Pause";
             this.PauseScript_Btn.Click += new System.EventHandler(this.PauseScript_Btn_Click);
             // 
@@ -177,12 +179,12 @@
             // DelScript_Btn
             // 
             this.DelScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DelScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DelScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DelScript_Btn.ForeColor = System.Drawing.Color.Red;
             this.DelScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("DelScript_Btn.Image")));
             this.DelScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DelScript_Btn.Name = "DelScript_Btn";
-            this.DelScript_Btn.Size = new System.Drawing.Size(54, 22);
+            this.DelScript_Btn.Size = new System.Drawing.Size(45, 22);
             this.DelScript_Btn.Text = "Delete";
             this.DelScript_Btn.Click += new System.EventHandler(this.DelScript_Btn_Click);
             // 
@@ -194,12 +196,12 @@
             // OpnJSfile_Btn
             // 
             this.OpnJSfile_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnJSfile_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnJSfile_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnJSfile_Btn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.OpnJSfile_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnJSfile_Btn.Image")));
             this.OpnJSfile_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnJSfile_Btn.Name = "OpnJSfile_Btn";
-            this.OpnJSfile_Btn.Size = new System.Drawing.Size(91, 22);
+            this.OpnJSfile_Btn.Size = new System.Drawing.Size(74, 22);
             this.OpnJSfile_Btn.Text = "Open JS file";
             this.OpnJSfile_Btn.Click += new System.EventHandler(this.OpnJSfile_Btn_Click);
             // 
@@ -211,12 +213,12 @@
             // MinifyScript_Btn
             // 
             this.MinifyScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.MinifyScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinifyScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinifyScript_Btn.ForeColor = System.Drawing.Color.Lime;
             this.MinifyScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("MinifyScript_Btn.Image")));
             this.MinifyScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MinifyScript_Btn.Name = "MinifyScript_Btn";
-            this.MinifyScript_Btn.Size = new System.Drawing.Size(51, 22);
+            this.MinifyScript_Btn.Size = new System.Drawing.Size(45, 22);
             this.MinifyScript_Btn.Text = "Minify";
             this.MinifyScript_Btn.Click += new System.EventHandler(this.MinifyScript_Btn_Click);
             // 
@@ -228,17 +230,18 @@
             // OpnDirScript_Btn
             // 
             this.OpnDirScript_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.OpnDirScript_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpnDirScript_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpnDirScript_Btn.ForeColor = System.Drawing.Color.Gray;
             this.OpnDirScript_Btn.Image = ((System.Drawing.Image)(resources.GetObject("OpnDirScript_Btn.Image")));
             this.OpnDirScript_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpnDirScript_Btn.Name = "OpnDirScript_Btn";
-            this.OpnDirScript_Btn.Size = new System.Drawing.Size(155, 22);
+            this.OpnDirScript_Btn.Size = new System.Drawing.Size(126, 22);
             this.OpnDirScript_Btn.Text = "Open Script Directory";
             this.OpnDirScript_Btn.Click += new System.EventHandler(this.OpnDirScript_Btn_Click);
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 35);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -248,16 +251,17 @@
             // 
             // ScriptUrl_Lst
             // 
-            this.ScriptUrl_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ScriptUrl_Lst.BackColor = System.Drawing.Color.Black;
             this.ScriptUrl_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ScriptUrl_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ScriptUrl_Lst.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScriptUrl_Lst.ForeColor = System.Drawing.Color.White;
             this.ScriptUrl_Lst.FormattingEnabled = true;
-            this.ScriptUrl_Lst.ItemHeight = 16;
+            this.ScriptUrl_Lst.ItemHeight = 15;
             this.ScriptUrl_Lst.Location = new System.Drawing.Point(0, 20);
             this.ScriptUrl_Lst.Margin = new System.Windows.Forms.Padding(4);
             this.ScriptUrl_Lst.Name = "ScriptUrl_Lst";
-            this.ScriptUrl_Lst.Size = new System.Drawing.Size(232, 261);
+            this.ScriptUrl_Lst.Size = new System.Drawing.Size(232, 274);
             this.ScriptUrl_Lst.TabIndex = 2;
             this.ScriptUrl_Lst.SelectedIndexChanged += new System.EventHandler(this.ScriptUrl_Lst_SelectedIndexChanged);
             // 
@@ -275,10 +279,11 @@
             // 
             // label3
             // 
+            this.label3.BackColor = System.Drawing.Color.Black;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(0, 281);
+            this.label3.Location = new System.Drawing.Point(0, 294);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(232, 20);
             this.label3.TabIndex = 12;
@@ -286,8 +291,9 @@
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
@@ -297,21 +303,23 @@
             // 
             // ScriptUrlp_Lst
             // 
-            this.ScriptUrlp_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ScriptUrlp_Lst.BackColor = System.Drawing.Color.Black;
             this.ScriptUrlp_Lst.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ScriptUrlp_Lst.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ScriptUrlp_Lst.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScriptUrlp_Lst.ForeColor = System.Drawing.Color.White;
             this.ScriptUrlp_Lst.FormattingEnabled = true;
-            this.ScriptUrlp_Lst.ItemHeight = 16;
-            this.ScriptUrlp_Lst.Location = new System.Drawing.Point(0, 301);
+            this.ScriptUrlp_Lst.ItemHeight = 15;
+            this.ScriptUrlp_Lst.Location = new System.Drawing.Point(0, 314);
             this.ScriptUrlp_Lst.Margin = new System.Windows.Forms.Padding(4);
             this.ScriptUrlp_Lst.Name = "ScriptUrlp_Lst";
-            this.ScriptUrlp_Lst.Size = new System.Drawing.Size(232, 208);
+            this.ScriptUrlp_Lst.Size = new System.Drawing.Size(232, 195);
             this.ScriptUrlp_Lst.TabIndex = 3;
             this.ScriptUrlp_Lst.SelectedIndexChanged += new System.EventHandler(this.ScriptUrlp_Lst_SelectedIndexChanged);
             // 
             // UrlSite_Pnl
             // 
+            this.UrlSite_Pnl.BackColor = System.Drawing.Color.Black;
             this.UrlSite_Pnl.Controls.Add(this.SiteUrl_Txt);
             this.UrlSite_Pnl.Controls.Add(this.label1);
             this.UrlSite_Pnl.Dock = System.Windows.Forms.DockStyle.Top;
@@ -333,8 +341,9 @@
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
@@ -345,6 +354,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 25);
             this.panel2.Name = "panel2";
@@ -353,6 +363,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(1057, 35);
             this.panel3.Name = "panel3";
@@ -457,6 +468,7 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.Black;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(242, 68);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
@@ -466,6 +478,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 544);
             this.panel5.Name = "panel5";
@@ -476,6 +489,7 @@
             // 
             this.panel6.Controls.Add(this.ScriptMinify_Txt);
             this.panel6.Controls.Add(this.CopyScriptMini_Btn);
+            this.panel6.Controls.Add(this.panel8);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(249, 521);
             this.panel6.Name = "panel6";
@@ -484,46 +498,56 @@
             // 
             // ScriptMinify_Txt
             // 
-            this.ScriptMinify_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.ScriptMinify_Txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.ScriptMinify_Txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ScriptMinify_Txt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ScriptMinify_Txt.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScriptMinify_Txt.ForeColor = System.Drawing.Color.Lime;
-            this.ScriptMinify_Txt.Location = new System.Drawing.Point(78, 0);
+            this.ScriptMinify_Txt.Location = new System.Drawing.Point(97, 0);
             this.ScriptMinify_Txt.Name = "ScriptMinify_Txt";
-            this.ScriptMinify_Txt.Size = new System.Drawing.Size(730, 23);
+            this.ScriptMinify_Txt.Size = new System.Drawing.Size(711, 23);
             this.ScriptMinify_Txt.TabIndex = 1;
             // 
             // CopyScriptMini_Btn
             // 
+            this.CopyScriptMini_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.CopyScriptMini_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CopyScriptMini_Btn.Dock = System.Windows.Forms.DockStyle.Left;
             this.CopyScriptMini_Btn.FlatAppearance.BorderSize = 0;
             this.CopyScriptMini_Btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.CopyScriptMini_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CopyScriptMini_Btn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyScriptMini_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyScriptMini_Btn.ForeColor = System.Drawing.Color.White;
-            this.CopyScriptMini_Btn.Location = new System.Drawing.Point(0, 0);
+            this.CopyScriptMini_Btn.Location = new System.Drawing.Point(19, 0);
             this.CopyScriptMini_Btn.Name = "CopyScriptMini_Btn";
             this.CopyScriptMini_Btn.Size = new System.Drawing.Size(78, 23);
             this.CopyScriptMini_Btn.TabIndex = 0;
             this.CopyScriptMini_Btn.Text = "Copy";
-            this.CopyScriptMini_Btn.UseVisualStyleBackColor = true;
+            this.CopyScriptMini_Btn.UseVisualStyleBackColor = false;
             this.CopyScriptMini_Btn.Click += new System.EventHandler(this.CopyScriptMini_Btn_Click);
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.Color.Black;
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(249, 516);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(808, 5);
             this.panel7.TabIndex = 11;
             // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(19, 23);
+            this.panel8.TabIndex = 2;
+            // 
             // ScriptCreator_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.ScriptTxt_Txt);
             this.Controls.Add(this.panel7);
@@ -600,5 +624,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton OpnDirScript_Btn;
+        private System.Windows.Forms.Panel panel8;
     }
 }

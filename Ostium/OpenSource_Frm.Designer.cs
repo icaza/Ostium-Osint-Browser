@@ -45,13 +45,13 @@
             // 
             // Sortie_Lst
             // 
-            this.Sortie_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Sortie_Lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Sortie_Lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Sortie_Lst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Sortie_Lst.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sortie_Lst.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Sortie_Lst.ForeColor = System.Drawing.Color.White;
             this.Sortie_Lst.FormattingEnabled = true;
-            this.Sortie_Lst.ItemHeight = 16;
+            this.Sortie_Lst.ItemHeight = 15;
             this.Sortie_Lst.Location = new System.Drawing.Point(0, 25);
             this.Sortie_Lst.Name = "Sortie_Lst";
             this.Sortie_Lst.Size = new System.Drawing.Size(496, 230);
@@ -60,7 +60,7 @@
             // 
             // Tools_Bar
             // 
-            this.Tools_Bar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Tools_Bar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Tools_Bar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Tools_Bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveData_Btn,
@@ -78,12 +78,12 @@
             // SaveData_Btn
             // 
             this.SaveData_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SaveData_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveData_Btn.ForeColor = System.Drawing.Color.White;
+            this.SaveData_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveData_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.SaveData_Btn.Image = ((System.Drawing.Image)(resources.GetObject("SaveData_Btn.Image")));
             this.SaveData_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveData_Btn.Name = "SaveData_Btn";
-            this.SaveData_Btn.Size = new System.Drawing.Size(44, 22);
+            this.SaveData_Btn.Size = new System.Drawing.Size(36, 22);
             this.SaveData_Btn.Text = "Save";
             this.SaveData_Btn.Click += new System.EventHandler(this.SaveData_Btn_Click);
             // 
@@ -95,12 +95,12 @@
             // TopNo_Btn
             // 
             this.TopNo_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.TopNo_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TopNo_Btn.ForeColor = System.Drawing.Color.White;
+            this.TopNo_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TopNo_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.TopNo_Btn.Image = ((System.Drawing.Image)(resources.GetObject("TopNo_Btn.Image")));
             this.TopNo_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TopNo_Btn.Name = "TopNo_Btn";
-            this.TopNo_Btn.Size = new System.Drawing.Size(35, 22);
+            this.TopNo_Btn.Size = new System.Drawing.Size(31, 22);
             this.TopNo_Btn.Text = "Top";
             this.TopNo_Btn.Click += new System.EventHandler(this.TopNo_Btn_Click);
             // 
@@ -112,12 +112,12 @@
             // Sorted_Btn
             // 
             this.Sorted_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Sorted_Btn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Sorted_Btn.ForeColor = System.Drawing.Color.White;
+            this.Sorted_Btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sorted_Btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(238)))));
             this.Sorted_Btn.Image = ((System.Drawing.Image)(resources.GetObject("Sorted_Btn.Image")));
             this.Sorted_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sorted_Btn.Name = "Sorted_Btn";
-            this.Sorted_Btn.Size = new System.Drawing.Size(55, 22);
+            this.Sorted_Btn.Size = new System.Drawing.Size(46, 22);
             this.Sorted_Btn.Text = "Sorted";
             this.Sorted_Btn.Click += new System.EventHandler(this.Sorted_Btn_Click);
             // 
@@ -128,7 +128,7 @@
             // 
             // Status_Bar
             // 
-            this.Status_Bar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.Status_Bar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.Status_Bar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Count_Lbl});
             this.Status_Bar.Location = new System.Drawing.Point(0, 255);
